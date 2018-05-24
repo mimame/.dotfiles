@@ -9,6 +9,8 @@
 ## Description
 
 ## Requirements
+- dropbox-cli (./bin/.bin/dropbox-urls-extractor.sh)
+- xsel (./bin/.bin/dropbox-urls-extractor.sh)
 
 ## Setup
 
@@ -23,6 +25,8 @@
 ### [alacritty (terminal)](./alacritty/.config/alacritty)
 
 ### [beets (music organizer)](./beets/.config/beets)
+
+### [bin (my own scripts)](./bin/.bin)
 
 ## Contributing
 
