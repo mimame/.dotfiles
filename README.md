@@ -18,7 +18,7 @@
 `stow folder`
 
 ## Content
-### alacritty (terminal)
+### [alacritty (terminal)](./alacritty/.config/alacritty)
 
 ## Contributing
 
