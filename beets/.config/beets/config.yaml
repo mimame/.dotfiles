@@ -1,0 +1,35 @@
+# The directory to which files will be copied/moved when adding them to the library
+directory: /data/Music
+
+# Move files into the library directory when using beet import
+import:
+  move: yes
+
+paths:
+  # default for most releases
+  default: $genre/$albumartist/$album%aunique{}/$track $title
+  # singleton for non-album tracks
+  singleton: Singletons/$artist/$title
+  # comp for “various artist” releases with no dominant artist
+  comp: $genre/$album%aunique{}/$track $title
+  # soundtrack albums in a separate directory
+  albumtype:soundtrack: Soundtracks/$album/$track $title
+
+# A space-separated list of plugin module names to load
+plugins:
+  # Fetch various AcousticBrainz metadata
+  - acousticbrainz
+  # Check audio file integrity
+  - badfiles
+  # Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
+  - chroma
+  # Guess metadata for untagged tracks from their filenames
+  - fromfilename
+  # Move "featured" artists from the artist field to the title field.
+  - ftintitle
+  # Print music files' tags to the console
+  - info
+  # Fetch genres based on Last.fm tags.
+  - lastgenre
+  # Automatically fetch song lyrics
+  - lyrics

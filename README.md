@@ -18,7 +18,10 @@
 `stow folder`
 
 ## Content
+
 ### [alacritty (terminal)](./alacritty/.config/alacritty)
+
+### [beets (music organizer)](./beets/.config/beets)
 
 ## Contributing
 
