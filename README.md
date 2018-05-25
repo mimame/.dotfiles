@@ -28,6 +28,8 @@
 
 ### [bin (my own scripts)](./bin/.bin)
 
+### [cmus (TUI music player)](./cmus/.config/cmus)
+
 ## Contributing
 
 I only accept bug fixes, documentation and interesting features for me
