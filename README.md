@@ -30,6 +30,8 @@
 
 ### [cmus (TUI music player)](./cmus/.config/cmus)
 
+### [dunst (replacement for the notification-daemon)](./dunst/.config/dunst)
+
 ## Contributing
 
 I only accept bug fixes, documentation and interesting features for me
