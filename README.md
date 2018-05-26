@@ -22,15 +22,15 @@
 
 ## Content
 
-### [alacritty (terminal)](./alacritty/.config/alacritty)
+### [alacritty (terminal)](https://github.com/jwilm/alacritty) (./alacritty/.config/alacritty)
 
-### [beets (music organizer)](./beets/.config/beets)
+### [beets (music organizer)](http://beets.io/) (./beets/.config/beets)
 
-### [bin (my own scripts)](./bin/.bin)
+### bin (my own scripts) (./bin/.bin)
 
-### [cmus (TUI music player)](./cmus/.config/cmus)
+### [cmus (TUI music player)](https://cmus.github.io/) (./cmus/.config/cmus)
 
-### [dunst (replacement for the notification-daemon)](./dunst/.config/dunst)
+### [dunst (replacement for the notification-daemon)](https://dunst-project.org/) (./dunst/.config/dunst)
 
 ## Contributing
 
