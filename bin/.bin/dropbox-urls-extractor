@@ -29,12 +29,16 @@
   # Generate a Dropbox link and copy it to the clipboard for any number of files ONLY if they are inside the Dropbox folder
 
 # Usage:
-  # ./dropbox-urls-extractor.sh file1 [file2 ... fileN]
+  # ./dropbox-urls-extractor file1 [file2 ... fileN]
 
 # Note: the files have to be inside of the Dropbox path folder
 
-
-printf "%s\0" "$@" | xargs --null --max-procs=0 --max-args=1 dropbox-cli sharelink | xsel --input --clipboard
-notify-send "Dropbox links copied to clipboard"
+printf "%s\0" "$@" \
+  # Pass each file to dropbox-cli in parallel
+  | xargs --null --max-procs=0 --max-args=1 dropbox-cli sharelink \
+  # Copy link(s) to the clipboard
+  | xsel --input --clipboard \
+  # Send a notification
+  && notify-send "Dropbox links copied to clipboard"
 exit 0
 
