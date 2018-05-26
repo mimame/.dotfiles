@@ -9,8 +9,8 @@
 ## Description
 
 ## Requirements
-- dropbox-cli (./bin/.bin/dropbox-urls-extractor.sh)
-- xsel (./bin/.bin/dropbox-urls-extractor.sh)
+- [dropbox-cli](https://www.dropbox.com/) (./bin/.bin/dropbox-urls-extractor)
+- [xsel](http://www.vergenet.net/~conrad/software/xsel/) (./bin/.bin/dropbox-urls-extractor)
 
 ## Setup
 
