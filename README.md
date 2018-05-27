@@ -9,8 +9,10 @@
 ## Description
 
 ## Requirements
-- [dropbox-cli](https://www.dropbox.com/) (./bin/.bin/dropbox-urls-extractor)
-- [xsel](http://www.vergenet.net/~conrad/software/xsel/) (./bin/.bin/dropbox-urls-extractor)
+- [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) (git/.config/git/config)
+- [dropbox-cli](https://www.dropbox.com/) (bin/.bin/dropbox-urls-extractor)
+- [watchman](https://facebook.github.io/watchman/) (git/.config/git/config)
+- [xsel](http://www.vergenet.net/~conrad/software/xsel/) (bin/.bin/dropbox-urls-extractor)
 
 ## Setup
 
