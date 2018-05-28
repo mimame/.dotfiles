@@ -34,6 +34,8 @@
 
 ### [dunst (replacement for the notification-daemon)](https://dunst-project.org/) (./dunst/.config/dunst)
 
+### [grub (Boot loader)](https://www.gnu.org/software/grub/) (./etc/default/grub)
+
 ## Contributing
 
 I only accept bug fixes, documentation and interesting features for me
