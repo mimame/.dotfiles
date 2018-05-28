@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+# MIT License
+
+# Copyright (c) 2018 Miguel Madrid Mencía
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+# Requirements:
+  # i3-wm, systemd, ./dunstify_notification, ./blurlock, ./i3session
+
+# Description:
+  # Interactive session menu close,
+
+# Usage:
+  # ./i3exit action
+  # action: close, hibernate, lock, logout, suspend, reboot, restore, shutdown
+
+BASE_DIR="$(dirname "$0")"
+
+source "$BASE_DIR"/i3session
+
+case "$1" in
+    close)
+        i3session--close
+        ;;
+    hibernate)
+        systemctl hibernate
+        ;;
+    lock)
+        "$BASE_DIR"/blurlock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        systemctl suspend
+        ;;
+    reboot)
+        i3session--save
+        "$BASE_DIR"/dunstify_notification "i3session_save"
+        i3session--close && sleep 1
+        systemctl reboot
+        ;;
+    restore)
+        i3session--restore
+        "$BASE_DIR"/dunstify_notification "i3session_restore"
+      ;;
+    shutdown)
+        i3session--save
+        "$BASE_DIR"/dunstify_notification "i3session_save"
+        i3session--close && sleep 1
+        systemctl poweroff
+        ;;
+    *)
+        echo "Usage: $0 [close|hibernate|lock|logout|reboot|restore|suspend|shutdown]" 1>&2
+        exit 1
+esac
+
+exit 0

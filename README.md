@@ -9,10 +9,26 @@
 ## Description
 
 ## Requirements
-- [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) (git/.config/git/config)
-- [dropbox-cli](https://www.dropbox.com/) (bin/.bin/dropbox-urls-extractor)
-- [watchman](https://facebook.github.io/watchman/) (git/.config/git/config)
-- [xsel](http://www.vergenet.net/~conrad/software/xsel/) (bin/.bin/dropbox-urls-extractor)
+- [AnyEvent-I3](https://github.com/i3/i3/tree/next/AnyEvent-I3) (./i3/.config/i3/scripts/i3session)
+- [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) (./git/.config/git/config)
+- [dropbox-cli](https://www.dropbox.com/) (./bin/.bin/dropbox-urls-extractor)
+- [dunst](https://dunst-project.org/) (./i3/.config/i3/config)
+- [gawk](https://www.gnu.org/software/gawk/) (./i3/.config/i3/scripts/i3session)
+- [i3pystatus](https://github.com/enkore/i3pystatus) (./i3/.config/i3/bar.py)
+- [imagemagick](https://www.imagemagick.org/script/index.php) (./i3/.config/i3/scripts/blurlock)
+- [jq](https://stedolan.github.io/jq/) (./i3/.config/i3/scripts/i3session)
+- [numlockx](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) (./i3/.config/i3/config)
+- [pamixer](https://github.com/cdemoulins/pamixer) (./i3/.config/i3/config)
+- [playerctl](https://github.com/acrisci/playerctl) (./i3/.config/i3/config)
+- [pulseaudio](https://github.com/acrisci/playerctl) (./i3/.config/i3/scripts/dunstify_notification)
+- [rofi](https://github.com/DaveDavenport/rofi) (./i3/.config/i3/config)
+- [scrot](http://scrot.sourcearchive.com/) (./i3/.config/i3/scripts/blurlock)
+- [setxkbmap](https://www.x.org/archive/X11R7.5/doc/man/man1/setxkbmap.1.html) (./i3/.config/i3/config)
+- [udiskie](https://github.com/coldfix/udiskie) (./i3/.config/i3/config)
+- [watchman](https://facebook.github.io/watchman/) (./git/.config/git/config)
+- [wmctrl](http://tripie.sweb.cz/utils/wmctrl/) (./i3/.config/i3/scripts/i3session)
+- [xcape](https://github.com/alols/xcape) (./i3/.config/i3/config)
+- [xsel](http://www.vergenet.net/~conrad/software/xsel/) (./bin/.bin/dropbox-urls-extractor)
 
 ## Setup
 
@@ -26,15 +42,17 @@
 
 ### [alacritty (terminal)](https://github.com/jwilm/alacritty) (./alacritty/.config/alacritty)
 
-### [beets (music organizer)](http://beets.io/) (./beets/.config/beets)
+### [beets (Music organizer)](http://beets.io/) (./beets/.config/beets)
 
 ### bin (my own scripts) (./bin/.bin)
 
 ### [cmus (TUI music player)](https://cmus.github.io/) (./cmus/.config/cmus)
 
-### [dunst (replacement for the notification-daemon)](https://dunst-project.org/) (./dunst/.config/dunst)
+### [dunst (Replacement for the notification-daemon)](https://dunst-project.org/) (./dunst/.config/dunst)
 
 ### [grub (Boot loader)](https://www.gnu.org/software/grub/) (./etc/default/grub)
+
+### [i3 (Tiling windows manager) + my own scripts](https://i3wm.org/) (./i3/.config/i3)
 
 ## Contributing
 
