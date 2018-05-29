@@ -58,6 +58,8 @@
 
 ### [parallel](https://www.gnu.org/software/parallel/) (./parallel/.parallel)
 
+### [ssh](https://www.openssh.com/) (./ssh/.ssh)
+
 ## Contributing
 
 I only accept bug fixes, documentation and interesting features for me
