@@ -54,6 +54,8 @@
 
 ### [i3 (Tiling windows manager) + my own scripts](https://i3wm.org/) (./i3/.config/i3)
 
+### [latex](https://www.latex-project.org/) (./latex/)
+
 ## Contributing
 
 I only accept bug fixes, documentation and interesting features for me
