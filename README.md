@@ -60,6 +60,8 @@
 
 ### [ssh](https://www.openssh.com/) (./ssh/.ssh)
 
+### [termite (terminal)](https://github.com/thestinger/termite) (./termite/.config/termite)
+
 ## Contributing
 
 I only accept bug fixes, documentation and interesting features for me
