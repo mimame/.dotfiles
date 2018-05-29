@@ -56,6 +56,8 @@
 
 ### [latex](https://www.latex-project.org/) (./latex/)
 
+### [parallel](https://www.gnu.org/software/parallel/) (./parallel/.parallel)
+
 ## Contributing
 
 I only accept bug fixes, documentation and interesting features for me
