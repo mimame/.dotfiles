@@ -62,6 +62,9 @@
 
 ### [termite (terminal)](https://github.com/thestinger/termite) (./termite/.config/termite)
 
+### [tig (TUI git)](https://jonas.github.io/tig/) (./tig/.config/tig)
+
+
 ## Contributing
 
 I only accept bug fixes, documentation and interesting features for me
