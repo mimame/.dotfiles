@@ -1,0 +1,359 @@
+!URxvt*termName: rxvt-unicode-256color
+URxvt.font: xft:Inconsolata Nerd Font Medium:size=14
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+Xcursor.theme: Maia-Cursor
+Xcursor.size:  0
+URxvt.depth: 32
+URxvt.background: #000000
+URxvt*scrollBar:                      false
+URxvt*mouseWheelScrollPage:           false
+URxvt*cursorBlink:                    true
+URxvt*saveLines:                      5000
+
+!resize-font and fullscreen keys
+URxvt.perl-ext-common: default,clipboard,selection-to-clipboard,keyboard-select,url-select,matcher,resize-font
+URxvt.clipboard.autocopy: true
+! clipboard
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+! resize-font
+URxvt.resize-font.smaller: C-minus
+URxvt.resize-font.bigger: C-plus
+URxvt.resize-font.reset: C-equal
+URxvt.resize-font.show: C-question
+
+! keyboard-select
+! Use Meta-Escape to activate selection mode, then use the following keys:
+!   h/j/k/l:    Move cursor left/down/up/right (also with arrow keys)
+!   g/G/0/^/$/H/M/L/f/F/;/,/w/W/b/B/e/E: More vi-like cursor movement keys
+!   '/'/?:      Start forward/backward search
+!   n/N:        Repeat last search, N: in reverse direction
+!   Ctrl-f/b:   Scroll down/up one screen
+!   Ctrl-d/u:   Scroll down/up half a screen
+!   v/V/Ctrl-v: Toggle normal/linewise/blockwise selection
+!   y/Return:   Copy selection to primary buffer, Return: deactivate afterwards
+!   q/Escape:   Deactivate keyboard selection mode
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+
+! url-select
+! Use Meta-u to activate URL selection mode, then use the following keys:
+!   j/k:      Select next downward/upward URL (also with arrow keys)
+!   g/G:      Select first/last URL (also with home/end key)
+!   o/Return: Open selected URL in browser, Return: deactivate afterwards
+!   y:        Copy (yank) selected URL and deactivate selection mode
+!   q/Escape: Deactivate URL selection mode
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.autocopy: true
+URxvt.url-select.underline: true
+URxvt.url-select.launcher: firefox
+
+URxvt*iso14755:                       false
+URxvt*iso14755_52:                    false
+
+! Base16 Monokai
+! Scheme: Wimer Hazenberg (http://www.monokai.nl)
+
+URxvt*background:                     #272822
+URxvt*foreground:                     #f8f8f2
+URxvt*cursorColor:                    #f8f8f2
+
+URxvt*scrollColor:                    #f8f8f2
+URxvt*highlightColor:                 #49483e
+URxvt*highlightTextColor:             #a59f85
+
+URxvt*color0:                         #272822
+URxvt*color1:                         #f92672
+URxvt*color2:                         #a6e22e
+URxvt*color3:                         #f4bf75
+URxvt*color4:                         #66d9ef
+URxvt*color5:                         #ae81ff
+URxvt*color6:                         #a1efe4
+URxvt*color7:                         #f8f8f2
+URxvt*color8:                         #75715e
+URxvt*color9:                         #f92672
+URxvt*color10:                        #a6e22e
+URxvt*color11:                        #f4bf75
+URxvt*color12:                        #66d9ef
+URxvt*color13:                        #ae81ff
+URxvt*color14:                        #a1efe4
+URxvt*color15:                        #f9f8f5
+
+URxvt*color16:                        #fd971f
+URxvt*color17:                        #cc6633
+URxvt*color18:                        #383830
+URxvt*color19:                        #49483e
+URxvt*color20:                        #a59f85
+URxvt*color21:                        #f5f4f1
+
+! for 'fake' transparency (without Compton) uncomment the following three lines
+! URxvt*inheritPixmap:                  true
+! URxvt*transparent:                    true
+! URxvt*shading:                        138
+
+! URxvt*termName:                       string
+! URxvt*geometry:                       geometry
+! URxvt*chdir:                          string
+! URxvt*reverseVideo:                   boolean
+! URxvt*loginShell:                     boolean
+! URxvt*multiClickTime:                 number
+! URxvt*jumpScroll:                     boolean
+! URxvt*skipScroll:                     boolean
+! URxvt*pastableTabs:                   boolean
+! URxvt*scrollstyle:                    mode
+! URxvt*scrollBar:                      boolean
+! URxvt*scrollBar_right:                boolean
+! URxvt*scrollBar_floating:             boolean
+! URxvt*scrollBar_align:                mode
+! URxvt*thickness:                      number
+! URxvt*scrollTtyOutput:                boolean
+! URxvt*scrollTtyKeypress:              boolean
+! URxvt*scrollWithBuffer:               boolean
+! URxvt*inheritPixmap:                  boolean
+! URxvt*transparent:                    boolean
+! URxvt*tintColor:                      color
+! URxvt*shading:                        number
+! URxvt*blurRadius:                     HxV
+! URxvt*fading:                         number
+! URxvt*fadeColor:                      color
+! URxvt*utmpInhibit:                    boolean
+! URxvt*urgentOnBell:                   boolean
+! URxvt*visualBell:                     boolean
+! URxvt*mapAlert:                       boolean
+! URxvt*meta8:                          boolean
+! URxvt*mouseWheelScrollPage:           boolean
+! URxvt*tripleclickwords:               boolean
+! URxvt*insecure:                       boolean
+! URxvt*cursorUnderline:                boolean
+! URxvt*cursorBlink:                    boolean
+! URxvt*pointerBlank:                   boolean
+! URxvt*background:                     color
+! URxvt*foreground:                     color
+! URxvt*color0:                         color
+! URxvt*color1:                         color
+! URxvt*color2:                         color
+! URxvt*color3:                         color
+! URxvt*color4:                         color
+! URxvt*color5:                         color
+! URxvt*color6:                         color
+! URxvt*color7:                         color
+! URxvt*color8:                         color
+! URxvt*color9:                         color
+! URxvt*color10:                        color
+! URxvt*color11:                        color
+! URxvt*color12:                        color
+! URxvt*color13:                        color
+! URxvt*color14:                        color
+! URxvt*color15:                        color
+! URxvt*colorBD:                        color
+! URxvt*colorIT:                        color
+! URxvt*colorUL:                        color
+! URxvt*colorRV:                        color
+! URxvt*underlineColor:                 color
+! URxvt*scrollColor:                    color
+! URxvt*troughColor:                    color
+! URxvt*highlightColor:                 color
+! URxvt*highlightTextColor:             color
+! URxvt*cursorColor:                    color
+! URxvt*cursorColor2:                   color
+! URxvt*pointerColor:                   color
+! URxvt*pointerColor2:                  color
+! URxvt*borderColor:                    color
+! URxvt*iconFile:                       file
+! URxvt*font:                           fontname
+! URxvt*boldFont:                       fontname
+! URxvt*italicFont:                     fontname
+! URxvt*boldItalicFont:                 fontname
+! URxvt*intensityStyles:                boolean
+! URxvt*inputMethod:                    name
+! URxvt*preeditType:                    style
+! URxvt*imLocale:                       string
+! URxvt*imFont:                         fontname
+! URxvt*title:                          string
+! URxvt*iconName:                       string
+! URxvt*saveLines:                      number
+! URxvt*buffered:                       boolean
+! URxvt*depth:                          number
+! URxvt*visual:                         number
+! URxvt*transient-for:                  windowid
+! URxvt*override-redirect:              boolean
+! URxvt*hold:                           boolean
+! URxvt*externalBorder:                 number
+! URxvt*internalBorder:                 number
+! URxvt*borderLess:                     boolean
+! URxvt*lineSpace:                      number
+! URxvt*letterSpace:                    number
+! URxvt*skipBuiltinGlyphs:              boolean
+! URxvt*pointerBlankDelay:              number
+! URxvt*backspacekey:                   string
+! URxvt*deletekey:                      string
+! URxvt*print-pipe:                     string
+! URxvt*modifier:                       modifier
+! URxvt*cutchars:                       string
+! URxvt*answerbackString:               string
+! URxvt*secondaryScreen:                boolean
+! URxvt*secondaryScroll:                boolean
+! URxvt*perl-lib:                       string
+! URxvt*perl-eval:                      perl-eval
+! URxvt*perl-ext-common:                string
+! URxvt*perl-ext:                       string
+! URxvt*iso14755:                       boolean
+! URxvt*iso14755_52:                    boolean
+! URxvt*xrm:                            string
+! URxvt*keysym.sym:                     keysym
+! URxvt*background.border:              boolean
+! URxvt*background.expr:                string
+! URxvt*background.interval:            seconds
+! URxvt*bell-command:                   string
+! URxvt*kuake.hotkey:                   string
+! URxvt*matcher.button:                 string
+! URxvt*matcher.launcher:               string
+! URxvt*matcher.launcher.*:             string
+! URxvt*matcher.pattern.*:              string
+! URxvt*matcher.rend.*:                 string
+! URxvt*remote-clipboard.fetch:         string
+! URxvt*remote-clipboard.store:         string
+! URxvt*searchable-scrollback:          string
+! URxvt*selection-autotransform.*:      string
+! URxvt*selection-pastebin.cmd:         string
+! URxvt*selection-pastebin.url:         string
+! URxvt*selection.pattern-0:            string
+! URxvt*tab-bg:                         colour
+! URxvt*tab-fg:                         colour
+! URxvt*tabbar-bg:                      colour
+! URxvt*tabbar-fg:                      colour
+! URxvt*url-launcher:                   string
+
+! Base16 Monokai by Wimer Hazenberg (http://www.monokai.nl)
+! # template by Matt Parnell, @parnmatt
+#define base00 #272822
+#define base01 #383830
+#define base02 #49483e
+#define base03 #75715e
+#define base04 #a59f85
+#define base05 #f8f8f2
+#define base06 #f5f4f1
+#define base07 #f9f8f5
+#define base08 #f92672
+#define base09 #fd971f
+#define base0A #f4bf75
+#define base0B #a6e22e
+#define base0C #a1efe4
+#define base0D #66d9ef
+#define base0E #ae81ff
+#define base0F #cc6633
+
+! Enabled modi
+rofi.modi:                           window,drun,ssh
+! Window opacity
+rofi.opacity:                        100
+! Window width
+rofi.width:                          100
+! Number of lines
+rofi.lines:                          15
+! Number of columns
+rofi.columns:                        1
+! Font to use
+rofi.font:                           Inconsolata Nerd Font Medium 12
+! Color scheme for normal row
+rofi.color-normal:                   base00, base07, base00, base0B, base00
+! Color scheme for urgent row
+rofi.color-urgent:                   base00, base08, base00, base08, base00
+! Color scheme for active row
+rofi.color-active:                   base00, base0D, base00, base0D, base00
+! Color scheme window
+rofi.color-window:                   base00, base0D, base0D
+! Border width
+rofi.bw:                             1
+! Location on screen
+rofi.location:                       2
+! Padding
+rofi.padding:                        5
+! Y-offset relative to location
+rofi.yoffset:                        22
+! X-offset relative to location
+rofi.xoffset:                        0
+! Always show number of lines
+rofi.fixed-num-lines:                false
+! Terminal to use
+rofi.terminal:                       termite
+! Ssh client to use
+rofi.ssh-client:                     ssh
+! Ssh command to execute
+rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
+! Run command to execute
+rofi.run-command:                    {cmd}
+! Command to get extra run targets
+rofi.run-list-command:
+! Run command to execute that runs in shell
+rofi.run-shell-command:              {terminal} -e {cmd}
+! Command executed on accep-entry-custom for window modus
+rofi.window-command:                 xkill -id {window}
+! Disable history in run/ssh
+rofi.disable-history:                false
+! Use levenshtein sorting
+rofi.levenshtein-sort:               false
+! Set case-sensitivity
+rofi.case-sensitive:                 false
+! Cycle through the results list
+rofi.cycle:                          true
+! Enable sidebar-mode
+rofi.sidebar-mode:                   false
+! Row height (in chars)
+rofi.eh:                             1
+! Enable auto select mode
+rofi.auto-select:                    false
+! Parse hosts file for ssh mode
+rofi.parse-hosts:                    false
+! Parse known_hosts file for ssh mode
+rofi.parse-known-hosts:              true
+! Set the modi to combine in combi mode
+rofi.combi-modi:                     window,drun
+! Do a more fuzzy matching
+rofi.fuzzy:                          false
+! Use glob matching
+rofi.glob:                           false
+! Use regex matching
+rofi.regex:                          false
+! Tokenize input string
+rofi.tokenize:                       true
+! Monitor id to show on
+rofi.m:                              -2
+! Margin between rows
+rofi.line-margin:                    2
+! Pre-set filter
+rofi.filter:
+! Separator style (none, dash, solid)
+rofi.separator-style:                solid
+! Hide scroll-bar
+rofi.hide-scrollbar:                 true
+! Fullscreen
+rofi.fullscreen:                     false
+! Fake transparency
+rofi.fake-transparency:              true
+! DPI
+rofi.dpi:                            -1
+! Threads to use for string matching
+rofi.threads:                        1
+! Scrollbar width
+rofi.scrollbar-width:                8
+! Scrolling method. (0: Page, 1: Centered)
+rofi.scroll-method:                  0
+! Background to use for fake transparency. (background or screenshot)
+rofi.fake-background:                screenshot
+! Pidfile location
+rofi.pid:                            /run/user/1000/rofi.pid
+! Paste primary selection
+rofi.kb-primary-paste:               Control+Shift+v,Shift+Insert
+! Paste clipboard
+rofi.kb-secondary-paste:             Control+v,Insert
+! The display name of this browser
+rofi.display-combi:
+

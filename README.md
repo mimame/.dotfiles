@@ -64,6 +64,7 @@
 
 ### [tig (TUI git)](https://jonas.github.io/tig/) (./tig/.config/tig)
 
+### [Xresources](https://wiki.archlinux.org/index.php/x_resources) (./Xresources)
 
 ## Contributing
 
