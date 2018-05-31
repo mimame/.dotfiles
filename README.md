@@ -13,6 +13,7 @@
 - [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) (./git/.config/git/config)
 - [dropbox-cli](https://www.dropbox.com/) (./bin/.bin/dropbox-urls-extractor)
 - [dunst](https://dunst-project.org/) (./i3/.config/i3/config)
+- [fzf](https://github.com/junegunn/fzf) (./nvim/.config/nvim3/init.vim)
 - [gawk](https://www.gnu.org/software/gawk/) (./i3/.config/i3/scripts/i3session)
 - [i3pystatus](https://github.com/enkore/i3pystatus) (./i3/.config/i3/bar.py)
 - [imagemagick](https://www.imagemagick.org/script/index.php) (./i3/.config/i3/scripts/blurlock)
@@ -55,6 +56,8 @@
 ### [i3 (Tiling windows manager) + my own scripts](https://i3wm.org/) (./i3/.config/i3)
 
 ### [latex](https://www.latex-project.org/) (./latex/)
+
+### [nvim](./nvim/.config/nvim3/init.vim) (./nvim/.config/nvim)
 
 ### [parallel](https://www.gnu.org/software/parallel/) (./parallel/.parallel)
 
