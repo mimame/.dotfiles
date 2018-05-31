@@ -32,6 +32,7 @@
 - [watchman](https://facebook.github.io/watchman/) (./git/.config/git/config)
 - [wmctrl](http://tripie.sweb.cz/utils/wmctrl/) (./i3/.config/i3/scripts/i3session)
 - [xcape](https://github.com/alols/xcape) (./i3/.config/i3/config)
+- [xclip](https://github.com/astrand/xclip) (./vifm3/.config/vifm/vifmrc)
 - [xsel](http://www.vergenet.net/~conrad/software/xsel/) (./bin/.bin/dropbox-urls-extractor,)
 
 ## Setup
@@ -69,6 +70,8 @@
 ### [termite (terminal)](https://github.com/thestinger/termite) (./termite/.config/termite)
 
 ### [tig (TUI git)](https://jonas.github.io/tig/) (./tig/.config/tig)
+
+### [vifm (TUI filemanager)](https://vifm.info/) (./vifm/.config/vifm)
 
 ### [Xresources](https://wiki.archlinux.org/index.php/x_resources) (./Xresources)
 
