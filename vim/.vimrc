@@ -524,6 +524,7 @@ autocmd BufNewFile,BufReadPost *.md let indentLine_enabled=0
 function! Markdown_viewer()
   silent! execute "!ps aux | fgrep vmd | grep -Fv grep > /dev/null || vmd '%:p' &"
 endfunction
+au BufReadPost,BufNewFile *.md call Markdown_viewer()
 
 "autocmd FileType ruby compiler ruby
 "autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
