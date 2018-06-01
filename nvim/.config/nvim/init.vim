@@ -189,7 +189,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'kassio/neoterm'
   " Text object, based on indentation levels
   Plug 'michaeljsmith/vim-indent-object'
-  " Adds file type glyphs/icons (should be put at the endlast!!)
+  " Adds file type glyphs/icons (should be put at last!!)
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " }}}
@@ -529,6 +529,7 @@ autocmd BufNewFile,BufReadPost *.md let indentLine_enabled=0
 function! Markdown_viewer()
   silent! execute "!ps aux | fgrep vmd | grep -Fv grep > /dev/null || vmd '%:p' &"
 endfunction
+au BufReadPost,BufNewFile *.md call Markdown_viewer()
 
 "autocmd FileType ruby compiler ruby
 "autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
