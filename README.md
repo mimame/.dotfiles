@@ -8,39 +8,6 @@
 
 ## Description
 
-## Requirements
-- [AnyEvent-I3](https://github.com/i3/i3/tree/next/AnyEvent-I3) (./i3/.config/i3/scripts/i3session)
-- [aria2c](https://github.com/aria2/aria2) (./zsh/.zshrc)
-- [axel](https://github.com/axel-download-accelerator/axel) (./zsh/.zshrc)
-- [curl](https://github.com/curl/curl) (./zsh/.zshrc)
-- [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) (./git/.config/git/config)
-- [dropbox-cli](https://www.dropbox.com/) (./bin/.bin/dropbox-urls-extractor)
-- [dunst](https://dunst-project.org/) (./i3/.config/i3/config)
-- [fpp](http://facebook.github.io/PathPicker/) (./tmux/.tmux.conf)
-- [fzf](https://github.com/junegunn/fzf) (./nvim/.config/nvim3/init.vim, ./vim/.vimrc, ./zsh/.zshrc)
-- [gawk](https://www.gnu.org/software/gawk/) (./i3/.config/i3/scripts/i3session)
-- [i3pystatus](https://github.com/enkore/i3pystatus) (./i3/.config/i3/bar.py)
-- [imagemagick](https://www.imagemagick.org/script/index.php) (./i3/.config/i3/scripts/blurlock)
-- [jq](https://stedolan.github.io/jq/) (./i3/.config/i3/scripts/i3session)
-- [numlockx](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) (./i3/.config/i3/config)
-- [pamixer](https://github.com/cdemoulins/pamixer) (./i3/.config/i3/config)
-- [pigz](https://zlib.net/pigz/) (./zsh/.zshenv)
-- [pixz](https://github.com/vasi/pixz) (./zsh/.zshenv)
-- [playerctl](https://github.com/acrisci/playerctl) (./i3/.config/i3/config)
-- [pulseaudio](https://github.com/acrisci/playerctl) (./i3/.config/i3/scripts/dunstify_notification)
-- [xdg-open](https://www.freedesktop.org/wiki/Software/xdg-utils/) (./tmux/.tmux.conf)
-- [rofi](https://github.com/DaveDavenport/rofi) (./i3/.config/i3/config)
-- [scrot](http://scrot.sourcearchive.com/) (./i3/.config/i3/scripts/blurlock)
-- [setxkbmap](https://www.x.org/archive/X11R7.5/doc/man/man1/setxkbmap.1.html) (./i3/.config/i3/config)
-- [udiskie](https://github.com/coldfix/udiskie) (./i3/.config/i3/config)
-- [urlscan](https://github.com/firecat53/urlscan) (./tmux/.tmux.conf)
-- [watchman](https://facebook.github.io/watchman/) (./git/.config/git/config)
-    wget
-- [wmctrl](http://tripie.sweb.cz/utils/wmctrl/) (./i3/.config/i3/scripts/i3session)
-- [xcape](https://github.com/alols/xcape) (./i3/.config/i3/config)
-- [xclip](https://github.com/astrand/xclip) (./vifm3/.config/vifm/vifmrc)
-- [xsel](http://www.vergenet.net/~conrad/software/xsel/) (./bin/.bin/dropbox-urls-extractor,)
-
 ## Setup
 
 [Stow](https://www.gnu.org/software/stow/)
@@ -84,6 +51,39 @@
 ### [Xresources](https://wiki.archlinux.org/index.php/x_resources) (./Xresources)
 
 ### [zsh (Shell)](http://www.zsh.org/) (./zsh)
+
+## Requirements
+- [AnyEvent-I3](https://github.com/i3/i3/tree/next/AnyEvent-I3) (./i3/.config/i3/scripts/i3session)
+- [aria2c](https://github.com/aria2/aria2) (./zsh/.zshrc)
+- [axel](https://github.com/axel-download-accelerator/axel) (./zsh/.zshrc)
+- [curl](https://github.com/curl/curl) (./zsh/.zshrc)
+- [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) (./git/.config/git/config)
+- [dropbox-cli](https://www.dropbox.com/) (./bin/.bin/dropbox-urls-extractor)
+- [dunst](https://dunst-project.org/) (./i3/.config/i3/config)
+- [fpp](http://facebook.github.io/PathPicker/) (./tmux/.tmux.conf)
+- [fzf](https://github.com/junegunn/fzf) (./nvim/.config/nvim3/init.vim, ./vim/.vimrc, ./zsh/.zshrc)
+- [gawk](https://www.gnu.org/software/gawk/) (./i3/.config/i3/scripts/i3session)
+- [i3pystatus](https://github.com/enkore/i3pystatus) (./i3/.config/i3/bar.py)
+- [imagemagick](https://www.imagemagick.org/script/index.php) (./i3/.config/i3/scripts/blurlock)
+- [jq](https://stedolan.github.io/jq/) (./i3/.config/i3/scripts/i3session)
+- [numlockx](https://wiki.archlinux.org/index.php/Activating_Numlock_on_Bootup) (./i3/.config/i3/config)
+- [pamixer](https://github.com/cdemoulins/pamixer) (./i3/.config/i3/config)
+- [pigz](https://zlib.net/pigz/) (./zsh/.zshenv)
+- [pixz](https://github.com/vasi/pixz) (./zsh/.zshenv)
+- [playerctl](https://github.com/acrisci/playerctl) (./i3/.config/i3/config)
+- [pulseaudio](https://github.com/acrisci/playerctl) (./i3/.config/i3/scripts/dunstify_notification)
+- [xdg-open](https://www.freedesktop.org/wiki/Software/xdg-utils/) (./tmux/.tmux.conf)
+- [rofi](https://github.com/DaveDavenport/rofi) (./i3/.config/i3/config)
+- [scrot](http://scrot.sourcearchive.com/) (./i3/.config/i3/scripts/blurlock)
+- [setxkbmap](https://www.x.org/archive/X11R7.5/doc/man/man1/setxkbmap.1.html) (./i3/.config/i3/config)
+- [udiskie](https://github.com/coldfix/udiskie) (./i3/.config/i3/config)
+- [urlscan](https://github.com/firecat53/urlscan) (./tmux/.tmux.conf)
+- [watchman](https://facebook.github.io/watchman/) (./git/.config/git/config)
+    wget
+- [wmctrl](http://tripie.sweb.cz/utils/wmctrl/) (./i3/.config/i3/scripts/i3session)
+- [xcape](https://github.com/alols/xcape) (./i3/.config/i3/config)
+- [xclip](https://github.com/astrand/xclip) (./vifm3/.config/vifm/vifmrc)
+- [xsel](http://www.vergenet.net/~conrad/software/xsel/) (./bin/.bin/dropbox-urls-extractor,)
 
 ## Contributing
 
