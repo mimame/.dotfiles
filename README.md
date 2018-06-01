@@ -14,7 +14,7 @@
 - [dropbox-cli](https://www.dropbox.com/) (./bin/.bin/dropbox-urls-extractor)
 - [dunst](https://dunst-project.org/) (./i3/.config/i3/config)
 - [fpp](http://facebook.github.io/PathPicker/) (./tmux/.tmux.conf)
-- [fzf](https://github.com/junegunn/fzf) (./nvim/.config/nvim3/init.vim)
+- [fzf](https://github.com/junegunn/fzf) (./nvim/.config/nvim3/init.vim, ./vim/.vimrc)
 - [gawk](https://www.gnu.org/software/gawk/) (./i3/.config/i3/scripts/i3session)
 - [i3pystatus](https://github.com/enkore/i3pystatus) (./i3/.config/i3/bar.py)
 - [imagemagick](https://www.imagemagick.org/script/index.php) (./i3/.config/i3/scripts/blurlock)
@@ -72,6 +72,8 @@
 ### [tig (TUI git)](https://jonas.github.io/tig/) (./tig/.config/tig)
 
 ### [vifm (TUI filemanager)](https://vifm.info/) (./vifm/.config/vifm)
+
+### [vim](https://www.vim.org/) (./vim)
 
 ### [Xresources](https://wiki.archlinux.org/index.php/x_resources) (./Xresources)
 
