@@ -10,6 +10,9 @@
 
 ## Requirements
 - [AnyEvent-I3](https://github.com/i3/i3/tree/next/AnyEvent-I3) (./i3/.config/i3/scripts/i3session)
+- [aria2c](https://github.com/aria2/aria2) (./zsh/.zshrc)
+- [axel](https://github.com/axel-download-accelerator/axel) (./zsh/.zshrc)
+- [curl](https://github.com/curl/curl) (./zsh/.zshrc)
 - [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) (./git/.config/git/config)
 - [dropbox-cli](https://www.dropbox.com/) (./bin/.bin/dropbox-urls-extractor)
 - [dunst](https://dunst-project.org/) (./i3/.config/i3/config)
@@ -32,6 +35,7 @@
 - [udiskie](https://github.com/coldfix/udiskie) (./i3/.config/i3/config)
 - [urlscan](https://github.com/firecat53/urlscan) (./tmux/.tmux.conf)
 - [watchman](https://facebook.github.io/watchman/) (./git/.config/git/config)
+    wget
 - [wmctrl](http://tripie.sweb.cz/utils/wmctrl/) (./i3/.config/i3/scripts/i3session)
 - [xcape](https://github.com/alols/xcape) (./i3/.config/i3/config)
 - [xclip](https://github.com/astrand/xclip) (./vifm3/.config/vifm/vifmrc)
