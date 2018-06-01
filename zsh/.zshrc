@@ -188,7 +188,8 @@ alias vi='vim'
 alias v='vim'
 alias n='nvim'
 alias h='history'
-alias ncdu='ncdu --color dark'
+alias du='du -h'
+alias df='df -h'
 # Vim as default editor
 export EDITOR=vim
 export VISUAL=vim
