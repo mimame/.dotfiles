@@ -49,7 +49,7 @@
   dt  = diff --stat
   ds  = diff --staged
   dst = diff --staged --stat
-  dt  = difftool
+  dtl = difftool
   dts = difftool --staged
   # fetch - https://git-scm.com/docs/git-fetch
   f  = fetch
