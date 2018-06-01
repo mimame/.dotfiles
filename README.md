@@ -78,6 +78,7 @@
 - [setxkbmap](https://www.x.org/archive/X11R7.5/doc/man/man1/setxkbmap.1.html) (./i3/.config/i3/config)
 - [udiskie](https://github.com/coldfix/udiskie) (./i3/.config/i3/config)
 - [urlscan](https://github.com/firecat53/urlscan) (./tmux/.tmux.conf)
+- [vmd](https://github.com/yoshuawuyts/vmd) (./nvim/.config/nvim/init.vim/, ./vim/.vimrc)
 - [watchman](https://facebook.github.io/watchman/) (./git/.config/git/config)
     wget
 - [wmctrl](http://tripie.sweb.cz/utils/wmctrl/) (./i3/.config/i3/scripts/i3session)
