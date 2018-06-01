@@ -270,6 +270,17 @@ b (){
 eval $(thefuck --alias)
 alias f='fuck -y'
 
+# https://github.com/zimfw/zimfw/blob/master/modules/utility/init.zsh
+if [ -x "$(command -v "aria2c")" ]; then
+  alias get='aria2c --max-connection-per-server=5 --continue'
+elif [ -x "$(command -v "axel")" ]; then
+  alias get='axel --num-connections=5 --alternate'
+elif [ -x "$(command -v "axel")" ]; then
+  alias get='wget --continue --progress=bar --timestamping'
+elif [ -x "$(command -v "curl")" ]; then
+  alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
+fi
+
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
