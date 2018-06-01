@@ -7,33 +7,7 @@ fi
 source ~/.zplug/init.zsh
 # Make sure to not use double quotes to prevent shell expansion
 # Add a bunch more of your favorite packages!
-#zplug "sorin-ionescu/prezto", use:init.zsh, hook-build: "ln -s ${ZPLUG_HOME}/repos/sorin-ionescu/prezto ~/.zprezto && ln -s $HOME/.prompt_paradise_setup $HOME/.zprezto/modules/prompt/functions/prompt_paradise_setup"
-#zstyle ':prezto:*:*' color 'yes'
-#zstyle ':prezto:load' pmodule \
-  #'environment' \
-  #'terminal' \
-  #'editor' \
-  #'history' \
-  #'directory' \
-  #'spectrum' \
-  #'utility' \
 
-
-#'git' \
-  #'tmux' \
-  #'prompt'
-  #'fasd' \
-  # fasd for j command alias of fasd_cd -i
-#zstyle ':prezto:module:terminal' auto-title 'yes'
-#zstyle ':prezto:module:prompt' theme 'paradise'
-#zstyle ':prezto:module:utility:diff' color 'no'
-#zstyle ':prezto:module:utility:make' color 'no'
-
-#zplug "supercrabtree/k" # k command is ls with steroids
-#zplug "Tarrasch/zsh-bd" # fast cd .. until the root aliased to dc
-#zplug "djui/alias-tips" # show defined alias for the command typed
-#zplug "dbkaplun/smart-cd" # after cd ls or git status
-#zplug "Valiev/almostontop" # clean the screen each command
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'denysdovhan/spaceship-prompt', use:spaceship.zsh, from:github, as:theme
 zplug 'mafredri/zsh-async', from:github
@@ -41,9 +15,9 @@ zplug 'mafredri/zsh-async', from:github
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions", defer:2 # Normal mode space for execute it
 zplug "hlissner/zsh-autopair", defer:2
-#zplug "b4b4r07/enhancd", defer:3, use:init.sh # cd with fasd and zsh-bd
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 zplug "zsh-users/zsh-history-substring-search", defer:3
+
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
@@ -111,6 +85,7 @@ setopt NOTIFY             # Report status of background jobs immediately.
 unsetopt BG_NICE          # Don't run all background jobs at a lower priority.
 unsetopt HUP              # Don't kill jobs on shell exit.
 #unsetopt CHECK_JOBS # Don't report on jobs when shell exit
+
 # less with color
 export LESS_TERMCAP_mb=$'\E[01;31m'    # Begins blinking.
 export LESS_TERMCAP_md=$'\E[01;31m'    # Begins bold.
@@ -172,34 +147,24 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z }'
 zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 zstyle ':completion:*:man:*'      menu yes select
+
 # Ctrl-R provided by fzf
-# Ctrl-R for looking backward
-# bindkey "^R" history-incremental-search-backward
-# HH (interactive history) https://github.com/dvofka/hstr
-# export HISTFILE=~/.zsh_history  # ensure history file visibility
-# export HH_CONFIG=hicolor        # get more colors
-# bindkey -s "\C-r" "\eqhh\n"     # bind hh to Ctrl-r (for Vi mode check doc)
+
 # Normal mode space for execute suggest
+#https://wiki.archlinux.org/index.php/Zsh#Key_bindings
 bindkey -M vicmd ' ' autosuggest-execute
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-#https://wiki.archlinux.org/index.php/Zsh#Key_bindings
+#
 #alias vim='nvim' # I don't like neovim by now
-# enhancd cd .. don't open fzf in other tmux pane
-#export ENHANCD_FILTER=fzf
-#export ENHANCD_COMMAND=c # map enhancd to c better than alias to cd
-#source ~/.zplug/repos/b4b4r07/enhancd/init.sh
 
 # Setting fd as the default source for fzf
-#export FZF_DEFAULT_OPTS="--ansi"
-#export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --follow --exclude .git --color=always'
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --follow --exclude .git'
 
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # To apply the command to ALT_C
-#export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --follow --exclude .git --color=always'
 export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --follow --exclude .git'
 
 alias bc='bc -l'
@@ -263,16 +228,7 @@ fancy-ctrl-z () {
     zle clear-screen
   fi
 }
-#function fancy-ctrl-z()
-#{
-    #if [[ $#BUFFER -eq 0 ]]
-    #then
-        #bg
-        #zle redisplay
-    #else
-        #zle push-line-or-edit
-    #fi
-#}
+
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 # Safe ops. Ask the user before doing anything destructive.
@@ -282,12 +238,7 @@ alias cp="cp -i"
 alias ln="ln -i"
 unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
 
-#export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-#export GEM_HOME="$HOME/.gem"
-#export PATH="/root/.gem/ruby/$(ruby -v | grep -oP '(\d\.\d.\d)')/bin:$PATH"
 [[ ! -f ~/.local/share/fonts/'Inconsolata Nerd Font Complete.otf' ]] && mkdir -p ~/.local/share/fonts && pushd ~/.local/share/fonts && curl -fLo 'Inconsolata Nerd Font Complete.otf' 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf?raw=true' && popd
-
-#alias drbbt='~/git/rbbt-util/bin/rbbt --dev=~/git/'
 
 alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
 
@@ -323,6 +274,7 @@ alias f='fuck -y'
 
 # Interactive shell also with aliases and functions of a not interactive shell
 # source "${ZDOTDIR:-$HOME}/.zshenv"
+
 # Remove weird message: sessions should be nested with care, unset $TMUX to force
 if [ "$TMUX" == "" ]; then
     tmux new-session
