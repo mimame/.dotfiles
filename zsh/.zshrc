@@ -93,7 +93,7 @@ export LESS_TERMCAP_me=$'\E[0m'        # Ends mode.
 export LESS_TERMCAP_se=$'\E[0m'        # Ends standout-mode.
 export LESS_TERMCAP_so=$'\E[00;47;30m' # Begins standout-mode.
 export LESS_TERMCAP_ue=$'\E[0m'        # Ends underline.
-export LESS_TERMCAP_us=$'\E[01;32m'    # Begins underline
+export LESS_TERMCAP_us=$'\E[01;32m'    # Begins underline.
 
 export SPACESHIP_NODE_DEFAULT_VERSION="$(node -v)"
 export SPACESHIP_JOBS_SYMBOL=''
@@ -172,7 +172,7 @@ alias bc='bc -l'
 alias git=hub
 alias g=git
 
-alias ls='ls --color=auto -lah'
+alias ls='ls --color=auto --all --human-readable -l'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -182,7 +182,7 @@ alias egrep='egrep --color=auto'
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 export PAGER='less'
 # open command
-alias open=xdg-open
+alias open='xdg-open'
 # Never use vi
 alias vi='vim'
 alias v='vim'
