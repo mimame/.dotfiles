@@ -38,11 +38,15 @@
 
 ### [parallel](https://www.gnu.org/software/parallel/) (./parallel/.parallel)
 
+### [rofi](https://github.com/DaveDavenport/rofi) (./Xresources)
+
 ### [ssh](https://www.openssh.com/) (./ssh/.ssh)
 
 ### [termite (terminal)](https://github.com/thestinger/termite) (./termite/.config/termite)
 
 ### [tig (TUI git)](https://jonas.github.io/tig/) (./tig/.config/tig)
+
+### [urxvt (Terminal)](http://software.schmorp.de/pkg/rxvt-unicode.html) (./Xresources/.Xresources)
 
 ### [vifm (TUI filemanager)](https://vifm.info/) (./vifm/.config/vifm)
 
@@ -73,7 +77,6 @@
 - [playerctl](https://github.com/acrisci/playerctl) (./i3/.config/i3/config)
 - [pulseaudio](https://github.com/acrisci/playerctl) (./i3/.config/i3/scripts/dunstify_notification)
 - [xdg-open](https://www.freedesktop.org/wiki/Software/xdg-utils/) (./tmux/.tmux.conf)
-- [rofi](https://github.com/DaveDavenport/rofi) (./i3/.config/i3/config)
 - [scrot](http://scrot.sourcearchive.com/) (./i3/.config/i3/scripts/blurlock)
 - [setxkbmap](https://www.x.org/archive/X11R7.5/doc/man/man1/setxkbmap.1.html) (./i3/.config/i3/config)
 - [udiskie](https://github.com/coldfix/udiskie) (./i3/.config/i3/config)
