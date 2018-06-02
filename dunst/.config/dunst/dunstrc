@@ -85,7 +85,7 @@
 
     ### Text ###
 
-    font = Inconsolata for Powerline Nerd Font Medium 14
+    font = Inconsolata for Powerline Nerd Font Bold 14
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
