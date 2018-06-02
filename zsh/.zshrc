@@ -177,10 +177,6 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# https://github.com/sorin-ionescu/prezto/blob/master/runcoms/zprofile
-# respect the color
-export LESS='-F -g -i -M -R -S -w -X -z-4'
-export PAGER='less'
 # open command
 alias open='xdg-open'
 # Never use vi
@@ -191,6 +187,11 @@ alias h='history'
 alias du='du -h'
 alias df='df -h'
 alias o='xdg-open'
+alias stmux="tmuxinator"
+alias j="jobs -l"
+alias ncdu='ncdu --color dark'
+alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
+
 # Vim as default editor
 export EDITOR=vim
 export VISUAL=vim
@@ -200,16 +201,6 @@ export PATH="$HOME/.yarn/bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/.bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
-
-if [ -x "$(command -v "firefox-developer-edition")" ]; then
-  alias firefox='firefox-developer-edition'
-  export BROWSER='firefox-developer-edition'
-else
-  export BROWSER='firefox'
-fi
-
-alias stmux="tmuxinator"
-alias j="jobs -l"
 
 function mount {
   if [ -z "$1" ]; then

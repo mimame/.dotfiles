@@ -1,33 +1,27 @@
-# Alias
-alias bc='bc -l'
-# github wrapper to extend git
-alias git=hub
-alias ls='ls --color=always -lah'
-alias grep='grep --color=always'
+# https://github.com/sorin-ionescu/prezto/blob/master/runcoms/zprofile
 # respect the color
-alias less='less -R'
-# open command
-alias open=xdg-open
-# Never use vi
-alias vi='vim'
-alias v='vim'
-alias n='nvim'
-alias h='history'
-alias ncdu='ncdu --color dark'
-alias stmux="tmuxinator"
+export LESS='-F -g -i -M -R -S -w -X -z-4'
+export PAGER='less'
+# Alias
 alias sshfs="sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
-alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
-alias j="jobs -l"
+
+
+if [ -x "$(command -v "firefox-developer-edition")" ]; then
+  alias firefox='firefox-developer-edition'
+  export BROWSER='firefox-developer-edition'
+else
+  export BROWSER='firefox'
+fi
+
 # Vim as default editor
 export EDITOR=vim
 export VISUAL=vim
 export TMPDIR='/tmp'
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$HOME/.bin:$PATH"
-export PATH="$HOME/.bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$HOME/.yarn/bin"
+export PATH="$PATH:$HOME/.bin"
+export PATH="$PATH:$HOME/go/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # Tar wrapper
 function t {
