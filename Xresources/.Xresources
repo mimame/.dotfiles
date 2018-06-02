@@ -261,7 +261,7 @@ rofi.lines:                          15
 ! Number of columns
 rofi.columns:                        1
 ! Font to use
-rofi.font:                           Inconsolata Nerd Font Medium 12
+rofi.font:                           Inconsolata Nerd Font Bold 12
 ! Color scheme for normal row
 rofi.color-normal:                   base00, base07, base00, base0B, base00
 ! Color scheme for urgent row
