@@ -286,6 +286,7 @@ fi
 
 # enable vi mode
 bindkey -v
+spaceship_vi_mode_enable
 
 # http://zshwiki.org/home/zle/bindkeys#reading_terminfo
 # create a zkbd compatible hash;
