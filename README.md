@@ -76,17 +76,18 @@
 - [pixz](https://github.com/vasi/pixz) (./zsh/.zshenv)
 - [playerctl](https://github.com/acrisci/playerctl) (./i3/.config/i3/config)
 - [pulseaudio](https://github.com/acrisci/playerctl) (./i3/.config/i3/scripts/dunstify_notification)
-- [xdg-open](https://www.freedesktop.org/wiki/Software/xdg-utils/) (./tmux/.tmux.conf)
+- [resize-font](https://github.com/simmel/urxvt-resize-font/) (./Xresources/.Xresources)
 - [scrot](http://scrot.sourcearchive.com/) (./i3/.config/i3/scripts/blurlock)
 - [setxkbmap](https://www.x.org/archive/X11R7.5/doc/man/man1/setxkbmap.1.html) (./i3/.config/i3/config)
 - [udiskie](https://github.com/coldfix/udiskie) (./i3/.config/i3/config)
 - [urlscan](https://github.com/firecat53/urlscan) (./tmux/.tmux.conf)
 - [vmd](https://github.com/yoshuawuyts/vmd) (./nvim/.config/nvim/init.vim/, ./vim/.vimrc)
 - [watchman](https://facebook.github.io/watchman/) (./git/.config/git/config)
-    wget
+- [wget](https://www.gnu.org/software/wget/) (./zsh/.zshrc)
 - [wmctrl](http://tripie.sweb.cz/utils/wmctrl/) (./i3/.config/i3/scripts/i3session)
 - [xcape](https://github.com/alols/xcape) (./i3/.config/i3/config)
 - [xclip](https://github.com/astrand/xclip) (./vifm3/.config/vifm/vifmrc)
+- [xdg-open](https://www.freedesktop.org/wiki/Software/xdg-utils/) (./tmux/.tmux.conf)
 - [xsel](http://www.vergenet.net/~conrad/software/xsel/) (./bin/.bin/dropbox-urls-extractor,)
 
 ## Contributing
