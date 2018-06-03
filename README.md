@@ -36,7 +36,9 @@
 
 ### [latex](https://www.latex-project.org/) (./latex/)
 
-### [nvim](./nvim/.config/nvim3/init.vim) (./nvim/.config/nvim)
+### [newsboat (TUI RSS viewer)](https://newsboat.org/) (./newsboat/.config/newsboat)
+
+### [nvim](https://neovim.io/) (./nvim/.config/nvim)
 
 ### [parallel](https://www.gnu.org/software/parallel/) (./parallel/.parallel)
 
