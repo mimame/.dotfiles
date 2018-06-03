@@ -1,3 +1,6 @@
+# Auto load RSS at startup
+auto-reload yes
+
 # Zsh script to run the browser
 browser "~/.bin/newsboat-browser"
 
