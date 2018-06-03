@@ -47,7 +47,7 @@ font pango:Inconsolata Nerd Font Bold 9
 floating_modifier $mod
 
 # Start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id kitty
 
 # Kill focused window
 bindsym $mod+Shift+q kill
