@@ -1,0 +1,37 @@
+# Zsh script to run the browser
+browser "~/.bin/newsboat-browser"
+
+# Vim keybindings
+unbind-key g # bound to `sort` by default
+bind-key g home
+unbind-key G # bound to `rev-sort` by default
+bind-key G end
+
+unbind-key h # not bound
+bind-key h quit
+unbind-key j # bound to next-feed
+bind-key j down
+unbind-key k # bound to prev-feed
+bind-key k up
+unbind-key l # bound to `toggle-show-reads-feeds`
+bind-key l open
+
+# Molokai theme
+
+# colors
+color background          white   default
+color listnormal          white   default
+color listnormal_unread   magenta default bold
+color listfocus           color14 color208 bold
+color listfocus_unread    color14 color208 bold
+color info                green   color0
+color article             white   default
+
+# highlights
+highlight article "^(Feed|Link):.*$" color208 default bold
+highlight article "^(Title|Date|Author):.*$" red default bold
+highlight article "https?://[^ ]+" color208 default underline
+highlight article "\\[[0-9]+\\]" magenta default bold
+highlight article "\\[image\\ [0-9]+\\]" magenta default bold
+highlight feedlist "^─.*$" color61 color235 bold
+
