@@ -32,6 +32,8 @@
 
 ### [i3 (Tiling windows manager) + my own scripts](https://i3wm.org/) (./i3/.config/i3)
 
+### [kitty (default terminal)](https://sw.kovidgoyal.net/kitty/) (./kitty/.config/kitty)
+
 ### [latex](https://www.latex-project.org/) (./latex/)
 
 ### [nvim](./nvim/.config/nvim3/init.vim) (./nvim/.config/nvim)
@@ -46,7 +48,7 @@
 
 ### [tig (TUI git)](https://jonas.github.io/tig/) (./tig/.config/tig)
 
-### [urxvt (Terminal)](http://software.schmorp.de/pkg/rxvt-unicode.html) (./Xresources/.Xresources)
+### [urxvt (terminal)](http://software.schmorp.de/pkg/rxvt-unicode.html) (./Xresources)
 
 ### [vifm (TUI filemanager)](https://vifm.info/) (./vifm/.config/vifm)
 
