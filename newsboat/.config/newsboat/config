@@ -1,6 +1,9 @@
 # Auto load RSS at startup
 auto-reload yes
 
+# Sort RSS by title
+feed-sort-order title
+
 # Zsh script to run the browser
 browser "~/.bin/newsboat-browser"
 
