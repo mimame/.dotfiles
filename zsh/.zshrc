@@ -179,6 +179,7 @@ alias egrep='egrep --color=auto'
 
 # open command
 alias open='xdg-open'
+alias o='xdg-open'
 # Never use vi
 alias vi='vim'
 alias v='vim'
@@ -186,11 +187,11 @@ alias n='nvim'
 alias h='history'
 alias du='du -h'
 alias df='df -h'
-alias o='xdg-open'
 alias stmux="tmuxinator"
 alias j="jobs -l"
 alias ncdu='ncdu --color dark'
 alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
+alias news='newsboat'
 
 # Vim as default editor
 export EDITOR=vim
