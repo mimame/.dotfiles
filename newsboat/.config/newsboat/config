@@ -1,6 +1,9 @@
 # Auto load feeds at startup
 auto-reload yes
 
+# Load feeds in 8 different threads
+reload-threads 8
+
 # Sort feeds by title
 feed-sort-order title
 
