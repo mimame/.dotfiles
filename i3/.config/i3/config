@@ -110,10 +110,10 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # Split in horizontal orientation
-bindsym $mod+Shift+v split h; exec ~/.config/i3/scripts/dunstify_notification "horizontal_tiling"
+bindsym $mod+Shift+v split h; exec ~/.config/i3/scripts/dunstify_notification "i3horizontal_tiling"
 
 # Split in vertical orientation
-bindsym $mod+v split v; exec ~/.config/i3/scripts/dunstify_notification "vertical_tiling"
+bindsym $mod+v split v; exec ~/.config/i3/scripts/dunstify_notification "i3vertical_tiling"
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle

@@ -69,10 +69,10 @@ case "$1" in
     previous_song)
         NOTIFICATION=""
         ;;
-    horizontal_tiling)
+    i3horizontal_tiling)
         NOTIFICATION=" tiling"
         ;;
-    vertical_tiling)
+    i3vertical_tiling)
         NOTIFICATION=" tiling"
       ;;
     i3session_save)
