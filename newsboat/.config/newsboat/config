@@ -1,7 +1,7 @@
-# Auto load RSS at startup
+# Auto load feeds at startup
 auto-reload yes
 
-# Sort RSS by title
+# Sort feeds by title
 feed-sort-order title
 
 # Zsh script to run the browser
