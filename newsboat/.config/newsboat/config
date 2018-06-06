@@ -4,6 +4,9 @@ auto-reload yes
 # Load feeds in 8 different threads
 reload-threads 8
 
+# Time elapsed between each auto-reload
+reload-time 15
+
 # Sort feeds by title
 feed-sort-order title
 
