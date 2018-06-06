@@ -16,6 +16,12 @@ notify-program "~/.config/newsboat/notification"
 # Sort feeds by title
 feed-sort-order title
 
+# Not show read feeds
+show-read-feeds no
+
+# Not show read articles
+show-read-articles no
+
 # Zsh script to run the browser
 browser "~/.bin/newsboat-browser"
 
