@@ -7,6 +7,12 @@ reload-threads 8
 # Time elapsed between each auto-reload
 reload-time 15
 
+# Notify unread feeds
+notify-always yes
+
+# Use dunstify for the notifications
+notify-program "~/.config/newsboat/notification"
+
 # Sort feeds by title
 feed-sort-order title
 

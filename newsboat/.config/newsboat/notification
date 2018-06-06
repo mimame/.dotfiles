@@ -1,0 +1,2 @@
+#!/bin/sh
+dunstify --urgency=LOW "$1"
