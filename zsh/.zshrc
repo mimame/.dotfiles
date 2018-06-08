@@ -291,11 +291,6 @@ fi
 # Interactive shell also with aliases and functions of a not interactive shell
 # source "${ZDOTDIR:-$HOME}/.zshenv"
 
-# Remove weird message: sessions should be nested with care, unset $TMUX to force
-if [ "$TMUX" == "" ]; then
-    tmux new-session
-fi
-
 # enable vi mode
 bindkey -v
 spaceship_vi_mode_enable
@@ -341,5 +336,11 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     }
     zle -N zle-line-init
     zle -N zle-line-finish
+fi
+
+
+# Remove weird message: sessions should be nested with care, unset $TMUX to force
+if [ "$TMUX" == "" ]; then
+    tmux new-session
 fi
 
