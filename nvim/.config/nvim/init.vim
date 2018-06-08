@@ -613,9 +613,9 @@ autocmd InsertEnter  * if &diff == 1 | diffupdate | endif
 autocmd InsertChange * if &diff == 1 | diffupdate | endif
 autocmd InsertLeave  * if &diff == 1 | diffupdate | endif
 
-nmap <expr> <localleader>k [c<bar>:diffupdate<CR>
-nmap <expr> <localleader>j ]c<bar>:diffupdate<CR>
-nmap <expr> <localleader>u :diffupdate<CR>
+nmap <localleader>k [c<bar>:diffupdate<CR>
+nmap <localleader>j ]c<bar>:diffupdate<CR>
+nmap <localleader>u :diffupdate<CR>
 " do          - diffobtain
 " dp          - diffput
 " ]c          - next difference
