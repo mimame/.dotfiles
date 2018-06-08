@@ -250,6 +250,7 @@ alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
+# Show folder hierarchy from bottom to root and let jump to any of that folders
 # https://github.com/junegunn/fzf/wiki/Examples#changing-directory
 b (){
   local declare dirs=()
@@ -268,6 +269,8 @@ b (){
   cd "$DIR"
 }
 
+
+# Correct previous command
 eval $(thefuck --alias)
 alias f='fuck -y'
 
