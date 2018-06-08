@@ -155,8 +155,12 @@ zstyle ':completion:*:man:*'      menu yes select
 bindkey -M vicmd ' ' autosuggest-execute
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-#
-#alias vim='nvim' # I don't like neovim by now
+# Char visual mode open the editor
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
+#alias vim='nvim'
 
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --follow --exclude .git'
