@@ -32,6 +32,7 @@ set syscalls
 " This probably shouldn't be an option.
 
 set trash
+set trashdir="~/.local/share/Trash/files"
 
 " Remove confirmation for deletion into trash only (dd key combination)
 set confirm-=delete
