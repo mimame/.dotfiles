@@ -42,6 +42,10 @@ unbind-key l # bound to `toggle-show-reads-feeds`
 bind-key l open
 
 # Use lowercase
+unbind-key r
+bind-key r reload-all
+unbind-key R
+bind-key R reload
 unbind-key A # not bound
 bind-key a mark-feed-read
 unbind-key C # not bout
