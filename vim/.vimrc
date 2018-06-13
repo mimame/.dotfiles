@@ -365,9 +365,18 @@ augroup END
 
 " Substitute preview
 nnoremap <Leader>s :OverCommandLine<CR>
+
+" Ale config {{{
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 let g:ale_dockerfile_hadolint_use_docker = 'yes'
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_echo_msg_error_str = ''
+let g:ale_echo_msg_warning_str = ''
+let g:ale_echo_msg_format = '%severity%  [%linter%]: %s'
+" }}}
+
 " CamelCase motion {{{
 "map <silent> w <Plug>CamelCaseMotion_w
 "map <silent> b <Plug>CamelCaseMotion_b
