@@ -236,11 +236,21 @@ alias cp="cp -i"
 alias ln="ln -i"
 unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
 
-# termite and alacritty font
-[[ ! -f ~/.local/share/fonts/'Inconsolata Nerd Font Complete.otf' ]] && mkdir -p ~/.local/share/fonts && pushd ~/.local/share/fonts && curl -fLo 'Inconsolata Nerd Font Complete.otf' 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete.otf?raw=true' && popd
+# Regular font
+FONT='InconsolataGo Nerd Font Complete Mono.ttf'
+[[ ! -f ~/.local/share/fonts/"${FONT}" ]] \
+  && mkdir -p ~/.local/share/fonts \
+  && pushd ~/.local/share/fonts \
+  && curl -fLo "${FONT}" 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/InconsolataGo/Regular/complete/InconsolataGo%20Nerd%20Font%20Complete%20Mono.ttf?raw=true' \
+  && popd
 
-# urxvt font
-[[ ! -f ~/.local/share/fonts/'Inconsolata Nerd Font Complete Mono.otf' ]] && mkdir -p ~/.local/share/fonts && pushd ~/.local/share/fonts && curl -fLo 'Inconsolata Nerd Font Complete Mono.otf' 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Inconsolata/complete/Inconsolata%20Nerd%20Font%20Complete%20Mono.otf?raw=true' && popd
+# Bold font
+FONT='InconsolataGo Bold Nerd Font Complete Mono.ttf'
+[[ ! -f ~/.local/share/fonts/"${FONT}" ]] \
+  && mkdir -p ~/.local/share/fonts \
+  && pushd ~/.local/share/fonts \
+  && curl -fLo "${FONT}" 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/InconsolataGo/Bold/complete/InconsolataGo%20Bold%20Nerd%20Font%20Complete%20Mono.ttf?raw=true' \
+  && popd
 
 alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
 
