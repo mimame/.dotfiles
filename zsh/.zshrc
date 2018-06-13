@@ -176,7 +176,8 @@ alias bc='bc -l'
 alias git=hub
 alias g=git
 
-alias ls='ls --color=auto --all --human-readable -l'
+alias ls='ls --color=auto --all --human-readable --format=long'
+alias l='exa --color=auto --long --group --header --grid --git'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
