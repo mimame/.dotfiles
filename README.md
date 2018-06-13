@@ -18,7 +18,7 @@
 
 ## Content
 
-### [alacritty (terminal)](https://github.com/jwilm/alacritty) (./alacritty/.config/alacritty)
+### [alacritty (default terminal)](https://github.com/jwilm/alacritty) (./alacritty/.config/alacritty)
 
 ### [beets (Music organizer)](http://beets.io/) (./beets/.config/beets)
 
@@ -32,7 +32,7 @@
 
 ### [i3 (Tiling windows manager) + my own scripts](https://i3wm.org/) (./i3/.config/i3)
 
-### [kitty (default terminal)](https://sw.kovidgoyal.net/kitty/) (./kitty/.config/kitty)
+### [kitty (terminal)](https://sw.kovidgoyal.net/kitty/) (./kitty/.config/kitty)
 
 ### [latex](https://www.latex-project.org/) (./latex/)
 
