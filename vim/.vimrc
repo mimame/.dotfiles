@@ -604,6 +604,17 @@ inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 
+
+" Git gutter symbols {{{
+let g:gitgutter_grep = 'rg'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_removed_first_line = '-'
+highlight GitGutterAdd ctermfg=green ctermbg=235
+highlight GitGutterChange ctermfg=yellow ctermbg=235
+highlight GitGutterDelete ctermfg=red ctermbg=235
+highlight GitGutterChangeDelete ctermfg=yellow ctermbg=235
+" }}}
+
 " Git commands {{{
 nmap <leader>gc :Gread<CR>
 nmap <leader>gs :Gstatus<CR>
