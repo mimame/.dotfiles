@@ -68,7 +68,7 @@
 - [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) (./git/.config/git/config)
 - [dropbox-cli](https://www.dropbox.com/) (./bin/.bin/dropbox-urls-extractor)
 - [dunst](https://dunst-project.org/) (./i3/.config/i3/config)
-- [exa](https://the.exa.website/)(./zsh/.zshenv)
+- [exa](https://the.exa.website/)(./zsh/.zshrc)
 - [fpp](http://facebook.github.io/PathPicker/) (./tmux/.tmux.conf)
 - [fzf](https://github.com/junegunn/fzf) (./nvim/.config/nvim3/init.vim, ./vim/.vimrc, ./zsh/.zshrc)
 - [gawk](https://www.gnu.org/software/gawk/) (./i3/.config/i3/scripts/i3session)
