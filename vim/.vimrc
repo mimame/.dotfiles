@@ -589,12 +589,12 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 
 let g:endwise_no_mappings = 1
 " https://github.com/SirVer/ultisnips/issues/376#issuecomment-69033351
-let g:UltiSnipsExpandTrigger="<nop>"
+let g:UltiSnipsExpandTrigger='<nop>'
 let g:ulti_expand_or_jump_res = 0
 function! <SID>ExpandSnippetOrReturn()
-  let snippet = UltiSnips#ExpandSnippetOrJump()
+  let l:snippet = UltiSnips#ExpandSnippetOrJump()
   if g:ulti_expand_or_jump_res > 0
-    return snippet
+    return l:snippet
   else
     return "\<CR>"
   endif
