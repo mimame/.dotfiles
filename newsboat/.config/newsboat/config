@@ -41,6 +41,12 @@ bind-key k up
 unbind-key l # bound to `toggle-show-reads-feeds`
 bind-key l open
 
+# Use lowercase
+unbind-key A # not bound
+bind-key a mark-feed-read
+unbind-key C # not bout
+bind-key c mark-all-feeds-read
+
 # Molokai theme
 
 # colors
