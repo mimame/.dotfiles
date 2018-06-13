@@ -402,7 +402,7 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 " Folding settings {{{
 " Folds opened by default
 set nofoldenable
-set foldlevel=1
+set foldlevel=0
 "https://github.com/Konfekt/FastFold
 let g:fastfold_savehook=0
 " fold based on indent
