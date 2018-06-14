@@ -7,7 +7,7 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = InconsolataGo Nerd Font Mono 14
+font = InconsolataGo Nerd Font 14
 
 scrollback_lines = 10000
 search_wrap = true
