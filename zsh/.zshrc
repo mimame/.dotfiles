@@ -237,20 +237,21 @@ alias cp="cp -i"
 alias ln="ln -i"
 unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
 
+# https://github.com/bhilburn/powerlevel9k/issues/430#issuecomment-287084613
 # Regular font
-FONT='InconsolataGo Nerd Font Complete Mono.ttf'
+FONT='InconsolataGo Nerd Font Complete.ttf'
 [[ ! -f ~/.local/share/fonts/"${FONT}" ]] \
   && mkdir -p ~/.local/share/fonts \
   && pushd ~/.local/share/fonts \
-  && curl -fLo "${FONT}" 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/InconsolataGo/Regular/complete/InconsolataGo%20Nerd%20Font%20Complete%20Mono.ttf?raw=true' \
+  && curl -fLo "${FONT}" 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/InconsolataGo/Regular/complete/InconsolataGo%20Nerd%20Font%20Complete.ttf?raw=true' \
   && popd
 
 # Bold font
-FONT='InconsolataGo Bold Nerd Font Complete Mono.ttf'
+FONT='InconsolataGo Bold Nerd Font Complete.ttf'
 [[ ! -f ~/.local/share/fonts/"${FONT}" ]] \
   && mkdir -p ~/.local/share/fonts \
   && pushd ~/.local/share/fonts \
-  && curl -fLo "${FONT}" 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/InconsolataGo/Bold/complete/InconsolataGo%20Bold%20Nerd%20Font%20Complete%20Mono.ttf?raw=true' \
+  && curl -fLo "${FONT}" 'https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/InconsolataGo/Bold/complete/InconsolataGo%20Bold%20Nerd%20Font%20Complete.ttf?raw=true' \
   && popd
 
 alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
