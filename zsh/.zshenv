@@ -22,6 +22,9 @@ export PATH="$PATH:$HOME/.yarn/bin"
 export PATH="$PATH:$HOME/.bin"
 export PATH="$PATH:$HOME/go/bin"
 export PATH="$PATH:$HOME/.cargo/bin"
+# Always use user Ruby gems by default
+export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+export GEM_HOME="$HOME/.gem"
 
 # Tar wrapper
 function t {
