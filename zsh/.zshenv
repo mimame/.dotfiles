@@ -25,6 +25,9 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # Always use user Ruby gems by default
 export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export GEM_HOME="$HOME/.gem"
+# Always use user Python pip by default
+export PIP_USER=y
+export PATH="$PATH:$HOME/.local/bin"
 
 # Tar wrapper
 function t {
