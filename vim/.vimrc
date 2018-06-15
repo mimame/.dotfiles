@@ -605,7 +605,10 @@ let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 
 
-" Git gutter symbols {{{
+" Git Gutter {{{
+" Symbols react faster
+" https://github.com/airblade/vim-gitgutter#when-signs-take-a-few-seconds-to-appear
+set updatetime=100
 let g:gitgutter_grep = 'rg'
 let g:gitgutter_sign_removed = '-'
 let g:gitgutter_sign_removed_first_line = '-'
