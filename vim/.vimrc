@@ -622,6 +622,11 @@ nmap <localleader>j <Plug>GitGutterNextHunk
 " Stage and undo hunks without git add --patch
 nmap <Leader>s <Plug>GitGutterStageHunk
 nmap <Leader>u <Plug>GitGutterUndoHunk
+" Hunk object manipulation
+omap ih <Plug>GitGutterTextObjectInnerPending
+omap ah <Plug>GitGutterTextObjectOuterPending
+xmap ih <Plug>GitGutterTextObjectInnerVisual
+xmap ah <Plug>GitGutterTextObjectOuterVisual
 " }}}
 
 " Git commands {{{
