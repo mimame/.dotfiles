@@ -5,6 +5,11 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath=&runtimepath
 source ~/.vimrc
 
+" Add --servername support {{{
+" https://github.com/lervag/vimtex/wiki/introduction#neovim
+let g:vimtex_compiler_progname = 'nvr'
+" }}}
+
 " Load .init.vim when writing {{{
 augroup myvimrc
   au!
