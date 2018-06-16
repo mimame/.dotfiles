@@ -282,7 +282,7 @@ if [ -x "$(command -v "aria2c")" ]; then
   alias get='aria2c --max-connection-per-server=5 --continue'
 elif [ -x "$(command -v "axel")" ]; then
   alias get='axel --num-connections=5 --alternate'
-elif [ -x "$(command -v "axel")" ]; then
+elif [ -x "$(command -v "wget")" ]; then
   alias get='wget --continue --progress=bar --timestamping'
 elif [ -x "$(command -v "curl")" ]; then
   alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
