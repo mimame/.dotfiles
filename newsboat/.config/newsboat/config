@@ -11,7 +11,8 @@ reload-time 15
 notify-always yes
 
 # Use dunstify for the notifications
-notify-program "~/.config/newsboat/notification"
+# Very annoying
+# notify-program "~/.config/newsboat/notification"
 
 # Sort feeds by title
 feed-sort-order title
