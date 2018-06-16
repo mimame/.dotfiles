@@ -141,8 +141,6 @@ call plug#begin('~/.vim/plugged')
   "Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
   " Transition between multiline and single-line code
   Plug 'AndrewRadev/splitjoin.vim'
-  " ag searcher
-  Plug 'mileszs/ack.vim'
   " Syntax for nix
   "Plug 'LnL7/vim-nix' (vim-poliglot)
   " Commenting code efficiently
@@ -670,10 +668,6 @@ let g:go_highlight_fields = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-
-let g:ackprg = 'rg --vimgrep'
-cnoreabbrev ag Ack
-cnoreabbrev rg Ack
 
 " Buffers {{{
 " To open a new empty buffer
