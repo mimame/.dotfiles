@@ -667,9 +667,12 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 " Buffers {{{
+" https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
 nmap <Leader>b :enew<cr>
+" Delete current buffer
+nmap <Leader>d :bd<cr>
 " Move to the next buffer
 nmap <Leader>l :bnext<CR>
 " Move to the previous buffer
