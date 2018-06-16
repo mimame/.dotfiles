@@ -612,6 +612,8 @@ nmap <localleader>j <Plug>GitGutterNextHunk
 " Stage and undo hunks without git add --patch
 nmap <Leader>s <Plug>GitGutterStageHunk
 nmap <Leader>u <Plug>GitGutterUndoHunk
+" Preview deleted hunk
+nmap <Leader>p <Plug>GitGutterPreviewHunk
 " Hunk object manipulation
 omap ih <Plug>GitGutterTextObjectInnerPending
 omap ah <Plug>GitGutterTextObjectOuterPending
