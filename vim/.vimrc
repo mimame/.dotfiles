@@ -364,7 +364,7 @@ augroup BWCCreateDir
 augroup END
 
 " Substitute preview
-nnoremap <Leader>s :OverCommandLine<CR>
+nnoremap <localleader>s :OverCommandLine<CR>
 
 " Ale config {{{
 " Set this. Airline will handle the rest.
