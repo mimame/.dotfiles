@@ -198,6 +198,8 @@ alias ncdu='ncdu --color dark'
 alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
 alias news='newsboat'
 
+# rg with grep -r behaviour
+alias s='rg --smart-case --follow --hidden --no-ignore --no-ignore-parent'
 
 function mount {
   if [ -z "$1" ]; then
