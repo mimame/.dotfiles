@@ -497,16 +497,6 @@ nnoremap <Leader>e :e<Space>
 nnoremap <Leader>wq :w<CR>:q<CR>
 nnoremap <Leader>ws <C-w>s
 nnoremap <Leader>wv <C-w>v
-nmap <Leader>y "+y
-vmap <Leader>y "+y
-nmap <Leader>yy "+yy
-nmap <Leader>d "+d
-vmap <Leader>d "+d
-nmap <Leader>dd "+dd
-nmap <Leader>p "+p
-vmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>P "+P
 nmap <Leader><Leader> V
 "map K <Plug>(expand_region_expand)
 "map J <Plug>(expand_region_shrink)
