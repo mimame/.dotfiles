@@ -198,15 +198,6 @@ alias ncdu='ncdu --color dark'
 alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
 alias news='newsboat'
 
-# Vim as default editor
-export EDITOR=vim
-export VISUAL=vim
-export TMPDIR='/tmp'
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$HOME/.bin:$PATH"
-export PATH="$HOME/.bin:$PATH"
-export PATH="$HOME/go/bin:$PATH"
 
 function mount {
   if [ -z "$1" ]; then
