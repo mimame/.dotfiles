@@ -200,6 +200,7 @@ alias news='newsboat'
 
 # rg with grep -r behaviour
 alias s='rg --smart-case --follow --hidden --no-ignore --no-ignore-parent --glob "!.git/*"'
+alias ag='ag --unrestricted --smart-case --ignore .git'
 
 function mount {
   if [ -z "$1" ]; then
