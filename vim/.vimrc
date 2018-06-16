@@ -596,9 +596,9 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 
 
 " Git Gutter {{{
-" Symbols react faster
+" Symbols update immediately
 " https://github.com/airblade/vim-gitgutter#when-signs-take-a-few-seconds-to-appear
-set updatetime=100
+set updatetime=0
 let g:gitgutter_grep = 'rg'
 let g:gitgutter_sign_removed = '-'
 " Symbols color
