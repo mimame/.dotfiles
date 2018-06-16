@@ -114,15 +114,6 @@ alias txz="_compress_tar xz 6"
 alias txz1="_compress_tar xz 1"
 alias txz9="_compress_tar xz 9"
 
-# Tab mount output
-function mount {
-  if [ -z "$1" ]; then
-    /usr/bin/mount | column -t
-  else
-    /usr/bin/mount "$@"
-  fi
-}
-
 # Send tar by ssh
 function ssh-send-tar {
 
