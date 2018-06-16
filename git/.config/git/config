@@ -121,6 +121,8 @@
   rh = reset --hard
   rm = reset --mixed
   rs = reset --soft
+  # revert - https://git-scm.com/docs/git-revert
+  rv = revert
   # show - https://git-scm.com/docs/git-reset
   w  = show
   wt = show --stat
