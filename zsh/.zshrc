@@ -199,7 +199,7 @@ alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!
 alias news='newsboat'
 
 # rg with grep -r behaviour
-alias s='rg --smart-case --follow --hidden --no-ignore --no-ignore-parent'
+alias s='rg --smart-case --follow --hidden --no-ignore --no-ignore-parent --glob "!.git/*"'
 
 function mount {
   if [ -z "$1" ]; then
