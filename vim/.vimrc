@@ -681,7 +681,7 @@ nmap <Leader>h :bprevious<CR>
 " This replicates the idea of closing a tab
 nmap <Leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
-nmap <Leader>bl :ls<CR>
+nmap <Leader>bl :Buffers<CR>
 
 nmap <Leader>T :tabnew<CR>
 " }}}
