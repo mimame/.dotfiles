@@ -444,6 +444,14 @@ augroup END
 " Highlight .vifmrc and theme files but don't enable because nerdtree is prefered
 let g:loaded_vifm=1
 
+" NERD commenter config {{{
+" https://github.com/scrooloose/nerdcommenter#settings
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" }}}
+
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
