@@ -115,10 +115,6 @@ call plug#begin('~/.vim/plugged')
   " fzf inside vim
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
-  " Search and display information (Most Recent Used files)
-  "Plug 'shougo/neomru.vim' | Plug 'shougo/unite.vim'
-  " Search and display information (History yank)
-  "Plug 'shougo/neoyank.vim' | Plug 'shougo/unite.vim'
   " Interact with tmux
   Plug 'benmills/vimux'
   " Seamless navigation between tmux panes and vim splits
@@ -448,41 +444,6 @@ augroup END
 " Highlight .vifmrc and theme files but don't enable because nerdtree is prefered
 let g:loaded_vifm=1
 
-" Unite plugin config {{{
-" Open all
-"nnoremap <Leader>u :Unite file/async file_rec/async buffer file_mru<CR>
-" Open all horizontal mode
-"nnoremap <Leader>us :Unite file/async file_rec/async buffer file_mru -default-action=split<CR>
-" Open all vertical mode
-"nnoremap <Leader>uv :Unite file/async file_rec/async buffer file_mru -default-action=vsplit<CR>
-" Open buffer
-"nnoremap <Leader>ub :Unite buffer<CR>
-" Open buffer horizontal mode
-"nnoremap <Leader>ubs :Unite buffer -default-action=split<CR>
-" Open buffer vertical mode
-"nnoremap <Leader>ubv :Unite buffer -default-action=vsplit<CR>
-" Open search lines (ag)
-"nnoremap <Leader>ul :Unite line<CR>
-" Open search lines (ag) horizontal mode
-"nnoremap <Leader>uls :Unite line -default-action=split<CR>
-" Open search lines (ag) vertical mode
-"nnoremap <Leader>ulv :Unite line -default-action=vsplit<CR>
-" Open yank buffer
-"let g:unite_source_history_yank_enable = 1
-"nnoremap <Leader>uy :Unite history/yank<CR>
-" Open command buffer
-"nnoremap <Leader>uc :Unite command<CR>
-" Open ag to the target folder with the pattern chosen
-"let g:unite_source_grep_command = 'ag'
-"let g:unite_source_grep_default_opts = '-i --line-numbers --nocolor --nogroup --hidden'
-"let g:unite_source_grep_recursive_opt = ''
-"let g:unite_source_grep_encoding = 'utf-8'
-"nnoremap <Leader>ag :Unite grep<CR>
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"call unite#filters#sorter_default#use(['sorter_length'])
-"let g:unite_source_rec_max_cache_files=9999
-"let g:unite_source_rec_async_command='ag --nocolor --nogroup --ignore ".hg" --ignore ".svn" --ignore ".git" --ignore ".bzr" --hidden -g ""'
-" }}}
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
