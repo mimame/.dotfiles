@@ -46,8 +46,8 @@ zstyle :compinstall filename "$HOME/.zshrc"
 if (( ! $+functions[_zplug] )); then
     autoload -Uz compinit
 # http://stackoverflow.com/a/12575883
-# On slow systems, checking the cached .zcompdump file to see if it must be 
-# regenerated adds a noticable delay to zsh startup.  This little hack restricts 
+# On slow systems, checking the cached .zcompdump file to see if it must be
+# regenerated adds a noticable delay to zsh startup.  This little hack restricts
 # it to once a day.  It should be pasted into your own completion file.
 #
 # The globbing is a little complicated here:
@@ -394,8 +394,8 @@ local paste_widgets=(
 )
 
 # NB: can atm. only wrap native widgets
-x11-clip-wrap-widgets copy $copy_widgets
-x11-clip-wrap-widgets paste  $paste_widgets
+x11-clip-wrap-widgets copy  $copy_widgets
+x11-clip-wrap-widgets paste $paste_widgets
 
 # Remove weird message: sessions should be nested with care, unset $TMUX to force
 if [ "$TMUX" == "" ]; then
