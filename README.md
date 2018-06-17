@@ -61,6 +61,7 @@
 ### [zsh (Shell)](http://www.zsh.org/) (./zsh)
 
 ## Requirements
+- [Antibody](https://getantibody.github.io/) (./zsh/.zshrc)
 - [AnyEvent-I3](https://github.com/i3/i3/tree/next/AnyEvent-I3) (./i3/.config/i3/scripts/i3session)
 - [aria2c](https://github.com/aria2/aria2) (./zsh/.zshrc)
 - [axel](https://github.com/axel-download-accelerator/axel) (./zsh/.zshrc)
