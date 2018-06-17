@@ -8,9 +8,9 @@ source ~/.zplug/init.zsh
 # Make sure to not use double quotes to prevent shell expansion
 # Add a bunch more of your favorite packages!
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'denysdovhan/spaceship-prompt', use:spaceship.zsh, from:github, as:theme
-zplug 'mafredri/zsh-async', from:github
+# zplug 'mafredri/zsh-async', from:github
 #zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions", defer:2 # Normal mode space for execute it
@@ -18,15 +18,21 @@ zplug "hlissner/zsh-autopair", defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 zplug "zsh-users/zsh-history-substring-search", defer:3
 
-# Install packages that have not been installed yet
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  else
-    echo
-  fi
-fi
+# Install packages that have not been installed yet {{{
+# if ! zplug check 'denysdovhan/spaceship-prompt'; then
+# # if ! zplug check --verbose; then
+#   printf "Install? [y/N]: "
+#   if read -q; then
+#     echo; zplug install
+#   else
+#     echo
+#   fi
+# fi
+# }}}
+
+# Fast zplug startup
+# https://github.com/zplug/zplug/issues/368#issuecomment-282566102
+[[ ! -f $ZPLUG_LOADFILE ]] && touch $ZPLUG_LOADFILE
 
 zplug load
 # Lines configured by zsh-newuser-install
@@ -50,10 +56,27 @@ unsetopt beep
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
+if (( ! $+functions[_zplug] )); then
+    autoload -Uz compinit
 # http://stackoverflow.com/a/12575883
-autoload -Uz compinit  #-D #don't build every time deadly slow
-compinit
-autopair-init
+# On slow systems, checking the cached .zcompdump file to see if it must be 
+# regenerated adds a noticable delay to zsh startup.  This little hack restricts 
+# it to once a day.  It should be pasted into your own completion file.
+#
+# The globbing is a little complicated here:
+# - '#q' is an explicit glob qualifier that makes globbing work within zsh's [[ ]] construct.
+# - 'N' makes the glob pattern evaluate to nothing when it doesn't match (rather than throw a globbing error)
+# - '.' matches "regular files"
+# - 'mh+24' matches files (or directories or whatever) that are older than 24 hours.
+    if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+      compinit;
+    else
+      compinit -C;
+    fi;
+fi
+
+export ZSH_CACHE_DIR="~.zplug/cache"
+
 # End of lines added by compinstall
 setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
 setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
