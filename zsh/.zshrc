@@ -14,12 +14,25 @@ fi
 # Initialize antibody and plugins {{{
 # Load antibody (dynamic load)
 # https://getantibody.github.io/usage/
-# source <(antibody init)
-# Dynamic load
-# antibody bundle < ~/.zsh_plugins.txt
-# Static load
-# antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
-source ~/.zsh_plugins.sh
+
+if [ -f ~/.zsh_plugins.sh ]; then
+  # Static load
+  source ~/.zsh_plugins.sh
+else
+  # Dynamic load
+  # Register plugins in an array
+  declare -a plugins
+  plugins+=('denysdovhan/spaceship-prompt kind:zsh-theme')
+  plugins+=('zsh-users/zsh-completions')
+  plugins+=('zsh-users/zsh-autosuggestions')
+  plugins+=('hlissner/zsh-autopair')
+  plugins+=('zsh-users/zsh-syntax-highlighting')
+  plugins+=('zsh-users/zsh-history-substring-search')
+  # Join array with new lines
+  plugins=$(printf "%s\n" "${plugins[@]}")
+  # Generate static load using list of plugins on the fly
+  antibody bundle <<< $plugins > ~/.zsh_plugins.sh
+fi
 # }}}
 
 # Lines configured by zsh-newuser-install

@@ -1,6 +1,0 @@
-denysdovhan/spaceship-prompt kind:zsh-theme
-zsh-users/zsh-completions
-zsh-users/zsh-autosuggestions
-hlissner/zsh-autopair
-zsh-users/zsh-syntax-highlighting
-zsh-users/zsh-history-substring-search
