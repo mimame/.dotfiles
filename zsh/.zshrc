@@ -1,40 +1,27 @@
- # Check if zplug is installed
-if [[ ! -d ~/.zplug ]]; then
-  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+# vim: foldmethod=marker foldenable
+# http://jb-blog.readthedocs.io/en/latest/posts/0032-debugging-zsh-startup-time.html
+# Profile zsh start up (don't forget to uncomment the bottom line of the file!)
+# zmodload zsh/zprof
+
+# Check if antibody is installed {{{
+# https://getantibody.github.io/install/
+if ! [ -x "$(command -v antibody)" ]; then
+  curl -sL git.io/antibody | sh -s
+  exit 1
 fi
-
-# Essential
-source ~/.zplug/init.zsh
-# Make sure to not use double quotes to prevent shell expansion
-# Add a bunch more of your favorite packages!
-
-# zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug 'denysdovhan/spaceship-prompt', use:spaceship.zsh, from:github, as:theme
-# zplug 'mafredri/zsh-async', from:github
-#zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions", defer:2 # Normal mode space for execute it
-zplug "hlissner/zsh-autopair", defer:2
-zplug "zsh-users/zsh-syntax-highlighting", defer:3
-zplug "zsh-users/zsh-history-substring-search", defer:3
-
-# Install packages that have not been installed yet {{{
-# if ! zplug check 'denysdovhan/spaceship-prompt'; then
-# # if ! zplug check --verbose; then
-#   printf "Install? [y/N]: "
-#   if read -q; then
-#     echo; zplug install
-#   else
-#     echo
-#   fi
-# fi
 # }}}
 
-# Fast zplug startup
-# https://github.com/zplug/zplug/issues/368#issuecomment-282566102
-[[ ! -f $ZPLUG_LOADFILE ]] && touch $ZPLUG_LOADFILE
+# Initialize antibody and plugins {{{
+# Load antibody (dynamic load)
+# https://getantibody.github.io/usage/
+# source <(antibody init)
+# Dynamic load
+# antibody bundle < ~/.zsh_plugins.txt
+# Static load
+# antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+source ~/.zsh_plugins.sh
+# }}}
 
-zplug load
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
@@ -414,4 +401,4 @@ x11-clip-wrap-widgets paste  $paste_widgets
 if [ "$TMUX" == "" ]; then
     tmux new-session
 fi
-
+# zprof
