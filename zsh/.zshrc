@@ -109,6 +109,10 @@ unsetopt LIST_BEEP      # Don't beep on an ambiguous completion.
 zstyle ':completion::complete:*' use-cache on
 zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
 # }}}
+
+# Case-insensitive (all), partial-word, and then substring completion.
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
 # Folder options
 setopt AUTO_PUSHD        # Push the old folder onto the stack
