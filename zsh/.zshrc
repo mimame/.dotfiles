@@ -1,4 +1,8 @@
 # vim: foldmethod=marker foldenable
+# Interactive shell also with aliases and functions of a not interactive shell
+# Never uncomment this
+# source "${ZDOTDIR:-$HOME}/.zshenv"
+
 # http://jb-blog.readthedocs.io/en/latest/posts/0032-debugging-zsh-startup-time.html
 # Profile zsh start up (don't forget to uncomment the bottom line of the file!)
 # zmodload zsh/zprof
