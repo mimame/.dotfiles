@@ -104,6 +104,11 @@ unsetopt nomatch        # git show HEAD^ returns zsh: no matches found: HEAD^
 unsetopt CASE_GLOB      # Make globbing (filename generation) not sensitive to case.
 unsetopt LIST_BEEP      # Don't beep on an ambiguous completion.
 # }}}
+
+# Use caching to make completion for commands such as dpkg and apt usable. {{{
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
+# }}}
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
 # Folder options
 setopt AUTO_PUSHD        # Push the old folder onto the stack
