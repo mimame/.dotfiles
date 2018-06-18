@@ -344,8 +344,11 @@ zstyle ':completion:*:man:*'      menu yes select
 # Ctrl-R provided by fzf
 
 # Vi mode keys {{{
+# Enable vi mode
+bindkey -v
+spaceship_vi_mode_enable
 # Normal mode space for execute suggest
-#https://wiki.archlinux.org/index.php/Zsh#Key_bindings
+# https://wiki.archlinux.org/index.php/Zsh#Key_bindings
 bindkey -M vicmd ' ' autosuggest-execute
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
