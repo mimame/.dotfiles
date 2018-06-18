@@ -135,6 +135,20 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 # But make sure to cap (at 7) the max-errors to avoid hanging.
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
 # }}}
+
+# Directories {{{
+# Set LS_COLORS
+export LS_COLORS='di=1;34:ln=35:so=32:pi=33:ex=31:bd=1;36:cd=1;33:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+# Color autocompleted directories
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# First complete local directories, then +NUMBER parent hierarchy and finally directories from $cdpath
+zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+# Complete parent hierarchy
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'expand'
+zstyle ':completion:*' squeeze-slashes true
+# }}}
+
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
 # Folder options
 setopt AUTO_PUSHD        # Push the old folder onto the stack
