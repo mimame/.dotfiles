@@ -54,10 +54,12 @@ setopt HIST_VERIFY # Do not execute immediately upon history expansion
 setopt appendhistory autocd extendedglob nomatch notify interactivecomments
 unsetopt beep
 # End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+
+# Completion config {{{
+# Load compinit
+# The following lines were added by compinstall {{{
 zstyle :compinstall filename "$HOME/.zshrc"
-if (( ! $+functions[_zplug] )); then
-    autoload -Uz compinit
+autoload -Uz compinit
 # http://stackoverflow.com/a/12575883
 # On slow systems, checking the cached .zcompdump file to see if it must be
 # regenerated adds a noticable delay to zsh startup.  This little hack restricts
@@ -68,12 +70,12 @@ if (( ! $+functions[_zplug] )); then
 # - 'N' makes the glob pattern evaluate to nothing when it doesn't match (rather than throw a globbing error)
 # - '.' matches "regular files"
 # - 'mh+24' matches files (or directories or whatever) that are older than 24 hours.
-    if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
-      compinit;
-    else
-      compinit -C;
-    fi;
-fi
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+  compinit;
+else
+  compinit -C;
+fi;
+# End of lines added by compinstall }}}
 
 export ZSH_CACHE_DIR="~.zplug/cache"
 
