@@ -276,7 +276,7 @@ unsetopt HUP          # Don't kill jobs on shell exit.
 #unsetopt CHECK_JOBS  # Don't report on jobs when shell exit
 # }}}
 
-# less with color
+# less with color {{{
 export LESS_TERMCAP_mb=$'\E[01;31m'    # Begins blinking.
 export LESS_TERMCAP_md=$'\E[01;31m'    # Begins bold.
 export LESS_TERMCAP_me=$'\E[0m'        # Ends mode.
@@ -284,7 +284,9 @@ export LESS_TERMCAP_se=$'\E[0m'        # Ends standout-mode.
 export LESS_TERMCAP_so=$'\E[00;47;30m' # Begins standout-mode.
 export LESS_TERMCAP_ue=$'\E[0m'        # Ends underline.
 export LESS_TERMCAP_us=$'\E[01;32m'    # Begins underline.
+# }}}
 
+# Spaceship prompt {{{
 export SPACESHIP_NODE_DEFAULT_VERSION="$(node -v)"
 export SPACESHIP_JOBS_SYMBOL=''
 export SPACESHIP_JOBS_SUFFIX=' \e[36mjobs\e[0m '
@@ -331,6 +333,7 @@ SPACESHIP_PROMPT_ORDER=(
   exit_code     # Exit code section
   char          # Prompt character
 )
+# }}}
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z }'
 # Autocomplete man pages search
@@ -340,6 +343,7 @@ zstyle ':completion:*:man:*'      menu yes select
 
 # Ctrl-R provided by fzf
 
+# Vi mode keys {{{
 # Normal mode space for execute suggest
 #https://wiki.archlinux.org/index.php/Zsh#Key_bindings
 bindkey -M vicmd ' ' autosuggest-execute
@@ -349,9 +353,11 @@ bindkey -M vicmd 'j' history-substring-search-down
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
+# }}}
 
 #alias vim='nvim'
 
+# FZF config {{{
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --follow --exclude .git'
 
@@ -360,7 +366,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # To apply the command to ALT_C
 export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --follow --exclude .git'
+# }}}
 
+# Alias {{{
 alias bc='bc -l'
 # github wrapper to extend git
 alias git=hub
@@ -392,6 +400,7 @@ alias news='newsboat'
 alias s='rg --smart-case --follow --hidden --no-ignore --no-ignore-parent --glob "!.git/*"'
 alias ag='ag --unrestricted --smart-case --ignore .git'
 
+# }}}
 function mount {
   if [ -z "$1" ]; then
     /usr/bin/mount | column -t
@@ -399,9 +408,9 @@ function mount {
     /usr/bin/mount "$@"
   fi
 }
+# }}}
 
-
-# ctrl-Z for recovering vim in background
+# ctrl-Z for recovering vim in background {{{
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
@@ -420,7 +429,9 @@ alias mv="mv -i"
 alias cp="cp -i"
 alias ln="ln -i"
 unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
+# }}}
 
+# Font config {{{
 # https://github.com/bhilburn/powerlevel9k/issues/430#issuecomment-287084613
 # zsh syntax
 typeset -A font_hash
@@ -438,6 +449,7 @@ for font in "${(@k)font_hash}"; do
   && popd
 
 done
+# }}}
 
 alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
 
@@ -471,6 +483,7 @@ b (){
 eval $(thefuck --alias)
 alias f='fuck -y'
 
+# get command {{{{
 # https://github.com/zimfw/zimfw/blob/master/modules/utility/init.zsh
 if [ -x "$(command -v "aria2c")" ]; then
   alias get='aria2c --max-connection-per-server=5 --continue'
@@ -481,6 +494,8 @@ elif [ -x "$(command -v "wget")" ]; then
 elif [ -x "$(command -v "curl")" ]; then
   alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
 fi
+# }}}
+
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -492,6 +507,7 @@ fi
 bindkey -v
 spaceship_vi_mode_enable
 
+# Special keys working {{{
 # http://zshwiki.org/home/zle/bindkeys#reading_terminfo
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
@@ -534,8 +550,9 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-init
     zle -N zle-line-finish
 fi
+# }}}
 
-# Sync ZSH register with the system clipboard
+# Sync ZSH register with the system clipboard {{{
 # https://unix.stackexchange.com/a/390523
 function x11-clip-wrap-widgets() {
     # NB: Assume we are the first wrapper and that we only wrap native widgets
@@ -576,9 +593,13 @@ local paste_widgets=(
 # NB: can atm. only wrap native widgets
 x11-clip-wrap-widgets copy  $copy_widgets
 x11-clip-wrap-widgets paste $paste_widgets
+# }}}
 
+# Run new tmux session always {{{
 # Remove weird message: sessions should be nested with care, unset $TMUX to force
 if [ "$TMUX" == "" ]; then
     tmux new-session
 fi
+# }}}
+
 # zprof
