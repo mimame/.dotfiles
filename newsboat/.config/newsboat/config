@@ -48,9 +48,9 @@ bind-key r reload-all
 unbind-key R
 bind-key R reload
 unbind-key A # not bound
-bind-key a mark-feed-read
+bind-key a mark-all-feeds-read
 unbind-key C # not bout
-bind-key c mark-all-feeds-read
+bind-key c mark-feed-read
 
 # Molokai theme
 
