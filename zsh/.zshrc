@@ -83,19 +83,27 @@ else
 fi;
 # End of lines added by compinstall }}}
 
-export ZSH_CACHE_DIR="~.zplug/cache"
+# http://zsh.sourceforge.net/Guide/zshguide06.html
+# http://zsh.sourceforge.net/Doc/Release/Options.html#Completion-2
+# https://github.com/sorin-ionescu/prezto/blob/master/modules/completion/init.zsh
+# https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/completion.zsh
+# https://github.com/getantibody/antibody#in-the-wild
+# If a completion is performed with the cursor within a word, and a full completion is inserted,
 
-# End of lines added by compinstall
-setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
-setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
-setopt PATH_DIRS           # Perform path search even on command names with slashes.
-setopt AUTO_MENU           # Show completion menu on a successive tab press.
-setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
-setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
-unsetopt MENU_COMPLETE     # Do not autoselect the first completion entry.
-unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
-unsetopt nomatch           # git show HEAD^ returns zsh: no matches found: HEAD^
-
+# https://github.com/sorin-ionescu/prezto/blob/master/modules/completion/init.zsh
+# Options {{{
+setopt COMPLETE_IN_WORD # Complete from both ends of a word.
+setopt ALWAYS_TO_END    # Move cursor to the end of a completed word.
+setopt PATH_DIRS        # Perform path search even on command names with slashes.
+setopt AUTO_MENU        # Show completion menu on a successive tab press.
+setopt AUTO_LIST        # Automatically list choices on ambiguous completion.
+setopt AUTO_PARAM_SLASH # If completed parameter is a directory, add a trailing slash.
+unsetopt MENU_COMPLETE  # Do not autoselect the first completion entry.
+unsetopt FLOW_CONTROL   # Disable start/stop characters in shell editor.
+unsetopt nomatch        # git show HEAD^ returns zsh: no matches found: HEAD^
+unsetopt CASE_GLOB      # Make globbing (filename generation) not sensitive to case.
+unsetopt LIST_BEEP      # Don't beep on an ambiguous completion.
+# }}}
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
 # Folder options
 setopt AUTO_PUSHD        # Push the old folder onto the stack
