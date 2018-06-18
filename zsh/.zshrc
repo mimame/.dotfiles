@@ -149,6 +149,13 @@ zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directori
 zstyle ':completion:*' squeeze-slashes true
 # }}}
 
+# History (replaced by fzf and zsh-history-substring-search) {{{
+zstyle ':completion:*:history-words' stop yes
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:history-words' list false
+zstyle ':completion:*:history-words' menu yes
+# }}}
+
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
 # Folder options
 setopt AUTO_PUSHD        # Push the old folder onto the stack
