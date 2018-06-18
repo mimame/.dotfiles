@@ -335,11 +335,6 @@ SPACESHIP_PROMPT_ORDER=(
 )
 # }}}
 
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z }'
-# Autocomplete man pages search
-zstyle ':completion:*:manuals'    separate-sections true
-zstyle ':completion:*:manuals.*'  insert-sections   true
-zstyle ':completion:*:man:*'      menu yes select
 # Vi mode keys {{{
 # Enable vi mode
 bindkey -v
@@ -355,7 +350,6 @@ zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 # }}}
 
-#alias vim='nvim'
 
 # FZF config {{{
 source /usr/share/fzf/key-bindings.zsh
@@ -417,6 +411,8 @@ alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
 eval $(thefuck --alias)
 alias f='fuck -y'
 # }}}
+
+# Improved default mount output using columns {{{
 function mount {
   if [ -z "$1" ]; then
     /usr/bin/mount | column -t
@@ -462,27 +458,6 @@ done
 # }}}
 
 
-# Show folder hierarchy from bottom to root and let jump to any of that folders
-# https://github.com/junegunn/fzf/wiki/Examples#changing-directory
-b (){
-  local declare dirs=()
-  get_parent_dirs() {
-    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
-    if [[ "${1}" == '/' ]]; then
-      for _dir in "${dirs[@]}"; do echo $_dir; done
-    else
-      get_parent_dirs $(dirname "$1")
-    fi
-  }
-  #local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
-  # I prefer the original order
-  # and remove the current folder
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | tail -n+2 | fzf-tmux)
-  cd "$DIR"
-}
-
-
-
 # get command {{{{
 # https://github.com/zimfw/zimfw/blob/master/modules/utility/init.zsh
 if [ -x "$(command -v "aria2c")" ]; then
@@ -499,13 +474,6 @@ fi
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Interactive shell also with aliases and functions of a not interactive shell
-# source "${ZDOTDIR:-$HOME}/.zshenv"
-
-# enable vi mode
-bindkey -v
-spaceship_vi_mode_enable
 
 # Special keys working {{{
 # http://zshwiki.org/home/zle/bindkeys#reading_terminfo
