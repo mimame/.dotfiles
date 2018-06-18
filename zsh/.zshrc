@@ -178,6 +178,16 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 
 # ... unless we really want to.
 zstyle '*' single-ignored show
+
+# Kill pgrep behaviour (improved by fzf) {{{
+zstyle ':completion:*:*:*:*:processes' command 'ps -u $LOGNAME -o pid,user,command -w'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:*:kill:*' force-list always
+# Let browse by the kill menu
+# zstyle ':completion:*:*:kill:*' insert-ids single
+# }}}
+
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
 # Folder options
 setopt AUTO_PUSHD        # Push the old folder onto the stack
