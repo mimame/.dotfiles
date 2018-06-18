@@ -188,6 +188,11 @@ zstyle ':completion:*:*:kill:*' force-list always
 # zstyle ':completion:*:*:kill:*' insert-ids single
 # }}}
 
+# Man {{{
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:manuals.(^1*)' insert-sections true
+# }}}
+
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
 # Folder options
 setopt AUTO_PUSHD        # Push the old folder onto the stack
