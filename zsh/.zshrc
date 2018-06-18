@@ -370,6 +370,8 @@ export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --follow --exclude .g
 # }}}
 
 # Alias {{{
+#alias vim='nvim'
+# Always use float by default
 alias bc='bc -l'
 # github wrapper to extend git
 alias git=hub
@@ -401,6 +403,19 @@ alias news='newsboat'
 alias s='rg --smart-case --follow --hidden --no-ignore --no-ignore-parent --glob "!.git/*"'
 alias ag='ag --unrestricted --smart-case --ignore .git'
 
+# Safe ops. Ask the user before doing anything destructive.
+alias rm="rm -i"
+alias mv="mv -i"
+alias cp="cp -i"
+alias ln="ln -i"
+unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
+
+alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
+alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
+
+# Correct previous command
+eval $(thefuck --alias)
+alias f='fuck -y'
 # }}}
 function mount {
   if [ -z "$1" ]; then
@@ -424,12 +439,6 @@ fancy-ctrl-z () {
 
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
-# Safe ops. Ask the user before doing anything destructive.
-alias rm="rm -i"
-alias mv="mv -i"
-alias cp="cp -i"
-alias ln="ln -i"
-unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
 # }}}
 
 # Font config {{{
@@ -452,10 +461,6 @@ for font in "${(@k)font_hash}"; do
 done
 # }}}
 
-alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
-
-alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
-
 
 # Show folder hierarchy from bottom to root and let jump to any of that folders
 # https://github.com/junegunn/fzf/wiki/Examples#changing-directory
@@ -477,9 +482,6 @@ b (){
 }
 
 
-# Correct previous command
-eval $(thefuck --alias)
-alias f='fuck -y'
 
 # get command {{{{
 # https://github.com/zimfw/zimfw/blob/master/modules/utility/init.zsh
