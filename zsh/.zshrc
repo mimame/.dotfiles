@@ -162,6 +162,9 @@ zstyle ':completion:*:history-words' list false
 zstyle ':completion:*:history-words' menu yes
 # }}}
 
+# Environmental Variables
+zstyle ':completion::*:(-command-|export):*' fake-parameters ${${${_comps[(I)-value-*]#*,}%%,*}:#-*-}
+
 # Populate hostname completion {{{
 # */etc/hosts* which might be uninteresting.
 zstyle -e ':completion:*:hosts' hosts 'reply=(
