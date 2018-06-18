@@ -194,6 +194,11 @@ zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec)|prompt_*)'
 # completion sorting
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
+# Ignore multiple entries {{
+zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
+zstyle ':completion:*:rm:*' file-patterns '*:all-files'
+# }}
+
 # Kill pgrep behaviour (improved by fzf) {{{
 zstyle ':completion:*:*:*:*:processes' command 'ps -u $LOGNAME -o pid,user,command -w'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
