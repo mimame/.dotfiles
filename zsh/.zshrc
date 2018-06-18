@@ -191,6 +191,9 @@ zstyle '*' single-ignored show
 # ignore useless commands and functions
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec)|prompt_*)'
 
+# completion sorting
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
 # Kill pgrep behaviour (improved by fzf) {{{
 zstyle ':completion:*:*:*:*:processes' command 'ps -u $LOGNAME -o pid,user,command -w'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
