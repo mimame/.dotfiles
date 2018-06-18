@@ -229,17 +229,41 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 # }}}
 # }}}
 
+# Folder options {{{
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
-# Folder options
-setopt AUTO_PUSHD        # Push the old folder onto the stack
-setopt PUSHD_SILENT      # Do not print directory after pushd or popd.
-setopt EXTENDED_GLOB     # Use extended globbing syntax.
+setopt AUTO_CD           # Auto changes to a directory without typing cd.
+setopt AUTO_PUSHD        # Push the old directory onto the stack on cd.
 setopt PUSHD_IGNORE_DUPS # Do not store duplicates in the stack.
+setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
+setopt PUSHD_TO_HOME     # Push to home directory when no argument is given.
+setopt CDABLE_VARS       # Change directory to a path stored in a variable.
+setopt MULTIOS           # Write to multiple descriptors.
+setopt EXTENDED_GLOB     # Use extended globbing syntax.
 
 # Show bottom up hierarchy of folders of the stack except the current folder
 alias d='dirs -v | tail +2'
 # Type a number and enter to go to that position in the folder stack
 for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
+# Show folder hierarchy from bottom to root and let jump to any of that folders
+# https://github.com/junegunn/fzf/wiki/Examples#changing-directory
+b (){
+  local declare dirs=()
+  get_parent_dirs() {
+    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
+    if [[ "${1}" == '/' ]]; then
+      for _dir in "${dirs[@]}"; do echo $_dir; done
+    else
+      get_parent_dirs $(dirname "$1")
+    fi
+  }
+  #local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+  # I prefer the original order
+  # and remove the current folder
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | tail -n+2 | fzf-tmux)
+  cd "$DIR"
+}
+# }}}
 
 #https://github.com/sorin-ionescu/prezto/blob/master/modules/environment/init.zsh
 # Jobs
