@@ -340,9 +340,6 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z }'
 zstyle ':completion:*:manuals'    separate-sections true
 zstyle ':completion:*:manuals.*'  insert-sections   true
 zstyle ':completion:*:man:*'      menu yes select
-
-# Ctrl-R provided by fzf
-
 # Vi mode keys {{{
 # Enable vi mode
 bindkey -v
@@ -361,12 +358,13 @@ bindkey -M vicmd v edit-command-line
 #alias vim='nvim'
 
 # FZF config {{{
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+# Ctrl-R provided by fzf
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --follow --exclude .git'
-
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
 # To apply the command to ALT_C
 export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --follow --exclude .git'
 # }}}
@@ -458,9 +456,6 @@ alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!
 
 alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
 
-# FZF config
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
 
 # Show folder hierarchy from bottom to root and let jump to any of that folders
 # https://github.com/junegunn/fzf/wiki/Examples#changing-directory
