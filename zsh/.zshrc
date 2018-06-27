@@ -299,6 +299,9 @@ export SPACESHIP_HOST_PREFIX='@'
 export SPACESHIP_DIR_TRUNC=0
 export SPACESHIP_DIR_TRUNC_REPO=false
 export SPACESHIP_TIME_SHOW=true
+# User nerd font icons
+export SPACESHIP_DOCKER_SYMBOL='  '
+export SPACESHIP_RUBY_SYMBOL='  '
 
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
