@@ -453,6 +453,8 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
 " }}}
 
 " NERDTree config {{{
