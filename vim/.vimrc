@@ -5,7 +5,7 @@ set encoding=utf-8
 " File encoding
 scriptencoding utf-8
 
-" vim-plug (Vim Plugin Manager)
+" vim-plug (Vim Plugin Manager) {{{
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
       \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -14,6 +14,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall | source $MYVIMRC
   augroup END
 endif
+" }}}
 
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
@@ -30,7 +31,7 @@ call plug#begin('~/.vim/plugged')
   "Tmux theme generator
   Plug 'edkolev/tmuxline.vim'
   " Vertical lines for each indentation level
-  Plug 'yggdroot/indentline'
+  Plug 'nathanaelkane/vim-indent-guides'
   " Extended f, F, t and T key mappings for Vim
   Plug 'rhysd/clever-f.vim'
   " Highlight yank region
@@ -524,7 +525,6 @@ let g:tex_conceal = ''
 let g:tex_flavor = 'latex'
 let g:markdown_syntax_conceal =  0
 let g:vim_json_syntax_conceal = 0
-let g:indentLine_setConceal = 0
 
 " Never conceal
 set conceallevel=0
@@ -546,6 +546,7 @@ aug end
 let g:tmux_navigator_save_on_switch = 1
 
 " Syntastic plugin config {{{
+" }}}
 " https://stackoverflow.com/a/22253548
 " YouCompleteMe with Tab
 " make YCM compatible with UltiSnips (using supertab)
