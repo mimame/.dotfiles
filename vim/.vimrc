@@ -389,11 +389,6 @@ let g:ale_echo_msg_format = '%severity%  [%linter%]: %s'
 " Insert mode: ctrl+U for undoing
 inoremap <C-U> <C-G>u<C-U>
 
-" FZF Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
 " Folding settings {{{
 " Folds opened by default
 set nofoldenable
@@ -668,9 +663,6 @@ nmap <Leader>h :bprevious<CR>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <Leader>bq :bp <BAR> bd #<CR>
-" Show all open buffers and their status
-nmap <Leader>bl :Buffers<CR>
-
 nmap <Leader>T :tabnew<CR>
 " }}}
 
@@ -691,11 +683,48 @@ let g:grammarous#show_first_error = 1
   "autocmd FileType text         call pencil#init({'wrap': 'hard'})
 "augroup END
 
+" FZF {{{
 " https://github.com/junegunn/fzf.vim
-" FZF Mapping selecting mappings
+" Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
+
+" Commands keybindings
+" Show all files recursively of this folder
+nnoremap <leader>f :FZF<CR>
+" Show all match lines of this buffer
+nnoremap <leader>/ :BLines<CR>
+" Show all match lines of any buffer
+nnoremap <leader>// :Lines<CR>
+" Show all commits of this repository
+nnoremap <leader>fc :Commits<CR>
+" Show all commits of this file
+nnoremap <leader>fbc :BCommits<CR>
+" Show git status command
+nnoremap <leader>fgs :GFiles?<CR>
+" Show snippets from UltiSnips
+nnoremap <leader>fs :Snippets<CR>
+" Show Vim commands
+nnoremap <leader>fco :Commands<CR>
+" Show vim files history
+nnoremap <leader>fhf :History<CR>
+" Show vim commands history
+nnoremap <leader>fhc :History:<CR>
+" Show vim search history
+nnoremap <leader>fhs :History/<CR>
+" Show tags of any buffer (ctags -R)
+nnoremap <leader>ft :Tags<CR>
+" Show tags of this buffer
+nnoremap <leader>fbt :BTags<CR>
+" Show all open buffers and their status
+nnoremap <Leader>bl :Buffers<CR>
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = "--color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
@@ -725,6 +754,7 @@ let g:fzf_colors =
 \ <bang>0)
 
 cnoreabbrev rg Rg
+" }}}
 
 " Go to the next ALE report
 nmap <silent> <leader>k <Plug>(ale_previous_wrap)
