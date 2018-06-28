@@ -168,8 +168,8 @@ call plug#begin('~/.vim/plugged')
   "Plug 'JuliaEditorSupport/julia-vim' (vim-poliglot)
   " Helpers for UNIX
   Plug 'tpope/vim-eunuch'
-  " spelling tool better than spell
-  Plug 'dpelle/vim-LanguageTool'
+  " Language tool grammar check
+  Plug 'rhysd/vim-grammarous'
   " Rethinking Vim as a tool for writing
   Plug 'reedes/vim-pencil'
   " Asynchronous Lint Engine
@@ -681,9 +681,7 @@ nmap <Leader>T :tabnew<CR>
 " }}}
 
 "autocmd FileType vim setlocal foldmethod=marker foldlevel=0
-"let g:languagetool_jar = '/usr/share/java/languagetool/languagetool-commandline.jar'
-let g:languagetool_jar = '$HOME/languagetool/languagetool-standalone/target/LanguageTool-3.7-SNAPSHOT/LanguageTool-3.7-SNAPSHOT/languagetool-commandline.jar'
-let g:languagetool_lang = 'en-US'
+let g:grammarous#show_first_error = 1
 
 "let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
 "augroup pencil
