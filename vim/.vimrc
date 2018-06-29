@@ -341,7 +341,7 @@ set undodir=/tmp/.vim_undo
 nmap <Esc> <Plug>(clever-f-reset)
 " Highlight yank region
 map y <Plug>(highlightedyank)
-" monokai visual colors
+" molokai visual colors
 hi HighlightedyankRegion ctermbg=235 guibg=#403D3D
 let g:highlightedyank_highlight_duration = 300
 " Write file and create the folder if not exists
@@ -728,22 +728,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = "--color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
-
-" Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
 
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
     command! -bang -nargs=* Rg
