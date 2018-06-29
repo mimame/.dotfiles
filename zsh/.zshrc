@@ -365,6 +365,11 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --follow --exclude 
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # To apply the command to ALT_C
 export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --follow --exclude .git'
+# Molokai colors by default
+export FZF_DEFAULT_OPTS='
+--color fg:255,bg:0,hl:161,fg+:255,bg+:208,hl+:161,info:118
+--color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
+'
 # }}}
 
 # Alias {{{
