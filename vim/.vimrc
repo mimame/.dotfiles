@@ -522,8 +522,6 @@ let g:crystal_auto_format = 1
 " Show all latex commands
 let g:tex_conceal = ''
 let g:tex_flavor = 'latex'
-let g:markdown_syntax_conceal =  0
-let g:vim_json_syntax_conceal = 0
 
 " Never conceal
 set conceallevel=0
