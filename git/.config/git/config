@@ -3,12 +3,14 @@
   # Remove extra git (git git ... -> git ...)
   git = !git
   # add - https://git-scm.com/docs/git-add
-  a  = add
-  aa = add --all
-  af = add --force
-  ai = add --interactive
-  ap = add --patch
-  au = add --update
+  a    = add
+  aa   = add --all
+  af   = add --force
+  afz  = !FILES=$(git status -s | awk '{ print $2 }' | fzf --multi) && git add --all ${FILES}
+  afzp = !FILES=$(git status -s | awk '{ print $2 }' | fzf --multi) && git add --patch ${FILES}
+  ai   = add --interactive
+  ap   = add --patch
+  au   = add --update
   # add & commit
   auc = !git add --update && git commit
   # apply patch - https://git-scm.com/docs/git-apply
