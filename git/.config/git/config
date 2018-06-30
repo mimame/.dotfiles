@@ -53,11 +53,14 @@
   cm   = commit --message
   # diff - https://git-scm.com/docs/git-diff
   d   = diff
-  dt  = diff --stat
+  dfz = !FILES=$(git status -s | awk '{ print $2 }' | fzf --multi) && git diff ${FILES}
   ds  = diff --staged
   dst = diff --staged --stat
+  dsw = diff --staged --ignore-all-space
+  dt  = diff --stat
   dtl = difftool
   dts = difftool --staged
+  dw  = diff --ignore-all-space
   # fetch - https://git-scm.com/docs/git-fetch
   f  = fetch
   fa = fetch --all
