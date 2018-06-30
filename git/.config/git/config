@@ -141,8 +141,9 @@
   # revert - https://git-scm.com/docs/git-revert
   rv = revert
   # show - https://git-scm.com/docs/git-reset
-  w  = show
-  wt = show --stat
+  w   = show
+  wfz = !HASH=$(git l | fzf --ansi --no-sort) && git show $(echo ${HASH} | awk '{ print $1 }')
+  wt  = show --stat
   # stash - https://git-scm.com/docs/git-stash
   sa = stash apply
   sc = stash clear
