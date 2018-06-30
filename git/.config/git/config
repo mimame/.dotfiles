@@ -65,6 +65,8 @@
   ga = gc --aggresive
   # grep - https://git-scm.com/docs/git-grep
   g = grep --function-context
+  # init - https://git-scm.com/docs/git-init
+  i = init
   # log - https://git-scm.com/docs/git-log
   l  = log --color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   lg = log --color --all --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
