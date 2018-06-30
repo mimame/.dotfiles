@@ -40,14 +40,17 @@
   cl  = clone
   clf = clone --depth 1
   # commit (https://git-scm.com/docs/git-commit)
-  c   = commit
-  ca  = commit --amend
-  caa = commit --all --amend
-  can = commit --amend --no-edit
-  ce  = commit --allow-empty
-  cem = commit --allow-empty --message
-  clm = commit --all --message
-  cm  = commit --message
+  c    = commit
+  ca   = commit --amend
+  caa  = commit --all --amend
+  can  = commit --amend --no-edit
+  ce   = commit --allow-empty
+  cem  = commit --allow-empty --message
+  cf   = commit --fixup
+    # Automatic fixup with autosquash without editor prompt - https://stackoverflow.com/a/29094904
+  cffz = !HASH=$(git l | fzf --ansi --no-sort | awk '{print $2}') && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase --interactive ${HASH}~
+  clm  = commit --all --message
+  cm   = commit --message
   # diff - https://git-scm.com/docs/git-diff
   d   = diff
   dt  = diff --stat
