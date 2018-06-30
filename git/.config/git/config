@@ -78,8 +78,11 @@
   # init - https://git-scm.com/docs/git-init
   i = init
   # log - https://git-scm.com/docs/git-log
-  l  = log --color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-  lg = log --color --all --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  l    = log --color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    # Use fzf to select commits and copy their hash to the clipboard
+  lfz  = !git l | fzf --ansi --multi --no-sort | awk '{print $2}' | xsel --input --clipboard
+  lg   = log --color --all --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  lgfz = !git lg | fzf --ansi --multi --no-sort | awk '{print $2}' | xsel --input --clipboard
   # merge - https://git-scm.com/docs/git-merge
   m  = merge
   ma = merge --abort
