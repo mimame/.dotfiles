@@ -314,6 +314,8 @@ set ruler
 set wildmenu
 " Complete to the longest common string and invoke wildmenu
 set wildmode=longest:full,full
+" Complete ingnoring case sensitive
+set wildignorecase
 " Enable mouse in all modes
 set mouse=a
 " Reload file after external command like !ls
