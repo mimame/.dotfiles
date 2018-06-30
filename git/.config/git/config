@@ -22,10 +22,12 @@
   amr = am --resolved
   ams = am --skip
   # branch - https://git-scm.com/docs/git-branch
-  b  = branch
-  ba = branch --all
-  bd = branch --delete
-  br = branch --remotes
+  b   = branch
+  ba  = branch --all
+  bd  = branch --delete
+  # First sort branches by date
+  bfz = !BRANCH=$(git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads | fzf) && git checkout ${BRANCH}
+  br  = branch --remotes
   # checkout - https://git-scm.com/docs/git-checkout
   co  = checkout
   cob = checkout -b
