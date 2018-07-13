@@ -335,3 +335,5 @@
   # Specify the web browser
   browser = firefox
 
+[blame]
+  coloring = highlightRecent
