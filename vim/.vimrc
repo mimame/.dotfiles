@@ -752,7 +752,7 @@ omap <leader><tab> <plug>(fzf-maps-o)
 
 " Commands keybindings
 " Show all files recursively of this folder
-nnoremap <leader>f :FZF<CR>
+nnoremap <leader>f :Files<CR>
 " Show all match lines of this buffer
 nnoremap <leader>/ :BLines<CR>
 " Show all match lines of any buffer
