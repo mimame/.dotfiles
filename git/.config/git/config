@@ -330,6 +330,12 @@
   # Always rewrite git:// with https:// git clone even
   insteadOf = git://
 
+[url "https://github.com/"]
+  insteadOf = gh:
+
+[url "https://gitlab.com/"]
+  insteadOf = gl:
+
 [web]
   # https://git-scm.com/docs/git-config#git-config-webbrowser
   # Specify the web browser
