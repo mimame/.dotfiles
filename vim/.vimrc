@@ -342,7 +342,13 @@ set undofile
 call system('mkdir -p /tmp/.vim_undo')
 set undodir=/tmp/.vim_undo
 " }}}
+
+" clever-f.vim {{{
 nmap <Esc> <Plug>(clever-f-reset)
+let g:clever_f_show_prompt = 1
+let g:clever_f_mark_char   = 1
+" }}}
+
 " Highlight yank region
 map y <Plug>(highlightedyank)
 " molokai visual colors
@@ -386,10 +392,7 @@ let g:ale_echo_msg_format = '%severity%  [%linter%]: %s'
 "sunmap e
 "sunmap ge
 "}}}
-" clever-f.vim better
-" In motions f, F, t, T swap ; with , because spanish keyboard
-"nnoremap ; ,
-"nnoremap , ;
+
 " Insert mode: ctrl+U for undoing
 inoremap <C-U> <C-G>u<C-U>
 
@@ -424,7 +427,7 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "}}}
 " Esc Esc for Highlight off the searched term
-nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+" nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 " Never used this keys together so remap to esc
 inoremap kj <esc>
 inoremap jj <esc>
