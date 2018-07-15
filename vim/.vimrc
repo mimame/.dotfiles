@@ -70,8 +70,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'jistr/vim-nerdtree-tabs' | Plug 'scrooloose/nerdtree'
   "Extra syntax and highlight for nerdtree files
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight' | Plug 'scrooloose/nerdtree'
-  " Git wrapper
-  Plug 'tpope/vim-fugitive'
   " Syntax checking hacks
   "Plug 'vim-syntastic/syntastic'
   "mappings to easily delete, change and add such surroundings in pairs
@@ -332,8 +330,6 @@ set sessionoptions-=options
 " Never hide symbols
 set conceallevel=0
 set concealcursor=
-
-let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " Keep undo history across sessions by storing it in a file
 set undofile
@@ -649,12 +645,7 @@ xmap ih <Plug>GitGutterTextObjectInnerVisual
 xmap ah <Plug>GitGutterTextObjectOuterVisual
 " }}}
 
-" Git commands {{{
-nmap <leader>gc :Gread<CR>
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gd :Gdiff<CR>
-nmap <leader>gb :Gblame<CR>
-" }}}
+nmap <leader>ti :!tig<cr>
 
 " Diff commands {{{
 " If doing a diff. Upon writing changes to file, automatically update the
