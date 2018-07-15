@@ -21,6 +21,8 @@
   ama = am --abort
   amr = am --resolved
   ams = am --skip
+  # blame - https://git-scm.com/docs/git-blame
+  bl = blame
   # branch - https://git-scm.com/docs/git-branch
   b   = branch
   ba  = branch --all
