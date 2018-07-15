@@ -155,8 +155,6 @@ call plug#begin('~/.vim/plugged')
   " Intelligently toggling line numbers
   Plug 'myusuf3/numbers.vim'
   " CamelCase motion
-  "Plug 'bkad/CamelCaseMotion'
-  " CamelCase motion
   Plug 'chaoren/vim-wordmotion'
   " Tags in a window, ordered by scope
   Plug 'majutsushi/tagbar'
@@ -381,17 +379,6 @@ let g:ale_echo_msg_error_str = ''
 let g:ale_echo_msg_warning_str = ''
 let g:ale_echo_msg_format = '%severity%  [%linter%]: %s'
 " }}}
-
-" CamelCase motion {{{
-"map <silent> w <Plug>CamelCaseMotion_w
-"map <silent> b <Plug>CamelCaseMotion_b
-"map <silent> e <Plug>CamelCaseMotion_e
-"map <silent> ge <Plug>CamelCaseMotion_ge
-"sunmap w
-"sunmap b
-"sunmap e
-"sunmap ge
-"}}}
 
 " Insert mode: ctrl+U for undoing
 inoremap <C-U> <C-G>u<C-U>
