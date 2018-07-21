@@ -21,6 +21,12 @@
   ama = am --abort
   amr = am --resolved
   ams = am --skip
+  # bisect - https://git-scm.com/docs/git-bisect
+  bs  = bisect
+  bsb = bisect bad
+  bsg = bisect good
+  bsr = bisect reset
+  bss = bisect start
   # blame - https://git-scm.com/docs/git-blame
   bl = blame
   # branch - https://git-scm.com/docs/git-branch
