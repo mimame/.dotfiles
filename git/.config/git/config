@@ -153,13 +153,15 @@
   wfz = !HASH=$(git l | fzf --ansi --no-sort) && git show $(echo ${HASH} | awk '{ print $1 }')
   wt  = show --stat
   # stash - https://git-scm.com/docs/git-stash
-  sa = stash apply
-  sc = stash clear
-  sd = stash drop
-  sl = stash list
-  sp = stash pop
-  ss = stash save
-  sw = stash show
+  sa  = stash apply
+  sc  = stash clear
+  sd  = stash drop
+  sl  = stash list
+  sp  = stash pop
+  ss  = stash save
+  st  = stash
+  stp = stash push --include-untracked
+  sw  = stash show
   # status - https://git-scm.com/docs/git-stash
   s = status --branch --show-stash --short
   # tag - https://git-scm.com/docs/git-tag
