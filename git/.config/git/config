@@ -162,8 +162,9 @@
   sw = stash show
   # status - https://git-scm.com/docs/git-stash
   s = status --branch --show-stash --short
-  # tag - https://git-scm.com/docs/git-config#git-config-tagforceSignAnnotated
-  t = tag
+  # tag - https://git-scm.com/docs/git-tag
+  t  = tag
+  ta = tag --annotate
 
 [branch]
   # https://git-scm.com/docs/git-config#git-config-branchautoSetupRebase
