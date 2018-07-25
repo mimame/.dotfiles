@@ -60,7 +60,7 @@
   cem  = commit --allow-empty --message
   cf   = commit --fixup
     # Automatic fixup with autosquash without editor prompt - https://stackoverflow.com/a/29094904
-  cffz = !HASH=$(git l | fzf --ansi --no-sort | awk '{print $2}') && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase --interactive ${HASH}~
+  cffz = !HASH=$(git l | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase --interactive ${HASH}~
   clm  = commit --all --message
   cm   = commit --message
   # diff - https://git-scm.com/docs/git-diff
@@ -92,9 +92,9 @@
   # log - https://git-scm.com/docs/git-log
   l    = log --color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     # Use fzf to select commits and copy their hash to the clipboard
-  lfz  = !git l | fzf --ansi --multi --no-sort | awk '{print $2}' | xsel --input --clipboard
+  lfz  = !git l | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   lg   = log --color --all --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-  lgfz = !git lg | fzf --ansi --multi --no-sort | awk '{print $2}' | xsel --input --clipboard
+  lgfz = !git lg | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   # merge - https://git-scm.com/docs/git-merge
   m  = merge
   ma = merge --abort
@@ -127,7 +127,7 @@
   rbc   = rebase --continue
   rbi   = rebase --interactive
     # rebase interactive with fzf from the selected commit (included)
-  rbifz = !HASH=$(git l | fzf --ansi --no-sort | awk '{print $2}') && git rebase --interactive ${HASH}~
+  rbifz = !HASH=$(git l | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git rebase --interactive ${HASH}~
   rbs   = rebase --skip
   # remote - https://git-scm.com/docs/git-remote
   re   = remote
@@ -154,7 +154,7 @@
   rv = revert
   # show - https://git-scm.com/docs/git-reset
   w   = show
-  wfz = !HASH=$(git l | fzf --ansi --no-sort) && git show $(echo ${HASH} | awk '{ print $1 }')
+  wfz = !HASH=$(git l | fzf --ansi --no-sort |tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
   wt  = show --stat
   # stash - https://git-scm.com/docs/git-stash
   sa  = stash apply
@@ -263,7 +263,7 @@
   path = .config.personal
 
 # https://git-scm.com/docs/git-config#_includes
-# User other username and mail for the specific folder structure
+# use other username and mail for the specific folder structure
 [includeIf "gitdir:~/forks/Work/BSC/INAB/"]
   path = .config.work
 
