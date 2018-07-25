@@ -101,6 +101,13 @@
   hs  = !hub sync
   # init - https://git-scm.com/docs/git-init
   i = init
+  # lab - https://zaquestion.github.io/lab/
+  lci = !lab ci
+  lf  = !lab fork
+  li  = !lab issue
+  lmr = !lab mr
+  lp  = !lab project
+  ls  = !lab snippet
   # log - https://git-scm.com/docs/git-log
   l    = log --color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
     # Use fzf to select commits and copy their hash to the clipboard
