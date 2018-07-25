@@ -330,7 +330,9 @@ set sessionoptions-=options
 " Never hide symbols
 set conceallevel=0
 set concealcursor=
-
+" Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
+" http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
+set formatoptions-=o
 " Keep undo history across sessions by storing it in a file
 set undofile
 call system('mkdir -p /tmp/.vim_undo')
