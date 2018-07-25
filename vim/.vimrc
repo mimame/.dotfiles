@@ -139,7 +139,7 @@ call plug#begin('~/.vim/plugged')
   " Syntax for nix
   "Plug 'LnL7/vim-nix' (vim-poliglot)
   " Commenting code efficiently
-  Plug 'scrooloose/nerdcommenter'
+  Plug 'tomtom/tcomment_vim'
   " Interactive command execution
   Plug 'shougo/vimproc.vim', { 'do': 'make' }
   " Autocompletion
@@ -429,18 +429,6 @@ augroup myvimrc
 augroup END
 " Highlight .vifmrc and theme files but don't enable because nerdtree is prefered
 let g:loaded_vifm=1
-
-" NERD commenter config {{{
-" https://github.com/scrooloose/nerdcommenter#settings
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" }}}
 
 " NERDTree config {{{
 let g:NERDTreeShowHidden=1
