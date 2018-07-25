@@ -87,6 +87,18 @@
   ga = gc --aggresive
   # grep - https://git-scm.com/docs/git-grep
   g = grep --function-context
+  # hub - https://hub.github.com/
+  hb  = !hub browse
+  hc  = !hub create
+  hci = !hub ci-status
+  hcp = !hub compare
+  hd  = !hub delete
+  hf  = !hub fork
+  hi  = !hub issue
+  hp  = !hub pull-request
+  hpr = !hub pr
+  hr  = !hub release
+  hs  = !hub sync
   # init - https://git-scm.com/docs/git-init
   i = init
   # log - https://git-scm.com/docs/git-log
