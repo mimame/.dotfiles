@@ -494,12 +494,54 @@ bind generic um status-merge
 bind generic ul stage-update-line
 bind generic us stage-split-chunk
 
-bind generic c  none
-bind generic cc !git commit
-bind generic ca !?@git commit --amend --no-edit
-
 bind generic K view-help
 bind generic <C-w><C-w> view-next
+
+# bisect - https://git-scm.com/docs/git-bisect
+bind generic gbs !git bisect start
+bind generic gbr !git bisect reset
+bind main    gbg !git bisect good %(commit)
+bind main    gbb !git bisect bad %(commit)
+# branch - https://git-scm.com/docs/git-branch
+bind refs gbd  @git branch -d %(branch)
+bind refs gbD  ?@git branch -D %(branch)
+# checkout - https://git-scm.com/docs/git-checkout
+bind refs gco  @git checkout %(branch)
+bind generic gcb  @git checkout -b "%(prompt Enter branch name: )"
+# cherry-pick - https://git-scm.com/docs/git-cherry-pick
+bind generic gcp  !git cherry-pick %(commit)
+# commit - https://git-scm.com/docs/git-commit
+bind generic gcc  !git commit
+bind generic gca  !git commit --amend
+bind generic gcn  !git commit --amend --no-edit
+bind generic gce  !git commit --allow-empty
+bind generic gcf  !git commit --fixup %(commit)
+# hub - https://hub.github.com/
+bind generic ghb @hub browse
+# pull - https://git-scm.com/docs/git-pull
+bind generic gpl  @git pull %(remote) %(branch)
+# push - https://git-scm.com/docs/git-push
+bind generic gps  @git push %(remote) %(branch)
+bind generic gpf  @git push %(remote) %(branch) --force-with-lease
+# rebase - https://git-scm.com/docs/git-rebase
+bind generic grb  !git rebase --interactive %(commit)~
+# reset - https://git-scm.com/docs/git-reset
+bind main grm  ?git reset --mixed %(commit)~
+bind main grh  ?git reset --hard %(commit)~
+bind main grs  ?git reset --soft %(commit)~
+# revert - https://git-scm.com/docs/git-revert
+bind main grv  @git revert %(commit)
+# stash - https://git-scm.com/docs/git-stash
+bind stash gsa  @git stash apply %(stash)
+bind main  gsc  @git stash clear
+bind stash gsd  @git stash drop %(stash)
+bind stash gsp  @git stash pop %(stash)
+bind main  gst  @git stash push --include-untracked
+# tag - https://git-scm.com/docs/git-tag
+bind generic gtl  @git tag "%(prompt Enter tag name: )"
+bind generic gta  !git tag --annotate "%(prompt Enter tag name: )"
+# Git prompt
+bind generic <Ctrl-g> !zsh -c "git %(prompt)"
 
 # Bindings for git-flow.
 # https://github.com/jonas/tig/blob/master/contrib/git-flow.tigrc
