@@ -22,11 +22,15 @@
   amr = am --resolved
   ams = am --skip
   # bisect - https://git-scm.com/docs/git-bisect
-  bs  = bisect
-  bsb = bisect bad
-  bsg = bisect good
-  bsr = bisect reset
-  bss = bisect start
+  bs    = bisect
+  bsb   = bisect bad
+  bsg   = bisect good
+  bsgfz = !HASH=$(git l | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' ) && git bisect good ${HASH}
+  bsr   = bisect reset
+  bss   = bisect start
+  bsv   = bisect visualize
+  bsvl  = bisect log
+  bsvs  = bisect visualize --stat
   # blame - https://git-scm.com/docs/git-blame
   bl = blame
   # branch - https://git-scm.com/docs/git-branch
