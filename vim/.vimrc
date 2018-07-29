@@ -617,10 +617,10 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 let g:gitgutter_grep = 'rg'
 let g:gitgutter_sign_removed = '-'
 " Symbols color
-highlight GitGutterAdd ctermfg=green ctermbg=235
-highlight GitGutterChange ctermfg=yellow ctermbg=235
-highlight GitGutterDelete ctermfg=red ctermbg=235
-highlight GitGutterChangeDelete ctermfg=yellow ctermbg=235
+highlight GitGutterAdd          ctermfg=green  ctermbg=236
+highlight GitGutterChange       ctermfg=yellow ctermbg=236
+highlight GitGutterDelete       ctermfg=red    ctermbg=236
+highlight GitGutterChangeDelete ctermfg=yellow ctermbg=236
 " Move between hunks
 nmap <localleader>k <Plug>GitGutterPrevHunk
 nmap <localleader>j <Plug>GitGutterNextHunk
