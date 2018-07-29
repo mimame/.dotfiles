@@ -275,10 +275,14 @@ set wrap
 set cpoptions+=n
 " this turns off physical line wrapping (ie: automatic insertion of newlines)
 set textwidth=0 wrapmargin=0
-" comments | enable 'gq' | textwidth
-set formatoptions=cqt
-" Remove comment leader when joining lines
-set formatoptions+=j
+" Remove Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode behaviour
+" http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
+" https://vi.stackexchange.com/a/1985
+set formatoptions-=c
+set formatoptions-=r
+set formatoptions-=o
+" Force to set formatoptions for each type of files
+au FileType * set fo-=c fo-=r fo-=o
 " Wrap lines at breakat
 set linebreak
 " List disables linebreak
@@ -330,9 +334,6 @@ set sessionoptions-=options
 " Never hide symbols
 set conceallevel=0
 set concealcursor=
-" Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode.
-" http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
-set formatoptions-=o
 " Keep undo history across sessions by storing it in a file
 set undofile
 call system('mkdir -p /tmp/.vim_undo')
