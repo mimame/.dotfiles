@@ -577,6 +577,15 @@ aug end
 
 " Save buffer after move the focus to other pane
 let g:tmux_navigator_save_on_switch = 1
+" https://blog.bugsnag.com/tmux-and-vim/
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+" Zoom the tmux runner pane
+map <Leader>vz :VimuxZoomRunner<CR>
 
 " Syntastic plugin config {{{
 " }}}
