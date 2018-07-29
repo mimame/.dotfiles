@@ -20,8 +20,10 @@ endif
 call plug#begin('~/.vim/plugged')
   " Editorconfig plugin for vim
   Plug 'editorconfig/editorconfig-vim'
+  " Automatically reload a file that has changed externally
+  Plug 'djoshea/vim-autoread'
   " Make terminal vim and tmux work better together
-  Plug 'tmux-plugins/vim-tmux-focus-events'
+  " Plug 'tmux-plugins/vim-tmux-focus-events'
   " Better start screen
   Plug 'mhinz/vim-startify'
   " Molokai theme
@@ -322,9 +324,6 @@ set wildignorecase
 set mouse=a
 " Reload file after external command like !ls
 set autoread
-au WinEnter,BufWinEnter,FocusGained,BufEnter,CursorHold,CursorHoldI * checktime
-" Reload file when the focus is gained
-au WinEnter,BufWinEnter,FocusGained,BufEnter,CursorHold,CursorHoldI * :silent! !
 " Write file when the focus is lost
 au FocusLost,WinLeave * :silent! w
 " Show the current command when typing it at status line
