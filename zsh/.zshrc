@@ -408,6 +408,9 @@ alias fm='vifm'
 alias s='rg --smart-case --follow --hidden --no-ignore --no-ignore-parent --glob "!.git/*"'
 alias ag='ag --unrestricted --smart-case --ignore .git'
 
+# fd with find behaviour
+alias f='fd --hidden --no-ignore --follow --exclude .git'
+
 # Safe ops. Ask the user before doing anything destructive.
 alias rm="rm -i"
 alias mv="mv -i"
