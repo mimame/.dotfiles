@@ -644,7 +644,7 @@ xmap ih <Plug>GitGutterTextObjectInnerVisual
 xmap ah <Plug>GitGutterTextObjectOuterVisual
 " }}}
 
-nmap <leader>ti :!tig<cr>
+nmap <leader>ti :terminal ++curwin ++close tig<cr>
 
 " Diff commands {{{
 " If doing a diff. Upon writing changes to file, automatically update the
