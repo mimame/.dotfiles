@@ -420,7 +420,7 @@ alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
 
 # Correct previous command
 eval $(thefuck --alias)
-alias f='fuck -y'
+alias fk='fuck -y'
 # }}}
 
 # Improved default mount output using columns {{{
