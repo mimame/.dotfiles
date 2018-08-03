@@ -261,7 +261,7 @@ b (){
   #local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
   # I prefer the original order
   # and remove the current folder
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | tail -n+2 | fzf-tmux)
+  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | tail -n+2 | fzf)
   cd "$DIR"
 }
 # }}}
