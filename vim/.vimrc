@@ -526,7 +526,15 @@ nnoremap <silent> <Leader>I :call <SID>MkdxFzfQuickfixHeaders()<Cr>
 let g:mkdx#settings =            {
       \ 'enter':                   { 'enable': 0},
       \ 'checkbox':                { 'toggles': [' ', 'X']},
-      \ 'highlight':               { 'enable': 1 }
+      \ 'highlight':               { 'enable': 1 },
+      \ 'toc':                     { 'text': "Table Of Content", 'list_token': '-',
+      \                              'update_on_write': 1,
+      \                              'position': 2,
+      \                              'details': {
+      \                                 'enable': 1,
+      \                                 'summary': 'Click to expand {{toc.text}}'
+      \                              }
+      \                            }
 \ }
 " to keep it limited to markdown files, one can use an "autocommand".
 " First, make sure we don't create the default mapping when entering markdown files.
