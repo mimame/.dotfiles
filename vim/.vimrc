@@ -475,10 +475,15 @@ nmap sk :SplitjoinJoin<cr>
 " Remove cowsay from startify
 let g:startify_custom_header = []
 
-" HTML extras
-let g:user_emmet_install_global = 0
+" Emmet (HTML generation) {{{
+" Enable emmet for any filetype
+let g:user_emmet_install_global = 1
+" Ctrl-E + , (to generate the html code for the text line)
 let g:user_emmet_leader_key='<C-E>'
-autocmd FileType html,css EmmetInstall
+" Use emmet globally because html is usually embedded in practically any filetype
+" autocmd FileType html,css,javascript,markdown,typescript EmmetInstall
+" }}}
+
 " Use vmd as default build command for Markdown files
 function! Markdown_viewer()
   silent! execute "!ps aux | fgrep vmd | grep -Fv grep > /dev/null || vmd '%:p' &"
