@@ -422,7 +422,7 @@ let g:mapleader = "\<Space>"
 " Local leader key
 let g:maplocalleader = ','
 " Open .vimrc
-nmap <silent> <Leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>ev :execute 'e ' . resolve(expand($MYVIMRC))<CR>
 " Load .vimrc
 nmap <silent> <Leader>sv :so $MYVIMRC<CR>
 " Load .vimrc when writing
