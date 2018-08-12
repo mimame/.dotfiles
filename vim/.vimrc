@@ -89,9 +89,7 @@ call plug#begin('~/.vim/plugged')
   " Dockerfiles
   "Plug 'ekalinin/Dockerfile.vim' (vim-poliglot)
   " Vastly improved Javascript indentation and syntax support
-  Plug 'pangloss/vim-javascript'
-  "Tern-based JavaScript editing support
-  "Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+  " Plug 'pangloss/vim-javascript' "(vim-poliglot)
   " Text filtering and alignment
   "Plug 'godlygeek/tabular'
   " Align text
