@@ -90,6 +90,8 @@ call plug#begin('~/.vim/plugged')
   "Plug 'ekalinin/Dockerfile.vim' (vim-poliglot)
   " Vastly improved Javascript indentation and syntax support
   " Plug 'pangloss/vim-javascript' "(vim-poliglot)
+  " Typescript syntax files for Vim
+  Plug 'leafgarland/typescript-vim'
   " Text filtering and alignment
   "Plug 'godlygeek/tabular'
   " Align text
