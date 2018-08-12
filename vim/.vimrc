@@ -314,7 +314,8 @@ set laststatus=2
 set ruler
 " Break plugins: Search recursive with :find and tab-completion for all file related task
 " set path+=**
-" Complete commands
+" Complete commands/folders
+" Folder navigation https://xaizek.github.io/2012-10-08/vim-wild-menu/
 set wildmenu
 " Complete to the longest common string and invoke wildmenu
 set wildmode=longest:full,full
