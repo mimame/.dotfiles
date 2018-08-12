@@ -57,6 +57,7 @@ setopt HIST_FIND_NO_DUPS      # Do not display a previously found event.
 setopt HIST_IGNORE_SPACE      # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS      # Do not write a duplicate event to the history file.
 setopt HIST_VERIFY            # Do not execute immediately upon history expansion
+setopt HISTIGNORESPACE        # Do not add the command to the history if it starts with a space
 # Lists the ten most used commands.
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 # }}}
