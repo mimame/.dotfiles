@@ -169,6 +169,7 @@
   r  = reset
   rh = reset --hard
   rm = reset --mixed
+  rp = reset --patch
   rs = reset --soft
   # revert - https://git-scm.com/docs/git-revert
   rv = revert
