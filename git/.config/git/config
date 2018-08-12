@@ -43,6 +43,7 @@
   # checkout - https://git-scm.com/docs/git-checkout
   co  = checkout
   cob = checkout -b
+  cop = checkout --patch
     # when merging
   cour = "!f() { git checkout --ours $@ && git add $@; }; f"
   cthe = "!f() { git checkout --theirs $@ && git add $@; }; f"
@@ -51,7 +52,7 @@
   # clone - https://git-scm.com/docs/git-clone
   cl  = clone
   clf = clone --depth 1
-  # commit (https://git-scm.com/docs/git-commit)
+  # commit - https://git-scm.com/docs/git-commit
   c    = commit
   ca   = commit --amend
   caa  = commit --all --amend
