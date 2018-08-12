@@ -92,6 +92,8 @@ call plug#begin('~/.vim/plugged')
   " Plug 'pangloss/vim-javascript' "(vim-poliglot)
   " Typescript syntax files for Vim
   Plug 'leafgarland/typescript-vim'
+  " React JSX/TSX syntax pretty highlighting for vim
+  Plug 'maxmellon/vim-jsx-pretty'
   " Text filtering and alignment
   "Plug 'godlygeek/tabular'
   " Align text
