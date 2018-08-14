@@ -507,7 +507,8 @@ nnoremap su :su<cr>
 " Open file in existing instance of gvim
 "nnoremap o :!gvim --remote-tab-silent %f<cr>
 " Open file always in TUI vim
-nnoremap o :!nvim %f<cr>
+" nnoremap o :!nvim %f<cr>
+nnoremap o :!mimeopen %f<cr>
 " Open file in new instance of gvim
 "nnoremap O :!gvim %f<cr>
 " Select program to open the file
