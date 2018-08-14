@@ -435,6 +435,21 @@ alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
 # Correct previous command
 eval $(thefuck --alias)
 alias fk='fuck -y'
+
+# Alias for rc files
+alias alacrittyrc='nvim ~/.config/alacritty/alacritty.yml'
+alias gitrc='nvim ~/.config/git/config'
+alias i3rc='nvim ~/.config/i3/config'
+alias mimerc='nvim ~/.config/mimeapps.list'
+alias newsboatrc='nvim ~/.config/newsboat/config'
+alias nvimrc='nvim ~/.config/nvim/init.vim'
+alias sshrc='nvim ~/.ssh/config'
+alias tigrc='nvim ~/.config/tig/config'
+alias tmuxrc='nvim ~/.tmux.conf'
+alias vifmrc='nvim ~/.config/vifm/vifmrc'
+alias vimrc='nvim ~/.vimrc'
+alias zshrc='nvim ~/.zshrc'
+
 # https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # }}}
