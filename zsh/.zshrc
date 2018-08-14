@@ -391,6 +391,14 @@ alias egrep='egrep --color=auto'
 # open command (mimeopen provided by perl-file-mimetype) {{{
 # It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
 alias open='mimeopen'
+# If o doesn't have any argument, open the current dir
+function o() {
+  if [ $# -eq 0 ]; then
+    vifm .;
+  else
+    open "$@";
+  fi;
+}
 # }}}
 
 # Never use vi
