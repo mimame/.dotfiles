@@ -209,6 +209,14 @@
  remote   = cyan bold
  upstream = blue bold
 
+[color "diff"]
+  frag     = magenta bold
+  meta     = yellow bold
+  new      = green bold
+  newMoved = yellow bold
+  old      = red bold
+  oldMoved = cyan bold
+
 [commit]
   # https://git-scm.com/docs/git-config#git-config-commitgpgSign
   # Sign all commits with gpg
