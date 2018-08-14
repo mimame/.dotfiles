@@ -388,9 +388,11 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# open command
-alias open='xdg-open'
-alias o='xdg-open'
+# open command (mimeopen provided by perl-file-mimetype) {{{
+# It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
+alias open='mimeopen'
+# }}}
+
 # Never use vi
 alias vi='vim'
 alias v='vim'
