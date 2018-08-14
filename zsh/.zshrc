@@ -291,7 +291,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'    # Begins underline.
 # Spaceship prompt {{{
 export SPACESHIP_NODE_DEFAULT_VERSION="$(node -v)"
 export SPACESHIP_JOBS_SYMBOL=''
-export SPACESHIP_JOBS_AMOUNT_SUFFIX=' \e[36mjobs\e[0m '
+export SPACESHIP_JOBS_AMOUNT_SUFFIX=' \e[34mjobs\e[0m '
 export SPACESHIP_JOBS_AMOUNT_THRESHOLD=0
 export SPACESHIP_USER_SHOW='always'
 export SPACESHIP_USER_SUFFIX=''
