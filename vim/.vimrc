@@ -603,10 +603,9 @@ map <Leader>vi :VimuxInspectRunner<CR>
 " Zoom the tmux runner pane
 map <Leader>vz :VimuxZoomRunner<CR>
 
-" Syntastic plugin config {{{
-" }}}
-" https://stackoverflow.com/a/22253548
-" YouCompleteMe with Tab
+" YouCompleteMe  {{{
+" with Tab
+" htps://stackoverflow.com/a/22253548
 " make YCM compatible with UltiSnips (using supertab)
 " Completion in comments
 let g:ycm_complete_in_comments = 1
@@ -635,6 +634,12 @@ endfunction
 inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>\<C-R>=EndwiseDiscretionary()\<CR>"
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:ycm_filetype_specific_completion_to_disable = {
+      \ 'gitcommit': 1,
+      \ 'yaml':1,
+      \ 'zsh': 1,
+      \}
+" }}}
 
 
 " Git Gutter {{{
