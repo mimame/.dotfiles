@@ -203,6 +203,12 @@
   # Color only when the output is to a terminal
   ui = auto
 
+[color "branch"]
+ current  = magenta bold
+ local    = white bold
+ remote   = cyan bold
+ upstream = blue bold
+
 [commit]
   # https://git-scm.com/docs/git-config#git-config-commitgpgSign
   # Sign all commits with gpg
