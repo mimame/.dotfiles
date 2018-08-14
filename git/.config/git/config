@@ -238,9 +238,9 @@
   # https://git-scm.com/docs/git-config#git-config-diffalgorithm
   # Use "patience diff" algorithm
   algorithm       = patience
-  # https://git-scm.com/docs/git-config#git-config-diffcolorMoved
+  # https://git-scm.com/docs/git-diff#git-diff-plain
   # Moved lines in a diff are colored differently
-  colorMoved      = default
+  colorMoved      = plain
   # https://git-scm.com/docs/git-config#git-config-diffindentHeuristic
   # Experimental heuristics that shift diff hunk boundaries to make patches easier to read
   indentHeuristic = true
