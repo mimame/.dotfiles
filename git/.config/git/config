@@ -217,6 +217,13 @@
   old      = red bold
   oldMoved = cyan bold
 
+[color "status"]
+  added     = yellow bold
+  branch    = yellow bold
+  changed   = magenta bold
+  header    = white bold
+  untracked = cyan bold
+
 [commit]
   # https://git-scm.com/docs/git-config#git-config-commitgpgSign
   # Sign all commits with gpg
