@@ -110,10 +110,10 @@
   lp  = !lab project
   ls  = !lab snippet
   # log - https://git-scm.com/docs/git-log
-  l    = log --color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  l    = log --color --graph --abbrev-commit --pretty=format:'%C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset'
     # Use fzf to select commits and copy their hash to the clipboard
   lfz  = !git l | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
-  lg   = log --color --all --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  lg   = log --color --all --graph --abbrev-commit --pretty=format:'%C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset'
   lgfz = !git lg | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   # merge - https://git-scm.com/docs/git-merge
   m  = merge
