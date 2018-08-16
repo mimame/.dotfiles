@@ -217,6 +217,13 @@
   old      = red bold
   oldMoved = cyan bold
 
+[color "grep"]
+  filename   = cyan bold
+  linenumber = yellow bold
+  match      = red bold
+  selected   = white
+  separator  = magenta bold
+
 [color "status"]
   added     = yellow bold
   branch    = yellow bold
