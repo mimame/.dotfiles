@@ -636,6 +636,9 @@ let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 let g:ycm_filetype_specific_completion_to_disable = {
       \ 'gitcommit': 1,
+      \ 'i3':1,
+      \ 'tmux':1,
+      \ 'vim': 1,
       \ 'yaml':1,
       \ 'zsh': 1,
       \}
