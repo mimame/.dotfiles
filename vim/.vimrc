@@ -122,6 +122,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'benmills/vimux'
   " Seamless navigation between tmux panes and vim splits
   Plug 'christoomey/vim-tmux-navigator'
+  " Insert mode completion of words in adjacent tmux panes
+  Plug 'prabirshrestha/async.vim'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'wellle/tmux-complete.vim'
   " Enters in insert mode
   "Plug 'dahu/Insertlessly'
   " Additional text objects
@@ -602,6 +606,24 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 " Zoom the tmux runner pane
 map <Leader>vz :VimuxZoomRunner<CR>
+
+" tmux-complete {{{
+" Integration with YouCompleteMe: C-X C-O for show candidates
+" https://github.com/wellle/tmux-complete.vim/issues/49#issuecomment-108781836
+let g:tmuxcomplete#trigger = 'omnifunc'
+let g:tmuxcomplete#asyncomplete_source_options = {
+            \ 'name':      'tmuxcomplete',
+            \ 'whitelist': ['*'],
+            \ 'config': {
+            \     'splitmode':      'words',
+            \     'filter_prefix':   1,
+            \     'show_incomplete': 1,
+            \     'sort_candidates': 0,
+            \     'scrollback':      0,
+            \     'truncate':        0
+            \     }
+            \ }
+" }}}
 
 " YouCompleteMe  {{{
 " with Tab
