@@ -54,6 +54,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'osyo-manga/vim-over'
   " Highlights trailing whitespace in red and provides :FixWhitespace to fix it
   Plug 'bronson/vim-trailing-whitespace'
+  " Open file with line and column associated (vim/:e[edit]/gF path/to/file.ext:12:3)
+  Plug 'wsdjeg/vim-fetch'
   " Highlight colors in css files
   Plug 'ap/vim-css-color'
   " Configuration for HTML
