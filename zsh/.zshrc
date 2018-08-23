@@ -388,9 +388,13 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# open command (mimeopen provided by perl-file-mimetype) {{{
+# o function and open function (mimeopen provided by perl-file-mimetype) {{{
 # It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
-alias open='mimeopen'
+function open() {
+    # Run mimeopen with nohup in background and remove it from the jobs table
+    nohup mimeopen "$1" >| /tmp/nohup-"${1}".out 2>| /tmp/nohup-"${1}".err < /dev/null &
+    disown %%
+}
 # If o doesn't have any argument, open the current dir
 function o() {
   if [ $# -eq 0 ]; then
