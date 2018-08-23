@@ -694,6 +694,9 @@ xmap ah <Plug>GitGutterTextObjectOuterVisual
 
 nmap <leader>ti :terminal ++curwin ++close tig<cr>
 
+" Always open git commit files in insert mode
+autocmd FileType gitcommit exec 'au VimEnter * startinsert'
+
 " Diff commands {{{
 " If doing a diff. Upon writing changes to file, automatically update the
 " differences
