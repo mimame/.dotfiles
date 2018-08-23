@@ -459,6 +459,9 @@ alias zshrc='nvim ~/.zshrc'
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # }}}
 
+# Automatic aliases for color output commands with Generic Colouriser
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+
 # Improved default mount output using columns {{{
 function mount {
   if [ -z "$1" ]; then
