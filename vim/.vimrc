@@ -56,6 +56,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'bronson/vim-trailing-whitespace'
   " Open file with line and column associated (vim/:e[edit]/gF path/to/file.ext:12:3)
   Plug 'wsdjeg/vim-fetch'
+  " Plugin to move lines and selections up and down
+  Plug 'matze/vim-move'
   " Highlight colors in css files
   Plug 'ap/vim-css-color'
   " Configuration for HTML
@@ -808,6 +810,9 @@ let g:fzf_commits_log_options = "--color --graph --abbrev-commit --pretty=format
 
 cnoreabbrev rg Rg
 " }}}
+
+" set custom modifier for vim-move
+let g:move_key_modifier = 'C'
 
 " Go to the next ALE report
 nmap <silent> <leader>k <Plug>(ale_previous_wrap)
