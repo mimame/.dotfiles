@@ -1,6 +1,6 @@
 # https://github.com/sorin-ionescu/prezto/blob/master/runcoms/zprofile
 # respect the color
-export LESS='-F -g -i -M -R -S -w -X -z-4'
+export LESS='-F -g -i -M -N -R -S -w -X -z-4'
 export PAGER='less'
 # Alias
 alias sshfs="sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
