@@ -465,7 +465,7 @@ nnoremap <Leader>e :e<Space>
 nnoremap <Leader>wq :w<CR>:q<CR>
 nnoremap <Leader>ws <C-w>s
 nnoremap <Leader>wv <C-w>v
-nmap <Leader><Leader> V
+xnoremap v V
 "map K <Plug>(expand_region_expand)
 "map J <Plug>(expand_region_shrink)
 nnoremap k gk
