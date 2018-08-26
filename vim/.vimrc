@@ -491,6 +491,15 @@ let g:user_emmet_leader_key='<C-E>'
 " autocmd FileType html,css,javascript,markdown,typescript EmmetInstall
 " }}}
 
+" indent guides {{{
+let g:indent_guides_start_level = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#1c1c1c	 ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#1c1c1c	 ctermbg=233
+" }}}
+
 " Use vmd as default build command for Markdown files
 function! Markdown_viewer()
   silent! execute "!ps aux | fgrep vmd | grep -Fv grep > /dev/null || vmd '%:p' &"
