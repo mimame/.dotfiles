@@ -375,6 +375,9 @@ export FZF_DEFAULT_OPTS='
 # }}}
 
 # Alias {{{
+
+alias szsh='source ~/.zshrc'
+
 #alias vim='nvim'
 # Always use float by default
 alias bc='bc -l'
