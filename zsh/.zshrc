@@ -371,7 +371,9 @@ export FZF_DEFAULT_OPTS='
 --reverse
 --color fg:255,bg:0,hl:161,fg+:255,bg+:208,hl+:161,info:118
 --color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
+--bind "ctrl-o:execute(nvim {})+abort"
 '
+alias p='fzf --preview "bat --color always {}"'
 # }}}
 
 # Alias {{{
