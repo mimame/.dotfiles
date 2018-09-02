@@ -387,6 +387,8 @@ alias bc='bc -l'
 alias git=hub
 alias g=git
 
+alias c=bat
+
 alias ls='ls --color=auto --all --human-readable --format=long'
 alias l='exa --all --color=auto --long --group --header --grid --git'
 alias grep='grep --color=auto'
