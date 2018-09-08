@@ -68,6 +68,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-ragtag'
   "Ansi escape color sequences to color with :AnsiEsc
   Plug 'powerman/vim-plugin-AnsiEsc'
+  " An alternative sudo.vim
+  Plug 'lambdalisue/suda.vim'
   "git diff in the gutter (sign column) and stages/undoes hunks
   Plug 'airblade/vim-gitgutter'
   " A tree explorer plugin with git info
@@ -465,6 +467,8 @@ nnoremap <Leader>e :e<Space>
 nnoremap <Leader>wq :w<CR>:q<CR>
 nnoremap <Leader>ws <C-w>s
 nnoremap <Leader>wv <C-w>v
+nnoremap <Leader>W :w suda://%<CR>
+cnoremap w!! :w suda://%<CR>
 xnoremap v V
 nnoremap <Leader>= <esc>gg=G<C-o><C-o>
 xnoremap <Leader>s :'<,'>sort<CR>
