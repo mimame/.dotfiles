@@ -380,6 +380,9 @@ alias p='fzf --preview "bat --color always {}"'
 
 alias szsh='source ~/.zshrc'
 
+# Always preserve the environment with sudo
+alias sudo='sudo -E'
+
 #alias vim='nvim'
 # Always use float by default
 alias bc='bc -l'
