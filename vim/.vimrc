@@ -555,7 +555,7 @@ let g:mkdx#settings =            {
       \ 'checkbox':                { 'toggles': [' ', 'X']},
       \ 'highlight':               { 'enable': 1 },
       \ 'toc':                     { 'text': "Table Of Content", 'list_token': '-',
-      \                              'update_on_write': 1,
+      \                              'update_on_write': 0,
       \                              'position': 2,
       \                              'details': {
       \                                 'enable': 1,
