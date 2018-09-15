@@ -149,6 +149,8 @@
     # rebase interactive with fzf from the selected commit (included)
   rbifz = !HASH=$(git l | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git rebase --interactive ${HASH}~
   rbs   = rebase --skip
+  # reflog - https://git-scm.com/docs/git-reflog
+  rf = reflog --pretty=format:'%C(bold red)%h%Creset - %<(10)%C(bold)%gD %Creset- %C(auto)%d %gs %C(bold green)(%cr) %C(bold blue)<%an>%Creset'
   # remote - https://git-scm.com/docs/git-remote
   re   = remote
   rea  = remote add
