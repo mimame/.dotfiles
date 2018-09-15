@@ -110,11 +110,11 @@
   lp  = !lab project
   ls  = !lab snippet
   # log - https://git-scm.com/docs/git-log
-  l    = log --color --graph --abbrev-commit --pretty=format:'%C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset'
+  l    = log --pretty=l
     # Use fzf to select commits and copy their hash to the clipboard
-  lfz  = !git l | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
-  lg   = log --color --all --graph --abbrev-commit --pretty=format:'%C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset'
-  lgfz = !git lg | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
+  lfz  = !git l --color | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
+  lg   = log --all --graph --pretty=lg
+  lgfz = !git lg --color | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   # merge - https://git-scm.com/docs/git-merge
   m  = merge
   ma = merge --abort
@@ -150,7 +150,8 @@
   rbifz = !HASH=$(git l | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git rebase --interactive ${HASH}~
   rbs   = rebase --skip
   # reflog - https://git-scm.com/docs/git-reflog
-  rf = reflog --pretty=format:'%C(bold red)%h%Creset - %<(10)%C(bold)%gD %Creset- %C(auto)%d %gs %C(bold green)(%cr) %C(bold blue)<%an>%Creset'
+  rf  = reflog --pretty=rf
+  rfz = !git rf --color | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   # remote - https://git-scm.com/docs/git-remote
   re   = remote
   rea  = remote add
@@ -343,6 +344,11 @@
   # http://meldmerge.org/
   # User diff3 merge style in meld
   cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
+
+[pretty]
+  l  = * %C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset
+  lg = %C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset
+  rf = * %C(bold red)%h%Creset - %<(10)%C(bold)%gD %Creset- %C(auto)%d %gs %C(bold green)(%cr) %C(bold blue)<%an>%Creset
 
 [pull]
   # https://git-scm.com/docs/git-config#git-config-pullff
