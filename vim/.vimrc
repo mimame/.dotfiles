@@ -60,6 +60,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'wsdjeg/vim-fetch'
   " Plugin to move lines and selections up and down
   Plug 'matze/vim-move'
+  " Open devdocs.io from Vim
+  Plug 'rhysd/devdocs.vim'
   " Highlight colors in css files
   Plug 'ap/vim-css-color'
   " Configuration for HTML
@@ -355,6 +357,9 @@ nmap <Esc> <Plug>(clever-f-reset)
 let g:clever_f_show_prompt = 1
 let g:clever_f_mark_char   = 1
 " }}}
+
+" Send word under cursor to devdocs.io
+nmap K <Plug>(devdocs-under-cursor)
 
 " Highlight yank region
 map y <Plug>(highlightedyank)
