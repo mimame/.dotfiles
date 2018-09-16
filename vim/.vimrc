@@ -423,7 +423,7 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "}}}
 " Esc Esc for Highlight off the searched term
-" nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 " Never used this keys together so remap to esc
 inoremap kj <esc>
 inoremap jj <esc>
