@@ -102,6 +102,8 @@
   hs  = !hub sync
   # init - https://git-scm.com/docs/git-init
   i = init
+  # .gitignore - https://git-scm.com/docs/gitignore
+  ig = "!f() { ( [ ! -e .gitignore ] && touch .gitignore ) | echo \"$1\" >> .gitignore; }; f"
   # lab - https://zaquestion.github.io/lab/
   lci = !lab ci
   lf  = !lab fork
