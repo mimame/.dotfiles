@@ -48,7 +48,7 @@ font pango:InconsolataGo Nerd Font 9
 floating_modifier $mod
 
 # Start a terminal
-bindsym $mod+Return exec --no-startup-id ~/.cargo/bin/alacritty
+bindsym $mod+Return exec --no-startup-id alacritty
 
 # Kill focused window
 bindsym $mod+Shift+q kill
