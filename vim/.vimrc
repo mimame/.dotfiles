@@ -44,8 +44,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   " End certain structures automatically
   Plug 'tpope/vim-endwise'
-  " Coertion between fooBar to: Press cr + snake_case(s), MixedCase(m), CamelCase(c), UPPER_CASE(u), dash-case(-), dot.case(.), space case(space) and Title Case(t)
-  Plug 'tpope/vim-abolish'
+  " Coertion between: Press gs + snake_case(s), MixedCase(m), CamelCase(c), UPPER_CASE(u), dash-case(-), dot.case(.), space case(space) and Title Case(t)
+  Plug 'arthurxavierx/vim-caser'
   " Diff level of parentheses in diff color
   Plug 'luochen1990/rainbow'
   " Improved incremental searching
