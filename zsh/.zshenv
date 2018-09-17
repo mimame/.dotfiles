@@ -13,21 +13,25 @@ else
   export BROWSER='firefox'
 fi
 
-# Vim as default editor
 export EDITOR=vim
 export VISUAL=vim
 export TMPDIR='/tmp'
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
-export PATH="$PATH:$HOME/.yarn/bin"
-export PATH="$PATH:$HOME/.bin"
-export PATH="$PATH:$HOME/go/bin"
-export PATH="$PATH:$HOME/.cargo/bin"
-# Always use user Ruby gems by default
-export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 export GEM_HOME="$HOME/.gem"
 # Always use user Python pip by default
 export PIP_USER=y
-export PATH="$PATH:$HOME/.local/bin"
+
+if [ -z "${LOADED_PATHS+1}" ]; then
+  export LOADED_PATHS="true"
+  # Vim as default editor
+  export PATH="$PATH:$HOME/.yarn/bin"
+  export PATH="$PATH:$HOME/.bin"
+  export PATH="$PATH:$HOME/go/bin"
+  export PATH="$PATH:$HOME/.cargo/bin"
+  # Always use user Ruby gems by default
+  export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+  export PATH="$PATH:$HOME/.local/bin"
+fi
 
 # Tar wrapper
 function t {
