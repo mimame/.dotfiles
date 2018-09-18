@@ -2,6 +2,8 @@
 [alias]
   # Remove extra git (git git ... -> git ...)
   git = !git
+  # List with all alias
+  als = !git config --list | grep -F 'alias.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort -k1,1
   # add - https://git-scm.com/docs/git-add
   a    = add
   aa   = add --all
