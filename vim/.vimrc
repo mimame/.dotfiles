@@ -76,6 +76,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'powerman/vim-plugin-AnsiEsc'
   " An alternative sudo.vim
   Plug 'lambdalisue/suda.vim'
+  " Git helper for vim
+  Plug 'tpope/vim-fugitive'
   "git diff in the gutter (sign column) and stages/undoes hunks
   Plug 'airblade/vim-gitgutter'
   " A tree explorer plugin with git info
