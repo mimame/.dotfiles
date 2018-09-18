@@ -498,48 +498,48 @@ bind generic K view-help
 bind generic <C-w><C-w> view-next
 
 # bisect - https://git-scm.com/docs/git-bisect
-bind generic gbs !git bisect start
-bind generic gbr !git bisect reset
-bind main    gbg !git bisect good %(commit)
-bind main    gbb !git bisect bad %(commit)
+bind generic bs !git bisect start
+bind generic br !git bisect reset
+bind main    bg !git bisect good %(commit)
+bind main    bb !git bisect bad %(commit)
 # branch - https://git-scm.com/docs/git-branch
-bind refs gbd  @git branch -d %(branch)
-bind refs gbD  ?@git branch -D %(branch)
+bind refs bd  @git branch -d %(branch)
+bind refs bD  ?@git branch -D %(branch)
 # checkout - https://git-scm.com/docs/git-checkout
-bind refs gco  @git checkout %(branch)
-bind generic gcb  @git checkout -b "%(prompt Enter branch name: )"
+bind refs co  @git checkout %(branch)
+bind generic cb  @git checkout -b "%(prompt Enter branch name: )"
 # cherry-pick - https://git-scm.com/docs/git-cherry-pick
-bind generic gcp  !git cherry-pick %(commit)
+bind generic cp  !git cherry-pick %(commit)
 # commit - https://git-scm.com/docs/git-commit
-bind generic gcc  !git commit
-bind generic gca  !git commit --amend
-bind generic gcn  !git commit --amend --no-edit
-bind generic gce  !git commit --allow-empty
-bind generic gcf  !git commit --fixup %(commit)
+bind generic cc  !git commit
+bind generic ca  !git commit --amend
+bind generic cn  !git commit --amend --no-edit
+bind generic ce  !git commit --allow-empty
+bind generic cf  !git commit --fixup %(commit)
 # hub - https://hub.github.com/
-bind generic ghb @hub browse
+bind generic hb @hub browse
 # pull - https://git-scm.com/docs/git-pull
-bind generic gpl  @git pull %(remote) %(branch)
+bind generic pl  @git pull %(remote) %(branch)
 # push - https://git-scm.com/docs/git-push
-bind generic gps  @git push %(remote) %(branch)
-bind generic gpf  @git push %(remote) %(branch) --force-with-lease
+bind generic ps  @git push %(remote) %(branch)
+bind generic pf  @git push %(remote) %(branch) --force-with-lease
 # rebase - https://git-scm.com/docs/git-rebase
-bind generic grb  !git rebase --interactive %(commit)~
+bind generic rb  !git rebase --interactive %(commit)~
 # reset - https://git-scm.com/docs/git-reset
-bind main grm  ?git reset --mixed %(commit)~
-bind main grh  ?git reset --hard %(commit)~
-bind main grs  ?git reset --soft %(commit)~
+bind main rm  ?git reset --mixed %(commit)~
+bind main rh  ?git reset --hard %(commit)~
+bind main rs  ?git reset --soft %(commit)~
 # revert - https://git-scm.com/docs/git-revert
 bind main grv  @git revert %(commit)
 # stash - https://git-scm.com/docs/git-stash
-bind stash gsa  @git stash apply %(stash)
-bind main  gsc  @git stash clear
-bind stash gsd  @git stash drop %(stash)
-bind stash gsp  @git stash pop %(stash)
-bind main  gst  @git stash push --include-untracked
+bind stash sa  @git stash apply %(stash)
+bind main  sc  @git stash clear
+bind stash sd  @git stash drop %(stash)
+bind stash sp  @git stash pop %(stash)
+bind main  st  @git stash push --include-untracked
 # tag - https://git-scm.com/docs/git-tag
-bind generic gtl  @git tag "%(prompt Enter tag name: )"
-bind generic gta  !git tag --annotate "%(prompt Enter tag name: )"
+bind generic tl  @git tag "%(prompt Enter tag name: )"
+bind generic ta  !git tag --annotate "%(prompt Enter tag name: )"
 # Git prompt
 bind generic <Ctrl-g> !zsh -c "git %(prompt)"
 
