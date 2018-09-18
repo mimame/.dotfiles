@@ -115,16 +115,11 @@ call plug#begin('~/.vim/plugged')
   " Visualize your Vim undo tree
   "Plug 'sjl/gundo.vim'
   Plug 'mbbill/undotree'
-  " Better use visual block and search
-  " https://medium.com/@schtoeffel/you-don-t-need-more-than-one-cursor-in-vim-2c44117d51db
-  "Plug 'terryma/vim-multiple-cursors'
   " Transition between multiline and single-line
   Plug 'AndrewRadev/splitjoin.vim'
   " To work with R
   Plug 'jalvesaq/Nvim-R'
   "Instant Markdown previews
-  "Plug 'suan/vim-instant-markdown', { 'do': 'yarn global add instant-markdown-d'}
-  "Plug 'shime/vim-livedown', { 'do': 'yarn global add livedown' }
   "enable repeating supported plugin maps with dot
   Plug 'tpope/vim-repeat'
   " Using vim-matchup plugin: a modern matchit and matchparen replacement
