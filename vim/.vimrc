@@ -119,7 +119,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   " To work with R
   Plug 'jalvesaq/Nvim-R'
-  "Instant Markdown previews
   "enable repeating supported plugin maps with dot
   Plug 'tpope/vim-repeat'
   " Using vim-matchup plugin: a modern matchit and matchparen replacement
@@ -135,6 +134,8 @@ call plug#begin('~/.vim/plugged')
   "Plug 'dahu/Insertlessly'
   " Additional text objects
   Plug 'wellle/targets.vim'
+  " Previewing markdown files in a browser
+  Plug 'JamshedVesuna/vim-markdown-preview'
   " Syntax for tmux.conf
   "Plug 'tmux-plugins/vim-tmux' (vim-poliglot)
   " Haml, Sass, SCSS
@@ -512,13 +513,21 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#1c1c1c	 ctermbg=233
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#1c1c1c	 ctermbg=233
 " }}}
 
-" Use vmd as default build command for Markdown files
-function! Markdown_viewer()
-  silent! execute "!ps aux | fgrep vmd | grep -Fv grep > /dev/null || vmd '%:p' &"
-endfunction
-au BufReadPost,BufNewFile *.md call Markdown_viewer()
 
 " Markdown improvements {{{
+" vim-markdown-preview plugin {{{
+" Update after each writing
+let g:vim_markdown_preview_toggle = 3
+" Use xdg-open for open the .html
+let g:vim_markdown_preview_use_xdg_open = 1
+" Remove browser name from window selection (don't duplicate the opened tab)
+let g:vim_markdown_preview_browser = ''
+" Use grip for rendering markdown by default
+let g:vim_markdown_preview_github=1
+" Use this if GitHub's API (causing latencies) require authentication
+" let g:vim_markdown_preview_perl = 1
+" }}}
+
 " Open TOC using fzf instead of quickfix window {{{
 fun! s:MkdxGoToHeader(header)
     " given a line: '  84: # Header'
