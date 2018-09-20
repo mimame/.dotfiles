@@ -144,8 +144,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'lervag/vimtex'
   " Visually select increasingly larger regions of text using the same key combination
   Plug 'terryma/vim-expand-region'
-  " For running ruby tests
-  Plug 'skalnik/vim-vroom'
   " Custom text object for selecting ruby blocks
   "Plug 'nelstrom/vim-textobj-rubyblock' | Plug 'kana/vim-textobj-user'
   " Transition between multiline and single-line code
