@@ -378,6 +378,33 @@ alias p='fzf --preview "bat --color always {}"'
 
 # Alias {{{
 
+# Expand aliases automatically {{{
+# space expands all aliases, including global
+globalias() {
+  zle _expand_alias
+  zle expand-word
+  zle self-insert
+}
+zle -N globalias
+bindkey -M viins " " globalias
+
+# / expands all dot aliases without adding a space after
+function expand-dots {
+   if [[ $LBUFFER =~ ".*\.\.\.$" ]]; then
+	 zle _expand_alias
+	 zle expand-word
+   fi
+   zle self-insert
+}
+zle -N expand-dots
+bindkey -M viins "/" expand-dots
+
+# control-space to make a normal space
+bindkey -M viins "^ " magic-space
+# normal space during searches
+bindkey -M isearch " " magic-space
+# }}}
+
 alias szsh='source ~/.zshrc'
 
 # Always preserve the environment with sudo
