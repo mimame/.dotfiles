@@ -410,6 +410,14 @@ alias szsh='source ~/.zshrc'
 # Always preserve the environment with sudo
 alias sudo='sudo -E'
 
+# Improve mobility between folders
+alias .='cd ..'
+alias ..='cd ../..'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias -- -='cd -'
+
 #alias vim='nvim'
 # Always use float by default
 alias bc='bc -l'
