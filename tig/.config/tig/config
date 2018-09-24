@@ -176,8 +176,7 @@ bind generic	r	view-refs
 bind generic	p	view-pager
 bind generic	h	view-help
 bind generic	s	view-status
-bind generic	S	view-status	# Compat binding to avoid going crazy!
-bind generic	c	view-stage
+bind generic	S	view-stage
 bind generic	y	view-stash
 bind generic	g	view-grep
 
@@ -511,6 +510,7 @@ bind generic cb  @git checkout -b "%(prompt Enter branch name: )"
 # cherry-pick - https://git-scm.com/docs/git-cherry-pick
 bind generic cp  !git cherry-pick %(commit)
 # commit - https://git-scm.com/docs/git-commit
+bind generic c none
 bind generic cc  !git commit
 bind generic ca  !git commit --amend
 bind generic cn  !git commit --amend --no-edit
