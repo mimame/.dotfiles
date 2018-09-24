@@ -521,8 +521,9 @@ bind generic hb @hub browse
 # pull - https://git-scm.com/docs/git-pull
 bind generic pl  @git pull %(remote) %(branch)
 # push - https://git-scm.com/docs/git-push
-bind generic ps  @git push %(remote) %(branch)
-bind generic pf  @git push %(remote) %(branch) --force-with-lease
+bind generic p none
+bind generic ps  !git push %(remote) %(branch)
+bind generic pf  !git push %(remote) %(branch) --force-with-lease
 # rebase - https://git-scm.com/docs/git-rebase
 bind generic rb  !git rebase --interactive %(commit)~
 # reset - https://git-scm.com/docs/git-reset
