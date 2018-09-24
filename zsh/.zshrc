@@ -511,16 +511,6 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # Automatic aliases for color output commands with Generic Colouriser
 [[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
 
-# Improved default mount output using columns {{{
-function mount {
-  if [ -z "$1" ]; then
-    /usr/bin/mount | column -t
-  else
-    /usr/bin/mount "$@"
-  fi
-}
-# }}}
-
 # ctrl-Z for recovering vim in background {{{
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
