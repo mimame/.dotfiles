@@ -419,7 +419,7 @@ alias -g .....='../../../..'
 alias -- -='cd -'
 # }}}
 
-alias mkd='mkdir'
+alias mkd='mkdir -p'
 alias mkdir='mkdir -p'
 
 #alias vim='nvim'
