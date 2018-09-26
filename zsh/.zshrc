@@ -469,7 +469,7 @@ alias fm='vifm'
 alias re='massren'
 
 # rg with grep -r behaviour
-alias s='rg --smart-case --follow --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --glob "!.git/*"'
+alias s='rg --smart-case --follow --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --glob '"'"'!.git/*'"'"
 alias ag='ag --unrestricted --smart-case --ignore .git'
 
 # fd with find behaviour
