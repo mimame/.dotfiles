@@ -464,7 +464,6 @@ alias df='df -h'
 alias stmux="tmuxinator"
 alias j="jobs -l"
 alias ncdu='ncdu --color dark'
-alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
 alias news='newsboat'
 alias fm='vifm'
 alias re='massren'
