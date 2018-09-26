@@ -196,6 +196,12 @@
   sw  = stash show
   # status - https://git-scm.com/docs/git-stash
   s = status --branch --show-stash --short
+  # submodule - https://git-scm.com/docs/git-submodule
+  sma = submodule add
+  sms = submodule status
+  smi = submodule init
+  smu = submodule update
+  smf = submodule foreach
   # tag - https://git-scm.com/docs/git-tag
   t  = tag
   ta = tag --annotate
