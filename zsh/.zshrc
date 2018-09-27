@@ -454,6 +454,20 @@ function o() {
 }
 # }}}
 
+# Extract command
+e () {
+    case $1 in
+      *.7z)      7z x $1       ;;
+      *.Z)       uncompress $1 ;;
+      *.bz2)     bunzip2 $1    ;;
+      *.gz)      gunzip $1     ;;
+      *.rar)     unrar e $1    ;;
+      *.tar | *.tar.gz | *.tar.xz | *.tar.bz2 | *.tgz | *.txz | *.tbz2 ) tar xvf $1 ;;
+      *.zip)     unzip $1      ;;
+      *)         echo "'$1' cannot be extracted, unknown compression format" ;;
+    esac
+}
+
 # Never use vi
 alias vi='vim'
 alias v='vim'
