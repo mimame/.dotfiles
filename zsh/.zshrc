@@ -468,6 +468,10 @@ e () {
     esac
 }
 
+notify () {
+  eval "$@" && dunstify "$1 command"$'\n'"Finished"
+}
+
 # Never use vi
 alias vi='vim'
 alias v='vim'
