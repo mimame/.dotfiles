@@ -822,6 +822,8 @@ nnoremap <leader>ft :Tags<CR>
 nnoremap <leader>fbt :BTags<CR>
 " Show all open buffers and their status
 nnoremap <Leader>bl :Buffers<CR>
+" Show all marks
+nnoremap <Leader>m :Marks<CR>
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
