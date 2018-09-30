@@ -90,6 +90,8 @@ call plug#begin('~/.vim/plugged')
   "Plug 'vim-syntastic/syntastic'
   "mappings to easily delete, change and add such surroundings in pairs
   Plug 'tpope/vim-surround'
+  " Plugin to toggle, display and navigate marks
+  Plug 'kshenoy/vim-signature'
   " autopep8 python code
   "Plug 'tell-k/vim-autopep8' (vim-poliglot)
   " Ruby Configuration Files
@@ -511,6 +513,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#1c1c1c	 ctermbg=233
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#1c1c1c	 ctermbg=233
 " }}}
 
+" Color marks with gitgutter state
+let g:SignatureMarkTextHLDynamic = 1
 
 " Markdown improvements {{{
 " vim-markdown-preview plugin {{{
