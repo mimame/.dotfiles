@@ -836,10 +836,10 @@ nnoremap <Leader>bl :Buffers<CR>
 nnoremap <Leader>m :Marks<CR>
 
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+imap <c-f><c-w> <plug>(fzf-complete-word)
+imap <c-f><c-p> <plug>(fzf-complete-path)
+imap <c-f><c-f> <plug>(fzf-complete-file-ag)
+imap <c-f><c-l> <plug>(fzf-complete-line)
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_commits_log_options = "--color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
