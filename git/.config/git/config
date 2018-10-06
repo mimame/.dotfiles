@@ -27,7 +27,7 @@
   bs    = bisect
   bsb   = bisect bad
   bsg   = bisect good
-  bsgfz = !HASH=$(git l | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' ) && git bisect good ${HASH}
+  bsgfz = !HASH=$(git l --color | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' ) && git bisect good ${HASH}
   bsr   = bisect reset
   bss   = bisect start
   bsv   = bisect visualize
@@ -63,7 +63,7 @@
   cem  = commit --allow-empty --message
   cf   = commit --fixup
     # Automatic fixup with autosquash without editor prompt - https://stackoverflow.com/a/29094904
-  cffz = !HASH=$(git l | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase --interactive ${HASH}~
+  cffz = !HASH=$(git l --color | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase --interactive ${HASH}~
   clm  = commit --all --message
   cm   = commit --message
   # diff - https://git-scm.com/docs/git-diff
@@ -151,7 +151,7 @@
   rbc   = rebase --continue
   rbi   = rebase --interactive
     # rebase interactive with fzf from the selected commit (included)
-  rbifz = !HASH=$(git l | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git rebase --interactive ${HASH}~
+  rbifz = !HASH=$(git l --color | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git rebase --interactive ${HASH}~
   rbs   = rebase --skip
   # reflog - https://git-scm.com/docs/git-reflog
   rf  = reflog --pretty=rf
@@ -182,7 +182,7 @@
   rv = revert
   # show - https://git-scm.com/docs/git-reset
   w   = show
-  wfz = !HASH=$(git l | fzf --ansi --no-sort |tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
+  wfz = !HASH=$(git l --color | fzf --ansi --no-sort |tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
   wt  = show --stat
   # stash - https://git-scm.com/docs/git-stash
   sa  = stash apply
