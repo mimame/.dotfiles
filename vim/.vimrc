@@ -204,6 +204,11 @@ call plug#end()
 " }}}
 
 " config {{{
+" Leader key
+let g:mapleader = "\<Space>"
+" Local leader key
+let g:maplocalleader = ','
+
 " Poliglot forbidden language plugins
 let g:polyglot_disabled = ['latex', 'r-lang', 'markdown']
 " Increase timeout for installing YouCompleteMe
@@ -435,10 +440,6 @@ nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 " Never used this keys together so remap to esc
 inoremap kj <esc>
 inoremap jj <esc>
-" Leader key
-let g:mapleader = "\<Space>"
-" Local leader key
-let g:maplocalleader = ','
 " Open .vimrc
 nmap <silent> <leader>ev :execute 'e ' . resolve(expand($MYVIMRC))<CR>
 " Load .vimrc
