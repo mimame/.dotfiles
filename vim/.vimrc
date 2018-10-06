@@ -66,6 +66,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/devdocs.vim'
   " Highlight colors in css files
   Plug 'ap/vim-css-color'
+  " Simple color selector/picker
+  Plug 'KabbAmine/vCoolor.vim'
   " Configuration for HTML
   "Plug 'othree/html5.vim' (vim-poliglot)
   " HTML tags generator
@@ -736,6 +738,13 @@ nmap <localleader>u :diffupdate<CR>
 nmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 xmap ga <Plug>(EasyAlign)
+
+" color selector {{{
+let g:vcoolor_disable_mappings = 1
+" It breaks space as leader key because vcoolor also map keys in insert mode
+" let g:vcoolor_map = '<Leader>c'
+nnoremap <leader>c :VCoolor<CR>
+" }}}
 
 " Tabular plugin config {{{
 "vmap <leader>t= :Tabularize /=<CR>
