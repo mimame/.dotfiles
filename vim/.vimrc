@@ -708,6 +708,14 @@ xmap ih <Plug>GitGutterTextObjectInnerVisual
 xmap ah <Plug>GitGutterTextObjectOuterVisual
 " }}}
 
+" Git fugitive commands {{{
+nmap <leader>gc :Gcommit<CR>i
+nmap <leader>gco :Gread<CR>
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>gb :Gblame<CR>
+" }}}
+
 nmap <leader>ti :terminal ++curwin ++close tig<cr>
 
 " Always open git commit files in insert mode
