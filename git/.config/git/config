@@ -180,6 +180,8 @@
   rs = reset --soft
   # revert - https://git-scm.com/docs/git-revert
   rv = revert
+  # shortlog -- https://git-scm.com/docs/git-shortlog
+  slg = shortlog --no-merges --summary --numbered --email
   # show - https://git-scm.com/docs/git-reset
   w   = show
   wfz = !HASH=$(git l --color | fzf --ansi --no-sort |tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
