@@ -340,8 +340,10 @@
 
 # https://git-scm.com/docs/git-config#_includes
 # use other username and mail for the specific folder structure
+[includeIf "gitdir:~/forks/Work/CRCT/"]
+  path = .config.work.crct
 [includeIf "gitdir:~/forks/Work/BSC/INAB/"]
-  path = .config.work
+  path = .config.work.bsc
 
 [merge]
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
