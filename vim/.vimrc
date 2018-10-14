@@ -486,9 +486,7 @@ xnoremap <Leader>s :sort<CR>
 "map K <Plug>(expand_region_expand)
 "map J <Plug>(expand_region_shrink)
 nnoremap k gk
-nnoremap gk k
 nnoremap j gj
-nnoremap gj j
 " Make a simple "search" text object.
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
