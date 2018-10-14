@@ -195,7 +195,7 @@
   stp = stash push --include-untracked
   sw  = stash show
   # status - https://git-scm.com/docs/git-stash
-  s = status --branch --show-stash --short
+  s = !git -c color.status=always status --branch --show-stash --short | nl --starting-line-number 0 | sed 's/0//'
   # submodule - https://git-scm.com/docs/git-submodule
   sma = submodule add
   sms = submodule status
