@@ -106,6 +106,8 @@
   i = init
   # .gitignore - https://git-scm.com/docs/gitignore
   ig = "!f() { ( [ ! -e .gitignore ] && touch .gitignore ) | echo \"$1\" >> .gitignore; }; f"
+  # gitk - https://git-scm.com/docs/gitk
+  k = !gitk
   # lab - https://zaquestion.github.io/lab/
   lci = !lab ci
   lf  = !lab fork
