@@ -117,9 +117,13 @@
   ls  = !lab snippet
   # log - https://git-scm.com/docs/git-log
   l    = log --pretty=l
+  ll   = l --numstat
+  lll  = l --patch
     # Use fzf to select commits and copy their hash to the clipboard
   lfz  = !git l --color | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   lg   = log --all --graph --pretty=lg
+  llg  = lg --numstat
+  lllg = lg --patch
   lgfz = !git lg --color | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   # merge - https://git-scm.com/docs/git-merge
   m  = merge
