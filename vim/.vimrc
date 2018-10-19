@@ -237,6 +237,7 @@ set t_Co=256
 colorscheme molokai
 " Molokai theme for the status line
 let g:airline_theme = 'molokai'
+let g:airline_molokai_bright=1
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
 " Enable the list of buffers
