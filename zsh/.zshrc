@@ -29,6 +29,7 @@ else
   plugins+=('denysdovhan/spaceship-prompt kind:zsh-theme')
   plugins+=('zsh-users/zsh-completions')
   plugins+=('zsh-users/zsh-autosuggestions')
+  plugins+=('marzocchi/zsh-notify')
   plugins+=('hlissner/zsh-autopair')
   plugins+=('zsh-users/zsh-syntax-highlighting')
   plugins+=('zsh-users/zsh-history-substring-search')
@@ -229,6 +230,10 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-domain' ignored-patterns '<->.<->.
 zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
 # }}}
 # }}}
+
+# Notify long running commands
+zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
+zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
 
 # Folder options {{{
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
@@ -466,10 +471,6 @@ e () {
       *.zip)     unzip $1      ;;
       *)         echo "'$1' cannot be extracted, unknown compression format" ;;
     esac
-}
-
-notify () {
-  eval "$@" && dunstify "$1 command"$'\n'"Finished"
 }
 
 # Never use vi
