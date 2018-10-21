@@ -128,7 +128,6 @@ call plug#begin('~/.vim/plugged')
   " Using vim-matchup plugin: a modern matchit and matchparen replacement
   Plug 'andymass/vim-matchup'
   " fzf inside vim
-  Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
   " Interact with tmux
   Plug 'benmills/vimux'
@@ -818,6 +817,8 @@ nnoremap <leader>f :call fzf#vim#files('', fzf#vim#with_preview('right'))<CR>
 nnoremap <leader>/ :BLines<CR>
 " Show all match lines of any buffer
 nnoremap <leader>// :Lines<CR>
+" Show all match lines of any file
+nnoremap <leader>/// :Rg<CR>
 " Show all commits of this repository
 nnoremap <leader>fc :Commits<CR>
 " Show all commits of this file
