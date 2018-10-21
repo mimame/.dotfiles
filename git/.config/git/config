@@ -8,7 +8,7 @@
   a    = add
   aa   = add --all
   af   = add --force
-  afzp = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && git add --patch ${FILES}
+  apfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && git add --patch ${FILES}
   afz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && git add --all ${FILES}
   ai   = add --interactive
   ap   = add --patch
