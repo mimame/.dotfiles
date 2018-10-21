@@ -179,11 +179,11 @@
   # rerere - https://git-scm.com/docs/git-rerere
   rrr = rerere
   # reset - https://git-scm.com/docs/git-reset
-  r  = reset
-  rh = reset --hard
-  rm = reset --mixed
-  rp = reset --patch
-  rs = reset --soft
+  r   = reset
+  rh  = reset --hard
+  rsm = reset --mixed
+  rp  = reset --patch
+  rs  = reset --soft
   # revert - https://git-scm.com/docs/git-revert
   rv = revert
   # shortlog -- https://git-scm.com/docs/git-shortlog
