@@ -819,30 +819,30 @@ nnoremap <leader>/ :BLines<CR>
 nnoremap <leader>// :Lines<CR>
 " Show all match lines of any file
 nnoremap <leader>/// :Rg<CR>
-" Show all commits of this repository
-nnoremap <leader>fc :Commits<CR>
-" Show all commits of this file
-nnoremap <leader>fbc :BCommits<CR>
-" Show git status command
-nnoremap <leader>fgs :GFiles?<CR>
-" Show snippets from UltiSnips
-nnoremap <leader>fs :Snippets<CR>
-" Show Vim commands
-nnoremap <leader>fco :Commands<CR>
-" Show vim files history
-nnoremap <leader>fhf :History<CR>
-" Show vim commands history
-nnoremap <leader>fhc :History:<CR>
-" Show vim search history
-nnoremap <leader>fhs :History/<CR>
-" Show tags of any buffer (ctags -R)
-nnoremap <leader>ft :Tags<CR>
-" Show tags of this buffer
-nnoremap <leader>fbt :BTags<CR>
 " Show all open buffers and their status
 nnoremap <Leader>bl :Buffers<CR>
 " Show all marks
 nnoremap <Leader>m :Marks<CR>
+" Show all commits of this repository
+nnoremap <localleader>c :Commits<CR>
+" Show all commits of this file
+nnoremap <localleader>bc :BCommits<CR>
+" Show git status command
+nnoremap <localleader>gs :GFiles?<CR>
+" Show snippets from UltiSnips
+nnoremap <localleader>s :Snippets<CR>
+" Show Vim commands
+nnoremap <localleader>co :Commands<CR>
+" Show vim files history
+nnoremap <localleader>h :History<CR>
+" Show vim commands history
+nnoremap <localleader>hc :History:<CR>
+" Show vim search history
+nnoremap <localleader>hs :History/<CR>
+" Show tags of any buffer (ctags -R)
+nnoremap <localleader>t :Tags<CR>
+" Show tags of this buffer
+nnoremap <localleader>bt :BTags<CR>
 
 " Insert mode completion
 imap <c-f><c-w> <plug>(fzf-complete-word)
