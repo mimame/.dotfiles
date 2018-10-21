@@ -8,8 +8,8 @@
   a    = add
   aa   = add --all
   af   = add --force
-  afz  = !FILES=$(git status -s | awk '{ print $2 }' | fzf --multi) && git add --all ${FILES}
-  afzp = !FILES=$(git status -s | awk '{ print $2 }' | fzf --multi) && git add --patch ${FILES}
+  afzp = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && git add --patch ${FILES}
+  afz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && git add --all ${FILES}
   ai   = add --interactive
   ap   = add --patch
   au   = add --update
@@ -27,7 +27,7 @@
   bs    = bisect
   bsb   = bisect bad
   bsg   = bisect good
-  bsgfz = !HASH=$(git l --color | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' ) && git bisect good ${HASH}
+  bsgfz = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' ) && git bisect good ${HASH}
   bsr   = bisect reset
   bss   = bisect start
   bsv   = bisect visualize
@@ -63,12 +63,12 @@
   cem  = commit --allow-empty --message
   cf   = commit --fixup
     # Automatic fixup with autosquash without editor prompt - https://stackoverflow.com/a/29094904
-  cffz = !HASH=$(git l --color | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase --interactive ${HASH}~
+  cffz = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase --interactive ${HASH}~
   clm  = commit --all --message
   cm   = commit --message
   # diff - https://git-scm.com/docs/git-diff
   d   = diff
-  dfz = !FILES=$(git status -s | awk '{ print $2 }' | fzf --multi) && git diff ${FILES}
+  dfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }') && git diff ${FILES}
   ds  = diff --staged
   dst = diff --staged --stat
   dsw = diff --staged --ignore-all-space
@@ -120,11 +120,11 @@
   ll   = l --numstat
   lll  = l --patch
     # Use fzf to select commits and copy their hash to the clipboard
-  lfz  = !git l --color | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
+  lfz  = !git l --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   lg   = log --all --graph --pretty=lg
   llg  = lg --numstat
   lllg = lg --patch
-  lgfz = !git lg --color | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
+  lgfz = !git lg --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   # merge - https://git-scm.com/docs/git-merge
   m  = merge
   ma = merge --abort
@@ -157,11 +157,11 @@
   rbc   = rebase --continue
   rbi   = rebase --interactive
     # rebase interactive with fzf from the selected commit (included)
-  rbifz = !HASH=$(git l --color | fzf --ansi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}') && git rebase --interactive ${HASH}~
+  rbifz = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git rebase --interactive ${HASH}~
   rbs   = rebase --skip
   # reflog - https://git-scm.com/docs/git-reflog
   rf  = reflog --pretty=rf
-  rfz = !git rf --color | fzf --ansi --multi --no-sort | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
+  rfz = !git rf --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   # remote - https://git-scm.com/docs/git-remote
   re   = remote
   rea  = remote add
@@ -190,7 +190,7 @@
   slg = shortlog --no-merges --summary --numbered --email
   # show - https://git-scm.com/docs/git-reset
   w   = show
-  wfz = !HASH=$(git l --color | fzf --ansi --no-sort |tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
+  wfz = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
   wt  = show --stat
   # stash - https://git-scm.com/docs/git-stash
   sa  = stash apply
