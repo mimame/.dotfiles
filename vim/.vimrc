@@ -123,6 +123,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   " To work with R
   Plug 'jalvesaq/Nvim-R'
+  " R autocompletion
+  Plug 'gaalcaras/ncm-R'
   "enable repeating supported plugin maps with dot
   Plug 'tpope/vim-repeat'
   " Using vim-matchup plugin: a modern matchit and matchparen replacement
