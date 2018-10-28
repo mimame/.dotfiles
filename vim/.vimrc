@@ -439,9 +439,9 @@ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "}}}
 " Esc Esc for Highlight off the searched term
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
-" Never used this keys together so remap to esc
-inoremap kj <esc>
+" Never these keys combination are used together so remap to esc and cr
 inoremap jj <esc>
+inoremap kk <cr>
 " Open .vimrc
 nmap <silent> <leader>ev :execute 'e ' . resolve(expand($MYVIMRC))<CR>
 " Load .vimrc
