@@ -8,7 +8,7 @@ base05 = "#f8f8f2"
 # Screen backlight info
 # requires light to change the backlight brightness with the scollwheel.
 status.register("backlight",
-                backlight="radeon_bl0",
+                backlight="intel_backlight",
                 format=" {percentage}% ",
                 on_upscroll="light -A 1",
                 on_downscroll="light -U 1",
@@ -109,7 +109,7 @@ status.register("temp",
 #
 # Note: the network module requires PyPI package netifaces
 status.register("network",
-                interface="enp9s0",
+                interface="enp4s0",
                 # $base05
                 color_up=base05,
                 start_color=base05,
@@ -119,7 +119,7 @@ status.register("network",
 
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
-                interface="wlp8s0",
+                interface="wlp5s0",
                 # $base05
                 color_up=base05,
                 start_color=base05,
