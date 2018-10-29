@@ -12,9 +12,9 @@ set $mod Mod4
 # https://wiki.archlinux.org/index.php/xmodmap
 exec --no-startup-id udiskie --notify --smart-tray --notify-command notify-send &
 # Swap l-ctrl to caps lock
-exec --no-startup-id setxkbmap -option ctrl:swapcaps &
+exec_always --no-startup-id setxkbmap -option ctrl:swapcaps &
 # Add to the control key the ESC key function
-exec --no-startup-id xcape -e 'Control_L=Escape' &
+exec_always --no-startup-id pkill xcape; xcape -e 'Control_L=Escape' &
 # Disable touchpad when writting
 exec --no-startup-id syndaemon -i 0.5 -K -R -d &
 # Enable numlock by default
