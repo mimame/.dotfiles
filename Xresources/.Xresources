@@ -199,6 +199,7 @@ rofi.scroll-method:                  0
 rofi.fake-background:                screenshot
 ! Pidfile location
 rofi.pid:                            /run/user/1000/rofi.pid
+! rofi.pid:                            /tmp/rofi.pid
 ! Paste primary selection
 rofi.kb-primary-paste:               Control+Shift+v,Shift+Insert
 ! Paste clipboard
