@@ -501,7 +501,6 @@ alias cp="cp -i"
 alias ln="ln -i"
 unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
 
-alias rm='(>&2 echo "\e[1m\e[31mPlease: use \"trash\" or \"trash-put\" commands!\e[0m"); false'
 alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
 
 # Correct previous command
