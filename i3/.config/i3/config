@@ -13,6 +13,8 @@ set $mod Mod4
 exec --no-startup-id udiskie --notify --smart-tray --notify-command notify-send &
 # Swap l-ctrl to caps lock
 exec_always --no-startup-id setxkbmap -option ctrl:swapcaps &
+# Define rctrl as composite key (rctrl+'+e->é)
+exec_always --no-startup-id setxkbmap -option composite:rctrl &
 # Add to the control key the ESC key function
 exec_always --no-startup-id pkill xcape; xcape -e 'Control_L=Escape' &
 # Disable touchpad when writting
