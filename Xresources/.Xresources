@@ -1,7 +1,7 @@
 URxvt*termName: rxvt-unicode-256color
 ! https://github.com/powerline/fonts/issues/176#issuecomment-382130511
-URxvt.font: xft:Inconsolata Nerd Font Mono:size=14:minspace=False, xft:DejaVu Sans:minspace:False:size=14
-URxvt.boldFont: xft:Inconsolata:size=14:minspace=False:Bold, xft:DejaVu Sans:size=14:minspace:False:Bold
+URxvt.font: xft:InconsolataGo Nerd Font:size=14:minspace=False, xft:DejaVu Sans:minspace:False:size=14
+URxvt.boldFont: xft:InconsolataGo Nerd Font:size=14:minspace=False, xft:DejaVu Sans:size=14:minspace:False
 URxvt.letterSpace: 1
 URxvt.depth: 32
 URxvt.background: #000000
