@@ -27,7 +27,7 @@ exec_always --no-startup-id ~/.config/i3/scripts/screen_layout
 # Load desktop
 exec --no-startup-id feh --no-fehbg --bg-scale ~/yoda.jpg
 # Fix latitude and longitude
-exec --no-startup-id redshift-gtk -l 43.5576126:1.4265417
+exec --no-startup-id redshift-gtk -r -l 43.5576126:1.4265417
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
