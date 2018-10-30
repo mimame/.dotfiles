@@ -415,6 +415,9 @@ alias szsh='source ~/.zshrc'
 # Always preserve the environment with sudo
 alias sudo='sudo -E'
 
+# Remove $ symbol pasted in front of the command
+alias '$'=''
+
 # Improve mobility between folders {{{
 alias .='cd ..'
 alias ..='cd ../..'
