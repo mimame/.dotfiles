@@ -10,15 +10,15 @@ set $mod Mod4
 
 # Keyboard layout http://askubuntu.com/a/24930 http://askubuntu.com/a/296437
 # https://wiki.archlinux.org/index.php/xmodmap
-exec --no-startup-id udiskie --notify --smart-tray --notify-command notify-send &
+exec_always --no-startup-id pkill udiskie; udiskie --notify --smart-tray --notify-command notify-send &
 # Swap l-ctrl to caps lock and define rctrl as composite key(rctrl+'+e->é)
 exec_always --no-startup-id setxkbmap -option; setxkbmap -option ctrl:swapcaps,composite:rctrl &
 # Add to the control key the ESC key function
 exec_always --no-startup-id sleep 1; pkill xcape; xcape -e 'Control_L=Escape' &
 # Disable touchpad when writting
-exec --no-startup-id syndaemon -i 0.5 -K -R -d &
+exec_always --no-startup-id pkill syndaemon; syndaemon -i 0.5 -K -R -d &
 # Enable numlock by default
-exec --no-startup-id numlockx
+exec_always --no-startup-id pkill numlockx; numlockx
 # Enable and load last saved session
 exec --no-startup-id [ -f ~/.cache/i3/session.json ] && ~/.config/i3/scripts/i3exit restore && i3-msg restart
 
@@ -27,7 +27,7 @@ exec_always --no-startup-id ~/.config/i3/scripts/screen_layout
 # Load desktop
 exec --no-startup-id feh --no-fehbg --bg-scale ~/yoda.jpg
 # Fix latitude and longitude
-exec --no-startup-id redshift-gtk -r -l 43.5576126:1.4265417
+exec_always --no-startup-id pkill redshift-gtk; redshift-gtk -r -l 43.5576126:1.4265417
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
