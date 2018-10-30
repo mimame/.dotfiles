@@ -44,7 +44,7 @@ bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font is used in the bar {} block below.
-font pango:InconsolataGo Nerd Font 9
+font pango:InconsolataGo Nerd Font 12
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -346,7 +346,6 @@ bar {
   tray_output primary
   #	wheel_up_cmd nop
   #	wheel_down_cmd nop
-  font pango:InconsolataGo Nerd Font 9
   colors {
     separator $base03
     background $base01
