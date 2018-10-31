@@ -440,7 +440,7 @@ alias g=git
 alias c=bat
 
 alias ls='ls --color=always --all --human-readable --format=long'
-alias l='exa --all --color=auto --long --group --header --grid --git'
+alias l='exa --all --color=auto --long --group --header --git'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
