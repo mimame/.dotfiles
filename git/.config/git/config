@@ -8,8 +8,8 @@
   a    = add
   aa   = add --all
   af   = add --force
-  apfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && git add --patch ${FILES}
-  afz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && git add --all ${FILES}
+  apfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git add --patch ${FILES}
+  afz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git add --all ${FILES}
   ai   = add --interactive
   ap   = add --patch
   au   = add --update
@@ -45,9 +45,9 @@
   # checkout - https://git-scm.com/docs/git-checkout
   co    = checkout
   cob   = checkout -b
-  cofz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && git checkout ${FILES}
+  cofz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git checkout ${FILES}
   cop   = checkout --patch
-  copfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && git checkout --patch ${FILES}
+  copfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git checkout --patch ${FILES}
     # when merging
   cour = "!f() { git checkout --ours $@ && git add $@; }; f"
   cthe = "!f() { git checkout --theirs $@ && git add $@; }; f"
@@ -70,7 +70,7 @@
   cm   = commit --message
   # diff - https://git-scm.com/docs/git-diff
   d   = diff
-  dfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }') && git diff ${FILES}
+  dfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }') && [[ -n ${FILES} ]] && git diff ${FILES}
   ds  = diff --staged
   dst = diff --staged --stat
   dsw = diff --staged --ignore-all-space
@@ -182,10 +182,10 @@
   rrr = rerere
   # reset - https://git-scm.com/docs/git-reset
   r    = reset
-  rfz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --staged --color {2}' | awk '{ print $2 }' ) && git reset --mixed ${FILES}
+  rfz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --staged --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git reset --mixed ${FILES}
   rh   = reset --hard
   rp   = reset --patch
-  rpfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --staged --color {2}' | awk '{ print $2 }' ) && git reset --patch ${FILES}
+  rpfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --staged --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git reset --patch ${FILES}
   rs   = reset --soft
   rsm  = reset --mixed
   # revert - https://git-scm.com/docs/git-revert
