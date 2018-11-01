@@ -489,6 +489,7 @@ alias ncdu='ncdu --color dark'
 alias news='newsboat'
 alias fm='vifm'
 alias re='massren'
+alias tree='tree -a'
 
 # rg with grep -r behaviour
 alias s='rg --smart-case --follow --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --glob '"'"'!.git/*'"'"
