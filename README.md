@@ -1,6 +1,44 @@
-# .dotfiles
+# Table Of Content
 
-<!-- picture here alacritty, nvim, tmux -->
+<details>
+<summary>Click to expand Table Of Content</summary>
+<ul>
+    <li><a href="#table-of-content">Table Of Content</a></li>
+    <li><a href="#motivation">Motivation</a></li>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#setup">Setup</a><ul>
+      <li><a href="#usage">Usage</a></li>
+    </ul></li>
+    <li><a href="#content">Content</a><ul>
+      <li><a href="#alacritty-default-terminal-alacrittyconfigalacritty">alacritty (default terminal) (./alacritty/.config/alacritty)</a></li>
+      <li><a href="#beets-music-organizer-beetsconfigbeets">beets (Music organizer) (./beets/.config/beets)</a></li>
+      <li><a href="#bin-my-own-scripts-binbin">bin (my own scripts) (./bin/.bin)</a></li>
+      <li><a href="#cmus-tui-music-player-cmusconfigcmus">cmus (TUI music player) (./cmus/.config/cmus)</a></li>
+      <li><a href="#dunst-replacement-for-the-notification-daemon-dunstconfigdunst">dunst (Replacement for the notification-daemon) (./dunst/.config/dunst)</a></li>
+      <li><a href="#grub-boot-loader-etcdefaultgrub">grub (Boot loader) (./etc/default/grub)</a></li>
+      <li><a href="#i3-tiling-windows-manager--my-own-scripts-i3configi3">i3 (Tiling windows manager) + my own scripts (./i3/.config/i3)</a></li>
+      <li><a href="#kitty-terminal-kittyconfigkitty">kitty (terminal) (./kitty/.config/kitty)</a></li>
+      <li><a href="#latex-latex">latex (./latex/)</a></li>
+      <li><a href="#newsboat-tui-rss-viewer-newsboatconfignewsboat">newsboat (TUI RSS viewer) (./newsboat/.config/newsboat)</a></li>
+      <li><a href="#manjaro-arch-linux-based-distribution-manjaroetc">Manjaro (Arch Linux based distribution) (./manjaro/etc)</a></li>
+      <li><a href="#nvim-nvimconfignvim">nvim (./nvim/.config/nvim)</a></li>
+      <li><a href="#parallel-parallelparallel">parallel (./parallel/.parallel)</a></li>
+      <li><a href="#rofi-xresources">rofi (./Xresources)</a></li>
+      <li><a href="#ssh-sshssh">ssh (./ssh/.ssh)</a></li>
+      <li><a href="#termite-terminal-termiteconfigtermite">termite (terminal) (./termite/.config/termite)</a></li>
+      <li><a href="#tig-tui-git-tigconfigtig">tig (TUI git) (./tig/.config/tig)</a></li>
+      <li><a href="#urxvt-terminal-xresources">urxvt (terminal) (./Xresources)</a></li>
+      <li><a href="#vifm-tui-filemanager-vifmconfigvifm">vifm (TUI filemanager) (./vifm/.config/vifm)</a></li>
+      <li><a href="#vim-vim">vim (./vim)</a></li>
+      <li><a href="#xresources-xresources">Xresources (./Xresources)</a></li>
+      <li><a href="#zsh-shell-zsh">zsh (Shell) (./zsh)</a></li>
+    </ul></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contributors">Contributors</a></li>
+  </ul></li>
+</ul>
+</details>
 
 ## Motivation
 
@@ -37,6 +75,8 @@
 ### [latex](https://www.latex-project.org/) (./latex/)
 
 ### [newsboat (TUI RSS viewer)](https://newsboat.org/) (./newsboat/.config/newsboat)
+
+### [Manjaro (Arch Linux based distribution)](https://manjaro.org/) (./manjaro/etc)
 
 ### [nvim](https://neovim.io/) (./nvim/.config/nvim)
 
@@ -102,7 +142,7 @@
 
 I only accept bug fixes, documentation and interesting features for me
 
-1. Fork it ( <https://gitlab.com/mimadrid/dotfiles/fork> )
+1. Fork it ( <https://github.com/mimadrid/.dotfiles/fork> )
 1. Create your fix branch (git checkout -b my-fix)
 1. Commit your changes (git commit -am 'Add some fix')
 1. Push to the branch (git push origin my-fix)
