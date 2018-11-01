@@ -181,11 +181,13 @@
   # rerere - https://git-scm.com/docs/git-rerere
   rrr = rerere
   # reset - https://git-scm.com/docs/git-reset
-  r   = reset
-  rh  = reset --hard
-  rsm = reset --mixed
-  rp  = reset --patch
-  rs  = reset --soft
+  r    = reset
+  rfz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --staged --color {2}' | awk '{ print $2 }' ) && git reset --mixed ${FILES}
+  rh   = reset --hard
+  rp   = reset --patch
+  rpfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --staged --color {2}' | awk '{ print $2 }' ) && git reset --patch ${FILES}
+  rs   = reset --soft
+  rsm  = reset --mixed
   # revert - https://git-scm.com/docs/git-revert
   rv = revert
   # shortlog -- https://git-scm.com/docs/git-shortlog
