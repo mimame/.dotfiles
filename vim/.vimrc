@@ -813,8 +813,10 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Commands keybindings
-" Show all files recursively of this folder
-nnoremap <leader>f :call fzf#vim#files('', fzf#vim#with_preview('right'))<CR>
+" Show all files recursively of this folder with bat previewer
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, {'options': ['--preview', 'bat --number --color always {}']}, <bang>0)
+nnoremap <leader>f :Files<CR>
 " Show all match lines of this buffer
 nnoremap <leader>/ :BLines<CR>
 " Show all match lines of any buffer
