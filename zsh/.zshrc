@@ -529,7 +529,7 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # }}}
 
 # Automatic aliases for color output commands with Generic Colouriser
-[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+[[ -s "$HOME/.config/grc/grc.zsh" ]] && source "$HOME/.config/grc/grc.zsh"
 
 # ctrl-Z for recovering vim in background {{{
 fancy-ctrl-z () {
