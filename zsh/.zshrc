@@ -354,6 +354,10 @@ spaceship_vi_mode_enable
 bindkey -M vicmd ' ' autosuggest-execute
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+# Allow ctrl-x, ctrl-w for char and word deletion
+# bindkey '^h' is forbidden because of vim-tmux-navigator so use '^x' instead
+bindkey '^x' backward-delete-char
+bindkey '^w' backward-kill-word
 # Char visual mode open the editor
 autoload -U edit-command-line
 zle -N edit-command-line
