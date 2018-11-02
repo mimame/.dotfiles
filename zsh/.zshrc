@@ -358,6 +358,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 # bindkey '^h' is forbidden because of vim-tmux-navigator so use '^x' instead
 bindkey '^x' backward-delete-char
 bindkey '^w' backward-kill-word
+# Allow emacs ctrl-a and ctrl-e to move to beginning/end of the line
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
 # Char visual mode open the editor
 autoload -U edit-command-line
 zle -N edit-command-line
