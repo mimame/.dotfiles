@@ -361,6 +361,9 @@ bindkey '^w' backward-kill-word
 # Allow emacs ctrl-a and ctrl-e to move to beginning/end of the line
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
+# Allow ctrl-p, ctrl-n to browse the command history
+bindkey '^p' up-history
+bindkey '^n' down-history
 # Char visual mode open the editor
 autoload -U edit-command-line
 zle -N edit-command-line
