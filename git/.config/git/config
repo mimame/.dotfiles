@@ -371,6 +371,9 @@
   # User diff3 merge style in meld
   cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 
+[protocol]
+	version = 2
+
 [pretty]
   l  = * %C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset
   lg = %C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset
