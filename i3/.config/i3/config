@@ -12,7 +12,7 @@ set $mod Mod4
 # https://wiki.archlinux.org/index.php/xmodmap
 exec_always --no-startup-id pkill udiskie; udiskie --notify --smart-tray --notify-command notify-send &
 # Swap l-ctrl to caps lock and define rctrl as composite key(rctrl+'+e->é)
-exec_always --no-startup-id setxkbmap -option; setxkbmap -option ctrl:swapcaps,composite:rctrl &
+exec_always --no-startup-id setxkbmap -option; setxkbmap -option ctrl:swapcaps &
 # Add to the control key the ESC key function
 exec_always --no-startup-id sleep 1; pkill xcape; xcape -e 'Control_L=Escape' &
 # Disable touchpad when writting
