@@ -81,6 +81,9 @@ case "$1" in
     i3session_restore)
         NOTIFICATION=" i3 session restored"
       ;;
+    screenshot)
+        NOTIFICATION=" Screenshot saved to ~/Pictures"
+      ;;
     *)
         dunstify --urgency=critical "Usage: $0 [i3session_save|i3session_restore|low_sound|high_sound|mute_sound|play-stop_song|next_song|previous_song]"
         exit 2

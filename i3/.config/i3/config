@@ -72,12 +72,15 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl 
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | fgrep RUNNING | cut -f1) -5% && ~/.config/i3/scripts/dunstify_notification "low_sound"
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pactl list sinks short | fgrep RUNNING | cut -f1) toggle && ~/.config/i3/scripts/dunstify_notification "play-mute_sound"
 
-################################################################################################
-
 # Screen brightness controls
 exec --no-startup-id light -S 1
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/.config/i3/scripts/dunstify_notification "light"
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/i3/scripts/dunstify_notification "light"
+
+# Print Screen controls
+bindsym Print exec gnome-screenshot && ~/.config/i3/scripts/dunstify_notification "screenshot"
+bindsym Print+Shift exec gnome-screenshot --window && ~/.config/i3/scripts/dunstify_notification "screenshot"
+
 
 focus_on_window_activation smart
 popup_during_fullscreen smart
