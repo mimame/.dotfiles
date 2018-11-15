@@ -1,5 +1,5 @@
 " vim: filetype=vifm :
-" Sample configuration file for vifm (last updated: 21 January, 2018)
+" Sample configuration file for vifm (last updated: 20 July, 2018)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
 " Blank lines are ignored.
@@ -20,7 +20,8 @@ set vicmd=vim
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
-" solution, it's also much slower and doesn't support progress measuring.
+" solution, it's also much slower when processing large amounts of files and
+" doesn't support progress measuring.
 
 set syscalls
 
@@ -161,7 +162,7 @@ set classify+='  ::*.pptx,,*.ppt::'
 
 " Set custom status line look
 
-set statusline=" %t%=  %A  %10u:%-7g  %15s   %20d "
+set statusline="%1*%* %2*%t%=%* %3*%* %2*%A%* %3*%* %2*%10u:%-7g%* %3*%* %2*%15s%* %3*%*  %2*%20d%* %1*%*"
 
 " ------------------------------------------------------------------------------
 
@@ -237,7 +238,7 @@ command! make !!make %a
 " Create and change to the folder
 command! mc :mkdir! %a | cd %a
 command! mk :mkdir! %a
-command! su :!sudo vifm %d %D
+command! sudo :!sudo vifm %d %D
 command! vgrep vim "+grep %a"
 " Reload vifmrc  file
 command! reload :write | restart
@@ -374,6 +375,7 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ zip --show-files %c | less,
        \ {Extract here}
        \ tar -xf %c,
+fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip --show-files %c
 
 filextype *.zip,*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
        \ {Open with xarchive}
@@ -415,7 +417,7 @@ fileviewer *.7z 7z l %c
 " Office files
 filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
 fileviewer *.doc catdoc %c
-fileviewer *.docx, docx2txt.pl %f -
+fileviewer *.docx docx2txt.pl %f -
 
 " Directories
 filextype */
@@ -488,7 +490,7 @@ windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}
 " Start shell in current directory
 "nnoremap sh :shell<cr>
 " Open console with current directory
-nnoremap sh :!termite &<cr>
+nnoremap sh :!alacritty &<cr>
 
 " Display sorting dialog
 nnoremap S :sort<cr>
@@ -533,6 +535,9 @@ nnoremap yn :!echo %c | xclip -i -selection clipboard %i<cr>
 nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
 nnoremap A cw
+
+" Mappings for tabs
+nnoremap T :tabnew<cr>
 
 " sshfs mapping
 nnoremap ss :sshfs<space>
