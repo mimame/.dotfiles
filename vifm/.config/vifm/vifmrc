@@ -501,12 +501,18 @@ nnoremap S :sort<cr>
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
-" Alias commands
+" mkdir -p directory
 nnoremap mk :mk<space>
+" mkdir && cd to the directory
 nnoremap mc :mc<space>
+" Touch file
 nnoremap to :touch<space>
+" Set the same directory in the other panel
 nnoremap sy :sync<cr>
+" Repeat name substitution
 nnoremap su :su<cr>
+" Reload config
+nnoremap rl :reload<cr>
 
 " Open file in existing instance of gvim
 "nnoremap o :!gvim --remote-tab-silent %f<cr>
