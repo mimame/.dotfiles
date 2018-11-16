@@ -577,6 +577,9 @@ nnoremap df :df<cr>
 " du mapping
 nnoremap du :du<cr>
 
+" cd mapping
+nnoremap cd :cd<space>
+
 " Open vim to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | execute ':!vim $MYVIFMRC' | restart<cr>
 
