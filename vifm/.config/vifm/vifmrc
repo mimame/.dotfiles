@@ -488,9 +488,10 @@ windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}
 " Sample mappings
 
 " Start shell in current directory
-"nnoremap sh :shell<cr>
-" Open console with current directory
-nnoremap sh :!alacritty &<cr>
+nnoremap sh :shell<cr>
+
+" Open console in current directory
+nnoremap ,t :!alacritty &<cr>
 
 " Display sorting dialog
 nnoremap S :sort<cr>
