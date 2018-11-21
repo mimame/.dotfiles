@@ -30,6 +30,9 @@ exec_always --no-startup-id ~/.config/i3/scripts/screen_layout
 exec --no-startup-id feh --no-fehbg --bg-scale ~/yoda.jpg
 # Fix latitude and longitude
 exec_always --no-startup-id pkill redshift-gtk; redshift-gtk -r -l 43.5576126:1.4265417
+# Load bluetooth applet
+exec --no-startup-id blueman-applet
+
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
