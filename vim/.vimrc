@@ -771,6 +771,15 @@ let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
+" Nvim-R related config {{{
+" Use rtichoke as the default R terminal
+let R_app = "rtichoke"
+let R_cmd = "R"
+let R_hl_term = 0
+let R_args = []  " if you had set any
+let R_bracketed_paste = 1
+" }}}
+
 " Buffers {{{
 " https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
 " To open a new empty buffer
