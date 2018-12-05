@@ -82,6 +82,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'
   "git diff in the gutter (sign column) and stages/undoes hunks
   Plug 'airblade/vim-gitgutter'
+  " A Vim plugin for more pleasant editing on commit messages
+  Plug 'rhysd/committia.vim'
   " A tree explorer plugin with git info
   Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'scrooloose/nerdtree'
   " A tree explorer plugin with tabs
@@ -877,6 +879,24 @@ let g:fzf_commits_log_options = "--color --graph --abbrev-commit --pretty=format
 \ <bang>0)
 
 cnoreabbrev rg Rg
+" }}}
+
+" committia.vim config {{{
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open(info)
+    " Additional settings
+    setlocal spell
+
+    " If no commit message, start with insert mode
+    if a:info.vcs ==# 'git' && getline(1) ==# ''
+        startinsert
+    endif
+
+    " Scroll the diff window from insert mode
+    " Map <C-n> and <C-p>
+    imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+    imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+endfunction
 " }}}
 
 " set custom modifier for vim-move
