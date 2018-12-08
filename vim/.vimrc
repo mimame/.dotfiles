@@ -502,6 +502,13 @@ omap s :normal vs<CR>
 map sj :SplitjoinSplit<cr>
 nmap sk :SplitjoinJoin<cr>
 
+" Use arrows to resize panels {{{
+nnoremap <Up>    :resize -2<CR>
+nnoremap <Down>  :resize +2<CR>
+nnoremap <Left>  :vertical resize -2<CR>
+nnoremap <Right> :vertical resize +2<CR>
+" }}}
+
 " Remove cowsay from startify
 let g:startify_custom_header = []
 
