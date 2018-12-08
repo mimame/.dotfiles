@@ -902,9 +902,8 @@ function! g:committia_hooks.edit_open(info)
     endif
 
     " Scroll the diff window from insert mode
-    " Map <C-n> and <C-p>
-    imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
-    imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+    imap <buffer><localleader>j <Plug>(committia-scroll-diff-down-half)
+    imap <buffer><localleader>k <Plug>(committia-scroll-diff-up-half)
 endfunction
 " }}}
 
