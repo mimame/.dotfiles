@@ -84,6 +84,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'airblade/vim-gitgutter'
   " A Vim plugin for more pleasant editing on commit messages
   Plug 'rhysd/committia.vim'
+  " Input completion for GitHub
+  Plug 'rhysd/github-complete.vim'
   " A tree explorer plugin with git info
   Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'scrooloose/nerdtree'
   " A tree explorer plugin with tabs
@@ -905,6 +907,13 @@ function! g:committia_hooks.edit_open(info)
     imap <buffer><localleader>j <Plug>(committia-scroll-diff-down-half)
     imap <buffer><localleader>k <Plug>(committia-scroll-diff-up-half)
 endfunction
+" }}}
+
+" github-complete.vim integration {{{
+augroup config-github-complete
+  autocmd!
+  autocmd FileType gitcommit setl omnifunc=github_complete#complete
+augroup END
 " }}}
 
 " set custom modifier for vim-move
