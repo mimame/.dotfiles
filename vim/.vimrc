@@ -506,6 +506,21 @@ omap s :normal vs<CR>
 map sj :SplitjoinSplit<cr>
 nmap sk :SplitjoinJoin<cr>
 
+" Split line by delimiters (J inverted) {{{
+function! SplitLine()
+   let splitted_line = substitute(getline(line('.')), '\([,;.:]\)','\1\n', 'g')
+   " substitute() doesn't print new lines
+   " So the variable has to be printed using a register
+   " The first step is backup any register
+   let old_register = @l
+   let @l = splitted_line
+   " From normal mode to Visual Line mode and then paste the register
+   normal! V"lp
+   let @l = old_register
+endfunction
+nnoremap J :call SplitLine()<CR>
+" }}}
+
 " Use arrows to resize panels {{{
 nnoremap <Up>    :resize -2<CR>
 nnoremap <Down>  :resize +2<CR>
