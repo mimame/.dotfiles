@@ -36,6 +36,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'nathanaelkane/vim-indent-guides'
   " Extended f, F, t and T key mappings for Vim
   Plug 'rhysd/clever-f.vim'
+  " Clever-f but with two characters using 's' key
+  Plug 'justinmk/vim-sneak'
   " Highlight yank region
   Plug 'machakann/vim-highlightedyank'
   " Only update fold when be necessary
@@ -371,6 +373,13 @@ set undodir=/tmp/.vim_undo
 nmap <Esc> <Plug>(clever-f-reset)
 let g:clever_f_show_prompt = 1
 let g:clever_f_mark_char   = 1
+" }}}
+
+" vim-sneak config {{{
+" EasyMotion behaviour
+let g:sneak#label = 1
+" clever-f behaviour
+let g:sneak#s_next = 1
 " }}}
 
 " Send word under cursor to devdocs.io
