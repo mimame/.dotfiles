@@ -54,6 +54,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'haya14busa/incsearch-easymotion.vim' | Plug 'haya14busa/incsearch.vim' | Plug 'easymotion/vim-easymotion'
   " Improved incremental searching
   Plug 'haya14busa/incsearch-fuzzy.vim' | Plug 'haya14busa/incsearch.vim'
+  " Display number of search matches & index of a current match
+  Plug 'google/vim-searchindex'
   " :substitute preview
   Plug 'osyo-manga/vim-over'
   " Highlights trailing whitespace in red and provides :FixWhitespace to fix it
