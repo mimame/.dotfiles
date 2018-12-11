@@ -727,6 +727,7 @@ let g:ycm_filetype_specific_completion_to_disable = {
       \ 'yaml':1,
       \ 'zsh': 1,
       \}
+let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
 " }}}
 
 
