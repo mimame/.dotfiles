@@ -437,7 +437,7 @@ alias -g .....='../../../..'
 alias -- -='cd -'
 # }}}
 
-alias mkd='mkdir -p'
+alias mk='mkdir -p'
 alias mkdir='mkdir -p'
 
 #alias vim='nvim'
