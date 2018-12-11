@@ -195,6 +195,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'reedes/vim-pencil'
   " Asynchronous Lint Engine
   Plug 'w0rp/ale'
+  " Plugin for formatting code
+  Plug 'sbdchd/neoformat'
   " Persistent sessions
   Plug 'tpope/vim-obsession'
   " Autosave
@@ -417,6 +419,10 @@ let g:ale_sign_warning = ''
 let g:ale_echo_msg_error_str = ''
 let g:ale_echo_msg_warning_str = ''
 let g:ale_echo_msg_format = '%severity%  [%linter%]: %s'
+" }}}
+
+" Neoformat config {{{
+nnoremap <localleader>= :Neoformat<CR>
 " }}}
 
 " Insert mode: ctrl+U for undoing
