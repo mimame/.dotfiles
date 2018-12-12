@@ -705,7 +705,8 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 
 let g:endwise_no_mappings = 1
 " https://github.com/SirVer/ultisnips/issues/376#issuecomment-69033351
-let g:UltiSnipsExpandTrigger='<cr>'
+let g:ycm_min_num_of_chars_for_completion = 1
+let g:UltiSnipsExpandTrigger='<tab>'
 let g:ulti_expand_or_jump_res = 0
 function! <SID>ExpandSnippetOrReturn()
   let l:snippet = UltiSnips#ExpandSnippetOrJump()
@@ -717,8 +718,8 @@ function! <SID>ExpandSnippetOrReturn()
 endfunction
 " https://github.com/SirVer/ultisnips/issues/376#issuecomment-201977560
 inoremap <expr> <CR> pumvisible() ? "<C-R>=<SID>ExpandSnippetOrReturn()<CR>" : "\<CR>\<C-R>=EndwiseDiscretionary()\<CR>"
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-j>'
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 let g:ycm_filetype_specific_completion_to_disable = {
       \ 'gitcommit': 1,
       \ 'i3':1,
