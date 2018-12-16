@@ -406,9 +406,14 @@ augroup BWCCreateDir
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
 
-" Substitute preview
+" Substitute preview with Over {{{
+" Fix incompatibility with vim-searchindex
+" https://github.com/osyo-manga/vim-over/issues/60#issuecomment-339207149
+let g:over#command_line#enable_import_commandline_map = 0
 nnoremap <Leader>r :OverCommandLine<CR>%s/
 xnoremap <Leader>r :OverCommandLine<CR>s/
+" }}}
+
 
 " Ale config {{{
 " Set this. Airline will handle the rest.
