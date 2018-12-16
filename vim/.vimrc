@@ -433,6 +433,9 @@ nnoremap <localleader>= :Neoformat<CR>
 " Insert mode: ctrl+U for undoing
 inoremap <C-U> <C-G>u<C-U>
 
+" Always insert a space after a coma
+inoremap , ,<Space>
+
 " Folding settings {{{
 " Folds opened by default
 set nofoldenable
