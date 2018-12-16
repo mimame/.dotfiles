@@ -437,8 +437,13 @@ alias -g .....='../../../..'
 alias -- -='cd -'
 # }}}
 
-alias mk='mkdir -p'
-alias mkdir='mkdir -p'
+alias md='mkdir --parent --verbose'
+alias mkdir='mkdir --parents --verbose'
+
+function mc() {
+  mkdir --parent --verbose $1 && cd $1
+}
+
 
 #alias vim='nvim'
 # Always use float by default
