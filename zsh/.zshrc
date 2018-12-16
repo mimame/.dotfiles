@@ -444,8 +444,17 @@ function mc() {
   mkdir --parent --verbose $1 && cd $1
 }
 
+# global pipe aliases
+alias -g G='| grep'
+alias -g GE='| grep --extended-regexp'
+alias -g GF='| grep --fixed-strings'
+alias -g GI='| grep --ignore-case'
+alias -g GP='| grep --perl-regexp'
+alias -g L='| less'
+alias -g C='| xsel --input --clipboard'
+alias -g B='| bat'
+alias -g V='| nvim -R -'
 
-#alias vim='nvim'
 # Always use float by default
 alias bc='bc -l'
 # github wrapper to extend git
