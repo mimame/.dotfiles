@@ -262,7 +262,7 @@ command! vgrep vim "+grep %a"
 command! reload :write | restart
 
 " Find with fd
-command! fd fd %a %M
+command! fd fd --hidden --no-ignore --follow --exclude .git %a %M
 
 
 " ------------------------------------------------------------------------------
