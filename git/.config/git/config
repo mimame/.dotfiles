@@ -163,7 +163,7 @@
   rbs   = rebase --skip
   # reflog - https://git-scm.com/docs/git-reflog
   rf  = reflog --pretty=rf
-  rfz = !git rf --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
+  rffz = !git rf --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
   # remote - https://git-scm.com/docs/git-remote
   re   = remote
   rea  = remote add
