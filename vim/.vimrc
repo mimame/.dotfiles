@@ -971,6 +971,8 @@ function! g:committia_hooks.edit_open(info)
     imap <buffer><localleader>j <Plug>(committia-scroll-diff-down-half)
     imap <buffer><localleader>k <Plug>(committia-scroll-diff-up-half)
 endfunction
+" Always employs single column mode to have word completion
+let g:committia_use_singlecolumn = 'always'
 " }}}
 
 " github-complete.vim integration {{{
