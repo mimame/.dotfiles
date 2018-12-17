@@ -10,6 +10,12 @@ source ~/.vimrc
 " https://github.com/airblade/vim-gitgutter#when-signs-take-a-few-seconds-to-appear
 set updatetime=100
 
+" ALE config for NeoVim {{{
+" Add support for virtualtext
+let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_prefix = '  '
+" }}}
+
 " Add --servername support {{{
 " https://github.com/lervag/vimtex/wiki/introduction#neovim
 let g:vimtex_compiler_progname = 'nvr'
