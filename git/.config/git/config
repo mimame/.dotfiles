@@ -132,6 +132,9 @@
   ma = merge --abort
   mc = merge --continue
   ms = merge --skip
+  # mergetool - https://git-scm.com/docs/git-mergetool
+  mt = mergetool
+  mtg = mergetool --tool=meld
   # prune (use git gc which calls git prune)
   # #pr = prune -v
   # pull - https://git-scm.com/docs/git-pull
@@ -363,6 +366,8 @@
   ff            = false
   # https://git-scm.com/docs/git-config#git-config-mergetool
   tool          = vimdiff
+  # https://git-scm.com/docs/git-mergetool#git-mergetool---gui
+  guitool       = meld
 
 [mergetool]
   # https://git-scm.com/docs/git-config#git-config-mergetoolprompt
