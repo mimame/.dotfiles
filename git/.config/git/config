@@ -288,6 +288,9 @@
   # https://git-scm.com/docs/git-config#git-config-corewhitespace
   # Notify whitespace issues
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  # https://github.com/github/gitignore/tree/master/Global
+  # globally useful gitignores
+	excludesfile = ~/.config/git/gitignore_global
 
 [credential]
   # https://git-scm.com/docs/git-config#git-config-credentialhelper

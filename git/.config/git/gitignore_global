@@ -1,0 +1,120 @@
+# GPG.gitignore
+secring.*
+
+# Dropbox.gitignore
+.dropbox
+.dropbox.attr
+.dropbox.cache
+
+# Diff.gitignore
+*.patch
+*.diff
+
+# Linux.gitignore
+*~
+
+## temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+## KDE directory preferences
+.directory
+
+## Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+## .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+# LibreOffice.gitignore
+## LibreOffice locks
+.~lock.*#
+
+# MicrosoftOffice.gitignore
+*.tmp
+
+## Word temporary
+~$*.doc*
+
+## Word Auto Backup File
+Backup of *.doc*
+
+## Excel temporary
+~$*.xls*
+
+## Excel Backup File
+*.xlk
+
+## PowerPoint temporary
+~$*.ppt*
+
+## Visio autosave temporary files
+*.~vsd*
+
+# Patch.gitignore
+*.orig
+*.rej
+
+# Tags.gitignore
+## Ignore tags created by etags, ctags, gtags (GNU global) and cscope
+TAGS
+.TAGS
+!TAGS/
+tags
+.tags
+!tags/
+gtags.files
+GTAGS
+GRTAGS
+GPATH
+GSYMS
+cscope.files
+cscope.out
+cscope.in.out
+cscope.po.out
+
+# Vagrant.gitignore
+## General
+.vagrant/
+
+## Log files (if you are creating logs in debug mode, uncomment this)
+## *.logs
+
+# Vim.gitignore
+## Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+## Session
+Session.vim
+
+## Temporary
+.netrwhist
+*~
+
+## Auto-generated tag files
+tags
+
+## Persistent undo
+[._]*.un~
+
+# VirtualEnv.gitignore
+## http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ll]ib64
+[Ll]ocal
+[Ss]cripts
+pyvenv.cfg
+.venv
+pip-selfcheck.json
+# VisualStudioCode.git
+ignore.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
