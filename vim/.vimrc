@@ -801,6 +801,9 @@ nmap <localleader>k [c<bar>:diffupdate<CR>
 nmap <localleader>j ]c<bar>:diffupdate<CR>
 nmap <localleader>u :diffupdate<CR>
 " do          - diffobtain
+" 1do         - diffobtain LOCAL
+" 2do         - diffobtain BASE
+" 3do         - diffobtain REMOTE
 " dp          - diffput
 " ]c          - next difference
 " [c          - previous difference
@@ -809,6 +812,14 @@ nmap <localleader>u :diffupdate<CR>
 " zc          - refold/rehide text
 " zr          - unfold both files completely
 " zm          - fold both files completely
+if &diff
+  " get chunk from LOCAL
+  nmap <localleader>1 :diffget LOCAL<CR>
+  " get chunk from BASE
+  nmap <localleader>2 :diffget BASE<CR>
+  " get chunk from REMOTE
+  nmap <localleader>3 :diffget REMOTE<CR>
+endif
 " }}}
 
 " EasyAlign
