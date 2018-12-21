@@ -337,7 +337,7 @@
 [help]
   # https://git-scm.com/docs/git-config#git-config-helpautoCorrect
   # Automatically correct and execute mistyped commands immediately
-  autocorrect = -1
+  autocorrect = 0
 
 [hub]
   # https://hub.github.com/hub.1.html
