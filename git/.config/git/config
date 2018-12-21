@@ -195,12 +195,6 @@
   rv = revert
   # shortlog -- https://git-scm.com/docs/git-shortlog
   slg = shortlog --no-merges --summary --numbered --email
-  # show - https://git-scm.com/docs/git-reset
-  w   = show
-  wfz = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
-  wt  = show --stat
-  # wip - save work in progress quickly and ready to push it if necessary
-  wip = "!f() { git checkout -b wip/\"$1\" && git add --update && git commit -m \"wip: $1\"; }; f"
   # stash - https://git-scm.com/docs/git-stash
   sa  = stash apply
   sc  = stash clear
@@ -221,6 +215,12 @@
   # tag - https://git-scm.com/docs/git-tag
   t  = tag
   ta = tag --annotate
+  # show - https://git-scm.com/docs/git-reset
+  w   = show
+  wfz = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
+  wt  = show --stat
+  # wip - save work in progress quickly and ready to push it if necessary
+  wip = "!f() { git checkout -b wip/\"$1\" && git add --update && git commit -m \"wip: $1\"; }; f"
 
 [branch]
   # https://git-scm.com/docs/git-config#git-config-branchautoSetupRebase
