@@ -624,6 +624,20 @@ nnoremap <silent> K <space>k<space>
 " Use tab as s-tab to change to quick view mode
 nnoremap <tab> <s-tab>
 
+" Go to next tab page or move current tab page to position specified by the
+" count
+nnoremap <silent> gt : <c-u>
+                    \| if v:count == 0
+                    \|     execute 'normal gt'
+                    \| elseif v:count > tabpagenr('$')
+                    \|     tabmove
+                    \| elseif v:count >= tabpagenr()
+                    \|     execute 'tabmove' v:count
+                    \| elseif v:count < tabpagenr()
+                    \|     execute 'tabmove' v:count - 1
+                    \| endif
+                    \| <cr>
+
 " Example of standard two-panel file managers mappings
 nnoremap <f3> :!less %f<cr>
 nnoremap <f4> :edit<cr>
