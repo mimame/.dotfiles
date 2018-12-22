@@ -492,7 +492,7 @@ filextype */
 "set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
     "\phistory,fhistory,dirstack,registers,bookmarks,bmarks
 set vifminfo=dhistory,chistory,tui,shistory,
-    \phistory,fhistory,dirstack,registers,bookmarks,bmarks
+    \phistory,fhistory,dirstack,registers
 
 " ------------------------------------------------------------------------------
 
