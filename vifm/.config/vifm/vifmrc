@@ -132,6 +132,9 @@ set cpoptions-=f
 " Show hidden files by default
 set dotfiles
 
+" Hide .. directory everywhere
+set dotdirs=
+
 " Devicons
 " vim insert mode ctrl+V u eNumber esc ; eNumber from https://github.com/ryanoasis/nerd-fonts#glyph-sets
 set classify='ﱮ  :dir:/'
