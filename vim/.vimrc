@@ -90,6 +90,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/committia.vim'
   " Input completion for GitHub
   Plug 'rhysd/github-complete.vim'
+  " Use of vifm as a file picker
+  Plug 'vifm/vifm.vim'
   " A tree explorer plugin with git info
   Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'scrooloose/nerdtree'
   " A tree explorer plugin with tabs
@@ -480,8 +482,15 @@ augroup myvimrc
   au!
   au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
-" Highlight .vifmrc and theme files but don't enable because nerdtree is prefered
-let g:loaded_vifm=1
+
+" vifm config {{{
+nnoremap <Leader>ve :EditVifm<CR>
+nnoremap <Leader>vh :SplitVifm<CR>
+nnoremap <Leader>vv :VsplitVifm<CR>
+nnoremap <Leader>vd :DiffVifm<CR>
+nnoremap <Leader>vt :TabVifm<CR>
+" }}}
+
 
 " NERDTree config {{{
 let g:NERDTreeShowHidden=1
