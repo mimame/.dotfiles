@@ -197,8 +197,7 @@ set statusline="%1*%* %2*%t%=%* %3*%* %2*%A%* %3*%* %2*%10u:%-7g%* %3*�
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
-mark H /data
+mark b ~/.bin/
 mark D ~/Dropbox
 mark d ~/.dotfiles
 mark f ~/forks
