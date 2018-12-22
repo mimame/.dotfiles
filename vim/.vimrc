@@ -104,6 +104,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   " Plugin to toggle, display and navigate marks
   Plug 'kshenoy/vim-signature'
+  " Run your tests at the speed of thought
+  Plug 'janko-m/vim-test'
   " autopep8 python code
   "Plug 'tell-k/vim-autopep8' (vim-poliglot)
   " Ruby Configuration Files
@@ -794,6 +796,14 @@ nmap <leader>gb :Gblame<CR>
 " }}}
 
 nmap <leader>ti :terminal ++curwin ++close tig<cr>
+
+" vim-test config {{{
+nnoremap <silent> <Leader>tn :TestNearest<CR>
+nnoremap <silent> <Leader>tf :TestFile<CR>
+nnoremap <silent> <Leader>ts :TestSuite<CR>
+nnoremap <silent> <Leader>tl :TestLast<CR>
+nnoremap <silent> <Leader>tv :TestVisit<CR>
+" }}}
 
 " Always open git commit files in insert mode
 autocmd FileType gitcommit exec 'au VimEnter * startinsert'
