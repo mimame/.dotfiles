@@ -617,6 +617,10 @@ nnoremap ,w :set wrap!<cr>
 nnoremap < <c-w><
 nnoremap > <c-w>>
 
+" Moving cursor in another pane
+nnoremap <silent> J <space>j<space>
+nnoremap <silent> K <space>k<space>
+
 " Example of standard two-panel file managers mappings
 nnoremap <f3> :!less %f<cr>
 nnoremap <f4> :edit<cr>
