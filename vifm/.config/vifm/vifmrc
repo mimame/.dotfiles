@@ -135,6 +135,9 @@ set dotfiles
 " Hide .. directory everywhere
 set dotdirs=
 
+" Custom ruler format (add filtered files)
+set rulerformat='%2l/%S%[ - %x filtered%]'
+
 " Devicons
 " vim insert mode ctrl+V u eNumber esc ; eNumber from https://github.com/ryanoasis/nerd-fonts#glyph-sets
 set classify='ﱮ  :dir:/'
