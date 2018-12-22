@@ -138,6 +138,11 @@ set dotdirs=
 " Custom ruler format (add filtered files)
 set rulerformat='%2l/%S%[ - %x filtered%]'
 
+" Ignore .git directory on :find
+set findprg='find %s %a -print ,
+            \ -type d \( ! -readable -o ! -executable -o -path "*/.git" \)
+            \ -prune'
+
 " Devicons
 " vim insert mode ctrl+V u eNumber esc ; eNumber from https://github.com/ryanoasis/nerd-fonts#glyph-sets
 set classify='ﱮ  :dir:/'
