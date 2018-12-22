@@ -638,6 +638,11 @@ nnoremap <silent> gt : <c-u>
                     \| endif
                     \| <cr>
 
+" Switch to the next tab page
+nnoremap <c-n> gt
+" Switch to the previous tab page
+nnoremap <c-p> gT
+
 " Example of standard two-panel file managers mappings
 nnoremap <f3> :!less %f<cr>
 nnoremap <f4> :edit<cr>
