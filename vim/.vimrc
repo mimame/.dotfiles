@@ -16,6 +16,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 " }}}
 
+" helper function to select in vim/nvim only {{{
+function! Cond(cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+" }}}
+
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
   " Editorconfig plugin for vim
@@ -151,8 +158,10 @@ call plug#begin('~/.vim/plugged')
   "Plug 'dahu/Insertlessly'
   " Additional text objects
   Plug 'wellle/targets.vim'
-  " Previewing markdown files in a browser
-  Plug 'JamshedVesuna/vim-markdown-preview'
+  " Real-time markdown preview plugin
+  Plug 'iamcco/mathjax-support-for-mkdp', Cond(!has('nvim'))
+  Plug 'iamcco/markdown-preview.vim',  Cond(!has('nvim'))
+  Plug 'iamcco/markdown-preview.nvim', Cond(has('nvim'), {'do': 'cd app & yarn install'})
   " Syntax for tmux.conf
   "Plug 'tmux-plugins/vim-tmux' (vim-poliglot)
   " Haml, Sass, SCSS
@@ -585,17 +594,9 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#1c1c1c	 ctermbg=233
 let g:SignatureMarkTextHLDynamic = 1
 
 " Markdown improvements {{{
-" vim-markdown-preview plugin {{{
-" Update after each writing
-let g:vim_markdown_preview_toggle = 3
-" Use xdg-open for open the .html
-let g:vim_markdown_preview_use_xdg_open = 1
-" Remove browser name from window selection (don't duplicate the opened tab)
-let g:vim_markdown_preview_browser = ''
-" Use grip for rendering markdown by default
-let g:vim_markdown_preview_github=1
-" Use this if GitHub's API (causing latencies) require authentication
-" let g:vim_markdown_preview_perl = 1
+" markdown-preview plugin {{{
+" Open the preview window once enter the markdown buffer
+let g:mkdp_auto_start = 1
 " }}}
 
 " Open TOC using fzf instead of quickfix window {{{
