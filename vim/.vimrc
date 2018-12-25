@@ -47,6 +47,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'justinmk/vim-sneak'
   " Highlight yank region
   Plug 'machakann/vim-highlightedyank'
+  " Selectively illuminating other uses of the current word under the cursor
+  Plug 'RRethy/vim-illuminate'
   " Only update fold when be necessary
   Plug 'Konfekt/FastFold'
   " Insert or delete brackets, parens, quotes in pair
