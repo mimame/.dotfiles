@@ -49,6 +49,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'machakann/vim-highlightedyank'
   " Selectively illuminating other uses of the current word under the cursor
   Plug 'RRethy/vim-illuminate'
+  " Make scrolling in Vim more pleasant
+  Plug 'terryma/vim-smooth-scroll'
   " Only update fold when be necessary
   Plug 'Konfekt/FastFold'
   " Insert or delete brackets, parens, quotes in pair
@@ -523,6 +525,13 @@ autocmd VimEnter *
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>n. :NERDTreeFind<CR>
 map <Leader>t :TagbarToggle<CR>
+" }}}
+
+" vim-smooth-scroll {{{
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " }}}
 
 nnoremap <Leader>q :q<CR>
