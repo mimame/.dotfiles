@@ -312,6 +312,8 @@
   # https://git-scm.com/docs/git-config#git-config-diffindentHeuristic
   # Experimental heuristics that shift diff hunk boundaries to make patches easier to read
   indentHeuristic = true
+  # https://git-scm.com/docs/git-config#git-config-difftool
+  tool            = nvimdiff
   # https://git-scm.com/docs/git-config#git-config-diffguitool
   guitool         = meld
 
@@ -319,6 +321,9 @@
   # https://git-scm.com/docs/git-config#git-config-difftoolprompt
   # Don't ask to hit return to open the difftool
   prompt = false
+
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [difftool "meld"]
   cmd = meld "$LOCAL" "$REMOTE"
