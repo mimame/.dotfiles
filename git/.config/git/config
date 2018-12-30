@@ -303,9 +303,9 @@
   helper = store
 
 [diff]
-  # https://git-scm.com/docs/git-config#git-config-diffalgorithm
-  # Use "patience diff" algorithm
-  algorithm       = patience
+  # https://git-scm.com/docs/git-config#git-config-codehistogramcode
+  # Use histogram algorithm
+  algorithm       = histogram
   # https://git-scm.com/docs/git-diff#git-diff-plain
   # Moved lines in a diff are colored differently
   colorMoved      = plain
