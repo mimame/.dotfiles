@@ -279,7 +279,7 @@
 [core]
   # https://git-scm.com/docs/git-config#git-config-coreeditor
   # Default editor for commits and tags
-  editor     = vim
+  editor     = nvim
   # https://git-scm.com/docs/git-config#git-config-corefsmonitor
   # Speed up git by avoiding unnecessary processing of files that have not changed
   fsmonitor  = ~/.config/git/hooks/fsmonitor-watchman
