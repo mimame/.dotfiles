@@ -135,8 +135,8 @@
   mc = merge --continue
   ms = merge --skip
   # mergetool - https://git-scm.com/docs/git-mergetool
-  mt = mergetool
-  mtg = mergetool --tool=meld
+  mt  = mergetool
+  mtg = mergetool --gui
   # prune (use git gc which calls git prune)
   # #pr = prune -v
   # pull - https://git-scm.com/docs/git-pull
