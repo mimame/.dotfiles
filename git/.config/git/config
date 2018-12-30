@@ -71,13 +71,15 @@
   # diff - https://git-scm.com/docs/git-diff
   d   = diff
   dfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }') && [[ -n ${FILES} ]] && git diff ${FILES}
-  ds  = diff --staged
-  dst = diff --staged --stat
-  dsw = diff --staged --ignore-all-space
-  dt  = diff --stat
-  dtl = difftool
-  dts = difftool --staged
-  dw  = diff --ignore-all-space
+  ds   = diff --staged
+  dst  = diff --staged --stat
+  dsw  = diff --staged --ignore-all-space
+  dt   = diff --stat
+  dtl  = difftool
+  dts  = difftool --staged
+  dtlg = difftool --gui
+  dtsg = difftool --staged --gui
+  dw   = diff --ignore-all-space
   # fetch - https://git-scm.com/docs/git-fetch
   f  = fetch
   fa = fetch --all
@@ -310,11 +312,16 @@
   # https://git-scm.com/docs/git-config#git-config-diffindentHeuristic
   # Experimental heuristics that shift diff hunk boundaries to make patches easier to read
   indentHeuristic = true
+  # https://git-scm.com/docs/git-config#git-config-diffguitool
+  guitool         = meld
 
 [difftool]
   # https://git-scm.com/docs/git-config#git-config-difftoolprompt
   # Don't ask to hit return to open the difftool
   prompt = false
+
+[difftool "meld"]
+  cmd = meld "$LOCAL" "$REMOTE"
 
 [fetch]
   # https://git-scm.com/docs/git-config#git-config-fetchprune
