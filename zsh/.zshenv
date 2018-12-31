@@ -21,16 +21,25 @@ export GEM_HOME="$HOME/.gem"
 # Always use user Python pip by default
 export PIP_USER=y
 
+# Add/Append to PATH
+add_path(){
+ export PATH="$1:${PATH}"
+}
+
+append_path(){
+ export PATH="${PATH}:$1"
+}
+
 if [ -z "${LOADED_PATHS+1}" ]; then
   export LOADED_PATHS="true"
   # Vim as default editor
-  export PATH="$PATH:$HOME/.yarn/bin"
-  export PATH="$PATH:$HOME/.bin"
-  export PATH="$PATH:$HOME/go/bin"
-  export PATH="$PATH:$HOME/.cargo/bin"
+  append_path "$HOME/.yarn/bin"
+  append_path "$HOME/.bin"
+  append_path "$HOME/go/bin"
+  append_path "$HOME/.cargo/bin"
   # Always use user Ruby gems by default
-  export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-  export PATH="$PATH:$HOME/.local/bin"
+  append_path "$(ruby -e 'print Gem.user_dir')/bin"
+  append_path "$HOME/.local/bin"
 fi
 
 # Tar wrapper
