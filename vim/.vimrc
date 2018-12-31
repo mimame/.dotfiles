@@ -316,7 +316,7 @@ set autoindent
 " Indent wrapped lines
 set breakindent
 " Show spaces, tabs and breaklines with characters using :set list
-set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
+set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵,space:·
 " Show this in wrapped lines
 let &showbreak = '↳ '
 " Wrap lines
