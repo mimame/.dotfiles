@@ -420,6 +420,8 @@ bindkey -M viins "^ " magic-space
 bindkey -M isearch " " magic-space
 # }}}
 
+alias paths='echo $PATH | sed "s/:/\n/g"'
+
 alias szsh='source ~/.zshrc'
 
 # Always preserve the environment with sudo
