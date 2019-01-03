@@ -474,9 +474,12 @@ alias egrep='egrep --color=auto'
 # o function and open function (mimeopen provided by perl-file-mimetype) {{{
 # It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
 function open() {
-    # Run mimeopen with nohup in background and remove it from the jobs table
-    nohup mimeopen "$1" >| /tmp/nohup-"$(basename $1)".out 2>| /tmp/nohup-"$(basename $1)".err < /dev/null &
+  # Run mimeopen with nohup in background and remove it from the jobs table
+  for file in "$@"
+  do
+    nohup mimeopen "$file" >| /tmp/nohup-"$(basename $file)".out 2>| /tmp/nohup-"$(basename $file)".err < /dev/null &
     disown %%
+  done
 }
 # If o doesn't have any argument, open the current dir
 function o() {
