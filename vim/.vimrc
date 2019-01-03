@@ -440,6 +440,9 @@ xnoremap <Leader>r :OverCommandLine<CR>s/
 " Ale config {{{
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#error_symbol = ' '
+let g:airline#extensions#ale#warning_symbol = ' '
+let g:airline#extensions#ale#show_line_numbers = 0
 let g:ale_dockerfile_hadolint_use_docker = 'yes'
 let g:ale_sign_error = ''
 let g:ale_sign_warning = ''
