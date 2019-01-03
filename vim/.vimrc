@@ -406,9 +406,14 @@ nmap K <Plug>(devdocs-under-cursor)
 
 " Highlight yank region
 map y <Plug>(highlightedyank)
-" molokai visual colors
-hi HighlightedyankRegion ctermbg=235 guibg=#403D3D
+" molokai colors improved {{{
+highlight CursorLine   ctermbg=236 guibg=#403D3D
+highlight CursorLineNr ctermbg=236 cterm=bold guibg=#232526 gui=bold
+" molokai visual improved
+hi HighlightedyankRegion ctermbg=236 guibg=#403D3D
 let g:highlightedyank_highlight_duration = 300
+" }}}
+
 " Write file and create the folder if not exists
 function! s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
