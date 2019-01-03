@@ -475,7 +475,7 @@ alias egrep='egrep --color=auto'
 # It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
 function open() {
     # Run mimeopen with nohup in background and remove it from the jobs table
-    nohup mimeopen "$1" >| /tmp/nohup-"${1}".out 2>| /tmp/nohup-"${1}".err < /dev/null &
+    nohup mimeopen "$1" >| /tmp/nohup-"$(basename $1)".out 2>| /tmp/nohup-"$(basename $1)".err < /dev/null &
     disown %%
 }
 # If o doesn't have any argument, open the current dir
