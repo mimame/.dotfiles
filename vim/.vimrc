@@ -446,6 +446,10 @@ let g:ale_sign_warning = ''
 let g:ale_echo_msg_error_str = ''
 let g:ale_echo_msg_warning_str = ''
 let g:ale_echo_msg_format = '%severity%  [%linter%]: %s'
+highlight ALEWarning ctermfg=yellow ctermbg=236 guifg=yellow
+highlight ALEError   ctermfg=red    ctermbg=236 guifg=red
+highlight link ALEWarningSign ALEWarning
+highlight link ALEErrorSign   ALEError
 " }}}
 
 " Neoformat config {{{
