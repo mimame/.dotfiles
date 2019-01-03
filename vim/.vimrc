@@ -821,6 +821,12 @@ nnoremap <silent> <Leader>tv :TestVisit<CR>
 autocmd FileType gitcommit exec 'au VimEnter * startinsert'
 
 " Diff commands {{{
+" Better diff options {{{
+" Use histogram diff algorithm
+set diffopt+=algorithm:histogram
+" Use default git diff heuristic
+set diffopt+=indent-heuristic
+" }}}
 " If doing a diff. Upon writing changes to file, automatically update the
 " differences
 autocmd BufWritePost * if &diff == 1 | diffupdate | endif
