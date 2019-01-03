@@ -785,10 +785,10 @@ let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
 let g:gitgutter_grep = 'rg'
 let g:gitgutter_sign_removed = '-'
 " Symbols color
-highlight GitGutterAdd          ctermfg=green  ctermbg=236
-highlight GitGutterChange       ctermfg=yellow ctermbg=236
-highlight GitGutterDelete       ctermfg=red    ctermbg=236
-highlight GitGutterChangeDelete ctermfg=yellow ctermbg=236
+highlight GitGutterAdd          ctermfg=green  ctermbg=236 cterm=bold guifg=green  guibg=#232526 gui=bold
+highlight GitGutterChange       ctermfg=yellow ctermbg=236 cterm=bold guifg=yellow guibg=#232526 gui=bold
+highlight GitGutterDelete       ctermfg=red    ctermbg=236 cterm=bold guifg=red    guibg=#232526 gui=bold
+highlight GitGutterChangeDelete ctermfg=yellow ctermbg=236 cterm=bold guifg=yellow guibg=#232526 gui=bold
 " Move between hunks
 nmap <localleader>k <Plug>GitGutterPrevHunk
 nmap <localleader>j <Plug>GitGutterNextHunk
