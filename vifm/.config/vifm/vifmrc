@@ -222,10 +222,7 @@ mark t /tmp
 " open that file and the remote folder will be mounted and finally remove the
 " file
 " rsync command specially useful for partial copies
-command! rsyncLocal rsync -aAHXxhWS --info=progress2 --no-compress %f %D %s
-command! rsyncLocalDelete rsync -aAHXxhSW --delete --info=progress2 --no-compress %f %D %s
-command! rsyncNetwork rsync -aAHXxhzS --info=progress2 -e "ssh -T -o Compression=no -x" %f %D %s
-command! rsyncNetworkDelete rsync -aAHXxhzS --delete --info=progress2 -e "ssh -T -o Compression=no -x" %f %D %s
+command! rsync rsync --archive --compress --info=progress2 --human-readable --update --delete %f %D %s
 " cp command always recursive, preserving all attributes and only updating old files
 command! cp cp -avu %f %D %s
 " Show file system disk space usage with ncdu
