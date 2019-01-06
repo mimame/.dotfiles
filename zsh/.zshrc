@@ -471,6 +471,9 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+# rsync
+alias rs='rsync --archive --compress --info=progress2 --human-readable --update --delete'
+
 # o function and open function (mimeopen provided by perl-file-mimetype) {{{
 # It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
 function open() {
