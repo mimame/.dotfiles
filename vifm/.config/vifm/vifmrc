@@ -548,6 +548,9 @@ nnoremap o :!mimeopen %f<cr>
 " Select program to open the file
 nnoremap O :file <space><tab>
 
+" Force file editing
+nnoremap i :edit<cr>
+
 " Open with vscode
 nnoremap co :!code %f &<cr>
 
