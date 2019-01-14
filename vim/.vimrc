@@ -404,13 +404,10 @@ let g:sneak#s_next = 1
 " Send word under cursor to devdocs.io
 nmap K <Plug>(devdocs-under-cursor)
 
-" Highlight yank region
-map y <Plug>(highlightedyank)
 " molokai colors improved {{{
 highlight CursorLine   ctermbg=236 guibg=#403D3D
 highlight CursorLineNr ctermbg=236 cterm=bold guibg=#232526 gui=bold
-" molokai visual improved
-hi HighlightedyankRegion ctermbg=236 guibg=#403D3D
+" Reduce highlighted time of the yank region
 let g:highlightedyank_highlight_duration = 300
 " }}}
 
