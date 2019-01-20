@@ -12,7 +12,7 @@ stow --target=/ manjaro
 ## Installed language packages
 
 ### Python
-`pip list | cut -d' ' -f1`
+`pip freeze | cut -d'=' -f1`
 
 ### Ruby
 `gem list --no-versions`
