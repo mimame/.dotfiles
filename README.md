@@ -20,8 +20,9 @@
       <li><a href="#kitty-terminal-kittyconfigkitty">kitty (terminal) (./kitty/.config/kitty)</a></li>
       <li><a href="#latex-latex">latex (./latex/)</a></li>
       <li><a href="#newsboat-tui-rss-viewer-newsboatconfignewsboat">newsboat (TUI RSS viewer) (./newsboat/.config/newsboat)</a></li>
-      <li><a href="#manjaro-arch-linux-based-distribution-manjaroetc">Manjaro (Arch Linux based distribution) (./manjaro/etc)</a></li>
       <li><a href="#nvim-nvimconfignvim">nvim (./nvim/.config/nvim)</a></li>
+      <li><a href="#packages-arch-linux-based-distribution-packages">packages (Arch Linux based distribution) (./packages)</a></li>
+      <li><a href="#pacman-package-manager-pacmanetc">pacman (package manager) (./pacman/etc)</a></li>
       <li><a href="#parallel-parallelparallel">parallel (./parallel/.parallel)</a></li>
       <li><a href="#rofi-xresources">rofi (./Xresources)</a></li>
       <li><a href="#ssh-sshssh">ssh (./ssh/.ssh)</a></li>
@@ -53,6 +54,7 @@
 ### Usage
 
 `stow folder`
+`stow --target=/ folder`
 
 ## Content
 
@@ -76,9 +78,11 @@
 
 ### [newsboat (TUI RSS viewer)](https://newsboat.org/) (./newsboat/.config/newsboat)
 
-### [Manjaro (Arch Linux based distribution)](https://manjaro.org/) (./manjaro/etc)
-
 ### [nvim](https://neovim.io/) (./nvim/.config/nvim)
+
+### [packages (Arch Linux based distribution)](https://manjaro.org/) (./packages)
+
+### [pacman (package manager)](https://manjaro.org/) (./pacman/etc)
 
 ### [parallel](https://www.gnu.org/software/parallel/) (./parallel/.parallel)
 
