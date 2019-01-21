@@ -455,6 +455,7 @@ alias -g GF='| grep --fixed-strings'
 alias -g GI='| grep --ignore-case'
 alias -g GP='| grep --perl-regexp'
 alias -g L='| less'
+alias -g T='tail -F'
 alias -g V='| nvim -R -'
 alias -g W='| wc'
 
