@@ -4,8 +4,10 @@ ansicolor
 asn1crypto
 astroid
 attrs
+autopep8
 basiciw
 bcrypt
+biopython
 black
 bottle
 cffi
@@ -19,10 +21,12 @@ distro
 evdev
 fasteners
 Flask
+Flask-Cors
 future
 get
 greenlet
 grip
+gunicorn
 i3pystatus
 isort
 itsdangerous
@@ -51,6 +55,7 @@ post
 proselint
 public
 pyasn1
+pycodestyle
 pycparser
 PyJWT
 pylint
@@ -74,4 +79,5 @@ wcwidth
 Werkzeug
 wrapt
 yamllint
+yapf
 youtube-dl

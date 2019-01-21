@@ -5,8 +5,13 @@ cytoscape
 drawio-desktop
 dropbox-cli
 fpp-git
+fuse-zip
+git-cola
+git-extras
 google-chrome
 gron-bin
+hyperfine
+lab
 massren
 mhwd-i2c-syna3602
 neovim-gtk-git
@@ -17,7 +22,9 @@ rstudio-desktop-bin
 samtools
 shrinkpdf
 skypeforlinux-stable-bin
+universal-ctags-git
 watchman
+weka
 zoom
 zotero
 zulip-electron-bin
