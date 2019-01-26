@@ -465,8 +465,6 @@ alias bc='bc -l'
 alias git=hub
 alias g=git
 
-alias c=bat
-
 alias ls='ls --color=always --all --human-readable --format=long'
 alias l='exa --all --color=always --long --group --header --git'
 alias grep='grep --color=auto'
