@@ -256,6 +256,10 @@ command! unzip unzip %f &
 command! untar tar xf %f &
 " tar selected files
 command! tar tar caf %a %f &
+" use e() zsh function for extracting any compressed file or folder
+command! extract :!e %f &
+" use c() zsh function for compressingg any file or folder
+command! compress :!c %a %f %s
 " Repeat last command to the selected files/folders
 command! run !! ./%f
 " Run make command
@@ -612,6 +616,11 @@ nnoremap ,c :write | execute ':!vim $MYVIFMRC' | restart<cr>
 
 " Toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>
+
+" extract file mapping
+nnoremap ,e :extract<cr>
+" compress file mapping
+nnoremap ,c :compress<space>
 
 " Use < and > without ctrl-w prefix key in normal mode
 nnoremap < <c-w><
