@@ -170,6 +170,7 @@ parallel
 patch
 patchutils
 pavucontrol
+pbzip2
 pcmanfm-gtk3
 pdfpc
 perl-anyevent-i3
@@ -225,6 +226,7 @@ thunderbird
 tig
 time
 tk
+tldr
 tlp
 tmux
 tokei
