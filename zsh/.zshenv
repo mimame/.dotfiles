@@ -42,6 +42,24 @@ if [ -z "${LOADED_PATHS+1}" ]; then
   append_path "$HOME/.local/bin"
 fi
 
+# Extract any kind of compressed file
+e () {
+  case $1 in
+    *.tar) tar xvf $1;;
+    *.tar.gz|*.tgz) tar -I pigz -xvf $1;;
+    *.tar.xz|*.txz) tar -I pixz -xvf $1;;
+    *.tar.bz2|*.tbz2) tar -I pbzip2 -xvf $1;;
+    *.bz2)     pbzip2 -dv $1    ;;
+    *.xz)      pixz -d $1      ;;
+    *.gz)      pigz -dv $1     ;;
+    *.zip)     unzip $1      ;;
+    *.7z)      7z x $1       ;;
+    *.Z)       uncompress $1 ;;
+    *.rar)     unrar e $1    ;;
+    *)         echo "'$1' cannot be extracted, unknown compression format" ;;
+  esac
+}
+
 # Tar wrapper
 function t {
 tar cpf "$1.tar" "$1"
