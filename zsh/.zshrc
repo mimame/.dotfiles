@@ -346,9 +346,12 @@ SPACESHIP_PROMPT_ORDER=(
 # }}}
 
 # Vi mode keys {{{
+# https://dougblack.io/words/zsh-vi-mode.html
 # Enable vi mode
 bindkey -v
 spaceship_vi_mode_enable
+# Delay from 0.4s to 0.1s to enter in vi mode
+export KEYTIMEOUT=1
 # Normal mode space for execute suggest
 # https://wiki.archlinux.org/index.php/Zsh#Key_bindings
 bindkey -M vicmd ' ' autosuggest-execute
