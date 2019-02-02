@@ -13,6 +13,7 @@ gron-bin
 hyperfine
 lab
 massren
+mdcat
 mhwd-i2c-syna3602
 neovim-gtk-git
 oni

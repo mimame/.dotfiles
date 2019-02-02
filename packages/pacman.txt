@@ -41,6 +41,7 @@ dia
 diff-so-fancy
 dnsmasq
 docker-compose
+dos2unix
 downgrade
 dstat
 ecryptfs-utils
@@ -118,6 +119,7 @@ logrotate
 lsscsi
 lxappearance
 lxinput
+macchanger
 maia-console
 make
 man-db
