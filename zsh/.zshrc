@@ -452,10 +452,9 @@ function mc() {
 # global pipe aliases
 alias -g B='| bat'
 alias -g C='| xsel --input --clipboard'
-alias -g G='| grep'
+alias -g G='| grep --ignore-case'
 alias -g GE='| grep --extended-regexp'
 alias -g GF='| grep --fixed-strings'
-alias -g GI='| grep --ignore-case'
 alias -g GP='| grep --perl-regexp'
 alias -g L='| less'
 alias -g T='tail -F'
