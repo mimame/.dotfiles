@@ -475,6 +475,12 @@ alias egrep='egrep --color=auto'
 # rsync
 alias rs='rsync --archive --compress --info=progress2 --human-readable --update --delete'
 
+# Burn image files to USB
+function iso()  {
+  sudo umount $2 2> /dev/null
+  sudo dd bs=4M if=$1 of=$2 status=progress conv=fdatasync
+}
+
 # o function and open function (mimeopen provided by perl-file-mimetype) {{{
 # It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
 function open() {
