@@ -17,6 +17,7 @@ endif
 " }}}
 
 " helper function to select in vim/nvim only {{{
+" Example: " Plug 'iamcco/markdown-preview.vim',  Cond(!has('nvim'))
 function! Cond(cond, ...)
   let opts = get(a:000, 0, {})
   return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
@@ -163,9 +164,7 @@ call plug#begin('~/.vim/plugged')
   " Additional text objects
   Plug 'wellle/targets.vim'
   " Real-time markdown preview plugin
-  Plug 'iamcco/mathjax-support-for-mkdp', Cond(!has('nvim'))
-  Plug 'iamcco/markdown-preview.vim',  Cond(!has('nvim'))
-  Plug 'iamcco/markdown-preview.nvim', Cond(has('nvim'), {'do': 'cd app & yarn install'})
+  Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}
   " Syntax for tmux.conf
   "Plug 'tmux-plugins/vim-tmux' (vim-poliglot)
   " Haml, Sass, SCSS
