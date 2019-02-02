@@ -457,7 +457,6 @@ alias -g GE='| grep --extended-regexp'
 alias -g GF='| grep --fixed-strings'
 alias -g GP='| grep --perl-regexp'
 alias -g L='| less'
-alias -g T='tail -F'
 alias -g V='| nvim -R -'
 alias -g W='| wc'
 
@@ -510,6 +509,7 @@ alias news='newsboat'
 alias fm='vifm'
 alias re='massren'
 alias tree='tree -a'
+alias T='tail -F'
 
 # rg with grep -r behaviour
 alias s='rg --smart-case --follow --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --glob '"'"'!.git/*'"'"
