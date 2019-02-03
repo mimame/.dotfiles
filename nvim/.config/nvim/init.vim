@@ -28,28 +28,6 @@ nmap <leader>ti :terminal <cr>tig && exit<cr>
 " To enter |Terminal-mode| automatically
 autocmd TermOpen * startinsert
 
-" close a terminal buffer automatically if the command is successful {{{
-" https://www.reddit.com/r/neovim/comments/7xonzm/how_to_close_a_terminal_buffer_automatically_if/dud0vxn
-function! OnTermClose()
-    " Try to move the cursor to the last line containing text
-    try
-        $;?.
-    catch
-        " The buffer is empty here. This shouldn't ever happen
-        return
-    endtry
-    " Is the last line an error message?
-    if match(getline('.'), 'make: \*\*\* \[[^\]]\+] Error ') == -1
-        call feedkeys('a ')
-    endif
-endfunction
-
-augroup MY_TERM_AUGROUP
-    autocmd!
-    au TermClose * silent call OnTermClose()
-augroup END
-" }}}
-
 " Load .init.vim when writing {{{
 augroup myvimrc
   au!
