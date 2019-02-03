@@ -506,6 +506,11 @@ function python () {
   test -z "$1" && ipython || command python "$@"
 }
 
+function R () {
+  # Use command to avoid the recursion
+  test -z "$1" && radian || command R "$@"
+}
+
 # Never use vi
 alias vi='vim'
 alias v='vim'
