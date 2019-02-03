@@ -525,10 +525,8 @@ alias ag='ag --unrestricted --smart-case --ignore .git'
 alias f='fd --hidden --no-ignore --follow --exclude .git'
 
 # Safe ops. Ask the user before doing anything destructive.
-alias rm="rm -i --verbose"
-alias rmr='rm --recursive --verbose'
-alias rm!='rm --force --verbose'
-alias rmr!='rm --recursive --force --verbose'
+# Move rm files to the trash using trash-cli
+alias rm='trash --verbose'
 alias mv="mv -i"
 alias cp="cp -i"
 alias ln="ln -i"
