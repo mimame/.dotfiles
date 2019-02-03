@@ -897,7 +897,7 @@ let g:go_highlight_build_constraints = 1
 
 " Nvim-R related config {{{
 " Use rtichoke as the default R terminal
-let R_app = "rtichoke"
+let R_app = "radian"
 let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
