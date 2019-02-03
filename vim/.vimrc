@@ -902,6 +902,13 @@ let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
+
+" Object_Browser window highlight endline tabs by default
+" Ignore extra whitespace by filetype doesn't work
+" let g:extra_whitespace_ignored_filetypes = ['rbrowser']
+" So force to turn off with the :highlight command
+autocmd FileType rbrowser :highlight ExtraWhitespace ctermbg=none
+
 " }}}
 
 " Buffers {{{
