@@ -9,10 +9,13 @@
 ## Installed language packages
 
 ### Python
-`pip freeze | cut -d'=' -f1 > python.txt`
+`pip freeze | cut -d'=' -f1 >! python.txt`
+
+### Javascript
+yarn global list | grep -v 'info' | grep -F -- '-' | sed 's/[- ]\+//' >! javascript.txt
 
 ### Ruby
-`gem list --no-versions > ruby.txt`
+`gem list --no-versions >! ruby.txt`
 
 ### Go
-`cd ~; go list ./... > go.txt`
+`cd ~; go list ./... >! go.txt`

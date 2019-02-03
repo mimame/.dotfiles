@@ -1,0 +1,9 @@
+bash-language-server
+gh-compare
+jsonlint
+neovim-node-host
+trash
+tsc
+tsserver
+tsfmt
+vscode-json-languageserver
