@@ -501,6 +501,11 @@ function o() {
 }
 # }}}
 
+function python () {
+  # Use command to avoid the recursion
+  test -z "$1" && ipython || command python "$@"
+}
+
 # Never use vi
 alias vi='vim'
 alias v='vim'
