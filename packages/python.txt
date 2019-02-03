@@ -67,9 +67,10 @@ pytz
 pyudev
 PyYAML
 query-string
+radian
 rapi
+rchitect
 request
-rtichoke
 sensors
 thefuck
 toml
