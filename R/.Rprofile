@@ -34,6 +34,11 @@ g <- function(df, search, ignore.case = TRUE, perl = FALSE, fixed = FALSE) {
   return(searched_df)
 }
 
+## Options
+# URLs of the repositories for use by update.packages.
+# Defaults to c(CRAN="@CRAN@"), a value that causes some utilities to prompt for a CRAN mirror
+options("repos" = c(CRAN = "http://cran.rstudio.com/"))
+
 ## radian (interactive console) options
 options(
     # see https://help.farbox.com/pygments.html
