@@ -39,6 +39,9 @@ g <- function(df, search, ignore.case = TRUE, perl = FALSE, fixed = FALSE) {
 # Defaults to c(CRAN="@CRAN@"), a value that causes some utilities to prompt for a CRAN mirror
 options("repos" = c(CRAN = "http://cran.rstudio.com/"))
 
+# Used in install.packages as default for the number of cpus to use in a potentially parallel installation
+options("Ncpus" = 4)
+
 ## radian (interactive console) options
 options(
     # see https://help.farbox.com/pygments.html
