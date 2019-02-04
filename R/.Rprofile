@@ -24,6 +24,16 @@ hh = function(df, elements=5) {
   df[1:rows, 1:columns]
 }
 
+# Search string in any column and add their index
+g <- function(df, search, ignore.case = TRUE, perl = FALSE, fixed = FALSE) {
+  searched_index <- unique(unlist(apply(df, 2, function(column){grep(search, column, ignore.case, perl, fixed)})))
+  # explicitly convert to dataframe to use index
+  # tibble doesn't let to use colnames
+  searched_df <- as.data.frame(df[searched_index, ])
+  row.names(searched_df) <- searched_index
+  return(searched_df)
+}
+
 ## radian (interactive console) options
 options(
     # see https://help.farbox.com/pygments.html
