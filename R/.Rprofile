@@ -1,6 +1,6 @@
 ## Objects
 # Return estimation of object size with human format
-size = function(object) {
+size <- function(object) {
   print(object.size(object), units='auto')
 }
 
@@ -11,12 +11,12 @@ columns <- function(df) {
 }
 
 # head + tail
-ht = function(df, rows=5) {
+ht <- function(df, rows=5) {
   rbind(head(df, rows),tail(df, rows))
 }
 
 # head rows + head columns
-hh = function(df, elements=5) {
+hh <- function(df, elements=5) {
   columns <- elements
   if (columns > ncol(df)) {
     columns <- ncol(df)
