@@ -5,6 +5,11 @@ size = function(object) {
 }
 
 ## Dataframes
+# Show columns with their position number
+columns <- function(df) {
+  matrix(names(df))
+}
+
 # head + tail
 ht = function(df, rows=5) {
   rbind(head(df, rows),tail(df, rows))
