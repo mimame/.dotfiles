@@ -525,9 +525,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " NERDTree and Startify working at startup
 autocmd VimEnter *
                 \   if !argc()
-                \ |   Startify
                 \ |   NERDTree
-                \ |   wincmd w
+                \ |   wincmd l
+                \ |   Startify
 \ | endif
 
 map <Leader>n :NERDTreeToggle<CR>
