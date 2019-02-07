@@ -21,7 +21,7 @@ hh <- function(df, elements=5) {
   if (columns > ncol(df)) {
     columns <- ncol(df)
   }
-  df[1:rows, 1:columns]
+  df[1:elements, 1:columns]
 }
 
 # Search string in any column and add their index
