@@ -374,6 +374,8 @@ set mouse=a
 set autoread
 " Write file when the focus is lost
 au FocusLost,WinLeave * :silent! w
+" Write the contents of the file, if it has been modified
+set autowriteall
 " Show the current command when typing it at status line
 set showcmd
 " Never remember global options
