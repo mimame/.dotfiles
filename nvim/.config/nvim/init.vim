@@ -28,6 +28,12 @@ nmap <leader>ti :terminal <cr>tig && exit<cr>
 " To enter |Terminal-mode| automatically
 autocmd TermOpen * startinsert
 
+" Use vim tmux navigation flow
+tnoremap <C-h> <C-\><C-n><C-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
+
 " Load .init.vim when writing {{{
 augroup myvimrc
   au!
