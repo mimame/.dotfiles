@@ -493,6 +493,10 @@ function! s:config_easyfuzzymotion(...) abort
 endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "}}}
+
+" Input command faster
+nnoremap ; :
+
 " Esc Esc for Highlight off the searched term
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
 " Never these keys combination are used together so remap to esc and cr
