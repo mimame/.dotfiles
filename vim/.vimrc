@@ -902,6 +902,13 @@ let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
+" Always use horizontal R console
+let R_rconsole_width = 0
+let R_rconsole_height = 15
+" Always use horizontal R help
+let R_nvimpager = 'tab'
+" Enable vi mode in R console
+let R_esc_term = 0
 
 " Object_Browser window highlight endline tabs by default
 " Ignore extra whitespace by filetype doesn't work
