@@ -923,6 +923,8 @@ let R_esc_term = 0
 let Rout_more_colors = 1
 " R output is highlighted using you current
 let rout_follow_colorscheme = 1
+" Display dataframes closed by default
+let R_objbr_opendf = 0
 
 " Object_Browser window highlight endline tabs by default
 " Ignore extra whitespace by filetype doesn't work
