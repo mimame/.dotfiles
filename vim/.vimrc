@@ -919,6 +919,10 @@ let R_rconsole_height = 15
 let R_nvimpager = 'tab'
 " Enable vi mode in R console
 let R_esc_term = 0
+" R commands in the R output are highlighted
+let Rout_more_colors = 1
+" R output is highlighted using you current
+let rout_follow_colorscheme = 1
 
 " Object_Browser window highlight endline tabs by default
 " Ignore extra whitespace by filetype doesn't work
