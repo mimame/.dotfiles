@@ -1,3 +1,7 @@
+## Load default libraries
+# Colorize R output in terminal emulators
+library(colorout)
+setOutputColors(normal = 255, negnum = 81, zero = 208, number = 141, date = 43, string = 222, const = 250, zero.limit = 0.1, false = 203, true = 78, infinite = 39, index = 11, verbose = FALSE)
 ## Objects
 # Return estimation of object size with human format
 size <- function(object) {
