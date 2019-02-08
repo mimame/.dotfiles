@@ -27,6 +27,7 @@ nmap <leader>ti :terminal <cr>tig && exit<cr>
 
 " To enter |Terminal-mode| automatically
 autocmd TermOpen * startinsert
+autocmd BufEnter term://* startinsert
 
 " Use vim tmux navigation flow
 tnoremap <C-h> <C-\><C-n><C-w>h
