@@ -906,6 +906,16 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 " Nvim-R related config {{{
+" Display console and Object browser when any .R file is opened like RStudio
+augroup NvimrR
+    autocmd!
+    autocmd FileType r :call InitNvimR()
+augroup END
+function InitNvimR()
+  call StartR("R")
+  sleep 1500m
+  call RObjBrowser()
+endfunction
 " Use rtichoke as the default R terminal
 let R_app = "radian"
 let R_cmd = "R"
