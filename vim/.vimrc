@@ -500,6 +500,8 @@ nnoremap ; :
 " Use ZZ to save all buffer inclusive readonly and exit
 nnoremap ZZ :xa!<CR>
 inoremap ZZ <ESC>:xa!<CR>
+nnoremap ZQ :qa!<CR>
+inoremap ZQ <ESC>:qa!<CR>
 
 " Esc Esc for Highlight off the searched term
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
