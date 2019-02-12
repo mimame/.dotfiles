@@ -524,7 +524,7 @@ alias ncdu='ncdu --color dark'
 alias news='newsboat'
 alias fm='vifm'
 alias re='massren'
-alias tree='tree -a'
+alias tree='tree -a -s -h'
 alias T='tail -F'
 
 # rg with grep -r behaviour
