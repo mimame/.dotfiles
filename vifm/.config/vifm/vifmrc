@@ -523,7 +523,7 @@ nnoremap ; :
 nnoremap sh :shell<cr>
 
 " Open console in current directory
-nnoremap ,t :!alacritty &<cr>
+nnoremap <wait> ,t :!alacritty &<cr>
 
 " Display sorting dialog
 nnoremap S :sort<cr>
@@ -615,15 +615,15 @@ nnoremap du :du<cr>
 nnoremap cd :cd<space>
 
 " Open vim to edit vifmrc and apply settings after returning to vifm
-nnoremap ,c :write | execute ':!vim $MYVIFMRC' | restart<cr>
+nnoremap <wait> ,c :write | execute ':!vim $MYVIFMRC' | restart<cr>
 
 " Toggle wrap setting on ,w key
-nnoremap ,w :set wrap!<cr>
+nnoremap <wait>,w :set wrap!<cr>
 
 " extract file mapping
-nnoremap ,e :extract<cr>
+nnoremap <wait>,e :extract<cr>
 " compress file mapping
-nnoremap ,c :compress<space>
+nnoremap <wait>,c :compress<space>
 
 " Use < and > without ctrl-w prefix key in normal mode
 nnoremap < <c-w><
