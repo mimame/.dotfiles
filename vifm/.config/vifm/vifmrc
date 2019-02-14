@@ -585,10 +585,10 @@ nnoremap T :tabnew<cr>
 nnoremap ss :sshfs<space>
 
 " select mapping (apply select)
-nnoremap as :select<space>
+nnoremap <wait> ,s :select<space>//<left>
 
 " filter mapping (apply filter)
-nnoremap af :filter<space>
+nnoremap <wait> ,f :filter<space>//<left>
 
 " rsync mapping
 nnoremap rs :rsyncLocal<cr>
