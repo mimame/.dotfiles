@@ -911,7 +911,9 @@ let g:go_highlight_build_constraints = 1
 " Display console and Object browser when any .R file is opened like RStudio
 augroup NvimrR
     autocmd!
-    autocmd FileType r :call InitNvimR()
+    autocmd! FileType r :call InitNvimR()
+    " Two dash to generate an assignation arrow
+    autocmd! FileType r :iabbrev <buffer> -- <-
 augroup END
 function InitNvimR()
   call StartR("R")
@@ -937,6 +939,8 @@ let Rout_more_colors = 1
 let rout_follow_colorscheme = 1
 " Display dataframes closed by default
 let R_objbr_opendf = 0
+" Remove underscore convertion to <-
+let R_assign = 0
 
 " Object_Browser window highlight endline tabs by default
 " Ignore extra whitespace by filetype doesn't work
