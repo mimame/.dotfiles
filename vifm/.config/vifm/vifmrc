@@ -516,6 +516,9 @@ windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}
 
 " Sample mappings
 
+" Type commands faster
+nnoremap ; :
+
 " Start shell in current directory
 nnoremap sh :shell<cr>
 
@@ -659,9 +662,6 @@ nnoremap <f5> :copy<cr>
 nnoremap <f6> :move<cr>
 nnoremap <f7> :mkdir<space>
 nnoremap <f8> :delete<cr>
-
-" Remap - to : because Spanish keyboard
-nnoremap - :
 
 " ------------------------------------------------------------------------------
 
