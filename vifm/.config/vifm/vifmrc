@@ -518,6 +518,7 @@ windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}
 
 " Type commands faster
 nnoremap ; :
+vnoremap ; :
 
 " Start shell in current directory
 nnoremap sh :shell<cr>
