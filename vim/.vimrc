@@ -493,6 +493,7 @@ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " Input command faster
 nnoremap ; :
+xnoremap ; :
 
 " Use ZZ to save all buffer inclusive readonly and exit
 nnoremap ZZ :xa!<CR>
