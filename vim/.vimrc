@@ -37,7 +37,7 @@ call plug#begin('~/.vim/plugged')
   " Molokai theme
   Plug 'tomasr/molokai'
   " Status line theme generator
-  Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-airline/vim-airline' | Plug 'mimadrid/vim-airline-themes'
   "Tmux theme generator
   Plug 'edkolev/tmuxline.vim'
   " Vertical lines for each indentation level
