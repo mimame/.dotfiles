@@ -260,6 +260,8 @@ syntax on
 set noswapfile
 " 256 colors in terminal
 set t_Co=256
+" Use 24-bit colors
+set termguicolors
 " Molokai theme
 colorscheme molokai
 " Molokai theme for the status line
