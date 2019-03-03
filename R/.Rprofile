@@ -30,12 +30,20 @@ hh <- function(df, elements=5) {
 
 # Search string in any column and add their index
 g <- function(df, search, ignore.case = TRUE, perl = FALSE, fixed = FALSE) {
+  if (is.null(dim(df))) {
+    # Only one dimension (vector, list or named list)
+    searched_index <- unique(grep(search, df, ignore.case, perl, fixed))
+    searched_df <- df[searched_index]
+    names(searched_df) <- searched_index
+    return(searched_df)
+  } else {
   searched_index <- unique(unlist(apply(df, 2, function(column){grep(search, column, ignore.case, perl, fixed)})))
   # explicitly convert to dataframe to use index
   # tibble doesn't let to use colnames
   searched_df <- as.data.frame(df[searched_index, ])
   row.names(searched_df) <- searched_index
   return(searched_df)
+  }
 }
 
 ## Options
