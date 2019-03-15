@@ -68,7 +68,7 @@ c () {
     gz)  [[ -d $2 ]] && tar -I pigz -cvf ${2}.tar.gz $2 || pigz -kv $2       ;;
     7z)  7z a ${2}.7z $2       ;;
     bz2)  [[ -d $2 ]] && tar -I pbzip2 -cvf ${2}.tar.bz2 $2 || pbzip2 -kv $2       ;;
-    xz)  [[ -d $2 ]] && tar -I pixz -cvf ${2}.tar.xz $2 || pixz -kv $2       ;;
+    xz)  [[ -d $2 ]] && tar -I pixz -cvf ${2}.tar.xz $2 || pixz -k $2       ;;
     *) echo "'$2' cannot be compressed, unknown '$1' compression format" ;;
   esac
 }
