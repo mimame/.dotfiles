@@ -368,6 +368,12 @@
 [includeIf "gitdir:~/forks/Work/BSC/INAB/"]
   path = .config.work.bsc
 
+[log]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-logdate
+  # Use human format by default
+  # https://git-scm.com/docs/git-log#Documentation/git-log.txt---dateltformatgt
+  date = auto:human
+
 [merge]
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
   # diff3 merge style
