@@ -46,6 +46,24 @@ g <- function(df, search, ignore.case = TRUE, perl = FALSE, fixed = FALSE) {
   }
 }
 
+# Search NA or Inf inside all dataframe or sequence add their index to the output
+nan <- function(df) {
+  if (is.null(dim(df))) {
+    # Only one dimension (vector, list or named list)
+    searched_index <- which(sapply(df, function(element) {is.na(element) || is.infinite(element)}))
+    nan_list <- as.vector(df[searched_index])
+    names(nan_list) <- searched_index
+    return(nan_list)
+  } else {
+    searched_index <- unlist(apply(df, 2, function(column){which(is.na(column) | is.infinite(column))}))
+    # explicitly convert to dataframe to use index
+    # tibble doesn't let to use colnames
+    searched_df <- as.data.frame(df[searched_index, ])
+    row.names(searched_df) <- searched_index
+    return(searched_df)
+  }
+}
+
 ## Options
 # URLs of the repositories for use by update.packages.
 # Defaults to c(CRAN="@CRAN@"), a value that causes some utilities to prompt for a CRAN mirror
