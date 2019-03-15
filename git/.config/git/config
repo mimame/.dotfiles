@@ -224,6 +224,11 @@
   # wip - save work in progress quickly and ready to push it if necessary
   wip = "!f() { git checkout -b wip/\"$1\" && git add --update && git commit -m \"wip: $1\"; }; f"
 
+[blame]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-blamecoloring
+  # Color blamed lines by date
+  coloring = highlightRecent
+
 [branch]
   # https://git-scm.com/docs/git-config#git-config-branchautoSetupRebase
   # rebase always with new branches
@@ -235,10 +240,10 @@
   ui = auto
 
 [color "branch"]
- current  = magenta bold
- local    = white bold
- remote   = cyan bold
- upstream = blue bold
+  current  = magenta bold
+  local    = white bold
+  remote   = cyan bold
+  upstream = blue bold
 
 [color "diff"]
   frag     = magenta bold
@@ -282,7 +287,7 @@
   editor     = nvim
   # https://git-scm.com/docs/git-config#git-config-corefsmonitor
   # Speed up git by avoiding unnecessary processing of files that have not changed
-  fsmonitor  = ~/.config/git/hooks/fsmonitor-watchman
+  # fsmonitor  = ~/.config/git/hooks/fsmonitor-watchman
   # https://git-scm.com/docs/git-config#git-config-corehooksPath
   # Default hooks folder
   hooksPath  = ~/.config/git/hooks
@@ -294,7 +299,7 @@
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   # https://github.com/github/gitignore/tree/master/Global
   # globally useful gitignores
-	excludesfile = ~/.config/git/gitignore_global
+  excludesfile = ~/.config/git/gitignore_global
 
 [credential]
   # https://git-scm.com/docs/git-config#git-config-credentialhelper
@@ -323,7 +328,7 @@
   prompt = false
 
 [difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 
 [difftool "meld"]
   cmd = meld "$LOCAL" "$REMOTE"
@@ -402,7 +407,7 @@
   cmd = meld "$LOCAL" "$MERGED" "$REMOTE" --output "$MERGED"
 
 [protocol]
-	version = 2
+  version = 2
 
 [pretty]
   l  = * %C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset
@@ -477,6 +482,3 @@
   # https://git-scm.com/docs/git-config#git-config-webbrowser
   # Specify the web browser
   browser = firefox
-
-[blame]
-  coloring = highlightRecent
