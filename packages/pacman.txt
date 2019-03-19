@@ -61,9 +61,11 @@ gcc-fortran
 gcolor2
 gephi
 gimp
+gimp-help-en
 gitg
 gnome-bluetooth
 gnome-screenshot
+go
 gparted
 grc
 grub-theme-manjaro-dev
@@ -95,7 +97,7 @@ ipw2200-fw
 ipython
 isousb
 jfsutils
-jq
+julia-docs
 keepassxc
 kvantum-manjaro
 lib32-flex
@@ -163,6 +165,7 @@ numlockx
 onboard
 open-fuse-iso
 openshot
+opera
 os-prober
 otf-fira-code
 p7zip
@@ -194,6 +197,7 @@ python-sphinx
 python-virtualenv
 python2-pip
 qt5-styleplugins
+qt5-translations
 qt5ct
 ranger
 redshift
@@ -211,6 +215,7 @@ spectre-meltdown-checker
 speedtest-cli
 sshfs
 stow
+strace
 stress
 subversion
 syncthing-gtk
@@ -218,13 +223,14 @@ syslog-ng
 sysstat
 systemd-sysvcompat
 telegram-desktop
+terminator
 terminus-font
 termite
 testdisk
 texlive-bibtexextra
 texlive-latexextra
 texlive-science
-thunderbird
+thunderbird-i18n-en-us
 tig
 time
 tk
@@ -247,11 +253,13 @@ viewnior
 vifm
 vimiv
 virtualbox
+vivid
 vlc
 volumeicon
 vulkan-intel
 vulkan-radeon
 w3m
+which
 wine-mono
 wine_gecko
 wireshark-gtk

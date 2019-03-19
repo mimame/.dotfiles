@@ -1,5 +1,6 @@
 antibody
 bedtools
+broot
 ctop
 cytoscape
 drawio-desktop
@@ -9,6 +10,7 @@ fuse-zip
 git-cola
 git-extras
 google-chrome
+gotop
 gron-bin
 hyperfine
 lab
