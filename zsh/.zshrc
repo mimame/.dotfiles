@@ -309,6 +309,7 @@ export SPACESHIP_TIME_SHOW=true
 # User nerd font icons
 export SPACESHIP_DOCKER_SYMBOL='  '
 export SPACESHIP_RUBY_SYMBOL='  '
+export SPACESHIP_GOLANG_SYMBOL=' '
 
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
