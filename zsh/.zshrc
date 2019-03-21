@@ -450,6 +450,11 @@ function mc() {
   mkdir --parent --verbose $1 && cd $1
 }
 
+# Improve broot command
+# Always use br function to call it
+alias broot='broot --hidden --sizes --gitignore no'
+source /home/paradise/.config/broot/launcher/bash/br
+
 # global pipe aliases
 alias -g B='| bat'
 alias -g C='| xsel --input --clipboard'
