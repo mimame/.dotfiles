@@ -1,0 +1,101 @@
+---
+colors:
+  # Theme colors
+  background_color: '000000'
+  purple: "ff00ff"
+  pink: "af005f"
+  cyan: "00ffff"
+  green: "afd700"
+  orange: "f5f00f"
+
+  # Others
+  white: "ffffff"
+  black: "000000"
+  red: "d70000"
+  gray: "808080"
+  yellow: "ffff00"
+
+core:
+  regular_file: {}
+
+  directory:
+    foreground: cyan
+    font-style: bold
+
+  executable_file:
+    foreground: red
+    font-style: bold
+
+  symlink:
+    foreground: purple
+
+  broken_symlink:
+    foreground: black
+    background: red
+    font-style: bold
+
+  fifo:
+    foreground: black
+    background: cyan
+
+  socket:
+    foreground: black
+    background: pink
+
+  character_device:
+    foreground: pink
+    background: gray
+
+  block_device:
+    foreground: cyan
+    background: gray
+
+
+  normal_text: {}
+
+text:
+  special:
+    foreground: black
+    background: green
+
+  todo:
+    font-style: bold
+
+  licenses:
+    foreground: white
+
+  configuration:
+    foreground: green
+
+  other:
+    foreground: yellow
+
+markup:
+  foreground: yellow
+
+programming:
+  source:
+    foreground: green
+
+  tooling:
+    foreground: green
+
+    continuous-integration:
+      foreground: green
+
+media:
+  foreground: orange
+
+office:
+  foreground: green
+
+archives:
+  foreground: pink
+  font-style: underline
+
+executable:
+  foreground: red
+  font-style: bold
+
+unimportant:
+  foreground: white
