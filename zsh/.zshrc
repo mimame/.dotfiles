@@ -474,8 +474,9 @@ alias bc='bc -l'
 alias git=hub
 alias g=git
 
-alias ls='ls --color=always --all --human-readable --format=long'
-alias l='exa --all --sort .name --color=always --long --group --header --git'
+alias ls='ls --color=always --almost-all --human-readable --format=long'
+alias l='ls'
+alias ll='exa --all --sort .name --color=always --long --links --group --git'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
