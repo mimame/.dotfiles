@@ -3,10 +3,10 @@ colors:
   # Theme colors
   background_color: '000000'
   purple: "ff00ff"
-  pink: "af005f"
+  pink: "ff005f"
   cyan: "00ffff"
   green: "afd700"
-  orange: "f5f00f"
+  orange: "ff8700"
 
   # Others
   white: "ffffff"
@@ -90,7 +90,7 @@ office:
   foreground: green
 
 archives:
-  foreground: pink
+  foreground: yellow
   font-style: underline
 
 executable:
