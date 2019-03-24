@@ -38,6 +38,10 @@ colours=default,bright_yellow ,yellow
 regexp=([A-Z][a-z]{2})\s([ 1-3]\d)\s(?:([0-2]?\d):([0-5]\d)(?=[\s,]|$)|\s*(\d{4}))
 colours=unchanged,cyan,cyan,cyan,cyan,bold magenta
 =======
+# user & group
+regexp=(?<=\d\s)[a-z_][a-z0-9_-]*\s[a-z_][a-z0-9_-]*(?=\s+\d)
+colours= bold yellow
+-
 # root
 regexp=\s(root|wheel)(?=\s|$)
 colours=unchanged,bold white on_red
@@ -51,22 +55,42 @@ colours=default,green,yellow,cyan,magenta
 regexp=(-|([bcCdDlMnpPs?]))(?=[-r][-w][-xsStT][-r][-w][-xsStT][-r][-w][-xsStT])
 colours=unchanged,unchanged,bold white
 -
+# File Type folder
+regexp=(-|([dD]))(?=[-r][-w][-xsStT][-r][-w][-xsStT][-r][-w][-xsStT])
+colours=unchanged,unchanged,bold cyan
+-
+# File Type link
+regexp=(-|([l]))(?=[-r][-w][-xsStT][-r][-w][-xsStT][-r][-w][-xsStT])
+colours=unchanged,unchanged,bold magenta
+-
 # owner rwx
 regexp=(?<=[-bcCdDlMnpPs?])(-|(r))(-|(w))(-|([xsStT]))(?=[-r][-w][-xsStT][-r][-w][-xsStT])
-colours=unchanged,unchanged,bright_green,unchanged,bright_green,unchanged,bright_green
+colours=unchanged,unchanged,yellow bold,unchanged,red bold,unchanged,bright_green bold
 -
 # group rwx
 regexp=(?<=[-bcCdDlMnpPs?][-r][-w][-xsStT])(-|(r))(-|(w))(-|([xsStT]))(?=[-r][-w][-xsStT])
-colours=unchanged,unchanged,yellow,unchanged,yellow,unchanged,yellow
+colours=unchanged,unchanged,yellow,unchanged,red,unchanged,bright_green
 -
 # other rwx
 regexp=(?<=[-bcCdDlMnpPs?][-r][-w][-xsStT][-r][-w][-xsStT])(-|(r))(-|(w))(-|([xsStT]))
-colours=unchanged,unchanged,bright_red,unchanged,bright_red,unchanged,bright_red
+colours=unchanged,unchanged,yellow,unchanged,red,unchanged,bright_green
 -
 # sStT all
-regexp=(?<=[-bcCdDlMnpPs?])[-r][-w]([sStT])[-r][-w]([sStT])[-r][-w]([sStT])
-colours=unchanged,bold green,bold yellow, bold red
+regexp=(?<=[-bcCdDlMnpPs?])[-r][-w]([sStT])(?=[-r][-w][sStT][-r][-w][sStT])
+colours=unchanged,bold magenta ,bold magenta, bold magenta
+-
+# middle sStT
+regexp=(?<=[-bcCdDlMnpPs?][-r][-w][-xsStT])[-r][-w][-xsStT](?=[-r][-w][-xsStT])
+colours=unchanged,bold magenta ,bold magenta, bold magenta
+-
+# last sStT
+regexp=(?<=[-bcCdDlMnpPs?][-r][-w][-xsStT][-r][-w][-xsStT][-r][-w])([sStT])
+colours=unchanged,bold magenta ,bold magenta, bold magenta
 -
 # ACL
 regexp=^\S{10}(\+)
 colours=unchanged,on_cyan bold white
+-
+# Number of links
+regexp=(?<=[-rwx]{3}[-xt])\s+\d+\s
+colours=cyan
