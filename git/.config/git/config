@@ -207,7 +207,7 @@
   st  = stash
   sw  = stash show
   # status - https://git-scm.com/docs/git-stash
-  s = !git -c color.status=always status --branch --show-stash --short | nl --starting-line-number 0 | sed 's/0//'
+  s = !git -c color.status=always status --branch --show-stash --short --ignored | nl --starting-line-number 0 | sed 's/^\\s+0//'
   # submodule - https://git-scm.com/docs/git-submodule
   sma = submodule add
   sms = submodule status
