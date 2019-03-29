@@ -275,6 +275,8 @@ command! reload :write | restart
 " Find with fd
 command! fd fd --hidden --no-ignore --follow --exclude .git %a %M
 
+" Find with FZF and fd
+command! FZF :set noquickview | :execute 'goto "'.system('fd --hidden --no-ignore --follow --exclude .git | fzf 2>/dev/tty ').'"%IU' | redraw
 
 " ------------------------------------------------------------------------------
 
@@ -617,6 +619,9 @@ nnoremap du :du<cr>
 
 " cd mapping
 nnoremap cd :cd<space>
+
+" FZF mapping
+nnoremap <a-c> :FZF<cr>
 
 " Open vim to edit vifmrc and apply settings after returning to vifm
 nnoremap <wait> ,c :write | execute ':!vim $MYVIFMRC' | restart<cr>
