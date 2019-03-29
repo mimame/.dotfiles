@@ -304,6 +304,9 @@ command! fd fd --hidden --no-ignore --follow --exclude .git %a %M
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
 
+" Default viewer
+fileviewer *[^/] env -uCOLORTERM bat --theme 'Monokai Extended Bright Narnia' --color always --wrap never --pager never %c --number
+
 " Pdf
 filextype *.pdf evince %f
 fileviewer *.pdf pdftotext -nopgbrk %c -
