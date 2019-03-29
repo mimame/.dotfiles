@@ -455,7 +455,7 @@ function mc() {
 # Improve broot command
 # Always use br function to call it
 alias broot='broot --hidden --sizes --gitignore no'
-source "/home/$USER/.config/broot/launcher/bash/br"
+source "$HOME/.config/broot/launcher/bash/br"
 
 # global pipe aliases
 alias -g B='| bat'
@@ -542,6 +542,9 @@ alias ag='ag --unrestricted --smart-case --ignore .git'
 
 # fd with find behaviour
 alias f='fd --hidden --no-ignore --follow --exclude .git'
+
+# bat alias
+alias bat='bat --theme "Monokai Extended Bright Narnia"'
 
 # Safe ops. Ask the user before doing anything destructive.
 # Move rm files to the trash using trash-cli
