@@ -252,7 +252,7 @@ bindsym $mod+Shift+F12 move container to workspace $ws22
 #for_window [title="i3_help"] floating enable sticky enable border normal
 
 # switch to workspace with urgent window automatically
-# for_window [urgent=latest] focus
+for_window [urgent=latest] focus
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
