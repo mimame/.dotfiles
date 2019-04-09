@@ -100,7 +100,7 @@ URxvt*color21:                        #f5f4f1
 #define base0F #cc6633
 
 ! Enabled modi
-rofi.modi:                           window,drun,ssh
+rofi.modi:                           window,drun,run,combi,ssh
 ! Window opacity
 rofi.opacity:                        100
 ! Window width
@@ -132,7 +132,7 @@ rofi.xoffset:                        0
 ! Always show number of lines
 rofi.fixed-num-lines:                false
 ! Terminal to use
-rofi.terminal:                       termite
+rofi.terminal:                       alacritty
 ! Ssh client to use
 rofi.ssh-client:                     ssh
 ! Ssh command to execute
@@ -164,7 +164,7 @@ rofi.parse-hosts:                    false
 ! Parse known_hosts file for ssh mode
 rofi.parse-known-hosts:              true
 ! Set the modi to combine in combi mode
-rofi.combi-modi:                     window,drun
+rofi.combi-modi:                     window,drun,ssh
 ! Do a more fuzzy matching
 rofi.fuzzy:                          false
 ! Use glob matching
