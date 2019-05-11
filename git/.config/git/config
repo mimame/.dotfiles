@@ -478,6 +478,9 @@
 [url "https://gitlab.com/"]
   insteadOf = gl:
 
+[url "https://bitbucket.org"]
+  insteadOf = bb:
+
 [web]
   # https://git-scm.com/docs/git-config#git-config-webbrowser
   # Specify the web browser
