@@ -14,6 +14,11 @@ columns <- function(df) {
   matrix(names(df))
 }
 
+# Head alias
+h <- function(df, rows=10) {
+  head(df, rows)
+}
+
 # head + tail
 ht <- function(df, rows=5) {
   rbind(head(df, rows),tail(df, rows))
