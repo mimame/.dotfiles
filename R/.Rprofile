@@ -28,20 +28,30 @@ hh <- function(df, elements=5) {
   df[1:elements, 1:columns]
 }
 
-# Search string inside all dataframe or sequence add their index to the output
-g <- function(df, search, ignore.case = TRUE, perl = FALSE, fixed = FALSE) {
+# Search string inside all dataframe or sequence and add their index to the output
+# By default use ignore.case and PCRE engine instead of the fixed string
+# This is slower but with more matches at the beginning of the exploration
+g <- function(df, search, fixed=FALSE, ignore.case=TRUE) {
+  # PCRE2 is faster than the default regular expression engine
+  perl <- !fixed
+  # Ignore case when the string is fixed
+  if (fixed) {
+    ignore.case = F
+  }
   if (is.null(dim(df))) {
     # Only one dimension (vector, list or named list)
-    searched_index <- unique(grep(search, df, ignore.case, perl, fixed))
-    searched_df <- df[searched_index]
-    names(searched_df) <- searched_index
-    return(searched_df)
+    # Return element index thanks to value=F
+    searched_index <- grep(search, df, ignore.case, perl, fixed, value=F)
+    searched_elements <- df[searched_index]
+    names(searched_elements) <- searched_index
+    return(searched_elements)
   } else {
-    searched_index <- unique(unlist(apply(df, 2, function(column){grep(search, column, ignore.case, perl, fixed)})))
+    # Return element index thanks to value=F
+    searched_index <- unlist(apply(df, 2, function(column){grep(search, column, ignore.case, perl, fixed, value=F)}))
     # explicitly convert to dataframe to use index
-    # tibble doesn't let to use colnames
+    # tibble doesn't let to use rownames
     searched_df <- as.data.frame(df[searched_index, ])
-    row.names(searched_df) <- searched_index
+    rownames(searched_df) <- searched_index
     return(searched_df)
   }
 }
