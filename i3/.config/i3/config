@@ -63,6 +63,10 @@ bindsym --release $mod+Ctrl+q exec xkill
 
 # Start program launcher
 bindsym $mod+d exec --no-startup-id rofi -show combi
+# Add web searcher launcher
+bindsym $mod+Shift+d exec --no-startup-id rofi -show web
+# Add finder launcher
+bindsym $mod+Shift+f exec --no-startup-id rofi -show finder
 
 # Player controls
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && ~/.config/i3/scripts/dunstify_notification "play-stop_song"
