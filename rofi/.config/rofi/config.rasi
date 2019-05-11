@@ -24,8 +24,8 @@ configuration {
 /*	drun-show-actions: false;*/
 /*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
 	disable-history: false;
-	sort: true;
-	sorting-method: "fzf" ;
+/* sort: true;*/
+/* sorting-method: "fzf";*/
 	case-sensitive: false;
 	cycle: true;
 	sidebar-mode: true;
