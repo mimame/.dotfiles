@@ -70,7 +70,7 @@ nan <- function(df) {
 options("repos" = c(CRAN = "https://cran.rstudio.com/"))
 
 # Used in install.packages as default for the number of cpus to use in a potentially parallel installation
-options("Ncpus" = 4)
+options("Ncpus" = parallel::detectCores())
 
 ## radian (interactive console) options
 options(
