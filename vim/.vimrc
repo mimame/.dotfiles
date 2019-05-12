@@ -85,7 +85,7 @@ call plug#begin('~/.vim/plugged')
   " Simple color selector/picker
   Plug 'KabbAmine/vCoolor.vim'
   " Configuration for HTML
-  "Plug 'othree/html5.vim' (vim-poliglot)
+  "Plug 'othree/html5.vim' (vim-polyglot)
   " HTML tags generator
   Plug 'mattn/emmet-vim'
   " endings for html, xml, etc. - enhance vim-surround
@@ -119,19 +119,19 @@ call plug#begin('~/.vim/plugged')
   " Run your tests at the speed of thought
   Plug 'janko-m/vim-test'
   " autopep8 python code
-  "Plug 'tell-k/vim-autopep8' (vim-poliglot)
+  "Plug 'tell-k/vim-autopep8' (vim-polyglot)
   " Ruby Configuration Files
-  "Plug 'vim-ruby/vim-ruby' (vim-poliglot)
+  "Plug 'vim-ruby/vim-ruby' (vim-polyglot)
   " Crystal Configuration Files
-  "Plug 'rhysd/vim-crystal' (vim-poliglot)
+  "Plug 'rhysd/vim-crystal' (vim-polyglot)
   " Elixir Configuration Files
-  "Plug 'elixir-lang/vim-elixir' (vim-poliglot)
+  "Plug 'elixir-lang/vim-elixir' (vim-polyglot)
   " CSV files
-  Plug 'chrisbra/csv.vim'
+  " Plug 'chrisbra/csv.vim'  (vim-polyglot)
   " Dockerfiles
-  "Plug 'ekalinin/Dockerfile.vim' (vim-poliglot)
+  "Plug 'ekalinin/Dockerfile.vim' (vim-polyglot)
   " Vastly improved Javascript indentation and syntax support
-  " Plug 'pangloss/vim-javascript' "(vim-poliglot)
+  " Plug 'pangloss/vim-javascript' "(vim-polyglot)
   " Typescript syntax files for Vim
   Plug 'leafgarland/typescript-vim'
   " React JSX/TSX syntax pretty highlighting for vim
@@ -166,9 +166,9 @@ call plug#begin('~/.vim/plugged')
   " Real-time markdown preview plugin
   Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}
   " Syntax for tmux.conf
-  "Plug 'tmux-plugins/vim-tmux' (vim-poliglot)
+  "Plug 'tmux-plugins/vim-tmux' (vim-polyglot)
   " Haml, Sass, SCSS
-  "Plug 'tpope/vim-haml' (vim-poliglot)
+  "Plug 'tpope/vim-haml' (vim-polyglot)
   " Editing LaTeX files
   Plug 'lervag/vimtex'
   " Visually select increasingly larger regions of text using the same key combination
@@ -178,7 +178,7 @@ call plug#begin('~/.vim/plugged')
   " Transition between multiline and single-line code
   Plug 'AndrewRadev/splitjoin.vim'
   " Syntax for nix
-  "Plug 'LnL7/vim-nix' (vim-poliglot)
+  "Plug 'LnL7/vim-nix' (vim-polyglot)
   " Commenting code efficiently
   Plug 'tomtom/tcomment_vim'
   " Interactive command execution
@@ -198,11 +198,11 @@ call plug#begin('~/.vim/plugged')
   " Tags in a window, ordered by scope
   Plug 'majutsushi/tagbar'
   " Configuration for Rust
-  "Plug 'rust-lang/rust.vim' (vim-poliglot)
+  "Plug 'rust-lang/rust.vim' (vim-polyglot)
   " Configuration for Go
-  "Plug 'fatih/vim-go' (vim-poliglot)
+  "Plug 'fatih/vim-go' (vim-polyglot)
   " Configuration for Julia
-  "Plug 'JuliaEditorSupport/julia-vim' (vim-poliglot)
+  "Plug 'JuliaEditorSupport/julia-vim' (vim-polyglot)
   " Helpers for UNIX
   Plug 'tpope/vim-eunuch'
   " Language tool grammar check
@@ -236,7 +236,7 @@ let g:mapleader = "\<Space>"
 " Local leader key
 let g:maplocalleader = ','
 
-" Poliglot forbidden language plugins
+" Polyglot forbidden language plugins
 let g:polyglot_disabled = ['latex', 'r-lang', 'markdown']
 " Increase timeout for installing YouCompleteMe
 let g:plug_timeout = 10000
