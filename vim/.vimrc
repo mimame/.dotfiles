@@ -31,7 +31,7 @@ call plug#begin('~/.vim/plugged')
   " Automatically reload a file that has changed externally
   Plug 'djoshea/vim-autoread'
   " Make terminal vim and tmux work better together
-  " Plug 'tmux-plugins/vim-tmux-focus-events'
+  Plug 'tmux-plugins/vim-tmux-focus-events'
   " Better start screen
   Plug 'mhinz/vim-startify'
   " Molokai theme
