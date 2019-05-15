@@ -459,7 +459,7 @@ source "$HOME/.config/broot/launcher/bash/br"
 
 # global pipe aliases
 alias -g B='| bat'
-alias -g C='| xsel --input --clipboard'
+alias -g C='| xclip -selection clipboard'
 alias -g G='| grep --ignore-case'
 alias -g GE='| grep --extended-regexp'
 alias -g GF='| grep --fixed-strings'
@@ -483,6 +483,33 @@ alias egrep='egrep --color=auto'
 
 # rsync
 alias rs='rsync --archive --compress --info=progress2 --human-readable --update --delete'
+
+# cb STRING to copy to the clipboard
+# cb FILE to copy to the clipboard
+# echo string | cb to copy to the clipboard
+# cb to paste from the clipboard
+# cb | command to paste from the clipboad
+function cb () {
+  if [[ -p /dev/stdin ]] ; then
+    # stdin is a pipe
+    # stdin -> clipboard
+    xclip -selection clipboard
+  elif [[ ! -z "$1" ]]; then
+    # stdin is not a pipe
+    # file -> clipboard
+    if [[ -f "$1" ]]; then
+      # stdin is not a pipe
+      xclip -selection clipboard "$1"
+    else
+      echo "$1" | xclip -selection clipboard
+    fi
+  else
+    # stdin -> clipboard
+    # stdin is not a pipe
+    # clipboard -> stdout
+    xclip -selection clipboard -out
+  fi
+}
 
 # Burn image files to USB
 function iso()  {
