@@ -594,6 +594,9 @@ nnoremap <wait> ,s :select<space>//<left>
 " filter mapping (apply filter)
 nnoremap <wait> ,f :filter<space>//<left>
 
+" Substitute mapping
+nnoremap <wait> ,r :substitute///<left><left>
+
 " rsync mapping
 nnoremap rs :rsyncLocal<cr>
 
