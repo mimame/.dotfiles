@@ -127,8 +127,6 @@ endif
 set tuioptions-=s
 set tuioptions+=u
 
-set cpoptions-=f
-
 " Show hidden files by default
 set dotfiles
 
