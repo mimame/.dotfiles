@@ -567,10 +567,13 @@ nnoremap <Leader>= <esc>gg=G<C-o><C-o>
 xnoremap <Leader>s :sort<CR>
 "map K <Plug>(expand_region_expand)
 "map J <Plug>(expand_region_shrink)
-nnoremap k gk
-vnoremap k gk
-nnoremap j gj
-vnoremap j gj
+
+" It makes j and k move by wrapped line unless I had a count,
+" in which case it behaves normally.
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+vnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+vnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 " When pasting don't update the register
 xnoremap p pgvy
 " Make a simple "search" text object.
