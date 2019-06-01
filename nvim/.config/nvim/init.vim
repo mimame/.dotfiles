@@ -16,6 +16,9 @@ let g:ale_virtualtext_cursor = 1
 let g:ale_virtualtext_prefix = '  '
 " }}}
 
+" Shows the effects of a command incrementally like :substitute
+set inccommand=nosplit
+
 " Add --servername support {{{
 " https://github.com/lervag/vimtex/wiki/introduction#neovim
 let g:vimtex_compiler_progname = 'nvr'
