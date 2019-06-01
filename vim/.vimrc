@@ -493,6 +493,11 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "}}}
 
+" Use ex mode map to call last macro instead
+" Bram Moolenaar recommends mapping Q to something else
+" To call ex map use the less error prone alias gQ
+nnoremap Q @@
+
 " Input command faster
 nnoremap ; :
 xnoremap ; :
