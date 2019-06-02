@@ -90,7 +90,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/i3/sc
 
 # Print Screen controls
 bindsym Print exec gnome-screenshot && ~/.config/i3/scripts/dunstify_notification "screenshot"
-bindsym Print+Shift exec gnome-screenshot --window && ~/.config/i3/scripts/dunstify_notification "screenshot"
+bindsym --release Shift+Print exec gnome-screenshot --window && ~/.config/i3/scripts/dunstify_notification "screenshot"
 
 
 focus_on_window_activation smart
