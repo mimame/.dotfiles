@@ -275,6 +275,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 " Don't rewrite tmux theme
 let g:airline#extensions#tmuxline#enabled = 0
+" Use buffer filename as tmux window name
+autocmd BufEnter,BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
+" Reset tmux windows name when exit
+autocmd VimLeave * call system("tmux setw automatic-rename")
 " Change from a buffer without written changes
 set hidden
 " Visual column at 80
