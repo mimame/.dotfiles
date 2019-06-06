@@ -568,7 +568,7 @@ alias s='rg --smart-case --follow --hidden --no-ignore --no-heading --with-filen
 alias ag='ag --unrestricted --smart-case --ignore .git --ignore node_modules'
 
 # fd with find behaviour
-alias f='fd --hidden --no-ignore --follow --exclude .git'
+alias f='fd --hidden --no-ignore --follow --exclude .git --exclude node_modules'
 
 # bat alias
 alias bat='bat --theme "Monokai Extended Bright Narnia"'
