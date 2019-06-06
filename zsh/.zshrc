@@ -564,8 +564,8 @@ alias tree='tree -a -s -h'
 alias T='tail -F'
 
 # rg with grep -r behaviour
-alias s='rg --smart-case --follow --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --glob '"'"'!.git/*'"'"
 alias ag='ag --unrestricted --smart-case --ignore .git'
+alias s='rg --smart-case --follow --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --glob '"'"'!node_modules'"'"' --glob '"'"'!.git/*'"'"
 
 # fd with find behaviour
 alias f='fd --hidden --no-ignore --follow --exclude .git'
