@@ -295,8 +295,11 @@ let g:rainbow_active = 1
 set number
 " Enable relativenumbers
 set relativenumber
-" Enable spelling checker when be necessary
-"set spell
+" Enable spell en_us by default
+set spell
+set spelllang=en_us
+" Autocomplete with dictionary words
+set complete+=kspell
 " Highlight the searched word
 set hlsearch
 " Search word while typing
