@@ -929,8 +929,6 @@ let g:go_highlight_build_constraints = 1
 augroup NvimrR
     autocmd!
     autocmd! FileType r :call InitNvimR()
-    " Two dash to generate an assignation arrow
-    autocmd! FileType r :iabbrev <buffer> -- <-
 augroup END
 function InitNvimR()
   call StartR("R")

@@ -128,8 +128,17 @@ options(
         radian.shell_prompt = "\033[0;31m#!>\033[0m ",
         radian.browse_prompt = "\033[0;33mBrowse[{}]>\033[0m ",
 
-        # supress the loading message for reticulate
+        # suppress the loading message for reticulate
         radian.suppress_reticulate_message = FALSE,
         # enable reticulate prompt and trigger `~`
-        radian.enable_reticulate_prompt = TRUE
+        radian.enable_reticulate_prompt = TRUE,
+
+        # allows user defined shortcuts, these keys should be escaped when send through the terminal.
+        # In the following example, `esc` + `-` sends `<-` and `esc` + `m` sends `%>%`.
+        # Note that in some terminals, you could mark `alt` as `escape` so you could use `alt` + `-` instead.
+        radian.escape_key_map = list(
+                                     list(key = "-", value = "<-"),
+                                     list(key = "m", value = "%>%")
+        )
 )
+
