@@ -58,6 +58,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
   " End certain structures automatically
   Plug 'tpope/vim-endwise'
+  " Edit registers/macros and lists as buffers (c@register in normal mode)
+  Plug 'rbong/vim-buffest'
   " Coertion between: Press gs + snake_case(s), MixedCase(m), CamelCase(c), UPPER_CASE(u), dash-case(-), dot.case(.), space case(space) and Title Case(t)
   Plug 'arthurxavierx/vim-caser'
   " Multiple cursor selections
