@@ -209,8 +209,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-eunuch'
   " Language tool grammar check
   Plug 'rhysd/vim-grammarous'
-  " Rethinking Vim as a tool for writing
-  Plug 'reedes/vim-pencil'
   " Asynchronous Lint Engine
   Plug 'w0rp/ale'
   " Plugin for formatting code
@@ -219,8 +217,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-obsession'
   " Autosave
   "Plug '907th/vim-auto-save'
-  " Configuration for .vimfrc (vim-polyglot)
-  "Plug 'vifm/vifm.vim'
   " A solid language pack for Vim.
   Plug 'sheerun/vim-polyglot'
   " Text object, based on indentation levels
@@ -1007,14 +1003,6 @@ nmap <Leader>T :tabnew<CR>
 
 "autocmd FileType vim setlocal foldmethod=marker foldlevel=0
 let g:grammarous#show_first_error = 1
-
-"let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
-"augroup pencil
-  "autocmd!
-  "autocmd FileType markdown,mkd call pencil#init()
-  "autocmd FileType tex call pencil#init()
-  "autocmd FileType text         call pencil#init({'wrap': 'hard'})
-"augroup END
 
 " FZF {{{
 " https://github.com/junegunn/fzf.vim
