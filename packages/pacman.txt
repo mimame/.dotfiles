@@ -19,19 +19,18 @@ bat
 bind-tools
 bison
 blueman
-bluez-firmware
 bluez-tools
 bluez-utils
 bmenu
 calibre
 cheese
-clang
 clipit
 cmake
 cmus
 code
 cpupower
 crda
+create_ap
 crystal
 deluge
 dfc
@@ -39,7 +38,7 @@ dhclient
 dhcpcd
 dia
 diff-so-fancy
-dnsmasq
+diskus
 docker-compose
 dos2unix
 downgrade
@@ -48,7 +47,6 @@ ecryptfs-utils
 efibootmgr
 epdfview
 evince
-exa
 exfat-utils
 f2fs-tools
 fakeroot
@@ -90,6 +88,7 @@ hugo
 hyphen-en
 igraph
 inkscape
+intel-compute-runtime
 intel-ucode
 iputils
 ipw2100-fw
@@ -107,6 +106,7 @@ lib32-mesa-vdpau
 lib32-vulkan-intel
 lib32-vulkan-radeon
 libdvdcss
+libfbclient
 libgpod
 libreoffice-fresh
 libva-mesa-driver
@@ -117,6 +117,7 @@ lightdm-settings
 linux414-r8168
 linux419-r8168
 linux420-r8168
+linux50-r8168
 logrotate
 lsscsi
 lxappearance
@@ -164,12 +165,13 @@ ntp
 numlockx
 onboard
 open-fuse-iso
+opencl-headers
 openshot
 opera
 os-prober
 otf-fira-code
 p7zip
-pamac
+pamac-gtk
 pamixer
 parallel
 patch
@@ -245,6 +247,7 @@ ttf-indic-otf
 udevil
 udiskie
 unrar
+urlscan
 vagrant
 vertex-maia-themes
 vi
@@ -262,7 +265,7 @@ w3m
 which
 wine-mono
 wine_gecko
-wireshark-gtk
+wireshark-qt
 wmctrl
 wmutils
 xarchiver
@@ -294,7 +297,6 @@ xorg-xinit
 xorg-xkill
 xterm
 yamllint
-yaourt
 yarn
 yay
 zathura-pdf-mupdf

@@ -1,10 +1,12 @@
 antibody
 bedtools
+bluez-firmware
 broot
 ctop
 cytoscape
 drawio-desktop
 dropbox-cli
+exa-git
 fpp-git
 fuse-zip
 git-cola
