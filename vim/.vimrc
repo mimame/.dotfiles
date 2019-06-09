@@ -403,6 +403,8 @@ set undodir=/tmp/.vim_undo
 " Inner entire buffer
 onoremap ib :exec "normal! ggVG"<cr>
 vnoremap ib ggG
+" Current viewable text in the buffer
+onoremap iv :exec "normal! HVL"<cr>
 
 " clever-f.vim {{{
 nmap <Esc> <Plug>(clever-f-reset)
