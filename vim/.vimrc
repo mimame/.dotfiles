@@ -934,8 +934,9 @@ augroup NvimrR
 augroup END
 function InitNvimR()
   call StartR("R")
-  sleep 1500m
-  call RObjBrowser()
+  " sleep 1500m
+  " call RObjBrowser()
+  " iabbrev <buffer> -- <-
 endfunction
 " Use rtichoke as the default R terminal
 let R_app = "radian"
@@ -958,6 +959,10 @@ let rout_follow_colorscheme = 1
 let R_objbr_opendf = 0
 " Remove underscore convertion to <-
 let R_assign = 0
+" Run R in a terminal emulator
+let R_in_buffer = 0
+" Custom the call to the terminal emulator
+let R_term_cmd = 'alacritty --title "R: ' . expand("%:t") . '" --command'
 
 " Object_Browser window highlight endline tabs by default
 " Ignore extra whitespace by filetype doesn't work
