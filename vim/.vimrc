@@ -400,6 +400,10 @@ call system('mkdir -p /tmp/.vim_undo')
 set undodir=/tmp/.vim_undo
 " }}}
 
+" Inner entire buffer
+onoremap ib :exec "normal! ggVG"<cr>
+vnoremap ib ggG
+
 " clever-f.vim {{{
 nmap <Esc> <Plug>(clever-f-reset)
 let g:clever_f_show_prompt = 1
