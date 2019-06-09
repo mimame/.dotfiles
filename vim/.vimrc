@@ -62,6 +62,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'arthurxavierx/vim-caser'
   " Multiple cursor selections
   Plug 'terryma/vim-multiple-cursors'
+  " Operator motions to quickly replace text
+  Plug 'svermeulen/vim-subversive'
   " Diff level of parentheses in diff color
   Plug 'luochen1990/rainbow'
   " Improved incremental searching
@@ -404,6 +406,17 @@ let g:clever_f_show_prompt = 1
 let g:clever_f_mark_char   = 1
 " }}}
 
+" Vim subversive {{{
+" s for substitute
+nmap s <Plug>(SubversiveSubstitute)
+nmap ss <Plug>(SubversiveSubstituteLine)
+nmap S <Plug>(SubversiveSubstituteToEndOfLine)
+xmap <localleader>s <Plug>(SubversiveSubstituteRange)
+nmap <localleader>s <Plug>(SubversiveSubstituteRange)
+nmap <localleader>ss <Plug>(SubversiveSubstituteWordRange)
+nmap <localleader>cr <Plug>(SubversiveSubstituteRangeConfirm)
+xmap <localleader>cr <Plug>(SubversiveSubstituteRangeConfirm)
+nmap <localleader>crr <Plug>(SubversiveSubstituteWordRangeConfirm)
 " }}}
 
 " Send word under cursor to devdocs.io
@@ -1026,7 +1039,7 @@ nnoremap <localleader>bc :BCommits<CR>
 " Show git status command
 nnoremap <localleader>gs :GFiles?<CR>
 " Show snippets from UltiSnips
-nnoremap <localleader>s :Snippets<CR>
+nnoremap <localleader>S :Snippets<CR>
 " Show Vim commands
 nnoremap <localleader>co :Commands<CR>
 " Show vim files history
