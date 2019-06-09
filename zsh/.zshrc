@@ -411,11 +411,11 @@ bindkey -M viins " " globalias
 
 # / expands all dot aliases without adding a space after
 function expand-dots {
-   if [[ $LBUFFER =~ ".*\.\.\.$" ]]; then
-	 zle _expand_alias
-	 zle expand-word
-   fi
-   zle self-insert
+  if [[ $LBUFFER =~ ".*\.\.\.$" ]]; then
+    zle _expand_alias
+    zle expand-word
+  fi
+  zle self-insert
 }
 zle -N expand-dots
 bindkey -M viins "/" expand-dots
@@ -594,6 +594,7 @@ alias i3rc='nvim $(readlink -f ~/.config/i3/config)'
 alias mimerc='nvim $(readlink -f ~/.config/mimeapps.list)'
 alias newsboatrc='nvim $(readlink -f ~/.config/newsboat/config)'
 alias nvimrc='nvim $(readlink -f ~/.config/nvim/init.vim)'
+alias rofirc='nvim $(readlink -f ~/.config/rofi/config.rasi)'
 alias sshrc='nvim $(readlink -f ~/.ssh/config)'
 alias tigrc='nvim $(readlink -f ~/.config/tig/config)'
 alias tmuxrc='nvim $(readlink -f ~/.tmux.conf)'
