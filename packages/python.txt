@@ -70,6 +70,7 @@ query-string
 radian
 rapi
 rchitect
+reorder-python-imports
 request
 sensors
 thefuck
