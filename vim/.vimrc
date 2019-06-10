@@ -464,7 +464,7 @@ xnoremap <Leader>r :OverCommandLine<CR>s/
 let g:ale_linters = {'rust': ['rls']}
 let g:ale_fixers = {
       \   'tex': ['latexindent'],
-      \   'python': ['black'],
+      \   'python': ['black', 'reorder-python-imports'],
       \   'r': ['styler'],
       \   'sh': ['shfmt'],
       \   'typescript': ['tslint'],
