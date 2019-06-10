@@ -234,7 +234,7 @@ call plug#end()
 " Leader key
 let g:mapleader = "\<Space>"
 " Local leader key
-let g:maplocalleader = ','
+let g:maplocalleader = ';'
 
 " Polyglot forbidden language plugins
 let g:polyglot_disabled = ['latex', 'r-lang', 'markdown']
