@@ -974,6 +974,8 @@ function InitNvimR()
   " sleep 1500m
   " call RObjBrowser()
   " iabbrev <buffer> -- <-
+  inoremap -- <space><-<space>
+  inoremap ,, <space>%>%<space>
 endfunction
 " Use rtichoke as the default R terminal
 let R_app = "radian"
