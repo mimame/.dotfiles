@@ -329,6 +329,7 @@ set autoindent
 set breakindent
 " Show spaces, tabs and breaklines with characters using :set list
 set listchars=eol:⏎,tab:⇥\ ,trail:␣,nbsp:⎵,space:·,precedes:«,extends:»
+set list
 " Show this in wrapped lines
 let &showbreak = '↳ '
 " Wrap lines
@@ -347,8 +348,6 @@ set formatoptions-=o
 au FileType * set fo-=c fo-=r fo-=o
 " Wrap lines at breakat
 set linebreak
-" List disables linebreak
-set nolist
 "Highlight the current line
 set cursorline
 " Enable read vim options in any file
