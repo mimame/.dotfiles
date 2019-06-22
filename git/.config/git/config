@@ -423,8 +423,8 @@
   # Only allow fast forward merges when pulling
   ff = only
   # https://git-scm.com/docs/git-config#git-config-pullrebase
-  # Always rebase when pulling
-  rebase = true
+  # Always rebase preserving merges when pulling
+  rebase = merges
 
 [push]
   # https://git-scm.com/docs/git-config#git-config-pushdefault
