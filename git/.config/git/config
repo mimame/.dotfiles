@@ -232,8 +232,11 @@
 
 [branch]
   # https://git-scm.com/docs/git-config#git-config-branchautoSetupRebase
-  # rebase always with new branches
+  # Rebase always with new branches
   autosetuprebase = always
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-branchltnamegtrebase
+  # Pass --preserve-merges along to git rebase so that locally committed merge commits will not be flattened by running git pull.
+  rebase=merges
 
 [color]
   # https://git-scm.com/docs/git-config#git-config-colorui
