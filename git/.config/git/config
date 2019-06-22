@@ -440,6 +440,8 @@
   recurseSubmodules = on-demand
 
 [rebase]
+  # git rebase --interactive will use abbreviated command names in the todo list
+  abbreviateCommands = true
   # https://git-scm.com/docs/git-config#git-config-rebaseautoSquash
   # Squash always after the interactive rebase
   autosquash = true
