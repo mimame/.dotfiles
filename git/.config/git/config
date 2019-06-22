@@ -98,6 +98,7 @@
   hb  = !hub browse
   hc  = !hub create
   hci = !hub ci-status
+  hcl = !hub clone
   hcp = !hub compare
   hd  = !hub delete
   hf  = !hub fork
