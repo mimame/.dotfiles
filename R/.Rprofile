@@ -137,8 +137,8 @@ options(
         # In the following example, `esc` + `-` sends `<-` and `esc` + `m` sends `%>%`.
         # Note that in some terminals, you could mark `alt` as `escape` so you could use `alt` + `-` instead.
         radian.escape_key_map = list(
-                                     list(key = "-", value = "<-"),
-                                     list(key = "m", value = "%>%")
+                                     list(key = "-", value = " <- "),
+                                     list(key = "m", value = " %>% ")
         )
 )
 
