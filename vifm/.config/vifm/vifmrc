@@ -528,7 +528,7 @@ vnoremap , :
 nnoremap sh :shell<cr>
 
 " Open console in current directory
-nnoremap <wait> ,t :!alacritty &<cr>
+nnoremap <wait> ;t :!alacritty &<cr>
 
 " Display sorting dialog
 nnoremap S :sort<cr>
@@ -576,7 +576,7 @@ nnoremap yd :!echo %d | xclip -in -selection clipboard %i<cr>
 nnoremap yf :!echo %c:p | xclip -in -selection clipboard %i<cr>
 
 " Yank current file without path into the clipboard
-nnoremap yn :!echo %c | xclip -i -selection clipboard %i<cr>
+nnoremap yn :!echo %c | xclip -in -selection clipboard %i<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>
@@ -590,13 +590,13 @@ nnoremap T :tabnew<cr>
 nnoremap ss :sshfs<space>
 
 " select mapping (apply select)
-nnoremap <wait> ,s :select<space>//<left>
+nnoremap <wait> ;s :select<space>//<left>
 
 " filter mapping (apply filter)
-nnoremap <wait> ,f :filter<space>//<left>
+nnoremap <wait> ;f :filter<space>//<left>
 
 " Substitute mapping
-nnoremap <wait> ,r :substitute///<left><left>
+nnoremap <wait> ;r :substitute///<left><left>
 
 " rsync mapping
 nnoremap rs :rsyncLocal<cr>
@@ -626,15 +626,15 @@ nnoremap cd :cd<space>
 nnoremap <a-c> :FZF<cr>
 
 " Open vim to edit vifmrc and apply settings after returning to vifm
-nnoremap <wait> ,c :write | execute ':!vim $MYVIFMRC' | restart<cr>
+nnoremap <wait> ;c :write | execute ':!vim $MYVIFMRC' | restart<cr>
 
 " Toggle wrap setting on ,w key
-nnoremap <wait>,w :set wrap!<cr>
+nnoremap <wait>;w :set wrap!<cr>
 
 " extract file mapping
-nnoremap <wait>,e :extract<cr>
+nnoremap <wait>;e :extract<cr>
 " compress file mapping
-nnoremap <wait>,c :compress<space>
+nnoremap <wait>;c :compress<space>
 
 " Use < and > without ctrl-w prefix key in normal mode
 nnoremap < <c-w><
