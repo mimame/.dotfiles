@@ -481,6 +481,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
+alias x='chmod +x'
+
 # rsync
 alias rs='rsync --archive --compress --info=progress2 --human-readable --update --delete'
 
