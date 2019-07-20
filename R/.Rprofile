@@ -33,6 +33,11 @@ hh <- function(df, elements=5) {
   df[1:elements, 1:columns]
 }
 
+# summary alias
+s <- function(element){
+  summary(element)
+}
+
 # Search string inside all dataframe or sequence and add their index to the output
 # By default use ignore.case and PCRE engine instead of the fixed string
 # This is slower but with more matches at the beginning of the exploration
