@@ -1091,11 +1091,12 @@ imap <c-f><c-l> <plug>(fzf-complete-line)
 let g:fzf_commits_log_options = "--color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 
 " Similarly, we can apply it to fzf#vim#grep. To use ripgrep instead of ag:
+" To replace any string: select with tab the required files and the apply to the quickfix window :cfdo %s/old_string/new_string/ge | w
     command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
-      \   'rg --follow --smart-case --hidden --no-ignore --no-ignore-parent --glob "!.git/*" --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   'rg --follow --smart-case --hidden --no-ignore --no-ignore-parent --glob "!{.git,node_modules}" --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'},'up:60%')
+      \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'},'right:50%:hidden', '?'),
 \ <bang>0)
 
 cnoreabbrev rg Rg
