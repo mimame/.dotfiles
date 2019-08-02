@@ -615,8 +615,8 @@ vnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 
 " miniyank config {{{
 " Cycle through
-map <localleader>p <Plug>(miniyank-cycleback)
-map <localleader>n <Plug>(miniyank-cycle)
+map <localleader>n <Plug>(miniyank-cycleback)
+map <localleader>p <Plug>(miniyank-cycle)
 " Notify that a paste has occurred
 map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
