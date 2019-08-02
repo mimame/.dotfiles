@@ -966,7 +966,7 @@ let g:go_highlight_build_constraints = 1
 " Display console and Object browser when any .R file is opened like RStudio
 augroup NvimrR
     autocmd!
-    autocmd! FileType r :call InitNvimR()
+    autocmd! FileType r,rmd :call InitNvimR()
 augroup END
 function InitNvimR()
   call StartR("R")
