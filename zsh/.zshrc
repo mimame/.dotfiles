@@ -477,6 +477,7 @@ alias g=git
 alias ls='ls --color=always --almost-all --human-readable --format=long --classify'
 alias l='ls'
 alias ll='exa --all --sort .name --color=always --long --links --group --git --icons --classify --extended'
+alias lll='ll --tree --ignore-glob=".git|node_modules"'
 alias tree='tree -a --du -h -u -g -F -D -C -I ".git|node_modules"'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
