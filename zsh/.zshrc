@@ -527,7 +527,8 @@ function open() {
   # Run mimeopen with nohup in background and remove it from the jobs table
   for file in "$@"
   do
-    nohup mimeopen "$file" >| /tmp/nohup-"$(basename $file)".out 2>| /tmp/nohup-"$(basename $file)".err < /dev/null &
+    # mimeopen extracts the default terminal from the $TERMINAL variable
+     TERMINAL='alacritty -e' nohup mimeopen "$file" >| /tmp/nohup-"$(basename $file)".out 2>| /tmp/nohup-"$(basename $file)".err < /dev/null &
     disown %%
   done
 }
