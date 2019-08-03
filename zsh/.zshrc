@@ -558,6 +558,7 @@ alias v='vim'
 alias n='nvim'
 alias h='history'
 alias du='du -h'
+alias dus='diskus'
 alias df='df -h'
 alias stmux="tmuxinator"
 alias j="jobs -l"
