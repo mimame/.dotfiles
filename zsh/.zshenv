@@ -13,8 +13,8 @@ else
   export BROWSER='firefox'
 fi
 
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export TMPDIR='/tmp'
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export GEM_HOME="$HOME/.gem"
