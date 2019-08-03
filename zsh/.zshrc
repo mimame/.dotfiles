@@ -474,7 +474,7 @@ alias bc='bc -l'
 alias git=hub
 alias g=git
 
-alias ls='ls --color=always --almost-all --human-readable --format=long'
+alias ls='ls --color=always --almost-all --human-readable --format=long --classify'
 alias l='ls'
 alias ll='exa --all --sort .name --color=always --long --links --group --git'
 alias tree='tree -a --du -h -u -g -F -D -C -I ".git|node_modules"'
