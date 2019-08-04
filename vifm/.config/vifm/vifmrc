@@ -604,7 +604,7 @@ nnoremap <wait> ;f :filter<space>//<left>
 nnoremap <wait> ;r :substitute///<left><left>
 
 " rsync mapping
-nnoremap rs :rsyncLocal<cr>
+nnoremap rs :rsync<cr>
 
 " fd mapping
 nnoremap se :fd<space>
