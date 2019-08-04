@@ -592,7 +592,7 @@ nnoremap A cw
 nnoremap T :tabnew<cr>
 
 " sshfs mapping
-nnoremap ss :sshfs<space>
+nnoremap ss :sshfs<space>:<left>
 
 " select mapping (apply select)
 nnoremap <wait> ;s :select<space>//<left>
