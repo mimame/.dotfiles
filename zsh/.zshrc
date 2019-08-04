@@ -382,11 +382,11 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 # Ctrl-R provided by fzf
 # Setting fd as the default source for fzf
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --follow --exclude .git --exclude node_modules'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --exclude .git --exclude node_modules'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # To apply the command to ALT_C
-export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --follow --exclude .git --exclude node_modules'
+export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --exclude .git --exclude node_modules'
 # Molokai colors by default
 export FZF_DEFAULT_OPTS='
 --reverse
@@ -573,7 +573,7 @@ alias s='rg --smart-case --follow --hidden --no-ignore --no-heading --with-filen
 alias ag='ag --unrestricted --smart-case --ignore .git --ignore node_modules'
 
 # fd with find behaviour
-alias f='fd --hidden --no-ignore --follow --exclude .git --exclude node_modules'
+alias f='fd --hidden --no-ignore --exclude .git --exclude node_modules'
 
 # bat alias
 alias bat='bat --theme "Monokai Extended Bright Narnia"'
