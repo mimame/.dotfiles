@@ -165,6 +165,7 @@
   rba   = rebase --abort
   rbc   = rebase --continue
   rbi   = rebase --interactive
+  rbm   = rebase master
     # rebase interactive with fzf from the selected commit (included)
   rbifz = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git rebase --interactive ${HASH}~
   rbs   = rebase --skip
@@ -194,7 +195,7 @@
   rp   = reset --patch
   rpfz = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --staged --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git reset --patch ${FILES}
   rs   = reset --soft
-  rsm  = reset --mixed
+  rsm  = reset --mixed # default
   # revert - https://git-scm.com/docs/git-revert
   rv = revert
   # shortlog -- https://git-scm.com/docs/git-shortlog
