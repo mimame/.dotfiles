@@ -137,9 +137,10 @@ set dotdirs=
 set rulerformat='%2l/%S%[ - %x filtered%]'
 
 " Ignore .git directory on :find
-set findprg='find %s -iname *%A* -print ,
-             \ -type d \( ! -readable -o ! -executable -o -path "*/.git" -o -path "*/node_modules" \)
-             \ -prune'
+" set findprg='find %s -iname *%A* -print ,
+"              \ -type d \( ! -readable -o ! -executable -o -path "*/.git" -o -path "*/node_modules" \)
+"              \ -prune'
+set findprg='fd %A --hidden --no-ignore --exclude .git --exclude node_modules'
 
 " Devicons
 " vim insert mode ctrl+V u eNumber esc ; eNumber from https://github.com/ryanoasis/nerd-fonts#glyph-sets
