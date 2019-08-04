@@ -204,6 +204,11 @@ mark t /tmp
 mark r /
 
 " ------------------------------------------------------------------------------
+" :au[tocmd] {event} {pat} {cmd}
+" Calculate recursively all folder sizes automatically
+autocmd DirEnter * %select | exe 'normal ga' | %unselect
+
+" ------------------------------------------------------------------------------
 
 " :com[mand][!] command_name action
 " The following macros can be used in a command
