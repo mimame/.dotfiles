@@ -134,6 +134,7 @@
   m  = merge
   ma = merge --abort
   mc = merge --continue
+  mm = merge master
   ms = merge --skip
   # mergetool - https://git-scm.com/docs/git-mergetool
   mt  = mergetool
