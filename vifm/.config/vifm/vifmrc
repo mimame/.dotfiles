@@ -138,7 +138,7 @@ set rulerformat='%2l/%S%[ - %x filtered%]'
 
 " Ignore .git directory on :find
 set findprg='find %s %a -print ,
-            \ -type d \( ! -readable -o ! -executable -o -path "*/.git" \)
+            \ -type d \( ! -readable -o ! -executable -o -path "*/.git" -o -path "*/node_modules" \)
             \ -prune'
 
 " Devicons
