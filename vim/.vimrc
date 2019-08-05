@@ -399,6 +399,9 @@ set concealcursor=
 set undofile
 call system('mkdir -p /tmp/.vim_undo')
 set undodir=/tmp/.vim_undo
+" Improve default grepprg
+set grepprg=rg\ --vimgrep\ --no-heading
+set grepformat=%f:%l:%c:%m,%f:%l:%m
 " }}}
 
 " Inner entire buffer
