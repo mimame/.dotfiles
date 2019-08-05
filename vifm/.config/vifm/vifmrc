@@ -315,13 +315,13 @@ command! FZF :set noquickview | :execute 'goto "'.system('fd --hidden --no-ignor
 fileviewer *[^/] env -uCOLORTERM bat --theme 'Monokai Extended Bright Narnia' --color always --wrap never --pager never %c --number
 
 " Pdf
-filextype *.pdf evince %f
+filextype *.pdf zathura %f %i &
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
 " PostScript
 filextype *.ps,*.eps,*.ps.gz
-        \ {View in evince}
-        \ evince %f,
+        \ {View in zathura}
+        \ zathura %f %i &,
 
 " Djvu
 filextype *.djvu
