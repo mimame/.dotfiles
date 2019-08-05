@@ -610,7 +610,10 @@ nnoremap rs :rsync<cr>
 " fd mapping
 nnoremap se :fd<space>
 
-" dif mapping
+" find mapping
+nnoremap fi :find<space>
+
+" diff mapping
 nnoremap di :diff<cr>
 
 " meld mapping
