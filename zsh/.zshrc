@@ -388,6 +388,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--height 100% --preview 'bat --theme \"Monokai Extended Bright Narnia\" --color always {}' --preview-window wrap"
 # To apply the command to ALT_C
 export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --exclude .git --exclude node_modules'
+export FZF_ALT_C_OPTS="--height 100% --preview 'exa --all --sort .name --tree --level 1 --classify --git --long --color=always {}' --preview-window wrap"
 # Molokai colors by default
 export FZF_DEFAULT_OPTS='
 --reverse
