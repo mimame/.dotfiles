@@ -406,6 +406,10 @@ fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
 fileviewer .*.tar.xz,*.tar.xz,*.tar.txz,*.txz xz --list %c
 fileviewer .*.tar,*.tar tar -tf %c
 
+" filextype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
+"         \ {Open with xarchive}
+"         \ xarchiver %f &
+
 " FuseZipMount
 filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ {Mount with fuse-zip}
@@ -414,12 +418,6 @@ filetype *.zip,*.jar,*.war,*.ear,*.oxt,*.apkg
        \ zip --show-files %c | less,
        \ {Extract here}
        \ tar -xf %c,
-fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip --show-files %c
-
-filextype *.zip,*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
-       \ {Open with xarchive}
-       \ xarchiver %f &
-
 fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip --show-files %c
 
 " Rar2FsMount and rar archives
