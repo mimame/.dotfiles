@@ -397,7 +397,7 @@ export FZF_DEFAULT_OPTS='
 --color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
 --bind "ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
-alias p='fzf --preview "bat --color always {}"'
+alias p='fzf --bind "enter:execute(nvim {})+abort" --preview "bat --theme \"Monokai Extended Bright Narnia\" --color always {}"'
 # }}}
 
 # Alias {{{
