@@ -390,11 +390,12 @@ export FZF_CTRL_T_OPTS="--height 100% --preview 'bat --theme \"Monokai Extended 
 export FZF_ALT_C_COMMAND='fd --type d --hidden --no-ignore --exclude .git --exclude node_modules'
 export FZF_ALT_C_OPTS="--height 100% --preview 'exa --all --sort .name --tree --level 1 --classify --git --long --color=always {}' --preview-window wrap"
 # Molokai colors by default
+# https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
 export FZF_DEFAULT_OPTS='
 --reverse
 --color fg:255,bg:0,hl:161,fg+:255,bg+:208,hl+:161,info:118
 --color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
---bind "ctrl-o:execute(nvim {})+abort"
+--bind "ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 alias p='fzf --preview "bat --color always {}"'
 # }}}
