@@ -1103,6 +1103,7 @@ let g:fzf_commits_log_options = "--color --graph --abbrev-commit --pretty=format
 \ <bang>0)
 
 cnoreabbrev rg Rg
+nnoremap rg :Rg<space>
 " }}}
 
 " committia.vim config {{{
