@@ -10,7 +10,7 @@
 " Update terminal title
 set title
 
-" This is the actual command used to start vi.  The default is vim.
+" Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
@@ -494,15 +494,12 @@ filextype */
 
 " ------------------------------------------------------------------------------
 
-" What should be saved automatically between vifm runs
-" Like in previous versions of vifm
-" set vifminfo=options,filetypes,commands,bookmarks,dhistory,state,cs
-" Like in vi
-"set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
-    "\phistory,fhistory,dirstack,registers,bookmarks,bmarks
+" What should be saved automatically between vifm sessions.  Drop "savedirs"
+" value if you don't want vifm to remember last visited directories for you.
+" set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+"     \phistory,fhistory,dirstack,registers,bookmarks,bmarks
 set vifminfo=dhistory,chistory,tui,shistory,
     \phistory,fhistory,dirstack,registers
-
 " ------------------------------------------------------------------------------
 
 " Examples of configuring both panels
@@ -695,9 +692,17 @@ set grepprg='rg --glob "!{.git,node_modules}" --vimgrep --smart-case --hidden --
 
 " Add additional place to look for executables
 "
-" let $PATH=$HOME.'/bin/fuse:'.$PATH
+" let $PATH = $HOME.'/bin/fuse:'.$PATH
 
 " Block particular shortcut
 "
 " nnoremap <left> <nop>
 
+" Export IPC name of current instance as environment variable and use it to
+" communicate with the instance later.
+"
+" It can be used in some shell script that gets run from inside vifm, for
+" example, like this:
+"     vifm --server-name "$VIFM_SERVER_NAME" --remote +"cd '$PWD'"
+"
+" let $VIFM_SERVER_NAME = v:servername
