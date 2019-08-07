@@ -801,6 +801,8 @@ map <Leader>vz :VimuxZoomRunner<CR>
 " with Tab
 " htps://stackoverflow.com/a/22253548
 " make YCM compatible with UltiSnips (using supertab)
+" Always close the preview window after continue writing
+let g:ycm_autoclose_preview_window_after_completion=1
 " Completion in comments
 let g:ycm_complete_in_comments = 1
 " Completion with tags
