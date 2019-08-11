@@ -2,15 +2,13 @@
 
 #PUT THIS FILE IN ~/.local/share/rofi/finder.sh
 #USE: rofi  -show find -modi find:~/.local/share/rofi/finder.sh
-if [ ! -z "$@" ]
-then
+if [ ! -z "$@" ]; then
   QUERY=$@
-  if [[ "$@" == /* ]]
-  then
-    coproc ( mimeopen "$@"  > /dev/null 2>&1 )
+  if [[ "$@" == /* ]]; then
+    coproc (TERMINAL='alacritty -e' mimeopen "$@" >/dev/null 2>&1)
     exec 1>&-
-    exit;
+    exit
   else
-    fd --hidden --no-ignore --exclude .git --fixed-strings --type file --type directory  "$QUERY" /home /tmp /usr
+    fd --hidden --no-ignore --exclude .git --exclude node_modules "$QUERY" /home /tmp /usr
   fi
 fi
