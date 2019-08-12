@@ -43,6 +43,7 @@
   bfz = !BRANCH=$(git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads | fzf) && git checkout ${BRANCH}
   br  = branch --remotes
   # checkout - https://git-scm.com/docs/git-checkout
+  cbfz  = !BRANCH=$(git branch | grep -v '^*' | tr -d ' ' | fzf --ansi) && git checkout ${BRANCH}
   co    = checkout
   cob   = checkout -b
   cofz  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git checkout ${FILES}
