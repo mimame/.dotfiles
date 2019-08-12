@@ -531,7 +531,7 @@ function open() {
   for file in "$@"
   do
     # mimeopen extracts the default terminal from the $TERMINAL variable
-     TERMINAL='alacritty -e' nohup mimeopen "$file" >| /tmp/nohup-"$(basename $file)".out 2>| /tmp/nohup-"$(basename $file)".err < /dev/null &
+     TERMINAL='alacritty -e' nohup mimeopen --no-ask "$file" >| /tmp/nohup-"$(basename $file)".out 2>| /tmp/nohup-"$(basename $file)".err < /dev/null &
     disown %%
   done
 }
