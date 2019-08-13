@@ -686,6 +686,14 @@ let g:SignatureMarkTextHLDynamic = 1
 " markdown-preview plugin {{{
 " Open the preview window once enter the markdown buffer
 let g:mkdp_auto_start = 1
+" Close current preview window when change
+" Firefox: about.config -> dom.allow_scripts_to_close_windows = true
+let g:mkdp_auto_close = 1
+function! g:Open_markdown_file(markdown_file)
+    silent exec '! firefox-developer-edition --new-window ' . a:markdown_file . ' &'
+endfunction
+" Custom vim function name to open preview page. Will receive url as param
+let g:mkdp_browserfunc = 'g:Open_markdown_file'
 " }}}
 
 " Open TOC using fzf instead of quickfix window {{{
