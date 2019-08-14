@@ -546,9 +546,15 @@ inoremap ZQ <ESC>:qa!<CR>
 
 " Esc Esc for Highlight off the searched term
 nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+
 " Never these keys combination are used together so remap to esc and cr
 inoremap aa <esc>
 inoremap ;; <cr>
+
+" Set up Y to be consistent with the C and D operators, which act from the cursor to the end of the line
+" The default behavior of Y is to yank the whole line
+nnoremap Y y$
+
 " Open .vimrc
 nmap <silent> <leader>ev :execute 'e ' . resolve(expand($MYVIMRC))<CR>
 " Load .vimrc
