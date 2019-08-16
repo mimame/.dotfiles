@@ -987,7 +987,7 @@ augroup NvimrR
     autocmd!
     autocmd! FileType r,rmd :call InitNvimR()
 augroup END
-function InitNvimR()
+function! InitNvimR()
   call StartR("R")
   " sleep 1500m
   " call RObjBrowser()
