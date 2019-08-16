@@ -279,6 +279,13 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+" Never show current tabpage/buffer first
+let airline#extensions#tabline#current_first = 0
+" Configure whether buffer numbers should be shown
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" Configure how buffer numbers should be formatted with |printf()|. >
+let g:airline#extensions#tabline#buffer_nr_format = '%s:'
+
 " Don't rewrite tmux theme
 let g:airline#extensions#tmuxline#enabled = 0
 " Use buffer filename as tmux window name
