@@ -406,7 +406,7 @@ set grepformat=%f:%l:%c:%m,%f:%l:%m
 
 " Inner entire buffer
 onoremap ib :exec "normal! ggVG"<cr>
-vnoremap ib ggG
+vnoremap ib <esc>ggVG<cr>
 " Current viewable text in the buffer
 onoremap iv :exec "normal! HVL"<cr>
 
