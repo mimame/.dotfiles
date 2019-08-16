@@ -285,6 +285,27 @@ let airline#extensions#tabline#current_first = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
 " Configure how buffer numbers should be formatted with |printf()|. >
 let g:airline#extensions#tabline#buffer_nr_format = '%s:'
+nmap <leader>1 :buffer 1<cr>
+nmap <leader>2 :buffer 2<cr>
+nmap <leader>3 :buffer 3<cr>
+nmap <leader>4 :buffer 4<cr>
+nmap <leader>5 :buffer 5<cr>
+nmap <leader>6 :buffer 6<cr>
+nmap <leader>7 :buffer 7<cr>
+nmap <leader>8 :buffer 8<cr>
+nmap <leader>9 :buffer 9<cr>
+nmap <leader>0 :buffer 10<cr>
+nmap <leader><F1> :buffer 11<cr>
+nmap <leader><F2> :buffer 12<cr>
+nmap <leader><F3> :buffer 13<cr>
+nmap <leader><F4> :buffer 14<cr>
+nmap <leader><F5> :buffer 15<cr>
+nmap <leader><F6> :buffer 16<cr>
+nmap <leader><F7> :buffer 17<cr>
+nmap <leader><F8> :buffer 18<cr>
+nmap <leader><F9> :buffer 19<cr>
+nmap <leader><F10> :buffer 20<cr>
+nmap <leader><F11> :buffer 21<cr>
 
 " Don't rewrite tmux theme
 let g:airline#extensions#tmuxline#enabled = 0
