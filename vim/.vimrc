@@ -66,6 +66,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'svermeulen/vim-subversive'
   " killring-alike plugin
   Plug 'bfredl/nvim-miniyank'
+  " Changes Vim working directory to project root (identified by presence of known directory or file)
+  Plug 'airblade/vim-rooter'
   " Diff level of parentheses in diff color
   Plug 'luochen1990/rainbow'
   " Improved incremental searching
@@ -564,6 +566,12 @@ augroup myvimrc
   au!
   au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+" vim-rooter config {{{
+" To specify how to identify a project's root directory:
+" .git before .git/ to work correctly with git submodules
+let g:rooter_patterns = ['Cargo.toml', 'Project.toml', 'shard.yml', 'package.json', 'Rakefile', 'node_modules/', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
+" }}}
 
 " vifm config {{{
 nnoremap <Leader>ve :EditVifm<CR>
