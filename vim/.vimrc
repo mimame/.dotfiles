@@ -647,7 +647,7 @@ nnoremap <Leader>W :w suda://%<CR>
 cnoremap w!! :w suda://%<CR>
 xnoremap v V
 nnoremap <Leader>= <esc>gg=G<C-o><C-o>
-xnoremap <Leader>s :'<,'>sort<CR>
+xnoremap <Localleader>st :'<,'>!sort --human-numeric-sort<CR>
 "map K <Plug>(expand_region_expand)
 "map J <Plug>(expand_region_shrink)
 
