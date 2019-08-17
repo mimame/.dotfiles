@@ -56,6 +56,7 @@
   cp = cherry-pick
   # clone - https://git-scm.com/docs/git-clone
   cl  = clone
+  clb = clone --branch
   clf = clone --depth 1
   # commit - https://git-scm.com/docs/git-commit
   c   = commit
