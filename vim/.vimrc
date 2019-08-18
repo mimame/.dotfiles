@@ -618,12 +618,18 @@ let g:NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.sv
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " NERDTree and Startify working at startup
-autocmd VimEnter *
-                \   if !argc()
-                \ |   NERDTree
-                \ |   wincmd l
-                \ |   Startify
-\ | endif
+fun! StartifyNERDTree()
+    " Don't start NERDTree with Startify on these filetypes
+    " export MANPAGER='nvim -R +":set ft=man" -'
+    if &filetype =~# 'man'
+      return
+    elseif !argc()
+      NERDTree
+      wincmd l
+      Startify
+    endif
+  endfun
+autocmd VimEnter * call StartifyNERDTree()
 
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>n. :NERDTreeFind<CR>
