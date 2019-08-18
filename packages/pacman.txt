@@ -2,6 +2,7 @@ accountsservice
 acpi
 acpid
 alacritty
+alacritty-terminfo
 amd-ucode
 ansible-lint
 arandr
@@ -12,6 +13,7 @@ aspell-en
 atop
 autoconf
 automake
+avfs
 axel
 b43-fwcutter
 baobab
@@ -46,7 +48,9 @@ dstat
 ecryptfs-utils
 efibootmgr
 epdfview
+ethtool
 evince
+exa
 exfat-utils
 f2fs-tools
 fakeroot
@@ -81,6 +85,7 @@ gvfs-smb
 gvim
 haveged
 hexchat
+hexyl
 htop
 httpie
 hub
@@ -114,11 +119,10 @@ libva-vdpau-driver
 licenses
 light
 lightdm-settings
-linux414-r8168
 linux419-r8168
-linux420-r8168
-linux50-r8168
+linux52-r8168
 logrotate
+lsd
 lsscsi
 lxappearance
 lxinput
@@ -151,6 +155,7 @@ mtr
 nano
 ncdu
 neofetch
+neovim-qt
 netctl
 network-manager-applet
 networkmanager-openconnect
@@ -213,6 +218,8 @@ screenfetch
 seahorse
 shards
 shellcheck
+shfmt
+smartmontools
 spectre-meltdown-checker
 speedtest-cli
 sshfs
@@ -262,12 +269,12 @@ volumeicon
 vulkan-intel
 vulkan-radeon
 w3m
-which
 wine-mono
 wine_gecko
 wireshark-qt
 wmctrl
 wmutils
+x86_energy_perf_policy
 xarchiver
 xautolock
 xcape

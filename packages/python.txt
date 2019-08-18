@@ -33,6 +33,7 @@ itsdangerous
 Jinja2
 lazy-object-proxy
 lineedit
+litecli
 Markdown
 MarkupSafe
 mccabe

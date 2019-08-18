@@ -6,7 +6,6 @@ ctop
 cytoscape
 drawio-desktop
 dropbox-cli
-exa-git
 fpp-git
 fuse-zip
 git-cola
@@ -30,6 +29,5 @@ skypeforlinux-stable-bin
 universal-ctags-git
 watchman
 weka
-zoom
 zotero
 zulip-electron-bin
