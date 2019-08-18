@@ -175,7 +175,7 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: '0x272822'
+    background: '0x000000'
     foreground: '0xf8f8f2'
 
     # Bright and dim foreground colors
@@ -191,8 +191,8 @@ colors:
   # Colors which should be used to draw the terminal cursor. If these are unset,
   # the cursor color will be the inverse of the cell color.
   cursor:
-    text: '0x272822'
     cursor: '0xf8f8f2'
+    text: '0x000000'
 
   # Selection colors
   #
@@ -205,7 +205,7 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x272822'
+    black:   '0x000000'
     red:     '0xf92672'
     green:   '0xa6e22e'
     yellow:  '0xf4bf75'
