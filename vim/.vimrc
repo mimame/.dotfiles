@@ -273,6 +273,21 @@ colorscheme molokai
 " Molokai theme for the status line
 let g:airline_theme = 'molokai'
 let g:airline_molokai_bright=1
+" molokai colors improved {{{
+" Take green cursor from terminal (Alacritty)
+highlight CursorLine   ctermbg=none guibg=#403D3D
+highlight CursorLineNr ctermbg=236 cterm=bold guibg=#232526 gui=bold
+" Force real black background
+highlight Normal guibg=#FFFFFF guibg=#000000
+highlight Comment guifg=#C0C0C0
+highlight NonText guifg=#505050
+highlight SpecialKey guifg=#505050
+highlight Folded guifg=#D3D3D3
+highlight LineNr guifg=#FFFFFF guibg=#000000
+" Reduce highlighted time of the yank region
+let g:highlightedyank_highlight_duration = 300
+" }}}
+
 " Enable powerline fonts
 let g:airline_powerline_fonts = 1
 " Enable the list of buffers
@@ -462,13 +477,6 @@ nmap <localleader>crr <Plug>(SubversiveSubstituteWordRangeConfirm)
 " Send word under cursor to devdocs.io
 nmap K <Plug>(devdocs-under-cursor)
 
-" molokai colors improved {{{
-highlight CursorLine   ctermbg=236 guibg=#403D3D
-highlight CursorLineNr ctermbg=236 cterm=bold guibg=#232526 gui=bold
-" Reduce highlighted time of the yank region
-let g:highlightedyank_highlight_duration = 300
-" }}}
-
 " Write file and create the folder if not exists
 function! s:MkNonExDir(file, buf)
     if empty(getbufvar(a:buf, '&buftype')) && a:file!~#'\v^\w+\:\/'
@@ -515,8 +523,8 @@ let g:ale_sign_warning = ''
 let g:ale_echo_msg_error_str = ''
 let g:ale_echo_msg_warning_str = ''
 let g:ale_echo_msg_format = '%severity%  [%linter%]: %s'
-highlight ALEWarning ctermfg=yellow ctermbg=236 guifg=yellow
-highlight ALEError   ctermfg=red    ctermbg=236 guifg=red
+highlight ALEWarning ctermfg=yellow ctermbg=16 guifg=yellow guibg=#000000
+highlight ALEError   ctermfg=red    ctermbg=16 guifg=red guibg=#000000
 highlight link ALEWarningSign ALEWarning
 highlight link ALEErrorSign   ALEError
 " }}}
@@ -916,10 +924,10 @@ let g:UltiSnipsSnippetsDir = '~/.vim/UltiSnips'
 let g:gitgutter_grep = 'rg'
 let g:gitgutter_sign_removed = '-'
 " Symbols color
-highlight GitGutterAdd          ctermfg=green  ctermbg=236 cterm=bold guifg=green  guibg=#232526 gui=bold
-highlight GitGutterChange       ctermfg=yellow ctermbg=236 cterm=bold guifg=yellow guibg=#232526 gui=bold
-highlight GitGutterDelete       ctermfg=red    ctermbg=236 cterm=bold guifg=red    guibg=#232526 gui=bold
-highlight GitGutterChangeDelete ctermfg=yellow ctermbg=236 cterm=bold guifg=yellow guibg=#232526 gui=bold
+highlight GitGutterAdd          ctermfg=green  ctermbg=16 cterm=bold guifg=green  guibg=#000000 gui=bold
+highlight GitGutterChange       ctermfg=yellow ctermbg=16 cterm=bold guifg=yellow guibg=#000000 gui=bold
+highlight GitGutterDelete       ctermfg=red    ctermbg=16 cterm=bold guifg=red    guibg=#000000 gui=bold
+highlight GitGutterChangeDelete ctermfg=yellow ctermbg=16 cterm=bold guifg=yellow guibg=#000000 gui=bold
 " Move between hunks
 nmap <localleader>k <Plug>GitGutterPrevHunk
 nmap <localleader>j <Plug>GitGutterNextHunk
