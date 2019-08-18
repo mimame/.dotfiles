@@ -571,6 +571,7 @@ alias fm='vifm'
 alias re='massren'
 alias T='tail -F'
 
+export MANPAGER='nvim -R +":set filetype=man number" -'
 alias m='man'
 
 # rg with grep -r behaviour
