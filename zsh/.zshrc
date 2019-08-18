@@ -571,6 +571,8 @@ alias fm='vifm'
 alias re='massren'
 alias T='tail -F'
 
+alias m='man'
+
 # rg with grep -r behaviour
 alias s='rg --smart-case --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --glob '"'"'!{.git,node_modules}'"'"
 alias ag='ag --unrestricted --smart-case --ignore .git --ignore node_modules'
