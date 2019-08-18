@@ -317,12 +317,12 @@ mode "resize" {
 
 # Base16 Monokai by Wimer Hazenberg (http://www.monokai.nl)
 # # template by Matt Parnell, @parnmatt
-set $base00 #272822
+set $base00 #000000
 set $base01 #383830
 set $base02 #49483e
 set $base03 #75715e
 set $base04 #a59f85
-set $base05 #f8f8f2
+set $base05 #FFFFFF
 set $base06 #f5f4f1
 set $base07 #f9f8f5
 set $base08 #f92672
@@ -343,6 +343,8 @@ client.urgent $base02 $base08 $base07 $base08
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
 exec --no-startup-id dropbox
@@ -362,7 +364,7 @@ bar {
   #	wheel_down_cmd nop
   colors {
     separator $base03
-    background $base01
+    background $base00
     statusline $base05
     focused_workspace $base0C $base0D $base00
     active_workspace $base02 $base02 $base07
