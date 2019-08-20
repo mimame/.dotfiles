@@ -547,11 +547,12 @@ nnoremap <silent> ;nm :nmap<cr>
 " List all maps in command line mode
 nnoremap <silent> ;cm :cmap<cr>
 " List all maps in menu mode
-nnoremap <silent> ;mm :cmap<cr>
+nnoremap <silent> ;mm :mmap<cr>
 " List all maps in view mode
-nnoremap <silent> ;qm :cmap<cr>
+nnoremap <silent> ;qm :qmap<cr>
 " List all maps in visual mode
-nnoremap <silent> ;vm :cmap<cr>
+nnoremap <silent> ;vm :vmap<cr>
+vnoremap <silent> ;m :vmap<cr>
 " List all user commands
 nnoremap <silent> ;co :command<cr>
 
