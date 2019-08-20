@@ -555,17 +555,17 @@ nnoremap , :
 vnoremap , :
 
 " Start shell in current directory
-nnoremap sh :shell<cr>
+nnoremap <silent> sh :shell<cr>
 
 " Open console in current directory
 nnoremap <wait> ;t :!alacritty &<cr>
 
 " Display sorting dialog
-nnoremap S :sort<cr>
+nnoremap <silent> S :sort<cr>
 
 " Toggle visibility of preview window
-nnoremap w :view<cr>
-vnoremap w :view<cr>gv
+nnoremap <silent> w :view<cr>
+vnoremap <silent> w :view<cr>gv
 
 " mkdir -p directory
 nnoremap md :md<space>
@@ -578,7 +578,7 @@ nnoremap sy :sync<cr>
 " Repeat name substitution
 nnoremap su :su<cr>
 " Reload config
-nnoremap rl :reload<cr>
+nnoremap <silent> rl :reload<cr>
 
 " Open file in existing instance of gvim
 "nnoremap o :!gvim --remote-tab-silent %f<cr>
@@ -626,19 +626,16 @@ nnoremap <wait> ;s :select<space>//<left>
 nnoremap <wait> ;f :filter<space>//<left>
 
 " Substitute mapping
-nnoremap <wait> ;r :substitute///<left><left>
+nnoremap <silent> r :substitute///<left><left>
 
 " rsync mapping
 nnoremap rs :rsync<cr>
 
 " rg mapping
-nnoremap rg :grep<space>
-
-" fd mapping
-nnoremap se :fd<space>
+nnoremap <silent> ;s :grep<space>
 
 " find mapping
-nnoremap fi :find<space>
+nnoremap <silent> ;fi :find<space>
 
 " diff mapping
 nnoremap di :diff<cr>
@@ -659,18 +656,18 @@ nnoremap du :du<cr>
 nnoremap cd :cd<space>
 
 " FZF mapping
-nnoremap <a-c> :FZF<cr>
+nnoremap <silent> <a-c> :FZF<cr>
 
 " Open vim to edit vifmrc and apply settings after returning to vifm
-nnoremap <wait> ;c :write | execute ':!vim $MYVIFMRC' | restart<cr>
+nnoremap <silent> ;c :write | execute ':!vim $MYVIFMRC' | restart<cr>
 
 " Toggle wrap setting on ,w key
-nnoremap <wait>;w :set wrap!<cr>
+nnoremap <silent> ;w :set wrap!<cr>
 
 " extract file mapping
-nnoremap <wait>;e :extract<cr>
+nnoremap <silent> ;e :extract<cr>
 " compress file mapping
-nnoremap <wait>;c :compress<space>
+nnoremap <silent> ;c :compress<space>
 
 " Use < and > without ctrl-w prefix key in normal mode
 nnoremap < <c-w><
