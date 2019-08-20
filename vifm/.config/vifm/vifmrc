@@ -535,7 +535,20 @@ windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}
 
 " ------------------------------------------------------------------------------
 
-" Sample mappings
+" Mappings
+
+" List all maps in normal mode
+nnoremap <silent> ;nm :nmap<cr>
+" List all maps in command line mode
+nnoremap <silent> ;cm :cmap<cr>
+" List all maps in menu mode
+nnoremap <silent> ;mm :cmap<cr>
+" List all maps in view mode
+nnoremap <silent> ;qm :cmap<cr>
+" List all maps in visual mode
+nnoremap <silent> ;vm :cmap<cr>
+" List all user commands
+nnoremap <silent> ;co :command<cr>
 
 " Type commands faster
 nnoremap , :
