@@ -334,6 +334,9 @@ set hidden
 set colorcolumn=80
 " Mapping delays
 set timeoutlen=1000
+" Lower timeoutlen inside insert mode to reduce the latency caused waiting insert mappings
+autocmd InsertEnter * set timeoutlen=200
+autocmd InsertLeave * set timeoutlen=1000
 " No timeout when typing leader key
 set ttimeout
 " Key code delays (perhaps 0?)
