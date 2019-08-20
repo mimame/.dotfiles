@@ -689,6 +689,17 @@ nnoremap <c-n> gt
 " Switch to the previous tab page
 nnoremap <c-p> gT
 
+nnoremap ;1 1gt
+nnoremap ;2 2gt
+nnoremap ;3 3gt
+nnoremap ;4 4gt
+nnoremap ;5 5gt
+nnoremap ;6 6gt
+nnoremap ;7 7gt
+nnoremap ;8 8gt
+nnoremap ;9 9gt
+nnoremap ;0 10gt
+
 " Example of standard two-panel file managers mappings
 nnoremap <f3> :!less %f<cr>
 nnoremap <f4> :edit<cr>
