@@ -627,16 +627,21 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " NERDTree and Startify working at startup
 fun! StartifyNERDTree()
-    " Don't start NERDTree with Startify on these filetypes
-    " export MANPAGER='nvim -R +":set ft=man" -'
-    if &filetype =~# 'man'
-      return
-    elseif !argc()
-      NERDTree
-      wincmd l
-      Startify
+  " export MANPAGER='nvim -R +":set ft=man" -'
+  " Inside vifm type :help to open vifm-app.txt
+  " Don't start NERDTree with Startify on these filetypes
+  if &filetype =~# 'man\|help\|nerdtree'
+    if &filetype =~# 'nerdtree'
+      " vifm-app.txt is opened with NERDTree
+      NERDTreeClose
     endif
-  endfun
+    return
+  elseif !argc()
+    NERDTree
+    wincmd l
+    Startify
+  endif
+endfun
 autocmd VimEnter * call StartifyNERDTree()
 
 map <Leader>n :NERDTreeToggle<CR>
