@@ -7,6 +7,9 @@
 
 " ------------------------------------------------------------------------------
 
+" The time in milliseconds that is waited for a mapped key in case of already typed key sequence is ambiguous.
+set timeoutlen=200
+
 " Update terminal title
 set title
 
