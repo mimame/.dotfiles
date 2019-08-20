@@ -597,7 +597,7 @@ nnoremap i :edit<cr>
 nnoremap co :!code %f &<cr>
 
 " Open file in the background using its default program
-nnoremap gb :file &<cr>l
+" nnoremap gb :file &<cr>l
 
 " Yank current directory path into the clipboard
 nnoremap yd :!echo %d | xclip -in -selection clipboard %i<cr>
