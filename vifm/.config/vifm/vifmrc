@@ -272,11 +272,11 @@ cabbrev sha256 shatwofivesix
 " zip selected files/folders
 command! zip zip -r %f.zip %f
 " zip selected zipped files
-command! unzip unzip %f &
+" command! unzip unzip %f %s
 " untar selected archived files
-command! untar tar xf %f &
+" command! untar tar xf %f %s
 " tar selected files
-command! tar tar caf %a %f &
+" command! tar tar cvaf %a %f %s
 " use e() zsh function for extracting any compressed file or folder
 command! extract :!e %f &
 " use c() zsh function for compressingg any file or folder
