@@ -110,7 +110,8 @@ set wildstyle=popup
 " Display suggestions in normal, visual and view modes for keys, marks and
 " registers (at most 5 files).  In other view, when available.
 
-set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+" Don't show keys by default, use specific mappings and commands to check them
+set suggestoptions=normal,visual,view,otherpane,marks,registers
 
 " Ignore case in search patterns unless it contains at least one uppercase
 " letter
