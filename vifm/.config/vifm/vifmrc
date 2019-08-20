@@ -15,6 +15,10 @@ set timeoutlen=200
 " (when tmux wasn't yet supported) and might be changed in future releases, or get an alias
 screen
 
+" This option gives additional control over case sensitivity
+" p - always ignore case of paths during completion
+set caseoptions=p
+
 " Update terminal title
 set title
 
