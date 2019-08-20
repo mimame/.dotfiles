@@ -19,6 +19,11 @@ screen
 " p - always ignore case of paths during completion
 set caseoptions=p
 
+" Command-line option used to pass a command to 'shell' zsh
+" It's used in contexts where command comes from the user
+" Enables running it in interactive mode, which can make shell aliases and functions work
+set shellcmdflag=-ic
+
 " Update terminal title
 set title
 
