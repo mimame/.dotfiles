@@ -278,8 +278,8 @@ command! zip zip -r %f.zip %f
 " tar selected files
 " command! tar tar cvaf %a %f %s
 " use e() zsh function for extracting any compressed file or folder
-command! extract :!e %f &
-" use c() zsh function for compressingg any file or folder
+command! extract :!e %f %s
+" use c() zsh function for compressing any file or folder
 command! compress :!c %a %f %s
 " Repeat last command to the selected files/folders
 command! run !! ./%f
