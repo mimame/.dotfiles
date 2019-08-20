@@ -347,9 +347,9 @@ let g:rainbow_active = 1
 set number
 " Enable relativenumbers
 set relativenumber
-" Enable spell en_us by default
+" Enable spell en_gb by default
 set spell
-set spelllang=en_us
+set spelllang=en_gb
 " Autocomplete with dictionary words
 set complete+=kspell
 " Highlight the searched word
