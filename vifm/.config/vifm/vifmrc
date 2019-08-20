@@ -253,7 +253,7 @@ command! df df -h %m 2> /dev/null
 " Show the size of the selected element
 command! du du -sh %f %m
 " diff with vim
-command! diff vim -d %f %F
+command! diff nvim -d %f %F
 " diff with meld
 command! meld meld %f %F &
 " Get Dropbox urls in the clipboard
