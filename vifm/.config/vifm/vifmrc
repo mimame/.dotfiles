@@ -544,12 +544,16 @@ windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}
 
 " List all maps in normal mode
 nnoremap <silent> ;nm :nmap<cr>
+nnoremap <silent> ;m :nmap<cr>
 " List all maps in command line mode
 nnoremap <silent> ;cm :cmap<cr>
+cnoremap <silent> ;m :cmap<cr>
 " List all maps in menu mode
 nnoremap <silent> ;mm :mmap<cr>
+mnoremap <silent> ;m :mmap<cr>
 " List all maps in view mode
 nnoremap <silent> ;qm :qmap<cr>
+qnoremap <silent> ;m :qmap<cr>
 " List all maps in visual mode
 nnoremap <silent> ;vm :vmap<cr>
 vnoremap <silent> ;m :vmap<cr>
