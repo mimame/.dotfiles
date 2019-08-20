@@ -10,6 +10,11 @@
 " The time in milliseconds that is waited for a mapped key in case of already typed key sequence is ambiguous.
 set timeoutlen=200
 
+" Enable integration with terminal multiplexers
+" Note: the command is called screen for historical reasons
+" (when tmux wasn't yet supported) and might be changed in future releases, or get an alias
+screen
+
 " Update terminal title
 set title
 
