@@ -558,7 +558,7 @@ vnoremap , :
 nnoremap <silent> sh :shell<cr>
 
 " Open console in current directory
-nnoremap <wait> ;t :!alacritty &<cr>
+nnoremap ;t :!alacritty &<cr>
 
 " Display sorting dialog
 nnoremap <silent> S :sort<cr>
@@ -620,10 +620,10 @@ nnoremap T :tabnew<cr>
 nnoremap ss :sshfs<space>:<left>
 
 " select mapping (apply select)
-nnoremap <wait> ;s :select<space>//<left>
+nnoremap s :select<space>//<left>
 
 " filter mapping (apply filter)
-nnoremap <wait> ;f :filter<space>//<left>
+nnoremap ;f :filter<space>//<left>
 
 " Substitute mapping
 nnoremap <silent> r :substitute///<left><left>
