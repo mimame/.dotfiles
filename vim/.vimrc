@@ -515,6 +515,11 @@ let g:ale_fixers = {
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
 let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
+let g:ale_rust_rls_config = {
+      \   'rust': {
+      \     'clippy_preference': 'on'
+      \   }
+      \ }
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#ale#error_symbol = ' '
