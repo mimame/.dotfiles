@@ -376,7 +376,8 @@ set incsearch
 set ignorecase
 " Case sensitive only with an uppercase letter
 set smartcase
-"set smarttab Tabs only for indent spaces for the rest
+" Tabs only for indent, for alignments tabs insert spaces
+set smarttab
 " Tabs became spaces
 set expandtab
 " 2 spaces for tab
