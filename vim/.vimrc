@@ -357,6 +357,9 @@ set relativenumber
 " Minimal number of screen lines to keep above and below the cursor
 " This will make some context visible around where you are working
 set scrolloff=1
+" sidescrollof to the right of the cursor if 'nowrap' is set.
+" The minimal number of screen columns to keep to the left and to the right of the cursor if 'nowrap' is set.
+set sidescrolloff=5
 " Enable spell en_gb by default
 set spell
 set spelllang=en_gb
