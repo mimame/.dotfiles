@@ -399,8 +399,9 @@ set textwidth=0 wrapmargin=0
 set formatoptions-=c
 set formatoptions-=r
 set formatoptions-=o
+set formatoptions+=j "Delete comment character when joining commented lines
 " Force to set formatoptions for each type of files
-au FileType * set fo-=c fo-=r fo-=o
+au FileType * set fo-=c fo-=r fo-=o fo+=j
 " Wrap lines at breakat
 set linebreak
 "Highlight the current line
