@@ -472,6 +472,10 @@ set grepprg=rg\ --vimgrep\ --no-heading
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 " Search upwards for tags file and prevent duplicate entry in 'tags'
 setglobal tags-=./tags tags-=./tags; tags^=./tags;
+" !	When included, save and restore global variables that start with an uppercase letter, and don't contain a lowercase letter.  Thus \"KEEPTHIS and \"K_L_M\" are stored, but \"KeepThis\"
+if !empty(&viminfo)
+  set viminfo^=!
+endif
 " }}}
 
 " Inner entire buffer
