@@ -630,12 +630,12 @@ nnoremap <Leader>vt :TabVifm<CR>
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-" Open a NERDTree automatically when vim starts up if no files were specified
+" Open a NERDTree with Startify automatically when vim starts up if no files neither stdin were specified {{{
+" Specify std_in variable with the StdinReadPre event
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " NERDTree and Startify working at startup
 fun! StartifyNERDTree()
-  " export MANPAGER='nvim -R +":set ft=man" -'
+  " export MANPAGER='nvim -R +":set filetype=man number" -'
   " Inside vifm type :help to open vifm-app.txt
   " Don't start NERDTree with Startify on these filetypes
   if &filetype =~# 'man\|help\|nerdtree'
@@ -644,13 +644,14 @@ fun! StartifyNERDTree()
       NERDTreeClose
     endif
     return
-  elseif !argc()
+  elseif !argc() && !exists('s:std_in')
     NERDTree
     wincmd l
     Startify
   endif
 endfun
 autocmd VimEnter * call StartifyNERDTree()
+" }}}
 
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>n. :NERDTreeFind<CR>
