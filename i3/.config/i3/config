@@ -336,10 +336,10 @@ set $base0F #cc6633
 
 
 # Focus colors
-client.focused $base0D $base0D $base00 $base0D
+client.focused $base05 $base0D $base00 $base0D
 client.focused_inactive $base05 $base05 $base00 $base05
 client.unfocused $base05 $base00 $base05 $base00
-client.urgent $base08 $base08 $base00 $base08
+client.urgent $base05 $base08 $base00 $base08
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
