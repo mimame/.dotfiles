@@ -470,6 +470,8 @@ set undodir=/tmp/.vim_undo
 " Improve default grepprg
 set grepprg=rg\ --vimgrep\ --no-heading
 set grepformat=%f:%l:%c:%m,%f:%l:%m
+" Search upwards for tags file and prevent duplicate entry in 'tags'
+setglobal tags-=./tags tags-=./tags; tags^=./tags;
 " }}}
 
 " Inner entire buffer
