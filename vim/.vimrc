@@ -360,6 +360,9 @@ set scrolloff=1
 " sidescrollof to the right of the cursor if 'nowrap' is set.
 " The minimal number of screen columns to keep to the left and to the right of the cursor if 'nowrap' is set.
 set sidescrolloff=5
+" Change the way text is displayed
+" lastline: When included, as much as possible of the last line in a window will be displayed
+set display+=lastline
 " Enable spell en_gb by default
 set spell
 set spelllang=en_gb
