@@ -456,8 +456,10 @@ au FocusLost,WinLeave * :silent! w
 set autowriteall
 " Show the current command when typing it at status line
 set showcmd
-" Never remember global options
+" Never remember global options for sessions
 set sessionoptions-=options
+" Never remember global options for views
+set viewoptions-=options
 " Never hide symbols
 set conceallevel=0
 set concealcursor=
