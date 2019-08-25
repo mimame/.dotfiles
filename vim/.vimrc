@@ -250,8 +250,13 @@ let g:plug_timeout = 10000
 " https://github.com/neovim/neovim/issues/2676
 " https://github.com/amix/vimrc/blob/master/vimrcs/basic.vim
 " Optimize rendering
+" The screen will not be redrawn while executing macros, registers and other commands
 set lazyredraw
+" Improves smoothness of redrawing when there are multiple windows and the terminal does not support a scrolling region
+" (removed from nvim)
 set ttyfast
+" Lowering synmaxcol improves performance in files with long lines
+set synmaxcol=500
 " No compatibility with vi (already by default if .vimrc exist)
 "set no compatible
 " use the system clipboard
