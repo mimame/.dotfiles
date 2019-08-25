@@ -26,6 +26,8 @@ endfunction
 
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
+  " Defaults everyone can agree on
+  " Plug 'https://github.com/tpope/vim-sensible'
   " Editorconfig plugin for vim
   Plug 'editorconfig/editorconfig-vim'
   " Automatically reload a file that has changed externally
