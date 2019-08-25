@@ -459,9 +459,15 @@ vnoremap ib <esc>ggVG<cr>
 onoremap iv :exec "normal! HVL"<cr>
 
 " clever-f.vim {{{
+" Reset the searching character without moving cursor
 nmap <Esc> <Plug>(clever-f-reset)
+" Show a prompt when you input a character for clever-f<Paste>
 let g:clever_f_show_prompt = 1
+" Highlight the target character you input in current line
+" The highlight is cleared automatically when the search ends
 let g:clever_f_mark_char   = 1
+" If and only if you type a lower case character, clever-f.vim ignores case
+let g:clever_f_smart_case  = 1
 " }}}
 
 " Vim subversive {{{
