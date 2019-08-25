@@ -354,6 +354,9 @@ let g:rainbow_active = 1
 set number
 " Enable relativenumbers
 set relativenumber
+" Minimal number of screen lines to keep above and below the cursor
+" This will make some context visible around where you are working
+set scrolloff=1
 " Enable spell en_gb by default
 set spell
 set spelllang=en_gb
