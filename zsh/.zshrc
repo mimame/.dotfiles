@@ -581,6 +581,7 @@ function n() {
     nvim "$@"
   fi;
 }
+alias history='history | tac | nl --starting-line-number 2 --number-separator " |" | tac'
 alias h='history'
 alias du='du -h'
 alias dus='diskus'
