@@ -42,6 +42,8 @@
 </details>
 
 ## Motivation
+1. Learn about the system and tools I use as much as possible
+1. Try to be more productive and faster according to my needs
 
 <!-- Personal dotfiles -->
 
@@ -146,7 +148,7 @@
 
 I only accept bug fixes, documentation and interesting features for me
 
-1. Fork it ( <https://github.com/mimadrid/.dotfiles/fork> )
+1. Fork it ( <https://github.com/mimame/.dotfiles/fork> )
 1. Create your fix branch (git checkout -b my-fix)
 1. Commit your changes (git commit -am 'Add some fix')
 1. Push to the branch (git push origin my-fix)
@@ -154,4 +156,4 @@ I only accept bug fixes, documentation and interesting features for me
 
 ## Contributors
 
-- Miguel Madrid Mencía ([mimadrid](https://github.com/mimadrid)) creator, maintainer
+- Miguel Madrid Mencía ([mimame](https://github.com/mimame)) creator, maintainer
