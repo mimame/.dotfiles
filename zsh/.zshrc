@@ -857,7 +857,7 @@ function ssh-send-folder {
   folder_name=$(basename $origin_path)
   remote_target_folder="${@[-1]}"
 
-  # remove origin and destination from param array
+  # remove origin and destination from parameter array
   unset "ssh_params[${#ssh_params[@]}]" # remove remote_target_folder
   unset "ssh_params[${#ssh_params[@]}-1]" # remove origin_path
 
@@ -872,7 +872,7 @@ function ssh-get-tar {
   fi
 
   ssh_params=( "$@" )
-  origin_path_folder="${@[-1]}" # last paramenter is the path
+  origin_path_folder="${@[-1]}" # last parameter is the path
   dir_name=$(dirname $origin_path_folder)
   folder_name=$(basename $origin_path_folder)
 
@@ -889,7 +889,7 @@ function ssh-get-folder {
   fi
 
   ssh_params=( "$@" )
-  origin_path_folder="${@[-1]}" # last paramenter is the path
+  origin_path_folder="${@[-1]}" # last parameter is the path
   dir_name=$(dirname $origin_path_folder)
   folder_name=$(basename $origin_path_folder)
 
@@ -932,7 +932,7 @@ function ssh-send-folder-gz {
   folder_name=$(basename $origin_path)
   remote_target_folder="${@[-1]}"
 
-  # remove origin and destination from param array
+  # remove origin and destination from parameter array
   unset "ssh_params[${#ssh_params[@]}]" # remove remote_target_folder
   unset "ssh_params[${#ssh_params[@]}-1]" # remove origin_path
 
@@ -949,7 +949,7 @@ function ssh-get-tgz {
   fi
 
   ssh_params=( "$@" )
-  origin_path_folder="${@[-1]}" # last paramenter is the path
+  origin_path_folder="${@[-1]}" # last parameter is the path
   dir_name=$(dirname $origin_path_folder)
   folder_name=$(basename $origin_path_folder)
 
@@ -970,7 +970,7 @@ function ssh-get-folder-gz {
   fi
 
   ssh_params=( "$@" )
-  origin_path_folder="${@[-1]}" # last paramenter is the path
+  origin_path_folder="${@[-1]}" # last parameter is the path
   dir_name=$(dirname $origin_path_folder)
   folder_name=$(basename $origin_path_folder)
 
@@ -994,7 +994,7 @@ function ssh-send-txz {
   folder_name=$(basename $origin_path)
   remote_target_folder="${@[-1]}"
 
-  # remove origin and destination from param array
+  # remove origin and destination from parameter array
   unset "ssh_params[${#ssh_params[@]}]" # remove remote_target_folder
   unset "ssh_params[${#ssh_params[@]}-1]" # remove origin_path
 
@@ -1015,7 +1015,7 @@ function ssh-send-folder-xz {
   folder_name=$(basename $origin_path)
   remote_target_folder="${@[-1]}"
 
-  # remove origin and destination from param array
+  # remove origin and destination from parameter array
   unset "ssh_params[${#ssh_params[@]}]" # remove remote_target_folder
   unset "ssh_params[${#ssh_params[@]}-1]" # remove origin_path
 
@@ -1032,7 +1032,7 @@ function ssh-get-txz {
   fi
 
   ssh_params=( "$@" )
-  origin_path_folder="${@[-1]}" # last paramenter is the path
+  origin_path_folder="${@[-1]}" # last parameter is the path
   dir_name=$(dirname $origin_path_folder)
   folder_name=$(basename $origin_path_folder)
 
@@ -1050,7 +1050,7 @@ function ssh-get-folder-xz {
   fi
 
   ssh_params=( "$@" )
-  origin_path_folder="${@[-1]}" # last paramenter is the path
+  origin_path_folder="${@[-1]}" # last parameter is the path
   dir_name=$(dirname $origin_path_folder)
   folder_name=$(basename $origin_path_folder)
 
