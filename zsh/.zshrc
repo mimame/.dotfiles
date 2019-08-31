@@ -528,6 +528,38 @@ alias rs='rsync --archive --compress --info=progress2 --human-readable --update 
 
 alias sshfs="sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
 
+# translation functions {{{
+function te () {
+  # Use command to avoid recursion
+  # Use "$*" instead -join-sentence "$@"
+  # Remove spaces at beginning of the translated input
+  # Copy the translated input to the system clipboard
+  command trans -brief -no-ansi "$*" | tail --lines 1 | sed 's/^\s*//' | cb
+}
+# Force to never save in the shell history the translations (beginning with space)
+alias te=" te"
+
+function ts () {
+  # Use command to avoid recursion
+  # Use "$*" instead -join-sentence "$@"
+  # Remove spaces at beginning of the translated input
+  # Copy the translated input to the system clipboard
+  command trans ':es' -brief -no-ansi "$*" | tail --lines 1 | sed 's/^\s*//' | cb
+}
+# Force to never save in the shell history the translations (beginning with space)
+alias ts=" ts"
+
+function tf () {
+  # Use command to avoid recursion
+  # Use "$*" instead -join-sentence "$@"
+  # Remove spaces at beginning of the translated input
+  # Copy the translated input to the system clipboard
+  command trans ':fr' -brief -no-ansi "$*" | tail --lines 1 | sed 's/^\s*//' | cb
+}
+# Force to never save in the shell history the translations (beginning with space)
+alias tf=" tf"
+# }}}
+
 # cb STRING to copy to the clipboard
 # cb FILE to copy to the clipboard
 # echo string | cb to copy to the clipboard
