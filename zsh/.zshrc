@@ -534,25 +534,25 @@ alias sshfs="sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cac
 # cb to paste from the clipboard
 # cb | command to paste from the clipboad
 function cb () {
+  # stdin is a pipe
   if [[ -p /dev/stdin ]] ; then
-    # stdin is a pipe
     # stdin -> clipboard
-    xclip -selection clipboard
+    xclip -selection clipboard -in
+  # stdin is not a pipe
   elif [[ ! -z "$1" ]]; then
-    # stdin is not a pipe
-    # file -> clipboard
     if [[ -f "$1" ]]; then
-      # stdin is not a pipe
-      xclip -selection clipboard "$1"
+      # file -> clipboard
+      xclip -selection clipboard -in "$1"
     else
-      echo "$1" | xclip -selection clipboard
+      # string -> clipboard
+      echo "$*" | xclip -selection clipboard -in
     fi
   else
-    # stdin -> clipboard
-    # stdin is not a pipe
     # clipboard -> stdout
-    xclip -selection clipboard -out
+    # no arguments were passed
+    # xclip -selection clipboard -out
   fi
+    xclip -selection clipboard -out
 }
 
 # Burn image files to USB
