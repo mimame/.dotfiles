@@ -47,6 +47,7 @@
   co   = checkout
   cob  = checkout -b
   coi  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git checkout ${FILES}
+  coci = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git checkout $(echo ${HASH} | awk '{ print $1 }')
   cop  = checkout --patch
   copi = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git checkout --patch ${FILES}
     # when merging
