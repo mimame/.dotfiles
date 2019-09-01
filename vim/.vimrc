@@ -565,10 +565,17 @@ let g:ale_sign_warning = ''
 let g:ale_echo_msg_error_str = ''
 let g:ale_echo_msg_warning_str = ''
 let g:ale_echo_msg_format = '%severity%  [%linter%]: %s'
-highlight ALEWarning ctermfg=yellow ctermbg=16 guifg=yellow guibg=#000000
-highlight ALEError   ctermfg=red    ctermbg=16 guifg=red guibg=#000000
-highlight link ALEWarningSign ALEWarning
-highlight link ALEErrorSign   ALEError
+highlight ALEWarning ctermfg=yellow ctermbg=16 cterm=bold guifg=yellow guibg=#000000 gui=bold
+highlight ALEError   ctermfg=red    ctermbg=16 cterm=bold guifg=red guibg=#000000 gui=bold
+highlight default link ALEWarningSign ALEWarning
+highlight default link ALEErrorSign   ALEError
+" Line colour with the same than the ALE issue (only for nvim)
+let g:ale_sign_highlight_linenrs = 1
+highlight default link ALEErrorSignLineNr ALEError
+highlight default link ALEStyleErrorSignLineNr ALEError
+highlight default link ALEWarningSignLineNr ALEWarning
+highlight default link ALEStyleWarningSignLineNr ALEWarningSign
+highlight ALEInfoSignLineNr ctermfg=blue ctermbg=16 guifg=blue guibg=#000000 gui=bold
 " }}}
 
 " Neoformat config {{{
