@@ -290,7 +290,7 @@ highlight Comment guifg=#C0C0C0
 highlight NonText guifg=#505050
 highlight SpecialKey guifg=#505050
 highlight Folded guifg=#D3D3D3
-highlight LineNr guifg=#FFFFFF guibg=#000000
+highlight LineNr cterm=bold guifg=#FFFFFF guibg=#000000 gui=bold
 " Reduce highlighted time of the yank region
 let g:highlightedyank_highlight_duration = 300
 " }}}
