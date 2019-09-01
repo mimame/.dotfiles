@@ -481,6 +481,8 @@ endif
 " Inner entire buffer
 onoremap ib :exec "normal! ggVG"<cr>
 vnoremap ib <esc>ggVG<cr>
+" Select all buffer with v inside visual mode
+xnoremap v <esc>ggVG<cr>
 " Current viewable text in the buffer
 onoremap iv :exec "normal! HVL"<cr>
 
@@ -705,7 +707,6 @@ nnoremap <Leader>ws <C-w>s
 nnoremap <Leader>wv <C-w>v
 nnoremap <Leader>W :w suda://%<CR>
 cnoremap w!! :w suda://%<CR>
-xnoremap v V
 nnoremap <Leader>= <esc>gg=G<C-o><C-o>
 xnoremap <Localleader>st :'<,'>!sort --human-numeric-sort<CR>
 "map K <Plug>(expand_region_expand)
