@@ -982,6 +982,12 @@ highlight GitGutterAdd          ctermfg=green  ctermbg=16 cterm=bold guifg=green
 highlight GitGutterChange       ctermfg=yellow ctermbg=16 cterm=bold guifg=yellow guibg=#000000 gui=bold
 highlight GitGutterDelete       ctermfg=red    ctermbg=16 cterm=bold guifg=red    guibg=#000000 gui=bold
 highlight GitGutterChangeDelete ctermfg=yellow ctermbg=16 cterm=bold guifg=yellow guibg=#000000 gui=bold
+" Turn on line number highlighting by default (only for nvim)
+let g:gitgutter_highlight_linenrs = 1
+highlight default link GitGutterAddLineNr          GitGutterAdd
+highlight default link GitGutterDeleteLineNr       GitGutterDelete
+highlight default link GitGutterChangeLineNr       GitGutterChange
+highlight default link GitGutterChangeDeleteLineNr GitGutterChangeDelete
 " Move between hunks
 nmap <localleader>k <Plug>GitGutterPrevHunk
 nmap <localleader>j <Plug>GitGutterNextHunk
