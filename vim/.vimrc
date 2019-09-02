@@ -482,7 +482,7 @@ endif
 onoremap ib :exec "normal! ggVG"<cr>
 vnoremap ib <esc>ggVG<cr>
 " Select all buffer with v inside visual mode
-xnoremap v <esc>ggVG<cr>
+nnoremap vv <esc>ggVG<cr>
 " Current viewable text in the buffer
 onoremap iv :exec "normal! HVL"<cr>
 
