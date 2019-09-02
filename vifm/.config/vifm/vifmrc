@@ -628,7 +628,9 @@ nnoremap t tj
 nnoremap T tk
 
 " Mappings for tabs
-nnoremap T :tabnew<cr>
+nnoremap ,t :tabnew<cr>
+nnoremap ,tn :tabname<space>
+
 
 " sshfs mapping
 nnoremap ss :sshfs<space>:<left>
