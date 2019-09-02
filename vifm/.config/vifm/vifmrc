@@ -572,6 +572,13 @@ nnoremap ;t :!alacritty &<cr>
 
 " Display sorting dialog
 nnoremap <silent> S :sort<cr>
+" Sort mappings
+nnoremap <silent> ,sn :set sort=+iname,dir<cr>
+nnoremap <silent> ,sN :set sort=-iname,dir<cr>
+nnoremap <silent> ,st :set sort=-mtime,dir<cr>
+nnoremap <silent> ,sT :set sort=+mtime,dir<cr>
+nnoremap <silent> ,ss :set sort=-size,dir<cr>
+nnoremap <silent> ,sS :set sort=+size,dir<cr>
 
 " Toggle visibility of preview window
 nnoremap <silent> w :view<cr>
