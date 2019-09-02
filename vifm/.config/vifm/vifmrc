@@ -568,7 +568,7 @@ vnoremap , :
 nnoremap <silent> sh :shell<cr>
 
 " Open console in current directory
-nnoremap ;t :!alacritty &<cr>
+nnoremap ,t :!alacritty &<cr>
 
 " Display sorting dialog
 nnoremap <silent> S :sort<cr>
@@ -635,8 +635,8 @@ nnoremap t tj
 nnoremap T tk
 
 " Mappings for tabs
-nnoremap ,t :tabnew<cr>
-nnoremap ,tn :tabname<space>
+nnoremap ;t :tabnew<cr>
+nnoremap ;tn :tabname<space>
 
 " Mapping for visual selection of all files
 nnoremap vv :%select<cr>
