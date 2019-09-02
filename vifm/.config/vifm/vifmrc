@@ -631,6 +631,8 @@ nnoremap T tk
 nnoremap ,t :tabnew<cr>
 nnoremap ,tn :tabname<space>
 
+" Mapping for visual selection of all files
+nnoremap vv :%select<cr>
 
 " sshfs mapping
 nnoremap ss :sshfs<space>:<left>
