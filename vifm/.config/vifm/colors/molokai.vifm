@@ -3,33 +3,33 @@
 
 highlight clear
 
-highlight  Border      cterm=none               ctermfg=black    ctermbg=16
-highlight  BrokenLink  cterm=bold               ctermfg=red      ctermbg=default
-highlight  CmdLine     cterm=none               ctermfg=white    ctermbg=16
-highlight  CurrLine    cterm=bold               ctermfg=default  ctermbg=208
-highlight  Device      cterm=bold               ctermfg=red      ctermbg=default
-highlight  Directory   cterm=bold               ctermfg=12       ctermbg=default
-highlight  ErrorMsg    cterm=none               ctermfg=red      ctermbg=16
-highlight  Executable  cterm=bold               ctermfg=green    ctermbg=default
-highlight  Fifo        cterm=bold               ctermfg=cyan     ctermbg=default
-highlight  Link        cterm=bold               ctermfg=green    ctermbg=default
-highlight  OtherLine   cterm=bold               ctermfg=default  ctermbg=130
-highlight  Selected    cterm=bold               ctermfg=magenta  ctermbg=default
-highlight  Socket      cterm=bold               ctermfg=magenta  ctermbg=default
-highlight  StatusLine  cterm=none               ctermfg=white    ctermbg=233
-highlight  SuggestBox  cterm=none               ctermfg=white    ctermbg=16
-highlight  TabLine     cterm=none               ctermfg=default  ctermbg=default
-highlight  TabLineSel  cterm=bold               ctermfg=green    ctermbg=default
-highlight  TopLine     cterm=none               ctermfg=15       ctermbg=16
-highlight  TopLineSel  cterm=none               ctermfg=148      ctermbg=default
-highlight  User1       cterm=bold               ctermfg=208      ctermbg=default
-highlight  User2       cterm=bold               ctermfg=default  ctermbg=default
-highlight  User3       cterm=bold               ctermfg=green    ctermbg=default
-highlight  WildMenu    cterm=underline,reverse  ctermfg=white    ctermbg=16
-highlight  Win         cterm=none               ctermfg=white    ctermbg=16
+highlight  Border      cterm=bold                    ctermfg=black    ctermbg=16
+highlight  BrokenLink  cterm=bold                    ctermfg=red      ctermbg=default
+highlight  CmdLine     cterm=bold                    ctermfg=white    ctermbg=16
+highlight  CurrLine    cterm=bold                    ctermfg=default  ctermbg=208
+highlight  Device      cterm=bold                    ctermfg=red      ctermbg=default
+highlight  Directory   cterm=bold                    ctermfg=12       ctermbg=default
+highlight  ErrorMsg    cterm=bold                    ctermfg=red      ctermbg=16
+highlight  Executable  cterm=bold                    ctermfg=green    ctermbg=default
+highlight  Fifo        cterm=bold                    ctermfg=cyan     ctermbg=default
+highlight  Link        cterm=bold                    ctermfg=green    ctermbg=default
+highlight  OtherLine   cterm=bold                    ctermfg=default  ctermbg=130
+highlight  Selected    cterm=bold                    ctermfg=magenta  ctermbg=default
+highlight  Socket      cterm=bold                    ctermfg=magenta  ctermbg=default
+highlight  StatusLine  cterm=bold                    ctermfg=white    ctermbg=233
+highlight  SuggestBox  cterm=bold                    ctermfg=white    ctermbg=16
+highlight  TabLine     cterm=bold                    ctermfg=default  ctermbg=default
+highlight  TabLineSel  cterm=bold                    ctermfg=green    ctermbg=default
+highlight  TopLine     cterm=bold                    ctermfg=15       ctermbg=16
+highlight  TopLineSel  cterm=bold                    ctermfg=148      ctermbg=default
+highlight  User1       cterm=bold                    ctermfg=208      ctermbg=default
+highlight  User2       cterm=bold                    ctermfg=default  ctermbg=default
+highlight  User3       cterm=bold                    ctermfg=green    ctermbg=default
+highlight  WildMenu    cterm=bold,underline,reverse  ctermfg=white    ctermbg=16
+highlight  Win         cterm=bold                    ctermfg=white    ctermbg=16
 
 if $USER == 'root'
-    highlight  Border      cterm=none  ctermfg=default  ctermbg=red
-    highlight  StatusLine  cterm=none  ctermfg=white    ctermbg=red
-    highlight  TopLine     cterm=none  ctermfg=default  ctermbg=red
+    highlight  Border      cterm=bold  ctermfg=default  ctermbg=red
+    highlight  StatusLine  cterm=bold  ctermfg=white    ctermbg=red
+    highlight  TopLine     cterm=bold  ctermfg=default  ctermbg=red
 endif
