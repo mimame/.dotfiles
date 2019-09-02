@@ -623,6 +623,10 @@ nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
 nnoremap A cw
 
+" Mappings for select/unselect
+nnoremap t tj
+nnoremap T tk
+
 " Mappings for tabs
 nnoremap T :tabnew<cr>
 
