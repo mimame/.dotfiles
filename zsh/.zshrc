@@ -414,7 +414,9 @@ fzf-history-widget() {
     FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
   local ret=$?
   if [ -n "$selected" ]; then
-    num=$selected[1]
+    # Remove the index | prefix from the history number and command
+    # Remove first N character with cut -cN- instead using sed
+    num=$(echo $selected | cut -d'|' -f2 | cut -c1-)
     if [ -n "$num" ]; then
       zle vi-fetch-history -n $num
     fi
