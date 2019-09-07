@@ -629,6 +629,7 @@ function R () {
 # Never use vi
 alias vi='vim'
 alias v='vim'
+alias vd='vim -d -c "set nofoldenable"'
 function n() {
   if [ $# -eq 0 ]; then
     fzf --multi --bind "enter:execute(nvim {+})+abort" --preview "bat --theme \"Monokai Extended Bright Narnia\" --color always {}"
