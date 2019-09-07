@@ -1048,6 +1048,11 @@ nmap <localleader>u :diffupdate<CR>
 " zr          - unfold both files completely
 " zm          - fold both files completely
 if &diff
+  highlight default link DiffAdd GitGutterAdd
+  highlight default link DiffDelete GitGutterDelete
+  highlight default link DiffChange GitGutterChange
+  " highlight default link DiffText GitGutterChange
+  highlight DiffText ctermfg=yellow ctermbg=16 cterm=bold guifg=yellow guibg=#403D3D gui=bold
   " If doing a diff. Upon writing changes to file, automatically update the
   " differences
   autocmd BufWritePost,InsertEnter,InsertChange,InsertLeave * diffupdate
