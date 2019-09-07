@@ -365,7 +365,7 @@ set sidescrolloff=5
 set display+=lastline
 " Enable spell en_gb by default
 set spell
-set spelllang=en_gb
+set spelllang=en_us
 " Autocomplete with dictionary words
 set complete+=kspell
 " Highlight the searched word
