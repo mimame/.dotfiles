@@ -1032,13 +1032,6 @@ set diffopt+=algorithm:histogram
 " Use default git diff heuristic
 set diffopt+=indent-heuristic
 " }}}
-" If doing a diff. Upon writing changes to file, automatically update the
-" differences
-autocmd BufWritePost * if &diff == 1 | diffupdate | endif
-autocmd InsertEnter  * if &diff == 1 | diffupdate | endif
-autocmd InsertChange * if &diff == 1 | diffupdate | endif
-autocmd InsertLeave  * if &diff == 1 | diffupdate | endif
-
 nmap <localleader>k [c<bar>:diffupdate<CR>
 nmap <localleader>j ]c<bar>:diffupdate<CR>
 nmap <localleader>u :diffupdate<CR>
@@ -1055,6 +1048,9 @@ nmap <localleader>u :diffupdate<CR>
 " zr          - unfold both files completely
 " zm          - fold both files completely
 if &diff
+  " If doing a diff. Upon writing changes to file, automatically update the
+  " differences
+  autocmd BufWritePost,InsertEnter,InsertChange,InsertLeave * diffupdate
   " get chunk from LOCAL
   nmap <localleader>1 :diffget LOCAL<CR>
   " get chunk from BASE
