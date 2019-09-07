@@ -1,4 +1,4 @@
-" vim: foldmethod=marker foldlevel=0 foldenable
+" vim: foldmethod=marker
 
 " Set encoding be described before :scriptencoding.
 set encoding=utf-8
