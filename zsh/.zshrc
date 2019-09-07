@@ -672,6 +672,12 @@ unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >
 
 alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
 
+function ff () {
+  firefox-developer-edition --private-window https://www.google.com/search?q="$1" &
+}
+# Never save firefox searches in the history
+alias ff=' ff'
+
 # Correct previous command
 eval $(thefuck --alias)
 alias fk='fuck -y'
