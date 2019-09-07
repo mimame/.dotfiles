@@ -1,4 +1,4 @@
-# vim: foldmethod=marker foldenable
+# vim: foldmethod=marker
 # Interactive shell also with aliases and functions of a not interactive shell
 # Never uncomment this
 # source "${ZDOTDIR:-$HOME}/.zshenv"
