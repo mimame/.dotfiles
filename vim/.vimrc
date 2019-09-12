@@ -98,6 +98,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/emmet-vim'
   " endings for html, xml, etc. - enhance vim-surround
   Plug 'tpope/vim-ragtag'
+  " Auto close (X)HTML tags
+  Plug 'alvan/vim-closetag'
   "Ansi escape color sequences to color with :AnsiEsc
   Plug 'powerman/vim-plugin-AnsiEsc'
   " An alternative sudo.vim
