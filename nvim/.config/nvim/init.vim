@@ -1,4 +1,4 @@
-" vim: foldmethod=marker foldlevel=0 foldenable
+" vim: foldmethod=marker
 
 " Load .vimrc {{{
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
