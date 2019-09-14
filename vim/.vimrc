@@ -661,7 +661,7 @@ augroup END
 " let g:rooter_resolve_links = 1
 " To specify how to identify a project's root directory:
 " .git before .git/ to work correctly with git submodules
-let g:rooter_patterns = ['Cargo.toml', 'Project.toml', 'shard.yml', 'package.json', 'Rakefile', 'node_modules/', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
+let g:rooter_patterns = ['.git', '.git/', 'package.json', 'node_modules/', 'Cargo.toml', 'Project.toml', 'shard.yml', 'Rakefile', '_darcs/', '.hg/', '.bzr/', '.svn/']
 " }}}
 
 " vifm config {{{
