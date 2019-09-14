@@ -684,7 +684,10 @@ fun! StartifyNERDTree()
   if &filetype =~# 'man\|help\|nerdtree'
     if &filetype =~# 'nerdtree'
       " vifm-app.txt is opened with NERDTree
-      NERDTreeClose
+      " Don't close NERDTree buffer if that buffer is the last window (folder path as argument from command line)
+      if winbufnr(2) != -1
+        NERDTreeClose
+      endif
     endif
     return
   elseif !argc() && !exists('s:std_in')
