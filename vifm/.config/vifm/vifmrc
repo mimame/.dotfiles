@@ -751,7 +751,7 @@ nnoremap <f8> :delete<cr>
 " Use ag (the silver searcher) instead of grep
 " set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 " Use rg (ripgrep) instead of grep
-set grepprg='rg --glob "!{.git,node_modules}" --vimgrep --smart-case --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --line-number %i %a %s'
+set grepprg='rg --glob "!{.git,.thunderbird,node_modules}" --vimgrep --smart-case --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --line-number %i %a %s'
 
 " Add additional place to look for executables
 "
