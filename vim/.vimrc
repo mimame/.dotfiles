@@ -655,6 +655,10 @@ augroup myvimrc
 augroup END
 
 " vim-rooter config {{{
+" Change to file's directory (similar to autochdir)
+" let g:rooter_change_directory_for_non_project_files = 'current'
+" Resolve symbolic links by default
+" let g:rooter_resolve_links = 1
 " To specify how to identify a project's root directory:
 " .git before .git/ to work correctly with git submodules
 let g:rooter_patterns = ['Cargo.toml', 'Project.toml', 'shard.yml', 'package.json', 'Rakefile', 'node_modules/', '.git', '.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
