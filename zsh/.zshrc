@@ -980,7 +980,7 @@ function ssh-send-folder-gz {
 
   compressor="$(_use_compressor_parallel_if_avaible gzip)"
 
-  tar cpf - $origin_path | $compressor -c - | ssh $ssh_params "(cd $remote_target_folder && gzip -cd | tar xp)"
+  tar cpf - $origin_path | $compressor -c - | ssh $ssh_params "(cd $remote_target_folder && $([ ! -z $(command -v pigz) ] && echo "pigz" || echo "gzip") -cd | tar xp)"
 }
 
 # Get tgz by ssh
@@ -1000,7 +1000,7 @@ function ssh-get-tgz {
 
   compressor="$(_use_compressor_parallel_if_avaible gzip)"
 
-  ssh $ssh_params "(cd $dir_name && tar cpf - $folder_name | gzip -c)" > "${folder_name}.tar.gz"
+  ssh $ssh_params "(cd $dir_name && tar cpf - $folder_name | $([ -x "$(command -v pigz)" ] && echo 'pigz' || echo 'gzip') -c)" > "${folder_name}.tar.gz"
 
 }
 
@@ -1021,7 +1021,7 @@ function ssh-get-folder-gz {
 
   compressor="$(_use_compressor_parallel_if_avaible gzip)"
 
-  ssh $ssh_params "(cd $dir_name && tar cpf - $folder_name | gzip -c)" | $compressor -cd | tar xp
+  ssh $ssh_params "(cd $dir_name && tar cpf - $folder_name | $([ -x "$(command -v pigz)" ] && echo 'pigz' || echo 'gzip') -c)" | $compressor -cd | tar xp
 }
 
 # Send txz by ssh
@@ -1081,6 +1081,8 @@ function ssh-get-txz {
   # remove origin from param array
   unset "ssh_params[${#ssh_params[@]}]" # remove origin_path_folder
 
+  # pixz doesn't work with -c option
+  # xz -T0 -d only works for xz -T0 compression
   ssh $ssh_params "(cd $dir_name && tar cpf - $folder_name | xz -T0 -c)" > "${folder_name}.tar.xz"
 }
 
@@ -1099,6 +1101,8 @@ function ssh-get-folder-xz {
   # remove origin from param array
   unset "ssh_params[${#ssh_params[@]}]" # remove origin_path_folder
 
+  # pixz doesn't work with -c option
+  # xz -T0 -d only works for xz -T0 compression
   ssh $ssh_params "(cd $dir_name && tar cpf - $folder_name | xz -T0 -c)" | xz -T0 -cd | tar xp
 }
 
