@@ -47,7 +47,7 @@ bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font is used in the bar {} block below.
-font pango:InconsolataGo Nerd Font Bold 12
+font pango:Hack Nerd Font Bold 11
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -153,16 +153,16 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+a focus parent
 
 # Workspace names
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
-set $ws6 "6: "
+set $ws1 "1:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
+set $ws6 "6:  "
 set $ws7 "7: "
 set $ws8 "8: "
 set $ws9 "9: "
-set $ws10 "10: "
+set $ws10 "10:  "
 set $ws11 "11: "
 set $ws12 "12: "
 set $ws13 "13: "
