@@ -3,7 +3,7 @@ configuration {
 	width: 100;
 	lines: 15;
 	columns: 1;
-	font: "InconsolataGo Nerd Font Bold 14";
+	font: "Hack Nerd Font Bold 13";
 	bw: 1;
 	location: 2;
 	padding: 5;
