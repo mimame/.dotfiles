@@ -1,5 +1,5 @@
 # Set font
-set font "InconsolataGo Nerd Font 12"
+set font "Hack Nerd Font 13"
 # Enable copy to clipboard
 set selection-clipboard clipboard
 
