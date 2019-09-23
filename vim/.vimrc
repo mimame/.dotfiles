@@ -620,6 +620,14 @@ nnoremap :g/ :g/\v
 nnoremap :g// :g//
 " }}}
 
+" Search results centered {{{
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+" }}}
+
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
   \   'converters': [incsearch#config#fuzzy#converter()],
