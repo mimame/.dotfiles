@@ -608,6 +608,18 @@ map g/ <Plug>(incsearch-easymotion-stay)
 map z/ <Plug>(incsearch-fuzzy-/)
 map z? <Plug>(incsearch-fuzzy-?)
 map zg/ <Plug>(incsearch-fuzzy-stay)
+" Very magic by default (Perl Regex almost compatible) {{{
+nnoremap ? ?\v
+vnoremap ? ?\v
+nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %s/\v
+cnoremap \>s/ \>s/\v
+cnoremap >s/ >s/\v
+nnoremap :g/ :g/\v
+nnoremap :g// :g//
+" }}}
+
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
   \   'converters': [incsearch#config#fuzzy#converter()],
