@@ -374,7 +374,9 @@ set complete+=kspell
 set hlsearch
 " Search word while typing
 set incsearch
-" Ingnore case when searching
+" All matches in a line are substituted instead of one
+set gdefault
+" Ignore case in searches
 set ignorecase
 " Case sensitive only with an uppercase letter
 set smartcase
@@ -405,7 +407,7 @@ set wrap
 set cpoptions+=n
 " this turns off physical line wrapping (ie: automatic insertion of newlines)
 set textwidth=0 wrapmargin=0
-" Remove Automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode behaviour
+" Remove automatically insert the current comment leader after hitting 'o' or 'O' in Normal mode behavior
 " http://vimdoc.sourceforge.net/htmldoc/change.html#fo-table
 " https://vi.stackexchange.com/a/1985
 set formatoptions-=c
