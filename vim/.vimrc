@@ -681,6 +681,8 @@ augroup END
 " let g:rooter_change_directory_for_non_project_files = 'current'
 " Resolve symbolic links by default
 " let g:rooter_resolve_links = 1
+" Disable echo the project directory by default
+let g:rooter_silent_chdir = 1
 " To specify how to identify a project's root directory:
 " .git before .git/ to work correctly with git submodules
 let g:rooter_patterns = ['.git', '.git/', 'Cargo.toml', 'Project.toml', 'shard.yml', 'Rakefile','package.json', 'node_modules/',  '_darcs/', '.hg/', '.bzr/', '.svn/']
