@@ -397,7 +397,7 @@
   # Never do fast-forward merge use instead rebase
   ff            = false
   # https://git-scm.com/docs/git-config#git-config-mergetool
-  tool          = nvimdiff
+  tool          = vim
   # https://git-scm.com/docs/git-mergetool#git-mergetool---gui
   guitool       = meld
 
@@ -406,10 +406,10 @@
   # Don't show the message: Hit return to start merge resolution
   prompt =  false
 
-[mergetool "nvimdiff"]
-  # http://meldmerge.org/
-  # User diff3 merge style in meld
-  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[mergetool "vim"]
+  # User diff3 merge style like in meld
+  # For that,  replace $BASE with $MERGED and then hide it
+  cmd = nvim -d $LOCAL $MERGED $REMOTE $BASE -c '$wincmd w' -c 'wincmd l' -c 'wincmd c' -c 'wincmd h'
 
 [mergetool "meld"]
   # http://meldmerge.org/
