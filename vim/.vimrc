@@ -685,7 +685,7 @@ augroup END
 let g:rooter_silent_chdir = 1
 " To specify how to identify a project's root directory:
 " .git before .git/ to work correctly with git submodules
-let g:rooter_patterns = ['.git', '.git/', 'Cargo.toml', 'Project.toml', 'shard.yml', 'Rakefile','package.json', 'node_modules/',  '_darcs/', '.hg/', '.bzr/', '.svn/']
+let g:rooter_patterns = ['.git', '.git/', 'Cargo.toml', 'Project.toml', 'shard.yml', 'Rakefile','package.json', '_darcs/', '.hg/', '.bzr/', '.svn/']
 " }}}
 
 " vifm config {{{
