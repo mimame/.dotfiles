@@ -1280,6 +1280,10 @@ function! g:committia_hooks.edit_open(info)
     " Scroll the diff window from insert mode
     imap <buffer><localleader>j <Plug>(committia-scroll-diff-down-half)
     imap <buffer><localleader>k <Plug>(committia-scroll-diff-up-half)
+
+    " Status line too big cover half of the window so split horizontal and swap to vertical
+    " let g:committia_singlecolumn_diff_window_opencmd = 'vertical split'
+    windo wincmd L
 endfunction
 " Always employs single column mode to have word completion
 let g:committia_use_singlecolumn = 'always'
