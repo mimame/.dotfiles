@@ -245,7 +245,7 @@
   rebase=merges
 
 [color]
-  # https://git-scm.com/docs/git-config#git-config-colorui
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-colorui
   # Color only when the output is to a terminal
   ui = auto
 
@@ -284,59 +284,59 @@
   untracked = cyan bold
 
 [commit]
-  # https://git-scm.com/docs/git-config#git-config-commitgpgSign
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-commitgpgSign
   # Sign all commits with gpg
   gpgSign = true
-  # https://git-scm.com/docs/git-config#git-config-commitverbose
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-commitverbose
   # Show diff at the bottom of the commit message template to help to describe the commit
   verbose = true
 
 [core]
-  # https://git-scm.com/docs/git-config#git-config-coreeditor
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreeditor
   # Default editor for commits and tags
   editor     = nvim
   # https://github.com/github/gitignore/tree/master/Global
   # globally useful gitignores
   excludesfile = ~/.config/git/gitignore_global
-  # https://git-scm.com/docs/git-config#git-config-corefsmonitor
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corefsmonitor
   # Speed up git by avoiding unnecessary processing of files that have not changed
   # fsmonitor  = ~/.config/git/hooks/fsmonitor-watchman
-  # https://git-scm.com/docs/git-config#git-config-corehooksPath
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corehooksPath
   # Default hooks folder
   hooksPath  = ~/.config/git/hooks
-  # https://git-scm.com/docs/git-config#git-config-corepager
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corepager
   # Use diff-so-fancy before the pager - https://github.com/so-fancy/diff-so-fancy
   pager      = diff-so-fancy | less --tabs=4 -RFX
-  # https://git-scm.com/docs/git-config#git-config-corewhitespace
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corewhitespace
   # Notify whitespace issues
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [credential]
-  # https://git-scm.com/docs/git-config#git-config-credentialhelper
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-credentialhelper
   # https://git-scm.com/docs/git-credential-store
   # Use credentials storaged in disk
   helper = store
 
 [diff]
-  # https://git-scm.com/docs/git-config#git-config-codehistogramcode
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-codehistogramcode
   # Use histogram algorithm
   algorithm       = histogram
-  # https://git-scm.com/docs/git-diff#git-diff-plain
+  # https://git-scm.com/docs/git-diff#Documentation/git-diff.txt-plain
   # Moved lines in a diff are colored differently
   colorMoved      = plain
-  # https://git-scm.com/docs/git-config#git-config-diffguitool
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-diffguitool
   guitool         = meld
-  # https://git-scm.com/docs/git-config#git-config-diffindentHeuristic
+  # https://git-scm.com/docs/git-config#Documentation/Documentation/git.txt-config.txt-diffindentHeuristic
   # Experimental heuristics that shift diff hunk boundaries to make patches easier to read
   indentHeuristic = true
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-diffmnemonicPrefix
+  # https://git-scm.com/docs/git-config#Documentation/Documentation/git.txt-config.txt-diffmnemonicPrefix
   # Use a prefix pair that is different from the standard "a/" and "b/" depending on what is being compared
   mnemonicPrefix = true
-  # https://git-scm.com/docs/git-config#git-config-difftool
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftool
   tool            = nvimdiff
 
 [difftool]
-  # https://git-scm.com/docs/git-config#git-config-difftoolprompt
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftoolprompt
   # Don't ask to hit return to open the difftool
   prompt = false
 
@@ -347,25 +347,25 @@
   cmd = meld "$LOCAL" "$REMOTE"
 
 [fetch]
-  # https://git-scm.com/docs/git-config#git-config-fetchprune
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchprune
   # Remove any remote-tracking references that no longer exist on the remote
   prune = true
 
 [gpg]
-  # https://git-scm.com/docs/git-config#git-config-gpgprogram
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgprogram
   # Use always gpg2
   program = gpg2
 
 [grep]
-  # https://git-scm.com/docs/git-config#git-config-greplineNumber
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-greplineNumber
   # Always show the match with its number of line
   lineNumber  = true
-  # https://git-scm.com/docs/git-config#git-config-greppatternType
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-greppatternType
   # Use Perl Regular Expressions
   patternType = perl
 
 [help]
-  # https://git-scm.com/docs/git-config#git-config-helpautoCorrect
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-helpautoCorrect
   # Automatically correct and execute mistyped commands immediately
   autocorrect = 0
 
