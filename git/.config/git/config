@@ -271,10 +271,10 @@
   separator  = magenta bold
 
 [color "interactive"]
-  prompt = red bold
-  header = yellow bold
   error  = red bold
+  header = yellow bold
   help   = white bold
+  prompt = red bold
 
 [color "status"]
   added     = yellow bold
@@ -295,6 +295,9 @@
   # https://git-scm.com/docs/git-config#git-config-coreeditor
   # Default editor for commits and tags
   editor     = nvim
+  # https://github.com/github/gitignore/tree/master/Global
+  # globally useful gitignores
+  excludesfile = ~/.config/git/gitignore_global
   # https://git-scm.com/docs/git-config#git-config-corefsmonitor
   # Speed up git by avoiding unnecessary processing of files that have not changed
   # fsmonitor  = ~/.config/git/hooks/fsmonitor-watchman
@@ -307,9 +310,6 @@
   # https://git-scm.com/docs/git-config#git-config-corewhitespace
   # Notify whitespace issues
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-  # https://github.com/github/gitignore/tree/master/Global
-  # globally useful gitignores
-  excludesfile = ~/.config/git/gitignore_global
 
 [credential]
   # https://git-scm.com/docs/git-config#git-config-credentialhelper
@@ -324,6 +324,8 @@
   # https://git-scm.com/docs/git-diff#git-diff-plain
   # Moved lines in a diff are colored differently
   colorMoved      = plain
+  # https://git-scm.com/docs/git-config#git-config-diffguitool
+  guitool         = meld
   # https://git-scm.com/docs/git-config#git-config-diffindentHeuristic
   # Experimental heuristics that shift diff hunk boundaries to make patches easier to read
   indentHeuristic = true
@@ -332,8 +334,6 @@
   mnemonicPrefix = true
   # https://git-scm.com/docs/git-config#git-config-difftool
   tool            = nvimdiff
-  # https://git-scm.com/docs/git-config#git-config-diffguitool
-  guitool         = meld
 
 [difftool]
   # https://git-scm.com/docs/git-config#git-config-difftoolprompt
@@ -399,10 +399,10 @@
   # https://git-scm.com/docs/git-config#git-config-mergeff
   # Never do fast-forward merge use instead rebase
   ff            = false
-  # https://git-scm.com/docs/git-config#git-config-mergetool
-  tool          = vim
   # https://git-scm.com/docs/git-mergetool#git-mergetool---gui
   guitool       = meld
+  # https://git-scm.com/docs/git-config#git-config-mergetool
+  tool          = vim
 
 [mergetool]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergetoolkeepBackup
