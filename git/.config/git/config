@@ -402,6 +402,9 @@
   guitool       = meld
 
 [mergetool]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergetoolkeepBackup
+  # After performing a merge, don't save the original file with conflict markers with a .orig extension
+  keepBackup = false
   # https://git-scm.com/docs/git-config#git-config-mergetoolprompt
   # Don't show the message: Hit return to start merge resolution
   prompt =  false
