@@ -143,9 +143,9 @@ call plug#begin('~/.vim/plugged')
   " Vastly improved Javascript indentation and syntax support
   " Plug 'pangloss/vim-javascript' "(vim-polyglot)
   " Typescript syntax files for Vim
-  Plug 'leafgarland/typescript-vim'
+  " Plug 'HerringtonDarkholme/yats.vim' "(vim-polyglot)
   " React JSX/TSX syntax pretty highlighting for vim
-  Plug 'maxmellon/vim-jsx-pretty'
+  " Plug 'maxmellon/vim-jsx-pretty' "(vim-polyglot)
   " Text filtering and alignment
   "Plug 'godlygeek/tabular'
   " Align text
