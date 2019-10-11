@@ -133,6 +133,10 @@ options(
         radian.shell_prompt = "\033[0;31m#!>\033[0m ",
         radian.browse_prompt = "\033[0;33mBrowse[{}]>\033[0m ",
 
+        # show vi mode state when radian.editing_mode is `vi`
+        radian.show_vi_mode_prompt = TRUE,
+        radian.vi_mode_prompt = "\033[34m[{}]\033[0m ",
+
         # suppress the loading message for reticulate
         radian.suppress_reticulate_message = FALSE,
         # enable reticulate prompt and trigger `~`
