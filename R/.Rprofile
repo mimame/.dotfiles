@@ -137,6 +137,9 @@ options(
         radian.show_vi_mode_prompt = TRUE,
         radian.vi_mode_prompt = "\033[34m[{}]\033[0m ",
 
+        # stderr color format
+        radian.stderr_format = "\033[0;31m{}\033[0m",
+
         # suppress the loading message for reticulate
         radian.suppress_reticulate_message = FALSE,
         # enable reticulate prompt and trigger `~`
