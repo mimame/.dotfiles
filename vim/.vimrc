@@ -483,8 +483,8 @@ endif
 " }}}
 
 " Inner entire buffer
-onoremap ib :exec "normal! ggVG"<cr>
-vnoremap ib <esc>ggVG<cr>
+onoremap bb :exec "normal! ggVG"<cr>
+vnoremap bb <esc>ggVG<cr>
 " Select all buffer with v inside visual mode
 nnoremap vv <esc>ggVG<cr>
 " Current viewable text in the buffer
