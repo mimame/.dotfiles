@@ -96,8 +96,6 @@ call plug#begin('~/.vim/plugged')
   "Plug 'othree/html5.vim' (vim-polyglot)
   " HTML tags generator
   Plug 'mattn/emmet-vim'
-  " endings for html, xml, etc. - enhance vim-surround
-  Plug 'tpope/vim-ragtag'
   " Auto close (X)HTML tags
   Plug 'alvan/vim-closetag'
   "Ansi escape color sequences to color with :AnsiEsc
@@ -122,8 +120,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight' | Plug 'scrooloose/nerdtree'
   " Syntax checking hacks
   "Plug 'vim-syntastic/syntastic'
-  "mappings to easily delete, change and add such surroundings in pairs
-  Plug 'tpope/vim-surround'
+  " The set of operator and textobject plugins to search/select/edit sandwiched textobjects.
+  Plug 'machakann/vim-sandwich'
+  " endings for html, xml, etc. - enhance vim-surround (replaced by sandwich)
+  " Plug 'tpope/vim-ragtag'
   " Plugin to toggle, display and navigate marks
   Plug 'kshenoy/vim-signature'
   " Run your tests at the speed of thought
@@ -1095,6 +1095,18 @@ if &diff
   " get chunk from REMOTE
   nmap <localleader>3 :diffget REMOTE<CR>
 endif
+" }}}
+
+" sandwich recipes {{{
+let g:sandwich#recipes = deepcopy(g:sandwich#default_recipes)
+let g:sandwich#recipes += [
+      \   {
+      \     'external': ['it', 'at'],
+      \     'noremap' : 1,
+      \     'filetype': ['html'],
+      \     'input'   : ['t'],
+      \   },
+      \ ]
 " }}}
 
 " EasyAlign
