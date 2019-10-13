@@ -704,6 +704,8 @@ alias yay="yay --sudoloop --noconfirm -Syu"
 
 # https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+alias tp=htop
 # }}}
 
 # Automatic aliases for color output commands with Generic Colouriser
