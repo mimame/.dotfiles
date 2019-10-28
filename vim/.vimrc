@@ -997,6 +997,7 @@ let g:ycm_filetype_blacklist = {
       \ 'fzf': 1,
       \ 'infolog': 1,
       \ 'mail': 1,
+      \ 'nerdtree': 1,
       \ 'notes': 1,
       \ 'pandoc': 1,
       \ 'qf': 1,
