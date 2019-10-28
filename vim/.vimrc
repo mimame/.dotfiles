@@ -547,6 +547,7 @@ let g:ale_fixers = {
       \   'tex': ['latexindent'],
       \   'python': ['black', 'reorder-python-imports'],
       \   'r': ['styler'],
+      \   'rmd': ['styler'],
       \   'sh': ['shfmt'],
       \   'typescript': ['tslint', 'prettier'],
       \ }
