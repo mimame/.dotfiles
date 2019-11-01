@@ -244,6 +244,11 @@
   # Pass --preserve-merges along to git rebase so that locally committed merge commits will not be flattened by running git pull.
   rebase=merges
 
+[checkout]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-checkoutdefaultRemote
+  # git checkout <something> with only one remote, it does git checkout origin/<something>
+  defaultRemote = origin
+
 [color]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-colorui
   # Color only when the output is to a terminal
