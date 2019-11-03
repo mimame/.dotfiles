@@ -205,8 +205,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'myusuf3/numbers.vim'
   " CamelCase motion
   Plug 'chaoren/vim-wordmotion'
-  " Tags in a window, ordered by scope
-  Plug 'majutsushi/tagbar'
+  " Viewer & Finder for LSP symbols and tags
+  Plug 'liuchengxu/vista.vim'
   " Configuration for Rust
   "Plug 'rust-lang/rust.vim' (vim-polyglot)
   " Configuration for Go
@@ -730,7 +730,13 @@ autocmd VimEnter * call StartifyNERDTree()
 
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>n. :NERDTreeFind<CR>
-map <Leader>t :TagbarToggle<CR>
+map <Leader>t :Vista!!<CR>
+" }}}
+
+" vista config {{{
+let g:vista_stay_on_open = 0
+let g:vista_echo_cursor_strategy = 'scroll'
+autocmd FileType vista,vista_kind nnoremap <buffer> <silent> / :<c-u>call vista#finder#fzf#Run()<CR>
 " }}}
 
 " vim-smooth-scroll {{{
@@ -1001,7 +1007,7 @@ let g:ycm_filetype_blacklist = {
       \ 'notes': 1,
       \ 'pandoc': 1,
       \ 'qf': 1,
-      \ 'tagbar': 1,
+      \ 'vista': 1,
       \ 'unite': 1,
       \ 'vimwiki': 1,
       \}
