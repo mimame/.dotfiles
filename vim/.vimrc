@@ -231,6 +231,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'michaeljsmith/vim-indent-object'
   " Markdown improvements like TOC
   Plug 'SidOfc/mkdx'
+  " Embed Neovim in your browser.
+  Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
   " Adds file type glyphs/icons (should be put at last!!)
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -1322,3 +1324,55 @@ let g:move_key_modifier = 'C'
 " Go to the next ALE report
 nmap <silent> <leader>k <Plug>(ale_previous_wrap)
 nmap <silent> <leader>j <Plug>(ale_next_wrap)
+
+let g:firenvim_config = {
+  \ 'localSettings': {
+    \ '.*': {
+      \ 'selector': '',
+      \ 'priority': 0,
+    \ },
+    \ 'github\.com': {
+        \ 'selector': 'textarea',
+        \ 'priority': 1,
+    \ },
+    \ 'calendar\.google\.com*': {
+        \ 'selector': 'div[role="textbox"]',
+        \ 'priority': 1,
+    \ },
+    \ 'mail\.google\.com*': {
+        \ 'selector': 'div[role="textbox"]',
+        \ 'priority': 1,
+    \ },
+  \ }
+\ }
+au BufEnter github.com_*.txt set filetype=markdown
+function! OnUIEnter(event)
+    let l:ui = nvim_get_chan_info(a:event.chan)
+    if has_key(l:ui, 'client') && has_key(l:ui.client, 'name')
+        if l:ui.client.name ==? 'Firenvim'
+            NERDTreeClose
+            set showtabline=0
+            set laststatus=0
+            let g:airline#extensions#tabline#enabled = 0
+            let g:dont_write = v:false
+
+            function! My_Write(timer) abort
+              let g:dont_write = v:false
+              write
+            endfunction
+
+            function! Delay_My_Write() abort
+              if g:dont_write
+                return
+              end
+              let g:dont_write = v:true
+              call timer_start(10000, 'My_Write')
+            endfunction
+
+            au TextChanged * ++nested call Delay_My_Write()
+            au TextChangedI * ++nested call Delay_My_Write()
+        endif
+    endif
+endfunction
+autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+
