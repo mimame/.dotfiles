@@ -1,3 +1,12 @@
+## By default always save the .RData
+utils::assignInNamespace(
+  "q",
+  function(save = "yes", status = 0, runLast = TRUE)
+  {
+    .Internal(quit(save, status, runLast))
+  },
+  "base"
+)
 ## Load default libraries
 # Colorize R output in terminal emulators
 library(colorout)
