@@ -50,8 +50,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'machakann/vim-highlightedyank'
   " Selectively illuminating other uses of the current word under the cursor
   Plug 'RRethy/vim-illuminate'
-  " Make scrolling in Vim more pleasant
-  Plug 'terryma/vim-smooth-scroll'
+  " Smooth scrolling for Vim done right
+  Plug 'psliwka/vim-smoothie'
   " Only update fold when be necessary
   Plug 'Konfekt/FastFold'
   " Insert or delete brackets, parens, quotes in pair
@@ -739,13 +739,6 @@ map <Leader>t :Vista!!<CR>
 let g:vista_stay_on_open = 0
 let g:vista_echo_cursor_strategy = 'scroll'
 autocmd FileType vista,vista_kind nnoremap <buffer> <silent> / :<c-u>call vista#finder#fzf#Run()<CR>
-" }}}
-
-" vim-smooth-scroll {{{
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " }}}
 
 nnoremap <Leader>q :q<CR>
