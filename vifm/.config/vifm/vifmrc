@@ -234,8 +234,7 @@ mark r /
 " Don't inspect the size of folders which contain /fuse/ in their paths
 " vifm mount them inside one
 " fuse filesystems are very slow and could hang the remote connection
-" autocmd DirEnter * %select | exe 'normal ga' | %unselect
-autocmd DirEnter !**/fuse/** %select | exe 'normal ga' | %unselect
+autocmd DirEnter * if system("grep -iF 'fuse' <<<" . expand("%d")) == "" | %select | exe 'normal ga' | %unselect | endif
 
 " ------------------------------------------------------------------------------
 
