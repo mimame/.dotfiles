@@ -232,7 +232,7 @@ call plug#begin('~/.vim/plugged')
   " Markdown improvements like TOC
   Plug 'SidOfc/mkdx'
   " Embed Neovim in your browser.
-  Plug 'glacambre/firenvim', { 'do': function('firenvim#install') }
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   " Adds file type glyphs/icons (should be put at last!!)
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
@@ -1339,33 +1339,37 @@ let g:firenvim_config = {
   \ }
 \ }
 au BufEnter github.com_*.txt set filetype=markdown
-function! OnUIEnter(event)
-    let l:ui = nvim_get_chan_info(a:event.chan)
-    if has_key(l:ui, 'client') && has_key(l:ui.client, 'name')
-        if l:ui.client.name ==? 'Firenvim'
-            NERDTreeClose
-            set showtabline=0
-            set laststatus=0
-            let g:airline#extensions#tabline#enabled = 0
-            let g:dont_write = v:false
+function! s:IsFirenvimActive(event) abort
+  if !exists('*nvim_get_chan_info')
+    return 0
+  endif
+  let l:ui = nvim_get_chan_info(a:event.chan)
+  return has_key(l:ui, 'client') && has_key(l:ui.client, "name") &&
+      \ l:ui.client.name is# "Firenvim"
+endfunction
 
-            function! My_Write(timer) abort
-              let g:dont_write = v:false
-              write
-            endfunction
+function! OnUIEnter(event) abort
+  if s:IsFirenvimActive(a:event)
+    NERDTreeClose
+    set showtabline=0
+    set laststatus=0
+    let g:airline#extensions#tabline#enabled = 0
+    let g:dont_write = v:false
+    function! My_Write(timer) abort
+      let g:dont_write = v:false
+      write
+    endfunction
 
-            function! Delay_My_Write() abort
-              if g:dont_write
-                return
-              end
-              let g:dont_write = v:true
-              call timer_start(10000, 'My_Write')
-            endfunction
+    function! Delay_My_Write() abort
+      if g:dont_write
+        return
+      end
+      let g:dont_write = v:true
+      call timer_start(10000, 'My_Write')
+    endfunction
 
-            au TextChanged * ++nested call Delay_My_Write()
-            au TextChangedI * ++nested call Delay_My_Write()
-        endif
-    endif
+    au TextChanged * ++nested call Delay_My_Write()
+    au TextChangedI * ++nested call Delay_My_Write()
+  endif
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
-
