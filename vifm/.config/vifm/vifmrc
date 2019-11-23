@@ -627,13 +627,13 @@ nnoremap co :!code %f &<cr>
 " nnoremap gb :file &<cr>l
 
 " Yank current directory path into the clipboard
-nnoremap yd :!echo %d | xclip -in -selection clipboard %i<cr>
+nnoremap yd :!echo %d | xclip -in -selection clipboard -rmlastnl %i<cr>
 
 " Yank current file path into the clipboard
-nnoremap yp :!echo %c:p | xclip -in -selection clipboard %i<cr>
+nnoremap yp :!echo %c:p | xclip -in -selection clipboard -rmlastnl %i<cr>
 
 " Yank current file without path into the clipboard
-nnoremap yn :!echo %c | xclip -in -selection clipboard %i<cr>
+nnoremap yn :!echo %c | xclip -in -selection clipboard -rmlastnl %i<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>
