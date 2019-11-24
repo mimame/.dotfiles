@@ -1370,6 +1370,8 @@ function! OnUIEnter(event) abort
 
     au TextChanged * ++nested call Delay_My_Write()
     au TextChangedI * ++nested call Delay_My_Write()
+    " Always move the cursor at the end of the last character in insert mode
+    au BufWritePost *.txt ++once call timer_start(100, {_ -> feedkeys("GA")})
   endif
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
