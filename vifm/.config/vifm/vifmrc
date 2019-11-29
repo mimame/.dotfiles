@@ -636,7 +636,7 @@ nnoremap yp :!echo %f:p | xclip -in -selection clipboard -rmlastnl %i<cr>
 nnoremap yn :!echo %f | xclip -in -selection clipboard -rmlastnl %i<cr>
 
 " Yank current file path ready to be used by a GUI file manager picker used by web browsers
-nnoremap yw :!echo 'file://%c:p' | xclip -in -selection clipboard -rmlastnl %i<cr>
+nnoremap yw :!echo file://%c:p | xclip -in -selection clipboard -rmlastnl %i<cr>
 
 " Yank current file path ready to be used by a GUI file manager
 nnoremap yf :!echo %f:p | xclip -in -selection clipboard -rmlastnl -t text/uri-list<cr>
