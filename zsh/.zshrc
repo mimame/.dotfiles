@@ -760,6 +760,63 @@ elif [ -x "$(command -v "curl")" ]; then
 fi
 # }}}
 
+# " Reduce PDF size by lossy recompressing with Ghostscript"
+# " Not guaranteed to succeed, but usually works"
+# " Usage: file.pdf [resolution_in_dpi]"
+# https://bash.cyberciti.biz/file-management/linux-shell-script-to-reduce-pdf-file-size
+function pdfc () {
+  echo $@ | xargs -d' ' -n 1 -P 0 -I{} zsh -ic '_pdfc {}'
+}
+function _pdfc () {
+  if [ -z "$1" ]; then
+    echo "Usage: file.pdf [resolution_in_dpi]"
+    return 1
+  fi
+  if [ -n "$2" ]; then
+    resolution="$2"
+  else
+    resolution="90"
+  fi
+  pdf="$1"
+
+  original_pdf=${pdf%.pdf}_original.pdf
+
+  mv "$pdf" "$original_pdf"
+
+  gs \
+    -q -dNOPAUSE -dBATCH -dSAFER \
+    -sDEVICE=pdfwrite \
+    -dCompatibilityLevel=1.3 \
+    -dPDFSETTINGS=/screen \
+    -dEmbedAllFonts=true \
+    -dSubsetFonts=true \
+    -dAutoRotatePages=/None \
+    -dColorImageDownsampleType=/Bicubic \
+    -dColorImageResolution="$resolution" \
+    -dGrayImageDownsampleType=/Bicubic \
+    -dGrayImageResolution="$resolution" \
+    -dMonoImageDownsampleType=/Subsample \
+    -dMonoImageResolution="$resolution" \
+    -sOutputFile="$pdf" \
+    "$original_pdf"
+
+  if [[ $? == 0 ]] then;
+    pdf_size=$(wc -c "$pdf" | cut -f1 -d' ' )
+    original_pdf_size=$(wc -c "$original_pdf" | cut -f1 -d' ')
+    if [[ "$original_pdf_size" -le "$pdf_size" ]]; then
+      >&2 echo "'$pdf' can't be compressed!"
+      mv "$original_pdf" "$pdf"
+    else
+      compression_ration=$(awk "BEGIN{printf \"%0.2f\", $original_pdf_size/$pdf_size}")
+      >&2 echo "$pdf"
+      >&2 echo "\tCompression ration: $compression_ration"
+      >&2 echo "\tFinal size: $(du -h $pdf | cut -f1)"
+    fi
+  else
+    >&2 echo "'$pdf' can't be processed!"
+  fi
+}
+
 # Extract any kind of compressed file
 function e () {
   case $1 in
