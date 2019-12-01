@@ -819,20 +819,22 @@ function _pdfc () {
 
 # Extract any kind of compressed file
 function e () {
-  case $1 in
-    *.tar) tar xvf $1;;
-    *.tar.gz|*.tgz) tar -I pigz -xvf $1;;
-    *.tar.xz|*.txz) tar -I pixz -xvf $1;;
-    *.tar.bz2|*.tbz2) tar -I pbzip2 -xvf $1;;
-    *.bz2)     pbzip2 -dkv $1    ;;
-    *.xz)      pixz -dk $1      ;;
-    *.gz)      pigz -dkv $1     ;;
-    *.zip)     unzip $1      ;;
-    *.7z)      7z x $1       ;;
-    *.Z)       uncompress $1 ;;
-    *.rar)     unrar e $1    ;;
-    *)         echo "'$1' cannot be extracted, unknown compression format" ;;
-  esac
+case $1 in
+  *.tar)            tar xvf $1;;
+  *.tar.gz|*.tgz)   tar -I pigz -xvf $1;;
+  *.tar.xz|*.txz)   tar -I pixz -xvf $1;;
+  *.tar.bz2|*.tbz2) tar -I pbzip2 -xvf $1;;
+  *.tar.zst|*.tzst) tar -I pbzip2 -xvf $1;;
+  *.bz2)            pbzip2 -dkv $1;;
+  *.xz)             pixz -dk $1;;
+  *.gz)             pigz -dkv $1;;
+  *.zst)            zstdmt -dkv $1;;
+  *.zip)            unzip $1;;
+  *.7z)             7z x $1;;
+  *.Z)              uncompress $1;;
+  *.rar)            unrar e $1;;
+  *)                echo "'$1' cannot be extracted, unknown compression format";;
+esac
 }
 
 # Compress any kind of file
