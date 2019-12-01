@@ -299,7 +299,7 @@
 [core]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreeditor
   # Default editor for commits and tags
-  editor     = nvim
+  editor       = nvim
   # https://github.com/github/gitignore/tree/master/Global
   # globally useful gitignores
   excludesfile = ~/.config/git/gitignore_global
@@ -308,13 +308,14 @@
   # fsmonitor  = ~/.config/git/hooks/fsmonitor-watchman
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corehooksPath
   # Default hooks folder
-  hooksPath  = ~/.config/git/hooks
+  hooksPath    = ~/.config/git/hooks
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corepager
-  # Use diff-so-fancy before the pager - https://github.com/so-fancy/diff-so-fancy
-  pager      = diff-so-fancy | less --tabs=4 -RFX
+  # Use delta as pager https://github.com/dandavison/delta
+  pager        = delta --dark --minus-color="#3f01" --minus-emph-color="#901011" --plus-color="#005800" --plus-emph-color="#e7ce" --theme='Monokai Extended Bright'
+
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corewhitespace
   # Notify whitespace issues
-  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [credential]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-credentialhelper
