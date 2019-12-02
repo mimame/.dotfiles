@@ -291,7 +291,7 @@ command! zip zip -r %f.zip %f
 " use e() zsh function for extracting any compressed file or folder
 command! extract :!zsh -ic "e %f" %s
 " use c() zsh function for compressing any file or folder
-command! compress :!zsh -ic "c %a %f" %s
+command! compress :!zsh -ic "c %a" %s
 " Repeat last command to the selected files/folders
 command! run !! ./%f
 " Run make command
@@ -708,7 +708,7 @@ nnoremap <silent> ;w :set wrap!<cr>
 " extract file mapping
 nnoremap <silent> ;e :extract<cr>
 " compress file mapping
-nnoremap <silent> ;c :compress<space>
+nnoremap <silent> ;c :compress <c-x>c<space>
 
 " Use < and > without ctrl-w prefix key in normal mode
 nnoremap < <c-w><
