@@ -833,22 +833,30 @@ case $1 in
   *.7z)             7z x $1;;
   *.Z)              uncompress $1;;
   *.rar)            unrar e $1;;
-  *)                echo "'$1' cannot be extracted, unknown compression format";;
+  *)                >&2 echo "'$1' cannot be extracted, unknown compression format";;
 esac
 }
 
 # Compress any kind of file
 function c () {
 case $2 in
-  t)  tar cvf ${1}.tar $1;;
-  z)  zip -r ${1}.zip $1;;
-  7)  7z a ${1}.7z $1;;
-  g)  [[ -d $1 ]] && tar -I pigz -cvf ${1}.tar.gz $1 || pigz -kv $1;;
-  b)  [[ -d $1 ]] && tar -I pbzip2 -cvf ${1}.tar.bz2 $1 || pbzip2 -kv $1;;
-  x)  [[ -d $1 ]] && tar -I pixz -cvf ${1}.tar.xz $1 || pixz -k $1;;
-  zs) [[ -d $1 ]] && tar -I zstdmt -cvf ${1}.tar.zst $1 || zstdmt -kv $1;;
-  *)  echo "'$1' cannot be compressed, unknown '$2' compression format";
+  t)  tar cvf ${1}.tar $1; ext='tar';;
+  z)  zip -r ${1}.zip $1; ext='zip';;
+  7)  7z a ${1}.7z $1; ext='7z';;
+  g)  [[ -d $1 ]] && tar -I pigz -cvf ${1}.tar.gz $1 || pigz -kv $1; ext='gz';;
+  b)  [[ -d $1 ]] && tar -I pbzip2 -cvf ${1}.tar.bz2 $1 || pbzip2 -kv $1; ext='bz2';;
+  x)  [[ -d $1 ]] && tar -I pixz -cvf ${1}.tar.xz $1 || pixz -k $1; ext='xz';;
+  zs) [[ -d $1 ]] && tar -I zstdmt -cvf ${1}.tar.zst $1 || zstdmt -kv $1; ext='zst';;
+  *)  >&2 echo "'$1' cannot be compressed, unknown '$2' compression format" || return 1
 esac
+  compressed_file="${1}*.${ext}"
+  # force glob completion with $~
+  compressed_size=$(command du $~compressed_file | cut -f1)
+  original_size=$(command du -s "$1" | cut -f1)
+  >&2 echo $~compressed_file
+  compression_ration=$(awk "BEGIN{printf \"%0.2f\", $original_size/$compressed_size}")
+  >&2 echo "\tCompression ration: $compression_ration"
+  >&2 echo "\tFinal size: $(command du -h $~compressed_file | cut -f1)"
 }
 
 # Tar wrapper
