@@ -539,6 +539,10 @@ windo set relativenumber
 " Customize view columns a bit (enable ellipsis for truncated file names)
 " windo set viewcolumns=-{name}..,6{}.
 windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}
+" Recover full viewcolumns after leave only one pane
+nnoremap <c-w>o :only | :windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}<cr>
+" Recover short viewcolumns after leave only one pane
+nnoremap <c-w>O :only | :windo set viewcolumns=-{name},6{size},11{perms},15{mtime}<cr>
 " Default viewcolumns with horizontal split
 nnoremap <c-w>s :split | :windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}<cr>
 " Default viewcolumns with vertical split
