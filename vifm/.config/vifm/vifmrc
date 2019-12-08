@@ -545,6 +545,8 @@ nnoremap <c-w>o :only | :windo set viewcolumns=-{name},6{size},11{perms},9{uname
 nnoremap <c-w>O :only | :windo set viewcolumns=-{name},6{size},11{perms},15{mtime}<cr>
 " Default viewcolumns with horizontal split
 nnoremap <c-w>s :split | :windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}<cr>
+" Default viewcolumns with horizontal split in small window
+nnoremap <c-w>S :split | :windo set viewcolumns=-{name},6{size},11{perms},15{mtime}<cr>
 " Default viewcolumns with vertical split
 nnoremap <c-w>v :vsplit | :windo set viewcolumns=-{name},6{size},11{perms},15{mtime}<cr>
 
