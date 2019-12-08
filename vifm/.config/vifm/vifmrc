@@ -220,12 +220,13 @@ set statusline="%1*%* %2*%t%=%* %3*%* %2*%A%* %3*%* %2*%u:%g%* %3*%*
 " :mark mark /full/directory/path [filename]
 
 mark b ~/.bin/
-mark D ~/Dropbox
 mark d ~/.dotfiles
+mark D ~/Dropbox
 mark f ~/forks
 mark h ~
-mark t /tmp
+mark p ~/Projects
 mark r /
+mark t /tmp
 
 " ------------------------------------------------------------------------------
 " :au[tocmd] {event} {pat} {cmd}
