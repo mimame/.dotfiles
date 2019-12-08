@@ -708,6 +708,8 @@ alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias tp=htop
 
 alias lc='libreoffice --calc'
+
+alias loc='tokei'
 # }}}
 
 # Automatic aliases for color output commands with Generic Colouriser
