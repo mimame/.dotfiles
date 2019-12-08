@@ -700,7 +700,7 @@ alias vimrc='nvim $(readlink -f ~/.vimrc)'
 alias zshrc='nvim $(readlink -f ~/.zshrc)'
 
 # Alias for yay command
-alias yay="yay --sudoloop --noconfirm -Syu"
+alias u="yay --sudoloop --noconfirm -Syu"
 
 # https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
