@@ -706,6 +706,8 @@ alias u="yay --sudoloop --noconfirm -Syu"
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 alias tp=htop
+
+alias lc='libreoffice --calc'
 # }}}
 
 # Automatic aliases for color output commands with Generic Colouriser
