@@ -583,6 +583,9 @@ highlight default link ALEStyleErrorSignLineNr ALEError
 highlight default link ALEWarningSignLineNr ALEWarning
 highlight default link ALEStyleWarningSignLineNr ALEWarningSign
 highlight ALEInfoSignLineNr ctermfg=blue ctermbg=16 guifg=blue guibg=#000000 gui=bold
+
+nnoremap af :ALEFix<cr>
+nnoremap afg :ALEFixSuggest<cr>
 " }}}
 
 " Neoformat config {{{
