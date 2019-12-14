@@ -92,9 +92,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/.config/i3/scri
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/i3/scripts/dunstify_notification "light"
 
 # Print Screen controls
-bindsym Print exec gnome-screenshot && ~/.config/i3/scripts/dunstify_notification "screenshot"
-bindsym --release Shift+Print exec gnome-screenshot --window && ~/.config/i3/scripts/dunstify_notification "screenshot"
-
+bindsym Print exec gnome-screenshot --interactive --window && ~/.config/i3/scripts/dunstify_notification "screenshot"
+bindsym --release Shift+Print exec gnome-screenshot --interactive --area && ~/.config/i3/scripts/dunstify_notification "screenshot"
 
 focus_on_window_activation smart
 popup_during_fullscreen smart
