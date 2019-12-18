@@ -19,6 +19,7 @@ exec_always --no-startup-id sleep 1; pkill xcape; xcape -e 'Control_L=Escape' &
 exec_always --no-startup-id pkill syndaemon; syndaemon -i 0.5 -K -R -d &
 # Improve touchpad DPIs (touchpad width == screen width)
 # https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html#pointer-acceleration-on-touchpads
+exec_always [[ $(xinput --list-props 12 | fgrep -w Touchpad) ]] && xinput --set-prop 12 'lipinput Natural Scrolling Enabled' 0
 exec_always [[ $(xinput --list-props 12 | fgrep -w Touchpad) ]] && xinput --set-prop 12 'libinput Accel Speed' 1
 # Enable numlock by default
 exec_always --no-startup-id pkill numlockx; numlockx
