@@ -665,7 +665,7 @@ nnoremap ;tn :tabname<space>
 nnoremap vv :%select<cr>
 
 " sshfs mapping
-nnoremap ss :sshfs<space>:<left>
+nnoremap ssh :sshfs<space>:<left>
 
 " select mapping (apply select)
 nnoremap s :select<space>//<left>
