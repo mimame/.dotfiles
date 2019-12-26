@@ -298,8 +298,8 @@ command! run !! ./%f
 " Run make command
 command! make !!make %a
 " Create and change to the folder
-command! mc :mkdir! %a | cd %a
-command! md :mkdir! %a
+command! mc :mkdir! '%a' | cd '%a'
+command! md :mkdir! '%a'
 command! sudo :!sudo vifm %d %D
 command! vgrep nvim "+grep %a"
 " Reload vifmrc  file
