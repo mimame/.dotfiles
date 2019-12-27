@@ -673,7 +673,7 @@ nnoremap ssh :sshfs<space>:<left>
 nnoremap s :select<space>//<left>
 
 " filter mapping (apply filter)
-nnoremap ;f :filter<space>//<left>
+nnoremap ,f :filter<space>//<left>
 
 " Substitute mapping
 nnoremap <silent> r :substitute///<left><left>
@@ -685,7 +685,7 @@ nnoremap rs :rsync<cr>
 nnoremap <silent> ;s :grep<space>
 
 " find mapping
-nnoremap <silent> ;fi :find<space>
+nnoremap <silent> ;f :find<space>
 
 " diff mapping
 nnoremap di :diff<cr>
