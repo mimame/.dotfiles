@@ -828,7 +828,7 @@ case $1 in
   *.tar.gz|*.tgz)   tar -I pigz -xvf $1;;
   *.tar.xz|*.txz)   tar -I pixz -xvf $1;;
   *.tar.bz2|*.tbz2) tar -I pbzip2 -xvf $1;;
-  *.tar.zst|*.tzst) tar -I pbzip2 -xvf $1;;
+  *.tar.zst|*.tzst) tar -I zstdmt -xvf $1;;
   *.bz2)            pbzip2 -dkv $1;;
   *.xz)             pixz -dk $1;;
   *.gz)             pigz -dkv $1;;
