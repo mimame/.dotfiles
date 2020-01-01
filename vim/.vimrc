@@ -1134,7 +1134,14 @@ nnoremap <leader>c :VCoolor<CR>
 "vmap <leader>t- :Tabularize /-><CR>
 " }}}
 
+" rust.vim config {{{
+augroup autopairs
+  autocmd!
+  " Add missing <> auto completion
+  autocmd FileType rust let b:AutoPairs = {'(':')', '[':']', '{':'}','"':'"', '`':'`', '<':'>'}
+augroup END
 let g:rustfmt_autosave = 1
+" }}}
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
