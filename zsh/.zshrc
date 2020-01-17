@@ -738,6 +738,8 @@ typeset -A font_hash
 font_hash['Hack Nerd Font Complete.ttf']="https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete.ttf?raw=true"
 # Bold font
 font_hash['Hack Bold Nerd Font Complete.ttf']="https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Hack/Bold/complete/Hack%20Bold%20Nerd%20Font%20Complete.ttf?raw=true"
+# Emoji font
+font_hash['Noto Color Emoji.ttf']="https://github.com/googlefonts/noto-emoji/blob/master/fonts/NotoColorEmoji.ttf?raw=true"
 
 for font in "${(@k)font_hash}"; do
 
