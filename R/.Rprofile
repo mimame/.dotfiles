@@ -93,6 +93,14 @@ nan <- function(df) {
   }
 }
 
+# Improve default view function opening the object with LibreOffice Calc
+# Is default is needed use View()
+view <- function (df, colnames = T, rownames = F) {
+  tmp_file <- tempfile(pattern = "R_view_")
+  write.table(df, tmp_file, sep = "\t", col.names = colnames, row.names = rownames)
+  system(paste0("libreoffice --calc ", tmp_file))
+}
+
 ## Options
 # URLs of the repositories for use by update.packages.
 # Defaults to c(CRAN="@CRAN@"), a value that causes some utilities to prompt for a CRAN mirror
