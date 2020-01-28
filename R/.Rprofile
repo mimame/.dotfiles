@@ -93,12 +93,16 @@ nan <- function(df) {
   }
 }
 
-# Improve default view function opening the object with LibreOffice Calc
+# Replace default view function opening the object with LibreOffice Calc
 # Is default is needed use View()
 view <- function (df, colnames = T, rownames = F) {
-  tmp_file <- tempfile(pattern = "R_view_")
-  write.table(df, tmp_file, sep = "\t", col.names = colnames, row.names = rownames)
-  system(paste0("libreoffice --calc ", tmp_file))
+  # extract the real object name to compose the filename
+  filename <- paste0("R_view_", deparse(substitute(df)))
+  tmp_dir <- "/tmp/R_view"
+  dir <- dir.create(tmp_dir, showWarnings = F, recursive = T)
+  file_path <- file.path(tmp_dir, filename)
+  write.table(df, file_path, sep = "\t", col.names = colnames, row.names = rownames)
+  system(paste0("libreoffice --calc ", file_path))
 }
 
 ## Options
