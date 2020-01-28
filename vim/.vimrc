@@ -231,8 +231,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'michaeljsmith/vim-indent-object'
   " Markdown improvements like TOC
   Plug 'SidOfc/mkdx'
-  " Embed Neovim in your browser.
-  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   " Adds file type glyphs/icons (should be put at last!!)
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
