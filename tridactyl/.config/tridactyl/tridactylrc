@@ -1,0 +1,163 @@
+" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" vim: set filetype=tridactyl
+
+" "vim-like" behavior where removing a line from here makes the setting disappear
+sanitise tridactyllocal tridactylsync
+
+colors narnia
+
+
+"
+" editor
+"
+set editorcmd alacritty --class tridactyl_editor -e nvim %f -c 'normal %lG%cl'
+alias editor_rm composite editor | jsb -p tri.native.run(`rm -f '${JS_ARG[0]}'`)
+bind --mode=insert <C-i> editor_rm
+bind --mode=input <C-i> editor_rm
+
+"
+" Config
+"
+set newtab https://www.google.com/?hl=en&gl=en
+set smoothscroll true
+
+" Don't break CodeMirror on Jupyter but don't allow autofocus
+set allowautofocus false
+autocmd TabEnter .* unfocus
+
+" The delay in milliseconds in vimperator style hint modes after selecting a hint before you are returned to normal mode.
+set hintdelay 100
+
+" Sane hinting mode
+set hintuppercase false
+set hintfiltermode vimperator-reflow
+set hintchars asdfghjkl;
+
+"
+" Binds
+"
+" Search
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+bind <Esc> nohlsearch
+
+" Mobility between tabs
+bind j tabprev
+bind k tabnext
+bind 0 tabfirst
+bind $ tablast
+bind <C-k> tabmove +1
+bind <C-j> tabmove -1
+
+" Mobility by the history
+bind h back
+bind l forward
+
+" Mobility by the page
+bind J scrollline 10
+bind K scrollline -10
+bind H scrollpx -50
+bind L scrollpx 50
+
+" Hint mode
+bind gf hint -qb
+
+" Make yy use canonical / short links on the 5 websites that support them
+bind yy clipboard yankshort
+
+" View source
+bind gF viewsource
+
+" Select last input
+bind i focusinput -l
+
+" Hint to clipboard
+bind yf hint -p
+
+" Allow Ctrl-a to select all in the commandline
+unbind --mode=ex <C-a>
+" Allow Ctrl-c to copy in the commandline
+unbind --mode=ex <C-c>
+
+" Handy multiwindow/multitasking binds
+bind gd tabdetach
+bind gD composite tabduplicate | tabdetach
+
+" Stupid workaround to let hint -; be used with composite which steals semi-colons
+command hint_focus hint -;
+" Open right click menu on links
+bind ;c composite hint_focus; !s xdotool key Menu
+
+" Git{Hub,Lab} git clone via HTTPS yank
+bind yg composite js "git clone " + document.location.href.split("/").slice(0,5).join("/").replace(/$/,".git") | clipboard yank
+
+"
+" bindurl
+"
+" Only hint search results on Google and DDG
+bindurl www.google.com f hint -Jc .rc > .r > a
+bindurl www.google.com F hint -Jbc .rc > .r > a
+bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
+bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
+
+
+"
+" quickmarks
+"
+" Afterwards use go[key], gn[key], or gw[key] to open, tabopen, or winopen the URL respectively.
+quickmark c https://calendar.google.com/calendar
+quickmark g https://github.com
+quickmark m https://mail.google.com/mail
+quickmark p https://app.getpocket.com
+quickmark t https://trello.com
+
+"
+" commands
+"
+" Inject Google Translate
+" This (clearly) is remotely hosted code. Google will be sent the whole
+" contents of the page you are on if you run `:translate`
+" From https://github.com/jeremiahlee/page-translator
+command translate js let googleTranslateCallback = document.createElement('script'); googleTranslateCallback.innerHTML = "function googleTranslateElementInit(){ new google.translate.TranslateElement(); }"; document.body.insertBefore(googleTranslateCallback, document.body.firstChild); let googleTranslateScript = document.createElement('script'); googleTranslateScript.charset="UTF-8"; googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&tl=&sl=&hl="; document.body.insertBefore(googleTranslateScript, document.body.firstChild);
+
+
+"
+" searchurls
+"
+set searchurls.a   https://wiki.archlinux.org/index.php?search=%s
+set searchurls.aur https://aur.archlinux.org/packages/?O=0&K=%s
+set searchurls.d   https://duckduckgo.com/?q=%s
+set searchurls.gh  https://github.com/search?q=%s
+set searchurls.g   https://www.google.com/?hl=en&gl=en&search?q=%s
+set searchurls.gi  https://www.google.com/search?tbm=isch&q=%s
+set searchurls.gm  https://www.google.com/maps?q=%s
+set searchurls.gr  https://www.google.com/search?hl=en&tbo=1&tbs=qdr:y&q=%s
+set searchurls.hn  https://www.hnsearch.com/search#request/submissions&q=%s&start=0
+set searchurls.pa  https://www.archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
+set searchurls.ra  http://dle.rae.es/?w=%s
+set searchurls.so  http://stackoverflow.com/search?q=%s
+set searchurls.su  http://superuser.com/search?q=%s
+set searchurls.tf  https://translate.google.com/#auto/fr/%s
+set searchurls.t   http://translate.google.com/?source=osdd#auto|auto|%s
+set searchurls.ts  https://translate.google.com/#auto/es/%s
+set searchurls.wa  http://www.wolframalpha.com/input/?i=%s
+set searchurls.w   http://en.wikipedia.org/wiki/Special:Search?search=%s
+set searchurls.y   http://www.youtube.com/results?search_query=%s
+
+"
+" Security config
+"
+" Add helper commands that Mozillians think make Firefox irredeemably
+" insecure. For details, read the comment at the top of this file.
+command fixamo_quiet jsb tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""'))
+command fixamo js tri.excmds.setpref("privacy.resistFingerprinting.block_mozAddonManager", "true").then(tri.excmds.setpref("extensions.webextensions.restrictedDomains", '""').then(tri.excmds.fillcmdline_tmp(3000, "Permissions added to user.js. Please restart Firefox to make them take affect.")))
+
+" Make Tridactyl work on more sites at the expense of some security. For
+" details, read the comment at the top of this file.
+fixamo_quiet
+
+" You may not wish to run this. Mozilla strongly feels that you shouldn't.
+" It allows Tridactyl to function on more pages, e.g. raw GitHub pages.
+jsb browser.webRequest.onHeadersReceived.addListener(tri.request.clobberCSP,{urls:["<all_urls>"],types:["main_frame"]},["blocking","responseHeaders"])
