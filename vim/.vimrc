@@ -227,6 +227,8 @@ call plug#begin('~/.vim/plugged')
   "Plug '907th/vim-auto-save'
   " A solid language pack for Vim.
   Plug 'sheerun/vim-polyglot'
+  " Syntax for Tridactyl configuration files
+  Plug 'tridactyl/vim-tridactyl'
   " Text object, based on indentation levels
   Plug 'michaeljsmith/vim-indent-object'
   " Markdown improvements like TOC
