@@ -617,8 +617,13 @@ function o() {
 # }}}
 
 function python () {
+  # stdin is a pipe
+  if [[ -p /dev/stdin ]]; then
+    command python "$@"
+  else
   # Use command to avoid the recursion
-  test -z "$1" && ipython || command python "$@"
+  test -z "$1" && ptpython || command python "$@"
+  fi
 }
 
 function R () {
