@@ -708,6 +708,7 @@ alias tmuxrc='nvim $(readlink -f ~/.tmux.conf)'
 alias vifmrc='nvim $(readlink -f ~/.config/vifm/vifmrc)'
 alias vimrc='nvim $(readlink -f ~/.vimrc)'
 alias zshrc='nvim $(readlink -f ~/.zshrc)'
+alias tridactylrc='nvim $(readlink -f ~/.config/tridactyl/tridactylrc)'
 
 # Alias for yay command
 alias u="yay --sudoloop --noconfirm -Syu"
