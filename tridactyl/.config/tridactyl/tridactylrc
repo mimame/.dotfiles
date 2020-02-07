@@ -45,7 +45,8 @@ set hintdelay 100
 " Sane hinting mode
 set hintuppercase false
 set hintfiltermode vimperator-reflow
-set hintchars asdfghjkl;
+"set hintchars hjklasdfgyuiopqwertnmzxcvb
+set hintchars jfkdls;ahg'urieowpqyt
 
 "
 " Binds
