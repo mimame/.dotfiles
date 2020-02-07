@@ -154,6 +154,7 @@ set searchurls.gi  https://www.google.com/search?tbm=isch&q=%s
 set searchurls.gm  https://www.google.com/maps?q=%s
 set searchurls.gr  https://www.google.com/search?hl=en&tbo=1&tbs=qdr:y&q=%s
 set searchurls.hn  https://www.hnsearch.com/search#request/submissions&q=%s&start=0
+set searchurls.l   https://www.google.com/search?btnI=I'm+Feeling+Lucky&q=%s
 set searchurls.pa  https://www.archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
 set searchurls.ra  http://dle.rae.es/?w=%s
 set searchurls.so  http://stackoverflow.com/search?q=%s
