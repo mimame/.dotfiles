@@ -622,8 +622,13 @@ function python () {
 }
 
 function R () {
+  # stdin is a pipe
+  if [[ -p /dev/stdin ]]; then
+    command R "$@"
+else
   # Use command to avoid the recursion
   test -z "$1" && radian || command R "$@"
+  fi
 }
 
 # Never use vi
