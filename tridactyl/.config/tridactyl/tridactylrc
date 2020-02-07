@@ -21,8 +21,10 @@ bind --mode=input <C-i> editor_rm
 set newtab https://www.google.com/?hl=en&gl=en
 set smoothscroll true
 
-" Don't break CodeMirror on Jupyter but don't allow autofocus
-set allowautofocus false
+" Don't break RStudio server, Jupyter and similar web IDEs but don't allow autofocus
+" allowautofocus has to be enabled always by default
+" Each tab has to be unfocused
+set allowautofocus true
 autocmd TabEnter .* unfocus
 
 " The delay in milliseconds in vimperator style hint modes after selecting a hint before you are returned to normal mode.
