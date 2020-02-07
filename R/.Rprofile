@@ -102,7 +102,7 @@ view <- function (df, colnames = T, rownames = F) {
   dir <- dir.create(tmp_dir, showWarnings = F, recursive = T)
   file_path <- file.path(tmp_dir, filename)
   write.table(df, file_path, sep = "\t", col.names = colnames, row.names = rownames)
-  system(paste0("libreoffice --calc ", file_path))
+  system(paste0("libreoffice --calc ", file_path), wait = F)
 }
 
 ## Options
