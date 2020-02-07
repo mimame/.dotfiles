@@ -26,6 +26,8 @@ bind --mode=input <C-i> editor_rm
 " Preferences
 "
 setpref browser.search.region "US"
+" Force to use English in google searches with private browsing
+setpref intl.accept_languages "en,en-us,es-es,fr-fr"
 
 "
 " Config
