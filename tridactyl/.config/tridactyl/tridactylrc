@@ -23,6 +23,11 @@ bind --mode=insert <C-i> editor_rm
 bind --mode=input <C-i> editor_rm
 
 "
+" Preferences
+"
+setpref browser.search.region "US"
+
+"
 " Config
 "
 set newtab https://www.google.com/?hl=en&gl=en
