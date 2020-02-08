@@ -33,7 +33,6 @@ exec_always --no-startup-id pkill dunst; dunst &
 # Screen layout
 exec_always --no-startup-id ~/.config/i3/scripts/screen_layout
 # Load desktop
-exec --no-startup-id feh --no-fehbg --bg-scale ~/yoda.jpg
 # Fix latitude and longitude
 exec_always --no-startup-id pkill redshift-gtk; redshift-gtk -r -l 43.5576126:1.4265417
 # Load bluetooth applet
