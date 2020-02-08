@@ -1,0 +1,21 @@
+[username]
+show_always = true
+
+[hostname]
+ssh_only = false
+style = "bold dimmed blue"
+
+[directory]
+prefix = ""
+truncate_to_repo = false
+truncation_length = 0
+
+[memory_usage]
+disabled = false
+show_percentage = true
+show_swap = true
+threshold = -1
+symbol = "ram: "
+
+[time]
+disabled = false
