@@ -26,7 +26,7 @@ else
   # Dynamic load
   # Register plugins in an array
   declare -a plugins
-  plugins+=('denysdovhan/spaceship-prompt kind:zsh-theme')
+  plugins+=('Aloxaf/fzf-tab')
   plugins+=('zsh-users/zsh-completions')
   plugins+=('zsh-users/zsh-autosuggestions')
   plugins+=('marzocchi/zsh-notify')
@@ -125,7 +125,7 @@ zstyle ':completion:*:corrections' format '%F{green}-- %d (errors: %e) --%f'
 zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
 zstyle ':completion:*:messages' format '%F{purple}-- %d --%f'
 zstyle ':completion:*:warnings' format '%F{red}-- no matches found --%f'
-zstyle ':completion:*' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*' format '[%d]'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
 # }}}
@@ -296,64 +296,11 @@ export LESS_TERMCAP_ue=$'\E[0m'        # Ends underline.
 export LESS_TERMCAP_us=$'\E[01;32m'    # Begins underline.
 # }}}
 
-# Spaceship prompt {{{
-export SPACESHIP_NODE_DEFAULT_VERSION="$(node -v)"
-export SPACESHIP_JOBS_SYMBOL=''
-export SPACESHIP_JOBS_AMOUNT_SUFFIX=' \e[34mjobs\e[0m '
-export SPACESHIP_JOBS_AMOUNT_THRESHOLD=0
-export SPACESHIP_USER_SHOW='always'
-export SPACESHIP_USER_SUFFIX=''
-export SPACESHIP_HOST_SHOW='always'
-export SPACESHIP_HOST_PREFIX='@'
-export SPACESHIP_DIR_TRUNC=0
-export SPACESHIP_DIR_TRUNC_REPO=false
-export SPACESHIP_TIME_SHOW=true
-# User nerd font icons
-export SPACESHIP_DOCKER_SYMBOL='  '
-export SPACESHIP_RUBY_SYMBOL='  '
-export SPACESHIP_GOLANG_SYMBOL=' '
-
-SPACESHIP_PROMPT_ORDER=(
-  user          # Username section
-  host          # Hostname section
-  dir           # Current directory section
-  git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
-  package       # Package version
-  node          # Node.js section
-  ruby          # Ruby section
-  elixir        # Elixir section
-  xcode         # Xcode section
-  swift         # Swift section
-  golang        # Go section
-  php           # PHP section
-  rust          # Rust section
-  haskell       # Haskell Stack section
-  julia         # Julia section
-  docker        # Docker section
-  aws           # Amazon Web Services section
-  venv          # virtualenv section
-  conda         # conda virtualenv section
-  pyenv         # Pyenv section
-  dotnet        # .NET section
-  ember         # Ember.js section
-  kubecontext   # Kubectl context section
-  exec_time     # Execution time
-  time          # Time stampts section
-  line_sep      # Line break
-  battery       # Battery level and status
-  vi_mode       # Vi-mode indicator
-  jobs          # Background jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
-# }}}
 
 # Vi mode keys {{{
 # https://dougblack.io/words/zsh-vi-mode.html
 # Enable vi mode
 bindkey -v
-spaceship_vi_mode_enable
 # Delay from 0.4s to 0.1s to enter in vi mode
 export KEYTIMEOUT=1
 # Normal mode space for execute suggest
@@ -398,6 +345,17 @@ export FZF_DEFAULT_OPTS='
 --color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
 --bind "ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
+FZF_TAB_OPTS=(
+    --ansi   # Enable ANSI color support, necessary for showing groups
+    --expect='/' # For continuous completion
+    '--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
+    --nth=2,3 --delimiter='\0'  # Don't search FZF_TAB_PREFIX
+    --layout=reverse --height=90%
+    --tiebreak=begin -m --bind=tab:down,ctrl-j:accept,change:top,tab:toggle --cycle
+    '--query=$query'   # $query will be expanded to query string at runtime.
+    '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
+)
+
 function p() {
   if [ $# -eq 0 ]; then
     fzf --multi --bind "enter:execute(bat --theme \"Monokai Extended Bright Narnia\" --color always {+})+abort" --preview "bat --theme \"Monokai Extended Bright Narnia\" --color always {}"
