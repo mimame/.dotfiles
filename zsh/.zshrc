@@ -1250,5 +1250,5 @@ if [ "$TMUX" == "" ]; then
     tmux new-session
 fi
 # }}}
-
+eval "$(starship init zsh)"
 # zprof
