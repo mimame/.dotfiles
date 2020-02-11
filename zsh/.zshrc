@@ -351,7 +351,8 @@ FZF_TAB_OPTS=(
     '--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
     --nth=2,3 --delimiter='\0'  # Don't search FZF_TAB_PREFIX
     --layout=reverse --height=90%
-    --tiebreak=begin -m --bind=tab:down,ctrl-j:accept,change:top,tab:toggle --cycle
+    --tiebreak=begin
+    --multi
     '--query=$query'   # $query will be expanded to query string at runtime.
     '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
 )
