@@ -213,6 +213,8 @@ call plug#begin('~/.vim/plugged')
   "Plug 'fatih/vim-go' (vim-polyglot)
   " Configuration for Julia
   "Plug 'JuliaEditorSupport/julia-vim' (vim-polyglot)
+  " Syntax for snakemake
+  Plug 'ivan-krukov/vim-snakemake'
   " Helpers for UNIX
   Plug 'tpope/vim-eunuch'
   " Language tool grammar check
