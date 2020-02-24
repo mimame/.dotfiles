@@ -652,8 +652,10 @@ function ff () {
 alias ff=' ff'
 
 # Correct previous command
-eval $(thefuck --alias)
-alias fk='fuck -y'
+if [ -x "$(command -v thefuck)" ]; then
+  eval $(thefuck --alias)
+  alias fk='fuck -y'
+fi
 
 # Alias for rc files
 alias alacrittyrc='nvim $(readlink -f ~/.config/alacritty/alacritty.yml)'
