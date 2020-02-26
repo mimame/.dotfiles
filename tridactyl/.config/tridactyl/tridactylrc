@@ -67,6 +67,8 @@ bind 0 tabfirst
 bind $ tablast
 bind <C-k> tabmove +1
 bind <C-j> tabmove -1
+bind b fillcmdline taball
+bind B fillcmdline tab
 
 " Mobility by the history
 bind h back
