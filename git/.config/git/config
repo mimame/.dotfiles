@@ -242,7 +242,7 @@
   autosetuprebase = always
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-branchltnamegtrebase
   # Pass --preserve-merges along to git rebase so that locally committed merge commits will not be flattened by running git pull.
-  rebase=merges
+  rebase = merges
 
 [checkout]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-checkoutdefaultRemote
@@ -311,7 +311,7 @@
   hooksPath    = ~/.config/git/hooks
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corepager
   # Use delta as pager https://github.com/dandavison/delta
-  pager        = delta --dark --minus-color="#3f01" --minus-emph-color="#901011" --plus-color="#005800" --plus-emph-color="#e7ce" --theme='Monokai Extended Bright'
+  pager        = delta --dark
 
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corewhitespace
   # Notify whitespace issues
