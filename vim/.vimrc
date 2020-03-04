@@ -157,8 +157,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   " To work with R
   Plug 'jalvesaq/Nvim-R'
-  " R autocompletion
-  Plug 'gaalcaras/ncm-R'
   "enable repeating supported plugin maps with dot
   Plug 'tpope/vim-repeat'
   " Using vim-matchup plugin: a modern matchit and matchparen replacement
@@ -1191,6 +1189,8 @@ let R_assign = 0
 let R_in_buffer = 0
 " Custom the call to the terminal emulator
 let R_term_cmd = 'alacritty --title "R: ' . expand("%:t") . '" --command'
+" Fix comments in Rmd files
+let R_rcomment_string = '# '
 
 " Object_Browser window highlight endline tabs by default
 " Ignore extra whitespace by filetype doesn't work
