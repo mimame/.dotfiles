@@ -296,6 +296,16 @@
     frame_color = "#ff0000"
     timeout = 0
 
+[slack]
+    appname = "Slack"
+    geometry = "0x0+250+250"
+    urgency = critical
+    background = "#000000"
+    foreground = "#ff0000"
+    frame_color = "#ff0000"
+    timeout = 0
+    new_icon = /usr/share/icons/Vibrancy-Colors/apps/32/web-slack.png
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
