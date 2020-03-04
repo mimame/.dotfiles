@@ -287,6 +287,15 @@
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
 
+[thunderbird]
+    appname = "Thunderbird"
+    geometry = "0x0+250+250"
+    urgency = critical
+    background = "#000000"
+    foreground = "#ff0000"
+    frame_color = "#ff0000"
+    timeout = 0
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
