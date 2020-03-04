@@ -159,13 +159,13 @@
     ### Icons ###
 
     # Align icons left/right/off
-    icon_position = off
+    icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Vibrancy-Colors-Dark/actions/32:/usr/share/icons/Vibrancy-Colors-Dark/apps/32/:/usr/share/icons/Vibrancy-Colors-Dark/categories/24:/usr/share/icons/Vibrancy-Colors-Dark/devices/24:/share/icons/Papirus-Dark/24x24/emblems:share/icons/Papirus-Dark/24x24/emotes:/usr/share/icons/Papirus-Dark/24x24/mimetypes:/usr/share/icons/Papirus-Dark/24x24/places:/usr/share/icons/Vibrancy-Colors-Dark/status/32:/usr/share/icons/Adwaita/32x32/legacy:/usr/share/icons/Adwaita/32x32/ui
 
     ### History ###
 
