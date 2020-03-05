@@ -343,7 +343,7 @@ export FZF_DEFAULT_OPTS='
 --reverse
 --color fg:255,bg:16,hl:161,fg+:255,bg+:16,hl+:161,info:118
 --color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
---bind "ctrl-t:top,ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
+--bind "tab:down,shift-tab:up,change:top,space:toggle+down,alt-space:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 FZF_TAB_OPTS=(
     --ansi   # Enable ANSI color support, necessary for showing groups
@@ -351,7 +351,7 @@ FZF_TAB_OPTS=(
     '--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
     --nth=2,3 --delimiter='\0'  # Don't search FZF_TAB_PREFIX
     --layout=reverse --height=90%
-    --tiebreak=begin
+    --tiebreak=begin -m --bind=tab:down,shift-tab:up,change:top,space:toggle+down,alt-space:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top --cycle
     --multi
     '--query=$query'   # $query will be expanded to query string at runtime.
     '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
