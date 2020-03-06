@@ -345,6 +345,11 @@ export FZF_DEFAULT_OPTS='
 --color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
 --bind "tab:down,shift-tab:up,change:top,space:toggle+down,alt-space:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
+# disable sort when completing options of any command
+zstyle ':completion:complete:*:options' sort false
+# use input as query string when completing zlua
+zstyle ':fzf-tab:complete:_zlua:*' query-string input
+
 FZF_TAB_OPTS=(
     --ansi   # Enable ANSI color support, necessary for showing groups
     --expect='/' # For continuous completion
