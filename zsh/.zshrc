@@ -1254,6 +1254,11 @@ x11-clip-wrap-widgets copy  $copy_widgets
 x11-clip-wrap-widgets paste $paste_widgets
 # }}}
 
+# Start ssh agent by default
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s` > /dev/null
+fi
+
 # Run new tmux session always {{{
 # Remove weird message: sessions should be nested with care, unset $TMUX to force
 if [ "$TMUX" == "" ]; then
