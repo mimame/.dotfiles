@@ -110,7 +110,7 @@ command hint_focus hint -;
 bind ;c composite hint_focus; !s xdotool key Menu
 
 " Git{Hub,Lab} git clone via HTTPS yank
-bind yg composite js "git clone " + document.location.href.split("/").slice(0,5).join("/").replace(/$/,".git") | clipboard yank
+bind yg composite js "git clone " + document.location.href.split("/").slice(0,5).join("/").replace(/https/,"git").replace(/$/,".git") | clipboard yank
 
 "
 " bindurl
