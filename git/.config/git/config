@@ -317,12 +317,6 @@
   # Notify whitespace issues
   whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
-[credential]
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-credentialhelper
-  # https://git-scm.com/docs/git-credential-store
-  # Use credentials storaged in disk
-  helper = store
-
 [diff]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-codehistogramcode
   # Use histogram algorithm
@@ -377,8 +371,8 @@
 
 [hub]
   # https://hub.github.com/hub.1.html
-  # HTTPS instead of git protocol
-  protocol = https
+  # Always use git protocol over HTTPS
+  protocol = git
 
 # https://git-scm.com/docs/git-config#_includes
 # use separate file for username and email
@@ -497,18 +491,24 @@
   # Always sign tags with GPG
   forceSignAnnotated = true
 
-[url "https://"]
-  # https://git-scm.com/docs/git-config#git-config-urlltbasegtinsteadOf
-  # Always rewrite git:// with https:// git clone even
-  insteadOf = git://
+# https://git-scm.com/docs/git-config#git-config-urlltbasegtinsteadOf
+# Always rewrite https:// with git:// git clone included
+[url "git@github.com:"]
+  insteadOf = https://github.com/
 
-[url "https://github.com/"]
+[url "git@gitlab.com:"]
+  insteadOf = https://gitlab.com/
+
+[url "git@bitbucket.org:"]
+  insteadOf = https://bitbucket.org/
+
+[url "git://github.com"]
   insteadOf = gh:
 
-[url "https://gitlab.com/"]
+[url "git://gitlab.com"]
   insteadOf = gl:
 
-[url "https://bitbucket.org"]
+[url "git://bitbucket.org"]
   insteadOf = bb:
 
 [web]
