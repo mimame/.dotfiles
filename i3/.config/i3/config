@@ -262,7 +262,6 @@ bindsym $mod+Shift+F12 move container to workspace number $ws22
 
 # Open applications on specific workspaces
 assign [class="firefox"] number $ws2
-for_window [title="^Jitsi Meet.*$"] move to workspace number $ws3
 for_window [title="^Google Hangouts.*$"] move to workspace number $ws3
 for_window [title="^Hangouts Video Call.*$"] move to workspace number $ws3
 assign [class="Google-chrome"] number $ws2
@@ -276,11 +275,11 @@ assign [class="Zotero"] number $ws4
 exec --no-startup-id alacritty
 exec --no-startup-id firefox-developer-edition
 exec --no-startup-id firefox-developer-edition --private-window'
-exec --no-startup-id spotify
-exec --no-startup-id slack
 exec --no-startup-id google-chrome-stable
 exec --no-startup-id thunderbird
+exec --no-startup-id slack
 exec --no-startup-id zotero
+exec --no-startup-id spotify
 
 
 # Open specific applications in floating mode
