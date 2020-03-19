@@ -26,7 +26,7 @@ exec_always [[ $(xinput --list-props 12 | fgrep -w Touchpad) ]] && libinput-gest
 # Enable numlock by default
 # exec_always --no-startup-id pkill numlockx; numlockx
 # Enable and load last saved session
-exec --no-startup-id [ -f ~/.cache/i3/session.json ] && ~/.config/i3/scripts/i3exit restore && i3-msg restart
+# exec --no-startup-id [ -f ~/.config/i3/session.json ] && ~/.config/i3/scripts/i3exit restore && i3-msg restart
 # Enable notifications by default
 exec_always --no-startup-id pkill dunst; dunst &
 
