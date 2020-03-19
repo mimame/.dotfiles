@@ -38,7 +38,6 @@ exec_always --no-startup-id pkill redshift-gtk; redshift-gtk -r -l 43.5576126:1.
 # Load bluetooth applet
 exec --no-startup-id blueman-applet
 
-
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
 new_float none
@@ -164,14 +163,14 @@ bindsym $mod+Ctrl+r exec ~/.config/i3/scripts/i3rename_workspace
 # Workspace names
 set $ws1 "1:  "
 set $ws2 "2:  "
-set $ws3 "3:  "
-set $ws4 "4:  "
-set $ws5 "5:  "
-set $ws6 "6:  "
+set $ws3 "3:  "
+set $ws4 "4:  "
+set $ws5 "5:  "
+set $ws6 "6:  "
 set $ws7 "7: "
 set $ws8 "8: "
 set $ws9 "9: "
-set $ws10 "10:  "
+set $ws10 "10: "
 set $ws11 "11: "
 set $ws12 "12: "
 set $ws13 "13: "
