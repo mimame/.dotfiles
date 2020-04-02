@@ -60,10 +60,10 @@ floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # Kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Ctrl+q kill
 
 # Kill selected window
-bindsym --release $mod+Ctrl+q exec xkill
+bindsym --release $mod+Shift+q exec xkill
 
 # Start program launcher
 bindsym $mod+d exec --no-startup-id rofi -show combi
