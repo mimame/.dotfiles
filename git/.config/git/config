@@ -381,10 +381,10 @@
 
 # https://git-scm.com/docs/git-config#_includes
 # use other username and mail for the specific folder structure
-[includeIf "gitdir:~/forks/Work/CRCT/"]
-  path = .config.work.crct
-[includeIf "gitdir:~/forks/Work/BSC/INAB/"]
-  path = .config.work.bsc
+[includeIf "gitdir:~/forks/Work/"]
+  path = .config.work
+[includeIf "gitdir:~/Projects/"]
+  path = .config.work
 
 [log]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-logdate
