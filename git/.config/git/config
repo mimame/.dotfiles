@@ -98,18 +98,18 @@
   # grep - https://git-scm.com/docs/git-grep
   g = grep --function-context
   # hub - https://hub.github.com/
-  hb  = !hub browse
-  hc  = !hub create
-  hci = !hub ci-status
-  hcl = !hub clone
-  hcp = !hub compare
-  hd  = !hub delete
-  hf  = !hub fork
-  hi  = !hub issue
-  hp  = !hub pull-request
-  hpr = !hub pr
-  hr  = !hub release
-  hs  = !hub sync
+  h    = !gh repo view --web
+  hc   = !gh repo create
+  hcl  = !gh repo clone
+  hf   = !gh repo fork
+  hi   = !gh issue list
+  hic  = !gh issue create
+  his  = !gh issue status
+  hiv  = !gh issue view
+  hp   = !gh pr list
+  hpc  = !gh pr create
+  hpco = !gh pr checkout
+  hpv  = !gh pr view
   # init - https://git-scm.com/docs/git-init
   i = init
   # .gitignore - https://git-scm.com/docs/gitignore
