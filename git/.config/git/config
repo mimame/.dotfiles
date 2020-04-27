@@ -311,7 +311,7 @@
   hooksPath    = ~/.config/git/hooks
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corepager
   # Use delta as pager https://github.com/dandavison/delta
-  pager        = delta --dark
+  pager        = delta --dark --plus-color="#012800" --minus-color="#340001"
 
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corewhitespace
   # Notify whitespace issues
@@ -385,6 +385,11 @@
   path = .config.work
 [includeIf "gitdir:~/Projects/"]
   path = .config.work
+
+[interactive]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-interactivediffFilter
+  # Pipe the diff through the shell command defined
+  diffFilter = delta --color-only
 
 [log]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-logdate
