@@ -7,7 +7,16 @@ sanitise tridactyllocal tridactylsync
 "
 " Blacklist (ignore mode)
 "
-blacklistadd crct\d+
+blacklistadd www.typing.com
+blacklistadd https://web.whatsapp.com/
+blacklistadd https://drive.google.com/
+blacklistadd https://docs.google.com/
+
+blacklistadd crct2107
+blacklistadd crct2107:8787
+blacklistadd http://crct2107
+blacklistadd http://crct2107:8787
+blacklistadd http://crct2107:8787/auth-sign-in
 
 "
 " Theme
