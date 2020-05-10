@@ -474,9 +474,8 @@ alias -g W='| wc'
 
 # Always use float by default
 alias bc='bc -l'
-# github wrapper to extend git
-alias git=hub
 alias g=git
+eval "$(gh completion --shell zsh)"
 
 alias ls='ls --color=always --almost-all --human-readable --format=long --classify'
 alias l='ls'
