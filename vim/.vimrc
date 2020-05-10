@@ -194,7 +194,7 @@ call plug#begin('~/.vim/plugged')
   " Interactive command execution
   Plug 'shougo/vimproc.vim', { 'do': 'make' }
   " Autocompletion
-  Plug 'Valloric/YouCompleteMe', {'do': './install.py --clang-completer --system-libclang --gocode-completer --js-completer --racer-completer'}
+  Plug 'Valloric/YouCompleteMe', {'do': './install.py --clangd-completer --go-completer --ts-completer --rust-completer'}
   " The ultimate snippet solution
   Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
   " make YCM tab compatible with UltiSnips (using supertab)
@@ -996,6 +996,7 @@ let g:ycm_filetype_specific_completion_to_disable = {
       \ 'markdown':1,
       \ 'text': 1,
       \ 'tmux':1,
+      \ 'tridactyl': 1,
       \ 'vim': 1,
       \ 'yaml':1,
       \ 'zsh': 1,
