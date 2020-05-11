@@ -1,5 +1,5 @@
 configuration {
-	modi: "combi,web:~/.config/rofi/search.sh,finder:~/.config/rofi/finder.sh,window,drun,run,ssh";
+	modi: "combi,clipboard:greenclip print,web:~/.config/rofi/search.sh,finder:~/.config/rofi/finder.sh,window,drun,run,ssh";
 	width: 100;
 	lines: 15;
 	columns: 1;
