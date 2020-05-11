@@ -38,6 +38,9 @@ exec_always --no-startup-id pkill redshift-gtk; redshift-gtk -r -l 43.5576126:1.
 # Load bluetooth applet
 exec --no-startup-id blueman-applet
 
+# Enable clipboard manager
+exec_always --no-startup-id pkill greenclip; greenclip clear; greenclip daemon > /dev/null &
+
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
 new_float none
@@ -71,6 +74,8 @@ bindsym $mod+d exec --no-startup-id rofi -show combi
 bindsym $mod+Shift+d exec --no-startup-id rofi -show web
 # Add finder launcher
 bindsym $mod+Shift+f exec --no-startup-id rofi -show finder
+# Add clipboard manager launcher
+bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 0.5 && xdotool type "$(xclip -o -selection clipboard)"
 
 # Player controls
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && ~/.config/i3/scripts/dunstify_notification "play-stop_song"
