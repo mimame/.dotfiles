@@ -5,6 +5,11 @@ status = Status(standalone=True)
 # Default color: $base05 #FFFFFF
 base05 = "#FFFFFF"
 
+# Shows pulseaudio default sink volume
+#
+# Note: requires libpulseaudio from PyPI
+status.register("pulseaudio", step=1, format=" {volume}% ")
+
 # Screen backlight info
 # requires light to change the backlight brightness with the scollwheel.
 status.register(
@@ -15,11 +20,6 @@ status.register(
     on_downscroll="light -U 1",
     interval=1,
 )
-
-# Shows pulseaudio default sink volume
-#
-# Note: requires libpulseaudio from PyPI
-status.register("pulseaudio", step=1, format=" {volume}% ")
 
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
