@@ -235,7 +235,7 @@ mark t /tmp
 " Don't inspect the size of folders which contain /fuse/ in their paths
 " vifm mount them inside one
 " fuse filesystems are very slow and could hang the remote connection
-autocmd DirEnter * if system("grep -iP 'fuse|mnt|media' <<<" . expand("%d")) == "" | %select | exe 'normal ga' | %unselect | endif
+" autocmd DirEnter * if system("grep -iP 'fuse|mnt|media' <<<" . expand("%d")) == "" | %select | exe 'normal ga' | %unselect | endif
 
 " ------------------------------------------------------------------------------
 
