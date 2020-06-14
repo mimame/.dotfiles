@@ -719,6 +719,13 @@ nnoremap <Leader>vt :TabVifm<CR>
 let g:NERDTreeShowHidden=1
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+" Highlight full name (not only icons)
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+" Highlight folders using exact match
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 " Open a NERDTree with Startify automatically when vim starts up if no files neither stdin were specified {{{
 " Specify std_in variable with the StdinReadPre event
 autocmd StdinReadPre * let s:std_in=1
