@@ -928,6 +928,7 @@ nnoremap <silent> <Leader>I :call <SID>MkdxFzfQuickfixHeaders()<Cr>
 " }}}
 " :h mkdx-settings
 let g:mkdx#settings =            {
+      \ 'map':                     { 'enable': 1},
       \ 'enter':                   { 'enable': 0},
       \ 'checkbox':                { 'toggles': [' ', 'X']},
       \ 'highlight':               { 'enable': 1 },
@@ -940,6 +941,7 @@ let g:mkdx#settings =            {
       \                              }
       \                            }
 \ }
+let g:mkdx#settings = { 'map': { 'prefix': '<leader>' } }
 " to keep it limited to markdown files, one can use an "autocommand".
 " First, make sure we don't create the default mapping when entering markdown files.
 " All plugs can be disabled like this (except insert mode ones, they need "imap" instead of "nmap").
@@ -956,6 +958,11 @@ endfun
 augroup Mkdx
     au!
     au FileType markdown call s:MkdxRemap()
+augroup END
+" Include dash in 'word'
+augroup markdown
+    autocmd!
+    autocmd FileType markdown setlocal iskeyword+=-
 augroup END
 " }}}
 "autocmd FileType ruby compiler ruby
