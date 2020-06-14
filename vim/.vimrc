@@ -50,6 +50,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'machakann/vim-highlightedyank'
   " Selectively illuminating other uses of the current word under the cursor
   Plug 'RRethy/vim-illuminate'
+  " Asynchronously displaying the colors in the file
+  Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
   " Smooth scrolling for Vim done right
   Plug 'psliwka/vim-smoothie'
   " Only update fold when be necessary
@@ -88,8 +90,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'matze/vim-move'
   " Open devdocs.io from Vim
   Plug 'rhysd/devdocs.vim'
-  " Highlight colors in css files
-  Plug 'ap/vim-css-color'
   " Simple color selector/picker
   Plug 'KabbAmine/vCoolor.vim'
   " Configuration for HTML
@@ -299,6 +299,9 @@ highlight Folded guifg=#D3D3D3
 highlight LineNr cterm=bold guifg=#FFFFFF guibg=#000000 gui=bold
 " Reduce highlighted time of the yank region
 let g:highlightedyank_highlight_duration = 300
+
+" Display string colors as colors
+let g:Hexokinase_highlighters = ['backgroundfull']
 " }}}
 
 " Enable powerline fonts
