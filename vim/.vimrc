@@ -1223,9 +1223,7 @@ let R_assign = 0
 " Run R in a terminal emulator
 let R_in_buffer = 0
 " Custom the call to the terminal emulator
-let R_term_cmd = 'alacritty --title "R: ' . expand("%:t") . '" --command'
-" Fix comments in Rmd files
-let R_rcomment_string = '# '
+let R_external_term = 'alacritty --title "R: ' . expand("%:t") . '" --command'
 
 " Object_Browser window highlight endline tabs by default
 " Ignore extra whitespace by filetype doesn't work
