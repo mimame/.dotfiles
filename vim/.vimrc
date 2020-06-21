@@ -155,7 +155,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'mbbill/undotree'
   " Transition between multiline and single-line
   Plug 'AndrewRadev/splitjoin.vim'
-  " To work with R
+  " Runtime scripts of file types that include R code
+  Plug 'jalvesaq/R-Vim-runtime'
+  " Send code to the R console
   Plug 'jalvesaq/Nvim-R'
   " Send code to command line interpreter
   Plug 'https://github.com/jalvesaq/vimcmdline'
