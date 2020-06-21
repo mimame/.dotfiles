@@ -159,6 +159,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'jalvesaq/R-Vim-runtime'
   " Send code to the R console
   Plug 'jalvesaq/Nvim-R'
+" Pandoc markdown syntax is the only compatible with rmd.vim and tcomment
+  Plug 'vim-pandoc/vim-pandoc-syntax'
   " Send code to command line interpreter
   Plug 'https://github.com/jalvesaq/vimcmdline'
   "enable repeating supported plugin maps with dot
@@ -860,6 +862,10 @@ let g:markdown_fenced_languages = [
       \ 'python',
       \ 'r',
       \]
+" Official syntax/markdown.vim script does not play well with syntax/rmd.vim
+augroup pandoc_syntax
+  au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+augroup END
 " markdown-preview plugin {{{
 " Open the preview window once enter the markdown buffer
 let g:mkdp_auto_start = 1
@@ -914,7 +920,7 @@ let g:mkdx#settings =            {
       \ 'map':                     { 'enable': 1},
       \ 'enter':                   { 'enable': 0},
       \ 'checkbox':                { 'toggles': [' ', 'X']},
-      \ 'highlight':               { 'enable': 1 },
+      \ 'highlight':               { 'enable': 0 },
       \ 'toc':                     { 'text': "Table Of Content", 'list_token': '-',
       \                              'update_on_write': 0,
       \                              'position': 2,
