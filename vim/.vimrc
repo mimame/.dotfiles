@@ -448,8 +448,10 @@ set omnifunc=syntaxcomplete#Complete
 set backspace=indent,eol,start
 " Tags file instead of scanning includes
 set complete-=i
-" Increase numbers like 0X as decimals
+" Increase numbers like 0X as decimals with visual mode g+ctrl-a
 set nrformats-=octal
+" Increase alpha characters with visual mode g+ctrl-a
+set nrformats+=alpha
 " Status line
 set laststatus=2
 " In the right side of the status line: line number, column number, virtual column number, relative position
