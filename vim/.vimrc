@@ -855,29 +855,8 @@ let g:SignatureMarkTextHLDynamic = 1
 " Enable fenced code block syntax highlighting
 let g:markdown_fenced_languages = [
       \ 'bash=sh',
-      \ 'cr=crystal',
-      \ 'crystal',
-      \ 'docker=dockerfile',
-      \ 'dockerfile',
-      \ 'go',
-      \ 'help',
-      \ 'html',
-      \ 'javascript',
-      \ 'jl=julia',
-      \ 'js=javascript',
-      \ 'json',
-      \ 'julia',
-      \ 'py=python',
       \ 'python',
       \ 'r',
-      \ 'rb=ruby',
-      \ 'R=r',
-      \ 'ruby',
-      \ 'sh',
-      \ 'ts=typescript',
-      \ 'typescript',
-      \ 'vim',
-      \ 'zsh=sh'
       \]
 " markdown-preview plugin {{{
 " Open the preview window once enter the markdown buffer
