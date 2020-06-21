@@ -1265,6 +1265,11 @@ if [ "$TMUX" == "" ]; then
     tmux new-session
 fi
 # }}}
+
+
+# A faster way to navigate the filesystem
+eval "$(zoxide init zsh)"
+
 eval "$(starship init zsh)"
 # zprof
 
