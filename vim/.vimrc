@@ -58,8 +58,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'Konfekt/FastFold'
   " Insert or delete brackets, parens, quotes in pair
   Plug 'jiangmiao/auto-pairs'
-  " End certain structures automatically
-  Plug 'tpope/vim-endwise'
   " Edit registers/macros and lists as buffers (c@register in normal mode)
   Plug 'rbong/vim-buffest'
   " Coercion between: Press gs + snake_case(s), MixedCase(m), CamelCase(c), UPPER_CASE(u), dash-case(-), dot.case(.), space case(space) and Title Case(t)
