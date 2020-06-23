@@ -62,7 +62,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   " Edit registers/macros and lists as buffers (c@register in normal mode)
   Plug 'rbong/vim-buffest'
-  " Coertion between: Press gs + snake_case(s), MixedCase(m), CamelCase(c), UPPER_CASE(u), dash-case(-), dot.case(.), space case(space) and Title Case(t)
+  " Coercion between: Press gs + snake_case(s), MixedCase(m), CamelCase(c), UPPER_CASE(u), dash-case(-), dot.case(.), space case(space) and Title Case(t)
   Plug 'arthurxavierx/vim-caser'
   " Multiple cursor selections
   Plug 'terryma/vim-multiple-cursors'
@@ -439,7 +439,7 @@ set linebreak
 set cursorline
 " Enable read vim options in any file
 set modeline
-" Extends % funcionality
+" Extends % functionality
 " using vim-matchup plugin: a modern matchit and matchparen replacement
 " runtime! macros/matchit.vim
 " Number of commands in :history
@@ -594,7 +594,7 @@ highlight ALEWarning ctermfg=yellow ctermbg=16 cterm=bold guifg=yellow guibg=#00
 highlight ALEError   ctermfg=red    ctermbg=16 cterm=bold guifg=red guibg=#000000 gui=bold
 highlight default link ALEWarningSign ALEWarning
 highlight default link ALEErrorSign   ALEError
-" Line colour with the same than the ALE issue (only for nvim)
+" Line color with the same than the ALE issue (only for nvim)
 let g:ale_sign_highlight_linenrs = 1
 highlight default link ALEErrorSignLineNr ALEError
 highlight default link ALEStyleErrorSignLineNr ALEError
