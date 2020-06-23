@@ -1341,6 +1341,11 @@ let R_assign = 0
 let R_in_buffer = 0
 " Custom the call to the terminal emulator
 let R_external_term = 'alacritty --title "R: ' . expand("%:t") . '" --command'
+" To disable the completion of non R code in Rmd and Rnoweb files which conflicts with coc.vim completion float window
+" and use the omni completion provided by another plugin
+let R_non_r_compl = 0
+" During the completion of function arguments, the preview window shows R's documentation help
+let R_show_arg_help = 0
 
 " Object_Browser window highlight endline tabs by default
 " Ignore extra whitespace by filetype doesn't work
