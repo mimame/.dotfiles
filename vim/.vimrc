@@ -196,6 +196,8 @@ call plug#begin('~/.vim/plugged')
   " Interactive command execution
   Plug 'shougo/vimproc.vim', { 'do': 'make' }
   " Autocompletion
+  " Snippets repository
+  Plug 'honza/vim-snippets'
   " Ruby code completion
   "Plug 'osyo-manga/vim-monster'
   " Intelligently toggling line numbers
