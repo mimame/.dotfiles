@@ -196,11 +196,6 @@ call plug#begin('~/.vim/plugged')
   " Interactive command execution
   Plug 'shougo/vimproc.vim', { 'do': 'make' }
   " Autocompletion
-  Plug 'Valloric/YouCompleteMe', {'do': './install.py --clangd-completer --go-completer --ts-completer --rust-completer'}
-  " The ultimate snippet solution
-  Plug 'sirver/ultisnips' | Plug 'honza/vim-snippets'
-  " make YCM tab compatible with UltiSnips (using supertab)
-  Plug 'ervandew/supertab'
   " Ruby code completion
   "Plug 'osyo-manga/vim-monster'
   " Intelligently toggling line numbers
@@ -250,8 +245,6 @@ let g:maplocalleader = ';'
 
 " Polyglot forbidden language plugins
 let g:polyglot_disabled = ['latex', 'r-lang', 'markdown']
-" Increase timeout for installing YouCompleteMe
-let g:plug_timeout = 10000
 
 " http://vimawesome.com/
 " https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim
@@ -993,32 +986,8 @@ map <Leader>vi :VimuxInspectRunner<CR>
 " Zoom the tmux runner pane
 map <Leader>vz :VimuxZoomRunner<CR>
 
-" YouCompleteMe  {{{
-" with Tab
-" htps://stackoverflow.com/a/22253548
-" make YCM compatible with UltiSnips (using supertab)
-" Always close the preview window after continue writing
-let g:ycm_autoclose_preview_window_after_completion=1
-" Completion in comments
-let g:ycm_complete_in_comments = 1
-" Completion with tags
-let g:ycm_collect_identifiers_from_tags_files = 1
-" Complete default language keywords
-let g:ycm_seed_identifiers_with_syntax = 1
 
-let g:ycm_key_list_select_completion   = ['<tab>', '<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<s-tab>', '<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
 
-let g:endwise_no_mappings = 1
-" https://github.com/SirVer/ultisnips/issues/376#issuecomment-69033351
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:ulti_expand_or_jump_res = 0
-function! <SID>ExpandSnippetOrReturn()
-  let l:snippet = UltiSnips#ExpandSnippetOrJump()
-  if g:ulti_expand_or_jump_res > 0
-    return l:snippet
   else
     return "\<CR>"
   endif
@@ -1321,8 +1290,6 @@ nnoremap <localleader>c :Commits<CR>
 nnoremap <localleader>bc :BCommits<CR>
 " Show git status command
 nnoremap <localleader>gs :GFiles?<CR>
-" Show snippets from UltiSnips
-nnoremap <localleader>S :Snippets<CR>
 " Show Vim commands
 nnoremap <localleader>co :Commands<CR>
 " Show vim files history
