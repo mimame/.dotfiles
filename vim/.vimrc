@@ -66,8 +66,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'terryma/vim-multiple-cursors'
   " Operator motions to quickly replace text
   Plug 'svermeulen/vim-subversive'
-  " killring-alike plugin
-  Plug 'bfredl/nvim-miniyank'
   " Changes Vim working directory to project root (identified by presence of known directory or file)
   Plug 'airblade/vim-rooter'
   " Diff level of parentheses in diff color
@@ -784,21 +782,6 @@ nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 vnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 vnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
-
-" miniyank config {{{
-" Cycle through
-map <localleader>n <Plug>(miniyank-cycleback)
-map <localleader>p <Plug>(miniyank-cycle)
-" Notify that a paste has occurred
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
-" When pasting don't update the register
-xnoremap p pgvy
-" Save all yanks until next reboot
-let g:miniyank_filename = "/tmp/.miniyank.mpack"
-" Yank buffer size
-let g:miniyank_maxitems = 1000
-" }}}
 
 " Make a simple "search" text object.
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
