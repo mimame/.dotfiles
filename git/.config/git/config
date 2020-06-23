@@ -467,7 +467,7 @@
   abbreviateCommands = true
   # https://git-scm.com/docs/git-config#git-config-rebaseautoSquash
   # Squash always after the interactive rebase
-  autosquash = true
+  autoSquash = true
   # https://git-scm.com/docs/git-config#git-config-rebaseautoStash
   # Let run rebase on a dirty worktree running stash and restore automatically
   autoStash  = true
