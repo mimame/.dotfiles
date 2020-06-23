@@ -46,8 +46,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'nathanaelkane/vim-indent-guides'
   " Extended f, F, t and T key mappings for Vim
   Plug 'rhysd/clever-f.vim'
-  " Highlight yank region
-  Plug 'machakann/vim-highlightedyank'
   " Selectively illuminating other uses of the current word under the cursor
   Plug 'RRethy/vim-illuminate'
   " Asynchronously displaying the colors in the file
@@ -295,14 +293,15 @@ highlight NonText guifg=#505050
 highlight SpecialKey guifg=#505050
 highlight Folded guifg=#D3D3D3
 highlight LineNr cterm=bold guifg=#FFFFFF guibg=#000000 gui=bold
-" Reduce highlighted time of the yank region
-let g:highlightedyank_highlight_duration = 300
 
 " Color in orange all words matching the word under the cursor
 augroup illuminate_augroup
     autocmd!
     autocmd VimEnter * highlight illuminatedWord guibg=#FD971F guifg=#000000 gui=bold ctermbg=208 ctermfg=0 cterm=bold
 augroup END
+
+" Highlight the yank with orange 
+highlight HighlightedyankRegion guibg=#FD971F guifg=#000000 gui=bold ctermbg=208 ctermfg=0 cterm=bold
 
 " Display string colors as colors
 let g:Hexokinase_highlighters = ['backgroundfull']
