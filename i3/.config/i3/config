@@ -100,8 +100,8 @@ bindsym Shift+Ctrl+XF86AudioRaiseVolume exec --no-startup-id light -A 5 && ~/.co
 bindsym Shift+Ctrl+XF86AudioLowerVolume exec --no-startup-id light -U 5 && ~/.config/i3/scripts/dunstify_notification "light"
 
 # Print Screen controls
-bindsym Print exec gnome-screenshot --interactive --area && ~/.config/i3/scripts/dunstify_notification "screenshot"
-bindsym Ctrl+Print exec ~/.config/i3/scripts/screenshot && ~/.config/i3/scripts/dunstify_notification "screenshot"
+bindsym Print exec ~/.config/i3/scripts/screenshot && ~/.config/i3/scripts/dunstify_notification "screenshot"
+bindsym Ctrl+Print exec gnome-screenshot --interactive --area && ~/.config/i3/scripts/dunstify_notification "screenshot"
 bindsym --release Shift+Print exec gnome-screenshot --interactive --window && ~/.config/i3/scripts/dunstify_notification "screenshot"
 
 focus_on_window_activation smart
