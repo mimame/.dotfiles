@@ -1120,7 +1120,7 @@ nnoremap <leader>rn <Plug>(coc-rename)
 " Do default action for next item.
 nnoremap <silent> <leader>cn :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <leader>cp:<C-u>CocPrev<CR>
+nnoremap <silent> <leader>cp :<C-u>CocPrev<CR>
 " Apply AutoFix to problem on the current line.
 nnoremap <leader>cf  <Plug>(coc-fix-current)
 " GoTo code navigation.
