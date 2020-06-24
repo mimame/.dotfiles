@@ -1,0 +1,18 @@
+# What protocol to use when performing git operations. Supported values: ssh, https
+git_protocol: ssh
+# What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
+editor: !!null nvim
+# Aliases allow you to create nicknames for gh commands
+aliases:
+    r: repo view --web
+    rc: repo create
+    rcl: repo clone
+    rf: repo fork
+    i: issue list
+    ic: issue create
+    is: issue status
+    iv: issue view
+    p: pr list
+    pc: pr create
+    pco: pr checkout
+    pv: pr view
