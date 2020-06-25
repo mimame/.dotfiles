@@ -1319,8 +1319,6 @@ let rout_follow_colorscheme = 1
 let R_objbr_opendf = 0
 " Remove underscore convertion to <-
 let R_assign = 0
-" Run R in a terminal emulator
-let R_in_buffer = 0
 " Custom the call to the terminal emulator
 let R_external_term = 'alacritty --title "R: ' . expand("%:t") . '" --command'
 " To disable the completion of non R code in Rmd and Rnoweb files which conflicts with coc.vim completion float window
