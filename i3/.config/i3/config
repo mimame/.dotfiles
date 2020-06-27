@@ -158,7 +158,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # Toggle sticky
-bindsym $mod+Shift+s sticky toggle
+bindsym $mod+Ctrl+s sticky toggle
 
 # Focus the parent container
 bindsym $mod+a focus parent
