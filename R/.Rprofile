@@ -102,7 +102,7 @@ nan <- function(df) {
 # Is default is needed use View()
 view <- function(df, colnames = T, rownames = F) {
   # extract the real object name to compose the filename
-  filename <- paste0("R_view_", strsplit(deparse(substitute(df)), "[ %<]")[[1]][[1]])
+  filename <- paste0("R_view_", gsub("[\\(\\)\\]\\[]", "_", deparse(substitute(df)), perl = T))
   tmp_dir <- "/tmp/R_view"
   dir <- dir.create(tmp_dir, showWarnings = F, recursive = T)
   file_path <- file.path(tmp_dir, filename)
