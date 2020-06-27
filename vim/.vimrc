@@ -1317,8 +1317,10 @@ let Rout_more_colors = 1
 let rout_follow_colorscheme = 1
 " Display dataframes closed by default
 let R_objbr_opendf = 0
-" Remove underscore convertion to <-
+" Remove underscore conversion to <-
 let R_assign = 0
+" Fix comments inside R blocks in Rmd documents
+let R_rcomment_string = '# '
 " Custom the call to the terminal emulator
 let R_external_term = 'alacritty --title "R: ' . expand("%:t") . '" --command'
 " To disable the completion of non R code in Rmd and Rnoweb files which conflicts with coc.vim completion float window
