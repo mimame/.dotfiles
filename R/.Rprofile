@@ -110,6 +110,15 @@ view <- function(df, colnames = T, rownames = F) {
   system(paste0("libreoffice --calc ", file_path), wait = F)
 }
 
+# Save image faster
+S <- function() {
+  save.image(file = "/tmp/image.RData")
+}
+# Load image faster
+L <- function() {
+  load(file = "/tmp/image.RData", envir = .GlobalEnv)
+}
+
 ## Options
 # URLs of the repositories for use by update.packages.
 # Defaults to c(CRAN="@CRAN@"), a value that causes some utilities to prompt for a CRAN mirror
