@@ -848,6 +848,8 @@ let g:markdown_fenced_languages = [
 " Official syntax/markdown.vim script does not play well with syntax/rmd.vim
 augroup pandoc_syntax
   au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+  " Add missing auto pair completion for markdown
+  autocmd FileType markdown.pandoc let b:AutoPairs= {'*':'*','**':'**','~~':'~~','```': '```', '`': '`', '"': '"', '[': ']', '''': '''', '(': ')', '''''''': '''''''', '{': '}', '"""': '"""'}
 augroup END
 " markdown-preview plugin {{{
 " Open the preview window once enter the markdown buffer
