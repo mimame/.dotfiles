@@ -153,7 +153,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'jalvesaq/R-Vim-runtime'
   " Send code to the R console
   Plug 'jalvesaq/Nvim-R'
-" Pandoc markdown syntax is the only compatible with rmd.vim and tcomment
+  " Pandoc markdown syntax is the only compatible with rmd.vim and tcomment
   Plug 'vim-pandoc/vim-pandoc-syntax'
   " Send code to command line interpreter
   Plug 'https://github.com/jalvesaq/vimcmdline'
@@ -834,6 +834,11 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#1c1c1c	 ctermbg=233
 let g:SignatureMarkTextHLDynamic = 1
 
 " Markdown improvements {{{
+nnoremap <localleader>mi :exec "normal saiW*"<cr>
+nnoremap <localleader>mq :exec "normal saiW`"<cr>
+nnoremap <localleader>mb Bi**<esc>Ea**<esc>
+nnoremap <localleader>mc Bi**<esc>Ea_**<esc>
+nnoremap <localleader>ms Bi~~<esc>Ea~~<esc>
 " Enable fenced code block syntax highlighting
 let g:markdown_fenced_languages = [
       \ 'bash=sh',
