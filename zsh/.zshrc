@@ -1290,3 +1290,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Manage java versions
+[ -s "/home/paradise/.jabba/jabba.sh" ] && source "/home/paradise/.jabba/jabba.sh"
