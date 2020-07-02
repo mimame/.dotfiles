@@ -311,11 +311,33 @@
   hooksPath    = ~/.config/git/hooks
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corepager
   # Use delta as pager https://github.com/dandavison/delta
-  pager        = delta --dark --plus-color="#012800" --minus-color="#340001"
+  pager        = delta --dark
 
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corewhitespace
   # Notify whitespace issues
   whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+[delta]
+  features                     = unobtrusive-line-numbers decorations
+  theme                        = 'Monokai Extended Bright Narnia'
+  whitespace-error-style       = 1 reverse
+  minus-emph-style             = normal bold "#901011"
+  plus-emph-style              = normal bold "#006000"
+[delta "unobtrusive-line-numbers"]
+  line-numbers                 = true
+  line-numbers-minus-style     = "#FFFFFF"
+  line-numbers-zero-style      = "#FFFFFF"
+  line-numbers-plus-style      = "#FFFFFF"
+  line-numbers-left-format     = "{nm:>4}┊"
+  line-numbers-right-format    = "{np:>4}│"
+  line-numbers-right-style     = blue
+  line-numbers-left-style      = blue
+[delta "decorations"]
+  commit-decoration-style      = bold yellow box ul
+  file-style                   = bold yellow ul
+  file-decoration-style        = none
+  hunk-header-decoration-style = yellow box
+
 
 [diff]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-codehistogramcode
@@ -331,7 +353,7 @@
   indentHeuristic = true
   # https://git-scm.com/docs/git-config#Documentation/Documentation/git.txt-config.txt-diffmnemonicPrefix
   # Use a prefix pair that is different from the standard "a/" and "b/" depending on what is being compared
-  mnemonicPrefix = true
+  mnemonicPrefix  = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftool
   tool            = nvimdiff
 
