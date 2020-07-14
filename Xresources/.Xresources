@@ -17,7 +17,7 @@ Xft.rgba: rgb
 Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
-Xcursor.theme: Maia-Cursor
+Xcursor.theme: xcursor-breeze-snow
 Xcursor.size:  0
 
 !resize-font and fullscreen keys
