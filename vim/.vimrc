@@ -1297,6 +1297,7 @@ let g:go_highlight_build_constraints = 1
 augroup NvimrR
     autocmd!
     autocmd! FileType r,rmd :call InitNvimR()
+    autocmd! FileType r,rmd :set conceallevel=0
 augroup END
 function! InitNvimR()
   call StartR("R")
