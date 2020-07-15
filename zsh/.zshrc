@@ -265,13 +265,14 @@ bb (){
     if [[ "${1}" == '/' ]]; then
       for _dir in "${dirs[@]}"; do echo $_dir; done
     else
-      get_parent_dirs $(dirname "$1")
+      get_parent_dirs "$(dirname "$1")"
     fi
   }
-  #local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
-  # I prefer the original order
-  # and remove the current folder
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | tail -n+2 | fzf)
+  # Show all possible parents paths
+  # Remove the current path
+  # Count paths to easily select them from fzf
+  # Finally remove the added index and cd to the selected parent path
+  local DIR=$(get_parent_dirs "$(realpath "${1:-$PWD}")" | tail -n+2 | nl --starting-line-number 1 | fzf | cut -f2)
   cd "$DIR"
 }
 # }}}
