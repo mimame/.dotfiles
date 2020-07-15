@@ -257,7 +257,8 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # Show folder hierarchy from bottom to root and let jump to any of that folders
 # https://github.com/junegunn/fzf/wiki/Examples#changing-directory
-b (){
+alias b='cd ..'
+bb (){
   local declare dirs=()
   get_parent_dirs() {
     if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
