@@ -16,3 +16,4 @@ aliases:
     pc: pr create
     pco: pr checkout
     pv: pr view
+    g: gist create
