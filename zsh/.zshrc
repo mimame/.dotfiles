@@ -260,14 +260,18 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 alias b='cd ..'
 bb (){
   local declare dirs=()
+
   get_parent_dirs() {
-    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
-    if [[ "${1}" == '/' ]]; then
-      for _dir in "${dirs[@]}"; do echo $_dir; done
-    else
-      get_parent_dirs "$(dirname "$1")"
-    fi
+    current_path="$1"
+    while [[ "$current_path" != '/' ]]; do
+      if [[ -d "$current_path" ]]; then dirs+=("$current_path"); fi
+      # next parent dir
+      current_path="$(dirname "$current_path")"
+    done
+    dirs+=("/")
+    for _dir in "${dirs[@]}"; do echo $_dir; done
   }
+
   # Show all possible parents paths
   # Remove the current path
   # Count paths to easily select them from fzf
