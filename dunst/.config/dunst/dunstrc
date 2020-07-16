@@ -207,6 +207,13 @@
     # automatically after a crash.
     startup_notification = false
 
+    # Define the corner radius of the notification window
+    # in pixel size. If the radius is 0, you have no rounded
+    # corners.
+    # The radius will be automatically lowered if it exceeds half of the
+    # notification height to avoid clipping text and/or icons.
+    corner_radius = 5
+
     ### Legacy
 
     # Use the Xinerama extension instead of RandR for multi-monitor support.
