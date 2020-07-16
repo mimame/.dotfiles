@@ -99,7 +99,7 @@
     #        <u>underline</u>
     #
     #        For a complete reference see
-    #        <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
+    #        <https://developer.gnome.org/pango/stable/pango-Markup.html>.
     #
     # strip: This setting is provided for compatibility with some broken
     #        clients that send markup even though it's not enabled on the
@@ -140,17 +140,17 @@
     # geometry.
     word_wrap = yes
 
-    # When word_wrap is set to no, specify where to ellipsize long lines.
+    # When word_wrap is set to no, specify where to make an ellipsis in long lines.
     # Possible values are "start", "middle" and "end".
     ellipsize = middle
 
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
 
-    # Merge multiple notifications with the same content
+    # Stack together notifications with the same content
     stack_duplicates = true
 
-    # Hide the count of merged notifications with the same content
+    # Hide the count of stacked notifications with the same content
     hide_duplicate_count = true
 
     # Display indicators for URLs (U) and actions (A).
@@ -215,6 +215,21 @@
     # layout changes.
     force_xinerama = false
 
+    ### mouse
+
+    # Defines list of actions for each mouse event
+    # Possible values are:
+    # * none: Don't do anything.
+    # * do_action: If the notification has exactly one action, or one is marked as default,
+    #              invoke it. If there are multiple and no default, open the context menu.
+    # * close_current: Close current notification.
+    # * close_all: Close all notifications.
+    # These values can be strung together for each mouse event, and
+    # will be executed in sequence.
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
 [experimental]
@@ -275,10 +290,35 @@
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
-# Messages can be matched by "appname", "summary", "body", "icon", "category",
-# "msg_urgency" and you can override the "timeout", "urgency", "foreground",
-# "background", "new_icon" and "format".
+#
+# Messages can be matched by
+#    appname (discouraged, see desktop_entry)
+#    body
+#    category
+#    desktop_entry
+#    icon
+#    match_transient
+#    msg_urgency
+#    stack_tag
+#    summary
+#
+# and you can override the
+#    background
+#    foreground
+#    format
+#    frame_color
+#    fullscreen
+#    new_icon
+#    set_stack_tag
+#    set_transient
+#    timeout
+#    urgency
+#
 # Shell-like globbing will get expanded.
+#
+# Instead of the appname filter, it's recommended to use the desktop_entry filter.
+# GLib based applications export their desktop-entry name. In comparison to the appname,
+# the desktop-entry won't get localized.
 #
 # SCRIPTING
 # You can specify a script that gets run when the rule matches by
@@ -328,6 +368,11 @@
 #    # This notification will not be saved in history
 #    summary = "foobar"
 #    history_ignore = yes
+
+#[skip-display]
+#    # This notification will not be displayed, but will be included in the history
+#    summary = "foobar"
+#    skip_display = yes
 
 #[signed_on]
 #    appname = Pidgin
