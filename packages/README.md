@@ -15,7 +15,7 @@
 `yarn global list | grep -v 'info' | grep -F -- '-' | sed 's/[- ]\+//' >! javascript.txt`
 
 ### Julia
-`julia -e 'using Pkg;using DelimitedFiles;writedlm("julia.txt",collect(keys(Pkg.installed())))'`
+`julia -e 'using Pkg;using DelimitedFiles;writedlm("julia.txt",sort!([ dep.name for dep in values(Pkg.dependencies()) if dep.is_direct_dep && !isnothing(dep.version) ]))'`
 
 ### Ruby
 `gem list --no-versions >! ruby.txt`
