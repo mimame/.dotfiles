@@ -23,54 +23,45 @@
 # SOFTWARE.
 
 # Requirements:
-  # i3-wm, systemd, ./dunstify_notification, ./blurlock, ./i3session
+# i3-wm, systemd, ./dunstify_notification, ./blurlock, ./i3session
 
 # Description:
-  # Interactive session menu close,
+# Interactive session menu close,
 
 # Usage:
-  # ./i3exit action
-  # action: close, hibernate, lock, logout, suspend, reboot, restore, shutdown
+# ./i3exit action
+# action: close, hibernate, lock, logout, suspend, reboot, shutdown
 
 BASE_DIR="$(dirname "$0")"
 
-source "$BASE_DIR"/i3session
-
 case "$1" in
-    close)
-        i3session--close
-        ;;
-    hibernate)
-        systemctl hibernate
-        ;;
-    lock)
-        "$BASE_DIR"/blurlock
-        ;;
-    logout)
-        i3-msg exit
-        ;;
-    suspend)
-        systemctl suspend
-        ;;
-    reboot)
-        i3session--save
-        "$BASE_DIR"/dunstify_notification "i3session_save"
-        i3session--close && sleep 1
-        systemctl reboot
-        ;;
-    restore)
-        i3session--restore
-        "$BASE_DIR"/dunstify_notification "i3session_restore"
-      ;;
-    shutdown)
-        i3session--save
-        "$BASE_DIR"/dunstify_notification "i3session_save"
-        i3session--close && sleep 1
-        systemctl poweroff
-        ;;
-    *)
-        echo "Usage: $0 [close|hibernate|lock|logout|reboot|restore|suspend|shutdown]" 1>&2
-        exit 1
+close)
+  wmctrl -l | cut -d' ' -f1 | xargs wmctrl -i -c
+  ;;
+hibernate)
+  systemctl hibernate
+  ;;
+lock)
+  "$BASE_DIR"/blurlock
+  ;;
+logout)
+  i3-msg exit
+  ;;
+suspend)
+  systemctl suspend
+  ;;
+reboot)
+  wmctrl -l | cut -d' ' -f1 | xargs wmctrl -i -c && sleep 1
+  systemctl reboot
+  ;;
+shutdown)
+  wmctrl -l | cut -d' ' -f1 | xargs wmctrl -i -c && sleep 1
+  systemctl poweroff
+  ;;
+*)
+  echo "Usage: $0 [close|hibernate|lock|logout|reboot|suspend|shutdown]" 1>&2
+  exit 1
+  ;;
 esac
 
 exit 0

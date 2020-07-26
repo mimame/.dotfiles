@@ -305,7 +305,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # Interactive menu: close window, lock, exit switch user, sunspend, hibernate, reboot, restore session and shutdown
 bindsym $mod+q mode "$mode_system"
-set $mode_system (c)lose windows, (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+r)estore i3 session, (Shift+s)hutdown
+set $mode_system (c)lose windows, (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
 
     bindsym c exec --no-startup-id ~/.config/i3/scripts/i3exit close, mode "default"
