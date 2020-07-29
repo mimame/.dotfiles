@@ -36,7 +36,7 @@ BASE_DIR="$(dirname "$0")"
 
 case "$1" in
 close)
-  wmctrl -l | cut -d' ' -f1 | xargs wmctrl -i -c
+  wmctrl -l | cut -d' ' -f1 | xargs -I% wmctrl -i -c %
   ;;
 hibernate)
   systemctl hibernate
@@ -51,11 +51,11 @@ suspend)
   systemctl suspend
   ;;
 reboot)
-  wmctrl -l | cut -d' ' -f1 | xargs wmctrl -i -c && sleep 1
+  wmctrl -l | cut -d' ' -f1 | xargs -I% wmctrl -i -c % && sleep 1
   systemctl reboot
   ;;
 shutdown)
-  wmctrl -l | cut -d' ' -f1 | xargs wmctrl -i -c && sleep 1
+  wmctrl -l | cut -d' ' -f1 | xargs -I% wmctrl -i -c % && sleep 1
   systemctl poweroff
   ;;
 *)
