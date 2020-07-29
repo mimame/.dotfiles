@@ -11,6 +11,9 @@ else
   export BROWSER='firefox'
 fi
 
+# Mandatory to set explicitly the number of threads for Julia
+export JULIA_NUM_THREADS=12
+
 export EDITOR=nvim
 export VISUAL=nvim
 export TMPDIR='/tmp'
