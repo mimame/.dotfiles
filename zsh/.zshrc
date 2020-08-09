@@ -454,6 +454,9 @@ function mc() {
   mkdir --parent --verbose $1 && cd $1
 }
 
+alias pgrep='pgrep --full'
+alias pkill='pkill --full'
+
 # User Firefox Developer Edition by default
 if [ -x "$(command -v "firefox-developer-edition")" ]; then
   alias firefox='firefox-developer-edition'
