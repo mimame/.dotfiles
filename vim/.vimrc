@@ -554,6 +554,7 @@ xnoremap <Leader>r :OverCommandLine<CR>s/
 
 
 " Ale config {{{
+let g:ale_disable_lsp = 1
 let g:ale_linters = {'rust': ['analyzer']}
 let g:ale_fixers = {
       \   'tex': ['latexindent'],
