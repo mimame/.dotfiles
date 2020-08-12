@@ -309,6 +309,9 @@ command! reload :write | restart
 " Find with fd
 command! fd fd --hidden --no-ignore --exclude .git --exclude node_modules %a %M
 
+" zoxide, faster way to navigate
+command! zoxide :execute 'cd "'.system('zoxide query %a').'"'
+
 " Find with FZF and fd
 command! FZF :set noquickview | :execute 'goto "'.system('fd --hidden --no-ignore --exclude .git --exclude node_modules | fzf --preview "exa --all --sort .name --tree --level 1 --classify --git --long --color=always {}" --preview-window wrap 2>/dev/tty ').'"%IU' | redraw
 
@@ -704,6 +707,9 @@ nnoremap du :du<cr>
 
 " cd mapping
 nnoremap cd :cd<space>
+
+" zoxide mapping
+nnoremap <silent> <a-x> :zoxide<space>
 
 " FZF mapping
 nnoremap <silent> <a-c> :FZF<cr>
