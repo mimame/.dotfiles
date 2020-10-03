@@ -1,38 +1,50 @@
-prompt_order = [
-  "username",
-  "hostname",
-  "kubernetes",
-  "directory",
-  "git_branch",
-  "git_commit",
-  "git_state",
-  "git_status",
-  "hg_branch",
-  "package",
-  "dotnet",
-  "elm",
-  "golang",
-  "haskell",
-  "java",
-  "nodejs",
-  "php",
-  "python",
-  "ruby",
-  "rust",
-  "terraform",
-  "nix_shell",
-  "conda",
-  "memory_usage",
-  "aws",
-  "env_var",
-  "crystal",
-  "cmd_duration",
-  "time",
-  "battery",
-  "line_break",
-  "jobs",
-  "character",
-]
+format = """\
+  $username\
+  $hostname\
+  $shlvl\
+  $kubernetes\
+  $directory\
+  $git_branch\
+  $git_commit\
+  $git_state\
+  $git_status\
+  $hg_branch\
+  $docker_context\
+  $package\
+  $cmake\
+  $dart\
+  $dotnet\
+  $elixir\
+  $elm\
+  $erlang\
+  $golang\
+  $helm\
+  $java\
+  $julia\
+  $nim\
+  $php\
+  $purescript\
+  $python\
+  $ruby\
+  $rust\
+  $swift\
+  $terraform\
+  $zig\
+  $nix_shell\
+  $conda\
+  $memory_usage\
+  $aws\
+  $gcloud\
+  $env_var\
+  $crystal\
+  $cmd_duration\
+  $time\
+  $battery\
+  $line_break\
+  $jobs\
+  $status\
+  $character\
+"""
 
 [username]
 show_always = true
@@ -42,7 +54,7 @@ ssh_only = false
 style = "bold dimmed blue"
 
 [directory]
-prefix = ""
+format = ""
 truncate_to_repo = false
 truncation_length = 0
 
