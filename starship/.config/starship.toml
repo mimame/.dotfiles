@@ -3,7 +3,6 @@ format = """\
   $hostname\
   $shlvl\
   $kubernetes\
-  $directory\
   $git_branch\
   $git_commit\
   $git_state\
@@ -41,6 +40,8 @@ format = """\
   $time\
   $battery\
   $line_break\
+  $directory\
+  $line_break\
   $jobs\
   $status\
   $character\
@@ -54,7 +55,6 @@ ssh_only = false
 style = "bold dimmed blue"
 
 [directory]
-format = ""
 truncate_to_repo = false
 truncation_length = 0
 
