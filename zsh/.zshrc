@@ -650,7 +650,7 @@ alias bat='bat --theme "Monokai Extended Bright Narnia"'
 
 # Safe ops. Ask the user before doing anything destructive.
 # Move rm files to the trash using trash-cli
-alias rm='trash --verbose'
+alias rm='trash'
 alias mv="mv -i"
 alias cp="cp -i"
 alias ln="ln -i"
