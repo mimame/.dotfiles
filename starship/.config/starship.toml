@@ -78,3 +78,7 @@ threshold = 0
 
 [cmd_duration]
 format = "took [$duration]($style)\n\n"
+
+[shlvl]
+disabled = false
+threshold = 3 # inside tmux the shell level starts with 2
