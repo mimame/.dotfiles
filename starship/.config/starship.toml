@@ -67,3 +67,7 @@ symbol = "ram: "
 
 [time]
 disabled = false
+
+[status]
+disabled = false
+format = "[\\[$status\\]]($style) "
