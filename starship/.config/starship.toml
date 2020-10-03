@@ -1,4 +1,5 @@
 format = """\
+  $cmd_duration\
   $username\
   $hostname\
   $shlvl\
@@ -36,7 +37,6 @@ format = """\
   $gcloud\
   $env_var\
   $crystal\
-  $cmd_duration\
   $time\
   $battery\
   $line_break\
@@ -75,3 +75,6 @@ format = "[\\[$status\\]]($style) "
 [jobs]
 symbol = "+"
 threshold = 0
+
+[cmd_duration]
+format = "took [$duration]($style)\n\n"
