@@ -634,6 +634,7 @@ alias news='newsboat'
 alias fm='vifm'
 alias re='massren'
 alias T='tail -F'
+alias nano='micro'
 
 export MANPAGER='nvim -R +":set filetype=man number" -'
 alias m='man'
