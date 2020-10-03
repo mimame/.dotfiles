@@ -635,6 +635,7 @@ alias fm='vifm'
 alias re='massren'
 alias T='tail -F'
 alias nano='micro'
+alias less='bat'
 
 export MANPAGER='nvim -R +":set filetype=man number" -'
 alias m='man'
