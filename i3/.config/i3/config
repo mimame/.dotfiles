@@ -77,7 +77,7 @@ bindsym $mod+Shift+d exec --no-startup-id rofi -show web
 # Add finder launcher
 bindsym $mod+Shift+f exec --no-startup-id rofi -show finder
 # Add clipboard manager launcher
-bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 0.5 && xdotool type "$(xclip -o -selection clipboard)"
+bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 0.5 && xdotool type --delay 0 "$(xclip -o -selection clipboard)"
 
 # Player controls
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && ~/.config/i3/scripts/dunstify_notification "play-stop_song"
