@@ -47,16 +47,20 @@ format = """\
   $character\
 """
 
-[username]
-show_always = true
+[cmd_duration]
+format = "took [$duration]($style)\n\n"
+
+[directory]
+truncate_to_repo = false
+truncation_length = 0
 
 [hostname]
 ssh_only = false
 style = "bold dimmed blue"
 
-[directory]
-truncate_to_repo = false
-truncation_length = 0
+[jobs]
+symbol = "+"
+threshold = 0
 
 [memory_usage]
 disabled = false
@@ -65,20 +69,16 @@ show_swap = true
 threshold = -1
 symbol = "ram: "
 
-[time]
+[shlvl]
 disabled = false
+threshold = 3 # inside tmux the shell level starts with 2
 
 [status]
 disabled = false
 format = "[\\[$status\\]]($style) "
 
-[jobs]
-symbol = "+"
-threshold = 0
-
-[cmd_duration]
-format = "took [$duration]($style)\n\n"
-
-[shlvl]
+[time]
 disabled = false
-threshold = 3 # inside tmux the shell level starts with 2
+
+[username]
+show_always = true
