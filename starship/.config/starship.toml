@@ -71,3 +71,7 @@ disabled = false
 [status]
 disabled = false
 format = "[\\[$status\\]]($style) "
+
+[jobs]
+symbol = "+"
+threshold = 0
