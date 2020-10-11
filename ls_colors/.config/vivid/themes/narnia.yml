@@ -17,6 +17,9 @@ colors:
 
 core:
   regular_file: {}
+  other_writable: {}
+  sticky: {}
+  sticky_other_writable: {}
 
   directory:
     foreground: cyan
@@ -33,6 +36,10 @@ core:
     foreground: black
     background: red
     font-style: bold
+
+  missing_symlink_target:
+    foreground: black
+    background: red
 
   fifo:
     foreground: black
