@@ -455,7 +455,7 @@ function mc() {
 }
 
 alias pgrep='pgrep --full'
-alias pkill='pkill --full'
+alias pkill='pkill --full -9'
 
 # User Firefox Developer Edition by default
 if [ -x "$(command -v "firefox-developer-edition")" ]; then
