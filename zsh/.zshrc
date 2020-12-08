@@ -355,18 +355,10 @@ export FZF_DEFAULT_OPTS='
 zstyle ':completion:complete:*:options' sort false
 # use input as query string when completing zlua
 zstyle ':fzf-tab:complete:_zlua:*' query-string input
-
-FZF_TAB_OPTS=(
-    --ansi   # Enable ANSI color support, necessary for showing groups
-    --expect='/' # For continuous completion
-    '--color=hl:$(( $#headers == 0 ? 108 : 255 ))'
-    --nth=2,3 --delimiter='\0'  # Don't search FZF_TAB_PREFIX
-    --layout=reverse --height=90%
-    --tiebreak=begin -m --bind=tab:down,shift-tab:up,change:top,space:toggle+down,alt-space:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top --cycle
-    --multi
-    '--query=$query'   # $query will be expanded to query string at runtime.
-    '--header-lines=$#headers' # $#headers will be expanded to lines of headers at runtime
-)
+zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
 
 function p() {
   if [ $# -eq 0 ]; then
