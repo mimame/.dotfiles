@@ -226,6 +226,8 @@ call plug#begin('~/.vim/plugged')
   " Autosave
   "Plug '907th/vim-auto-save'
   " A solid language pack for Vim.
+  " Polyglot forbidden language plugins
+  let g:polyglot_disabled = ['latex', 'r-lang', 'markdown']
   Plug 'sheerun/vim-polyglot'
   " Syntax for Tridactyl configuration files
   Plug 'tridactyl/vim-tridactyl'
@@ -243,9 +245,6 @@ call plug#end()
 let g:mapleader = "\<Space>"
 " Local leader key
 let g:maplocalleader = ';'
-
-" Polyglot forbidden language plugins
-let g:polyglot_disabled = ['latex', 'r-lang', 'markdown']
 
 " http://vimawesome.com/
 " https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim
