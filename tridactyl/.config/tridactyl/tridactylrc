@@ -91,6 +91,8 @@ bind k scrollline -10
 bind J scrollpx -50
 bind K scrollpx 50
 
+" Disable Javascript hints by default
+bind f hint -J
 " Hint mode
 bind gf hint -qb
 
