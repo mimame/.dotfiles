@@ -23,7 +23,7 @@
 # SOFTWARE.
 
 # Requirements:
-# gnome-screenshot
+# flameshot
 # Description:
 # Take screenshots of the whole windows and save them in Pictures folder with
 # the current date and with a filename with the current date and time
@@ -31,9 +31,7 @@
 # Usage:
 # ./screenshot
 
-FOLDER="$HOME/Pictures/screenshots/screenshots_$(date +'%d-%m-%y')"
+FOLDER="$HOME/Pictures/screenshots/screenshots_$(date +'%Y-%m-%d')"
 mkdir -p "$FOLDER" &&
-  cd "$FOLDER" &&
-  gnome-screenshot --window --file="screenshot_$(date +'%d-%m-%y_%H:%M:%S').png" &&
-  ~/.config/i3/scripts/dunstify_notification "screenshot"
+  flameshot full --clipboard --path "$FOLDER"
 exit 0
