@@ -342,7 +342,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--height 100% --preview 'bat --theme \"Monokai Extended Bright Narnia\" --color always {}'"
 # To apply the command to ALT_C
 export FZF_ALT_C_COMMAND='fd --type d --exclude node_modules'
-export FZF_ALT_C_OPTS="--height 100% --preview 'exa --all --sort .name --tree --level 1 --classify --git --long --color=always {}' --preview-window wrap"
+export FZF_ALT_C_OPTS="--height 100% --preview 'exa --sort .name --tree --level 1 --classify --git --long --color=always --ignore-glob=node_modules {}' --preview-window wrap"
 # Molokai colors by default
 # https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
 export FZF_DEFAULT_OPTS='
@@ -358,7 +358,7 @@ zstyle ':fzf-tab:complete:_zlua:*' query-string input
 zstyle ":completion:*:git-checkout:*" sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --ignore-glob=node_modules --color=always $realpath'
 
 function p() {
   if [ $# -eq 0 ]; then
@@ -480,9 +480,9 @@ eval "$(gh completion --shell zsh)"
 
 alias ls='ls --color=always --almost-all --human-readable --format=long --classify'
 alias l='ls'
-alias ll='exa --all --sort .name --color=always --long --links --group --git --icons --classify --extended'
-alias lll='ll --tree --ignore-glob=".git|node_modules"'
 alias tree='tree -a --du -h -u -g -F -D -C -I ".git|node_modules"'
+alias ll='exa --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules'
+alias lll='ll --tree'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
