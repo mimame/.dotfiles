@@ -682,8 +682,13 @@ alias zshrc='nvim $(readlink -f ~/.zshrc)'
 alias tridactylrc='nvim $(readlink -f ~/.config/tridactyl/tridactylrc)'
 alias dunstrc='nvim $(readlink -f ~/.config/dunst/dunstrc)'
 
-# Alias for yay command
-alias u="yay --sudoloop --noconfirm -Syu"
+# Alias for pacman
+alias pu="sudo pacman -Syyu --noconfirm"
+alias pmu="sudo pacman-mirrors --api --protocols all --set-branch stable --fasttrack && sudo pacman -Syy"
+alias pfk="sudo pacman-key --refresh-keys && sudo pacman-key --populate archlinux manjaro"
+alias pc="sudo pacman -Scc"
+# Alias for yay
+alias pua="yay --sudoloop --noconfirm --aur -Syyu"
 
 # https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
