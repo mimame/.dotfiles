@@ -633,8 +633,9 @@ export MANPAGER='nvim -R +":set filetype=man number" -'
 alias m='man'
 
 # rg with grep -r behaviour
-alias s='rg --smart-case --hidden --no-ignore --no-heading --with-filename --no-ignore-parent --glob '"'"'!{.git,.thunderbird,node_modules}'"'"
-alias ag='ag --unrestricted --smart-case --ignore .git --ignore node_modules'
+alias ag='ag --smart-case --ignore node_modules'
+alias s='rg --smart-case --no-heading --with-filename --glob '"'"'!{node_modules}'"'"
+alias sn='rg --smart-case --no-heading --with-filename --no-ignore --hidden --glob '"'"'!{node_modules}'"'"
 
 # fd with find behaviour
 alias f='fd --exclude node_modules'
