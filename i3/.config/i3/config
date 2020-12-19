@@ -43,6 +43,9 @@ exec --no-startup-id blueman-applet
 # Enable clipboard manager
 exec_always --no-startup-id pkill greenclip; greenclip clear; greenclip daemon > /dev/null &
 
+# Hide cursor when typing
+exec_always --no-startup-id pkill xbanish; xbanish &
+
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
 new_float none
