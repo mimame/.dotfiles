@@ -690,6 +690,9 @@ alias pc="sudo pacman -Scc"
 # Alias for yay
 alias pua="yay --sudoloop --noconfirm --aur -Syyu"
 
+# Alias for pip
+alias pipu="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+
 # https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 
