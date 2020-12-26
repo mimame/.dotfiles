@@ -639,13 +639,13 @@ nnoremap co :!code %f &<cr>
 " nnoremap gb :file &<cr>l
 
 " Yank current directory path into the clipboard
-nnoremap yd :!echo %d | sed "s/^/'/;s/$/'/" | xclip -in -selection clipboard -rmlastnl %i<cr>
+nnoremap yd :!echo %d | sed "/ /s/^/'/;/ /s/$/'/" | xclip -in -selection clipboard -rmlastnl %i<cr>
 
 " Yank current file path into the clipboard
-nnoremap yp :!echo %f:p | sed "s/^/'/;s/$/'/" | xclip -in -selection clipboard -rmlastnl %i<cr>
+nnoremap yp :!echo %f:p | sed "/ /s/^/'/;/ /s/$/'/" | xclip -in -selection clipboard -rmlastnl %i<cr>
 
 " Yank current file without path into the clipboard
-nnoremap yn :!echo %f | sed "s/^/'/;s/$/'/" | xclip -in -selection clipboard -rmlastnl %i<cr>
+nnoremap yn :!echo %f | sed "/ /s/^/'/;/ /s/$/'/" | xclip -in -selection clipboard -rmlastnl %i<cr>
 
 " Yank current file path ready to be used by a GUI file manager picker used by web browsers
 nnoremap yw :!echo file://%c:p | xclip -in -selection clipboard -rmlastnl %i<cr>
