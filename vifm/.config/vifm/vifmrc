@@ -21,10 +21,9 @@ set caseoptions=p
 
 " Command-line option used to pass a command to 'shell' zsh
 " It's used in contexts where command comes from the user
-" Enables running it in interactive mode, which can make shell aliases and functions work
-" This flags are not working fine with background commands
-" The solution is to add :!zsh -ic at the beginning of the interactive .zshrc commands
-" set shellcmdflag=-ic
+" Enables running it in login mode, which can make shell aliases and functions work
+" The solution is to add :!zsh -lc at the beginning of the .zprofile commands
+set shellcmdflag=-lc
 
 " Update terminal title
 set title
@@ -622,8 +621,8 @@ nnoremap <silent> rl :reload<cr>
 "nnoremap o :!gvim --remote-tab-silent %f<cr>
 " Open file always in TUI vim
 " nnoremap o :!nvim %f<cr>
-" Use special open function defined in .zshrc
-nnoremap o :!zsh -ic "open %f"<cr>
+" Use special open function defined in .zprofile
+nnoremap o :!zsh -lc "open %f"<cr>
 " Open file in new instance of gvim
 "nnoremap O :!gvim %f<cr>
 " Select program to open the file
