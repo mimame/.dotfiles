@@ -343,7 +343,7 @@ command! FZF :set noquickview | :execute 'goto "'.system('fd --hidden --no-ignor
 " program.
 
 " Default viewer
-fileviewer *[^/] env -uCOLORTERM bat --theme 'Monokai Extended Bright Narnia' --color always --wrap never --pager never %c --number
+fileviewer *[^/] env -uCOLORTERM bat --theme 'base16' --color always --wrap never --pager never %c --number
 
 " Pdf
 filextype *.pdf zathura %f %i &
