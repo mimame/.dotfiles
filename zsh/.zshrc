@@ -647,7 +647,7 @@ alias bat='bat --theme "Monokai Extended Bright Narnia"'
 # Move rm files to the trash using trash-cli
 alias rm='trash'
 alias mv="mv -i"
-alias cp="cp -i"
+alias cp="cp -ri"
 alias ln="ln -i"
 unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
 
