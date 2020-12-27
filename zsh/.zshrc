@@ -420,7 +420,7 @@ bindkey -M viins "^ " magic-space
 bindkey -M isearch " " magic-space
 # }}}
 
-alias paths='echo $PATH | sed "s/:/\n/g"'
+alias paths='echo $PATH | sed "s/:/\n/g" | nl | tac'
 
 alias szsh='source ~/.zshrc'
 
