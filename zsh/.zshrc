@@ -651,7 +651,9 @@ alias cp="cp -ri"
 alias ln="ln -i"
 unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
 
-alias youtube-dl-mp3='youtube-dl --extract-audio --audio-format mp3'
+alias ydl='youtube-dl --output "%(title)s.%(ext)s"'
+alias ydl3='youtube-dl --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
+alias ydl4='youtube-dl --output "%(title)s.%(ext)s" --format mp4'
 
 function ff () {
   firefox-developer-edition --private-window https://www.google.com/search?q="$1" &
