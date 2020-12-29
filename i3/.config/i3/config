@@ -41,7 +41,7 @@ exec_always --no-startup-id pkill redshift; redshift
 exec --no-startup-id blueman-applet
 
 # Enable clipboard manager
-exec_always --no-startup-id pkill greenclip; greenclip clear; greenclip daemon > /dev/null &
+exec_always --no-startup-id pkill greenclip; greenclip daemon > /dev/null &
 
 # Hide cursor when typing
 exec_always --no-startup-id pkill xbanish; xbanish &
