@@ -1376,7 +1376,7 @@ let cmdline_external_term_cmd = 'alacritty --title "Julia: ' . expand("%:t") . '
 " This replaces :tabnew which I used to bind to this mapping
 nmap <Leader>b :enew<cr>
 " Delete current buffer
-nmap <Leader>d :bd<cr>
+nmap <Leader>d :bd!<cr>
 " Move to the next buffer
 nmap <Leader>l :bnext<CR>
 " Move to the previous buffer
