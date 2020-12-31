@@ -1459,8 +1459,6 @@ let g:fzf_commits_log_options = "--color --graph --abbrev-commit --pretty=format
       \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'},'right:50%:hidden', '?'),
 \ <bang>0)
 
-cnoreabbrev rg Rg
-nnoremap rg :Rg<space>
 " }}}
 
 " committia.vim config {{{
