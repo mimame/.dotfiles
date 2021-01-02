@@ -76,9 +76,9 @@ bindsym --release $mod+Shift+q exec xkill
 # Start program launcher
 bindsym $mod+d exec --no-startup-id rofi -show combi
 # Add web searcher launcher
-bindsym $mod+Shift+d exec --no-startup-id rofi -show web
+bindsym $mod+Ctrl+d exec --no-startup-id rofi -show web
 # Add finder launcher
-bindsym $mod+Shift+f exec --no-startup-id rofi -show finder
+bindsym $mod+Ctrl+f exec --no-startup-id rofi -show finder
 # Add clipboard manager launcher
 bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 0.5 && xdotool type --delay 0 "$(xclip -o -selection clipboard)"
 
