@@ -9,6 +9,6 @@ if [ ! -z "$@" ]; then
     exec 1>&-
     exit
   else
-    fd --hidden --no-ignore --exclude .git --exclude node_modules "$QUERY" /home /tmp /usr
+    fd --exclude node_modules "$QUERY" /home /tmp /usr
   fi
 fi
