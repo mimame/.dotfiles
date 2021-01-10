@@ -687,9 +687,11 @@ alias dunstrc='nvim $(readlink -f ~/.config/dunst/dunstrc)'
 
 # Alias for pacman
 alias pu="sudo pacman -Syyu --noconfirm"
+alias pd="sudo pacman -Syyuw --noconfirm"
 alias pmu="sudo pacman-mirrors --api --protocols all --set-branch stable --fasttrack && sudo pacman -Syy"
 alias pfk="sudo pacman-key --refresh-keys && sudo pacman-key --populate archlinux manjaro"
 alias pc="sudo pacman -Scc"
+alias pi="sudo pacman -S"
 # Alias for yay
 alias pua="yay --sudoloop --noconfirm --aur -Syyu"
 
