@@ -949,9 +949,14 @@ augroup END
 "}
 " Crystal
 let g:crystal_auto_format = 1
+
+" Latex config {{{
 " Show all latex commands
 let g:tex_conceal = ''
 let g:tex_flavor = 'latex'
+" Use tectonic engine by default
+let g:vimtex_compiler_method = 'tectonic'
+" }}}
 
 " Never conceal
 set conceallevel=0
