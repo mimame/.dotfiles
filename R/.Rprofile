@@ -46,6 +46,11 @@ s <- function(element) {
   summary(element)
 }
 
+# all elements are unique?
+uniques <- function(v) {
+  length(v) == length(unique(v))
+}
+
 # Search string inside all dataframe or sequence and add their index to the output
 # By default use ignore.case and PCRE engine instead of the fixed string
 # This is slower but with more matches at the beginning of the exploration
