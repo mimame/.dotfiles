@@ -1,0 +1,56 @@
+{
+    "border": "none",
+    "floating": "auto_off",
+    "layout": "splith",
+    "marks": [],
+    "percent": null,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "none",
+            "current_border_width": 0,
+            "floating": "auto_off",
+            "geometry": {
+                "height": 600,
+                "width": 800,
+                "x": 0,
+                "y": 0
+            },
+            "marks": [],
+            "name": "Alacritty",
+            "percent": 0.5,
+            "swallows": [
+                {
+                    "class": "^Alacritty$",
+                    "instance": "^Alacritty$",
+                    "title": "^Alacritty$"
+                }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "none",
+            "current_border_width": 0,
+            "floating": "auto_off",
+            "geometry": {
+                "height": 1080,
+                "width": 1920,
+                "x": 0,
+                "y": 0
+            },
+            "marks": [],
+            "name": "Google — Firefox Developer Edition",
+            "percent": 0.5,
+            "swallows": [
+                {
+                    "class": "^firefoxdeveloperedition$",
+                    "instance": "^Navigator$",
+                    "title": "^Google\\ \\—\\ Firefox\\ Developer\\ Edition$",
+                    "window_role": "^browser$"
+                }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

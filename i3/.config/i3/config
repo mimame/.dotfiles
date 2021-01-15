@@ -167,8 +167,11 @@ bindsym $mod+Ctrl+s sticky toggle
 # Focus the parent container
 bindsym $mod+a focus parent
 
+# Create new workspace
+bindsym $mod+Ctrl+r exec ~/.config/i3/scripts/i3create_workspace
+
 # Rename current workspace
-bindsym $mod+Ctrl+r exec ~/.config/i3/scripts/i3rename_workspace
+bindsym $mod+Ctrl+shift+r exec ~/.config/i3/scripts/i3rename_workspace
 
 # Workspace names
 set $ws1 "1:  "
