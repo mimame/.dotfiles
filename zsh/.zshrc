@@ -481,7 +481,7 @@ eval "$(gh completion --shell zsh)"
 
 alias ls='ls --color=always --almost-all --human-readable --format=long --classify'
 alias l='ls'
-alias tree='tree -du -h -u -g -F -D -C -I "node_modules"'
+alias tree='tree -h -u -g -F -D -C -I "node_modules"'
 alias ll='exa --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules'
 alias lll='ll --tree'
 alias grep='grep --color=auto'
