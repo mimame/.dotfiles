@@ -622,7 +622,7 @@ nnoremap <silent> rl :reload<cr>
 " Open file always in TUI vim
 " nnoremap o :!nvim %f<cr>
 " Use special open function defined in .zprofile
-nnoremap o :!zsh -lc "open %f"<cr>
+nnoremap o :!zsh -ci "open %f"<cr>
 " Open file in new instance of gvim
 "nnoremap O :!gvim %f<cr>
 " Select program to open the file
