@@ -408,6 +408,12 @@
 [includeIf "gitdir:~/Projects/"]
   path = .config.work
 
+[init]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-initdefaultBranch
+  # Allows overriding the default branch name when initializing a new repository
+  # or when cloning an empty repository
+  defaultBranch = main
+
 [interactive]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-interactivediffFilter
   # Pipe the diff through the shell command defined
