@@ -17,7 +17,7 @@ export JULIA_NUM_THREADS=12
 export EDITOR=nvim
 export VISUAL=nvim
 export TMPDIR='/tmp'
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+# export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export GEM_HOME="$HOME/.gem"
 # Always use user Python pip by default
 export PIP_USER=y
