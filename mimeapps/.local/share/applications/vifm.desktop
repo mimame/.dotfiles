@@ -1,0 +1,12 @@
+[Desktop Entry]
+Categories=System;FileTools;FileManager;Utility;ConsoleOnly;
+Comment=Vi[m] like ncurses based file manager
+Exec=alacritty -e vifm %F
+GenericName=File Manager
+Icon=vifm
+Name=Vifm
+Terminal=false
+TryExec=vifm
+Type=Application
+Keywords=File;Directory;Browse;
+MimeType=inode/directory;
