@@ -649,8 +649,8 @@ nnoremap yn :!printf "%%s\n" %f | sed "s/ /\\\ /g" | xclip -in -selection clipbo
 " Yank selected paths to a GUI file manager picker to be used by web browsers
 nnoremap yw :!dragon-drag-and-drop --a --and-exit %f<cr>
 
-" Yank current file path ready to be used by a GUI file manager
-nnoremap yf :!echo %f:p | xclip -in -selection clipboard -rmlastnl -t text/uri-list<cr>
+" Yank selected paths to be pasted in a GUI file manager
+nnoremap yf :!printf "%%s\n" %f:p | xclip -in -selection clipboard -rmlastnl -t text/uri-list %i<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>
