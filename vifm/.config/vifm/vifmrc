@@ -643,8 +643,8 @@ nnoremap yd :!echo -n %d | sed "s/ /\\\ /g" | xclip -in -selection clipboard %i<
 " Yank selected paths into the clipboard
 nnoremap yp :!printf "%%s\n" %f:p | sed "s/ /\\\ /g" | xclip -in -selection clipboard -rmlastnl %i<cr>
 
-" Yank current file without path into the clipboard
-nnoremap yn :!echo %f | sed "/ /s/^/'/;/ /s/$/'/" | xclip -in -selection clipboard -rmlastnl %i<cr>
+" Yank selected filenames into the clipboard
+nnoremap yn :!printf "%%s\n" %f | sed "s/ /\\\ /g" | xclip -in -selection clipboard -rmlastnl %i<cr>
 
 " Yank current file path ready to be used by a GUI file manager picker used by web browsers
 nnoremap yw :!echo file://%c:p | xclip -in -selection clipboard -rmlastnl %i<cr>
