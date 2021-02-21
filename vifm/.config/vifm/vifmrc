@@ -646,8 +646,8 @@ nnoremap yp :!printf "%%s\n" %f:p | sed "s/ /\\\ /g" | xclip -in -selection clip
 " Yank selected filenames into the clipboard
 nnoremap yn :!printf "%%s\n" %f | sed "s/ /\\\ /g" | xclip -in -selection clipboard -rmlastnl %i<cr>
 
-" Yank current file path ready to be used by a GUI file manager picker used by web browsers
-nnoremap yw :!echo file://%c:p | xclip -in -selection clipboard -rmlastnl %i<cr>
+" Yank selected paths to a GUI file manager picker to be used by web browsers
+nnoremap yw :!dragon-drag-and-drop --a --and-exit %f<cr>
 
 " Yank current file path ready to be used by a GUI file manager
 nnoremap yf :!echo %f:p | xclip -in -selection clipboard -rmlastnl -t text/uri-list<cr>
