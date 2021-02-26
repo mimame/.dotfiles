@@ -993,7 +993,7 @@ let g:coc_global_extensions = [
       \'coc-html',
       \'coc-json',
       \'coc-julia',
-      \'coc-python',
+      \'coc-jedi',
       \'coc-r-lsp',
       \'coc-snippets',
       \'coc-spell-checker',
