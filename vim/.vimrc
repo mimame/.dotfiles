@@ -1403,7 +1403,7 @@ let g:grammarous#show_first_error = 1
 
 " FZF {{{
 " Floating window
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Todo', 'border': 'rounded' } }
 " https://github.com/junegunn/fzf.vim
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
