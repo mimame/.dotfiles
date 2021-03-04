@@ -562,14 +562,16 @@ function iso()  {
   sudo dd bs=4M if=$1 of=$2 status=progress conv=fdatasync
 }
 
-# o function and open function (mimeopen provided by perl-file-mimetype) {{{
+# o function and open function with handlr {{{
 # It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
 function open() {
-  # Run mimeopen with nohup in background and remove it from the jobs table
+  # handlr can open multiple files at the same time without the explict loop
+  # but with a loop it's better to set nohup each std and err outputs independently
+  # to check faster if a file is not running fine
   for file in "$@"
   do
-    # mimeopen extracts the default terminal from the $TERMINAL variable
-     TERMINAL='alacritty -e' nohup mimeopen --no-ask "$file" >| /tmp/nohup-"$(basename $file)".out 2>| /tmp/nohup-"$(basename $file)".err < /dev/null &
+    # Run handlr with nohup in background and remove it from the jobs table
+     nohup handlr open "$file" >| /tmp/nohup-"$(basename $file)".out 2>| /tmp/nohup-"$(basename $file)".err < /dev/null &
     disown %%
   done
 }
