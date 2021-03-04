@@ -692,8 +692,8 @@ alias pmu="sudo pacman-mirrors --api --protocols all --set-branch stable --fastt
 alias pfk="sudo pacman-key --refresh-keys && sudo pacman-key --populate archlinux manjaro"
 alias pc="sudo pacman -Scc"
 alias pi="sudo pacman -S"
-# Alias for yay
-alias pua="yay --sudoloop --noconfirm --aur -Syyu"
+# Alias for paru
+alias pua="paru --noconfirm -Syyu"
 
 # Alias for pip
 alias pipu="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
