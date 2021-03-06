@@ -240,6 +240,11 @@ call plug#begin('~/.vim/plugged')
   " Adds file type glyphs/icons (should be put at last!!)
   Plug 'ryanoasis/vim-devicons'
 call plug#end()
+" Automatically install missing plugins on startup
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
 " }}}
 
 " config {{{
