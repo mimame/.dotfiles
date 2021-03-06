@@ -28,6 +28,8 @@ endfunction
 call plug#begin('~/.vim/plugged')
   " Defaults everyone can agree on
   " Plug 'https://github.com/tpope/vim-sensible'
+  " Show  keybindings in popup
+  Plug 'liuchengxu/vim-which-key'
   " Editorconfig plugin for vim
   Plug 'editorconfig/editorconfig-vim'
   " Automatically reload a file that has changed externally
@@ -245,6 +247,8 @@ call plug#end()
 let g:mapleader = "\<Space>"
 " Local leader key
 let g:maplocalleader = ';'
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
 
 " http://vimawesome.com/
 " https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim
