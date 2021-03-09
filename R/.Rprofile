@@ -65,6 +65,26 @@ m2t <- function(m, rownames = "rownames") {
   }
 }
 
+# tibble to matrix
+# If there is not rownames specified use the first column
+# If a string/index is used that column will be converted to rownames
+t2m <- function(t, rownames = 1) {
+  m <- NULL
+  rownames_index <- rownames
+  if (!is.null(rownames)) {
+    if (is.character(rownames)) {
+      rownames_index <- which(rownames == colnames(t))
+    } else if (is.numeric(rownames)) {
+      rownames_index <- rownames
+    }
+  }
+  m <- as.matrix(t[, -rownames_index])
+  if (!is.null(rownames)) {
+    rownames(m) <- unlist(t[, rownames_index])
+  }
+  m
+}
+
 # Search string inside all dataframe or sequence and add their index to the output
 # By default use ignore.case and PCRE engine instead of the fixed string
 # This is slower but with more matches at the beginning of the exploration
