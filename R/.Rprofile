@@ -51,6 +51,20 @@ uniques <- function(v) {
   length(v) == length(unique(v))
 }
 
+# Convert matrix/data.frame to tibble
+# If there is rownames put them in the first column
+# If not rownames specified use "rownames" as column name
+# If rownames is NULL, ignore rownames
+m2t <- function(m, rownames = "rownames") {
+  if (is.null(rownames)) {
+    tibble::as_tibble(m)
+  } else if (tibble::has_rownames(as.data.frame(m))) {
+    tibble::as_tibble(m, rownames = rownames)
+  } else {
+    tibble::as_tibble(m)
+  }
+}
+
 # Search string inside all dataframe or sequence and add their index to the output
 # By default use ignore.case and PCRE engine instead of the fixed string
 # This is slower but with more matches at the beginning of the exploration
