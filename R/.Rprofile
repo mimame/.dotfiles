@@ -85,6 +85,28 @@ t2m <- function(t, rownames = 1) {
   m
 }
 
+# object to file
+# Use the real variable name as filename
+# The extension by default is tsv
+# colnames are used by default
+# The path by default is inside /tmp folder
+o2f <- function(object, ext = "tsv", col_names = T, path = "/tmp/R_FILES") {
+  dir.create(path, showWarnings = F, recursive = T)
+  t <- m2t(object)
+  filename <- deparse(substitute(object))
+  if (ext == "tsv" || ext == "txt") {
+    readr::write_tsv(t, file.path(path, paste0(filename, ".", ext)), col_names = col_names)
+  } else if (ext == "csv") {
+    readr::write_csv(t, file.path(path, paste0(filename, ".", ext)), col_names = col_names)
+  } else if (ext == "xlsx") {
+    writexl::write_xlsx(t, file.path(path, paste0(filename, ".", ext)), col_names = col_names)
+  } else if (ext == "rds") {
+    saveRDS(object, file = file.path(path, paste0(filename, ".", ext)))
+  } else {
+    cat("Unknown extension format '", ext, "'")
+  }
+}
+
 # Search string inside all dataframe or sequence and add their index to the output
 # By default use ignore.case and PCRE engine instead of the fixed string
 # This is slower but with more matches at the beginning of the exploration
