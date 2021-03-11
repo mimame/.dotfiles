@@ -331,6 +331,24 @@ zle -N edit-command-line
 bindkey -M vicmd vv edit-command-line
 # }}}
 
+# Cursor shape {{{
+# https://github.com/softmoth/zsh-vim-mode/blob/master/zsh-vim-mode.plugin.zsh#L600
+# Use steady beam shape cursor by default on startup
+echo -ne '\e[6 q'
+# Use beam shape cursor for each new prompt
+preexec() {
+   echo -ne '\e[6 q'
+}
+# Use steady block cursor in normal mode
+# https://unix.stackexchange.com/questions/547/make-my-zsh-prompt-show-mode-in-vi-mode
+zle-keymap-select () {
+  case $KEYMAP in
+    vicmd) print -n "\e[0 q";; # steady block cursor
+    viins|main) print -n "\e[6 q";; # steady beam cursor
+  esac
+}
+zle -N zle-keymap-select
+# }}}
 
 # FZF config {{{
 source /usr/share/fzf/key-bindings.zsh
