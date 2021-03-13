@@ -1,0 +1,23 @@
+/* Import your desired components first */
+
+@import url(chrome/tab_close_button_always_on_hover.css);
+@import url(chrome/tab_loading_progress_throbber.css);
+
+@import url(chrome/minimal_in-UI_scrollbars.css);
+
+@import url(chrome/autohide_bookmarks_toolbar.css);
+
+@import url(chrome/curved_tabs.css);
+@import url(chrome/rounded_menupopups.css);
+@import url(chrome/round_ui_items.css);
+
+@import url(chrome/multi-row_tabs.css);
+
+/* Apply your custom modifications after imports */
+
+/* Change the current tab line to purple */
+.tabbrowser-tab[selected="true"] .tab-background {
+   background-color: purple !important;
+   --tab-line-color: purple !important;
+}
+
