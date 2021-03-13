@@ -15,9 +15,13 @@
 
 /* Apply your custom modifications after imports */
 
-/* Change the current tab line to purple */
+/* Change the current tab color to purple */
 .tabbrowser-tab[selected="true"] .tab-background {
-   background-color: purple !important;
    --tab-line-color: purple !important;
+   background: purple !important;
 }
 
+/* Use bold font in all tabs  */
+.tabbrowser-tab .tab-label {
+  font-weight: bold !important;
+}
