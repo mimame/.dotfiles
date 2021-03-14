@@ -99,7 +99,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl 
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pactl list sinks short | fgrep RUNNING | cut -f1) toggle && ~/.config/i3/scripts/dunstify_notification "play-mute_sound"
 
 # Screen brightness controls
-exec --no-startup-id light -S 1
+exec --no-startup-id light -S 10
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/.config/i3/scripts/dunstify_notification "light"
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/i3/scripts/dunstify_notification "light"
 bindsym Shift+Ctrl+XF86AudioRaiseVolume exec --no-startup-id light -A 5 && ~/.config/i3/scripts/dunstify_notification "light"
