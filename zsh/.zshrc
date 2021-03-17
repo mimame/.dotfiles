@@ -871,7 +871,7 @@ case $2 in
   b)  [[ -d $1 ]] && tar -I pbzip2 -cvf ${1}.tar.bz2 $1 || pbzip2 -kv $1; ext='bz2';;
   x)  [[ -d $1 ]] && tar -I pixz -cvf ${1}.tar.xz $1 || pixz -k $1; ext='xz';;
   zs) [[ -d $1 ]] && tar -I 'zstdmt -19' -cvf ${1}.tar.zst $1 || zstdmt -19 -kv $1; ext='zst';;
-  *)  >&2 echo "'$1' cannot be compressed, unknown '$2' compression format" || return 1
+  *)  >&2 echo "'$1' cannot be compressed, unknown '$2' compression format" && return 1
 esac
   compressed_file="${1}*.${ext}"
   # force glob completion with $~
