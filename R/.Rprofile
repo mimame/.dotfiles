@@ -160,8 +160,7 @@ nan <- function(df) {
 }
 
 # Replace default view function opening the object with LibreOffice Calc
-# Is default is needed use View()
-view <- function(df, colnames = T, rownames = F) {
+v <- function(df, colnames = T, rownames = F) {
   # extract the real object name to compose the filename
   filename <- paste0("R_view_", gsub("[\\(\\)\\]\\[, \\$]", "_", deparse(substitute(df)), perl = T))
   tmp_dir <- "/tmp/R_view"
