@@ -328,7 +328,7 @@ bindkey '^n' down-history
 # Char visual mode open the editor
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey -M vicmd vv edit-command-line
+bindkey -M vicmd 'v' edit-command-line
 # }}}
 
 # Cursor shape {{{
