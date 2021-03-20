@@ -524,6 +524,8 @@ alias senable='sudo systemctl enable'
 alias sdisable='sudo systemctl disable'
 alias sstop='sudo systemctl stop'
 
+alias v='vagrant'
+
 # translation functions {{{
 function te () {
   # Use command to avoid recursion
@@ -634,7 +636,6 @@ else
 
 # Never use vi
 alias vi='vim'
-alias v='vim'
 
 function n() {
   if [ $# -eq 0 ]; then
