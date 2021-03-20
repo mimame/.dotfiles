@@ -516,6 +516,14 @@ alias rs='rsync --archive --compress --info=progress2 --human-readable --update 
 
 alias sshfs="sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
 
+# systemcstl
+alias sstatus='sudo systemctl status'
+alias srestart='sudo systemctl restart'
+alias sstart='sudo systemctl start'
+alias senable='sudo systemctl enable'
+alias sdisable='sudo systemctl disable'
+alias sstop='sudo systemctl stop'
+
 # translation functions {{{
 function te () {
   # Use command to avoid recursion
