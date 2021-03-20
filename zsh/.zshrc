@@ -526,6 +526,9 @@ alias sstop='sudo systemctl stop'
 
 alias v='vagrant'
 
+alias a='ansible'
+alias ap='ansible-playbook'
+
 # translation functions {{{
 function te () {
   # Use command to avoid recursion
