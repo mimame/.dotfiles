@@ -1200,11 +1200,11 @@ xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " }}}
 
 " Git fugitive commands {{{
-nmap <leader>gc :Gcommit<CR>i
+nmap <leader>gc :Git commit<CR>i
 nmap <leader>gco :Gread<CR>
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gd :Gdiff<CR>
-nmap <leader>gb :Gblame<CR>
+nmap <leader>gs :Git<CR>
+nmap <leader>gd :Gdiffsplit<CR>
+nmap <leader>gb :Git blame<CR>
 " }}}
 
 nmap <leader>ti :terminal ++curwin ++close tig<cr>
