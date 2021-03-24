@@ -502,6 +502,9 @@ if !empty(&viminfo)
 endif
 " }}}
 
+" Always start with insert mode in new files
+autocmd BufNewFile * startinsert
+
 " Inner entire buffer
 onoremap bb :exec "normal! ggVG"<cr>
 vnoremap bb <esc>ggVG<cr>
