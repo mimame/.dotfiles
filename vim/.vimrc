@@ -1221,7 +1221,8 @@ nnoremap <silent> <Leader>tv :TestVisit<CR>
 " }}}
 
 " Always open git commit files in insert mode
-autocmd FileType gitcommit exec 'au VimEnter * startinsert'
+autocmd! FileType gitcommit exec 'au VimEnter * startinsert'
+autocmd! BufRead COMMIT_EDITMSG exec 'norm gg' | startinsert!
 
 " Diff commands {{{
 " Better diff options {{{
