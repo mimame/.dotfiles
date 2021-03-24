@@ -465,6 +465,12 @@ function mc() {
   mkdir --parent --verbose $1 && cd $1
 }
 
+# cd to the clipboard path
+function cdp() {
+  clipboard_path=$(xclip -out -selection clipboard)
+  [[ -d "$clipboard_path" ]] && cd "$clipboard_path" || echo "\e[31mClipboard doesn't containt a folder path!\e[39m"
+}
+
 alias pgrep='pgrep --full'
 alias pkill='pkill --full -9'
 alias k='\pkill --full -9'
