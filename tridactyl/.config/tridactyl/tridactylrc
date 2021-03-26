@@ -91,10 +91,13 @@ bind k scrollline -10
 bind J scrollpx -50
 bind K scrollpx 50
 
+" Hints
 " Disable Javascript hints by default
 bind f hint -J
 " Hint mode
 bind gf hint -qb
+" Hint web name to clipboard
+bind yn hint -Jp
 
 " Make yy use canonical / short links on the 5 websites that support them
 bind yy clipboard yankshort
@@ -104,9 +107,6 @@ bind gF viewsource
 
 " Select last input
 bind i focusinput -l
-
-" Hint to clipboard
-bind yf hint -p
 
 " Allow Ctrl-a to select all in the commandline
 unbind --mode=ex <C-a>
