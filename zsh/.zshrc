@@ -702,10 +702,9 @@ function ff () {
 alias ff=' ff'
 
 # Correct previous command
-if [ -x "$(command -v thefuck)" ]; then
-  eval $(thefuck --alias)
-  alias fk='fuck -y'
-fi
+export THEFUCK_EXCLUDE_RULES=fix_file # Fix https://github.com/nvbn/thefuck/issues/1153
+eval $(thefuck --alias)
+alias fk='fuck --yes'
 
 # Alias for rc files
 alias alacrittyrc='nvim $(readlink -f ~/.config/alacritty/alacritty.yml)'
