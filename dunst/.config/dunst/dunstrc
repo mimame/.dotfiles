@@ -371,6 +371,26 @@
     timeout = 0
     new_icon = /usr/share/icons/Vibrancy-Colors/apps/32/web-slack.png
 
+[Firefox]
+    desktop_entry = "Firefox"
+    geometry = "0x0+250+250"
+    urgency = critical
+    background = "#000000"
+    foreground = "#ff0000"
+    frame_color = "#ff0000"
+    timeout = 0
+    new_icon = /usr/share/icons/Tela-blue-dark/scalable/apps/firefox-developer-icon.svg
+
+[Google Chrome]
+    desktop_entry = "google-chrome"
+    geometry = "0x0+250+250"
+    urgency = critical
+    background = "#000000"
+    foreground = "#ff0000"
+    frame_color = "#ff0000"
+    timeout = 0
+    new_icon = /usr/share/icons/Vibrancy-Colors/apps/256/google-chrome.png
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
