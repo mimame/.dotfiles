@@ -353,7 +353,7 @@
 # to find fitting options for rules.
 
 [thunderbird]
-    appname = "Thunderbird"
+    desktop_entry = "Thunderbird"
     geometry = "0x0+250+250"
     urgency = critical
     background = "#000000"
@@ -362,7 +362,7 @@
     timeout = 0
 
 [slack]
-    appname = "Slack"
+    desktop_entry = "Slack"
     geometry = "0x0+250+250"
     urgency = critical
     background = "#000000"
