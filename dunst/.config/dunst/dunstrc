@@ -31,6 +31,23 @@
     # screen width minus the width defined in within the geometry option.
     geometry = "0x0+1+20"
 
+    # Turn on the progess bar
+    progress_bar = true
+
+    # Set the progress bar height. This includes the frame, so make sure
+    # it's at least twice as big as the frame width.
+    progress_bar_height = 10
+
+    # Set the frame width of the progress bar
+    progress_bar_frame_width = 1
+
+    # Set the minimum width for the progress bar
+    progress_bar_min_width = 150
+
+    # Set the maximum width for the progress bar
+    progress_bar_max_width = 300
+
+
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
 
@@ -59,6 +76,9 @@
     # Horizontal padding.
     horizontal_padding = 8
 
+    # Padding between text and icon.
+    text_icon_padding = 0
+
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
     frame_width = 3
@@ -80,7 +100,8 @@
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
-    # Transient notifications ignore this setting.
+    # A client can set the 'transient' hint to bypass this. See the rules
+    # section for how to disable this if necessary
     idle_threshold = 120
 
     ### Text ###
@@ -223,6 +244,22 @@
     # notification height to avoid clipping text and/or icons.
     corner_radius = 5
 
+    # Ignore the dbus closeNotification message.
+    # Useful to enforce the timeout set by dunst configuration. Without this
+    # parameter, an application may close the notification sent before the
+    # user defined timeout.
+    ignore_dbusclose = false
+
+    ### Wayland ###
+    # These settings are Wayland-specific. They have no effect when using X11
+
+    # Uncomment this if you want to let notications appear under fullscreen
+    # applications (default: overlay)
+    # layer = top
+
+    # Set this to true to use X11 output on Wayland.
+    force_xwayland = false
+
     ### Legacy
 
     # Use the Xinerama extension instead of RandR for multi-monitor support.
@@ -240,10 +277,14 @@
     # Defines list of actions for each mouse event
     # Possible values are:
     # * none: Don't do anything.
-    # * do_action: If the notification has exactly one action, or one is marked as default,
-    #              invoke it. If there are multiple and no default, open the context menu.
+    # * do_action: Invoke the action determined by the action_name rule. If there is no
+    #              such action, open the context menu.
+    # * open_url: If the notification has exactly one url, open it. If there are multiple
+    #             ones, open the context menu.
     # * close_current: Close current notification.
     # * close_all: Close all notifications.
+    # * context: Open context menu for the notification.
+    # * context_all: Open context menu for all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
     mouse_left_click = close_current
@@ -260,6 +301,10 @@
     # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
 
+# The internal keyboard shortcut support in dunst is now considered deprecated
+# and should be replaced by dunstctl calls. You can use the configuration of your
+# WM or DE to bind these to shortcuts of your choice.
+# Check the dunstctl manual page for more info.
 [shortcuts]
 
     # Shortcuts are specified as [modifier+][modifier+]...key
@@ -267,19 +312,23 @@
     # "mod3" and "mod4" (windows-key).
     # Xev might be helpful to find names for keys.
 
-    # Close notification.
+    # Close notification. Equivalent dunstctl command:
+    # dunstctl close
     close = ctrl+shift+period
 
-    # Close all notifications.
+    # Close all notifications. Equivalent dunstctl command:
+    # dunstctl close-all
     close_all = ctrl+space
 
-    # Redisplay last message(s).
+    # Redisplay last message(s). Equivalent dunstctl command:
+    # dunstctl history-pop
     # On the US keyboard layout "grave" is normally above TAB and left
     # of "1". Make sure this key actually exists on your keyboard layout,
     # e.g. check output of 'xmodmap -pke'
     history = ctrl+shift+space
 
-    # Context menu.
+    # Context menu. Equivalent dunstctl command:
+    # dunstctl context
     context = ctrl+grave
 
 [urgency_low]
@@ -333,6 +382,7 @@
 #    set_transient
 #    timeout
 #    urgency
+#    action_name
 #
 # Shell-like globbing will get expanded.
 #
@@ -351,6 +401,30 @@
 # to "".
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
+
+# Disable the transient hint so that idle_threshold cannot be bypassed from the
+# client
+#[transient_disable]
+#    match_transient = yes
+#    set_transient = no
+#
+# Make the handling of transient notifications more strict by making them not
+# be placed in history.
+#[transient_history_ignore]
+#    match_transient = yes
+#    history_ignore = yes
+
+# fullscreen values
+# show: show the notifications, regardless if there is a fullscreen window opened
+# delay: displays the new notification, if there is no fullscreen window active
+#        If the notification is already drawn, it won't get undrawn.
+# pushback: same as delay, but when switching into fullscreen, the notification will get
+#           withdrawn from screen again and will get delayed like a new notification
+#[fullscreen_delay_everything]
+#    fullscreen = delay
+#[fullscreen_show_critical]
+#    msg_urgency = critical
+#    fullscreen = show
 
 [thunderbird]
     desktop_entry = "Thunderbird"
