@@ -398,7 +398,8 @@ bar {
   mode hide
   # Top by default
   position top
-  status_command python3 ~/.config/i3/bar.py
+  # status_command python3 ~/.config/i3/bar.py
+  status_command i3status-rs
   tray_output primary
   #	wheel_up_cmd nop
   #	wheel_down_cmd nop

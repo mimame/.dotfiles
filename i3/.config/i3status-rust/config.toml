@@ -1,0 +1,153 @@
+[theme]
+name = "plain"
+[theme.overrides]
+idle_bg = "#000000"
+idle_fg = "#FFFFFF"
+[icons]
+# name = "awesome5"
+name = "material-nf"
+
+# [icons.overrides]
+# cpu = ""
+
+[[block]]
+block = "temperature"
+collapsed = false
+interval = 2
+format = "{average}"
+chip = "*-isa-*"
+# inputs = ["CPUTIN", "SYSTIN"]
+
+[[block]]
+block = "cpu"
+on_click = "alacritty -e htop"
+interval = 2
+critical = 90
+warning = 60
+info = 30
+# format = "{frequency} {utilization} {boost}"
+format = "{frequency} {utilization}"
+
+[[block]]
+block = "load"
+format = "{1m} {5m} {15m}"
+interval = 1
+
+[[block]]
+block = "net"
+on_click = "alacritty -e nmtui"
+device = "eno1"
+format = "{speed_up} {speed_down}"
+interval = 5
+hide_inactive = true
+
+
+[[block]]
+block = "net"
+on_click = "alacritty -e nmtui"
+device = "enp4s0"
+format = "{speed_up} {speed_down}"
+interval = 5
+hide_inactive = true
+
+[[block]]
+block = "net"
+device = "wlp5s0"
+format = "{ssid} {signal_strength} {speed_down;K*b} {speed_up;K*b}"
+interval = 5
+hide_inactive = true
+
+# no
+# [[block]]
+# block = "networkmanager"
+# on_click = "alacritty -e nmtui"
+# interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
+# interface_name_include = []
+
+[[block]]
+block = "disk_space"
+on_click = "alacritty -e ncdu --color dark --exclude .git"
+path = "/"
+alias = "/"
+info_type = "available"
+unit = "GB"
+format = "{icon} / {available} GB"
+alert = 10
+warning = 20
+alert_absolute = false
+alert_absolute = false
+
+# [[block]]
+# block = "disk_space"
+# on_click = "alacritty -e ncdu --color dark --exclude .git /tmp"
+# path = "/home"
+# alias = "/home"
+# info_type = "available"
+# unit = "GB"
+# format = "{icon} /home {available} GB"
+# alert = 10
+# warning = 20
+# alert_absolute = false
+# alert_absolute = false
+
+# [[block]]
+# block = "disk_space"
+# on_click = "alacritty -e ncdu --color dark --exclude .git /tmp"
+# path = "/tmp"
+# alias = "/tmp"
+# info_type = "available"
+# unit = "GB"
+# format = "{icon} /tmp {available} GB"
+# alert = 10
+# warning = 20
+# alert_absolute = false
+# alert_absolute = false
+
+[[block]]
+block = "memory"
+format_mem = "{mem_free}"
+format_swap = "{swap_free}"
+display_type = "memory"
+icons = true
+clickable = true
+interval = 5
+warning_mem = 80
+warning_swap = 80
+critical_mem = 95
+critical_swap = 95
+
+[[block]]
+block = "pacman"
+interval = 600
+format = "{both}"
+format_singular = "{both}"
+format_up_to_date = ""
+critical_updates_regex = "(linux |linux-lts|linux-zen)"
+aur_command = "paru -Qua"
+on_click = "pamac-manager"
+
+# [[block]]
+# block = "uptime"
+
+[[block]]
+block = "time"
+format = "%a %d %H:%M:%S"
+timezone = "Europe/Paris"
+interval = 1
+locale = "en_GB"
+
+[[block]]
+block = "battery"
+interval = 10
+# format = "{percentage} {time} {power}"
+format = "{percentage} {time}"
+allow_missing = true
+hide_missing = true
+
+[[block]]
+block = "backlight"
+step_width = 1
+
+[[block]]
+block = "sound"
+step_width = 1
