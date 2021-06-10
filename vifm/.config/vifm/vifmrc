@@ -234,7 +234,7 @@ mark t /tmp
 " Don't inspect the size of folders which contain /fuse/ in their paths
 " vifm mount them inside one
 " fuse filesystems are very slow and could hang the remote connection
-" autocmd DirEnter * if system("grep -iP 'fuse|mnt|media' <<<" . expand("%d")) == "" | %select | exe 'normal ga' | %unselect | endif
+" autocmd DirEnter * if term("grep -iP 'fuse|mnt|media' <<<" . expand("%d")) == "" | %select | exe 'normal ga' | %unselect | endif
 
 " ------------------------------------------------------------------------------
 
@@ -309,10 +309,14 @@ command! reload :write | restart
 command! fd fd --hidden --no-ignore --exclude .git --exclude node_modules %a %M
 
 " zoxide, faster way to navigate
-command! zoxide :execute 'cd "'.system('zoxide query %a').'"'
+" Use term() instead system() which makes sure
+" external interactive applications won't
+" affect the way terminal is used by vifm
+" This fix weird characters at the beginning of the path
+command! zoxide :execute 'cd "'.term('zoxide query %a').'"'
 
 " Find with FZF and fd
-command! FZF :set noquickview | :execute 'goto "'.system('fd --hidden --no-ignore --exclude .git --exclude node_modules | fzf --preview "exa --all --sort .name --tree --level 1 --classify --git --long --color=always {}" --preview-window wrap 2>/dev/tty ').'"%IU' | redraw
+command! FZF :set noquickview | :execute 'goto "'.term('fd --hidden --no-ignore --exclude .git --exclude node_modules | fzf --preview "exa --all --sort .name --tree --level 1 --classify --git --long --color=always {}" --preview-window wrap 2>/dev/tty ').'"%IU' | redraw
 
 " ------------------------------------------------------------------------------
 
@@ -465,7 +469,7 @@ filetype *.iso
 " SshMount
 filetype *.sshfs FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND
 command! sshfs
-        \ : let $SSH_FILE = system('mktemp /tmp/XXXX.sshfs')
+        \ : let $SSH_FILE = term('mktemp /tmp/XXXX.sshfs')
         \ | execute '!echo ''-o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3 %a'' > $SSH_FILE; ls $SSH_FILE %%U'
         \ | execute 'normal l'
         \ | execute '!rm $SSH_FILE'
