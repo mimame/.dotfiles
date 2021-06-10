@@ -60,7 +60,7 @@ style = "bold dimmed blue"
 
 [jobs]
 symbol = "+"
-threshold = 0
+threshold = 1
 
 [memory_usage]
 disabled = false
