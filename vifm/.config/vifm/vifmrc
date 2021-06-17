@@ -160,7 +160,7 @@ set rulerformat='%2l/%S%[ - %x filtered%]'
 " set findprg='find %s -iname *%A* -print ,
 "              \ -type d \( ! -readable -o ! -executable -o -path "*/.git" -o -path "*/node_modules" \)
 "              \ -prune'
-set findprg='fd %A --hidden --no-ignore --exclude .git --exclude node_modules'
+set findprg='fd %A --exclude node_modules'
 
 " Devicons
 " vim insert mode ctrl+V u eNumber esc ; eNumber from https://github.com/ryanoasis/nerd-fonts#glyph-sets
@@ -307,7 +307,7 @@ command! vgrep nvim "+grep %a"
 command! reload :write | restart
 
 " Find with fd
-command! fd fd --hidden --no-ignore --exclude .git --exclude node_modules %a %M
+command! fd fd --exclude node_modules %a %M
 
 " zoxide, faster way to navigate
 " Use term() instead system() which makes sure
@@ -317,7 +317,7 @@ command! fd fd --hidden --no-ignore --exclude .git --exclude node_modules %a %M
 command! zoxide :execute 'cd "'.term('zoxide query %a').'"'
 
 " Find with FZF and fd
-command! FZF :set noquickview | :execute 'goto "'.term('fd --hidden --no-ignore --exclude .git --exclude node_modules | fzf --preview "exa --all --sort .name --tree --level 1 --classify --git --long --color=always {}" --preview-window wrap 2>/dev/tty ').'"%IU' | redraw
+command! FZF :set noquickview | :execute 'goto "'.term('fd --exclude node_modules | fzf --preview "exa --all --sort .name --tree --level 1 --classify --git --long --color=always {}" --preview-window wrap 2>/dev/tty ').'"%IU' | redraw
 
 " ------------------------------------------------------------------------------
 
