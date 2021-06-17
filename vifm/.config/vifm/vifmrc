@@ -646,7 +646,11 @@ nnoremap co :!code %f &<cr>
 nnoremap yd :!echo -n %d | sed 's/ /\\\ /g' | xclip -in -selection clipboard %i<cr>:echo expand('%d') "is yanked to clipboard"<cr>
 nnoremap yds :!echo -n %d | xclip -in -selection clipboard %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
 " Yank selected paths into the clipboard
-nnoremap yp :!printf "%%s\n" %f:p | sed "s/ /\\\ /g" | xclip -in -selection clipboard -rmlastnl %i<cr>
+
+nnoremap yp :!printf "%%s\n" %f:p | sed 's/ /\\\ /g' | xclip -in -selection clipboard -rmlastnl %i<cr>:echo expand('%"f:p') "is yanked to clipboard"<cr>
+vnoremap yp :!printf "%%s\n" %f:p | sed 's/ /\\\ /g' | xclip -in -selection clipboard -rmlastnl %i<cr>:echo expand('%"f:p') "are yanked to clipboard"<cr>
+nnoremap yps :!printf "%%s\n" %f:p | xclip -in -selection clipboard -rmlastnl %i<cr>:echo expand('%"f:p') "is yanked to clipboard"<cr>
+vnoremap yps :!printf "%%s\n" %f:p | xclip -in -selection clipboard -rmlastnl %i<cr>:echo expand('%"f:p') "are yanked to clipboard"<cr>
 
 " Yank selected filenames into the clipboard
 nnoremap yn :!printf "%%s\n" %f | sed "s/ /\\\ /g" | xclip -in -selection clipboard -rmlastnl %i<cr>
