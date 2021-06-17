@@ -21,9 +21,10 @@ set caseoptions=p
 
 " Command-line option used to pass a command to 'shell' zsh
 " It's used in contexts where command comes from the user
-" Enables running it in login mode, which can make shell aliases and functions work
-" The solution is to add :!zsh -lc at the beginning of the .zprofile commands
-set shellcmdflag=-lc
+" Enable interactive mode which makes shell aliases and functions work
+" -i: Force shell to be interactive
+" -c: Take the first argument as a command to execute
+set shellcmdflag=-ic
 
 " Update terminal title
 set title
@@ -289,9 +290,9 @@ command! zip zip -r %f.zip %f
 " tar selected files
 " command! tar tar cvaf %a %f %s
 " use e() zsh function for extracting any compressed file or folder
-command! extract :!zsh -ic "e %f" %s
+command! extract :!e %f %s
 " use c() zsh function for compressing any file or folder
-command! compress :!zsh -ic "c %a" %s
+command! compress :!c %a %s
 " Repeat last command to the selected files/folders
 command! run !! ./%f
 " Run make command
@@ -626,7 +627,7 @@ nnoremap <silent> rl :reload<cr>
 " Open file always in TUI vim
 " nnoremap o :!nvim %f<cr>
 " Use special open function defined in .zprofile
-nnoremap o :!zsh -ci "open %f"<cr>
+nnoremap o :!open %f<cr>
 " Open file in new instance of gvim
 "nnoremap O :!gvim %f<cr>
 " Select program to open the file
