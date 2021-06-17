@@ -643,8 +643,8 @@ nnoremap co :!code %f &<cr>
 " nnoremap gb :file &<cr>l
 
 " Yank current directory path into the clipboard
-nnoremap yd :!echo -n %d | sed "s/ /\\\ /g" | xclip -in -selection clipboard %i<cr>
-
+nnoremap yd :!echo -n %d | sed 's/ /\\\ /g' | xclip -in -selection clipboard %i<cr>:echo expand('%d') "is yanked to clipboard"<cr>
+nnoremap yds :!echo -n %d | xclip -in -selection clipboard %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
 " Yank selected paths into the clipboard
 nnoremap yp :!printf "%%s\n" %f:p | sed "s/ /\\\ /g" | xclip -in -selection clipboard -rmlastnl %i<cr>
 
