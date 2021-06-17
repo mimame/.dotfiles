@@ -662,7 +662,8 @@ vnoremap yns :!printf "%%s\n" %f | xclip -in -selection clipboard -rmlastnl %i<c
 nnoremap yw :!dragon-drag-and-drop --all --and-exit %f<cr>
 
 " Yank selected paths to be pasted in a GUI file manager
-nnoremap yf :!printf "%%s\n" %f:p | xclip -in -selection clipboard -rmlastnl -t text/uri-list %i<cr>
+nnoremap yf :!printf "%%s\n" %f:p | xclip -in -selection clipboard -rmlastnl -t text/uri-list %i<cr>:echo expand('%"f:p') "are yanked as uri to clipboard"<cr>
+vnoremap yf :!printf "%%s\n" %f:p | xclip -in -selection clipboard -rmlastnl -t text/uri-list %i<cr>:echo expand('%"f:p') "are yanked as uri to clipboard"<cr>
 
 " Mappings for faster renaming
 nnoremap I cw<c-a>
