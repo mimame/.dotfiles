@@ -175,6 +175,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'wellle/targets.vim'
   " Real-time markdown preview plugin
   Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app & yarn install'}
+  " Syntax for i3 config
+  Plug 'mboughaba/i3config.vim'
   " Syntax for tmux.conf
   "Plug 'tmux-plugins/vim-tmux' (vim-polyglot)
   " Haml, Sass, SCSS
