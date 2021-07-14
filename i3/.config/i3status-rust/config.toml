@@ -124,7 +124,7 @@ format_singular = "{both}"
 format_up_to_date = ""
 critical_updates_regex = "(linux |linux-lts|linux-zen)"
 aur_command = "paru -Qua"
-on_click = "pamac-manager"
+on_click = "pamac-manager --updates"
 
 # [[block]]
 # block = "uptime"
