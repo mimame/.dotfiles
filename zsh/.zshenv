@@ -4,13 +4,6 @@ export LESS='-F -g -i -M -R -S -w -X -z-4'
 export PAGER='less'
 # Alias
 
-if [ -x "$(command -v "firefox-developer-edition")" ]; then
-  alias firefox='firefox-developer-edition'
-  export BROWSER='firefox-developer-edition'
-else
-  export BROWSER='firefox'
-fi
-
 # Mandatory to set explicitly the number of threads for Julia
 export JULIA_NUM_THREADS=12
 

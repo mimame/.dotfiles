@@ -475,14 +475,6 @@ alias pgrep='pgrep --full'
 alias pkill='pkill --full -9'
 alias k='\pkill --full -9'
 
-# User Firefox Developer Edition by default
-if [ -x "$(command -v "firefox-developer-edition")" ]; then
-  alias firefox='firefox-developer-edition'
-  export BROWSER='firefox-developer-edition'
-else
-  export BROWSER='firefox'
-fi
-
 # Improve broot command
 # Always use br function to call it
 alias broot='broot --hidden --sizes --gitignore no'
@@ -696,7 +688,7 @@ alias ydl3='youtube-dl --output "%(title)s.%(ext)s" --extract-audio --audio-form
 alias ydl4='youtube-dl --output "%(title)s.%(ext)s" --format mp4'
 
 function ff () {
-  firefox-developer-edition --private-window https://www.google.com/search?q="$1" &
+  firefox --private-window https://www.google.com/search?q="$1" &
 }
 # Never save firefox searches in the history
 alias ff=' ff'
