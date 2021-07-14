@@ -453,7 +453,7 @@
     foreground = "#ff0000"
     frame_color = "#ff0000"
     timeout = 0
-    new_icon = /usr/share/icons/Tela-blue-dark/scalable/apps/firefox-developer-icon.svg
+    new_icon = /usr/share/icons/Tela-blue-dark/scalable/apps/firefox-icon.svg
 
 [Google Chrome]
     desktop_entry = "google-chrome"
