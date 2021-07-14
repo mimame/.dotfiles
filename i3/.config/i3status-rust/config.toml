@@ -151,3 +151,4 @@ step_width = 1
 [[block]]
 block = "sound"
 step_width = 1
+on_click = "pavucontrol"
