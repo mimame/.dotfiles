@@ -9,8 +9,8 @@ i3-msg "rename workspace to \"${current_workspace_index}: ${new_workspace_name}\
 i3-msg "append_layout ~/.config/i3/scripts/workspace.json"
 
 alacritty &
-firefox-developer-edition --new-window &
+firefox --new-window &
 # wait at least 1 second to be sure the new tmux session was created
-sleep 1
+sleep 2
 current_tmux_name=$(tmux list-sessions -F '#{session_name}' | sort --n | tail -n1)
 tmux rename-session -t "$current_tmux_name" "$new_workspace_name"

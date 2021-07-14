@@ -39,13 +39,13 @@
                 "y": 0
             },
             "marks": [],
-            "name": "Google — Firefox Developer Edition",
+            "name": "Google — Firefox",
             "percent": 0.5,
             "swallows": [
                 {
-                    "class": "^firefoxdeveloperedition$",
+                    "class": "^firefox$",
                     "instance": "^Navigator$",
-                    "title": "^Google\\ \\—\\ Firefox\\ Developer\\ Edition$",
+                    "title": "^Google\\ \\—\\ Firefox$",
                     "window_role": "^browser$"
                 }
             ],

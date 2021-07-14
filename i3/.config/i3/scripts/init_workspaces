@@ -18,7 +18,7 @@
 
 # App you want to start :
 apps=(
-  "firefox-developer-edition"
+  "firefox"
   "spotify"
   "google-chrome-stable"
   "thunderbird"
