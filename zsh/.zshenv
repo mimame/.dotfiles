@@ -4,6 +4,8 @@ export LESS='-F -g -i -M -R -S -w -X -z-4'
 export PAGER='less'
 # Alias
 
+export BROWSER=firefox
+
 # Mandatory to set explicitly the number of threads for Julia
 export JULIA_NUM_THREADS=12
 
