@@ -1,0 +1,11 @@
+- name: Create user lib path
+  command: "R --vanilla -q -e 'dir.create(path = Sys.getenv(\"R_LIBS_USER\"), showWarnings = FALSE, recursive = TRUE)'"
+
+- name: Install principal R packages
+  command: "R --vanilla -q -e 'install.packages(c(\"languageserver\",\"tidyverse\",\"BiocManager\"), lib = Sys.getenv(\"R_LIBS_USER\"), Ncpus = 8, repos=\"https://cloud.r-project.org/\")'"
+
+- name: Install last Bioconductor version
+  command: "R --vanilla -q -e 'BiocManager::install(ask = F)'"
+
+- name: Be sure all packages are built for the last R version
+  command: "R --vanilla -q -e 'update.packages(checkBuilt=T, ask=F)'"

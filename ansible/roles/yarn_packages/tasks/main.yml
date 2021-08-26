@@ -1,0 +1,27 @@
+---
+- name: Install yarn packages
+  community.general.yarn:
+    name: "{{ item }}"
+    global: yes
+    state: latest
+  become: no
+  with_items:
+    - ansible-language-server
+    - bash-language-server
+    - create-react-app
+    - diagnostic-languageserver
+    - dockerfile-language-server-nodejs
+    - dot-language-server
+    - gh-compare
+    - jsonlint
+    - markdown-it
+    - neovim
+    - ng
+    - pyright
+    - trash
+    - uniread
+    - vim-language-server
+    - vscode-json-languageserver
+    - vscode-langservers-extracted
+    - vue
+    - yaml-language-server

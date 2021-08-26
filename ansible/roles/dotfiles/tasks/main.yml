@@ -1,0 +1,62 @@
+---
+- name: Home folder register
+  command: echo $HOME
+  register: home_register
+
+- name: Backup config files
+  shell: >
+    mv "{{ home_register.stdout }}"/.config/htop/htoprc "{{ home_register.stdout }}"/.config/htop/htoprc.o;
+    sudo mv /etc/pacman.conf /etc/pacman.conf.o ;
+    sudo mv /etc/makepkg.conf /etc/makepkg.conf.o ;
+    sudo mv /etc/pacman-mirrors.conf /etc/pacman-mirrors.conf.o ;
+    sudo mv /etc/paman.conf /etc/paman.conf.o ;
+    sudo mv /etc/vconsole.conf /etc/vconsole.conf.o ;
+    sudo mv /etc/default/keyboard /etc/default/keyboard.o ;
+  become: yes
+  ignore_errors: yes
+
+- name: Stow all config files
+  shell: >
+    cd "{{ home_register.stdout }}/.dotfiles" ;
+    stow alacritty ;
+    stow dunst ;
+    stow dunst ;
+    stow gh ;
+    stow git ;
+    stow greenclip ;
+    stow htop ;
+    stow i3 ;
+    stow julia ;
+    stow ls_colors ;
+    stow mimeapps ;
+    stow newsboat ;
+    stow nvim ;
+    stow parallel ;
+    stow paru ;
+    stow redshift ;
+    stow rofi ;
+    stow ssh ;
+    stow starship ;
+    stow tmux ;
+    stow tridactyl ;
+    stow vifm ;
+    stow vim ;
+    stow zathura ;
+    stow zsh
+
+
+- name: Stow all /etc config files
+  shell: >
+    cd {{ home_register.stdout }}/.dotfiles ;
+    sudo stow --target=/ pacman ;
+    sudo stow --target=/ keyboard
+  become: yes
+
+
+- name: zsh as default shell for root
+  command: "sudo chsh -s $(which zsh)"
+  become: yes
+
+- name: zsh as default shell for the current user
+  command: "chsh -s $(which zsh)"
+  become: no

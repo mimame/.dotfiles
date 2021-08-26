@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  roles:
+    - role: pacman_packages
+      tags: pacman_packages
+    - role: aur_packages
+      tags: aur_packages
+    - role: yarn_packages
+      tags: yarn_packages
+    - role: pip_packages
+      tags: pip_packages
+    - role: dotfiles
+      tags: dotfiles
+    - role: R_packages
+      tags: R_packages
+    # - role: julia_packages
+    #   tags: julia_packages

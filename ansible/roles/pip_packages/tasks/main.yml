@@ -1,0 +1,27 @@
+---
+- name: Install pip packages
+  pip:
+    name: "{{ item }}"
+    state: latest
+  become: no
+  with_items:
+    #- ansicolor
+    #- basiciw
+    #- colour
+    - cmake-language-server
+    - commonmark
+    - jupyterlab
+    - lxml
+    - mps-youtube
+    - pandas
+    - pylint
+    - pydantic
+    - pygls
+    - thefuck
+    - radian
+    - vim-vint
+    - pyflakes
+    #- sensors
+    - isort
+    - reorder-python-imports
+    - ansible-lint

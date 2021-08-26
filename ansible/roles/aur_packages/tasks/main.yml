@@ -1,0 +1,65 @@
+---
+- name: Install yay manually
+  shell: "cd /tmp && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm"
+  become: no
+  ignore_errors: yes
+
+- name: Install paru package
+  command: yay -S --noconfirm --nouseask --needed --sudoloop --norebuild --noredownload --cleanafter "{{ item }}"
+  become: no
+  with_items:
+    - paru
+
+- name: Install aur packages with paru
+  command: paru -S --noconfirm --nouseask --needed --sudoloop --norebuild --noredownload --cleanafter "{{ item }}"
+  become: no
+  with_items:
+    - ameba
+    - antibody-bin
+    - archivemount
+    - autofs
+    - batify
+    - bluez-firmware
+    - broot
+    - dragon-drag-and-drop
+    - dropbox-cli
+    - dust
+    - espanso
+    - eva
+    - firefox-tridactyl-native
+    - flat-remix-gtk
+    - git-cola
+    - git-delta
+    - git-extras
+    - google-chrome
+    - gotop
+    - grex
+    - gron-bin
+    - handlr-bin
+    - lab
+    - lazydocker
+    - lua-language-server-git
+    - massren
+    - mclfy
+    - navi
+    - pandoc-bin
+    - rstudio-desktop-bin
+    - rstudio-server-bin
+    - shellcheck-bin
+    - skypeforlinux-stable-bin
+    - slack-desktop
+    - spicetify-cli
+    - spotify
+    - stylua
+    - teams
+    - teamviewer
+    - tectonic
+    - universal-ctags-git
+    - vimiv-qt
+    - visidata
+    - watchman
+    - weka
+    - what
+    - zoom
+    - zotero
+    - zoxide
