@@ -1,1 +1,7 @@
-*
+ssh
+.vagrant
+**/git/.config.*
+vifminfo*
+vifm-*
+packages/*.txt
+packer_compiled.lua
