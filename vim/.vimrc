@@ -294,7 +294,7 @@ let g:airline_theme = 'molokai'
 let g:airline_molokai_bright=1
 " molokai colors improved {{{
 " Take green cursor from terminal (Alacritty)
-highlight CursorLine   ctermbg=none guibg=#403D3D
+highlight CursorLine   ctermbg=NONE guibg=#403D3D
 highlight CursorLineNr ctermbg=236 cterm=bold guibg=#232526 gui=bold
 " Force real black background
 highlight Normal guibg=#FFFFFF guibg=#000000
@@ -870,7 +870,7 @@ augroup END
 " Use instead :MarkdownPreview
 let g:mkdp_auto_start = 0
 " function! g:Open_markdown_file(markdown_file)
-"     silent exec '! firefox-developer-edition --new-window ' . a:markdown_file . ' &'
+"     silent exec '! firefox --new-window ' . a:markdown_file . ' &'
 " endfunction
 " Custom vim function name to open preview page. Will receive url as param
 " let g:mkdp_browserfunc = 'g:Open_markdown_file'
@@ -1251,7 +1251,7 @@ nmap <localleader>u :diffupdate<CR>
 if &diff
   highlight DiffAdd    ctermfg=green  ctermbg=16 cterm=bold guifg=green  guibg=#000000 gui=bold
   highlight DiffDelete ctermfg=red    ctermbg=16 cterm=bold guifg=red    guibg=#000000 gui=bold
-  highlight DiffChange ctermfg=none   ctermbg=16 cterm=bold guifg=none   guibg=#000000 gui=bold
+  highlight DiffChange ctermfg=NONE   ctermbg=16 cterm=bold guifg=NONE   guibg=#000000 gui=bold
   highlight DiffText   ctermfg=yellow ctermbg=16 cterm=bold guifg=yellow guibg=#000000 gui=bold
   " If doing a diff. Upon writing changes to file, automatically update the
   " differences
@@ -1362,7 +1362,7 @@ let R_show_arg_help = 0
 " Ignore extra whitespace by filetype doesn't work
 " let g:extra_whitespace_ignored_filetypes = ['rbrowser']
 " So force to turn off with the :highlight command
-autocmd FileType rbrowser :highlight ExtraWhitespace ctermbg=none
+autocmd FileType rbrowser :highlight ExtraWhitespace ctermbg=NONE
 
 " }}}
 
