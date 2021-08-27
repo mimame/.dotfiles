@@ -294,3 +294,7 @@ augroup END
 cmd([[
 highlight HighlightedyankRegion guibg=#FD971F guifg=#000000 gui=bold ctermbg=208 ctermfg=0 cterm=bold
 ]])
+
+-- Always open git commit files in insert mode
+cmd([[autocmd! FileType gitcommit exec 'au VimEnter * startinsert']])
+cmd([[autocmd! BufRead COMMIT_EDITMSG exec 'norm gg' | startinsert!]])
