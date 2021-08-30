@@ -297,7 +297,7 @@ let g:airline_molokai_bright=1
 highlight CursorLine   ctermbg=NONE guibg=#403D3D
 highlight CursorLineNr ctermbg=236 cterm=bold guibg=#232526 gui=bold
 " Force real black background
-highlight Normal guibg=#FFFFFF guibg=#000000
+highlight Normal guifg=#FFFFFF guibg=#000000
 highlight Comment guifg=#C0C0C0
 highlight NonText guifg=#505050
 highlight SpecialKey guifg=#505050
