@@ -1426,9 +1426,6 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Commands keybindings
-" Show all files recursively of this folder with bat previewer
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 " Now with_preview supports symbolic links
 " \ call fzf#vim#files(<q-args>, {'options': ['--preview', 'bat --number --color always {}']}, <bang>0)
 nnoremap <leader>f :Files<CR>
