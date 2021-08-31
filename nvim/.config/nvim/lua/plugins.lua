@@ -390,5 +390,14 @@ return require('packer').startup(function()
   -- Syntax for i3 config
   use({ 'mboughaba/i3config.vim'})
 
+  -- Syntax for snakemake
+  use({
+    'snakemake/snakemake',
+     rtp = 'misc/vim',
+     config = function()
+      cmd('au BufNewFile,BufRead Snakefile,*.smk set filetype=snakemake')
+     end
+  })
+
   use({ 'sainnhe/sonokai' })
 end)
