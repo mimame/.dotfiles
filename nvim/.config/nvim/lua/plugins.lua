@@ -442,5 +442,16 @@ use({
   -- Highlights trailing whitespace in red and provides :FixWhitespace to fix it
   use({'bronson/vim-trailing-whitespace'})
 
+  -- A cheatsheet plugin for neovim with bundled cheatsheets for the editor,
+  -- multiple vim plugins, nerd-fonts, regex, etc. with a Telescope fuzzy finder interface
+  use {
+    'sudormrfbin/cheatsheet.nvim',
+    requires = {
+      {'nvim-telescope/telescope.nvim'},
+      {'nvim-lua/popup.nvim'},
+      {'nvim-lua/plenary.nvim'},
+    }
+  }
+
   use({ 'sainnhe/sonokai' })
 end)
