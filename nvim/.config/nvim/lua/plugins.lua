@@ -378,17 +378,12 @@ use({
     'phaazon/hop.nvim',
   })
 
-  -- A fast and easy to configure statusline plugin for neovim.
-  use({
-    'hoob3rt/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-    config = function()
-      require('lualine').setup({
-        options = {
-          theme = 'molokai',
-        },
-      })
-    end,
+  -- A minimal, stylish and customizable statusline for Neovim written in Lua
+  use ({
+    'famiu/feline.nvim',
+    config = function ()
+     require('feline').setup()
+    end
   })
 
   -- A NeoVim plugin for saving your work before the world collapses or you type :qa!
