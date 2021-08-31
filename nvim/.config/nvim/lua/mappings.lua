@@ -24,7 +24,7 @@ map({ 'n', 'v' }, 'p', '"+p')
 map({ 'n', 'v' }, 'P', '"+P')
 
 -- Don't yank replaced text after pasting in visual mode
-map("v", "p", '"_dP')
+map('v', 'p', '"_dP')
 
 -- Set up Y to be consistent with the C and D operators, which act from the cursor to the end of the line
 -- The default behavior of Y is to yank the whole line
