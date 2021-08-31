@@ -65,6 +65,7 @@ wk.register({
     s = { '<cmd>lua require"gitsigns.actions".stage_hunk()<cr>', 'Stage hunk' },
     u = { '<cmd>lua require"gitsigns.actions".undo_stage_hunk()<cr>', 'Undo stage hunk' },
     r = { '<cmd>lua require"gitsigns.actions".reset_hunk()<cr>', 'Undo stage hunk' },
+    P = { '<cmd>lua require"gitsigns.actions".preview_hunk()<cr>', 'Preview hunk' },
   },
 }, {
   prefix = '<leader>',
