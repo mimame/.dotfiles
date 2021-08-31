@@ -59,7 +59,7 @@ wk.register({
     f = { '<cmd>Telescope git_files<CR>', 'Git Files' },
     c = { '<cmd>Telescope git_commits<CR>', 'Git Commits' },
     b = { '<cmd>Telescope git_branches<cr>', 'Git Branches' },
-    --s = { '<cmd>Telescope git_status<cr>', 'Git status' },
+    S = { '<cmd>Telescope git_status<cr>', 'Git status' },
     n = { '<cmd>lua require"gitsigns.actions".next_hunk()<cr>', 'Go to the next hunk' },
     p = { '<cmd>lua require"gitsigns.actions".prev_hunk()<cr>', 'Go to the previous hunk' },
     s = { '<cmd>lua require"gitsigns.actions".stage_hunk()<cr>', 'Stage hunk' },
