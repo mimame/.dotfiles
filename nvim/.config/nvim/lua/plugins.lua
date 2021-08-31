@@ -387,5 +387,8 @@ return require('packer').startup(function()
     end
   })
 
+  -- Syntax for i3 config
+  use({ 'mboughaba/i3config.vim'})
+
   use({ 'sainnhe/sonokai' })
 end)
