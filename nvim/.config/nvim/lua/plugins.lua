@@ -14,7 +14,7 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     branch = '0.5-compat',
     run = ':TSUpdate',
-    requires = {{'windwp/nvim-ts-autotag'}},
+    requires = {{'windwp/nvim-ts-autotag'}, {'p00f/nvim-ts-rainbow'} },
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -30,6 +30,12 @@ return require('packer').startup(function()
         autotag = {
           enable = true,
         }, 
+        -- About rainbow Rainbow parentheses for neovim using tree-sitter
+        rainbow = {
+          enable = true,
+          extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+          max_file_lines = nil, -- Do not enable for files with more than n lines, int
+        },
       })
     end,
   })
