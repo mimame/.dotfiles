@@ -434,5 +434,8 @@ use({
   -- Open file with line and column associated (vim/:e[edit]/gF path/to/file.ext:12:3)
   use({'wsdjeg/vim-fetch'})
 
+  -- Highlights trailing whitespace in red and provides :FixWhitespace to fix it
+  use({'bronson/vim-trailing-whitespace'})
+
   use({ 'sainnhe/sonokai' })
 end)
