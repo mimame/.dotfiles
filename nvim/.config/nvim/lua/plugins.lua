@@ -426,5 +426,10 @@ use({
     'RRethy/vim-illuminate'
   })
 
+  -- A Vim plugin for more pleasant editing on commit messages 
+  use({
+    'rhysd/committia.vim'
+  })
+
   use({ 'sainnhe/sonokai' })
 end)
