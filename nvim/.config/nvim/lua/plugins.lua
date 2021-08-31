@@ -42,6 +42,12 @@ return require('packer').startup(function()
     'svermeulen/vim-subversive',
   })
 
+  -- Find the enemy and replace them with dark power
+use({
+  'windwp/nvim-spectre',
+  requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
+})
+
   -- Git signs written in pure lua
   use({
     'lewis6991/gitsigns.nvim',

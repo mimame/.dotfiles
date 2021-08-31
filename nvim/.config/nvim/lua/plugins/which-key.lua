@@ -167,3 +167,15 @@ wk.register({
 }, {
   prefix = '<leader>',
 })
+
+wk.register({
+  s = {
+    name = 'Search and Replace',
+    s = { '<cmd>lua require("spectre").open()<CR>', 'Open Spectre' },
+    S = { '<cmd>lua require("spectre").open_visual()<CR>', 'Open visual Spectre' },
+    w = { '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', 'Search current word' },
+    p = { '<cmd>lua require("spectre").open_file_search()<CR>', 'Search in current file' },
+  },
+}, {
+  prefix = '<leader>',
+})
