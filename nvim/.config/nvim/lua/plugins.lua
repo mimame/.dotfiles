@@ -439,5 +439,13 @@ return require('packer').startup(function()
   -- Set of operators and textobjects to search/select/edit sandwiched texts
   use({ 'machakann/vim-sandwich' })
 
+  -- Smooth scrolling neovim plugin written in lua
+  use({
+    'karb94/neoscroll.nvim',
+    config = function()
+      require('neoscroll').setup()
+    end,
+  })
+
   use({ 'sainnhe/sonokai' })
 end)
