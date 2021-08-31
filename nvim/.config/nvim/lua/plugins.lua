@@ -410,5 +410,10 @@ use({
     'editorconfig/editorconfig-vim'
   })
 
+  -- Selectively illuminating other uses of the current word under the cursor
+  use({
+    'RRethy/vim-illuminate'
+  })
+
   use({ 'sainnhe/sonokai' })
 end)
