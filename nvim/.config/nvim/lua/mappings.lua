@@ -114,3 +114,9 @@ map('n', '<Down>', ':resize +2<CR>')
 map('n', '<Left>', ':vertical resize -2<CR>')
 map('n', '<Right>', ':vertical resize +2<CR>')
 -- }}}
+
+-- s for substitute {{{
+map('n', 's', '<plug>(SubversiveSubstitute)', { noremap = false})
+map('n','ss', '<plug>(SubversiveSubstituteLine)', { noremap = false})
+map('n','S', '<plug>(SubversiveSubstituteToEndOfLine)', { noremap = false})
+-- }}}

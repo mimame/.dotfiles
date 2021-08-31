@@ -37,10 +37,9 @@ return require('packer').startup(function()
     end,
   })
 
-  -- Find the enemy and replace them with dark power
+  -- Vim plugin providing operator motions to quickly replace text 
   use({
-    'windwp/nvim-spectre',
-    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
+    'svermeulen/vim-subversive',
   })
 
   -- Git signs written in pure lua
