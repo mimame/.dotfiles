@@ -14,7 +14,7 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     branch = '0.5-compat',
     run = ':TSUpdate',
-    requires = {{'windwp/nvim-ts-autotag'}, {'p00f/nvim-ts-rainbow'} },
+    requires = {{'windwp/nvim-ts-autotag'}, {'p00f/nvim-ts-rainbow'}, {'andymass/vim-matchup'} },
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -26,15 +26,20 @@ return require('packer').startup(function()
           -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
         },
-        -- Use treesitter to auto close and auto rename html tag 
+        -- Use treesitter to auto close and auto rename html tag
         autotag = {
           enable = true,
-        }, 
+        },
         -- About rainbow Rainbow parentheses for neovim using tree-sitter
         rainbow = {
           enable = true,
           extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
           max_file_lines = nil, -- Do not enable for files with more than n lines, int
+        },
+        -- vim match-up: even better % fist_oncoming navigate and highlight matching
+        -- words fist_oncoming modern matchit and matchparen replacement
+        matchup = {
+          enable = true,              -- mandatory, false will disable the whole extension
         },
       })
     end,

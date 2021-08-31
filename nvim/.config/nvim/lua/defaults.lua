@@ -154,11 +154,6 @@ opt.cursorline = true
 -- Enable read vim options in any file
 opt.modeline = true
 
--- TODO: review matchup nvim lua replacement
--- -- Extends % functionality
--- -- using vim-matchup plugin: a modern matchit and matchparen replacement
--- -- runtime! macros/matchit.vim
-
 -- Number of commands in :history
 opt.history = 10000
 
