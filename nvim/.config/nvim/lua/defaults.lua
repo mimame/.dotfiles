@@ -285,7 +285,7 @@ augroup Mkdir
 augroup END
 ]])
 
--- Highlight the yank with orange 
+-- Highlight the yank with orange
 cmd([[
 highlight HighlightedyankRegion guibg=#FD971F guifg=#000000 gui=bold ctermbg=208 ctermfg=0 cterm=bold
 ]])

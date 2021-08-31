@@ -14,7 +14,7 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     branch = '0.5-compat',
     run = ':TSUpdate',
-    requires = {{'windwp/nvim-ts-autotag'}, {'p00f/nvim-ts-rainbow'}, {'andymass/vim-matchup'} },
+    requires = { { 'windwp/nvim-ts-autotag' }, { 'p00f/nvim-ts-rainbow' }, { 'andymass/vim-matchup' } },
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -39,7 +39,7 @@ return require('packer').startup(function()
         -- vim match-up: even better % fist_oncoming navigate and highlight matching
         -- words fist_oncoming modern matchit and matchparen replacement
         matchup = {
-          enable = true,              -- mandatory, false will disable the whole extension
+          enable = true, -- mandatory, false will disable the whole extension
         },
       })
     end,
@@ -53,16 +53,14 @@ return require('packer').startup(function()
     end,
   })
 
-  -- Vim plugin providing operator motions to quickly replace text 
-  use({
-    'svermeulen/vim-subversive',
-  })
+  -- Vim plugin providing operator motions to quickly replace text
+  use({ 'svermeulen/vim-subversive' })
 
   -- Find the enemy and replace them with dark power
-use({
-  'windwp/nvim-spectre',
-  requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
-})
+  use({
+    'windwp/nvim-spectre',
+    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
+  })
 
   -- Git signs written in pure lua
   use({
@@ -379,77 +377,67 @@ use({
   })
 
   -- A minimal, stylish and customizable statusline for Neovim written in Lua
-  use ({
+  use({
     'famiu/feline.nvim',
-    config = function ()
-     require('feline').setup()
-    end
+    config = function()
+      require('feline').setup()
+    end,
   })
 
   -- A NeoVim plugin for saving your work before the world collapses or you type :qa!
-  use({
-    'Pocco81/AutoSave.nvim',
-  })
+  use({ 'Pocco81/AutoSave.nvim' })
 
-  -- More useful word motions for Vim 
-  use({
-    'chaoren/vim-wordmotion'
-  })
+  -- More useful word motions for Vim
+  use({ 'chaoren/vim-wordmotion' })
 
   use({
     'machakann/vim-highlightedyank',
     config = function()
       g.highlightedyank_highlight_duration = 200
       cmd('highlight HighlightedyankRegion cterm=reverse gui=reverse')
-    end
+    end,
   })
 
   -- Syntax for i3 config
-  use({ 'mboughaba/i3config.vim'})
+  use({ 'mboughaba/i3config.vim' })
 
   -- Syntax for snakemake
   use({
     'snakemake/snakemake',
-     rtp = 'misc/vim',
-     config = function()
+    rtp = 'misc/vim',
+    config = function()
       cmd('au BufNewFile,BufRead Snakefile,*.smk set filetype=snakemake')
-     end
+    end,
   })
 
   -- EditorConfig plugin for Vim
-  use({
-    'editorconfig/editorconfig-vim'
-  })
+  use({ 'editorconfig/editorconfig-vim' })
 
   -- Selectively illuminating other uses of the current word under the cursor
-  use({
-    'RRethy/vim-illuminate'
-  })
+  use({ 'RRethy/vim-illuminate' })
 
-  -- A Vim plugin for more pleasant editing on commit messages 
-  use({
-    'rhysd/committia.vim'
-  })
+  -- A Vim plugin for more pleasant editing on commit messages
+  use({ 'rhysd/committia.vim' })
 
   -- Open file with line and column associated (vim/:e[edit]/gF path/to/file.ext:12:3)
-  use({'wsdjeg/vim-fetch'})
+  use({ 'wsdjeg/vim-fetch' })
 
   -- Highlights trailing whitespace in red and provides :FixWhitespace to fix it
-  use({'bronson/vim-trailing-whitespace'})
+  use({ 'bronson/vim-trailing-whitespace' })
 
   -- A cheatsheet plugin for neovim with bundled cheatsheets for the editor,
   -- multiple vim plugins, nerd-fonts, regex, etc. with a Telescope fuzzy finder interface
-  use {
+  use({
     'sudormrfbin/cheatsheet.nvim',
     requires = {
-      {'nvim-telescope/telescope.nvim'},
-      {'nvim-lua/popup.nvim'},
-      {'nvim-lua/plenary.nvim'},
-    }
-  }
+      { 'nvim-telescope/telescope.nvim' },
+      { 'nvim-lua/popup.nvim' },
+      { 'nvim-lua/plenary.nvim' },
+    },
+  })
 
--- Set of operators and textobjects to search/select/edit sandwiched texts
-use({'machakann/vim-sandwich'})
+  -- Set of operators and textobjects to search/select/edit sandwiched texts
+  use({ 'machakann/vim-sandwich' })
 
   use({ 'sainnhe/sonokai' })
 end)

@@ -15,4 +15,3 @@ require('defaults')
 require('plugins')
 require('mappings')
 require('theme')
-
