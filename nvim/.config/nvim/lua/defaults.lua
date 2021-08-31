@@ -210,7 +210,7 @@ opt.mouse = 'a'
 opt.autoread = true
 
 -- Write file when the focus is lost
-cmd('au FocusLost,WinLeave * :silent! w')
+cmd('au FocusLost,WinLeave * :w!')
 
 -- Write the contents of the file, if it has been modified
 opt.autowriteall = true
