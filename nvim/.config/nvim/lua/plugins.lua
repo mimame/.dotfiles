@@ -14,6 +14,7 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     branch = '0.5-compat',
     run = ':TSUpdate',
+    requires = {{'windwp/nvim-ts-autotag'}},
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -25,6 +26,10 @@ return require('packer').startup(function()
           -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
         },
+        -- Use treesitter to auto close and auto rename html tag 
+        autotag = {
+          enable = true,
+        }, 
       })
     end,
   })
