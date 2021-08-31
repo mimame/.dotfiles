@@ -453,5 +453,8 @@ use({
     }
   }
 
+-- Set of operators and textobjects to search/select/edit sandwiched texts
+use({'machakann/vim-sandwich'})
+
   use({ 'sainnhe/sonokai' })
 end)
