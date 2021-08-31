@@ -92,6 +92,7 @@ use({
     requires = {
       { 'hrsh7th/cmp-buffer' },
       { 'hrsh7th/cmp-nvim-lua' },
+      { 'hrsh7th/cmp-vsnip' },
       { 'hrsh7th/cmp-path' },
       { 'hrsh7th/vim-vsnip' },
       { 'hrsh7th/vim-vsnip-integ' },
