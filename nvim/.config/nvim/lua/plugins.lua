@@ -399,5 +399,10 @@ return require('packer').startup(function()
      end
   })
 
+  -- EditorConfig plugin for Vim
+  use({
+    'editorconfig/editorconfig-vim'
+  })
+
   use({ 'sainnhe/sonokai' })
 end)
