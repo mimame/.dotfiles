@@ -431,5 +431,8 @@ use({
     'rhysd/committia.vim'
   })
 
+  -- Open file with line and column associated (vim/:e[edit]/gF path/to/file.ext:12:3)
+  use({'wsdjeg/vim-fetch'})
+
   use({ 'sainnhe/sonokai' })
 end)
