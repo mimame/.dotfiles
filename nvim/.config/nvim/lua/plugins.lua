@@ -453,5 +453,8 @@ return require('packer').startup(function()
     run = 'cd app && yarn install',
   })
 
+  -- A small automated session manager for Neovim
+  use({'rmagatti/auto-session'})
+
   use({ 'sainnhe/sonokai' })
 end)

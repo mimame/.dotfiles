@@ -213,6 +213,8 @@ opt.autowriteall = true
 -- Show the current command when typing it at status line
 opt.showcmd = true
 
+-- Recommended sessionoptions config
+opt.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
 -- Never remember global options for sessions
 opt.sessionoptions = opt.sessionoptions - { options }
 
