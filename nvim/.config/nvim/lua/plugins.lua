@@ -343,7 +343,7 @@ return require('packer').startup(function()
   })
   -- A neovim lua plugin to help easily manage multiple terminal windows
   use({
-    'akinsho/nvim-toggleterm.lua',
+    'akinsho/toggleterm.nvim',
     config = function()
       require('toggleterm').setup({
         open_mapping = [[<c-t>]],
