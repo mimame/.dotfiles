@@ -180,3 +180,12 @@ wk.register({
 }, {
   prefix = '<leader>',
 })
+
+wk.register({
+  m = {
+    name = 'Markdown',
+    o = { '<cmd>MarkdownPreviewToggle<CR>', 'Toggle Markdown Preview' },
+  },
+}, {
+  prefix = '<leader>',
+})

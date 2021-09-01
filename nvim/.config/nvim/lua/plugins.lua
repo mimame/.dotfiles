@@ -447,5 +447,11 @@ return require('packer').startup(function()
     end,
   })
 
+  -- markdown preview plugin for (neo)vim
+  use({
+    'iamcco/markdown-preview.nvim',
+    run = 'cd app && yarn install',
+  })
+
   use({ 'sainnhe/sonokai' })
 end)
