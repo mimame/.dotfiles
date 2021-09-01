@@ -371,11 +371,6 @@ return require('packer').startup(function()
     end,
   })
 
-  --  Neovim motions on speed!
-  use({
-    'phaazon/hop.nvim',
-  })
-
   -- A minimal, stylish and customizable statusline for Neovim written in Lua
   use({
     'famiu/feline.nvim',
