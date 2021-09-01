@@ -454,5 +454,6 @@ return require('packer').startup(function()
   -- Vim plugin that allows use of vifm as a file picker
   use({'vifm/vifm.vim'})
 
+  -- High Contrast & Vivid Color Scheme based on Monokai Pro
   use({ 'sainnhe/sonokai' })
 end)
