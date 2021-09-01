@@ -456,5 +456,8 @@ return require('packer').startup(function()
   -- A small automated session manager for Neovim
   use({'rmagatti/auto-session'})
 
+  -- Vim plugin that allows use of vifm as a file picker
+  use({'vifm/vifm.vim'})
+
   use({ 'sainnhe/sonokai' })
 end)
