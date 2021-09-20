@@ -36,6 +36,7 @@
     - grex
     - gron-bin
     - handlr-bin
+    - katex
     - lab
     - lazydocker
     - lua-language-server-git

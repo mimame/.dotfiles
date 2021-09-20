@@ -6,8 +6,10 @@
     state: latest
   become: no
   with_items:
+    - '@mermaid-js/mermaid-cli'
     - ansible-language-server
     - bash-language-server
+    - chart.js
     - create-react-app
     - diagnostic-languageserver
     - dockerfile-language-server-nodejs
@@ -15,6 +17,8 @@
     - gh-compare
     - jsonlint
     - markdown-it
+    - markdown-it-anchor
+    - markdown-it-toc-done-right
     - neovim
     - ng
     - pyright

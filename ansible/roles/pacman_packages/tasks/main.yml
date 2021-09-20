@@ -182,6 +182,7 @@
     - pipewire-pulse
     - pixz
     - pkgconf
+    - plantuml
     - playerctl
     - podman
     - polkit-gnome
