@@ -350,7 +350,7 @@ return require('packer').startup(function()
         -- insert_mappings = true, -- whether or not the open mapping applies in insert mode
         start_in_insert = true,
         hide_numbers = true, -- hide the number column in toggleterm buffers
-        direction = 'window',
+        direction = 'tab',
         close_on_exit = true, -- close the terminal window when the process exits
       })
       function _G.set_terminal_keymaps()
