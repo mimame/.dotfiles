@@ -176,6 +176,10 @@
     - perl-anyevent-i3
     - perl-file-mimeinfo
     - pigz
+    - pipewire
+    - pipewire-alsa
+    - pipewire-jack
+    - pipewire-pulse
     - pixz
     - pkgconf
     - playerctl
