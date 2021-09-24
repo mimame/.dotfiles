@@ -375,7 +375,7 @@ return require('packer').startup(function()
   use({
     'famiu/feline.nvim',
     config = function()
-        require('./plugins/feline-nvim')
+      require('./plugins/feline-nvim')
     end,
   })
 
@@ -449,10 +449,10 @@ return require('packer').startup(function()
   })
 
   -- A small automated session manager for Neovim
-  use({'rmagatti/auto-session'})
+  use({ 'rmagatti/auto-session' })
 
   -- Vim plugin that allows use of vifm as a file picker
-  use({'vifm/vifm.vim'})
+  use({ 'vifm/vifm.vim' })
 
   -- High Contrast & Vivid Color Scheme based on Monokai Pro
   use({ 'sainnhe/sonokai' })

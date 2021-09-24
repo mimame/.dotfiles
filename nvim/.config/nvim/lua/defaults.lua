@@ -214,7 +214,7 @@ opt.autowriteall = true
 opt.showcmd = true
 
 -- Recommended sessionoptions config
-opt.sessionoptions="blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal"
+opt.sessionoptions = 'blank,buffers,curdir,folds,help,options,tabpages,winsize,resize,winpos,terminal'
 -- Never remember global options for sessions
 opt.sessionoptions = opt.sessionoptions - { options }
 
