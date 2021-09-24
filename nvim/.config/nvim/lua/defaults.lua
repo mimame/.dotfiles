@@ -227,8 +227,8 @@ opt.concealcursor = ''
 
 -- Keep undo history across sessions by storing it in a file
 opt.undofile = true
-fn.system('mkdir -p /tmp/.vim_undo')
-opt.undodir = '/tmp/.vim_undo'
+fn.system('mkdir -p /tmp/.nvim_undo')
+opt.undodir = '/tmp/.nvim_undo'
 
 -- Improve default grepprg
 opt.grepprg = 'rg\\ --vimgrep\\--no-heading'
