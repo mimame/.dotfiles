@@ -71,7 +71,33 @@ require('lspconfig').julials.setup({
 })
 
 require('lspconfig').pyright.setup({})
-require('lspconfig').texlab.setup({})
+require('lspconfig').texlab.setup({
+settings = {
+      texlab = {
+        auxDirectory = ".",
+        bibtexFormatter = "texlab",
+        build = {
+          args = { "--synctex", "--keep-logs", "--keep-intermediates", "%f" },
+          executable = "tectonic",
+          forwardSearchAfter = false,
+          onSave = true
+        },
+        chktex = {
+          onEdit = false,
+          onOpenAndSave = true
+        },
+        diagnosticsDelay = 300,
+        formatterLineLength = 80,
+        forwardSearch = {
+          args = {}
+        },
+        latexFormatter = "latexindent",
+        latexindent = {
+          modifyLineBreaks = false
+        }
+      }
+    }
+})
 require('lspconfig').vimls.setup({})
 require('lspconfig').yamlls.setup({})
 
