@@ -45,33 +45,6 @@ components.active[1] = {
     right_sep = { 'slant_right_2', ' ' },
   },
   {
-    provider = 'file_size',
-    right_sep = {
-      ' ',
-      {
-        str = 'slant_left_2_thin',
-        hl = {
-          fg = 'fg',
-          bg = 'bg',
-        },
-      },
-    },
-  },
-  {
-    provider = 'position',
-    left_sep = ' ',
-    right_sep = {
-      ' ',
-      {
-        str = 'slant_right_2_thin',
-        hl = {
-          fg = 'fg',
-          bg = 'bg',
-        },
-      },
-    },
-  },
-  {
     provider = 'diagnostic_errors',
     enabled = function(winid)
       return lsp.diagnostics_exist('Error', api.nvim_win_get_buf(winid))
@@ -120,16 +93,83 @@ end
 
 components.active[2] = {
   {
+    provider = 'position',
+    left_sep = {
+      ' ',
+      {
+        str = 'vertical_bar_thin',
+        hl = {
+          fg = 'fg',
+          bg = 'bg',
+        },
+      },
+    },
+    right_sep = {
+      ' ',
+      {
+        str = 'vertical_bar_thin',
+        hl = {
+          fg = 'fg',
+          bg = 'bg',
+        },
+      },
+    },
+  },
+  {
     provider = 'file_type',
-    right_sep = ' ',
+    left_sep = ' ',
+    right_sep = {
+      ' ',
+      {
+        str = 'vertical_bar_thin',
+        hl = {
+          fg = 'fg',
+          bg = 'bg',
+        },
+      },
+    }
   },
   {
     provider = 'file_encoding',
-    right_sep = ' ',
+    left_sep = ' ',
+    right_sep = {
+      ' ',
+      {
+        str = 'vertical_bar_thin',
+        hl = {
+          fg = 'fg',
+          bg = 'bg',
+        },
+      },
+    }
   },
   {
     provider = file_osinfo,
-    right_sep = ' ',
+    left_sep = ' ',
+    right_sep = {
+      ' ',
+      {
+        str = 'vertical_bar_thin',
+        hl = {
+          fg = 'fg',
+          bg = 'bg'
+        },
+      }
+    }
+  },
+  {
+    provider = 'file_size',
+    left_sep = ' ',
+    right_sep = {
+      ' ',
+      {
+        str = 'vertical_bar_thin',
+        hl = {
+          fg = 'fg',
+          bg = 'bg',
+        },
+      },
+    },
   },
   {
     provider = 'git_branch',
@@ -138,8 +178,16 @@ components.active[2] = {
       bg = 'black',
       style = 'bold',
     },
+    left_sep = {
+      ' ',
+      str = 'vertical_bar_thin',
+      hl = {
+        fg = 'fg',
+        bg = 'bg'
+      },
+    },
     right_sep = {
-      str = ' ',
+      str = '',
       hl = {
         fg = 'NONE',
         bg = 'black',
@@ -166,20 +214,22 @@ components.active[2] = {
       fg = 'red',
       bg = 'black',
     },
-    right_sep = {
-      str = ' ',
-      hl = {
-        fg = 'NONE',
-        bg = 'black',
-      },
-    },
   },
   {
     provider = 'line_percentage',
+    left_sep = {
+      ' ',
+      {
+      str = 'vertical_bar_thin',
+      hl = {
+        fg = 'fg',
+        bg = 'bg'
+      },
+    },
+  },
     hl = {
       style = 'bold',
     },
-    left_sep = '  ',
     right_sep = ' ',
   },
   {
@@ -191,33 +241,8 @@ components.active[2] = {
   },
 }
 
-components.inactive[1] = {
-  {
-    provider = 'file_type',
-    hl = {
-      fg = 'white',
-      bg = 'oceanblue',
-      style = 'bold',
-    },
-    left_sep = {
-      str = ' ',
-      hl = {
-        fg = 'NONE',
-        bg = 'oceanblue',
-      },
-    },
-    right_sep = {
-      {
-        str = ' ',
-        hl = {
-          fg = 'NONE',
-          bg = 'oceanblue',
-        },
-      },
-      'slant_right',
-    },
-  },
-}
+components.inactive[1] = components.active[1]
+components.inactive[2] = components.active[2]
 
 require('feline').setup({
   components = components,
