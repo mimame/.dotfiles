@@ -227,6 +227,7 @@
     - texinfo
     - texlab
     - texlive-bibtexextra
+    - texlive-core
     - texlive-latexextra
     - texlive-science
     - thunderbird-i18n-en-us
