@@ -117,6 +117,7 @@ return require('packer').startup(function()
       { 'octaltree/cmp-look' },
       { 'ray-x/cmp-treesitter' },
       { 'f3fora/cmp-nuspell', rocks={'lua-nuspell'} },
+      { 'f3fora/cmp-spell' },
     },
     config = function()
       require('./plugins/nvim-cmp')
