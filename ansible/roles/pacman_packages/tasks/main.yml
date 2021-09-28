@@ -160,6 +160,7 @@
     - npm
     - ntfs-3g
     - numlockx # disabled by default
+    - nuspell
     - opencl-headers
     - openfortivpn
     - openshot
