@@ -127,7 +127,7 @@ components.active[2] = {
           bg = 'bg',
         },
       },
-    }
+    },
   },
   {
     provider = 'file_encoding',
@@ -141,7 +141,7 @@ components.active[2] = {
           bg = 'bg',
         },
       },
-    }
+    },
   },
   {
     provider = file_osinfo,
@@ -152,10 +152,10 @@ components.active[2] = {
         str = 'vertical_bar_thin',
         hl = {
           fg = 'fg',
-          bg = 'bg'
+          bg = 'bg',
         },
-      }
-    }
+      },
+    },
   },
   {
     provider = 'file_size',
@@ -183,7 +183,7 @@ components.active[2] = {
       str = 'vertical_bar_thin',
       hl = {
         fg = 'fg',
-        bg = 'bg'
+        bg = 'bg',
       },
     },
     right_sep = {
@@ -220,13 +220,13 @@ components.active[2] = {
     left_sep = {
       ' ',
       {
-      str = 'vertical_bar_thin',
-      hl = {
-        fg = 'fg',
-        bg = 'bg'
+        str = 'vertical_bar_thin',
+        hl = {
+          fg = 'fg',
+          bg = 'bg',
+        },
       },
     },
-  },
     hl = {
       style = 'bold',
     },

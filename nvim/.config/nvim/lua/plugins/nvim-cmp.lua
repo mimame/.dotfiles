@@ -86,7 +86,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'vsnip' },
     { name = 'tmux' },
-    { name = "latex_symbols" },
+    { name = 'latex_symbols' },
     { name = 'look', keyword_length = 2 },
     { name = 'treesitter' },
     { name = 'nuspell' },
