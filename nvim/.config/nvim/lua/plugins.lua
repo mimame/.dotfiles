@@ -116,6 +116,7 @@ return require('packer').startup(function()
       { "kdheepak/cmp-latex-symbols" },
       { 'octaltree/cmp-look' },
       { 'ray-x/cmp-treesitter' },
+      { 'f3fora/cmp-nuspell', rocks={'lua-nuspell'} },
     },
     config = function()
       require('./plugins/nvim-cmp')

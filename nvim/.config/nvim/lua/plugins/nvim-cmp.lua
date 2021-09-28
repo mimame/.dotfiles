@@ -89,5 +89,6 @@ cmp.setup({
     { name = "latex_symbols" },
     { name = 'look', keyword_length = 2 },
     { name = 'treesitter' },
+    { name = 'nuspell' },
   },
 })
