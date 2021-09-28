@@ -112,6 +112,7 @@ return require('packer').startup(function()
       { 'hrsh7th/vim-vsnip-integ' },
       { 'rafamadriz/friendly-snippets' },
       { 'hrsh7th/cmp-nvim-lsp' },
+      { 'andersevenrud/compe-tmux', branch = 'cmp'},
     },
     config = function()
       require('./plugins/nvim-cmp')

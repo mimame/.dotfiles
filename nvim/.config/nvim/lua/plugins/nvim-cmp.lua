@@ -85,6 +85,6 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'vsnip' },
-    -- { name = 'tmux' }
+    { name = 'tmux' },
   },
 })
