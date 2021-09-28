@@ -246,4 +246,19 @@ components.inactive[2] = components.active[2]
 
 require('feline').setup({
   components = components,
+  disable = {
+    filetypes = {
+      '^NvimTree$',
+      '^packer$',
+      '^startify$',
+      '^fugitive$',
+      '^fugitiveblame$',
+      '^qf$',
+      '^help$'
+    },
+    buftypes = {
+      '^terminal$'
+    },
+    bufnames = {}
+  },
 })
