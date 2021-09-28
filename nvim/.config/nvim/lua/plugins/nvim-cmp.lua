@@ -88,5 +88,6 @@ cmp.setup({
     { name = 'tmux' },
     { name = "latex_symbols" },
     { name = 'look', keyword_length = 2 },
+    { name = 'treesitter' },
   },
 })
