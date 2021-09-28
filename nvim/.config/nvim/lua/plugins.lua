@@ -113,6 +113,7 @@ return require('packer').startup(function()
       { 'rafamadriz/friendly-snippets' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'andersevenrud/compe-tmux', branch = 'cmp'},
+      { "kdheepak/cmp-latex-symbols" },
     },
     config = function()
       require('./plugins/nvim-cmp')

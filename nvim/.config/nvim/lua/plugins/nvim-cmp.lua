@@ -86,5 +86,6 @@ cmp.setup({
     { name = 'path' },
     { name = 'vsnip' },
     { name = 'tmux' },
+    { name = "latex_symbols" },
   },
 })
