@@ -87,5 +87,6 @@ cmp.setup({
     { name = 'vsnip' },
     { name = 'tmux' },
     { name = "latex_symbols" },
+    { name = 'look', keyword_length = 2 },
   },
 })

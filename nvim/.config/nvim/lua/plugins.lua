@@ -114,6 +114,7 @@ return require('packer').startup(function()
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'andersevenrud/compe-tmux', branch = 'cmp'},
       { "kdheepak/cmp-latex-symbols" },
+      { 'octaltree/cmp-look' },
     },
     config = function()
       require('./plugins/nvim-cmp')
