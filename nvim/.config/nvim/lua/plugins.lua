@@ -194,15 +194,22 @@ return require('packer').startup(function()
     'kyazdani42/nvim-tree.lua',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
-      g.nvim_tree_side = 'right'
-      -- opens the tree when typing `vim $DIR` or `vim`
-      g.nvim_tree_auto_open = 1
-      -- closes the tree when it's the last window
-      g.nvim_tree_auto_close = 1
-      -- will enable file highlight for git attributes (can be used without the ico
-      g.nvim_tree_git_hl = 1
-      -- will show lsp diagnostics in the signcolumn. See :help nvim_tree_lsp_diagnostics
-      g.nvim_tree_lsp_diagnostics = 1
+      require('nvim-tree').setup({
+        -- open the tree when running this setup function
+        open_on_setup = true,
+        -- closes neovim automatically when the tree is the last **WINDOW** in the view
+        auto_close = true,
+        -- show lsp diagnostics in the signcolumn
+        lsp_diagnostics = true,
+        -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
+        open_on_tab  = false,
+        view = {
+          -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
+          side = 'right',
+          -- if true the tree will resize itself after opening a file
+          auto_resize = true,
+        }
+      })
     end,
   })
 
