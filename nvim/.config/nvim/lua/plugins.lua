@@ -202,7 +202,13 @@ return require('packer').startup(function()
         -- show lsp diagnostics in the signcolumn
         lsp_diagnostics = true,
         -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
-        open_on_tab  = false,
+        open_on_tab  = true,
+        -- update the root directory of the tree to the one of the folder containing
+        -- the file if the file is not under the current root directory
+        update_focused_file = {
+          -- enables the feature
+          enable = true,
+        },
         view = {
           -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
           side = 'right',
