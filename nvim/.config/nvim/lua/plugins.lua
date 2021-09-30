@@ -216,6 +216,8 @@ return require('packer').startup(function()
           auto_resize = true,
         }
       })
+      -- show relative numbers
+      require('nvim-tree.view').View.winopts.relativenumber = true
     end,
   })
 
