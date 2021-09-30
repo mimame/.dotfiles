@@ -218,6 +218,17 @@ return require('packer').startup(function()
       })
       -- show relative numbers
       require('nvim-tree.view').View.winopts.relativenumber = true
+      -- Always open NvimTree automatically at startup
+      cmd([[
+      augroup open-nvim-tree
+      autocmd!
+      autocmd VimEnter * NvimTreeOpen
+      autocmd VimEnter * wincmd p
+      augroup END
+      ]])
+      cmd([[
+      autocmd BufRead COMMIT_EDITMSG autocmd! open-nvim-tree
+      ]])
     end,
   })
 
