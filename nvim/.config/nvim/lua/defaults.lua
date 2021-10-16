@@ -250,12 +250,6 @@ opt.inccommand = 'nosplit'
 opt.updatetime = 100
 
 -- 256 colors in terminal
-cmd('set t_Co=256')
---  Use 24-bit colors
--- Vim-specific sequences for RGB colors
--- https://github.com/vim/vim/issues/993#issuecomment-255651605
-cmd('let &t_8f = "\\<Esc>[38;2;%lu;%lu;%lum"')
-cmd('let &t_8b = "\\<Esc>[48;2;%lu;%lu;%lum"')
 opt.termguicolors = true
 
 -- Folds opened by default
