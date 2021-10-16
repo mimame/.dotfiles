@@ -15,10 +15,6 @@ local function map(modes, lhs, rhs, opts)
   end
 end
 
---  Copy to clipboard
-map({ 'n', 'v' }, 'y', '"+y')
-map({ 'n', 'v' }, 'yy', '"+yy')
-
 -- Paste from clipboard
 map({ 'n', 'v' }, 'p', '"+p')
 map({ 'n', 'v' }, 'P', '"+P')
