@@ -155,13 +155,16 @@ return require('packer').startup(function()
     end,
   })
 
-  use({
-    'terrortylor/nvim-comment',
+  -- Smart and powerful comment plugin for neovim
+  -- Supports commentstring, dot repeat, left-right/up-down motions, hooks, and more
+  use {
+    'numToStr/Comment.nvim',
     config = function()
-      require('nvim_comment').setup()
-    end,
-  })
+      require('Comment').setup()
+    end
+  }
 
+  -- Tmux integration for nvim features pane movement and resizing from within nvim.
   use({
     'aserowy/tmux.nvim',
     config = function()
@@ -248,6 +251,7 @@ return require('packer').startup(function()
     end,
   })
 
+  -- vim dashboard
   use({
     'glepnir/dashboard-nvim',
     config = function()
