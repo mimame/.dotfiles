@@ -203,7 +203,15 @@ return require('packer').startup(function()
         -- closes neovim automatically when the tree is the last **WINDOW** in the view
         auto_close = true,
         -- show lsp diagnostics in the signcolumn
-        lsp_diagnostics = true,
+        diagnostics = {
+          enable = true,
+          icons = {
+            hint = "",
+            info = "",
+            warning = "",
+            error = "",
+          }
+        },
         -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
         open_on_tab  = true,
         -- update the root directory of the tree to the one of the folder containing
