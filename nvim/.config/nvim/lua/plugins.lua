@@ -197,6 +197,9 @@ return require('packer').startup(function()
       require('nvim-tree').setup({
         -- open the tree when running this setup function
         open_on_setup = true,
+        -- will not open on setup if the filetype is in this list
+        -- Never open nvim-tree with git commit messages files
+        ignore_ft_on_setup  = { 'git', 'gitcommit', 'COMMIT_EDITMSG', '__committia_diff__' },
         -- closes neovim automatically when the tree is the last **WINDOW** in the view
         auto_close = true,
         -- show lsp diagnostics in the signcolumn
@@ -208,6 +211,9 @@ return require('packer').startup(function()
         update_focused_file = {
           -- enables the feature
           enable = true,
+          -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
+          -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable`
+          ignore_list  = { 'git', 'gitcommit', 'COMMIT_EDITMSG', '__committia_diff__' },
         },
         view = {
           -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
@@ -218,17 +224,17 @@ return require('packer').startup(function()
       })
       -- show relative numbers
       require('nvim-tree.view').View.winopts.relativenumber = true
-      -- Always open NvimTree automatically at startup
-      cmd([[
-      augroup open-nvim-tree
-      autocmd!
-      autocmd VimEnter * NvimTreeOpen
-      autocmd VimEnter * wincmd p
-      augroup END
-      ]])
-      cmd([[
-      autocmd BufRead COMMIT_EDITMSG autocmd! open-nvim-tree
-      ]])
+      -- Always open nvim-tree automatically at startup
+      -- Force nvim-tree to find the file at startup
+      require("nvim-tree.events").on_nvim_tree_ready(function()
+        if vim.bo.filetype == 'gitcommit' or vim.bo.filetype == 'git' or vim.fn.expand('#')  == "__committia_diff__" then
+          cmd("NvimTreeToggle")
+          cmd("NvimTreeClose")
+        else
+          cmd([[ autocmd VimEnter * NvimTreeFindFile ]])
+          cmd([[ autocmd VimEnter * wincmd p ]])
+        end
+      end)
     end,
   })
 
