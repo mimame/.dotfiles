@@ -240,8 +240,8 @@
     - translate-shell
     - trash-cli
     - tree
-    - udevil
     - udiskie
+    - udisks2
     - unrar
     - urlscan
     - vagrant
