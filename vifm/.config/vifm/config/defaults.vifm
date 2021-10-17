@@ -1,0 +1,180 @@
+" The time in milliseconds that is waited for a mapped key in case of already typed key sequence is ambiguous.
+set timeoutlen=500
+
+" Enable integration with terminal multiplexers
+" Note: the command is called screen for historical reasons
+" (when tmux wasn't yet supported) and might be changed in future releases, or get an alias
+screen
+
+" This option gives additional control over case sensitivity
+" p - always ignore case of paths during completion
+set caseoptions=p
+
+" Command-line option used to pass a command to 'shell' zsh
+" It's used in contexts where command comes from the user
+" Enable interactive mode which makes shell aliases and functions work
+" -i: Force shell to be interactive
+" -c: Take the first argument as a command to execute
+set shellcmdflag=-ic
+
+" Update terminal title
+set title
+
+" Command used to edit files in various contexts.  The default is vim.
+" If you would like to use another vi clone such as Elvis or Vile
+" you will need to change this setting.
+
+" set vicmd=vim
+" set vicmd=elvis\ -G\ termcap
+" set vicmd=vile
+set vicmd=nvim
+
+" This makes vifm perform file operations on its own instead of relying on
+" standard utilities like `cp`.  While using `cp` and alike is a more universal
+" solution, it's also much slower when processing large amounts of files and
+" doesn't support progress measuring.
+
+set syscalls
+
+" Trash Directory
+" The default is to move files that are deleted with dd or :d to
+" the trash directory.  If you change this you will not be able to move
+" files by deleting them and then using p to put the file in the new location.
+" I recommend not changing this until you are familiar with vifm.
+" This probably shouldn't be an option.
+
+set trash
+set trashdir="~/.local/share/Trash/files"
+
+" Remove confirmation for deletion into trash only (dd key combination)
+set confirm-=delete
+
+" This is how many directories to store in the directory history.
+
+set history=10000
+
+" Automatically resolve symbolic links on l or Enter.
+
+set followlinks
+
+" With this option turned on you can run partially entered commands with
+" unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
+
+set fastrun
+
+" Natural sort of (version) numbers within text.
+
+set sortnumbers
+
+" Sort files and folders (lowcase and uppercase) together
+set sort=+iname,dir
+
+" Maximum number of changes that can be undone.
+
+set undolevels=1000
+
+" Use Vim's format of help file (has highlighting and "hyperlinks").
+" If you would rather use a plain text help file set novimhelp.
+
+set vimhelp
+
+" If you would like to run an executable file when you
+" press Enter, l or Right Arrow, set this.
+
+set norunexec
+
+" Use KiB, MiB, ... instead of KB, MB, ...
+
+set noiec
+
+" Selected color scheme
+
+colorscheme molokai
+
+" Format for displaying time in file list. For example:
+" TIME_STAMP_FORMAT=%m/%d-%H:%M
+" See man date or man strftime for details.
+
+set timefmt=%d/%m/%y\ %H:%M
+
+" Show list of matches on tab completion in command-line mode
+
+set wildmenu
+
+" Display completions in a form of popup with descriptions of the matches
+
+set wildstyle=popup
+
+" Display suggestions in normal, visual and view modes for keys, marks and
+" registers (at most 5 files).  In other view, when available.
+
+" Show all by default
+set suggestoptions=normal,visual,view,otherpane,delay,keys,foldsubkeys,marks,registers
+
+" Ignore case in search patterns unless it contains at least one uppercase
+" letter
+
+set ignorecase
+set smartcase
+
+" Don't highlight search results automatically
+
+set nohlsearch
+
+" Use increment searching (search while typing)
+set incsearch
+
+" Try to leave some space from cursor to upper/lower border in lists
+
+set scrolloff=4
+
+" Don't do too many requests to slow file systems
+
+if !has('win')
+    set slowfs=curlftpfs
+endif
+
+" hide side borders
+set tuioptions-=s
+set tuioptions+=u
+
+" Show hidden files by default
+set dotfiles
+
+" Hide .. directory everywhere
+set dotdirs=
+
+" Custom ruler format (add filtered files)
+set rulerformat='%2l/%S%[ - %x filtered%]'
+
+" Ignore .git directory on :find
+" set findprg='find %s -iname *%A* -print ,
+"              \ -type d \( ! -readable -o ! -executable -o -path "*/.git" -o -path "*/node_modules" \)
+"              \ -prune'
+set findprg='fd %A --exclude node_modules'
+
+" Set custom status line look
+set statusline="%1*%* %2*%t%=%* %3*%* %2*%A%* %3*%* %2*%u:%g%* %3*%* %2*%E%* %3*%* %2*%a free%* %3*%*  %2*%d%* %1*%*"
+
+" What should be saved automatically between vifm sessions.  Drop "savedirs"
+" value if you don't want vifm to remember last visited directories for you.
+" set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
+"     \phistory,fhistory,dirstack,registers,bookmarks,bmarks
+set vifminfo=dhistory,chistory,tui,shistory,
+    \phistory,fhistory,dirstack,registers
+
+" Examples of configuring both panels
+" Set numbers
+windo set number
+" Set relative numbers
+windo set relativenumber
+
+" Customize view columns a bit (enable ellipsis for truncated file names)
+" windo set viewcolumns=-{name}..,6{}.
+windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}
+
+" Use ag (the silver searcher) instead of grep
+" set grepprg=ag\ --line-numbers\ %i\ %a\ %s
+" Use rg (ripgrep) instead of grep
+set grepprg='rg --glob "!{node_modules}" --vimgrep --smart-case --no-heading --with-filename --line-number %i %a %s'
+
