@@ -434,7 +434,12 @@ return require('packer').startup(function()
   })
 
   -- A NeoVim plugin for saving your work before the world collapses or you type :qa!
-  use({ 'Pocco81/AutoSave.nvim' })
+  use({
+    'Pocco81/AutoSave.nvim',
+    config = function()
+      require("autosave").setup()
+    end
+  })
 
   -- More useful word motions for Vim
   use({ 'chaoren/vim-wordmotion' })
