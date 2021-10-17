@@ -24,7 +24,7 @@ exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'libinput Accel S
 # Add Touchpad gestures
 exec_always xinput --list-props 'UNIW0001:00 093A:1336 Touchpad' ]] && libinput-gestures-setup start
 # Swap vertical mouse buttons back and forward
-exec_always xinput set-button-map "USB Optical Mouse  Mouse" 1 2 3 4 5 6 7 8 9
+exec_always xinput set-button-map "USB Optical Mouse  Mouse" 1 2 3 4 5 6 7 9 8
 # Enable numlock by default
 # exec_always --no-startup-id pkill numlockx; numlockx
 # Enable and load last saved session
