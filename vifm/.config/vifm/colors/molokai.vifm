@@ -33,3 +33,46 @@ if $USER == 'root'
     highlight  StatusLine  cterm=bold  ctermfg=white    ctermbg=red
     highlight  TopLine     cterm=bold  ctermfg=default  ctermbg=red
 endif
+
+" build system files
+highlight {Makefile,Makefile.am,Makefile.in,Makefile.win,*.mak,*.mk,*.m4,*.ac,
+          \configure,CMakeLists.txt,*.cmake,*.pro,*.pri,*.sln}
+        \ cterm=none ctermfg=121 ctermbg=default
+" archives
+highlight {*.7z,*.ace,*.arj,*.bz2,*.cpio,*.deb,*.dz,*.gz,*.jar,*.lzh,*.lzma,
+          \*.rar,*.rpm,*.rz,*.tar,*.taz,*.tb2,*.tbz,*.tbz2,*.tgz,*.tlz,*.trz,
+          \*.txz,*.tz,*.tz2,*.xz,*.z,*.zip,*.zoo,*.apk,*.gzip,*.zst,*.tzst}
+        \ cterm=none ctermfg=215 ctermbg=default
+" documents, configuration, text-based formats
+highlight {*.djvu,*.htm,*.html,*.shtml,*.css,*.markdown,*.md,*[^0-9].[1-9],
+          \*.mkd,*.org,*.pandoc,*.pdc,*.pdf,*.epub,*.fb2,*.tex,*.txt,*.xhtml,
+          \*.xml,*.pptx,*.ppt,*.doc,*.docx,*.xls,*.xlsm,*.xlsx,*.mobi,*.rtf,
+          \*.less,*.scss,*.log,*.rss,*.xul,*.json,*.yaml,*.yml,*.desktop,*.csv,*.tsv
+          \*.plist,*.ini,*.cfg,*.rc,*.conf,*.spec,*.qrc,*.odg,config,*.rasi,*.toml}
+        \ cterm=none ctermfg=217 ctermbg=default
+" media
+highlight {*.aac,*.anx,*.asf,*.au,*.avi,*.ts,*.axa,*.axv,*.divx,*.flac,*.m2a,
+          \*.m2v,*.m4a,*.m4p,*.m4v,*.mid,*.midi,*.mka,*.mkv,*.mov,*.mp3,*.mp4,
+          \*.flv,*.mp4v,*.mpc,*.mpeg,*.mpg,*.nuv,*.oga,*.ogg,*.ogv,*.ogx,*.pbm,
+          \*.pgm,*.qt,*.ra,*.ram,*.rm,*.spx,*.vob,*.wav,*.wma,*.wmv,*.xvid,
+          \*.ac3,*.webm,*.cue,*.ape}
+        \ cterm=none ctermfg=49 ctermbg=default
+" images
+highlight {*.bmp,*.gif,*.jpeg,*.jpg,*.ico,*.png,*.ppm,*.svg,*.svgz,*.tga,*.tif,
+          \*.tiff,*.xbm,*.xcf,*.xpm,*.xspf,*.xwd,*.ai}
+        \ cterm=none ctermfg=117 ctermbg=default
+" executables
+highlight {*.sh,*.bash,*.zsh,*.bat,*.btm,*.cmd,*.com,*.dll,*.exe,*.run,*.msu,
+          \*.msi,*.fish}
+        \ cterm=none ctermfg=77 ctermbg=default
+" source code
+highlight {*.patch,*.diff,*.py,*.cpp,*.hpp,*.mk,*.c,*.h,*.cpp,*.hpp,*.cc,*.hs,
+          \*.php,*.lua,*.vim,*.vifm,*.asm,*.s,*.java,*.cxx,*.c++,*.go,
+          \*.pl,*.pm,*.t,*.cs,*.asp,*.dart,*.js,*.rb,*.scala,*.ts,*.coffee,
+          \*.ml,*.mli,*.rs,*.sql,*.qml,vifmrc,vimrc,*.flex,*.ypp,*.S,
+          \*.ld,.vimrc,.zshrc,.bashrc,*.jl,*.R,*.cr,*.nim}
+        \ cterm=none ctermfg=193 ctermbg=default
+" software documentation
+highlight {COPYRIGHT,COPYING*,BUGS,ChangeLog*,FAQ,INSTALL*,LICENCE,LICENSE,NEWS,
+          \README,README.*,AUTHORS,TODO,THANKS}
+        \ cterm=none ctermfg=187 ctermbg=default
