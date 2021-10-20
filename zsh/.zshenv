@@ -33,6 +33,7 @@ if [ -z "${LOADED_PATHS+1}" ]; then
   append_path "$HOME/.bin"
   append_path "$HOME/go/bin"
   append_path "$HOME/.cargo/bin"
+  append_path "$HOME/.nimble/bin"
   # Always use user Ruby gems by default
   append_path "$(ruby -e 'print Gem.user_dir')/bin"
   append_path "$HOME/.local/bin"
