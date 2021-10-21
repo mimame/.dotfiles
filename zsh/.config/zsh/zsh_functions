@@ -1,0 +1,269 @@
+
+bb (){
+  local declare dirs=()
+
+  get_parent_dirs() {
+    current_path="$1"
+    while [[ "$current_path" != '/' ]]; do
+      if [[ -d "$current_path" ]]; then dirs+=("$current_path"); fi
+      # next parent dir
+      current_path="$(dirname "$current_path")"
+    done
+    dirs+=("/")
+    for _dir in "${dirs[@]}"; do echo $_dir; done
+  }
+
+  # Show all possible parents paths
+  # Remove the current path
+  # Count paths to easily select them from fzf
+  # Finally remove the added index and cd to the selected parent path
+  local DIR=$(get_parent_dirs "$(realpath "${1:-$PWD}")" | tail -n+2 | nl --starting-line-number 1 | fzf | cut -f2)
+  cd "$DIR"
+}
+
+function p() {
+  if [ $# -eq 0 ]; then
+    fzf --multi --bind "enter:execute(bat --theme \"Monokai Extended Bright Narnia\" --color always {+})+abort" --preview "bat --theme \"Monokai Extended Bright Narnia\" --color always {}"
+  else
+    bat --theme "Monokai Extended Bright Narnia" --color always "$@"
+  fi;
+}
+
+
+function mc() {
+  mkdir --parent --verbose "$1" && cd "$1"
+}
+
+# cd to the clipboard path
+function cdp() {
+  clipboard_path=$(xclip -out -selection clipboard)
+  [[ -d "$clipboard_path" ]] && cd "$clipboard_path" || echo "\e[31mClipboard doesn't containt a folder path!\e[39m"
+}
+
+
+# translation functions {{{
+function te () {
+  # Use command to avoid recursion
+  # Use "$*" instead -join-sentence "$@"
+  # Remove spaces at beginning of the translated input
+  # Copy the translated input to the system clipboard
+  command trans -brief -no-ansi "$*" | tail --lines 1 | sed 's/^\s*//' | cb
+}
+# Force to never save in the shell history the translations (beginning with space)
+alias te=" te"
+
+function ts () {
+  # Use command to avoid recursion
+  # Use "$*" instead -join-sentence "$@"
+  # Remove spaces at beginning of the translated input
+  # Copy the translated input to the system clipboard
+  command trans ':es' -brief -no-ansi "$*" | tail --lines 1 | sed 's/^\s*//' | cb
+}
+# Force to never save in the shell history the translations (beginning with space)
+alias ts=" ts"
+
+function tf () {
+  # Use command to avoid recursion
+  # Use "$*" instead -join-sentence "$@"
+  # Remove spaces at beginning of the translated input
+  # Copy the translated input to the system clipboard
+  command trans ':fr' -brief -no-ansi "$*" | tail --lines 1 | sed 's/^\s*//' | cb
+}
+# Force to never save in the shell history the translations (beginning with space)
+alias tf=" tf"
+# }}}
+
+# cb STRING to copy to the clipboard
+# cb FILE to copy to the clipboard
+# echo string | cb to copy to the clipboard
+# cb to paste from the clipboard
+# cb | command to paste from the clipboad
+function cb () {
+  # stdin is a pipe
+  if [[ -p /dev/stdin ]] ; then
+    # stdin -> clipboard
+    xclip -selection clipboard -in
+  # stdin is not a pipe
+  elif [[ ! -z "$1" ]]; then
+    if [[ -f "$1" ]]; then
+      # file -> clipboard
+      xclip -selection clipboard -in "$1"
+    else
+      # string -> clipboard
+      echo "$*" | xclip -selection clipboard -in
+    fi
+  else
+    # clipboard -> stdout
+    # no arguments were passed
+    # xclip -selection clipboard -out
+  fi
+    xclip -selection clipboard -out
+}
+
+# Burn image files to USB
+function iso()  {
+  sudo umount $2 2> /dev/null
+  sudo dd bs=4M if=$1 of=$2 status=progress conv=fdatasync
+}
+
+# o function and open function with handlr {{{
+# It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
+function open() {
+  # handlr can open multiple files at the same time without the explict loop
+  # but with a loop it's better to set nohup each std and err outputs independently
+  # to check faster if a file is not running fine
+  for file in "$@"
+  do
+    # Run handlr with nohup in background and remove it from the jobs table
+     nohup handlr open "$file" >| /tmp/nohup-"$(basename $file)".out 2>| /tmp/nohup-"$(basename $file)".err < /dev/null &
+    disown %%
+  done
+}
+# If o doesn't have any argument, open the current dir
+function o() {
+  if [ $# -eq 0 ]; then
+    vifm .;
+  else
+    open "$@";
+  fi;
+}
+# }}}
+
+function python () {
+  # stdin is a pipe
+  if [[ -p /dev/stdin ]]; then
+    command python "$@"
+  else
+  # Use command to avoid the recursion
+  test -z "$1" && ptpython || command python "$@"
+  fi
+}
+
+function R () {
+  # stdin is a pipe
+  if [[ -p /dev/stdin ]]; then
+    command R "$@"
+else
+  # Use command to avoid the recursion
+  test -z "$1" && radian || command R "$@"
+  fi
+}
+
+function n() {
+  if [ $# -eq 0 ]; then
+    fzf --multi --bind "enter:execute(nvim {+})+abort" --preview "bat --theme \"Monokai Extended Bright Narnia\" --color always {}"
+  else
+    nvim "$@"
+  fi;
+}
+
+function ff () {
+  firefox --private-window https://www.google.com/search?q="$1" &
+}
+# Never save firefox searches in the history
+alias ff=' ff'
+
+
+# " Reduce PDF size by lossy recompressing with Ghostscript"
+# " Not guaranteed to succeed, but usually works"
+# " Usage: file.pdf [resolution_in_dpi]"
+# https://bash.cyberciti.biz/file-management/linux-shell-script-to-reduce-pdf-file-size
+function pdfc () {
+  echo $@ | xargs -d' ' -n 1 -P 0 -I{} zsh -ic '_pdfc {}'
+}
+function _pdfc () {
+  if [ -z "$1" ]; then
+    echo "Usage: file.pdf [resolution_in_dpi]"
+    return 1
+  fi
+  if [ -n "$2" ]; then
+    resolution="$2"
+  else
+    resolution="90"
+  fi
+  pdf="$1"
+
+  original_pdf=${pdf%.pdf}_original.pdf
+
+  mv "$pdf" "$original_pdf"
+
+  gs \
+    -q -dNOPAUSE -dBATCH -dSAFER \
+    -sDEVICE=pdfwrite \
+    -dCompatibilityLevel=1.3 \
+    -dPDFSETTINGS=/screen \
+    -dEmbedAllFonts=true \
+    -dSubsetFonts=true \
+    -dAutoRotatePages=/None \
+    -dColorImageDownsampleType=/Bicubic \
+    -dColorImageResolution="$resolution" \
+    -dGrayImageDownsampleType=/Bicubic \
+    -dGrayImageResolution="$resolution" \
+    -dMonoImageDownsampleType=/Subsample \
+    -dMonoImageResolution="$resolution" \
+    -sOutputFile="$pdf" \
+    "$original_pdf"
+
+  if [[ $? == 0 ]] then;
+    pdf_size=$(wc -c "$pdf" | cut -f1 -d' ' )
+    original_pdf_size=$(wc -c "$original_pdf" | cut -f1 -d' ')
+    if [[ "$original_pdf_size" -le "$pdf_size" ]]; then
+      >&2 echo "'$pdf' can't be compressed!"
+      mv "$original_pdf" "$pdf"
+    else
+      compression_ration=$(awk "BEGIN{printf \"%0.2f\", $original_pdf_size/$pdf_size}")
+      >&2 echo "$pdf"
+      >&2 echo "\tCompression ration: $compression_ration"
+      >&2 echo "\tFinal size: $(du -h $pdf | cut -f1)"
+    fi
+  else
+    >&2 echo "'$pdf' can't be processed!"
+  fi
+}
+
+# Extract any kind of compressed file
+function e () {
+case $1 in
+  *.tar)            tar xvf $1;;
+  *.tar.gz|*.tgz)   tar -I pigz -xvf $1;;
+  *.tar.xz|*.txz)   tar -I pixz -xvf $1;;
+  *.tar.bz2|*.tbz2) tar -I pbzip2 -xvf $1;;
+  *.tar.zst|*.tzst) tar -I zstdmt -xvf $1;;
+  *.bz2)            pbzip2 -dkv $1;;
+  *.xz)             pixz -dk $1;;
+  *.gz)             pigz -dkv $1;;
+  *.zst)            zstdmt -dkv $1;;
+  *.zip)            unzip $1;;
+  *.7z)             7z x $1;;
+  *.Z)              uncompress $1;;
+  *.rar)            unrar e $1;;
+  *)                >&2 echo "'$1' cannot be extracted, unknown compression format";;
+esac
+}
+
+# Compress any kind of file
+function c () {
+case $2 in
+  t)  tar cvf ${1}.tar $1; ext='tar';;
+  z)  zip -r ${1}.zip $1; ext='zip';;
+  7)  7z a ${1}.7z $1; ext='7z';;
+  g)  [[ -d $1 ]] && tar -I pigz -cvf ${1}.tar.gz $1 || pigz -kv $1; ext='gz';;
+  b)  [[ -d $1 ]] && tar -I pbzip2 -cvf ${1}.tar.bz2 $1 || pbzip2 -kv $1; ext='bz2';;
+  x)  [[ -d $1 ]] && tar -I pixz -cvf ${1}.tar.xz $1 || pixz -k $1; ext='xz';;
+  zs) [[ -d $1 ]] && tar -I 'zstdmt -19' -cvf ${1}.tar.zst $1 || zstdmt -19 -kv $1; ext='zst';;
+  *)  >&2 echo "'$1' cannot be compressed, unknown '$2' compression format" && return 1
+esac
+  compressed_file="${1}*.${ext}"
+  # force glob completion with $~
+  compressed_size=$(command du $~compressed_file | cut -f1)
+  original_size=$(command du -s "$1" | cut -f1)
+  >&2 echo $~compressed_file
+  compression_ration=$(awk "BEGIN{printf \"%0.2f\", $original_size/$compressed_size}")
+  >&2 echo "\tCompression ration: $compression_ration"
+  >&2 echo "\tFinal size: $(command du -h $~compressed_file | cut -f1)"
+}
+
+# Tar wrapper
+function t {
+tar cpf "$1.tar" "$1"
+}

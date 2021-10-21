@@ -2,7 +2,9 @@
 # respect the color
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 export PAGER='less'
-# Alias
+
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
 
 export BROWSER=firefox
 
@@ -37,6 +39,16 @@ if [ -z "${LOADED_PATHS+1}" ]; then
   # Always use user Ruby gems by default
   append_path "$(ruby -e 'print Gem.user_dir')/bin"
   append_path "$HOME/.local/bin"
+fi
+
+if [[ -z "$XDG_CONFIG_HOME" ]]
+then
+  export XDG_CONFIG_HOME="$HOME/.config"
+fi
+
+if [[ -d "$XDG_CONFIG_HOME/zsh" ]]
+then
+  export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 fi
 
 # Ensure that a non-login, non-interactive shell has a defined environment.

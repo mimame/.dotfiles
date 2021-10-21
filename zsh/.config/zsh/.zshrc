@@ -251,36 +251,6 @@ setopt MULTIOS           # Write to multiple descriptors.
 setopt EXTENDED_GLOB     # Use extended globbing syntax.
 setopt globdots          # GLOBDOTS lets files beginning with a . be matched without explicitly specifying the dot
 
-# Show bottom up hierarchy of folders of the stack except the current folder
-alias d='dirs -v | tail +2'
-# Type a number and enter to go to that position in the folder stack
-for index ({1..9}) alias "$index"="cd +${index}"; unset index
-
-# Show folder hierarchy from bottom to root and let jump to any of that folders
-# https://github.com/junegunn/fzf/wiki/Examples#changing-directory
-alias b='cd ..'
-bb (){
-  local declare dirs=()
-
-  get_parent_dirs() {
-    current_path="$1"
-    while [[ "$current_path" != '/' ]]; do
-      if [[ -d "$current_path" ]]; then dirs+=("$current_path"); fi
-      # next parent dir
-      current_path="$(dirname "$current_path")"
-    done
-    dirs+=("/")
-    for _dir in "${dirs[@]}"; do echo $_dir; done
-  }
-
-  # Show all possible parents paths
-  # Remove the current path
-  # Count paths to easily select them from fzf
-  # Finally remove the added index and cd to the selected parent path
-  local DIR=$(get_parent_dirs "$(realpath "${1:-$PWD}")" | tail -n+2 | nl --starting-line-number 1 | fzf | cut -f2)
-  cd "$DIR"
-}
-# }}}
 
 # Jobs options {{{
 
@@ -370,23 +340,6 @@ export FZF_DEFAULT_OPTS='
 --color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
-# disable sort when completing options of any command
-zstyle ':completion:complete:*:options' sort false
-# use input as query string when completing zlua
-zstyle ':fzf-tab:complete:_zlua:*' query-string input
-zstyle ":completion:*:git-checkout:*" sort false
-zstyle ':completion:*:descriptions' format '[%d]'
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --ignore-glob=node_modules --color=always $realpath'
-
-function p() {
-  if [ $# -eq 0 ]; then
-    fzf --multi --bind "enter:execute(bat --theme \"Monokai Extended Bright Narnia\" --color always {+})+abort" --preview "bat --theme \"Monokai Extended Bright Narnia\" --color always {}"
-  else
-    bat --theme "Monokai Extended Bright Narnia" --color always "$@"
-  fi;
-}
-
 # CTRL-R - Paste the selected command from history into the command line {{{
 fzf-history-widget() {
   local selected num
@@ -407,6 +360,17 @@ fzf-history-widget() {
 }
 zle     -N   fzf-history-widget
 bindkey '^R' fzf-history-widget
+
+
+# disable sort when completing options of any command
+zstyle ':completion:complete:*:options' sort false
+# use input as query string when completing zlua
+zstyle ':fzf-tab:complete:_zlua:*' query-string input
+zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --ignore-glob=node_modules --color=always $realpath'
+
 # }}}
 # }}}
 
@@ -439,308 +403,18 @@ bindkey -M viins "^ " magic-space
 bindkey -M isearch " " magic-space
 # }}}
 
-alias paths='echo $PATH | sed "s/:/\n/g" | nl | tac'
 
-alias szsh='source ~/.zshrc'
+# source alias
+source ~/.config/zsh/zsh_alias
+# source functions
+source ~/.config/zsh/zsh_functions
 
-# Always preserve the environment with sudo
-alias sudo='sudo -E'
-
-# Remove $ symbol pasted in front of the command
-alias '$'=''
-
-# Improve mobility between folders {{{
-alias .='cd ..'
-alias ..='cd ../..'
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
-alias -- -='cd -'
-# }}}
-
-alias md='mkdir --parent --verbose'
-alias mkdir='mkdir --parents --verbose'
-
-function mc() {
-  mkdir --parent --verbose $1 && cd $1
-}
-
-# cd to the clipboard path
-function cdp() {
-  clipboard_path=$(xclip -out -selection clipboard)
-  [[ -d "$clipboard_path" ]] && cd "$clipboard_path" || echo "\e[31mClipboard doesn't containt a folder path!\e[39m"
-}
-
-alias pgrep='pgrep --full'
-alias pkill='pkill --full -9'
-alias k='\pkill --full -9'
 
 # Improve broot command
 # Always use br function to call it
 alias broot='broot --hidden --sizes --gitignore no'
 source "$HOME/.config/broot/launcher/bash/br"
 
-# global pipe aliases
-alias -g B='| bat'
-alias -g C='| xclip -selection clipboard'
-alias -g G='| grep --ignore-case'
-alias -g GE='| grep --extended-regexp'
-alias -g GF='| grep --fixed-strings'
-alias -g GP='| grep --perl-regexp'
-alias -g L='| less'
-alias -g V='| nvim -R -'
-alias -g W='| wc'
-
-# Always use float by default
-alias bc='bc -l'
-alias g=git
-eval "$(gh completion --shell zsh)"
-
-alias ls='ls --color=always --almost-all --human-readable --format=long --classify'
-alias l='ls'
-alias tree='tree -h -u -g -F -D -C -I "node_modules"'
-alias ll='exa --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules'
-alias lll='ll --tree'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
-alias ps='ps -o uname,pid,ppid,tty=TTY,stime,time,pcpu,pmem,cmd --forest'
-
-alias x='chmod +x'
-
-# rsync
-alias rs='rsync --archive --compress --info=progress2 --human-readable --update --delete'
-
-alias sshfs="sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
-
-# systemcstl
-alias sstatus='sudo systemctl status'
-alias srestart='sudo systemctl restart'
-alias sstart='sudo systemctl start'
-alias senable='sudo systemctl enable'
-alias sdisable='sudo systemctl disable'
-alias sstop='sudo systemctl stop'
-
-alias v='vagrant'
-
-alias a='ansible'
-alias ap='ansible-playbook'
-
-# translation functions {{{
-function te () {
-  # Use command to avoid recursion
-  # Use "$*" instead -join-sentence "$@"
-  # Remove spaces at beginning of the translated input
-  # Copy the translated input to the system clipboard
-  command trans -brief -no-ansi "$*" | tail --lines 1 | sed 's/^\s*//' | cb
-}
-# Force to never save in the shell history the translations (beginning with space)
-alias te=" te"
-
-function ts () {
-  # Use command to avoid recursion
-  # Use "$*" instead -join-sentence "$@"
-  # Remove spaces at beginning of the translated input
-  # Copy the translated input to the system clipboard
-  command trans ':es' -brief -no-ansi "$*" | tail --lines 1 | sed 's/^\s*//' | cb
-}
-# Force to never save in the shell history the translations (beginning with space)
-alias ts=" ts"
-
-function tf () {
-  # Use command to avoid recursion
-  # Use "$*" instead -join-sentence "$@"
-  # Remove spaces at beginning of the translated input
-  # Copy the translated input to the system clipboard
-  command trans ':fr' -brief -no-ansi "$*" | tail --lines 1 | sed 's/^\s*//' | cb
-}
-# Force to never save in the shell history the translations (beginning with space)
-alias tf=" tf"
-# }}}
-
-# cb STRING to copy to the clipboard
-# cb FILE to copy to the clipboard
-# echo string | cb to copy to the clipboard
-# cb to paste from the clipboard
-# cb | command to paste from the clipboad
-function cb () {
-  # stdin is a pipe
-  if [[ -p /dev/stdin ]] ; then
-    # stdin -> clipboard
-    xclip -selection clipboard -in
-  # stdin is not a pipe
-  elif [[ ! -z "$1" ]]; then
-    if [[ -f "$1" ]]; then
-      # file -> clipboard
-      xclip -selection clipboard -in "$1"
-    else
-      # string -> clipboard
-      echo "$*" | xclip -selection clipboard -in
-    fi
-  else
-    # clipboard -> stdout
-    # no arguments were passed
-    # xclip -selection clipboard -out
-  fi
-    xclip -selection clipboard -out
-}
-
-# Burn image files to USB
-function iso()  {
-  sudo umount $2 2> /dev/null
-  sudo dd bs=4M if=$1 of=$2 status=progress conv=fdatasync
-}
-
-# o function and open function with handlr {{{
-# It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
-function open() {
-  # handlr can open multiple files at the same time without the explict loop
-  # but with a loop it's better to set nohup each std and err outputs independently
-  # to check faster if a file is not running fine
-  for file in "$@"
-  do
-    # Run handlr with nohup in background and remove it from the jobs table
-     nohup handlr open "$file" >| /tmp/nohup-"$(basename $file)".out 2>| /tmp/nohup-"$(basename $file)".err < /dev/null &
-    disown %%
-  done
-}
-# If o doesn't have any argument, open the current dir
-function o() {
-  if [ $# -eq 0 ]; then
-    vifm .;
-  else
-    open "$@";
-  fi;
-}
-# }}}
-
-function python () {
-  # stdin is a pipe
-  if [[ -p /dev/stdin ]]; then
-    command python "$@"
-  else
-  # Use command to avoid the recursion
-  test -z "$1" && ptpython || command python "$@"
-  fi
-}
-
-function R () {
-  # stdin is a pipe
-  if [[ -p /dev/stdin ]]; then
-    command R "$@"
-else
-  # Use command to avoid the recursion
-  test -z "$1" && radian || command R "$@"
-  fi
-}
-
-# Never use vi
-alias vi='vim'
-
-function n() {
-  if [ $# -eq 0 ]; then
-    fzf --multi --bind "enter:execute(nvim {+})+abort" --preview "bat --theme \"Monokai Extended Bright Narnia\" --color always {}"
-  else
-    nvim "$@"
-  fi;
-}
-alias nd='nvim -d -c "set nofoldenable"'
-alias history='history | tac | nl --starting-line-number 2 --number-separator " |" | tac'
-alias h='history'
-alias du='du -h'
-alias dus='diskus'
-alias df='df -h'
-alias free='free -h'
-alias j="jobs -l"
-alias ncdu='ncdu --color dark'
-alias news='newsboat'
-alias fm='vifm'
-alias re='massren'
-alias T='tail -F'
-alias nano='micro'
-alias less='bat'
-
-export MANPAGER='nvim +Man!'
-export MANWIDTH=999
-alias m='man'
-
-# rg with grep -r behaviour
-alias ag='ag --smart-case --ignore node_modules'
-alias s='rg --smart-case --no-heading --with-filename --glob '"'"'!{node_modules}'"'"
-alias sn='rg --smart-case --no-heading --with-filename --no-ignore --hidden --glob '"'"'!{node_modules}'"'"
-
-# fd with find behaviour
-alias f='fd --exclude node_modules'
-
-# bat alias
-alias bat='bat --theme "Monokai Extended Bright Narnia"'
-
-# Safe ops. Ask the user before doing anything destructive.
-# Move rm files to the trash using trash-cli
-alias rm='trash'
-alias mv="mv -i"
-alias cp="cp -ri"
-alias ln="ln -i"
-unsetopt CLOBBER # Do not overwrite existing files with > and >>. # Use >! and >>! to bypass.
-
-alias ydl='youtube-dl --output "%(title)s.%(ext)s"'
-alias ydl3='youtube-dl --output "%(title)s.%(ext)s" --extract-audio --audio-format mp3'
-alias ydl4='youtube-dl --output "%(title)s.%(ext)s" --format mp4'
-
-function ff () {
-  firefox --private-window https://www.google.com/search?q="$1" &
-}
-# Never save firefox searches in the history
-alias ff=' ff'
-
-# Correct previous command
-export THEFUCK_EXCLUDE_RULES=fix_file # Fix https://github.com/nvbn/thefuck/issues/1153
-eval $(thefuck --alias)
-alias fk='fuck --yes'
-
-# Alias for rc files
-alias alacrittyrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/alacritty/alacritty.yml) && popd'
-alias gitrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/git/config) && popd'
-alias i3rc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/i3/config) && popd'
-alias mimerc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/mimeapps.list) && popd'
-alias newsboatrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/newsboat/config) && popd'
-alias nvimrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/nvim/init.lua) && popd'
-alias rofirc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/rofi/config.rasi) && popd'
-alias sshrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.ssh/config) && popd'
-alias tigrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/tig/config) && popd'
-alias tmuxrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.tmux.conf) && popd'
-alias vifmrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/vifm/vifmrc) && popd'
-alias vimrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.vimrc) && popd'
-alias zshrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.zshrc) && popd'
-alias tridactylrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/tridactyl/tridactylrc) && popd'
-alias dunstrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/dunst/dunstrc) && popd'
-
-# Alias for pacman
-alias pu="sudo pacman -Syyu --noconfirm"
-alias pd="sudo pacman -Syyuw --noconfirm"
-alias pmu="sudo pacman-mirrors --api --protocols all --set-branch stable --fasttrack && sudo pacman -Syy"
-alias pfk="sudo pacman-key --refresh-keys && sudo pacman-key --populate archlinux manjaro"
-alias pc="sudo pacman -Scc"
-alias pi="sudo pacman -S"
-# Alias for paru
-alias pua="paru --noconfirm -Syyu"
-
-# Alias for pip
-alias pipu="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
-
-# https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
-alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-alias tp=htop
-
-alias lc='libreoffice --calc'
-
-alias loc='tokei'
-
-# rsync alias
-alias rsync='rsync --archive --hard-links --compress --human-readable --info=progress2'
-# }}}
 
 # Automatic aliases for color output commands with Generic Colouriser
 [[ -s "$HOME/.config/grc/grc.zsh" ]] && source "$HOME/.config/grc/grc.zsh"
@@ -784,123 +458,6 @@ for font in "${(@k)font_hash}"; do
 done
 # }}}
 
-
-# get command {{{{
-# https://github.com/zimfw/zimfw/blob/master/modules/utility/init.zsh
-if [ -x "$(command -v "aria2c")" ]; then
-  alias get='aria2c --max-connection-per-server=5 --continue'
-elif [ -x "$(command -v "axel")" ]; then
-  alias get='axel --num-connections=5 --alternate'
-elif [ -x "$(command -v "wget")" ]; then
-  alias get='wget --continue --progress=bar --timestamping'
-elif [ -x "$(command -v "curl")" ]; then
-  alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
-fi
-# }}}
-
-# " Reduce PDF size by lossy recompressing with Ghostscript"
-# " Not guaranteed to succeed, but usually works"
-# " Usage: file.pdf [resolution_in_dpi]"
-# https://bash.cyberciti.biz/file-management/linux-shell-script-to-reduce-pdf-file-size
-function pdfc () {
-  echo $@ | xargs -d' ' -n 1 -P 0 -I{} zsh -ic '_pdfc {}'
-}
-function _pdfc () {
-  if [ -z "$1" ]; then
-    echo "Usage: file.pdf [resolution_in_dpi]"
-    return 1
-  fi
-  if [ -n "$2" ]; then
-    resolution="$2"
-  else
-    resolution="90"
-  fi
-  pdf="$1"
-
-  original_pdf=${pdf%.pdf}_original.pdf
-
-  mv "$pdf" "$original_pdf"
-
-  gs \
-    -q -dNOPAUSE -dBATCH -dSAFER \
-    -sDEVICE=pdfwrite \
-    -dCompatibilityLevel=1.3 \
-    -dPDFSETTINGS=/screen \
-    -dEmbedAllFonts=true \
-    -dSubsetFonts=true \
-    -dAutoRotatePages=/None \
-    -dColorImageDownsampleType=/Bicubic \
-    -dColorImageResolution="$resolution" \
-    -dGrayImageDownsampleType=/Bicubic \
-    -dGrayImageResolution="$resolution" \
-    -dMonoImageDownsampleType=/Subsample \
-    -dMonoImageResolution="$resolution" \
-    -sOutputFile="$pdf" \
-    "$original_pdf"
-
-  if [[ $? == 0 ]] then;
-    pdf_size=$(wc -c "$pdf" | cut -f1 -d' ' )
-    original_pdf_size=$(wc -c "$original_pdf" | cut -f1 -d' ')
-    if [[ "$original_pdf_size" -le "$pdf_size" ]]; then
-      >&2 echo "'$pdf' can't be compressed!"
-      mv "$original_pdf" "$pdf"
-    else
-      compression_ration=$(awk "BEGIN{printf \"%0.2f\", $original_pdf_size/$pdf_size}")
-      >&2 echo "$pdf"
-      >&2 echo "\tCompression ration: $compression_ration"
-      >&2 echo "\tFinal size: $(du -h $pdf | cut -f1)"
-    fi
-  else
-    >&2 echo "'$pdf' can't be processed!"
-  fi
-}
-
-# Extract any kind of compressed file
-function e () {
-case $1 in
-  *.tar)            tar xvf $1;;
-  *.tar.gz|*.tgz)   tar -I pigz -xvf $1;;
-  *.tar.xz|*.txz)   tar -I pixz -xvf $1;;
-  *.tar.bz2|*.tbz2) tar -I pbzip2 -xvf $1;;
-  *.tar.zst|*.tzst) tar -I zstdmt -xvf $1;;
-  *.bz2)            pbzip2 -dkv $1;;
-  *.xz)             pixz -dk $1;;
-  *.gz)             pigz -dkv $1;;
-  *.zst)            zstdmt -dkv $1;;
-  *.zip)            unzip $1;;
-  *.7z)             7z x $1;;
-  *.Z)              uncompress $1;;
-  *.rar)            unrar e $1;;
-  *)                >&2 echo "'$1' cannot be extracted, unknown compression format";;
-esac
-}
-
-# Compress any kind of file
-function c () {
-case $2 in
-  t)  tar cvf ${1}.tar $1; ext='tar';;
-  z)  zip -r ${1}.zip $1; ext='zip';;
-  7)  7z a ${1}.7z $1; ext='7z';;
-  g)  [[ -d $1 ]] && tar -I pigz -cvf ${1}.tar.gz $1 || pigz -kv $1; ext='gz';;
-  b)  [[ -d $1 ]] && tar -I pbzip2 -cvf ${1}.tar.bz2 $1 || pbzip2 -kv $1; ext='bz2';;
-  x)  [[ -d $1 ]] && tar -I pixz -cvf ${1}.tar.xz $1 || pixz -k $1; ext='xz';;
-  zs) [[ -d $1 ]] && tar -I 'zstdmt -19' -cvf ${1}.tar.zst $1 || zstdmt -19 -kv $1; ext='zst';;
-  *)  >&2 echo "'$1' cannot be compressed, unknown '$2' compression format" && return 1
-esac
-  compressed_file="${1}*.${ext}"
-  # force glob completion with $~
-  compressed_size=$(command du $~compressed_file | cut -f1)
-  original_size=$(command du -s "$1" | cut -f1)
-  >&2 echo $~compressed_file
-  compression_ration=$(awk "BEGIN{printf \"%0.2f\", $original_size/$compressed_size}")
-  >&2 echo "\tCompression ration: $compression_ration"
-  >&2 echo "\tFinal size: $(command du -h $~compressed_file | cut -f1)"
-}
-
-# Tar wrapper
-function t {
-tar cpf "$1.tar" "$1"
-}
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -968,9 +525,6 @@ if [ "$TMUX" == "" ]; then
 fi
 # }}}
 
-
-# A faster way to navigate the filesystem
-eval "$(zoxide init zsh)"
 
 eval "$(starship init zsh)"
 # zprof
