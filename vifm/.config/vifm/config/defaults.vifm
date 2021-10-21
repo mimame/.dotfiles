@@ -12,10 +12,13 @@ set caseoptions=p
 
 " Command-line option used to pass a command to 'shell' zsh
 " It's used in contexts where command comes from the user
-" Enable interactive mode which makes shell aliases and functions work
-" -i: Force shell to be interactive
 " -c: Take the first argument as a command to execute
-set shellcmdflag=-ic
+" Note that using this option to force interactive mode of the shell is most
+" likely a BAD IDEA.  In general interactive host and interactive child shell
+" can't share the same terminal session.  You can't even run such a shell in
+" background
+" Use the login shell instead with -l
+set shellcmdflag=-lc
 
 " Update terminal title
 set title
