@@ -1,3 +1,13 @@
+" These mappings will switch tmux window when appropriately
+" https://github.com/vifm/vifm/issues/708
+nnoremap <silent> <c-h> :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
+nnoremap <silent> <c-j> :if paneisat('bottom') | execute '!tmux select-pane -D %i' | else | execute 'wincmd j' | endif<cr>
+nnoremap <silent> <c-k> :if paneisat('top')    | execute '!tmux select-pane -U %i' | else | execute 'wincmd k' | endif<cr>
+nnoremap <silent> <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %i' | else | execute 'wincmd l' | endif<cr>
+" account for <c-h>/<bs> conflict
+nnoremap <silent> <bs>  :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
+
+
 " Recover full viewcolumns after leave only one pane
 nnoremap <c-w>o :only | :windo set viewcolumns=-{name},6{size},11{perms},9{uname},-8{gname},16{mtime}<cr>
 " Recover short viewcolumns after leave only one pane
