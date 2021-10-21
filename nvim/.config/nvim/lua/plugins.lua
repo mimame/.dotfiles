@@ -198,6 +198,12 @@ return require('packer').startup(function()
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       require('nvim-tree').setup({
+        -- Don't disable and hijack netrw by default
+        -- https://github.com/neovim/neovim/issues/13675#issuecomment-885666975
+        -- disables netrw completely
+        disable_netrw = false,
+        -- hijack netrw window on startup
+        hijack_netrw = false,
         -- open the tree when running this setup function
         open_on_setup = true,
         -- will not open on setup if the filetype is in this list
