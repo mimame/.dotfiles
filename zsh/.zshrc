@@ -661,7 +661,8 @@ alias T='tail -F'
 alias nano='micro'
 alias less='bat'
 
-export MANPAGER='nvim -R +":set filetype=man number" -'
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
 alias m='man'
 
 # rg with grep -r behaviour
