@@ -238,6 +238,8 @@ zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<-
 # Notify long running commands
 zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
 zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
+zstyle ':notify:*' enable-on-ssh no
+zstyle ':notify:*' error-log /dev/null
 
 # Folder options {{{
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
