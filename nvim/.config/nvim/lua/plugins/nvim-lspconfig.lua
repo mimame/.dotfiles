@@ -9,27 +9,38 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
   update_in_insert = false,
 })
 
-require('lspconfig').r_language_server.setup({})
-require('lspconfig').ansiblels.setup({})
-require('lspconfig').bashls.setup({})
-require('lspconfig').cmake.setup({})
-require('lspconfig').crystalline.setup({})
+local on_attach = function(client, bufnr)
+  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  -- Enable completion triggered by <c-x><c-o>
+  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+end
+
+local nvim_lsp = require('lspconfig')
+local servers = {
+  'r_language_server', 'ansiblels', 'bashls', 'cmake', 'crystalline', 'dockerls',
+  'dotls', 'gopls', 'html', 'jsonls', 'jedi_language_server', 'pyright', 'vimls', 'yamlls'
+}
+
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
+
 -- TODO: Fix E492: Not an editor command: require'lspconfig'["diagnosticls"].manager.try_add()
 -- require('lspconfig').diagnosticls.setup{}
-require('lspconfig').dockerls.setup({})
-require('lspconfig').dotls.setup({})
-require('lspconfig').gopls.setup({})
 -- Neovim does not currently include built-in snippets
 -- vscode-html-language-server only provides completions
 -- when snippet support is enabled. To enable completion,
 -- install a snippet plugin and add the following override
 -- to your language client capabilities during setup.
-require('lspconfig').html.setup({
-  capabilities = capabilities,
-})
-require('lspconfig').jsonls.setup({})
-require('lspconfig').jedi_language_server.setup({})
 require('lspconfig').julials.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
   on_new_config = function(new_config, new_root_dir)
     server_path = '/home/paradise/.julia/packages/LanguageServer/JrIEf/src/LanguageServer.jl/src'
     cmd = {
@@ -70,7 +81,6 @@ require('lspconfig').julials.setup({
   end,
 })
 
-require('lspconfig').pyright.setup({})
 require('lspconfig').texlab.setup({
   settings = {
     texlab = {
@@ -98,8 +108,6 @@ require('lspconfig').texlab.setup({
     },
   },
 })
-require('lspconfig').vimls.setup({})
-require('lspconfig').yamlls.setup({})
 
 -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
 local sumneko_root_path = '/usr/share/lua-language-server'
