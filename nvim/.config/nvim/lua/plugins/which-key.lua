@@ -133,18 +133,18 @@ wk.register({
     e = { '<cmd>lua vim.lsp.buf.references()<CR>', 'Symbol references' },
   },
 }, {
-  prefix = '<localleader>',
+  prefix = '<leader>',
 })
 
 wk.register({
-  w = {
+  W = {
     name = 'Workspace',
     a = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add workspace folder' },
     r = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove workspace folder' },
     l = { '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', 'List workspace folders' },
   },
 }, {
-  prefix = '<localleader>',
+  prefix = '<leader>',
 })
 
 wk.register({
@@ -172,7 +172,7 @@ wk.register({
 })
 
 wk.register({
-  s = {
+  S = {
     name = 'Search and Replace',
     s = { '<cmd>lua require("spectre").open()<CR>', 'Open Spectre' },
     S = { '<cmd>lua require("spectre").open_visual()<CR>', 'Open visual Spectre' },
