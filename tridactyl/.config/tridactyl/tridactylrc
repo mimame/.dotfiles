@@ -7,18 +7,19 @@ sanitise tridactyllocal tridactylsync
 "
 " Blacklist (ignore mode)
 "
+" seturl [URL] noiframe true
 blacklistadd www.typing.com
+autocmd DocStart typing.com mode ignore
 blacklistadd https://web.whatsapp.com/
+autocmd DocStart web.whatsapp.com
 blacklistadd https://drive.google.com/
+autocmd DocStart drive.google.com mode ignore
 blacklistadd https://docs.google.com/
+autocmd DocStart docs.google.com mode ignore
 blacklistadd https://www.keybr.com/
-blacklistadd https://todoist.com
-
+autocmd DocStart keybr.com
 blacklistadd crct2107
-blacklistadd crct2107:8787
-blacklistadd http://crct2107
-blacklistadd http://crct2107:8787
-blacklistadd http://crct2107:8787/auth-sign-in
+autocmd DocStart crct2107 mode ignore
 
 "
 " Theme
