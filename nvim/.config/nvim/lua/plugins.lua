@@ -74,7 +74,8 @@ return require('packer').startup(function()
     end,
   })
 
-  -- Next-generation motion plugin with incremental input proce
+  -- Next-generation motion plugin with incremental input processing,
+  -- allowing for unparalleled speed with near-zero cognitive effort
   use({
     'ggandor/lightspeed.nvim',
   })
