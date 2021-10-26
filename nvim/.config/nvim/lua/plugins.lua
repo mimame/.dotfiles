@@ -74,6 +74,11 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Next-generation motion plugin with incremental input proce
+  use({
+    'ggandor/lightspeed.nvim',
+  })
+
   -- Neovim motions on speed!
   use({
     'phaazon/hop.nvim',
