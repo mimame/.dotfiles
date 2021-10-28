@@ -68,7 +68,7 @@ alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r 
 # Completion config {{{
 # Load compinit
 # The following lines were added by compinstall {{{
-zstyle :compinstall filename "$HOME/.zshrc"
+zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
 autoload -Uz compinit
 # http://stackoverflow.com/a/12575883
 # On slow systems, checking the cached .zcompdump file to see if it must be

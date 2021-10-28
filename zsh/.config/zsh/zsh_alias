@@ -9,7 +9,7 @@ alias b='cd ..'
 
 alias paths='echo $PATH | sed "s/:/\n/g" | nl | tac'
 
-alias szsh='source ~/.zshrc'
+alias szsh='source ~/.config/zsh/.zshrc'
 
 # Always preserve the environment with sudo
 alias sudo='sudo -E'
@@ -142,7 +142,7 @@ alias tigrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/tig/config);popd'
 alias tmuxrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.tmux.conf);popd'
 alias vifmrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/vifm/vifmrc);popd'
 alias vimrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.vimrc);popd'
-alias zshrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.zshrc);popd'
+alias zshrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/zsh/.zshrc);popd'
 alias tridactylrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/tridactyl/tridactylrc);popd'
 alias dunstrc='pushd ~/.dotfiles && nvim $(readlink -f ~/.config/dunst/dunstrc);popd'
 
