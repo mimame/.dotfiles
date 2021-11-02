@@ -54,7 +54,7 @@
   cour = "!f() { git checkout --ours $@ && git add $@; }; f"
   cthe = "!f() { git checkout --theirs $@ && git add $@; }; f"
   # cherry-pick - https://git-scm.com/docs/git-cherry-pick
-  cp = cherry-pick
+  chp = cherry-pick
   # clone - https://git-scm.com/docs/git-clone
   cl  = clone
   clb = clone --branch
