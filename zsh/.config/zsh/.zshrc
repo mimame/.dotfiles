@@ -374,6 +374,8 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --ignore-glob=node_modules --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
+# Accept the result and start another completion immediately
+zstyle ':fzf-tab:*' continuous-trigger 'space'
 
 # }}}
 # }}}
