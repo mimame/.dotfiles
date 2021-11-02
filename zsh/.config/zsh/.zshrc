@@ -376,6 +376,8 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --ignore-glob=node_modules -
 zstyle ':fzf-tab:*' switch-group ',' '.'
 # Accept the result and start another completion immediately
 zstyle ':fzf-tab:*' continuous-trigger 'space'
+# Press this key will use current user input as the final completion result
+zstyle ':fzf-tab:*' accept-line enter
 
 # }}}
 # }}}
