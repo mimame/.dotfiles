@@ -1,0 +1,72 @@
+
+# This configuration file lets you define new commands
+# or change the shortcut of built-in verbs.
+# You can change the colors of broot too.
+#
+# Configuration documentation is available at https://dystroy.org/broot
+#
+
+#  --sizes --permissions --dates --show-git-info
+default_flags = "spdg"
+
+# escape key to quit broot when there's nothing to cancel
+quit_on_last_cancel = true
+
+# Themes come from syntect
+syntax_theme = "base16-eighties.dark"
+
+# selected lines marked with triangles
+show_selection_mark = true
+
+# The name should be kept at end as it's the only one with a variable size
+cols_order = [
+    "mark",
+    "git",
+    "branch",
+    "permission",
+    "date",
+    "size",
+    "count",
+    "name",
+]
+
+# Keep black background
+[skin]
+default = "none none"
+
+[special-paths]
+"node_modules" = "no-enter"
+".git" = "no-enter"
+
+
+###############################
+# shortcuts for built-in verbs:
+
+[[verbs]]
+invocation = "p"
+internal = ":parent"
+
+#####################
+# user defined verbs:
+
+# If $EDITOR isn't set on your computer, you should either set it
+#  or just replace it with your editor of choice in the 'execution'
+#  pattern.
+# Example:
+#  execution = "/usr/bin/nvim {file}"
+[[verbs]]
+invocation = "edit"
+shortcut = "e"
+apply_to = "file"
+external = "nvim {file}"
+leave_broot = false
+
+[[verbs]]
+name = "view"
+invocation = "view"
+external = "bat {file}"
+leave_broot = false
+
+[[verbs]]
+invocation = "mkdir {subpath}"
+external = "mkdir -p {directory}/{subpath}"
