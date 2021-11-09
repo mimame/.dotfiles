@@ -513,6 +513,14 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Stabilize window open/close events
+  use {
+    "luukvbaal/stabilize.nvim",
+    config = function()
+      require("stabilize").setup()
+    end
+  }
+
   -- markdown preview plugin for (neo)vim
   use({
     'iamcco/markdown-preview.nvim',
