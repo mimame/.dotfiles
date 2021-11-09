@@ -522,6 +522,15 @@ return require('packer').startup(function()
   -- A small automated session manager for Neovim
   use({ 'rmagatti/auto-session' })
 
+  -- Highlight, list and search todo comments in your projects
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {}
+    end
+  }
+
   -- VIM syntax plugin for Tridactyl configuration files
   use({ 'tridactyl/vim-tridactyl' })
 
