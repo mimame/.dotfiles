@@ -68,6 +68,7 @@ wk.register({
     u = { '<cmd>lua require"gitsigns.actions".undo_stage_hunk()<cr>', 'Undo stage hunk' },
     r = { '<cmd>lua require"gitsigns.actions".reset_hunk()<cr>', 'Undo stage hunk' },
     p = { '<cmd>lua require"gitsigns.actions".preview_hunk()<cr>', 'Preview hunk' },
+    l = { '<cmd>Gitsigns setloclist<cr>', 'Hunks list' },
     B = { '<cmd>lua require"gitsigns.actions".blame_line(true)<cr>', 'Git blame line' },
   },
 }, {
