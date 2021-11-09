@@ -23,7 +23,7 @@ wk.register({
     q = { '<cmd>Telescope quickfix<cr>', 'Show quickfix window' },
     t = { '<cmd>TroubleToggle<cr>', 'Trouble window' },
     T = { '<cmd>TodoTelescope<cr>', 'Todo window' },
-    g = { '<cmd>Telescope tags<cr>', 'Tags' },
+    G = { '<cmd>Telescope tags<cr>', 'Tags' },
     w = { '<cmd>Telescope grep_string<cr>', 'Grep this word' },
   },
 }, {
