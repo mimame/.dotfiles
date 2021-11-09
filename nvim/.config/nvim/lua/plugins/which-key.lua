@@ -21,8 +21,9 @@ wk.register({
     g = { '<cmd>Telescope live_grep<cr>', 'Grep' },
     h = { '<cmd>Telescope oldfiles<cr>', 'History' },
     q = { '<cmd>Telescope quickfix<cr>', 'Show quickfix window' },
-    t = { '<cmd>TodoTelescope<cr>', 'Todo window' },
-    T = { '<cmd>Telescope tags<cr>', 'Tags' },
+    t = { '<cmd>TroubleToggle<cr>', 'Trouble window' },
+    T = { '<cmd>TodoTelescope<cr>', 'Todo window' },
+    g = { '<cmd>Telescope tags<cr>', 'Tags' },
     w = { '<cmd>Telescope grep_string<cr>', 'Grep this word' },
   },
 }, {

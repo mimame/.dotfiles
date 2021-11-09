@@ -344,6 +344,17 @@ return require('packer').startup(function()
     end,
   })
 
+-- A pretty diagnostics, references, telescope results, quickfix
+-- and location list to help you solve all the trouble your code is causing
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+      }
+    end
+  }
+
   -- A snazzy bufferline for Neovim
   use({
     'akinsho/bufferline.nvim',
