@@ -111,8 +111,8 @@
     - hyphen-en
     - hyphen-es
     - hyphen-fr
-    - i3status-rust
     - i3-wm
+    - i3status-rust
     - igraph
     - inetutils
     - inkscape
@@ -205,11 +205,11 @@
     - ruby
     - rustup
     - screen
-    - singularity-container
     - screenfetch
     - seahorse
     - shards
     - shfmt
+    - singularity-container
     - smartmontools
     - speedtest-cli
     - sshfs
@@ -220,6 +220,7 @@
     - stress
     - sudo
     - sysstat
+    - tealdeer
     - tela-icon-theme
     - telegram-desktop
     - terminator
