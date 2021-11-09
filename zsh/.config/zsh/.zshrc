@@ -417,12 +417,10 @@ source ~/.config/zsh/zsh_alias
 # source functions
 source ~/.config/zsh/zsh_functions
 
-
 # Improve broot command
 # Always use br function to call it
-alias broot='broot --hidden --sizes --gitignore no'
+alias broot=br
 source "$HOME/.config/broot/launcher/bash/br"
-
 
 # Automatic aliases for color output commands with Generic Colouriser
 [[ -s "$HOME/.config/grc/grc.zsh" ]] && source "$HOME/.config/grc/grc.zsh"
