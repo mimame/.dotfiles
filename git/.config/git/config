@@ -555,3 +555,8 @@
   # https://git-scm.com/docs/git-config#git-config-webbrowser
   # Specify the web browser
   browser = firefox
+
+[credential]
+  # https://git-scm.com/docs/gitcredentials#Documentation/gitcredentials.txt-cache
+  # Cache credentials in memory for a short period of time
+  helper = cache
