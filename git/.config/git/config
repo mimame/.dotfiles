@@ -435,9 +435,13 @@
   # https://git-scm.com/docs/git-mergetool#git-mergetool---gui
   guitool       = meld
   # https://git-scm.com/docs/git-config#git-config-mergetool
-  tool          = vim
+  tool          = nvim
 
 [mergetool]
+  # https://git-scm.com/docs/git-mergetool#Documentation/git-mergetool.txt---toollttoolgt
+  # Use the merge resolution program specified by <tool>
+  tool = nvim
+  guitool = meld
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergetoolkeepBackup
   # After performing a merge, don't save the original file with conflict markers with a .orig extension
   keepBackup = false
@@ -445,7 +449,7 @@
   # Don't show the message: Hit return to start merge resolution
   prompt =  false
 
-[mergetool "vim"]
+[mergetool "nvim"]
   # User diff3 merge style like in meld
   # For that,  replace $BASE with $MERGED and then hide it
   cmd = nvim -d $LOCAL $MERGED $REMOTE $BASE -c '$wincmd w' -c 'wincmd l' -c 'wincmd c' -c 'wincmd h'
