@@ -75,21 +75,21 @@ return require('packer').startup(function()
   })
 
   -- magit for neovim
-  use {
+  use({
     'TimUntersberger/neogit',
     requires = 'nvim-lua/plenary.nvim',
     cmd = 'Neogit',
-    config = function ()
+    config = function()
       require('neogit').setup({
         disable_insert_on_commit = false,
         sections = {
           untracked = {
-            folded = true
+            folded = true,
           },
         },
       })
-    end
-  }
+    end,
+  })
 
   -- Next-generation motion plugin with incremental input processing,
   -- allowing for unparalleled speed with near-zero cognitive effort
@@ -180,12 +180,12 @@ return require('packer').startup(function()
 
   -- Smart and powerful comment plugin for neovim
   -- Supports commentstring, dot repeat, left-right/up-down motions, hooks, and more
-  use {
+  use({
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
-    end
-  }
+    end,
+  })
 
   -- Tmux integration for nvim features pane movement and resizing from within nvim.
   use({
@@ -231,21 +231,21 @@ return require('packer').startup(function()
         open_on_setup = true,
         -- will not open on setup if the filetype is in this list
         -- Never open nvim-tree with git commit messages files
-        ignore_ft_on_setup  = { 'git', 'gitcommit', 'COMMIT_EDITMSG', '__committia_diff__' },
+        ignore_ft_on_setup = { 'git', 'gitcommit', 'COMMIT_EDITMSG', '__committia_diff__' },
         -- closes neovim automatically when the tree is the last **WINDOW** in the view
         auto_close = true,
         -- show lsp diagnostics in the signcolumn
         diagnostics = {
           enable = true,
           icons = {
-            hint = "",
-            info = "",
-            warning = "",
-            error = "",
-          }
+            hint = '',
+            info = '',
+            warning = '',
+            error = '',
+          },
         },
         -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
-        open_on_tab  = true,
+        open_on_tab = true,
         -- update the root directory of the tree to the one of the folder containing
         -- the file if the file is not under the current root directory
         update_focused_file = {
@@ -253,30 +253,35 @@ return require('packer').startup(function()
           enable = true,
           -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
           -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable`
-          ignore_list  = { 'git', 'gitcommit', 'COMMIT_EDITMSG', '__committia_diff__' },
+          ignore_list = { 'git', 'gitcommit', 'COMMIT_EDITMSG', '__committia_diff__' },
         },
         view = {
           -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
           side = 'right',
           -- if true the tree will resize itself after opening a file
           auto_resize = true,
-        }
+        },
       })
       -- show relative numbers
       require('nvim-tree.view').View.winopts.relativenumber = true
       -- Always open nvim-tree automatically at startup
       -- Force nvim-tree to find the file at startup
-      cmd("NvimTreeFindFile")
-      cmd("normal! zz<CR>")
-      cmd("wincmd p")
-      require("nvim-tree.events").on_nvim_tree_ready(function()
-        if vim.bo.filetype == 'gitcommit' or vim.bo.filetype == 'git' or vim.fn.expand('#')  == "__committia_diff__" or vim.fn.expand('#') == 'COMMIT_EDITMSG' then
-          cmd("NvimTreeToggle")
-          cmd("NvimTreeClose")
+      cmd('NvimTreeFindFile')
+      cmd('normal! zz<CR>')
+      cmd('wincmd p')
+      require('nvim-tree.events').on_nvim_tree_ready(function()
+        if
+          vim.bo.filetype == 'gitcommit'
+          or vim.bo.filetype == 'git'
+          or vim.fn.expand('#') == '__committia_diff__'
+          or vim.fn.expand('#') == 'COMMIT_EDITMSG'
+        then
+          cmd('NvimTreeToggle')
+          cmd('NvimTreeClose')
         else
-          cmd("NvimTreeFindFile")
-          cmd("normal! zz<CR>")
-          cmd("wincmd p")
+          cmd('NvimTreeFindFile')
+          cmd('normal! zz<CR>')
+          cmd('wincmd p')
         end
       end)
     end,
@@ -361,16 +366,15 @@ return require('packer').startup(function()
     end,
   })
 
--- A pretty diagnostics, references, telescope results, quickfix
--- and location list to help you solve all the trouble your code is causing
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+  -- A pretty diagnostics, references, telescope results, quickfix
+  -- and location list to help you solve all the trouble your code is causing
+  use({
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require("trouble").setup {
-      }
-    end
-  }
+      require('trouble').setup({})
+    end,
+  })
 
   -- A snazzy bufferline for Neovim
   use({
@@ -477,8 +481,8 @@ return require('packer').startup(function()
   use({
     'Pocco81/AutoSave.nvim',
     config = function()
-      require("autosave").setup()
-    end
+      require('autosave').setup()
+    end,
   })
 
   -- More useful word motions for Vim
@@ -542,12 +546,12 @@ return require('packer').startup(function()
   })
 
   -- Stabilize window open/close events
-  use {
-    "luukvbaal/stabilize.nvim",
+  use({
+    'luukvbaal/stabilize.nvim',
     config = function()
-      require("stabilize").setup()
-    end
-  }
+      require('stabilize').setup()
+    end,
+  })
 
   -- markdown preview plugin for (neo)vim
   use({
@@ -559,13 +563,13 @@ return require('packer').startup(function()
   use({ 'rmagatti/auto-session' })
 
   -- Highlight, list and search todo comments in your projects
-  use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+  use({
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
     config = function()
-      require("todo-comments").setup {}
-    end
-  }
+      require('todo-comments').setup({})
+    end,
+  })
 
   -- VIM syntax plugin for Tridactyl configuration files
   use({ 'tridactyl/vim-tridactyl' })
@@ -574,7 +578,7 @@ return require('packer').startup(function()
   use({ 'vifm/vifm.vim' })
 
   -- Displays startup time
-  use({'tweekmonster/startuptime.vim'})
+  use({ 'tweekmonster/startuptime.vim' })
 
   -- High Contrast & Vivid Color Scheme based on Monokai Pro
   use({ 'sainnhe/sonokai' })

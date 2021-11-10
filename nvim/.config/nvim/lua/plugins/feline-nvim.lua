@@ -254,11 +254,11 @@ require('feline').setup({
       '^fugitive$',
       '^fugitiveblame$',
       '^qf$',
-      '^help$'
+      '^help$',
     },
     buftypes = {
-      '^terminal$'
+      '^terminal$',
     },
-    bufnames = {}
+    bufnames = {},
   },
 })

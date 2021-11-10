@@ -10,25 +10,39 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 })
 
 local on_attach = function(client, bufnr)
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  local function buf_set_option(...)
+    vim.api.nvim_buf_set_option(bufnr, ...)
+  end
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
 
 local nvim_lsp = require('lspconfig')
 local servers = {
-  'r_language_server', 'ansiblels', 'bashls', 'cmake', 'crystalline', 'dockerls',
-  'dotls', 'gopls', 'html', 'jsonls', 'jedi_language_server', 'pyright', 'vimls', 'yamlls'
+  'r_language_server',
+  'ansiblels',
+  'bashls',
+  'cmake',
+  'crystalline',
+  'dockerls',
+  'dotls',
+  'gopls',
+  'html',
+  'jsonls',
+  'jedi_language_server',
+  'pyright',
+  'vimls',
+  'yamlls',
 }
 
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  nvim_lsp[lsp].setup({
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
-    }
-  }
+    },
+  })
 end
 
 -- TODO: Fix E492: Not an editor command: require'lspconfig'["diagnosticls"].manager.try_add()
