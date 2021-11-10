@@ -74,6 +74,23 @@ return require('packer').startup(function()
     end,
   })
 
+  -- magit for neovim
+  use {
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim',
+    cmd = 'Neogit',
+    config = function ()
+      require('neogit').setup({
+        disable_insert_on_commit = false,
+        sections = {
+          untracked = {
+            folded = true
+          },
+        },
+      })
+    end
+  }
+
   -- Next-generation motion plugin with incremental input processing,
   -- allowing for unparalleled speed with near-zero cognitive effort
   use({
