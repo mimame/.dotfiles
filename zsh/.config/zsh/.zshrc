@@ -244,8 +244,8 @@ zstyle ':notify:*' error-log /dev/null
 # Folder options {{{
 # https://github.com/sorin-ionescu/prezto/blob/master/modules/directory/init.zsh
 setopt AUTO_CD           # Auto changes to a directory without typing cd.
-setopt AUTO_PUSHD        # Push the old directory onto the stack on cd.
-setopt PUSHD_IGNORE_DUPS # Do not store duplicates in the stack.
+unsetopt AUTO_PUSHD        # Don't auto push the old directory onto the stack on cd.
+unsetopt PUSHD_IGNORE_DUPS # Store duplicates in the stack. Fix popd: directory stack empty when pushing same directory
 setopt PUSHD_SILENT      # Do not print the directory stack after pushd or popd.
 setopt PUSHD_TO_HOME     # Push to home directory when no argument is given.
 setopt CDABLE_VARS       # Change directory to a path stored in a variable.
