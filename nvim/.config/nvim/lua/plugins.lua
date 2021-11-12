@@ -535,7 +535,16 @@ return require('packer').startup(function()
   })
 
   -- Set of operators and textobjects to search/select/edit sandwiched texts
-  use({ 'machakann/vim-sandwich' })
+  use({
+    'machakann/vim-sandwich',
+    config = function ()
+      -- `ys`, `yss`, `yS`, `ds`, `cs` in normal mode and `S` in visual mode
+      -- are available. Not in vim-surround but `dss` and `css` are also
+      -- available, these are similar as `ds` and `cs` but determine
+      -- deleted/replaced texts automatically
+      cmd("runtime macros/sandwich/keymap/surround.vim")
+    end
+  })
 
   -- Smooth scrolling neovim plugin written in lua
   use({
