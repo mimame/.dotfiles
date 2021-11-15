@@ -509,7 +509,7 @@ return require('packer').startup(function()
   })
 
   -- A (Neo)vim plugin for formatting code
-  use({'sbdchd/neoformat'})
+  use({ 'sbdchd/neoformat' })
 
   -- EditorConfig plugin for Vim
   use({ 'editorconfig/editorconfig-vim' })
@@ -540,13 +540,13 @@ return require('packer').startup(function()
   -- Set of operators and textobjects to search/select/edit sandwiched texts
   use({
     'machakann/vim-sandwich',
-    config = function ()
+    config = function()
       -- `ys`, `yss`, `yS`, `ds`, `cs` in normal mode and `S` in visual mode
       -- are available. Not in vim-surround but `dss` and `css` are also
       -- available, these are similar as `ds` and `cs` but determine
       -- deleted/replaced texts automatically
-      cmd("runtime macros/sandwich/keymap/surround.vim")
-    end
+      cmd('runtime macros/sandwich/keymap/surround.vim')
+    end,
   })
 
   -- Smooth scrolling neovim plugin written in lua
@@ -573,7 +573,7 @@ return require('packer').startup(function()
 
   -- Single tabpage interface for easily cycling
   -- diffs for all modified files for any git rev
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+  use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
 
   -- A small automated session manager for Neovim
   use({ 'rmagatti/auto-session' })
