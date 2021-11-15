@@ -8,4 +8,4 @@
   max_selection_size_bytes = 0
   static_history = [""]
   trim_space_from_selection = true
-  use_primary_selection_as_input = false
+  use_primary_selection_as_input = true
