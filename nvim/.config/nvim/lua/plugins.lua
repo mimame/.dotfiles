@@ -568,6 +568,10 @@ return require('packer').startup(function()
     run = 'cd app && yarn install',
   })
 
+  -- Single tabpage interface for easily cycling
+  -- diffs for all modified files for any git rev
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
   -- A small automated session manager for Neovim
   use({ 'rmagatti/auto-session' })
 
