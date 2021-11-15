@@ -508,6 +508,9 @@ return require('packer').startup(function()
     end,
   })
 
+  -- A (Neo)vim plugin for formatting code
+  use({'sbdchd/neoformat'})
+
   -- EditorConfig plugin for Vim
   use({ 'editorconfig/editorconfig-vim' })
 
