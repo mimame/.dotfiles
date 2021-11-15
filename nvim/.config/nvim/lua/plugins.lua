@@ -587,6 +587,14 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Escape from insert mode without delay when typing
+  use({
+    'max397574/better-escape.nvim',
+    config = function()
+      require('better_escape').setup()
+    end,
+  })
+
   -- VIM syntax plugin for Tridactyl configuration files
   use({ 'tridactyl/vim-tridactyl' })
 
