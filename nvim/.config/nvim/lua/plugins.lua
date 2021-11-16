@@ -439,6 +439,9 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Viewer & Finder for LSP symbols and tags
+  use ({'liuchengxu/vista.vim'})
+
   -- A neovim lua plugin to help easily manage multiple terminal windows
   use({
     'akinsho/toggleterm.nvim',
