@@ -19,7 +19,6 @@ end
 
 local nvim_lsp = require('lspconfig')
 local servers = {
-  'r_language_server',
   'ansiblels',
   'bashls',
   'cmake',
@@ -28,10 +27,12 @@ local servers = {
   'dotls',
   'gopls',
   'html',
-  'jsonls',
   'jedi_language_server',
+  'jsonls',
   'julials',
   'pyright',
+  'r_language_server',
+  'rust_analyzer',
   'vimls',
   'yamlls',
 }
