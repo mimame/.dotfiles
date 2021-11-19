@@ -152,3 +152,5 @@ step_width = 1
 block = "sound"
 step_width = 1
 on_click = "pavucontrol"
+headphones_indicator = true
+show_volume_when_muted = true
