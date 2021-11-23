@@ -81,7 +81,9 @@ alias a='ansible'
 alias ap='ansible-playbook'
 
 # Never use vi
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
+alias n='nvim'
 
 alias nd='nvim -d -c "set nofoldenable"'
 alias history='history | tac | nl --starting-line-number 2 --number-separator " |" | tac'

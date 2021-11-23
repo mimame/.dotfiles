@@ -149,14 +149,6 @@ else
   fi
 }
 
-function n() {
-  if [ $# -eq 0 ]; then
-    fzf --multi --bind "enter:execute(nvim {+})+abort" --preview "bat --theme \"Monokai Extended Bright Narnia\" --color always {}"
-  else
-    nvim "$@"
-  fi;
-}
-
 function ff () {
   firefox --private-window https://www.google.com/search?q="$1" &
 }
