@@ -105,6 +105,11 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/i3/sc
 bindsym Shift+Ctrl+XF86AudioRaiseVolume exec --no-startup-id light -A 5 && ~/.config/i3/scripts/dunstify_notification "light"
 bindsym Shift+Ctrl+XF86AudioLowerVolume exec --no-startup-id light -U 5 && ~/.config/i3/scripts/dunstify_notification "light"
 
+# dunst
+bindsym Ctrl+Shift+space exec --no-startup-id dunstctl close-all
+# bindsym Ctrl+space+period exec --no-startup-id dunstctl close
+# bindsym Ctrl+Shift+space exec --no-startup-id dunstctl history-pop
+
 # Print Screen controls
 bindsym Print exec ~/.config/i3/scripts/screenshot
 bindsym Ctrl+Print exec flameshot gui
