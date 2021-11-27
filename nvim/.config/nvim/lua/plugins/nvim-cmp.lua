@@ -7,8 +7,7 @@ cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = 
 local lspkind = require('lspkind')
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 cmp.setup({})
 
@@ -46,10 +45,7 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -77,17 +73,33 @@ cmp.setup({
     }),
   },
   -- You should specify your *installed* sources.
-  sources = {
-    { name = 'buffer' },
-    { name = 'nvim_lua' },
+  sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'path' },
     { name = 'vsnip' },
-    { name = 'tmux' },
-    { name = 'latex_symbols' },
-    { name = 'look', keyword_length = 2 },
     { name = 'treesitter' },
+    { name = 'buffer' },
+    { name = 'look', keyword_length = 2 },
+    { name = 'path' },
     { name = 'nuspell' },
     { name = 'spell' },
+    { name = 'tmux' },
+    { name = 'nvim_lua' },
+    { name = 'latex_symbols' },
+  })
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' },
   },
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
 })

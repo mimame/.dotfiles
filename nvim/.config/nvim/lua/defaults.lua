@@ -165,7 +165,7 @@ opt.omnifunc = 'syntaxcomplete#Complete'
 
 -- Show popup also with only one match
 -- Force the user to select one match from the menu
-opt.completeopt = 'menuone,noselect'
+opt.completeopt = 'menu,menuone,noselect'
 
 -- Delete over line breaks, automatically-inserted indentation, place where insert mode started
 opt.backspace = 'indent,eol,start'

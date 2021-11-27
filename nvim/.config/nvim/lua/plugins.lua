@@ -141,6 +141,7 @@ return require('packer').startup(function()
       { 'ray-x/cmp-treesitter' },
       { 'f3fora/cmp-nuspell', rocks = { 'lua-nuspell' } },
       { 'f3fora/cmp-spell' },
+      { 'hrsh7th/cmp-cmdline' },
     },
     config = function()
       require('./plugins/nvim-cmp')
