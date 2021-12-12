@@ -159,22 +159,34 @@ return require('packer').startup(function()
       local cmp = require('cmp')
       local lspkind = require('lspkind')
 
-      cmp.setup({
+      cmp.setup {
         formatting = {
-          format = function(entry, vim_item)
-            vim_item.kind = lspkind.presets.default[vim_item.kind] .. ' ' .. vim_item.kind
-            vim_item.menu = ({
-              nvim_lsp = '[LSP]',
-              buffer = '[Buffer]',
-              nvim_lua = '[nvim-lua]',
-              path = '[Path]',
-              vsnip = '[Snippet]',
-              --  tmux = ''[Tmux']
-            })[entry.source.name]
-            return vim_item
-          end,
-        },
-      })
+          format = lspkind.cmp_format({
+            with_text = true, -- do not show text alongside icons
+            maxwidth = 120, -- prevent the popup from showing more than provided characters (e.g 120 will not show more than 120 characters)
+
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            before = function (entry, vim_item)
+              vim_item.kind = lspkind.presets.default[vim_item.kind] .. ' ' .. vim_item.kind
+              vim_item.menu = ({
+                nvim_lsp = '[LSP]',
+                vsnip = '[Snippet]',
+                treesitter = '[Treesitter]',
+                buffer = '[Buffer]',
+                look = '[Look]',
+                path = '[Path]',
+                nvim_lua = '[nvim-lua]',
+                latex_symbols = '[Latex]',
+                tmux = '[Tmux]',
+                -- nuspell = '[Nuspell]',
+                -- spell = '[Spell]',
+              })[entry.source.name]
+              return vim_item
+            end
+          })
+        }
+      }
     end,
   })
 

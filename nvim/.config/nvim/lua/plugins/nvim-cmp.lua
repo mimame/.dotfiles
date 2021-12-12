@@ -80,11 +80,11 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'look', keyword_length = 2 },
     { name = 'path' },
-    { name = 'nuspell' },
-    { name = 'spell' },
     { name = 'tmux' },
     { name = 'nvim_lua' },
     { name = 'latex_symbols' },
+    -- { name = 'nuspell' },
+    -- { name = 'spell' },
   })
 })
 
