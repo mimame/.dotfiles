@@ -12,7 +12,6 @@ return require('packer').startup(function()
   -- Nvim Treesitter configurations and abstraction layer
   use({
     'nvim-treesitter/nvim-treesitter',
-    branch = '0.5-compat',
     run = ':TSUpdate',
     requires = { { 'windwp/nvim-ts-autotag' }, { 'p00f/nvim-ts-rainbow' }, { 'andymass/vim-matchup' } },
     config = function()
