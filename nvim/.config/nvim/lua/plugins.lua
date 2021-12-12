@@ -610,6 +610,17 @@ return require('packer').startup(function()
     end,
   })
 
+
+  -- A better user experience for viewing and interacting with Vim marks
+  use({
+    'chentau/marks.nvim',
+    config = function ()
+     require('marks').setup{
+       sign_priority=10
+     }
+    end
+  })
+
   -- VIM syntax plugin for Tridactyl configuration files
   use({ 'tridactyl/vim-tridactyl' })
 
