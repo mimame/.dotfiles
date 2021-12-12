@@ -70,7 +70,7 @@ return require('packer').startup(function()
     },
     config = function()
       require('gitsigns').setup()
-      opt.signcolumn = 'yes'
+      opt.signcolumn = 'auto:4-8'
     end,
   })
 

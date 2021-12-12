@@ -267,7 +267,7 @@ opt.writebackup = false
 opt.updatetime = 300
 
 -- Merge signcolumn and number column into one
-opt.signcolumn = 'number'
+opt.signcolumn = 'auto:4-8'
 
 -- Don't pass messages to |ins-completion-menu|.
 opt.shortmess = opt.shortmess + 'c'
