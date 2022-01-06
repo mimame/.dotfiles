@@ -36,12 +36,13 @@
     - grex
     - gron-bin
     - handlr-bin
+    - julia-bin
     - katex
     - lab
     - lazydocker
-    - lua-language-server-git
     - massren
     - mclfy
+    - modulo
     - navi
     - pandoc-bin
     - rstudio-desktop-bin
