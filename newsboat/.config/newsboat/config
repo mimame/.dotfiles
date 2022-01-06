@@ -23,6 +23,12 @@ show-read-feeds no
 # Not show read articles
 show-read-articles no
 
+# Don't ask for confirmation on read feed
+confirm-mark-feed-read no
+
+# Don't ask for confirmation on read all feeds
+confirm-mark-all-feeds-read no
+
 # Zsh script to run the browser
 browser "~/.bin/newsboat-browser"
 
