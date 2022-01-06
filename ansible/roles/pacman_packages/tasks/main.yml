@@ -20,6 +20,7 @@
     - aspell-en
     - at
     - atop
+    - auto-cpufreq # if laptop
     - autoconf
     - automake
     - avfs
@@ -133,6 +134,7 @@
     - lsd
     - lsof
     - lsscsi
+    - lua-language-server
     - lxappearance
     - macchanger
     - make
@@ -235,7 +237,6 @@
     - tig
     - time
     - tk
-    - tlpui # if laptop
     - tmuxp
     - tokei
     - translate-shell
@@ -276,3 +277,6 @@
   pacman:
     update_cache: true
   become: yes
+
+- name: Disable useless GNOME file tracker dependency and service
+  command: systemctl --user mask tracker-extract-3.service tracker-miner-fs-3.service tracker-miner-rss-3.service tracker-writeback-3.service tracker-xdg-portal-3.service tracker-miner-fs-control-3.service
