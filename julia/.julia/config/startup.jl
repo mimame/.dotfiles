@@ -10,12 +10,4 @@ colorscheme!("Monokai24bit")
 using Highlights
 using Debugger
 Debugger.set_theme(Highlights.Themes.MonokaiTheme)
-# Automatically update function definitions in a running Julia session
-# Use includet() instead include() to track the files
-atreplinit() do repl
-    try
-        @eval using Revise
-        @async Revise.wait_steal_repl_backend()
-    catch
-    end
-end
+using Revise
