@@ -18,6 +18,7 @@ wk.register({
     b = { "<cmd>lua require('telescope.builtin').file_browser({depth=5})<cr>", 'File browser' },
     c = { '<cmd>Telescope commands<cr>', 'Available commands' },
     f = { "<cmd>lua require('telescope.builtin').find_files()<cr>", 'Find file' },
+    F = { "<cmd>lua require('telescope.builtin').find_files({ hidden = true })<cr>", 'Find file' },
     g = { '<cmd>Telescope live_grep<cr>', 'Grep' },
     h = { '<cmd>Telescope oldfiles<cr>', 'History' },
     q = { '<cmd>Telescope quickfix<cr>', 'Show quickfix window' },
