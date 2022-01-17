@@ -484,6 +484,14 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Send code to command line interpreter
+  use({
+    'jalvesaq/vimcmdline',
+    config = function ()
+      cmd([[ let cmdline_external_term_cmd = 'alacritty --title "Julia: ' . expand("%:t") . '" --command %s &' ]])
+    end
+  })
+
   -- A minimal, stylish and customizable statusline for Neovim written in Lua
   use({
     'famiu/feline.nvim',
