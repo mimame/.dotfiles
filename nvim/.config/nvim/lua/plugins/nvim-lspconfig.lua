@@ -30,6 +30,7 @@ local servers = {
   'jedi_language_server',
   'jsonls',
   'julials',
+  'nimls',
   'pyright',
   'r_language_server',
   'rust_analyzer',

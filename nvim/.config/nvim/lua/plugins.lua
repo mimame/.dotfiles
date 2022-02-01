@@ -629,6 +629,9 @@ return require('packer').startup(function()
     end
   })
 
+  -- Nim plugin
+  use({'alaviss/nim.nvim'})
+
   -- VIM syntax plugin for Tridactyl configuration files
   use({ 'tridactyl/vim-tridactyl' })
 
