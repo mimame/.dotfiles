@@ -83,7 +83,7 @@ cmp.setup({
     { name = 'tmux' },
     { name = 'nvim_lua' },
     { name = 'latex_symbols' },
-    -- { name = 'nuspell' },
+    { name = 'nuspell' },
     -- { name = 'spell' },
   })
 })

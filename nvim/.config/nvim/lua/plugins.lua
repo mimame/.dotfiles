@@ -138,7 +138,7 @@ return require('packer').startup(function()
       { 'kdheepak/cmp-latex-symbols' },
       { 'octaltree/cmp-look' },
       { 'ray-x/cmp-treesitter' },
-      -- { 'f3fora/cmp-nuspell', rocks = { 'lua-nuspell' } },
+      { 'f3fora/cmp-nuspell', rocks = { 'lua-nuspell' } },
       -- { 'f3fora/cmp-spell' },
       { 'hrsh7th/cmp-cmdline' },
     },
@@ -179,7 +179,7 @@ return require('packer').startup(function()
                 nvim_lua = '[nvim-lua]',
                 latex_symbols = '[Latex]',
                 tmux = '[Tmux]',
-                -- nuspell = '[Nuspell]',
+                nuspell = '[Nuspell]',
                 -- spell = '[Spell]',
               })[entry.source.name]
               return vim_item
