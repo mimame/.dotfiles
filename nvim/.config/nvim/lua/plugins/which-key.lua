@@ -170,7 +170,7 @@ wk.register({
     q = { '<cmd>q<CR>', 'Close file' },
     w = { '<cmd>w<CR>', 'Write file' },
     e = { '<cmd>e<CR>', 'Edit file' },
-    n = { '<cmd>NvimTreeToggle<CR>', 'NvimTree' },
+    n = { '<cmd>lua require"nvim-tree".toggle(true, true)<CR>', 'NvimTree' },
     s = { "<cmd>'<,'>!sort --human-numeric-sort<CR>", 'Sort file region' },
   },
 }, {
