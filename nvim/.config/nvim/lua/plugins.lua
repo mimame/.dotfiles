@@ -237,7 +237,7 @@ return require('packer').startup(function()
         -- disables netrw completely
         disable_netrw = false,
         -- hijack netrw window on startup
-        hijack_netrw = false,
+        hijack_netrw = true,
         -- open the tree when running this setup function
         open_on_setup = true,
         -- will not open on setup if the filetype is in this list
