@@ -275,26 +275,33 @@ return require('packer').startup(function()
       })
       -- show relative numbers
       require('nvim-tree.view').View.winopts.relativenumber = true
+      -- TODO: Find better way to open always nvim-tree automatically
       -- Always open nvim-tree automatically at startup
       -- Force nvim-tree to find the file at startup
-      cmd('NvimTreeFindFile')
-      cmd('normal! zz<CR>')
-      cmd('wincmd p')
-      require('nvim-tree.events').on_nvim_tree_ready(function()
-        if
-          vim.bo.filetype == 'gitcommit'
-          or vim.bo.filetype == 'git'
-          or vim.fn.expand('#') == '__committia_diff__'
-          or vim.fn.expand('#') == 'COMMIT_EDITMSG'
-        then
-          cmd('NvimTreeToggle')
-          cmd('NvimTreeClose')
-        else
-          cmd('NvimTreeFindFile')
-          cmd('normal! zz<CR>')
-          cmd('wincmd p')
-        end
-      end)
+      --require"nvim-tree".toggle(false, true)
+      --cmd('NvimTreeFindFile')
+      --cmd('normal! zz<CR>')
+      --cmd('wincmd p')
+      --require('nvim-tree.events').on_nvim_tree_ready(function()
+      -- if
+      --   vim.bo.filetype == 'gitcommit'
+      --   or vim.bo.filetype == 'git'
+      --   or vim.fn.expand('#') == '__committia_diff__'
+      --   or vim.fn.expand('#') == 'COMMIT_EDITMSG'
+      --   or vim.bo.filetype == 'alpha'
+      --   or vim.fn.expand('#') == 'alpha'
+      -- then
+      --   cmd('NvimTreeToggle')
+      --   cmd('NvimTreeClose')
+      -- else
+      --   cmd('NvimTreeFindFile')
+      --   cmd('normal! zz<CR>')
+      --   cmd('wincmd p')
+      -- end
+      --end)
+    end,
+  })
+
     end,
   })
 
