@@ -152,8 +152,7 @@ return require('packer').startup(function()
     'onsails/lspkind-nvim',
     config = function()
       require('lspkind').init({
-        with_text = true,
-        preset = 'default',
+        mode = 'symbol_text',
       })
 
       local cmp = require('cmp')
