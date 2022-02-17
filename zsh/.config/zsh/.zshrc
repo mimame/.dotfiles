@@ -330,7 +330,7 @@ source /usr/share/fzf/completion.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --exclude node_modules'
 # To apply the command to CTRL-T as well
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_CTRL_T_OPTS="--height 100% --preview 'bat --theme \"Monokai Extended Bright Narnia\" --color always {}'"
+export FZF_CTRL_T_OPTS="--height 100% --preview 'bat --color always {}'"
 # To apply the command to ALT_C
 export FZF_ALT_C_COMMAND='fd --type d --exclude node_modules'
 export FZF_ALT_C_OPTS="--height 100% --preview 'exa --sort .name --tree --level 1 --classify --git --long --color=always --ignore-glob=node_modules {}' --preview-window wrap"

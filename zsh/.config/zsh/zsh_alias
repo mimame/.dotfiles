@@ -102,6 +102,7 @@ alias re='massren'
 alias T='tail -F'
 alias nano='micro'
 alias less='bat'
+alias more='bat'
 alias m='man'
 
 # rg with grep -r behaviour
@@ -111,9 +112,6 @@ alias sn='rg --smart-case --no-heading --with-filename --no-ignore --hidden --gl
 
 # fd with find behaviour
 alias f='fd --exclude node_modules'
-
-# bat alias
-alias bat='bat --theme "Monokai Extended Bright Narnia"'
 
 # Safe ops. Ask the user before doing anything destructive.
 # Move rm files to the trash using trash-cli

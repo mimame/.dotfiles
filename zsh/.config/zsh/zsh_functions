@@ -23,9 +23,9 @@ bb (){
 
 function p() {
   if [ $# -eq 0 ]; then
-    fzf --multi --bind "enter:execute(bat --theme \"Monokai Extended Bright Narnia\" --color always {+})+abort" --preview "bat --theme \"Monokai Extended Bright Narnia\" --color always {}"
+    fzf --multi --bind "enter:execute(bat --color always {+})+abort" --preview "bat --color always {}"
   else
-    bat --theme "Monokai Extended Bright Narnia" --color always "$@"
+    bat --color always "$@"
   fi;
 }
 
