@@ -149,8 +149,8 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 # Directories {{{
 # Set LS_COLORS
 # export LS_COLORS='di=1;34:ln=35:so=32:pi=33:ex=31:bd=1;36:cd=1;33:su=30;41:sg=30;46:tw=30;42:ow=30;43'
-export LS_COLORS="$(vivid generate narnia)"
-export EXA_COLORS="$(vivid generate narnia)"
+export LS_COLORS="$(vivid generate molokai)"
+export EXA_COLORS="$(vivid generate molokai)"
 # Color autocompleted directories
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # First complete local directories, then +NUMBER parent hierarchy and finally directories from $cdpath
