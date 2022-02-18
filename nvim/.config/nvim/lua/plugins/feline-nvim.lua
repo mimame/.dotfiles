@@ -47,28 +47,40 @@ components.active[1] = {
   {
     provider = 'diagnostic_errors',
     enabled = function(winid)
-      return require('feline.providers.lsp').diagnostics_exist(vim.diagnostic.severity.ERROR, api.nvim_win_get_buf(winid))
+      return require('feline.providers.lsp').diagnostics_exist(
+        vim.diagnostic.severity.ERROR,
+        api.nvim_win_get_buf(winid)
+      )
     end,
     hl = { fg = 'red' },
   },
   {
     provider = 'diagnostic_warnings',
     enabled = function(winid)
-      return require('feline.providers.lsp').diagnostics_exist(vim.diagnostic.severity.WARN, api.nvim_win_get_buf(winid))
+      return require('feline.providers.lsp').diagnostics_exist(
+        vim.diagnostic.severity.WARN,
+        api.nvim_win_get_buf(winid)
+      )
     end,
     hl = { fg = 'yellow' },
   },
   {
     provider = 'diagnostic_hints',
     enabled = function(winid)
-      return require('feline.providers.lsp').diagnostics_exist(vim.diagnostic.severity.HINT, api.nvim_win_get_buf(winid))
+      return require('feline.providers.lsp').diagnostics_exist(
+        vim.diagnostic.severity.HINT,
+        api.nvim_win_get_buf(winid)
+      )
     end,
     hl = { fg = 'cyan' },
   },
   {
     provider = 'diagnostic_info',
     enabled = function(winid)
-      return require('feline.providers.lsp').diagnostics_exist(vim.diagnostic.severity.INFO, api.nvim_win_get_buf(winid))
+      return require('feline.providers.lsp').diagnostics_exist(
+        vim.diagnostic.severity.INFO,
+        api.nvim_win_get_buf(winid)
+      )
     end,
     hl = { fg = 'skyblue' },
   },

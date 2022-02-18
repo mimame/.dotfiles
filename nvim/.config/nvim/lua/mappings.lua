@@ -27,7 +27,7 @@ map('v', 'p', '"_dP')
 map('n', 'Y', '"+y$')
 
 -- Let the cursor in the same place after the visual yank
-map('v', 'y', "m`y``")
+map('v', 'y', 'm`y``')
 
 -- Very magic by default (Perl Regex almost compatible) {{{
 map('n', '?', '?\\v')

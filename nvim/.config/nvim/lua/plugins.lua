@@ -158,7 +158,7 @@ return require('packer').startup(function()
       local cmp = require('cmp')
       local lspkind = require('lspkind')
 
-      cmp.setup {
+      cmp.setup({
         formatting = {
           format = lspkind.cmp_format({
             with_text = true, -- do not show text alongside icons
@@ -166,7 +166,7 @@ return require('packer').startup(function()
 
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
-            before = function (entry, vim_item)
+            before = function(entry, vim_item)
               vim_item.kind = lspkind.presets.default[vim_item.kind] .. ' ' .. vim_item.kind
               vim_item.menu = ({
                 nvim_lsp = '[LSP]',
@@ -182,10 +182,10 @@ return require('packer').startup(function()
                 -- spell = '[Spell]',
               })[entry.source.name]
               return vim_item
-            end
-          })
-        }
-      }
+            end,
+          }),
+        },
+      })
     end,
   })
 
@@ -458,7 +458,7 @@ return require('packer').startup(function()
   })
 
   -- Viewer & Finder for LSP symbols and tags
-  use ({'liuchengxu/vista.vim'})
+  use({ 'liuchengxu/vista.vim' })
 
   -- A neovim lua plugin to help easily manage multiple terminal windows
   use({
@@ -493,9 +493,9 @@ return require('packer').startup(function()
   -- Send code to command line interpreter
   use({
     'jalvesaq/vimcmdline',
-    config = function ()
+    config = function()
       cmd([[ let cmdline_external_term_cmd = 'alacritty --title "Julia: ' . expand("%:t") . '" --command %s &' ]])
-    end
+    end,
   })
 
   -- A minimal, stylish and customizable statusline for Neovim written in Lua
@@ -628,15 +628,15 @@ return require('packer').startup(function()
   -- A better user experience for viewing and interacting with Vim marks
   use({
     'chentau/marks.nvim',
-    config = function ()
-     require('marks').setup{
-       sign_priority=10
-     }
-    end
+    config = function()
+      require('marks').setup({
+        sign_priority = 10,
+      })
+    end,
   })
 
   -- Nim plugin
-  use({'alaviss/nim.nvim'})
+  use({ 'alaviss/nim.nvim' })
 
   -- VIM syntax plugin for Tridactyl configuration files
   use({ 'tridactyl/vim-tridactyl' })
