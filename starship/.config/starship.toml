@@ -1,8 +1,9 @@
 # Warning: This config does not include keys that have an unset value
 
-# $all is shorthand for $username$hostname$shlvl$singularity$kubernetes$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$docker_context$package$cmake$cobol$dart$deno$dotnet$elixir$elm$erlang$golang$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$perl$php$purescript$python$rlang$red$ruby$rust$scala$swift$terraform$vlang$vagrant$zig$nix_shell$conda$memory_usage$aws$gcloud$openstack$env_var$crystal$custom$cmd_duration$line_break$jobs$battery$time$status$shell$character
+# $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$docker_context$package$cmake$cobol$dart$deno$dotnet$elixir$elm$erlang$golang$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$perl$php$pulumi$purescript$python$rlang$red$ruby$rust$scala$swift$terraform$vlang$vagrant$zig$nix_shell$conda$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$shell$character
 format = '$all'
 right_format = ''
+continuation_prompt = '[∙](bright-black) '
 scan_timeout = 30
 command_timeout = 500
 add_newline = true
@@ -15,6 +16,12 @@ disabled = false
 expiration_symbol = 'expiration'
 
 [aws.region_aliases]
+
+[azure]
+format = '[$symbol($subscription)]($style) '
+symbol = 'Azure'
+style = 'blue bold'
+disabled = false
 
 [battery]
 full_symbol = ' '
@@ -81,6 +88,12 @@ style = 'green bold'
 ignore_base = true
 disabled = false
 
+[container]
+format = '[$symbol \[$name\]]($style) '
+symbol = 'container'
+style = 'red bold dimmed'
+disabled = false
+
 [crystal]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
@@ -113,6 +126,8 @@ style = 'green bold'
 disabled = false
 detect_extensions = []
 detect_files = [
+    'deno.json',
+    'deno.jsonc',
     'mod.ts',
     'deps.ts',
     'mod.js',
@@ -121,17 +136,19 @@ detect_files = [
 detect_folders = []
 
 [directory]
-truncate_to_repo = false
 truncation_length = 0
+truncate_to_repo = false
 fish_style_pwd_dir_length = 0
 use_logical_path = true
 format = '[$path]($style)[ $read_only]($read_only_style) '
+repo_root_format = '[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
 style = 'cyan bold'
 disabled = false
 read_only = 'read_only'
 read_only_style = 'red'
 truncation_symbol = ''
 home_symbol = '~'
+use_os_path_sep = true
 
 [directory.substitutions]
 
@@ -150,7 +167,7 @@ detect_files = [
 detect_folders = []
 
 [dotnet]
-format = '[$symbol($version )(🎯 $tfm )]($style)'
+format = '[$symbol($version )( $tfm )]($style)'
 version_format = 'v${raw}'
 symbol = '.NET '
 style = 'blue bold'
@@ -212,6 +229,7 @@ detect_folders = []
 [fill]
 style = 'bold black'
 symbol = '.'
+disabled = false
 
 [gcloud]
 format = '[$symbol$account(@$domain)(\($region\))]($style) '
@@ -392,6 +410,12 @@ disabled = true
 [line_break]
 disabled = false
 
+[localip]
+ssh_only = true
+format = '[$localipv4]($style) '
+style = 'yellow bold'
+disabled = true
+
 [lua]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
@@ -528,6 +552,13 @@ detect_files = [
 ]
 detect_folders = []
 
+[pulumi]
+format = '[$symbol($username@)$stack]($style) '
+version_format = 'v${raw}'
+symbol = 'pulumi'
+style = 'bold 5'
+disabled = false
+
 [purescript]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
@@ -604,6 +635,10 @@ detect_files = [
     '.ruby-version',
 ]
 detect_folders = []
+detect_variables = [
+    'RUBY_VERSION',
+    'RBENV_VERSION',
+]
 
 [rust]
 format = '[$symbol($version )]($style)'
@@ -633,7 +668,7 @@ detect_files = [
 detect_folders = ['.metals']
 
 [shell]
-format = '$indicator '
+format = '[$indicator]($style) '
 bash_indicator = 'bsh'
 fish_indicator = 'fsh'
 zsh_indicator = 'zsh'
@@ -643,7 +678,9 @@ elvish_indicator = 'esh'
 tcsh_indicator = 'tsh'
 nu_indicator = 'nu'
 xonsh_indicator = 'xsh'
+cmd_indicator = 'cmd'
 unknown_indicator = ''
+style = 'white bold'
 disabled = true
 
 [shlvl]
@@ -676,6 +713,13 @@ pipestatus = false
 pipestatus_separator = '|'
 pipestatus_format = '\[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style)'
 
+[sudo]
+format = '[as $symbol]($style)'
+symbol = 'sudo '
+style = 'bold blue'
+allow_windows = false
+disabled = true
+
 [swift]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
@@ -694,7 +738,8 @@ style = 'bold 105'
 disabled = false
 detect_extensions = [
     'tf',
-    'hcl',
+    'tfplan',
+    'tfstate',
 ]
 detect_files = []
 detect_folders = ['.terraform']
