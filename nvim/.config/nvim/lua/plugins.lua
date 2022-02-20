@@ -44,6 +44,32 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  use({
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require('null-ls').setup({
+        sources = {
+          require('null-ls').builtins.formatting.stylua,
+          require('null-ls').builtins.completion.spell,
+          require('null-ls').builtins.formatting.latexindent,
+        },
+        -- you can reuse a shared lspconfig on_attach callback here
+        on_attach = function(client)
+          if client.resolved_capabilities.document_formatting then
+            vim.cmd([[
+            augroup LspFormatting
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+            augroup END
+            ]])
+          end
+        end,
+      })
+    end,
+  })
+
   -- autopairs for neovim written by lua
   use({
     'windwp/nvim-autopairs',
