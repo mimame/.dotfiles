@@ -236,26 +236,31 @@ for file in "${files[@]}"; do
 done
 }
 
-# Compress any kind of file
+# Compress any kind of files list
 function c () {
-case $2 in
-  t)  tar cvf ${1}.tar $1; ext='tar';;
-  z)  zip -r ${1}.zip $1; ext='zip';;
-  7)  7z a ${1}.7z $1; ext='7z';;
-  g)  [[ -d $1 ]] && tar -I pigz -cvf ${1}.tar.gz $1 || pigz -kv $1; ext='gz';;
-  b)  [[ -d $1 ]] && tar -I pbzip2 -cvf ${1}.tar.bz2 $1 || pbzip2 -kv $1; ext='bz2';;
-  x)  [[ -d $1 ]] && tar -I pixz -cvf ${1}.tar.xz $1 || pixz -k $1; ext='xz';;
-  zs) [[ -d $1 ]] && tar -I 'zstdmt -19' -cvf ${1}.tar.zst $1 || zstdmt -19 -kv $1; ext='zst';;
-  *)  >&2 echo "'$1' cannot be compressed, unknown '$2' compression format" && return 1
-esac
-  compressed_file="${1}*.${ext}"
-  # force glob completion with $~
-  compressed_size=$(command du $~compressed_file | cut -f1)
-  original_size=$(command du -s "$1" | cut -f1)
-  >&2 echo $~compressed_file
-  compression_ration=$(awk "BEGIN{printf \"%0.2f\", $original_size/$compressed_size}")
-  >&2 echo "\tCompression ration: $compression_ration"
-  >&2 echo "\tFinal size: $(command du -h $~compressed_file | cut -f1)"
+  files=( "$@" )
+  compression_format="${@: -1}"
+  unset "files[${#files[@]}]"    # Removes last element -- also see: help unset
+  for file in "${files[@]}"; do
+    case $compression_format in
+      t)  tar cvf ${file}.tar $file; ext='tar';;
+      z)  zip -r ${file}.zip $file; ext='zip';;
+      7)  7z a ${file}.7z $file; ext='7z';;
+      g)  [[ -d $file ]] && tar -I pigz -cvf ${file}.tar.gz $file || pigz -kv $file; ext='gz';;
+      b)  [[ -d $file ]] && tar -I pbzip2 -cvf ${file}.tar.bz2 $file || pbzip2 -kv $file; ext='bz2';;
+      x)  [[ -d $file ]] && tar -I pixz -cvf ${file}.tar.xz $file || pixz -k $file; ext='xz';;
+      zs) [[ -d $file ]] && tar -I 'zstdmt -19' -cvf ${file}.tar.zst $file || zstdmt -19 -kv $file; ext='zst';;
+      *)  >&2 echo "'$file' cannot be compressed, unknown '$2' compression format" && return 1
+    esac
+    compressed_file="${file}*.${ext}"
+    # force glob completion with $~
+    compressed_size=$(command du $~compressed_file | cut -f1)
+    original_size=$(command du -s "$1" | cut -f1)
+    >&2 echo $~compressed_file
+    compression_ration=$(awk "BEGIN{printf \"%0.2f\", $original_size/$compressed_size}")
+    >&2 echo "\tCompression ration: $compression_ration"
+    >&2 echo "\tFinal size: $(command du -h $~compressed_file | cut -f1)"
+  done
 }
 
 # Tar wrapper
