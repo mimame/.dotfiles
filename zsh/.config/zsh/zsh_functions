@@ -213,24 +213,27 @@ function _pdfc () {
   fi
 }
 
-# Extract any kind of compressed file
+# Extract any kind of compressed files list
 function e () {
-case $1 in
-  *.tar)            tar xvf $1;;
-  *.tar.gz|*.tgz)   tar -I pigz -xvf $1;;
-  *.tar.xz|*.txz)   tar -I pixz -xvf $1;;
-  *.tar.bz2|*.tbz2) tar -I pbzip2 -xvf $1;;
-  *.tar.zst|*.tzst) tar -I zstdmt -xvf $1;;
-  *.bz2)            pbzip2 -dkv $1;;
-  *.xz)             pixz -dk $1;;
-  *.gz)             pigz -dkv $1;;
-  *.zst)            zstdmt -dkv $1;;
-  *.zip)            unzip $1;;
-  *.7z)             7z x $1;;
-  *.Z)              uncompress $1;;
-  *.rar)            unrar e $1;;
-  *)                >&2 echo "'$1' cannot be extracted, unknown compression format";;
-esac
+files=( "$@" )
+for file in "${files[@]}"; do
+  case $file in
+    *.tar)            tar xvf $file;;
+    *.tar.gz|*.tgz)   tar -I pigz -xvf $file;;
+    *.tar.xz|*.txz)   tar -I pixz -xvf $file;;
+    *.tar.bz2|*.tbz2) tar -I pbzip2 -xvf $file;;
+    *.tar.zst|*.tzst) tar -I zstdmt -xvf $file;;
+    *.bz2)            pbzip2 -dkv $file;;
+    *.xz)             pixz -dk $file;;
+    *.gz)             pigz -dkv $file;;
+    *.zst)            zstdmt -dkv $file;;
+    *.zip)            unzip $file;;
+    *.7z)             7z x $file;;
+    *.Z)              uncompress $file;;
+    *.rar)            unrar e $file;;
+    *)                >&2 echo "'$file' cannot be extracted, unknown compression format";;
+  esac
+done
 }
 
 # Compress any kind of file
