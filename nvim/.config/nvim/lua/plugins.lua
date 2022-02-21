@@ -106,7 +106,6 @@ return require('packer').startup(function()
   use({
     'TimUntersberger/neogit',
     requires = 'nvim-lua/plenary.nvim',
-    cmd = 'Neogit',
     config = function()
       require('neogit').setup({
         disable_insert_on_commit = false,
