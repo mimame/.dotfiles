@@ -5,8 +5,6 @@ for index ({1..9}) alias "$index"="cd +${index}"; unset index
 
 # Show folder hierarchy from bottom to root and let jump to any of that folders
 # https://github.com/junegunn/fzf/wiki/Examples#changing-directory
-alias b='cd ..'
-
 alias paths='echo $PATH | sed "s/:/\n/g" | nl | tac'
 
 alias szsh='source ~/.config/zsh/.zshrc'
@@ -18,6 +16,8 @@ alias sudo='sudo -E'
 alias '$'=''
 
 # Improve mobility between folders {{{
+# Register all folders in the zoxide database
+alias cd='z'
 alias .='cd ..'
 alias ..='cd ../..'
 alias -g ...='../..'
@@ -69,7 +69,7 @@ alias rs='rsync --archive --compress --info=progress2 --human-readable --update 
 
 alias sshfs="sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
 
-# systemcstl
+# systemctl
 alias sstatus='sudo systemctl status'
 alias srestart='sudo systemctl restart'
 alias sstart='sudo systemctl start'
