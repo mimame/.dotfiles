@@ -48,7 +48,7 @@ command! md :mkdir! '%a'
 command! sudo :!sudo vifm %d %D
 command! vgrep nvim "+grep %a"
 " Reload vifmrc  file
-command! reload :write | restart
+command! reload :write | restart full
 
 " Find with fd
 command! fd fd --exclude node_modules %a %M

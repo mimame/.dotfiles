@@ -104,7 +104,7 @@ nnoremap <wait> <space>su :su<cr>
 " Reload config
 nnoremap <silent><wait> <space>cr :reload<cr>
 " Open nvim to edit vifmrc and apply settings after returning to vifm
-nnoremap <silent><wait> <space>ce :write | execute ':!nvim $MYVIFMRC' | restart<cr>
+nnoremap <silent><wait> <space>ce :write | execute ':!nvim $MYVIFMRC' | restart full<cr>
 
 
 " rg mapping
