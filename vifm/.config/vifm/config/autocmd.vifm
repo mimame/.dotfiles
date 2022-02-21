@@ -1,0 +1,2 @@
+" Always register all folders in the zoxide database
+autocmd DirEnter * !zoxide add %d %i

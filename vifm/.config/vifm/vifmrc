@@ -10,6 +10,9 @@
 " Defaults
 source ~/.config/vifm/config/defaults.vifm
 
+" autocmd
+source ~/.config/vifm/config/autocmd.vifm
+
 " Devicons
 source ~/.config/vifm/config/icons.vifm
 
