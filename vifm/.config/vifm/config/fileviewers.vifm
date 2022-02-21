@@ -85,7 +85,7 @@ filetype *.torrent transmission-cli %f &
 fileviewer *.torrent transmission-show -s  %c
 
 " ArchiveMount
-filetype .*.tar,*.tar,*.tar.bz2,*.tbz2,*.tgz,.*.tar.gz,*.tar.gz,.*.tar.xz,*.tar.xz,*.txz,*.tar.zstd,*.tzst
+filetype *.tar,*.tar.*,*.tbz2,*.tgz,*.txz,*.tzst
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
 
@@ -94,7 +94,7 @@ fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
 fileviewer .*.tar.xz,*.tar.xz,*.tar.txz,*.txz xz --list %c
 fileviewer .*.tar,*.tar tar -tf %c
 
-" filextype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
+" filextype *.tar,*.tar.*,*.tbz2,*.tgz,*.txz,*.tzst
 "         \ {Open with xarchive}
 "         \ xarchiver %f &
 
