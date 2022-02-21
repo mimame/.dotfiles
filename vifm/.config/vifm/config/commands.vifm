@@ -36,7 +36,7 @@ command! zip zip -r %f.zip %f
 " use e() zsh function for extracting any compressed file or folder
 command! extract :!e %f %s
 " use c() zsh function for compressing any file or folder
-command! compress :!c %a %s
+command! compress :!c %f %a %s
 " Repeat last command to the selected files/folders
 command! run !! ./%f
 " Run make command

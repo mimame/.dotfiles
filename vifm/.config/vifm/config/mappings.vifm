@@ -195,9 +195,9 @@ nnoremap <wait> <space>tn :tabname<space>
 nnoremap <silent> <space>w :set wrap!<cr>
 
 " extract file mapping
-" nnoremap <silent> <space>e :extract<cr>
+nnoremap <silent> <space>e :extract<cr>
 " compress file mapping
-" nnoremap <silent> <space>c :compress <c-x>c<space>
+nnoremap <silent> <wait><space>cc :compress<space>
 
 " Use < and > without ctrl-w prefix key in normal mode
 nnoremap < <c-w><
