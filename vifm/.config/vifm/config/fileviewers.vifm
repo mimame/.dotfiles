@@ -89,10 +89,7 @@ filetype *.tar,*.tar.*,*.tbz2,*.tgz,*.txz,*.tzst
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
 
-fileviewer .*.tar.gz,*.tar.gz,*.tgz tar -tzf %c
-fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
-fileviewer .*.tar.xz,*.tar.xz,*.tar.txz,*.txz xz --list %c
-fileviewer .*.tar,*.tar tar -tf %c
+fileviewer *.tar,*.tar.*,*.tbz2,*.tgz,*.txz,*.tzst tar tf %c
 
 " filextype *.tar,*.tar.*,*.tbz2,*.tgz,*.txz,*.tzst
 "         \ {Open with xarchive}
