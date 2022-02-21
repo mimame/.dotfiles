@@ -17,6 +17,7 @@ alias '$'=''
 
 # Improve mobility between folders {{{
 # Register all folders in the zoxide database
+alias b='cd ..'
 alias cd='z'
 alias .='cd ..'
 alias ..='cd ../..'
