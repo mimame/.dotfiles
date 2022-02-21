@@ -108,6 +108,7 @@ return require('packer').startup(function()
     requires = 'nvim-lua/plenary.nvim',
     config = function()
       require('neogit').setup({
+        disable_commit_confirmation = true,
         disable_insert_on_commit = false,
         sections = {
           untracked = {
