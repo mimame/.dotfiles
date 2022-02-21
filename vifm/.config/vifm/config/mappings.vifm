@@ -45,10 +45,9 @@ nnoremap ; :
 vnoremap ; :
 
 " cd mapping
-nnoremap <wait> cd :cd<space>
+nnoremap <wait> cd :zoxide<space>
 
 " zoxide mapping
-nnoremap <silent> <a-x> :zoxide<space>
 nnoremap <silent> <space>z :zoxide<space>
 
 " FZF mapping
