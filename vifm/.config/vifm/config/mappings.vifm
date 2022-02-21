@@ -72,7 +72,7 @@ nnoremap <wait> <space>F :filter<space>//<left>
 
 
 " Start shell in current directory
-" nnoremap <silent><wait> ts :shell<cr>
+nnoremap <silent><wait> S :shell<cr>
 
 " Open console in current directory
 "nnoremap <wait> <space>ta :!alacritty &<cr>
