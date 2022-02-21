@@ -63,11 +63,13 @@ nnoremap vv :%select<cr>
 nnoremap <silent> r :substitute///<left><left>
 vnoremap <silent> r :substitute///<left><left>
 
-" filter mapping (apply filter)
-" nnoremap <wait> <space>fi :filter<space>//<left>
-
 " find mapping
+nnoremap <silent> <space>f :FZF<cr>
 " nnoremap <silent> <space>ff :find<space>
+
+" filter mapping (apply filter)
+nnoremap <wait> <space>F :filter<space>//<left>
+
 
 " Start shell in current directory
 " nnoremap <silent><wait> ts :shell<cr>
