@@ -112,6 +112,11 @@ return require('packer').startup(function()
         disable_insert_on_commit = false,
         -- Neogit refreshes its internal state after specific events, which can be expensive depending on the repository size.
         -- Disabling `auto_refresh` will make it so you have to manually refresh the status after you open it.
+        -- Change the default way of opening neogit
+        kind = 'tab',
+        commit_popup = {
+          kind = 'tab',
+        },
         auto_refresh = true,
         sections = {
           untracked = {
