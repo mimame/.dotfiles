@@ -631,6 +631,14 @@ return require('packer').startup(function()
     end,
   })
 
+  -- A markdown preview directly in your neovim
+  use({
+    'ellisonleao/glow.nvim',
+    config = function()
+      vim.g.glow_border = 'rounded'
+      vim.g.glow_use_pager = true
+    end,
+  })
   -- markdown preview plugin for (neo)vim
   use({
     'iamcco/markdown-preview.nvim',
