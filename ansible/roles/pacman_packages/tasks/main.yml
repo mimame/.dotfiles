@@ -89,6 +89,7 @@
     - gitg
     - github-cli
     - glances
+    - glow
     - go
     - gopls
     - gparted
