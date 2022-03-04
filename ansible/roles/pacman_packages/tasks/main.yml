@@ -258,6 +258,7 @@
     - wireshark-qt
     - wmctrl
     - wmutils
+    - words
     - xarchiver
     - xautolock
     - xcape
