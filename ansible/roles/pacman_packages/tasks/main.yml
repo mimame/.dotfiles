@@ -58,6 +58,7 @@
     - dpkg
     - dstat
     - duf
+    - dunst
     - dust
     - e2fsprogs
     - entr
