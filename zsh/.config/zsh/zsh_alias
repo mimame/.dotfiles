@@ -89,8 +89,9 @@ alias vim='nvim'
 alias n='nvim'
 
 alias nd='nvim -d -c "set nofoldenable"'
-alias history='history | tac | nl --starting-line-number 2 --number-separator " |" | tac'
-alias h='history'
+# alias h='history' # Use ctrl-r instead
+# Lists the ten most used commands.
+alias hs="\history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | bat --number"
 alias du='du -h'
 alias dus='diskus'
 alias df='df -h'

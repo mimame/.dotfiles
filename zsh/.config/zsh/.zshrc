@@ -61,8 +61,6 @@ setopt HIST_SAVE_NO_DUPS      # Do not write a duplicate event to the history fi
 setopt HIST_VERIFY            # Do not execute immediately upon history expansion
 setopt HISTIGNORESPACE        # Do not add the command to the history if it starts with a space
 unsetopt HIST_VERIFY          # Whenever the user enters a line with history expansion, execute the line directly
-# Lists the ten most used commands.
-alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 # }}}
 
 # Completion config {{{
