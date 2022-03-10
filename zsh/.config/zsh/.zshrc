@@ -331,7 +331,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_CTRL_T_OPTS="--height 100% --preview 'bat --color always {}'"
 # To apply the command to ALT_C
 export FZF_ALT_C_COMMAND='fd --type d --exclude node_modules'
-export FZF_ALT_C_OPTS="--height 100% --preview 'exa --sort .name --tree --level 1 --classify --git --long --color=always --ignore-glob=node_modules {}' --preview-window wrap"
+export FZF_ALT_C_OPTS="--height 100% --preview 'exa --sort .name --tree --classify --git --long --color=always --ignore-glob=node_modules {}' --preview-window wrap"
 # Molokai colors by default
 # https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
 export FZF_DEFAULT_OPTS='
