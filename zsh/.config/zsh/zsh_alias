@@ -52,7 +52,7 @@ eval "$(gh completion --shell zsh)"
 
 # alias ls='ls --color=always --almost-all --human-readable --format=long --classify'
 # alias l='ls'
-alias ls='exa --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules'
+alias ls='exa --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all'
 alias l='ls'
 alias ll='l --tree | bat --number'
 alias tree='ll'
