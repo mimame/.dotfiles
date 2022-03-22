@@ -1,23 +1,22 @@
 
-bb (){
+function bb(){
   local declare dirs=()
 
   get_parent_dirs() {
     current_path="$1"
     while [[ "$current_path" != '/' ]]; do
-      if [[ -d "$current_path" ]]; then dirs+=("$current_path"); fi
-      # next parent dir
+      # next parent dir ignoring the first and current one
       current_path="$(dirname "$current_path")"
+      if [[ -d "$current_path" ]]; then dirs+=("$current_path"); fi
     done
-    dirs+=("/")
-    for _dir in "${dirs[@]}"; do echo $_dir; done
+    printf "%s\n" "$dirs"
   }
 
   # Show all possible parents paths
   # Remove the current path
   # Count paths to easily select them from fzf
   # Finally remove the added index and cd to the selected parent path
-  local DIR=$(get_parent_dirs "$(realpath "${1:-$PWD}")" | tail -n+2 | nl --starting-line-number 1 | fzf | cut -f2)
+  local DIR=$(get_parent_dirs "$(realpath "${1:-$PWD}")" | nl --starting-line-number 1 | fzf | cut -f2)
   cd "$DIR"
 }
 
