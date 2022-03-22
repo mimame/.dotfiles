@@ -54,7 +54,6 @@ eval "$(gh completion --shell zsh)"
 # alias l='ls'
 alias ls='exa --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all'
 alias l='ls'
-alias ll='l --tree | bat --number'
 alias tree='ll'
 # alias tree='tree -h -u -g -F -D -C -I "node_modules"'
 alias grep='grep --color=auto'

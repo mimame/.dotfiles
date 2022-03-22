@@ -34,6 +34,14 @@ function mc() {
   mkdir --parent --verbose "$1" && cd "$1"
 }
 
+function ll() {
+  if [ -n "$1" ]; then
+    l --tree "$1" | bat --number
+  else
+    l --tree | bat --number
+  fi
+}
+
 # cd to the clipboard path
 function cdp() {
   clipboard_path=$(xclip -out -selection clipboard)
