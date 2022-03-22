@@ -529,9 +529,5 @@ if [ "$TMUX" == "" ]; then
 fi
 # }}}
 
-
 eval "$(starship init zsh)"
 # zprof
-
-# Manage java versions
-[ -s "/home/paradise/.jabba/jabba.sh" ] && source "/home/paradise/.jabba/jabba.sh"
