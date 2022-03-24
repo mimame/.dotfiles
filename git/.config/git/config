@@ -319,7 +319,6 @@
 
 [delta]
   features                     = unobtrusive-line-numbers decorations
-  theme                        = 'Monokai Extended Bright Narnia'
   whitespace-error-style       = 1 reverse
   minus-emph-style             = normal bold "#901011"
   plus-emph-style              = normal bold "#006000"
