@@ -137,16 +137,6 @@ return require('packer').startup(function()
     'ggandor/lightspeed.nvim',
   })
 
-  -- Neovim motions on speed!
-  use({
-    'phaazon/hop.nvim',
-    as = 'hop',
-    config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require('hop').setup()
-    end,
-  })
-
   -- lsp signature hint when you type
   use({
     'ray-x/lsp_signature.nvim',
