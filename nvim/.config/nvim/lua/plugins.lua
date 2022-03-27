@@ -282,8 +282,6 @@ return require('packer').startup(function()
         -- will not open on setup if the filetype is in this list
         -- Never open nvim-tree with git commit messages files
         ignore_ft_on_setup = { 'git', 'gitcommit', 'COMMIT_EDITMSG', '__committia_diff__' },
-        -- closes neovim automatically when the tree is the last **WINDOW** in the view
-        auto_close = true,
         -- show lsp diagnostics in the signcolumn
         diagnostics = {
           enable = true,
