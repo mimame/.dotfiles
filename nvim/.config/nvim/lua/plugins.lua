@@ -44,6 +44,12 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Show code context
+  use({
+    'romgrk/nvim-treesitter-context',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  })
+
   -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   use({
     'jose-elias-alvarez/null-ls.nvim',
