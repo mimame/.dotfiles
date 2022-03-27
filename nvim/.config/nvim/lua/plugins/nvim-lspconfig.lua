@@ -1,5 +1,6 @@
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- Enable (broadcasting) snippet capability for completion
+-- nvim-cmp supports additional completion capabilities
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -57,6 +58,7 @@ end
 -- to your language client capabilities during setup.
 
 require('lspconfig').texlab.setup({
+  capabilities = capabilities,
   settings = {
     texlab = {
       auxDirectory = '.',
@@ -93,6 +95,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 require('lspconfig').sumneko_lua.setup({
+  capabilities = capabilities,
   cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
   settings = {
     Lua = {
