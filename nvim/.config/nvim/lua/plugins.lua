@@ -649,6 +649,20 @@ return require('packer').startup(function()
   -- A small automated session manager for Neovim
   use({ 'rmagatti/auto-session' })
 
+  -- A session-switcher extension for rmagatti/auto-session
+  -- using Telescope.nvim
+  use({
+    'rmagatti/session-lens',
+    requires = {
+      { 'nvim-telescope/telescope.nvim' },
+      { 'rmagatti/auto-session' },
+      config = function()
+        require('session-lens').setup({--[[your custom config--]]
+        })
+      end,
+    },
+  })
+
   -- Highlight, list and search todo comments in your projects
   use({
     'folke/todo-comments.nvim',

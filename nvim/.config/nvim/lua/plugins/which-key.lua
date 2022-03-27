@@ -22,6 +22,7 @@ wk.register({
     g = { '<cmd>Telescope live_grep<cr>', 'Grep' },
     h = { '<cmd>Telescope oldfiles<cr>', 'History' },
     q = { '<cmd>Telescope quickfix<cr>', 'Show quickfix window' },
+    s = { '<cmd>Telescope session-lens search_session<cr>', 'Show sessions' },
     t = { '<cmd>TroubleToggle<cr>', 'Trouble window' },
     T = { '<cmd>TodoTelescope<cr>', 'Todo window' },
     G = { '<cmd>Telescope tags<cr>', 'Tags' },
