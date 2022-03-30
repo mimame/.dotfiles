@@ -53,6 +53,8 @@ command! reload :write | restart full
 " Find with fd
 command! fd fd --exclude node_modules %a %M
 
+command! loop for f in %f; do %a "$f"; done %m
+
 " zoxide, faster way to navigate
 " Use term() instead system() which makes sure
 " external interactive applications won't
