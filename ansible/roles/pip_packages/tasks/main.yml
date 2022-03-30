@@ -8,20 +8,28 @@
     #- ansicolor
     #- basiciw
     #- colour
+    #- sensors
+    - ansible-lint
     - cmake-language-server
     - commonmark
+    - isort
     - jupyterlab
     - lxml
     - mps-youtube
     - pandas
-    - pylint
     - pydantic
-    - pygls
-    - thefuck
-    - radian
-    - vim-vint
     - pyflakes
-    #- sensors
-    - isort
+    - pygls
+    - pylint
+    - radian
     - reorder-python-imports
-    - ansible-lint
+    - thefuck
+    - vim-vint
+
+- name: Install sudo pip packages
+  pip:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  with_items:
+    - avell-unofficial-control-center
