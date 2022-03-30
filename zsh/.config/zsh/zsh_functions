@@ -9,7 +9,7 @@ function bb(){
       current_path="$(dirname "$current_path")"
       if [[ -d "$current_path" ]]; then dirs+=("$current_path"); fi
     done
-    printf "%s\n" "$dirs"
+    printf "%s\n" "${dirs[@]}"
   }
 
   # Show all possible parents paths
