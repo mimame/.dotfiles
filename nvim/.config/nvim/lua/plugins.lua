@@ -343,9 +343,6 @@ return require('packer').startup(function()
     end,
   })
 
-    end,
-  })
-
   -- vim dashboard
   use({
     'glepnir/dashboard-nvim',
@@ -672,7 +669,6 @@ return require('packer').startup(function()
       require('better_escape').setup()
     end,
   })
-
 
   -- A better user experience for viewing and interacting with Vim marks
   use({
