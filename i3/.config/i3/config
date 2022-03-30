@@ -51,6 +51,9 @@ exec_always --no-startup-id pkill greenclip; greenclip daemon > /dev/null &
 # Hide cursor when typing
 exec_always --no-startup-id pkill xbanish; xbanish &
 
+# Remove keyboard backlight by default
+exec_always --no-startup-id sudo aucc --color green --backlight 1
+
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 new_window none
 new_float none
