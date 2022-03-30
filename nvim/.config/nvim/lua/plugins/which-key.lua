@@ -117,10 +117,11 @@ wk.register({
 wk.register({
   l = {
     name = 'LSP',
-    p = { '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'Go to previous diagnostic' },
-    n = { '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'Go to next diagnostic' },
-    l = { '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', 'Show line' },
-    s = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set loc list' },
+    p = { '<cmd>lua vim.diagnostic.goto_prev()<CR>', 'Go to previous diagnostic' },
+    n = { '<cmd>lua vim.diagnostic.goto_next()<CR>', 'Go to next diagnostic' },
+    l = { '<cmd>lua vim.diagnostic.open_float(0, {scope="line"})<CR>', 'Show line' },
+    s = { '<cmd>lua vim.diagnostic.setloclist()<CR>', 'Set loc list' },
+    t = { '<cmd>TroubleToggle<cr>', 'Trouble window' },
     f = { '<cmd>lua vim.lsp.buf.formatting()<CR>', 'Formatting' },
   },
 }, {
