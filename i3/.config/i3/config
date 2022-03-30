@@ -23,6 +23,10 @@ exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'lipinput Natural
 exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'libinput Accel Speed' 1
 # Add Touchpad gestures
 exec_always xinput --list-props 'UNIW0001:00 093A:1336 Touchpad' ]] && libinput-gestures-setup start
+# mouse-dpi-tool  /dev/input/event30
+exec_always xinput set-prop 'USB Optical Mouse  Mouse' 'libinput Accel Speed' 1
+#exec_always xinput set-prop 'USB Optical Mouse  Mouse' 'libinput Accel Speed Default' 1
+#exec_always xinput set-prop 'USB Optical Mouse  Mouse' 'libinput Accel Speed' 2
 # Swap vertical mouse buttons back and forward
 exec_always xinput set-button-map "USB Optical Mouse  Mouse" 1 2 3 4 5 6 7 9 8
 # Enable numlock by default
