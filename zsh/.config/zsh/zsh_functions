@@ -16,7 +16,7 @@ function bb(){
   # Remove the current path
   # Count paths to easily select them from fzf
   # Finally remove the added index and cd to the selected parent path
-  local DIR=$(get_parent_dirs "$(realpath "${1:-$PWD}")" | nl --starting-line-number 1 | fzf | cut -f2)
+  local DIR=$(get_parent_dirs "$(realpath "${1:-$PWD}")" | nl -v 1 | fzf | cut -f2)
   cd "$DIR"
 }
 
@@ -30,7 +30,7 @@ function p() {
 
 
 function mc() {
-  mkdir --parent --verbose "$1" && cd "$1"
+  mkdir -pv "$1" && cd "$1"
 }
 
 function ll() {

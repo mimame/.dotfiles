@@ -27,12 +27,12 @@ alias -g .....='../../../..'
 alias -- -='cd -'
 # }}}
 
-alias md='mkdir --parent --verbose'
-alias mkdir='mkdir --parents --verbose'
+alias md='mkdir -pv'
+alias mkdir='mkdir -pv'
 
-alias pgrep='pgrep --full'
-alias pkill='pkill --full -9'
-alias k='\pkill --full -9'
+alias pgrep='pgrep -f'
+alias pkill='pkill -9 -f'
+alias k='\pkill -9 -f'
 
 # global pipe aliases
 alias -g B='| bat'
