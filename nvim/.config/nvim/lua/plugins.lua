@@ -51,7 +51,9 @@ return require('packer').startup(function()
     config = function()
       require('null-ls').setup({
         sources = {
-          require('null-ls').builtins.completion.spell,
+          -- https://github.com/hrsh7th/nvim-cmp/discussions/794
+          -- Remove weird completion conflict with nvim-cmp
+          -- require('null-ls').builtins.completion.spell,
           require('null-ls').builtins.diagnostics.zsh,
           require('null-ls').builtins.formatting.stylua,
           require('null-ls').builtins.formatting.nimpretty,
