@@ -48,7 +48,7 @@ exec --no-startup-id blueman-applet
 
 # Prevents the screensaver from showing up, or the system from going to sleep. It does so when an application is fullscreened
 exec_always --no-startup-id caffeine --kill; caffeine --active &
-exec_always pkill xautolock ;xautolock -time 15 -locker 'systemctl suspend' &
+exec_always pkill xautolock ;xautolock -time 15 -locker 'systemctl suspend-then-hibernate' &
 
 
 # Enable clipboard manager
