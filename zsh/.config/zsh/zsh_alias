@@ -77,10 +77,10 @@ alias senable='sudo systemctl enable'
 alias sdisable='sudo systemctl disable'
 alias sstop='sudo systemctl stop'
 
-alias v='vagrant'
-
 alias a='ansible'
 alias ap='ansible-playbook'
+
+alias vbm=VBoxManage
 
 # Never use vi
 alias vi='nvim'
