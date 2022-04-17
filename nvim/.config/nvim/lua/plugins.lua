@@ -655,7 +655,17 @@ return require('packer').startup(function()
   use({ 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' })
 
   -- A small automated session manager for Neovim
-  use({ 'rmagatti/auto-session' })
+  use({
+    'rmagatti/auto-session',
+    config = function()
+      require('auto-session').setup({
+        -- pre_save_cmds = {"tabdo NvimTreeClose", "autocmd! FileType alpha Alpha"},
+        auto_save_enabled = true,
+        auto_restore_enabled = false,
+        -- post_restore_cmds = {"tabdo NvimTreeRefresh"}
+      })
+    end,
+  })
 
   -- A session-switcher extension for rmagatti/auto-session
   -- using Telescope.nvim
