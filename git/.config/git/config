@@ -356,14 +356,18 @@
   mnemonicPrefix  = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftool
   tool            = nvimdiff
+  external        = difft
 
 [difftool]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftoolprompt
   # Don't ask to hit return to open the difftool
   prompt = false
 
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
 [difftool "nvimdiff"]
-  cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+  cmd = nvim -d "$LOCAL" "$REMOTE"
 
 [difftool "meld"]
   cmd = meld "$LOCAL" "$REMOTE"
