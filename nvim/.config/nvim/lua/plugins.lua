@@ -16,7 +16,7 @@ return require('packer').startup(function()
     requires = { { 'windwp/nvim-ts-autotag' }, { 'p00f/nvim-ts-rainbow' }, { 'andymass/vim-matchup' } },
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = 'maintained', -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+        ensure_installed = 'all', -- one of "all", or a list of languages
         highlight = {
           enable = true, -- false will disable the whole extension
           -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
