@@ -390,7 +390,17 @@ globalias() {
   zle self-insert
 }
 zle -N globalias
+
+# space expands all aliases, including global
+bindkey -M emacs " " globalias
 bindkey -M viins " " globalias
+#
+# # control-space to make a normal space
+bindkey -M emacs "^ " magic-space
+bindkey -M viins "^ " magic-space
+#
+# # normal space during searches
+bindkey -M isearch " " magic-space
 
 # / expands all dot aliases without adding a space after
 function expand-dots {
@@ -402,11 +412,6 @@ function expand-dots {
 }
 zle -N expand-dots
 bindkey -M viins "/" expand-dots
-
-# control-space to make a normal space
-bindkey -M viins "^ " magic-space
-# normal space during searches
-bindkey -M isearch " " magic-space
 # }}}
 
 
