@@ -50,6 +50,7 @@
     - coreutils
     - crystal
     - ctop
+    - difftastic
     - diskus
     - docker
     - docker-compose
