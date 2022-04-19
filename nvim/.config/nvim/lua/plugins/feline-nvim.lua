@@ -49,7 +49,7 @@ components.active[1] = {
     enabled = function(winid)
       return require('feline.providers.lsp').diagnostics_exist(
         vim.diagnostic.severity.ERROR,
-        api.nvim_win_get_buf(winid)
+        api.nvim_win_get_buf(winid or 0)
       )
     end,
     hl = { fg = 'red' },
@@ -59,7 +59,7 @@ components.active[1] = {
     enabled = function(winid)
       return require('feline.providers.lsp').diagnostics_exist(
         vim.diagnostic.severity.WARN,
-        api.nvim_win_get_buf(winid)
+        api.nvim_win_get_buf(winid or 0)
       )
     end,
     hl = { fg = 'yellow' },
@@ -69,7 +69,7 @@ components.active[1] = {
     enabled = function(winid)
       return require('feline.providers.lsp').diagnostics_exist(
         vim.diagnostic.severity.HINT,
-        api.nvim_win_get_buf(winid)
+        api.nvim_win_get_buf(winid or 0)
       )
     end,
     hl = { fg = 'cyan' },
@@ -79,7 +79,7 @@ components.active[1] = {
     enabled = function(winid)
       return require('feline.providers.lsp').diagnostics_exist(
         vim.diagnostic.severity.INFO,
-        api.nvim_win_get_buf(winid)
+        api.nvim_win_get_buf(winid or 0)
       )
     end,
     hl = { fg = 'skyblue' },

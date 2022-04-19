@@ -542,7 +542,7 @@ return require('packer').startup(function()
 
   -- A minimal, stylish and customizable statusline for Neovim written in Lua
   use({
-    'famiu/feline.nvim',
+    'feline-nvim/feline.nvim',
     config = function()
       require('./plugins/feline-nvim')
     end,
