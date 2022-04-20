@@ -392,6 +392,19 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Improve the default vim.ui interfaces
+  use({
+    'stevearc/dressing.nvim',
+    config = function()
+      require('dressing').setup({
+        input = {
+          -- Window transparency (0-100)
+          winblend = 0,
+        },
+      })
+    end,
+  })
+
   --  Indent guides for Neovim
   -- :h buftype
   use({
