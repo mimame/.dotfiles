@@ -21,6 +21,7 @@ wk.register({
     F = { "<cmd>lua require('telescope.builtin').find_files({ hidden = true })<cr>", 'Find hidden file' },
     g = { '<cmd>Telescope live_grep<cr>', 'Grep' },
     h = { '<cmd>Telescope oldfiles<cr>', 'History' },
+    l = { '<cmd>lua require("legendary").find()<cr>', 'Legendary' },
     q = { '<cmd>Telescope quickfix<cr>', 'Show quickfix window' },
     s = { '<cmd>Telescope session-lens search_session<cr>', 'Show sessions' },
     t = { '<cmd>TroubleToggle<cr>', 'Trouble window' },

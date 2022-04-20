@@ -379,6 +379,11 @@ return require('packer').startup(function()
     end,
   })
 
+  -- A legend for your keymaps and commands
+  use({
+    'mrjones2014/legendary.nvim',
+  })
+
   -- Create key bindings that stick. WhichKey is a lua plugin for Neovim 0.5 that displays a popup with possible keybindings of the command you started typing.
   use({
     'folke/which-key.nvim',
