@@ -28,7 +28,6 @@ local servers = {
   'dotls',
   'gopls',
   'html',
-  'jedi_language_server',
   'jsonls',
   'julials',
   'nimls',
@@ -58,6 +57,7 @@ end
 -- to your language client capabilities during setup.
 
 require('lspconfig').texlab.setup({
+  on_attach = on_attach,
   capabilities = capabilities,
   settings = {
     texlab = {
@@ -95,6 +95,7 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 require('lspconfig').sumneko_lua.setup({
+  on_attach = on_attach,
   capabilities = capabilities,
   cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
   settings = {
