@@ -174,6 +174,7 @@ alias top=btop
 alias lc='libreoffice --calc'
 
 alias loc='tokei'
+alias tokei='tokei --sort lines'
 
 # rsync alias
 alias rsync='rsync --archive --hard-links --compress --human-readable --info=progress2'
