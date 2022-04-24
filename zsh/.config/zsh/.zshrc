@@ -321,8 +321,14 @@ zle -N zle-keymap-select
 # }}}
 
 # FZF config {{{
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+# Add NixOS compatibility
+if [ -x "$(command -v "fzf-share")" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+else
+  source /usr/share/fzf/key-bindings.zsh
+  source /usr/share/fzf/completion.zsh
+fi
 # Ctrl-R provided by fzf
 # Setting fd as the default source for fzf
 export FZF_DEFAULT_COMMAND='fd --type f --exclude node_modules'
