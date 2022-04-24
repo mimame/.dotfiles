@@ -173,7 +173,8 @@ alias top=btop
 
 alias lc='libreoffice --calc'
 
-alias loc='tokei'
+alias loc='scc --sort lines'
+alias scc='scc --sort lines'
 alias tokei='tokei --sort lines'
 
 # rsync alias
