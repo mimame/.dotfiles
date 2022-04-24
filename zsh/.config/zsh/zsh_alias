@@ -177,6 +177,9 @@ alias loc='scc --sort lines'
 alias scc='scc --sort lines'
 alias tokei='tokei --sort lines'
 
+alias rup="rustup"
+alias jup="juliaup"
+
 # rsync alias
 alias rsync='rsync --archive --hard-links --compress --human-readable --info=progress2'
 # }}}
