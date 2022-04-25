@@ -740,4 +740,7 @@ return require('packer').startup(function()
 
   -- High Contrast & Vivid Color Scheme based on Monokai Pro
   use({ 'sainnhe/sonokai' })
+
+  -- Vim plugin for profiling Vim's startup time.
+  use({ 'dstein64/vim-startuptime' })
 end)
