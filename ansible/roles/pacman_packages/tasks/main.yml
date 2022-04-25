@@ -243,6 +243,7 @@
     - tk
     - tmuxp
     - tokei
+    - topgrade
     - translate-shell
     - tree
     - udiskie
