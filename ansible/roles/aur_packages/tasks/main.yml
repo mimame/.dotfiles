@@ -22,6 +22,8 @@
     - bluez-firmware
     - broot
     - caffeine-ng
+    - czkawka-cli
+    - czkawka-gui
     - dragon-drag-and-drop
     - dropbox-cli
     - dust
