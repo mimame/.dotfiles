@@ -44,7 +44,7 @@ function fzf-complete -d 'fzf completion and print selection back to commandline
                 end
             case '~'
                 # commandline -t -- (string sub -s 2 (string escape -n -- $r))
-                commandline -t -- (string sub -s 2 $r)
+                commandline -t -- $r
             case '*'
                 # commandline -t -- (string escape -n -- $r)
                 commandline -t -- $r
