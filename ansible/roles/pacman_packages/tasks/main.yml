@@ -132,6 +132,7 @@
     - jq
     - jre11-openjdk
     - jre11-openjdk-headless
+    - just
     - keepassxc
     - klavaro
     - less
