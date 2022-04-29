@@ -141,6 +141,7 @@
     - libreoffice-fresh
     - light # laptop mode
     - llvm
+    - lnav
     - logrotate
     - lsd
     - lsof
