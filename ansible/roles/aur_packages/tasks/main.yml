@@ -14,6 +14,7 @@
   command: paru -S --noconfirm --nouseask --needed --sudoloop --norebuild --noredownload --cleanafter "{{ item }}"
   become: no
   with_items:
+    - amber
     - ameba
     - antibody-bin
     - archivemount
