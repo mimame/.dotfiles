@@ -50,6 +50,7 @@
     - coreutils
     - crystal
     - ctop
+    - curlie
     - difftastic
     - diskus
     - docker
