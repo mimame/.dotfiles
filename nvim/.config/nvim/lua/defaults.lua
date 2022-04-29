@@ -231,7 +231,7 @@ fn.system('mkdir -p /tmp/.nvim_undo')
 opt.undodir = '/tmp/.nvim_undo'
 
 -- Improve default grepprg
-opt.grepprg = 'rg\\ --vimgrep\\--no-heading'
+opt.grepprg = [[rg --vimgrep --no-heading]]
 opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
 -- Search upwards for tags file and prevent duplicate entry in 'tags'
