@@ -54,6 +54,7 @@
     - pandoc-bin
     - rstudio-desktop-bin
     - rstudio-server-bin
+    - rustscan
     - shellcheck-bin
     - skypeforlinux-stable-bin
     - slack-desktop
