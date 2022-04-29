@@ -277,6 +277,7 @@
     - xclip
     - xdg-utils
     - xdotool
+    - xh
     - xorg-xbacklight # if laptop
     - xorg-xev
     - xsel
