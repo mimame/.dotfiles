@@ -52,6 +52,7 @@
     - ctop
     - curlie
     - difftastic
+    - direnv
     - diskus
     - docker
     - docker-compose
