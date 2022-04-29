@@ -314,8 +314,12 @@ return require('packer').startup(function()
         view = {
           -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
           side = 'right',
-          -- if true the tree will resize itself after opening a file
-          auto_resize = true,
+        },
+        actions = {
+          open_file = {
+            -- if true the tree will resize itself after opening a file
+            resize_window = true,
+          },
         },
       })
       -- show relative numbers
