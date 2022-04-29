@@ -25,10 +25,18 @@ opt.syntax = 'on'
 opt.swapfile = false
 
 -- Use buffer filename as tmux window name
-cmd('autocmd BufEnter,BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))')
+api.nvim_create_autocmd({ 'BufEnter', 'BufReadPost', 'FileReadPost', 'BufNewFile' }, {
+  pattern = '*',
+  command = 'call system("tmux rename-window " . expand("%:t"))',
+  desc = 'Use buffer as tmux window name',
+})
 
 -- Reset tmux windows name when exit
-cmd('autocmd VimLeave * call system("tmux setw automatic-rename")')
+api.nvim_create_autocmd('VimLeave', {
+  pattern = '*',
+  command = 'call system("tmux setw automatic-rename")',
+  desc = 'Reset tmux windows name when exit',
+})
 
 --  Change from a buffer without written changes
 opt.hidden = true
@@ -37,8 +45,16 @@ opt.hidden = true
 opt.timeoutlen = 1000
 
 -- Lower timeoutlen inside insert mode to reduce the latency caused waiting insert mappings
-cmd('autocmd InsertEnter * set timeoutlen=200')
-cmd('autocmd InsertLeave * set timeoutlen=1000')
+api.nvim_create_autocmd('InsertEnter', {
+  pattern = '*',
+  command = 'set timeoutlen=200',
+  desc = 'Lower timeoutlen inside insert mode to reduce the latency caused waiting insert mappings',
+})
+api.nvim_create_autocmd('InsertLeave', {
+  pattern = '*',
+  command = 'set timeoutlen=1000',
+  desc = 'Increase timeoutlen after leaving insert mode modified to decrease latency caused waiting insert mappings',
+})
 
 -- No timeout when typing leader key
 opt.ttimeout = true
@@ -143,7 +159,11 @@ opt.formatoptions = opt.formatoptions - 'o'
 opt.formatoptions = opt.formatoptions + 'j' -- Delete comment character when joining commented lines
 
 -- Force to set formatoptions for each type of files
-cmd('au FileType * set fo-=c fo-=r fo-=o fo+=j')
+api.nvim_create_autocmd('BufRead', {
+  pattern = '*',
+  command = "set fo-=c fo-=r fo-=o fo+=j",
+  desc = 'Force to set formatoptions for each type of files',
+})
 
 -- Wrap lines at breakat
 opt.linebreak = true
@@ -240,7 +260,11 @@ opt.tags = opt.tags - './tags;'
 opt.tags = opt.tags ^ './tags;'
 
 -- Always start with insert mode in new files
-cmd('autocmd BufNewFile * startinsert')
+api.nvim_create_autocmd('BufNewFile', {
+  pattern = '*',
+  command = 'startinsert',
+  desc = 'Always start with insert mode in new files',
+})
 
 -- Shows the effects of a command incrementally like :substitute
 opt.inccommand = 'nosplit'
@@ -274,12 +298,13 @@ opt.shortmess = opt.shortmess + 'c'
 
 -- Write file and create the folder if not exists
 -- https://vi.stackexchange.com/a/679
-cmd([[
-augroup Mkdir
-  autocmd!
-  autocmd BufWritePre * call mkdir(expand("<afile>:p:h"), "p")
-augroup END
-]])
+local mkdir_group = api.nvim_create_augroup("Mkdir", { clear = true })
+api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  command = 'call mkdir(expand("<afile>:p:h"), "p")',
+  group = mkdir_group,
+  desc = 'Write file and create the folder if not exists',
+})
 
 -- Highlight the yank with orange
 cmd([[
@@ -287,5 +312,13 @@ highlight HighlightedyankRegion guibg=#FD971F guifg=#000000 gui=bold ctermbg=208
 ]])
 
 -- Always open git commit files in insert mode
-cmd([[autocmd! FileType gitcommit exec 'au VimEnter * startinsert']])
-cmd([[autocmd! BufRead COMMIT_EDITMSG exec 'norm gg' | startinsert!]])
+api.nvim_create_autocmd('VimEnter', {
+  pattern = 'gitcommit',
+  command = "exec 'au VimEnter * startinsert'",
+  desc = 'Always start with insert mode in new files',
+})
+api.nvim_create_autocmd('BufRead', {
+  pattern = 'COMMIT_EDITMSG',
+  command = "exec 'norm gg' | startinsert!",
+  desc = 'Always start with insert mode in new files',
+})
