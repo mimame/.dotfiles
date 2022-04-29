@@ -221,6 +221,7 @@
     - rustup
     - screen
     - screenfetch
+    - sd
     - seahorse
     - shards
     - shfmt
