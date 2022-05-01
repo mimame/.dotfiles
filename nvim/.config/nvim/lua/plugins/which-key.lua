@@ -162,6 +162,18 @@ wk.register({
 })
 
 wk.register({
+  p = {
+    name = 'Packer',
+    y = { '<cmd>PackerSnapshotSync<CR>', 'Snapshot + Sync packages' },
+    r = { '<cmd>PackerSnapshotRollback', 'Restore packages' },
+    c = { '<cmd>PackerCompile<CR>', 'Compile packages' },
+    C = { '<cmd>PackerClean<CR>', 'Clean unused packages' },
+  },
+}, {
+  prefix = '<leader>',
+})
+
+wk.register({
   w = {
     name = 'Window',
     s = { '<C-w>s<CR>', 'Horizontal Window split' },
