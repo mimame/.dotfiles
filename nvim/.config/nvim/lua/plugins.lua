@@ -5,6 +5,16 @@ autocmd BufWritePost plugins.lua PackerCompile
 augroup end
 ]])
 
+api.nvim_create_user_command('PackerSnapshotSync', function(args)
+  local packer = require('packer')
+  local t = os.date('%d-%m-%y_%H-%M-%S')
+  local filepath = '/tmp/' .. 'packer_' .. t .. '.txt'
+  cmd('PackerSnapshot ' .. filepath .. '| PackerSync')
+  cmd('PackerSync')
+end, {
+  desc = 'PackerSnapshot + PackerSync',
+})
+
 return require('packer').startup(function()
   -- Packer can manage itself
   use('wbthomason/packer.nvim')
