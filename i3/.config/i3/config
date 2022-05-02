@@ -22,7 +22,7 @@ exec_always --no-startup-id pkill syndaemon; syndaemon -i 0.5 -K -R -d &
 exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'lipinput Natural Scrolling Enabled' 0
 exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'libinput Accel Speed' 1
 # Add Touchpad gestures
-exec_always xinput --list-props 'UNIW0001:00 093A:1336 Touchpad' ]] && libinput-gestures-setup start
+exec_always xinput --list-props 'UNIW0001:00 093A:1336 Touchpad' && libinput-gestures-setup restart
 # mouse-dpi-tool  /dev/input/event30
 exec_always xinput set-prop 'USB Optical Mouse  Mouse' 'libinput Accel Speed' 1
 #exec_always xinput set-prop 'USB Optical Mouse  Mouse' 'libinput Accel Speed Default' 1
