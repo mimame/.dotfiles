@@ -54,6 +54,18 @@ return require('packer').startup(function()
     end,
   })
 
+    -- A better annotation generator. Supports multiple languages and annotation conventions.
+    use({
+      'danymat/neogen',
+      requires = 'nvim-treesitter/nvim-treesitter',
+      config = function()
+        require('neogen').setup({
+          enabled = true,
+          snippet_engine = 'luasnip',
+        })
+      end,
+    })
+
   -- Show code context
   use({
     'romgrk/nvim-treesitter-context',

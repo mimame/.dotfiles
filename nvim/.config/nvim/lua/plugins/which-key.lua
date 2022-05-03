@@ -162,6 +162,18 @@ wk.register({
 })
 
 wk.register({
+  n = {
+    name = 'Neogen',
+    c = { '<cmd>lua require("neogen").generate({ type = "class" })<CR>', 'Generate file documentation' },
+    f = { '<cmd>lua require("neogen").generate({ type = "file" })<CR>', 'Generate file documentation' },
+    m = { '<cmd>lua require("neogen").generate({ type = "func" })<CR>', 'Generate method documentation' },
+    t = { '<cmd>lua require("neogen").generate({ type = "type" })<CR>', 'Generate type documentation' },
+  },
+}, {
+  prefix = '<leader>',
+})
+
+wk.register({
   p = {
     name = 'Packer',
     y = { '<cmd>PackerSnapshotSync<CR>', 'Snapshot + Sync packages' },
