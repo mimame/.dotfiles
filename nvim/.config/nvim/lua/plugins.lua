@@ -54,22 +54,32 @@ return require('packer').startup(function()
     end,
   })
 
-    -- A better annotation generator. Supports multiple languages and annotation conventions.
-    use({
-      'danymat/neogen',
-      requires = 'nvim-treesitter/nvim-treesitter',
-      config = function()
-        require('neogen').setup({
-          enabled = true,
-          snippet_engine = 'luasnip',
-        })
-      end,
-    })
+  -- Highlight arguments' definitions and usages, using Treesitter
+  use({
+    'm-demare/hlargs.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+    config = function ()
+      require('hlargs').setup()
+    end
+  })
 
   -- Show code context
   use({
     'romgrk/nvim-treesitter-context',
     requires = 'nvim-treesitter/nvim-treesitter',
+  })
+
+
+  -- A better annotation generator. Supports multiple languages and annotation conventions.
+  use({
+    'danymat/neogen',
+    requires = 'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('neogen').setup({
+        enabled = true,
+        snippet_engine = 'luasnip',
+      })
+    end,
   })
 
   -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
