@@ -122,6 +122,7 @@ abbr -a -U top btop
 
 abbr -a -U lc 'libreoffice --calc'
 
+abbr -a -U loc 'scc --sort lines'
 abbr -a -U scc 'scc --sort lines'
 abbr -a -U tokei 'tokei --sort lines'
 
