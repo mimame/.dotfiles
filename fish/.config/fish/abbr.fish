@@ -131,3 +131,6 @@ abbr -a -U rsync 'rsync --archive --hard-links --compress --human-readable --inf
 # }}}
 
 abbr -a -U rm gomi
+
+
+abbr -a -U rsj 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppable'
