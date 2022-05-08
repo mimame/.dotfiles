@@ -58,9 +58,9 @@ return require('packer').startup(function()
   use({
     'm-demare/hlargs.nvim',
     requires = { 'nvim-treesitter/nvim-treesitter' },
-    config = function ()
+    config = function()
       require('hlargs').setup()
-    end
+    end,
   })
 
   -- Show code context
@@ -68,7 +68,6 @@ return require('packer').startup(function()
     'romgrk/nvim-treesitter-context',
     requires = 'nvim-treesitter/nvim-treesitter',
   })
-
 
   -- A better annotation generator. Supports multiple languages and annotation conventions.
   use({
@@ -97,20 +96,10 @@ return require('packer').startup(function()
           require('null-ls').builtins.formatting.nimpretty,
           require('null-ls').builtins.formatting.crystal_format,
           require('null-ls').builtins.formatting.shfmt,
+          require('null-ls').builtins.code_actions.shellcheck,
           require('null-ls').builtins.formatting.zigfmt,
           require('null-ls').builtins.formatting.fish_indent,
         },
-        -- you can reuse a shared lspconfig on_attach callback here
-        on_attach = function(client)
-          if client.resolved_capabilities.document_formatting then
-            vim.cmd([[
-            augroup LspFormatting
-            autocmd! * <buffer>
-            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-            augroup END
-            ]])
-          end
-        end,
       })
     end,
   })
