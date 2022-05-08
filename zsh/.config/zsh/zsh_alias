@@ -180,6 +180,9 @@ alias tokei='tokei --sort lines'
 alias rup="rustup"
 alias jup="juliaup"
 
+
+alias rsl='rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppable'
+
 # rsync alias
 alias rsync='rsync --archive --hard-links --compress --human-readable --info=progress2'
 # }}}
