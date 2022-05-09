@@ -465,7 +465,19 @@ return require('packer').startup(function()
       end
       require('telescope').setup({
         defaults = {
-          kayout_strategy = 'horizontal',
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--trim',
+            '--hidden',
+            '--ignore-file="~/.config/fd/ignore"',
+          },
+          layout_strategy = 'horizontal',
           layout_config = {
             horizontal = { preview_cutoff = 500 },
           },
