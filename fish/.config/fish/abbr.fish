@@ -67,13 +67,12 @@ abbr -a -U less bat
 abbr -a -U more bat
 abbr -a -U m man
 
-# rg with grep -r behaviour
+# rg with grep -r behavior
 abbr -a -U ag 'ag --smart-case --ignore node_modules'
-abbr -a -U s 'rg --smart-case --no-heading --with-filename --glob '"'"'!{node_modules}'"'"
-abbr -a -U sn 'rg --smart-case --no-heading --with-filename --no-ignore --hidden --glob '"'"'!{node_modules}'"'"
+abbr -a -U s 'rg --smart-case --no-heading --with-filename --hidden --ignore-file ~/.config/fd/ignore'
 
-# fd with find behaviour
-abbr -a -U f 'fd --exclude node_modules'
+# fd with find behavior
+abbr -a -U f 'fd --hidden --strip-cwd-prefix'
 
 # Safe ops. Ask the user before doing anything destructive.
 # Move rm files to the trash using trash-cli
