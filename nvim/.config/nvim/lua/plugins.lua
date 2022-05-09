@@ -486,6 +486,10 @@ return require('packer').startup(function()
           mappings = {
             i = {
               ['<esc>'] = actions.close,
+              ['<Tab>'] = actions.move_selection_previous,
+              ['<S-Tab>'] = actions.move_selection_next,
+              ['<C-j>'] = actions.toggle_selection + actions.move_selection_better,
+              ['<C-k>'] = actions.toggle_selection + actions.move_selection_worse,
             },
           },
         },
@@ -497,6 +501,13 @@ return require('packer').startup(function()
               'f',
               '--strip-cwd-prefix',
               '--hidden',
+            },
+            mappings = {
+              i = {
+                ['<C-V>'] = multi_selection_open_vsplit,
+                ['<C-X>'] = multi_selection_open_split,
+                ['<CR>'] = multi_selection_open_tab,
+              },
             },
           },
         },
