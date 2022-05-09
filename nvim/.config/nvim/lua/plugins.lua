@@ -345,26 +345,33 @@ return require('packer').startup(function()
     end,
   })
 
-  -- vim dashboard
+  -- a lua powered greeter like vim-startify / dashboard-nvim
   use({
-    'glepnir/dashboard-nvim',
+    'goolord/alpha-nvim',
     config = function()
-      g.dashboard_default_executive = 'telescope'
-      g.dashboard_custom_shortcut = {
-        last_session = '<leader> d l',
-        find_history = '<leader> d h',
-        find_file = '<leader> d f',
-        new_file = '<leader> d n',
-        change_colorscheme = '<leader> d c',
-        find_word = '<leader> d w',
-        book_marks = '<leader> d b',
+      local alpha = require('alpha')
+      local dashboard = require('alpha.themes.dashboard')
+      dashboard.section.header.val = {
+        [[                               __                ]],
+        [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
+        [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
+        [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
+        [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+        [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
       }
-      cmd([[
-      augroup dasboard_no_indent_lines
-      au!
-      au FileType dashboard IndentBlanklineDisable
-      augroup END
-      ]])
+      dashboard.section.buttons.val = {
+        dashboard.button('e', '  New file', ':ene <BAR> startinsert <CR>'),
+        dashboard.button('r', '  Recently opened files', '<cmd>Telescope oldfiles<cr>'),
+        dashboard.button('f', '  Find file', '<cmd>Telescope find_files<cr>'),
+        dashboard.button('s', '  Find word', '<cmd>Telescope live_grep<cr>'),
+        dashboard.button('m', '  Jump to marks', '<cmd>Telescope marks<cr>'),
+        dashboard.button('S', '  Find session', '<cmd>Telescope session-lens search_session<cr>'),
+        -- dashboard.button('f', '  Frequency/MRU', ),
+        dashboard.button('q', '  Quit NVIM', ':qa<CR>'),
+      }
+      dashboard.config.opts.noautocmd = true
+      vim.cmd([[autocmd User AlphaReady echo 'ready']])
+      alpha.setup(dashboard.config)
     end,
   })
 
