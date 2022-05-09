@@ -423,7 +423,46 @@ return require('packer').startup(function()
     'nvim-telescope/telescope.nvim',
     requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
     config = function()
+      -- https://github.com/nvim-telescope/telescope.nvim/issues/1048#issuecomment-993956937
       local actions = require('telescope.actions')
+      local action_state = require('telescope.actions.state')
+
+      -- Workaround for https://github.com/nvim-telescope/telescope.nvim/issues/1048
+      local multiopen = function(prompt_bufnr, open_cmd)
+        local picker = action_state.get_current_picker(prompt_bufnr)
+        local num_selections = #picker:get_multi_selection()
+        if not num_selections or num_selections <= 1 then
+          actions.add_selection(prompt_bufnr)
+        end
+        actions.send_selected_to_qflist(prompt_bufnr)
+
+        local results = vim.fn.getqflist()
+
+        for _, result in ipairs(results) do
+          local current_file = vim.fn.bufname()
+          local next_file = vim.fn.bufname(result.bufnr)
+
+          if current_file == '' then
+            vim.api.nvim_command('edit' .. ' ' .. next_file)
+          else
+            vim.api.nvim_command(open_cmd .. ' ' .. next_file)
+          end
+        end
+
+        vim.api.nvim_command('cd .')
+      end
+
+      local function multi_selection_open_vsplit(prompt_bufnr)
+        multiopen(prompt_bufnr, 'vsplit')
+      end
+
+      local function multi_selection_open_split(prompt_bufnr)
+        multiopen(prompt_bufnr, 'split')
+      end
+
+      local function multi_selection_open_tab(prompt_bufnr)
+        multiopen(prompt_bufnr, 'tabedit')
+      end
       require('telescope').setup({
         defaults = {
           kayout_strategy = 'horizontal',
