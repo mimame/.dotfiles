@@ -489,6 +489,17 @@ return require('packer').startup(function()
             },
           },
         },
+        pickers = {
+          find_files = {
+            find_command = {
+              'fd',
+              '--type',
+              'f',
+              '--strip-cwd-prefix',
+              '--hidden',
+            },
+          },
+        },
       })
     end,
   })
