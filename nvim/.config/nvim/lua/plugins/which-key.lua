@@ -14,24 +14,21 @@ local wk = require('which-key')
 
 wk.register({
   t = {
-    name = 'Telescope', -- optional group name
-    b = { "<cmd>lua require('telescope.builtin').file_browser({depth=5})<cr>", 'File browser' },
+    name = 'Telescope',
+    b = { '<cmd>Telescope buffers<cr>', 'Available buffers' },
     c = { '<cmd>Telescope commands<cr>', 'Available commands' },
-    f = { "<cmd>lua require('telescope.builtin').find_files()<cr>", 'Find files' },
-    F = { "<cmd>lua require('telescope.builtin').find_files({ hidden = true })<cr>", 'Find hidden file' },
-    g = { '<cmd>Telescope live_grep<cr>', 'Grep' },
-    G = {
-      "<cmd>lua require('telescope.builtin').live_grep({vimgrep_arguments = { 'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--hidden' }})<cr>",
-      'Grep',
-    },
+    C = { '<cmd>Telescope command_history<cr>', 'Command history' },
+    f = { '<cmd>Telescope find_files<cr>', 'Find files' },
+    s = { '<cmd>Telescope live_grep<cr>', 'Grep' },
+    w = { '<cmd>Telescope grep_string<cr>', 'Grep word under the cursor' },
+    g = { '<cmd>Telescope search_history<cr>', 'Search history' },
     -- G = { '<cmd>Telescope tags<cr>', 'Tags' },
     h = { '<cmd>Telescope oldfiles<cr>', 'History' },
     l = { '<cmd>lua require("legendary").find()<cr>', 'Legendary' },
     q = { '<cmd>Telescope quickfix<cr>', 'Show quickfix window' },
-    s = { '<cmd>Telescope session-lens search_session<cr>', 'Show sessions' },
+    S = { '<cmd>Telescope session-lens search_session<cr>', 'Show sessions' },
     t = { '<cmd>TroubleToggle<cr>', 'Trouble window' },
     T = { '<cmd>TodoTelescope<cr>', 'Todo window' },
-    w = { '<cmd>Telescope grep_string<cr>', 'Grep this word' },
   },
 }, {
   prefix = '<leader>',
