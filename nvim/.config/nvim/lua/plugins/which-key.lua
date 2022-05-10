@@ -161,6 +161,7 @@ wk.register({
     name = 'Packer',
     y = { '<cmd>PackerSnapshotSync<CR>', 'Snapshot + Sync packages' },
     r = { '<cmd>PackerSnapshotRollback', 'Restore packages' },
+    i = { '<cmd>PackerInstall<CR>', 'Install new packages' },
     c = { '<cmd>PackerCompile<CR>', 'Compile packages' },
     C = { '<cmd>PackerClean<CR>', 'Clean unused packages' },
   },
