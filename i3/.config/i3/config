@@ -21,6 +21,7 @@ exec_always --no-startup-id pkill syndaemon; syndaemon -i 0.5 -K -R -d &
 # https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html#pointer-acceleration-on-touchpads
 exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'libinput Natural Scrolling Enabled' 1
 exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'libinput Accel Speed' 1
+exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'libinput Tapping Enabled' 1
 # Add Touchpad gestures
 exec_always xinput --list-props 'UNIW0001:00 093A:1336 Touchpad' && libinput-gestures-setup restart
 # mouse-dpi-tool  /dev/input/event30
