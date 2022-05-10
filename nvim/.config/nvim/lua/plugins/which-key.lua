@@ -83,20 +83,6 @@ wk.register({
 })
 
 wk.register({
-  d = {
-    name = 'Dashboard',
-    b = { '<cmd>DashboardJumpMark<cr>', 'Bookmarks' },
-    c = { '<cmd>Telescope colorscheme<cr>', 'Color Scheme' },
-    f = { '<cmd>DashboardFindFile<cr>', 'Find file' },
-    h = { '<cmd>DashboardFindHistory<CR>', 'History' },
-    n = { '<cmd>DashboardNewFile<cr>', 'Create new file' },
-    w = { '<cmd>DashboardFindWord<cr>', 'Find word' },
-  },
-}, {
-  prefix = '<leader>',
-})
-
-wk.register({
   v = {
     name = 'nvimrc',
     o = { "<cmd>execute 'e '. resolve(expand($MYVIMRC))<CR>", 'Open nvimrc' },
