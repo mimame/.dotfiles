@@ -485,11 +485,12 @@ return require('packer').startup(function()
             '--ignore-file="~/.config/fd/ignore"',
           },
           layout_strategy = 'horizontal',
+          sorting_strategy = "ascending",
           layout_config = {
-            horizontal = { preview_cutoff = 500 },
+            horizontal = { prompt_position = "top"},
           },
+          wrap_results = true,
           previewer = true,
-          file_ignore_patterns = { 'node_modules/.*', '.git/.*', '.snakemake/.*', './conda/.*' },
           mappings = {
             i = {
               ['<esc>'] = actions.close,
