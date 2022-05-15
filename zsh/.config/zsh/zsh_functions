@@ -245,24 +245,33 @@ done
 
 # Compress any kind of files list
 function c () {
-  files=( "$@" )
-  compression_format="${@: -1}"
-  unset "files[${#files[@]}]"    # Removes last element -- also see: help unset
+  if [ "$#" -le 1 ]; then
+    >&2 echo "Usage: file1 ... fileN t|z|g|zs|x|b|7"
+    return 1
+  fi
+
+  declare -a files
+  for (( i=1; i<${#[@]}; i++ ))
+  do
+    files+=(${@[i]})
+  done
+  compression_format=$@[${#[@]}]
+
   for file in "${files[@]}"; do
     case $compression_format in
       t)  tar cvf ${file}.tar $file; ext='tar';;
       z)  zip -r ${file}.zip $file; ext='zip';;
       7)  7z a ${file}.7z $file; ext='7z';;
-      g)  [[ -d $file ]] && tar -I pigz -cvf ${file}.tar.gz $file || pigz -kv $file; ext='gz';;
-      b)  [[ -d $file ]] && tar -I pbzip2 -cvf ${file}.tar.bz2 $file || pbzip2 -kv $file; ext='bz2';;
-      x)  [[ -d $file ]] && tar -I pixz -cvf ${file}.tar.xz $file || pixz -k $file; ext='xz';;
-      zs) [[ -d $file ]] && tar -I 'zstdmt -19' -cvf ${file}.tar.zst $file || zstdmt -19 -kv $file; ext='zst';;
+      g)  [[ -d $file ]] && tar -I pigz -cvf ${file}.tar.gz $file; ext='tar.gz' || pigz -kv $file; ext='gz';;
+      b)  [[ -d $file ]] && tar -I pbzip2 -cvf ${file}.tar.bz2 $file; ext='tar.bz2' || pbzip2 -kv $file; ext='bz2';;
+      x)  [[ -d $file ]] && tar -I pixz -cvf ${file}.tar.xz $file; ext='tar.xz' || pixz -k $file; ext='xz';;
+      zs) [[ -d $file ]] && tar -I 'zstdmt -19' -cvf ${file}.tar.zst $file; ext='tar.zst' || zstdmt -19 -kv $file; ext='zst';;
       *)  >&2 echo "'$file' cannot be compressed, unknown '$2' compression format" && return 1
     esac
-    compressed_file="${file}*.${ext}"
+    compressed_file="${file}.${ext}"
     # force glob completion with $~
     compressed_size=$(command du $~compressed_file | cut -f1)
-    original_size=$(command du -s "$1" | cut -f1)
+    original_size=$(command du -s "${file}" | cut -f1)
     >&2 echo $~compressed_file
     compression_ration=$(awk "BEGIN{printf \"%0.2f\", $original_size/$compressed_size}")
     >&2 echo "\tCompression ration: $compression_ration"
