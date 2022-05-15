@@ -494,8 +494,8 @@ return require('packer').startup(function()
           mappings = {
             i = {
               ['<esc>'] = actions.close,
-              ['<Tab>'] = actions.move_selection_previous,
-              ['<S-Tab>'] = actions.move_selection_next,
+              ['<Tab>'] = actions.move_selection_next,
+              ['<S-Tab>'] = actions.move_selection_previous,
               ['<C-j>'] = actions.toggle_selection + actions.move_selection_better,
               ['<C-k>'] = actions.toggle_selection + actions.move_selection_worse,
             },
