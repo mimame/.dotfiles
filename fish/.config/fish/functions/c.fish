@@ -1,9 +1,11 @@
 # # compress any kind of files list
 function c
+    if test (count $argv) -le 1
+      echo "Usage: file1 ... fileN t|z|g|zs|x|b|7"
+      return 1
+    end
     set files $argv[1..-2]
     set compression_format $argv[-1]
-    echo "FILES: $files"
-    echo "compression_format: $compression_format"
     for file in $files
         switch $compression_format
             case t
@@ -51,9 +53,9 @@ function c
                 echo "'$file' cannot be compressed, unknown '$argv[2]' compression format" 2>&1
                 return 1
         end
-        set compressed_file $file*.$ext
+        set compressed_file $file.$ext
+        set original_size (command du -s "$file" | cut -f1)
         set compressed_size (command du "$compressed_file" | cut -f1)
-        set original_size (command du -s "$argv[1]" | cut -f1)
         echo "Compressed file: $compressed_file"
         set compression_ration (awk "BEGIN{printf \"%0.2f\", $original_size/$compressed_size}")
         echo ""
