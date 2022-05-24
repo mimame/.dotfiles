@@ -9,7 +9,7 @@ api.nvim_create_user_command('PackerSnapshotSync', function(args)
   local packer = require('packer')
   local t = os.date('%d-%m-%y_%H-%M-%S')
   local filepath = '/tmp/' .. 'packer_' .. t .. '.txt'
-  cmd('PackerSnapshot ' .. filepath .. '| PackerSync')
+  cmd('PackerSnapshot ' .. filepath)
   cmd('PackerSync')
 end, {
   desc = 'PackerSnapshot + PackerSync',
