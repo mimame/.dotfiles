@@ -470,6 +470,7 @@ return require('packer').startup(function()
       local function multi_selection_open_tab(prompt_bufnr)
         multiopen(prompt_bufnr, 'tabedit')
       end
+
       require('telescope').setup({
         defaults = {
           vimgrep_arguments = {
@@ -487,7 +488,7 @@ return require('packer').startup(function()
           layout_strategy = 'horizontal',
           sorting_strategy = "ascending",
           layout_config = {
-            horizontal = { prompt_position = "top"},
+            horizontal = { prompt_position = "top" },
           },
           wrap_results = true,
           previewer = true,
@@ -626,7 +627,7 @@ return require('packer').startup(function()
       --vim.cmd('autocmd! BufEnter term://* startinsert')
       api.nvim_create_autocmd('TermOpen', {
         pattern = '*',
-        command = "term://* lua set_terminal_keymaps()",
+        command = 'term://* lua set_terminal_keymaps()',
         desc = 'Always start with insert mode in new files',
       })
     end,
@@ -775,7 +776,7 @@ return require('packer').startup(function()
       { 'nvim-telescope/telescope.nvim' },
       { 'rmagatti/auto-session' },
       config = function()
-        require('session-lens').setup({--[[your custom config--]]
+        require('session-lens').setup({ --[[your custom config--]]
         })
       end,
     },
@@ -798,9 +799,12 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Plugin for Vim that makes it easier to record / play / edit macros
+  use({ 'svermeulen/vim-macrobatics' })
+
   -- A better user experience for viewing and interacting with Vim marks
   use({
-    'chentau/marks.nvim',
+    'chentoast/marks.nvim',
     config = function()
       require('marks').setup({
         sign_priority = 10,
