@@ -11,8 +11,8 @@
       tags: pip_packages
     - role: dotfiles
       tags: dotfiles
-    - role: catpuccin_themes
-      tags: catpuccin_themes
+    - role: theme
+      tags: theme
     - role: R_packages
       tags: R_packages
     # - role: julia_packages

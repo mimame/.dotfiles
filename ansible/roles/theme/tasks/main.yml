@@ -1,0 +1,41 @@
+---
+- name: Download last version of the Grub Catppuccin Mocha theme
+  git:
+    repo: https://github.com/catppuccin/grub.git
+    dest: /tmp/catppuccin_grub
+    depth: 1
+
+- name: Copy Grub Catppuccin Mocha to /usr/share/grub/themes
+  synchronize:
+    src: /tmp/catppuccin_grub/src/catppuccin-mocha-grub-theme
+    dest: /usr/share/grub/themes/
+  become: yes
+
+
+- name: Update Grub config
+  command: update-grub
+  become: yes
+
+- name: Update .gtkrc-2.0 value for the GTK theme
+  lineinfile:
+    path: ~/.gtkrc-2.0
+    regexp: '^gtk-theme-name='
+    line: gtk-theme-name="Sweet-Dark"
+
+- name: Update .gtkrc-2.0 value for the icons theme
+  lineinfile:
+    path: ~/.gtkrc-2.0
+    regexp: '^gtk-icon-theme-name='
+    line: gtk-icon-theme-name="candy-icons"
+
+- name: Update .gtkrc-2.0 value for the cursor theme
+  lineinfile:
+    path: ~/.gtkrc-2.0
+    regexp: '^gtk-cursor-theme-name='
+    line: gtk-cursor-theme-name="xcursor-breeze-snow"
+
+- name: Update .gtkrc-2.0 value for the font theme
+  lineinfile:
+    path: ~/.gtkrc-2.0
+    regexp: '^gtk-font-name='
+    line: gtk-font-name="Hack Nerd Font 13"
