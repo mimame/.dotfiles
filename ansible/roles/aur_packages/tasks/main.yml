@@ -53,6 +53,7 @@
     - modulo
     - navi
     - pandoc-bin
+    - papirus-icon-theme
     - rstudio-desktop-bin
     - rstudio-server-bin
     - rustscan
