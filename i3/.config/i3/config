@@ -46,6 +46,8 @@ exec_always --no-startup-id pkill redshift; redshift-gtk
 # Load bluetooth applet
 exec --no-startup-id blueman-applet
 
+# Load alt tab windows cycler
+exec_always pkill alttab; alttab
 
 # Prevents the screensaver from showing up, or the system from going to sleep. It does so when an application is fullscreened
 exec_always --no-startup-id caffeine --kill; caffeine --active &
