@@ -5,3 +5,4 @@ vifminfo*
 vifm-*
 packages/*.txt
 packer_compiled.lua
+.zcompdump
