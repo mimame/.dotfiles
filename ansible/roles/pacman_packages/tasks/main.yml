@@ -15,6 +15,7 @@
     - acpi
     - acpid
     - alacritty
+    - apptainer
     - arandr
     - aria2
     - asciidoc
@@ -224,7 +225,6 @@
     - seahorse
     - shards
     - shfmt
-    - singularity-container
     - smartmontools
     - speedtest-cli
     - sshfs
