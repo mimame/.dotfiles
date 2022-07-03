@@ -80,7 +80,7 @@ abbr -a -U cp "cp -ri"
 abbr -a -U ln "ln -i"
 
 # abbr -a -U for rc files
-abbr -a -U alacrittyrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/alacritty/alacritty.yml) && popd'
+abbr -a -U kittyrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/kitty/kitty.conf) && popd'
 abbr -a -U gitrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/git/config) && popd'
 abbr -a -U i3rc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/i3/config) && popd'
 abbr -a -U mimerc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/mimeapps.list) && popd'
