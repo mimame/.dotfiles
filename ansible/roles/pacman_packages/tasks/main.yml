@@ -168,8 +168,6 @@
     - networkmanager-vpnc
     - newsboat
     - nfs-utils
-    - nim
-    - nimble
     - npm
     - ntfs-3g
     - numlockx # disabled by default
