@@ -76,6 +76,11 @@ if status --is-interactive
     --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
     '
 
+    # Start ssh agent by default
+    if test -z "$SSH_AUTH_SOCK"
+        eval (ssh-agent -c) >/dev/null
+    end
+
     source ~/.config/fish/abbr.fish
     source ~/.config/fish/monokai.fish
 end
