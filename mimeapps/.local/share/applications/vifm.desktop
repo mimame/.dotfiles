@@ -1,7 +1,7 @@
 [Desktop Entry]
 Categories=System;FileTools;FileManager;Utility;ConsoleOnly;
 Comment=Vi[m] like ncurses based file manager
-Exec=alacritty -e vifm %F
+Exec=kitty -e vifm %F
 GenericName=File Manager
 Icon=vifm
 Name=Vifm
