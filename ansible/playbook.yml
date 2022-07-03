@@ -9,6 +9,8 @@
       tags: yarn_packages
     - role: pip_packages
       tags: pip_packages
+    - role: gem_packages
+      tags: gem_packages
     - role: dotfiles
       tags: dotfiles
     - role: theme
