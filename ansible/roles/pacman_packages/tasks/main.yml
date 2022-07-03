@@ -11,12 +11,14 @@
   become: yes
   ignore_errors: yes
   with_items:
+
     - acpi
     - acpid
     - alacritty
     - arandr
     - aria2
     - asciidoc
+    - asciidoctor
     - aspell-en
     - at
     - atop
