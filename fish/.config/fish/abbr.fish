@@ -135,3 +135,8 @@ abbr -a -U rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --g
 
 abbr -a -U adoc asciidoctor
 abbr -a -U adoc-pdf asciidoctor-pdf
+
+abbr -a -U ssh 'kitty +kitten ssh'
+
+abbr -a -U transfer-receive 'kitty +kitten transfer --permissions-bypass pass --confirm-paths --transmit-deltas --direction receive'
+abbr -a -U transfer-send 'kitty +kitten transfer --permissions-bypass pass --confirm-paths --transmit-deltas --direction send'
