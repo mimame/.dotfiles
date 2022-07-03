@@ -26,8 +26,6 @@ abbr -a -U egrep 'egrep --color=auto'
 
 abbr -a -U x 'chmod +x'
 
-abbr -a -U rs 'rsync --archive --compress --info=progress2 --human-readable --update --delete'
-
 abbr -a -U sshfs "sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
 
 # systemctl
@@ -126,7 +124,8 @@ abbr -a -U scc 'scc --sort lines'
 abbr -a -U tokei 'tokei --sort lines'
 
 # rsync abbr -a -U
-abbr -a -U rsync 'rsync --archive --hard-links --compress --human-readable --info=progress2'
+abbr -a -U rsync 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
+abbr -a -U rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
 # }}}
 
 abbr -a -U rm gomi
