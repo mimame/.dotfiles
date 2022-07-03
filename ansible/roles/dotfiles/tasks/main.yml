@@ -53,10 +53,10 @@
   become: yes
 
 
-- name: zsh as default shell for root
-  command: "sudo chsh -s $(which zsh)"
+- name: fish as default shell for root
+  command: "sudo chsh -s $(which fish)"
   become: yes
 
-- name: zsh as default shell for the current user
-  command: "chsh -s $(which zsh)"
+- name: fish as default shell for the current user
+  command: "chsh -s $(which fish)"
   become: no
