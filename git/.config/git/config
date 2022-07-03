@@ -356,7 +356,7 @@
   mnemonicPrefix  = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftool
   tool            = nvimdiff
-  external        = difft
+  # external        = difft
 
 [difftool]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftoolprompt
