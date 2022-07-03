@@ -299,3 +299,10 @@
 
 - name: Enable pueue service
   command: systemctl --user start pueued.service && systemctl --user enable pueued.service
+
+- name: Increase to 10 unsuccessful logins for blocking the account
+  lineinfile:
+    path: /etc/security/faillock.conf
+    regexp: '^# deny = 3'
+    line: 'deny = 10'
+  become: yes
