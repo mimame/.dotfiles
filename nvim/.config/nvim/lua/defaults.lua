@@ -24,20 +24,6 @@ opt.syntax = 'on'
 -- Don't use swap files
 opt.swapfile = false
 
--- Use buffer filename as tmux window name
-api.nvim_create_autocmd({ 'BufEnter', 'BufReadPost', 'FileReadPost', 'BufNewFile' }, {
-  pattern = '*',
-  command = 'call system("tmux rename-window " . expand("%:t"))',
-  desc = 'Use buffer as tmux window name',
-})
-
--- Reset tmux windows name when exit
-api.nvim_create_autocmd('VimLeave', {
-  pattern = '*',
-  command = 'call system("tmux setw automatic-rename")',
-  desc = 'Reset tmux windows name when exit',
-})
-
 --  Change from a buffer without written changes
 opt.hidden = true
 
