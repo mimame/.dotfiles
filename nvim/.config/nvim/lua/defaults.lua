@@ -277,10 +277,11 @@ opt.updatetime = 100
 opt.termguicolors = true
 
 -- Folds opened by default
-opt.foldenable = false
-opt.foldlevel = 0
+opt.foldenable = true
+opt.foldlevel = 99
 -- Fold based on indent
 opt.foldmethod = 'indent'
+opt.foldcolumn = '1'
 
 -- Some servers have issues with backup files, see #649.
 opt.backup = false
