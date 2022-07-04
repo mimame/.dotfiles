@@ -711,6 +711,9 @@ return require('packer').startup(function()
   -- Syntax for i3 config
   use({ 'mboughaba/i3config.vim' })
 
+  -- Just Syntax
+  use({ 'NoahTheDuke/vim-just' })
+
   -- Syntax for snakemake
   use({
     'snakemake/snakemake',
