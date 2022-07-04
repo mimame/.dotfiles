@@ -54,7 +54,8 @@ abbr -a -U du 'du -h'
 abbr -a -U dus diskus
 abbr -a -U df 'df -h'
 abbr -a -U free 'free -h'
-abbr -a -U j "jobs -l"
+# abbr -a -U j "jobs -l"
+abbr -a -U j just
 abbr -a -U ncdu 'ncdu --color dark'
 abbr -a -U news newsboat
 abbr -a -U fm vifm
