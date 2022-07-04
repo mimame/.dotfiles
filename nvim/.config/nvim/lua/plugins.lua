@@ -714,6 +714,9 @@ return require('packer').startup(function()
   -- Just Syntax
   use({ 'NoahTheDuke/vim-just' })
 
+  --  Asciidoctor plugin
+  use({ 'habamax/vim-asciidoctor' })
+
   -- Syntax for snakemake
   use({
     'snakemake/snakemake',
