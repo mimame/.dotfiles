@@ -264,6 +264,7 @@
     - virtualbox
     - vivid
     - vlc
+    - watchexec
     - wget
     - which
     - wireplumber
