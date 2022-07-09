@@ -5,7 +5,6 @@
 
 - name: Backup config files
   shell: >
-    mv "{{ home_register.stdout }}"/.config/htop/htoprc "{{ home_register.stdout }}"/.config/htop/htoprc.o;
     sudo mv /etc/pacman.conf /etc/pacman.conf.o ;
     sudo mv /etc/makepkg.conf /etc/makepkg.conf.o ;
     sudo mv /etc/pacman-mirrors.conf /etc/pacman-mirrors.conf.o ;
@@ -18,15 +17,16 @@
 - name: Stow all config files
   shell: >
     cd "{{ home_register.stdout }}/.dotfiles" ;
-    stow alacritty ;
+
     stow dunst ;
-    stow dunst ;
+    stow fish ;
     stow gh ;
     stow git ;
     stow greenclip ;
     stow htop ;
     stow i3 ;
     stow julia ;
+    stow kitty ;
     stow ls_colors ;
     stow mimeapps ;
     stow newsboat ;
@@ -42,7 +42,6 @@
     stow vifm ;
     stow vim ;
     stow zathura ;
-    stow zsh
 
 
 - name: Stow all /etc config files
