@@ -2,9 +2,9 @@ abbr -a -U sfish source ~/.config/fish/config.fish
 abbr -a -U ls l
 abbr -a -U cd z
 abbr -a -U b 'cd ..'
-abbr -a -U jup juliaup
-abbr -a -U rup rustup
-abbr -a -U n nvim
+abbr -a -U ju juliaup
+abbr -a -U ru rustup
+abbr -a -U n nim
 abbr -a -U g git
 abbr -a -U t " t"
 abbr -a -U open o
@@ -44,7 +44,7 @@ abbr -a -U vbm VBoxManage
 # Never use vi
 abbr -a -U vi nvim
 abbr -a -U vim nvim
-abbr -a -U n nvim
+abbr -a -U v nvim
 
 abbr -a -U nd 'nvim -d -c "set nofoldenable"'
 # abbr -a -U h 'history' # Use ctrl-r instead
