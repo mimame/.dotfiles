@@ -172,6 +172,13 @@ font:
   # it is recommended to set `use_thin_strokes` to `false`.
   #use_thin_strokes: true
 
+  # Use built-in font for box drawing characters.
+  #
+  # If `true`, Alacritty will use a custom built-in font for box drawing
+  # characters (Unicode points 2500 - 259f).
+  #
+  #builtin_box_drawing: true
+
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
@@ -353,12 +360,6 @@ colors:
   #
   #command: None
 
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
-
 selection:
   # This string contains all characters that are used as separators for
   # "semantic words" in Alacritty.
@@ -432,6 +433,9 @@ selection:
 
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
+
+# Offer IPC using `alacritty msg` (unix only)
+#ipc_socket: true
 
 #mouse:
   # Click settings
@@ -507,13 +511,20 @@ selection:
 #   - Right
 #   - Numeric identifier such as `5`
 #
-# - `action` (see key bindings)
+# - `action` (see key bindings for actions not exclusive to mouse mode)
+#
+# - Mouse exclusive actions:
+#
+#   - ExpandSelection
+#       Expand the selection to the current mouse cursor location.
 #
 # And optionally:
 #
 # - `mods` (see key bindings)
 #mouse_bindings:
-#  - { mouse: Middle, action: PasteSelection }
+#  - { mouse: Right,                 action: ExpandSelection }
+#  - { mouse: Right,  mods: Control, action: ExpandSelection }
+#  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
 
 # Key bindings
 #
@@ -582,6 +593,8 @@ selection:
 #   - ToggleFullscreen
 #   - SpawnNewInstance
 #       Spawn a new instance of Alacritty.
+#   - CreateNewWindow
+#       Create a new Alacritty window from the current process.
 #   - ClearLogNotice
 #       Clear Alacritty's UI warning and error notice.
 #   - ClearSelection
@@ -592,8 +605,8 @@ selection:
 # - Vi mode exclusive actions:
 #
 #   - Open
-#       Open URLs at the cursor location with the launcher configured in
-#       `url.launcher`.
+#       Perform the action of the first matching hint under the vi mode cursor
+#       with `mouse.enabled` set to `true`.
 #   - ToggleNormalSelection
 #   - ToggleLineSelection
 #   - ToggleBlockSelection
@@ -650,6 +663,22 @@ selection:
 #   - SearchEnd
 #       End of the match to the right of the vi mode cursor.
 #
+# - Search mode exclusive actions:
+#   - SearchFocusNext
+#       Move the focus to the next search match.
+#   - SearchFocusPrevious
+#       Move the focus to the previous search match.
+#   - SearchConfirm
+#   - SearchCancel
+#   - SearchClear
+#       Reset the search regex.
+#   - SearchDeleteWord
+#       Delete the last word in the search regex.
+#   - SearchHistoryPrevious
+#       Go to the previous regex in the search history.
+#   - SearchHistoryNext
+#       Go to the next regex in the search history.
+#
 # - macOS exclusive actions:
 #   - ToggleSimpleFullscreen
 #       Enter fullscreen without occupying another space.
@@ -689,6 +718,7 @@ selection:
 #
 #    - AppCursor
 #    - AppKeypad
+#    - Search
 #    - Alt
 #    - Vi
 #
@@ -833,3 +863,4 @@ key_bindings:
 
   # Print all received window events.
   #print_events: false
+
