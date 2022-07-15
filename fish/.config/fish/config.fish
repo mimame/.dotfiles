@@ -1,6 +1,6 @@
 if status --is-interactive
 
-    if ! functions --query fisher
+    if not functions --query fisher
         curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
         fisher install jorgebucaran/replay.fish
         fisher install franciscolourenco/done
@@ -20,6 +20,10 @@ if status --is-interactive
         # zoxide init fish | source
         # gh completion --shell fish | source
         # thefuck --alias fk | source
+    end
+
+    if not functions --query __direnv_export_eval
+        direnv hook fish | source
     end
 
     # Start ssh agent by default
