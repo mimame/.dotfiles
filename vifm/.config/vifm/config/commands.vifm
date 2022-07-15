@@ -1,5 +1,5 @@
 " rsync command specially useful for partial copies
-command! rsync rsync --archive --compress --info=progress2 --human-readable --update --delete %f %D %s
+command! rsync rsync --archive --compress --info=progress2 --human-readable --update %f %D %s
 " cp command always recursive, preserving all attributes and only updating old files
 command! cp cp -avu %f %D %s
 " Show file system disk space usage with ncdu
