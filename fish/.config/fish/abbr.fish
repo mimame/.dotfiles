@@ -1,4 +1,5 @@
 abbr -a -U sfish source ~/.config/fish/config.fish
+abbr -a -U cat bat
 abbr -a -U ls l
 abbr -a -U cd z
 abbr -a -U b 'cd ..'
