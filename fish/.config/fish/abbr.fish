@@ -6,6 +6,7 @@ abbr -a -U b 'cd ..'
 abbr -a -U ju juliaup
 abbr -a -U ru rustup
 abbr -a -U n nim
+abbr -a -U cr crystal
 abbr -a -U g git
 abbr -a -U t " t"
 abbr -a -U open o
