@@ -133,12 +133,12 @@ class fd_fzf(Command):
             print(f"SELECTED: {selected}")
 
             if selected == "":
-                self.fm.notify('No results found.')
-                return
+               self.fm.notify('No results found.')
+               return
 
             if os.path.isdir(selected):
                self.fm.cd(selected)
             else:
-                 self.fm.select_file(selected)
+               self.fm.select_file(selected)
         else:
-                self.fm.notify('No results found.')
+               self.fm.notify('No results found.')
