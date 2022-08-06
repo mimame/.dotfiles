@@ -142,3 +142,44 @@ class fd_fzf(Command):
                self.fm.select_file(selected)
         else:
                self.fm.notify('No results found.')
+
+class rg_fzf(Command):
+    """
+    :rg_fzf <query>
+    Executes "rg_fzf <query>"
+
+    See https://github.com/sharkdp/fd
+    """
+
+    def execute(self):
+        if 'rg' in get_executables():
+            rg = 'rg'
+        else:
+            self.fm.notify("Couldn't find rg in the PATH.", bad=True)
+            return
+
+        if 'fzf' not in get_executables():
+            self.fm.notify('Could not find fzf in the PATH.', bad=True)
+            return
+
+        if self.arg(1):
+            target = self.arg(1)
+        else:
+            self.fm.notify(":rg_fzf needs a query.", bad=True)
+            return
+
+        command = f'{rg} --smart-case --no-heading --with-filename --hidden --ignore-file ~/.config/fd/ignore {target} | fzf --no-multi --exit-0 --select-1'
+        rg = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
+        stdout, _ = rg.communicate()
+
+        if rg.returncode == 0:
+            selected = os.path.abspath(stdout.strip())
+            print(f"SELECTED: {selected}")
+
+            if selected == "":
+               self.fm.notify('No results found.')
+               return
+            else:
+               self.fm.edit_file(selected.split(":")[0])
+        else:
+               self.fm.notify('No results found.')
