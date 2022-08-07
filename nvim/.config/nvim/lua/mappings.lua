@@ -53,7 +53,8 @@ map('n', 'g*', 'g*zz', { silent = true })
 -- Use ex mode map to call last macro instead
 -- Bram Moolenaar recommends mapping Q to something else
 -- To call ex map use the less error prone alias gQ
-map('n', 'Q', 'QQ')
+map('n', 'Q', 'q')
+map('n', 'q', ':qa!<CR>')
 
 -- Input command faster
 map({ 'n', 'x' }, ',', ':')
