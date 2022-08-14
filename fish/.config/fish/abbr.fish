@@ -18,6 +18,7 @@ abbr -a -U pgrep 'pgrep -f'
 abbr -a -U pkill 'pkill -9 -f'
 abbr -a -U k 'pkill -9 -f'
 abbr -a -U bc 'bc -l'
+abbr -a -U kr 'kitty @ set-tab-title'
 
 # Always preserve the environment with sudo
 abbr -a -U sudo 'sudo -E'
