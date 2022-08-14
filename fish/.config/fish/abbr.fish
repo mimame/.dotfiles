@@ -48,6 +48,7 @@ abbr -a -U vbm VBoxManage
 abbr -a -U vi nvim
 abbr -a -U vim nvim
 abbr -a -U v nvim
+abbr -a -U h helix
 
 abbr -a -U nd 'nvim -d -c "set nofoldenable"'
 # abbr -a -U h 'history' # Use ctrl-r instead
