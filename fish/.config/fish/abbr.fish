@@ -62,6 +62,7 @@ abbr -a -U j just
 abbr -a -U ncdu 'ncdu --color dark'
 abbr -a -U news newsboat
 abbr -a -U fm vifm
+abbr -a -U r ranger
 abbr -a -U re massren
 abbr -a -U T 'tail -F'
 abbr -a -U nano micro
@@ -95,6 +96,7 @@ abbr -a -U sshrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.ssh/config) && popd
 abbr -a -U tigrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/tig/config) && popd'
 abbr -a -U tmuxrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.tmux.conf) && popd'
 abbr -a -U vifmrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/vifm/vifmrc) && popd'
+abbr -a -U rangerrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/ranger/rc.conf) && popd'
 abbr -a -U vimrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.vimrc) && popd'
 abbr -a -U zshrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/zsh/.zshrc) && popd'
 abbr -a -U tridactylrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/tridactyl/tridactylrc) && popd'
