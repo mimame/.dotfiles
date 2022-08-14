@@ -33,21 +33,17 @@ function fzf-complete -d 'fzf completion and print selection back to commandline
         # https://github.com/fish-shell/fish-shell/issues/3469
         switch $prefix
             case "'"
-                # commandline -t -- (string escape -- $r)
                 commandline -t -- $r
             case '"'
                 if string match '*"*' -- $r >/dev/null
-                    # commandline -t -- (string escape -- $r)
-                    commandline -t -- $r
+                    commandline -t -- (string escape -- $r)
                 else
                     commandline -t -- '"'$r'"'
                 end
             case '~'
-                # commandline -t -- (string sub -s 2 (string escape -n -- $r))
-                commandline -t -- $r
+                commandline -t -- (string sub -s 2 (string escape -n -- $r))
             case '*'
-                # commandline -t -- (string escape -n -- $r)
-                commandline -t -- $r
+                commandline -t -- (string escape -n -- $r)
         end
         [ $i -lt (count $result) ]; and commandline -i ' '
     end
