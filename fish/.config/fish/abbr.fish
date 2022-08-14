@@ -107,7 +107,7 @@ abbr -a -U fishrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/fish/config
 # abbr -a -U for pacman
 abbr -a -U pu "sudo pacman -Syyu --noconfirm"
 abbr -a -U pd "sudo pacman -Syyuw --noconfirm"
-abbr -a -U pmu "sudo pacman-mirrors --api --protocols all --set-branch stable --fasttrack && sudo pacman -Syy"
+abbr -a -U pum "sudo pacman-mirrors --api --protocols all --set-branch stable --fasttrack && sudo pacman -Syy"
 abbr -a -U pfk "sudo pacman-key --refresh-keys && sudo pacman-key --populate archlinux manjaro"
 abbr -a -U pc "sudo pacman -Scc"
 abbr -a -U pi "sudo pacman -S"
