@@ -135,7 +135,7 @@ abbr -a -U rsync 'rsync --archive --hard-links --compress --human-readable --inf
 abbr -a -U rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
 # }}}
 
-abbr -a -U rm gomi
+abbr -a -U rm trash-put
 
 
 abbr -a -U rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppable'
