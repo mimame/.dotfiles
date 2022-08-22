@@ -23,7 +23,7 @@ return require('packer').startup(function()
   use({
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    requires = { { 'windwp/nvim-ts-autotag' }, { 'p00f/nvim-ts-rainbow' }, { 'andymass/vim-matchup' } },
+    requires = { { 'andymass/vim-matchup' } },
     config = function()
       require('nvim-treesitter.configs').setup({
         ensure_installed = 'all', -- one of "all", or a list of languages
@@ -66,6 +66,15 @@ return require('packer').startup(function()
   -- Show code context
   use({
     'romgrk/nvim-treesitter-context',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  })
+
+  use({
+    'windwp/nvim-ts-autotag',
+    requires = 'nvim-treesitter/nvim-treesitter',
+  })
+  use({
+    'p00f/nvim-ts-rainbow',
     requires = 'nvim-treesitter/nvim-treesitter',
   })
 
