@@ -90,6 +90,40 @@ return require('packer').startup(function()
     end,
   })
 
+  -- Portable package manager for Neovim that runs everywhere Neovim runs.
+  -- Easily install and manage LSP servers, DAP servers, linters, and formatters.
+  use({
+    'williamboman/mason.nvim',
+    requires = {
+      { 'williamboman/mason-lspconfig.nvim' },
+      { 'neovim/nvim-lspconfig' },
+    },
+    config = function()
+      require('mason').setup()
+      require('mason-lspconfig').setup({
+        automatic_installation = true,
+        ensure_installed = {
+          'ansiblels',
+          'bashls',
+          'cmake',
+          'crystalline',
+          'dockerls',
+          'dotls',
+          'gopls',
+          'html',
+          'jsonls',
+          'julials',
+          'nimls',
+          'pyright',
+          'r_language_server',
+          'rust_analyzer',
+          'vimls',
+          'yamlls',
+        },
+      })
+    end,
+  })
+
   -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   use({
     'jose-elias-alvarez/null-ls.nvim',
