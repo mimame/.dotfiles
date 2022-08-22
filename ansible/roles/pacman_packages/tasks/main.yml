@@ -308,3 +308,13 @@
     regexp: '^# deny = 3'
     line: 'deny = 10'
   become: yes
+
+- name: Install zoxide plugin for ranger file manager
+  git:
+    repo: https://github.com/jchook/ranger-zoxide.git
+    dest: ~/.config/ranger/plugins/zoxide
+
+- name: Install archives plugin for ranger file manager
+  git:
+    repo: https://github.com/maximtrp/ranger-archives.git
+    dest: ~/.config/ranger/plugins/ranger-archives
