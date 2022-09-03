@@ -6,8 +6,4 @@ using OhMyREPL
     OhMyREPL.Prompt.insert_keybindings()
 end
 colorscheme!("Monokai24bit")
-# Load Debugger with Monokai theme by default
-using Highlights
-using Debugger
-Debugger.set_theme(Highlights.Themes.MonokaiTheme)
 using Revise
