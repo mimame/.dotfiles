@@ -6,4 +6,3 @@ using OhMyREPL
     OhMyREPL.Prompt.insert_keybindings()
 end
 colorscheme!("Monokai24bit")
-using Revise
