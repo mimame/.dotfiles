@@ -10,7 +10,7 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
 
     fzf_key_bindings
 
-    bind -M insert \t fzf-complete
+    # bind -M insert \t fzf-complete
 
     bind -M insert \co thefuck-command-line
 end
