@@ -21,6 +21,8 @@ abbr -a -U bc 'bc -l'
 abbr -a -U kr 'kitty @ set-tab-title'
 abbr -a -U mk 'mkdir -pv'
 
+abbr -a -U p 'ptipython'
+
 # Always preserve the environment with sudo
 abbr -a -U sudo 'sudo -E'
 
