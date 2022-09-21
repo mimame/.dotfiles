@@ -1,0 +1,67 @@
+#!/bin/fish
+function help
+    echo '(s)how all gpg keys'
+    echo '(e)xport key'
+    echo '(q)uit'
+    echo '(h)elp menu'
+    echo '(v)ersion'
+end
+
+while true
+    set_color -o
+    echo 'Type: (s)how (e)xport (q)uit (h)elp (v)ersion'
+    set_color normal
+    read input
+    switch $input
+        case q
+            exit 0
+        case h
+            help
+        case v
+            echo '0.1'
+        case s
+            set_color -o green
+            gpg --list-secret-keys --keyid-format=long
+            set_color normal
+        case e
+            echo 'Type user email'
+            read email
+            echo 'Type target: (l)ocal (r)emote'
+            read target
+            if test $target = r
+                echo 'Type remote machine ssh@address'
+                read address
+                echo 'Type key type: (p)ublic (P)rivate'
+                read key_type
+                switch $key_type
+                    case p
+                        gpg --armor --export "$email" | ssh $address gpg --allow-non-selfsigned-uid --import
+                        set_color -o
+                        echo "Public $email gpg key saved remotely"
+                        set_color normal
+                    case P
+                        gpg --armor --export-secret-key "$email" | ssh $address gpg --allow-non-selfsigned-uid --import
+                        echo "Private $email gpg key saved remotely"
+                end
+            else
+                echo 'Type key type: (p)ublic (P)rivate'
+                read key_type
+                switch $key_type
+                    case p
+                        gpg --output "$(pwd)/public_$email".pgp --armor --export "$email"
+                        set_color -o
+                        echo "Public $email gpg key saved locally"
+                        set_color normal
+                    case P
+                        gpg --output "$(pwd)/private_$email".pgp --armor --export-secret-key "$email"
+                        echo "Private $email gpg key saved locally"
+                end
+            end
+        case '*'
+            set_color -o red
+            echo "There is not '$input' option"
+            set_color normal
+            help
+    end
+    echo
+end
