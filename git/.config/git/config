@@ -372,8 +372,7 @@
 
 [gpg]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgprogram
-  # Use always gpg2
-  program = gpg2
+  program = gpg
 
 [grep]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-greplineNumber
