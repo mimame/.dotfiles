@@ -1,7 +1,3 @@
-# Ignore all files starting with ..
-# Help to miss file when pushing
-..*
-
 # GPG.gitignore
 secring.*
 
