@@ -298,7 +298,7 @@
   excludesfile = ~/.config/git/gitignore_global
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corefsmonitor
   # Speed up git by avoiding unnecessary processing of files that have not changed
-  # fsmonitor  = ~/.config/git/hooks/fsmonitor-watchman
+  fsmonitor  = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corehooksPath
   # Default hooks folder
   hooksPath    = ~/.config/git/hooks
