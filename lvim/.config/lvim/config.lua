@@ -8,10 +8,16 @@ an executable
 ]]
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
+
+-- Vim
+vim.opt.relativenumber = true
+vim.opt.spell = true
+
+
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
-lvim.colorscheme = "onedarker"
+lvim.colorscheme = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
