@@ -48,7 +48,7 @@ logout)
   i3-msg exit
   ;;
 suspend)
-  systemctl suspend
+  systemctl suspend-then-hibernate
   ;;
 reboot)
   wmctrl -l | cut -d' ' -f1 | xargs -I% wmctrl -i -c % && sleep 1
