@@ -8,6 +8,10 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     # Open nvim in normal mode to edit the command
     bind -M default v edit_command_buffer
 
+    # Required by NixOS
+    if command -s fzf-share >/dev/null
+      source "$(fzf-share)/key-bindings.fish"
+    end
     fzf_key_bindings
 
     # bind -M insert \t fzf-complete
