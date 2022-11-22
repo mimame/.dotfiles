@@ -35,3 +35,4 @@ if status --is-interactive
     source ~/.config/fish/abbr.fish
     source ~/.config/fish/monokai.fish
 end
+

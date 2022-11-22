@@ -48,9 +48,10 @@ abbr -a -U ap ansible-playbook
 abbr -a -U vbm VBoxManage
 
 # Never use vi
-abbr -a -U vi nvim
-abbr -a -U vim nvim
-abbr -a -U v nvim
+abbr -a -U vi lvim
+abbr -a -U vim lvim
+abbr -a -U v lvim
+abbr -a -U nvim lvim
 abbr -a -U h helix
 
 abbr -a -U nd 'nvim -d -c "set nofoldenable"'
@@ -89,33 +90,19 @@ abbr -a -U cp "cp -ri"
 abbr -a -U ln "ln -i"
 
 # abbr -a -U for rc files
-abbr -a -U kittyrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/kitty/kitty.conf) && popd'
-abbr -a -U gitrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/git/config) && popd'
-abbr -a -U i3rc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/i3/config) && popd'
-abbr -a -U mimerc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/mimeapps.list) && popd'
-abbr -a -U newsboatrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/newsboat/config) && popd'
-abbr -a -U nvimrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/nvim/init.lua) && popd'
-abbr -a -U rofirc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/rofi/config.rasi) && popd'
-abbr -a -U sshrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.ssh/config) && popd'
-abbr -a -U tigrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/tig/config) && popd'
-abbr -a -U tmuxrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.tmux.conf) && popd'
-abbr -a -U vifmrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/vifm/vifmrc) && popd'
-abbr -a -U rangerrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/ranger/rc.conf) && popd'
-abbr -a -U vimrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.vimrc) && popd'
-abbr -a -U zshrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/zsh/.zshrc) && popd'
-abbr -a -U tridactylrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/tridactyl/tridactylrc) && popd'
-abbr -a -U dunstrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/dunst/dunstrc) && popd'
-abbr -a -U fishrc 'pushd ~/.dotfiles && nvim $(readlink -f ~/.config/fish/config.fish) && popd'
-
-# abbr -a -U for pacman
-abbr -a -U pu "sudo pacman -Syyu --noconfirm"
-abbr -a -U pd "sudo pacman -Syyuw --noconfirm"
-abbr -a -U pum "sudo pacman-mirrors --api --protocols all --set-branch stable --fasttrack && sudo pacman -Syy"
-abbr -a -U pfk "sudo pacman-key --refresh-keys && sudo pacman-key --populate archlinux manjaro"
-abbr -a -U pc "sudo pacman -Scc"
-abbr -a -U pi "sudo pacman -S"
-# abbr -a -U for paru
-abbr -a -U pua "paru --noconfirm -Syyu"
+abbr -a -U kittyrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/kitty/kitty.conf) && popd'
+abbr -a -U gitrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/git/config) && popd'
+abbr -a -U i3rc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/i3/config) && popd'
+abbr -a -U mimerc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/mimeapps.list) && popd'
+abbr -a -U newsboatrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/newsboat/config) && popd'
+abbr -a -U rofirc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/rofi/config.rasi) && popd'
+abbr -a -U sshrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.ssh/config) && popd'
+abbr -a -U rangerrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/ranger/rc.conf) && popd'
+abbr -a -U vimrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.vimrc) && popd'
+abbr -a -U zshrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/zsh/.zshrc) && popd'
+abbr -a -U tridactylrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/tridactyl/tridactylrc) && popd'
+abbr -a -U dunstrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/dunst/dunstrc) && popd'
+abbr -a -U fishrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/fish/config.fish) && popd'
 
 # abbr -a -U for pip
 abbr -a -U pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"

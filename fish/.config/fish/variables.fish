@@ -55,12 +55,12 @@ set -x -U FZF_DEFAULT_OPTS '
 '
 set -x -U LESS '-F -g -i -M -R -S -w -X -z-4'
 set -x -U PAGER less
-set -x -U MANPAGER 'nvim +Man!'
+set -x -U MANPAGER 'lvim +Man!'
 set -x -U MANWIDTH 999
 set -x -U BROWSER firefox
 set -x -U JULIA_NUM_THREADS 12
-set -x -U EDITOR nvim
-set -x -U VISUAL nvim
+set -x -U EDITOR lvim
+set -x -U VISUAL lvim
 set -x -U TMPDIR /tmp
 
 if test -z "$XDG_CONFIG_HOME"
