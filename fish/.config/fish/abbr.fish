@@ -52,7 +52,6 @@ abbr -a -U vi lvim
 abbr -a -U vim lvim
 abbr -a -U v lvim
 abbr -a -U nvim lvim
-abbr -a -U h helix
 
 abbr -a -U nd 'nvim -d -c "set nofoldenable"'
 # abbr -a -U h 'history' # Use ctrl-r instead
