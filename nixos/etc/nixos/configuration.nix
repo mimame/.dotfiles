@@ -322,6 +322,7 @@
     stress
     stylua
     sudo
+    sweet
     tealdeer
     tectonic
     tesseract5
