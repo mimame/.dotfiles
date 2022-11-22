@@ -5,21 +5,17 @@
 { config, pkgs, ... }:
 let
   unstableTarball =
-    fetchTarball
-      https://github.com/nixos/nixpkgs/tarball/nixos-unstable;
-in
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-    nixpkgs.config = {
-            packageOverrides = pkgs: with pkgs; {
-            unstable = import unstableTarball {
-              config = config.nixpkgs.config;
-          };
-        };
-        };
+    fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
+in {
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
+  nixpkgs.config = {
+    packageOverrides = pkgs:
+      with pkgs; {
+        unstable = import unstableTarball { config = config.nixpkgs.config; };
+      };
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -97,10 +93,11 @@ in
     isNormalUser = true;
     description = "mimame";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  firefox
-    #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        #  firefox
+        #  thunderbird
+      ];
   };
 
   # Enable automatic login for the user.
@@ -370,7 +367,7 @@ in
     xdg-utils
     xdotool
     xh
-    xonsh  
+    xonsh
     xsel
     yarn
     zathura
