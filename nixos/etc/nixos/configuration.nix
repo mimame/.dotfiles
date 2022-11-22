@@ -88,7 +88,7 @@ in {
   services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.defaultUserShell = pkgs.fish;
+  users.defaultUserShell = pkgs.unstable.fish;
   users.users.mimame = {
     isNormalUser = true;
     description = "mimame";
@@ -141,28 +141,27 @@ in {
     axel
     baobab
     barrier
-    bat
+    unstable.bat
     bc
     bind
     bison
     blueman
     bluez
     bluez-tools
-    broot
+    unstable.broot
     brotli
-    btop
+    unstable.btop
     bzip2
     caffeine-ng
-    calibre
-    # clang # breaks nvim treesitter compilation
+    unstable.calibre
+    clang # Maybe breaks the lvim treesitter compilation
     cmake
     coreutils
-    crystal
+    unstable.crystal
     curl
     curlie
-    delta
-    delta
-    difftastic
+    unstable.delta
+    unstable.difftastic
     direnv
     diskus
     dogdns
@@ -174,19 +173,18 @@ in {
     dunst
     dura
     entr
-    espanso
-    exa
-    fd
+    unstable.espanso
+    unstable.exa
+    unstable.fd
     filezilla
     firefox
     firmwareLinuxNonfree
-    fish
+    unstable.fish
     flameshot
     fuse-common
     fuse3
-    fzf
+    unstable.fzf
     gawk
-    gcc
     gdu
     gimp
     git
@@ -201,7 +199,7 @@ in {
     gnumake
     gnupatch
     gnupg
-    go
+    unstable.go
     google-chrome
     gparted
     gparted
@@ -217,9 +215,9 @@ in {
     unstable.helix
     hexyl
     htop
-    httpie
+    unstable.httpie
     hugo
-    hyperfine
+    unstable.hyperfine
     hyphen
     i3lock
     i3status-rust
@@ -229,7 +227,7 @@ in {
     jq
     just
     keepassxc
-    kitty
+    unstable.kitty
     kitty-themes
     klavaro
     lazydocker
@@ -253,34 +251,30 @@ in {
     mdcat
     meld
     meson
-    micro
-    mosh
+    unstable.micro
     mosh
     mtr
-    mtr
-    navi
-    navi
+    unstable.navi
     ncdu_2
     neofetch
     unstable.neovim
     networkmanagerapplet
     newsboat
-    nim
+    unstable.nim
     ninja
     nixfmt
     nixpkgs-review
     nnn
     nodePackages.npm
     ntfs3g
-    nushell
-    obsidian
+    unstable.nushell
+    unstable.obsidian
     onefetch
     pandoc
     parallel
     parted
     pass
     passExtensions.pass-import
-    pcmanfm
     pcmanfm
     pcre2
     pdftk
@@ -303,20 +297,20 @@ in {
     python310Packages.howdoi
     python310Packages.ipython
     qutebrowser
-    ranger
+    unstable.ranger
     rclone
     ripgrep
     rlwrap
-    rofi
-    rsync
+    unstable.rofi
+    unstable.rsync
     rustscan
     rustup
-    scc
+    unstable.scc
     scrot
-    sd
-    shards
-    shellcheck
-    shfmt
+    unstable.sd
+    unstable.shards
+    unstable.shellcheck
+    unstable.shfmt
     singularity
     spicetify-cli
     spotify
@@ -324,20 +318,20 @@ in {
     sqlite-utils
     sqlitebrowser
     sshfs
-    starship
-    stow
+    unstable.starship
+    unstable.stow
     strace
     stress
     stylua
     sudo
     sweet
-    tealdeer
+    unstable.tealdeer
     tectonic
     tesseract5
     testdisk
     thefuck
     time
-    tokei
+    unstable.tokei
     trash-cli
     tree
     tridactyl-native
@@ -348,37 +342,37 @@ in {
     urlscan
     util-linux
     vagrant
-    vifm
+    unstable.vifm
     virtualbox
     visidata
     vivaldi
-    vivid
-    vlang
+    unstable.vivid
+    unstable.vlang
     vlc
-    vscode
+    unstable.vscode
     watchexec
     wget
     wmctrl
     xautolock
     xbanish
-    xcape
+    unstable.xcape
     xclip
     xdg-user-dirs
     xdg-utils
     xdotool
-    xh
-    xonsh
+    unstable.xh
+    unstable.xonsh
     xsel
     yarn
     zathura
     unstable.zellij
     fakeroot
-    zenith
-    zig
-    zlib-ng
-    zotero
-    zoxide
-    zstd
+    unstable.zenith
+    unstable.zig
+    unstable.zlib-ng
+    unstable.zotero
+    unstable.zoxide
+    unstable.zstd
 
   ];
 
@@ -394,10 +388,6 @@ in {
     enable = true;
     enableSSHSupport = true;
   };
-
-  programs.seahorse.enable = true;
-
-  programs.fish.enable = true;
 
   # List services that you want to enable:
 
