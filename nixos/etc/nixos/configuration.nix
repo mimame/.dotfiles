@@ -3,12 +3,23 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/nixos/nixpkgs/tarball/nixos-unstable;
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+    nixpkgs.config = {
+            packageOverrides = pkgs: with pkgs; {
+            unstable = import unstableTarball {
+              config = config.nixpkgs.config;
+          };
+        };
+        };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -206,7 +217,7 @@
     gzip
     handlr
     haskellPackages.greenclip
-    helix
+    unstable.helix
     hexyl
     htop
     httpie
@@ -254,7 +265,7 @@
     navi
     ncdu_2
     neofetch
-    neovim
+    unstable.neovim
     networkmanagerapplet
     newsboat
     nim
@@ -359,11 +370,11 @@
     xdg-utils
     xdotool
     xh
-    xonsh
+    xonsh  
     xsel
     yarn
     zathura
-    zellij
+    unstable.zellij
     fakeroot
     zenith
     zig
