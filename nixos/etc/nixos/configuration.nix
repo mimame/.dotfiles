@@ -102,6 +102,9 @@
   };
 
   services.xserver.windowManager.i3.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
+
   # TODO: fix locate.latitude
   # for that simply use geoclue2 in the config file instead a fixed latitude
   # services.redshift.enable = true;
@@ -253,6 +256,7 @@
     neofetch
     neovim
     nerdfonts
+    font-awesome
     networkmanagerapplet
     newsboat
     nim
@@ -361,6 +365,7 @@
     yarn
     zathura
     zellij
+    fakeroot
     zenith
     zig
     zlib-ng
@@ -377,6 +382,8 @@
     enable = true;
     enableSSHSupport = true;
   };
+
+  programs.seahorse.enable = true;
 
   programs.fish.enable = true;
 
