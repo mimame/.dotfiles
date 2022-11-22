@@ -51,7 +51,7 @@
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
-    xkbVariant = "alt-intl";
+    xkbVariant = "altgr-intl";
   };
 
   # Configure console keymap
@@ -105,10 +105,6 @@
   # TODO: fix locate.latitude
   # for that simply use geoclue2 in the config file instead a fixed latitude
   # services.redshift.enable = true;
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  #systemd.services."getty@tty1".enable = false;
-  #systemd.services."autovt@tty1".enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
