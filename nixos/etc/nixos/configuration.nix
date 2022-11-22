@@ -157,7 +157,7 @@ in
     bzip2
     caffeine-ng
     calibre
-    clang
+    # clang # breaks nvim treesitter compilation
     cmake
     coreutils
     crystal
