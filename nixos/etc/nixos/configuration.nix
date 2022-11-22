@@ -255,8 +255,6 @@
     ncdu_2
     neofetch
     neovim
-    nerdfonts
-    font-awesome
     networkmanagerapplet
     newsboat
     nim
@@ -360,7 +358,7 @@
     xdg-utils
     xdotool
     xh
-    xonsh  
+    xonsh
     xsel
     yarn
     zathura
@@ -373,6 +371,11 @@
     zoxide
     zstd
 
+  ];
+
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "Hack" ]; })
+    font-awesome
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
