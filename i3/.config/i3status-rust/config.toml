@@ -116,16 +116,6 @@ warning_swap = 80
 critical_mem = 95
 critical_swap = 95
 
-[[block]]
-block = "pacman"
-interval = 600
-format = "{both}"
-format_singular = "{both}"
-format_up_to_date = ""
-critical_updates_regex = "(linux |linux-lts|linux-zen)"
-aur_command = "paru -Qua"
-on_click = "pamac-manager --updates"
-
 # [[block]]
 # block = "uptime"
 
