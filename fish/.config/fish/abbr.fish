@@ -103,6 +103,7 @@ abbr -a -U zshrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/zsh/.zshrc) 
 abbr -a -U tridactylrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/tridactyl/tridactylrc) && popd'
 abbr -a -U dunstrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/dunst/dunstrc) && popd'
 abbr -a -U fishrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/fish/config.fish) && popd'
+abbr -a -U nixosrc 'sudo -E lvim /etc/nixos/configuration.nix && sudo nixfmt /etc/nixos/configuration.nix && cp /etc/nixos/configuration.nix ~/.dotfiles/nixos/etc/nixos/'
 
 # abbr -a -U for pip
 abbr -a -U pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
