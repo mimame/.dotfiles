@@ -1,9 +1,0 @@
-" :mark mark /full/directory/path [filename]
-mark b ~/.bin/
-mark d ~/.dotfiles
-mark D ~/Dropbox
-mark f ~/forks
-mark h ~
-mark p ~/Projects
-mark r /
-mark t /tmp
