@@ -5,7 +5,7 @@
 if [ ! -z "$@" ]; then
   QUERY=$@
   if [[ "$@" == /* ]]; then
-    coproc (TERMINAL='alacritty -e' mimeopen --no-ask "$@" >/dev/null 2>&1)
+    coproc (TERMINAL='kitty -e' handlr open "$@" >/dev/null 2>&1)
     exec 1>&-
     exit
   else
