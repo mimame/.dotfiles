@@ -16,6 +16,7 @@ exec_always --no-startup-id pkill udiskie; udiskie --notify --smart-tray --notif
 exec dbus-sway-environment
 exec configure-gtk
 exec wl-paste -t text --watch clipman store --no-persist
+exec swaync
 input "type:keyboard" {
     xkb_layout us
     xkb_variant altgr-intl
