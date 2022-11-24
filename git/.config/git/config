@@ -122,8 +122,8 @@
   lll  = l --patch
     # Use fzf to select commits and copy their hash to the clipboard
   lg   = log --all --graph --pretty=lg
-  lgi  = !git lg --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
-  li   = !git l --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
+  lgi  = !git lg --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | wl-copy
+  li   = !git l --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | wl-copy
   llg  = lg --numstat
   lllg = lg --patch
   # merge - https://git-scm.com/docs/git-merge
@@ -167,7 +167,7 @@
   rbs  = rebase --skip
   # reflog - https://git-scm.com/docs/git-reflog
   rf  = reflog --pretty=rf
-  rfi = !git rf --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | xsel --input --clipboard
+  rfi = !git rf --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | wl-copy
   # remote - https://git-scm.com/docs/git-remote
   re   = remote
   rea  = remote add
