@@ -227,7 +227,6 @@ in {
     dstat
     dua
     duf
-    # dunst
     dura
     entr
     unstable.espanso
@@ -409,18 +408,12 @@ in {
     vlc
     unstable.vscode
     watchexec
-    # wget
-    # wmctrl
-    # xautolock
+    wget
     # xbanish
-    # unstable.xcape
-    # xclip
     xdg-user-dirs
     xdg-utils
-    # xdotool
     unstable.xh
     unstable.xonsh
-    # xsel
     yarn
     zathura
     unstable.zellij
@@ -435,6 +428,7 @@ in {
     interception-tools
     libevdev
     sway
+    wev
     dbus-sway-environment
     configure-gtk
     wayland
@@ -446,7 +440,8 @@ in {
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by sway
+    swaynotificationcenter
+    libnotify
 
   ];
 
