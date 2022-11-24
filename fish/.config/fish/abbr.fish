@@ -91,7 +91,7 @@ abbr -a -U ln "ln -i"
 # abbr -a -U for rc files
 abbr -a -U kittyrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/kitty/kitty.conf) && popd'
 abbr -a -U gitrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/git/config) && popd'
-abbr -a -U i3rc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/i3/config) && popd'
+abbr -a -U swayrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/sway/config) && popd'
 abbr -a -U mimerc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/mimeapps.list) && popd'
 abbr -a -U newsboatrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/newsboat/config) && popd'
 abbr -a -U rofirc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/rofi/config.rasi) && popd'
