@@ -1,6 +1,4 @@
 # vim: filetype=i3config
-# i3 config file (v4)
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
@@ -12,33 +10,29 @@ set $mod Mod4
 # https://wiki.archlinux.org/index.php/xmodmap
 exec_always --no-startup-id pkill udiskie; udiskie --notify --smart-tray --notify-command notify-send &
 # Swap l-ctrl to caps lock and define rctrl as composite key(rctrl+'+e->é)
-exec_always --no-startup-id setxkbmap -option; setxkbmap -option ctrl:nocaps &
+# exec_always --no-startup-id setxkbmap -option; setxkbmap -option ctrl:nocaps &
 # Add to the control key the ESC key function
-exec_always --no-startup-id sleep 1; pkill xcape; xcape -e 'Control_L=Escape' &
+# exec_always --no-startup-id sleep 1; pkill xcape; xcape -e 'Control_L=Escape' &
+exec dbus-sway-environment
+exec configure-gtk
+exec wl-paste -t text --watch clipman store --no-persist
+input "type:keyboard" {
+    xkb_layout us
+    xkb_variant altgr-intl
+}
+input "type:touchpad" {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
 # Disable touchpad when writting
 exec_always --no-startup-id pkill syndaemon; syndaemon -i 0.5 -K -R -d &
 # Improve touchpad DPIs (touchpad width == screen width)
-# https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html#pointer-acceleration-on-touchpads
-exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'libinput Natural Scrolling Enabled' 1
-exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'libinput Accel Speed' 1
-exec_always xinput --set-prop 'UNIW0001:00 093A:1336 Touchpad' 'libinput Tapping Enabled' 1
 # Add Touchpad gestures
-exec_always xinput --list-props 'UNIW0001:00 093A:1336 Touchpad' && libinput-gestures-setup restart
-# mouse-dpi-tool  /dev/input/event30
-exec_always xinput set-prop 'USB Optical Mouse  Mouse' 'libinput Accel Speed' 1
-#exec_always xinput set-prop 'USB Optical Mouse  Mouse' 'libinput Accel Speed Default' 1
-#exec_always xinput set-prop 'USB Optical Mouse  Mouse' 'libinput Accel Speed' 2
-# Swap vertical mouse buttons back and forward
-exec_always xinput set-button-map "USB Optical Mouse  Mouse" 1 2 3 4 5 6 7 9 8
-# Enable numlock by default
-# exec_always --no-startup-id pkill numlockx; numlockx
-# Enable and load last saved session
-# exec --no-startup-id [ -f ~/.config/i3/session.json ] && ~/.config/i3/scripts/i3exit restore && i3-msg restart
 # Enable notifications by default
-exec_always --no-startup-id pkill dunst; dunst &
+exec_always --no-startup-id pkill maku; maku &
 
-# Screen layout
-exec_always --no-startup-id ~/.config/i3/scripts/screen_layout
 # Load desktop
 # Fix latitude and longitude
 exec --no-startup-id pkill geoclue; /usr/lib/geoclue-2.0/demos/agent
@@ -52,9 +46,10 @@ exec_always pkill alttab; alttab
 # Prevents the screensaver from showing up, or the system from going to sleep. It does so when an application is fullscreened
 exec_always --no-startup-id caffeine --kill; caffeine --active &
 
+# Load barriers server
+# exec_always --no-startup-id pkill barriers; barriers --no-daemon --no-tray --name narnia --enable-crypto --config "$HOME/.config/barrier/barrier.conf" --address ":24800"
+#exec_always --no-startup-id pkill barrier; barrierc --no-daemon --no-tray --name narnia --enable-crypto '[192.168.1.196]:24800'
 
-# Enable clipboard manager
-exec_always --no-startup-id pkill greenclip; greenclip daemon > /dev/null &
 
 # Hide cursor when typing
 exec_always --no-startup-id pkill xbanish; xbanish &
@@ -63,8 +58,8 @@ exec_always --no-startup-id pkill xbanish; xbanish &
 exec_always --no-startup-id sudo aucc --color green --backlight 1
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window none
-new_float none
+default_border none
+default_floating_border none
 
 # Hide borders
 hide_edge_borders both
@@ -99,29 +94,29 @@ bindsym $mod+Ctrl+d exec --no-startup-id rofi -show web
 # Add finder launcher
 bindsym $mod+Ctrl+f exec --no-startup-id rofi -show finder
 # Add clipboard manager launcher
-bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}' && sleep 0.5 && xdotool type --delay 0 "$(xclip -o -selection clipboard)"
+bindsym $mod+c exec --no-startup-id clipman pick --tool rofi
 
 # Player controls
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && ~/.config/i3/scripts/dunstify_notification "play-stop_song"
-bindsym XF86AudioNext exec --no-startup-id playerctl next && ~/.config/i3/scripts/dunstify_notification "next_song"
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous && ~/.config/i3/scripts/dunstify_notification "previous_song"
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && ~/.config/sway/scripts/dunstify_notification "play-stop_song"
+bindsym XF86AudioNext exec --no-startup-id playerctl next && ~/.config/sway/scripts/dunstify_notification "next_song"
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous && ~/.config/sway/scripts/dunstify_notification "previous_song"
 # No player controls available
-bindsym Shift+XF86AudioMute exec --no-startup-id playerctl play-pause && ~/.config/i3/scripts/dunstify_notification "play-stop_song"
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next && ~/.config/i3/scripts/dunstify_notification "next_song"
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous && ~/.config/i3/scripts/dunstify_notification "previous_song"
+bindsym Shift+XF86AudioMute exec --no-startup-id playerctl play-pause && ~/.config/sway/scripts/dunstify_notification "play-stop_song"
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next && ~/.config/sway/scripts/dunstify_notification "next_song"
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous && ~/.config/sway/scripts/dunstify_notification "previous_song"
 
 # Pulse Audio controls
 exec --no-startup-id pactl list sinks short | cut -f1 | xargs -I card pactl set-sink-volume card 0
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | fgrep RUNNING | cut -f1) +5% && ~/.config/i3/scripts/dunstify_notification "high_sound"
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | fgrep RUNNING | cut -f1) -5% && ~/.config/i3/scripts/dunstify_notification "low_sound"
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pactl list sinks short | fgrep RUNNING | cut -f1) toggle && ~/.config/i3/scripts/dunstify_notification "play-mute_sound"
+bindsym XF86AudioRaiseVolume exec --no-startup-id 'pactl set-sink-volume @DEFAULT_SINK@ +5%' && ~/.config/sway/scripts/dunstify_notification "high_sound"
+bindsym XF86AudioLowerVolume exec --no-startup-id 'pactl set-sink-volume @DEFAULT_SINK@ -5%' && ~/.config/sway/scripts/dunstify_notification "low_sound"
+bindsym XF86AudioMute exec --no-startup-id 'pactl set-sink-mute @DEFAULT_SINK@ toggle' && ~/.config/sway/scripts/dunstify_notification "play-mute_sound"
 
 # Screen brightness controls
 exec --no-startup-id light -S 10
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/.config/i3/scripts/dunstify_notification "light"
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/i3/scripts/dunstify_notification "light"
-bindsym Shift+Ctrl+XF86AudioRaiseVolume exec --no-startup-id light -A 5 && ~/.config/i3/scripts/dunstify_notification "light"
-bindsym Shift+Ctrl+XF86AudioLowerVolume exec --no-startup-id light -U 5 && ~/.config/i3/scripts/dunstify_notification "light"
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/.config/sway/scripts/dunstify_notification "light"
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/sway/scripts/dunstify_notification "light"
+bindsym Shift+Ctrl+XF86AudioRaiseVolume exec --no-startup-id light -A 5 && ~/.config/sway/scripts/dunstify_notification "light"
+bindsym Shift+Ctrl+XF86AudioLowerVolume exec --no-startup-id light -U 5 && ~/.config/sway/scripts/dunstify_notification "light"
 
 # dunst
 bindsym Ctrl+Shift+space exec --no-startup-id dunstctl close-all
@@ -129,7 +124,7 @@ bindsym Ctrl+Shift+space exec --no-startup-id dunstctl close-all
 # bindsym Ctrl+Shift+space exec --no-startup-id dunstctl history-pop
 
 # Print Screen controls
-bindsym Print exec ~/.config/i3/scripts/screenshot
+bindsym Print exec ~/.config/sway/scripts/screenshot
 bindsym Ctrl+Print exec flameshot gui
 
 focus_on_window_activation smart
@@ -166,10 +161,10 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # Split in horizontal orientation
-bindsym $mod+Shift+v split h; exec ~/.config/i3/scripts/dunstify_notification "i3horizontal_tiling"
+bindsym $mod+Shift+v split h; exec ~/.config/sway/scripts/dunstify_notification "i3horizontal_tiling"
 
 # Split in vertical orientation
-bindsym $mod+v split v; exec ~/.config/i3/scripts/dunstify_notification "i3vertical_tiling"
+bindsym $mod+v split v; exec ~/.config/sway/scripts/dunstify_notification "i3vertical_tiling"
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -334,25 +329,23 @@ bindsym $mod+Shift+r restart
 # Exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# Interactive menu: close window, lock, exit switch user, sunspend, hibernate, reboot, restore session and shutdown
-bindsym $mod+q mode "$mode_system"
-set $mode_system (c)lose windows, (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+# Interactive menu: close windows, lock, exit switch user, sunspend, hibernate, reboot, restore session and shutdown
+set $mode_system (c)lose windows, (l)ock (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
 
-    bindsym c exec --no-startup-id ~/.config/i3/scripts/i3exit close, mode "default"
-    bindsym l exec --no-startup-id ~/.config/i3/scripts/i3exit lock, mode "default"
-    bindsym s exec --no-startup-id ~/.config/i3/scripts/i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id ~/.config/i3/scripts/i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id ~/.config/i3/scripts/i3exit logout, mode "default"
-    bindsym h exec --no-startup-id ~/.config/i3/scripts/i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id ~/.config/i3/scripts/i3exit reboot, mode "default"
-    bindsym Shift+r exec --no-startup-id ~/.config/i3/scripts/i3exit restore, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/.config/i3/scripts/i3exit shutdown, mode "default"
+    bindsym c exec --no-startup-id wlrctl window list | cut -f1 -d':' | xargs -I% wlrctl window close %, mode "default"
+    bindsym l exec --no-startup-id swaylock, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend-then-hibernate, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+bindsym $mod+q mode "$mode_system"
 
 # Resize window (use also the mouse for that)
 bindsym $mod+r mode "resize"
@@ -414,13 +407,11 @@ exec --no-startup-id dropbox
 # Toggle (show/hide) i3pystatus bar
 bindsym $mod+m bar mode toggle
 
-# Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
   # Hide bar by default, show with modifier key
   mode hide
   # Top by default
   position top
-  # status_command python3 ~/.config/i3/bar.py
   status_command i3status-rs
   tray_output primary
   #	wheel_up_cmd nop
@@ -436,9 +427,6 @@ bar {
   }
 }
 
-exec --no-startup-id i3-msg 'workspace $ws1'
-
 # Init programs in specific workspaces
 # It's necessary wait until each window is shown in its workspace
 # before run the next one
-# exec --no-startup-id ~/.config/i3/scripts/init_workspaces

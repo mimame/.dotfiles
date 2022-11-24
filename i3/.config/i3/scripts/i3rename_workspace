@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# https://www.reddit.com/r/i3wm/comments/a6xv7e/easy_workspace_renaming_with_no_external_scripts/
-# https://github.com/infokiller/i3-workspace-groups/blob/master/scripts/i3-rename-workspace
-new_name=$(rofi -dmenu -p 'New workspace name' -width 30 -location 0)
-current_workspace_index=$(i3-msg -t get_workspaces | jq '.[] | select(.visible==true)' | jq '.num')
-i3-msg "rename workspace to \"${current_workspace_index}: ${new_name}\""
