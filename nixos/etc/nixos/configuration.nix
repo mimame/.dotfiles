@@ -197,7 +197,6 @@ in {
     avfs
     axel
     baobab
-    barrier
     unstable.bat
     bc
     bind
@@ -495,9 +494,8 @@ in {
   };
 
   # Open ports in the firewall.
-  # Open barrier 24800 port
-  networking.firewall.allowedTCPPorts = [ 24800 ];
-  networking.firewall.allowedUDPPorts = [ 24800 ];
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedUDPPorts = [ ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
 
