@@ -78,6 +78,8 @@ in {
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  powerManagement.cpuFreqGovernor = "ondemand";
+
   system.autoUpgrade = {
     allowReboot = false;
     enable = true;
