@@ -98,31 +98,24 @@ bindsym $mod+Ctrl+f exec --no-startup-id rofi -show finder
 bindsym $mod+c exec --no-startup-id clipman pick --tool rofi
 
 # Player controls
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && ~/.config/sway/scripts/dunstify_notification "play-stop_song"
-bindsym XF86AudioNext exec --no-startup-id playerctl next && ~/.config/sway/scripts/dunstify_notification "next_song"
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous && ~/.config/sway/scripts/dunstify_notification "previous_song"
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
+bindsym XF86AudioNext exec --no-startup-id playerctl next && ~/.config/sway/scripts/notification "next_song"
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous && ~/.config/sway/scripts/notification "previous_song"
 # No player controls available
-bindsym Shift+XF86AudioMute exec --no-startup-id playerctl play-pause && ~/.config/sway/scripts/dunstify_notification "play-stop_song"
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next && ~/.config/sway/scripts/dunstify_notification "next_song"
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous && ~/.config/sway/scripts/dunstify_notification "previous_song"
+bindsym Shift+XF86AudioMute exec --no-startup-id playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next && ~/.config/sway/scripts/notification "next_song"
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous && ~/.config/sway/scripts/notification "previous_song"
 
 # Pulse Audio controls
-exec --no-startup-id pactl list sinks short | cut -f1 | xargs -I card pactl set-sink-volume card 0
-bindsym XF86AudioRaiseVolume exec --no-startup-id 'pactl set-sink-volume @DEFAULT_SINK@ +5%' && ~/.config/sway/scripts/dunstify_notification "high_sound"
-bindsym XF86AudioLowerVolume exec --no-startup-id 'pactl set-sink-volume @DEFAULT_SINK@ -5%' && ~/.config/sway/scripts/dunstify_notification "low_sound"
-bindsym XF86AudioMute exec --no-startup-id 'pactl set-sink-mute @DEFAULT_SINK@ toggle' && ~/.config/sway/scripts/dunstify_notification "play-mute_sound"
+exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  0
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && ~/.config/sway/scripts/notification "high_sound"
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && ~/.config/sway/scripts/notification "low_sound"
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && ~/.config/sway/scripts/notification "play-mute_sound"
 
 # Screen brightness controls
 exec --no-startup-id light -S 10
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/.config/sway/scripts/dunstify_notification "light"
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/sway/scripts/dunstify_notification "light"
-bindsym Shift+Ctrl+XF86AudioRaiseVolume exec --no-startup-id light -A 5 && ~/.config/sway/scripts/dunstify_notification "light"
-bindsym Shift+Ctrl+XF86AudioLowerVolume exec --no-startup-id light -U 5 && ~/.config/sway/scripts/dunstify_notification "light"
-
-# dunst
-bindsym Ctrl+Shift+space exec --no-startup-id dunstctl close-all
-# bindsym Ctrl+space+period exec --no-startup-id dunstctl close
-# bindsym Ctrl+Shift+space exec --no-startup-id dunstctl history-pop
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/.config/sway/scripts/notification "light"
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/sway/scripts/notification "light"
 
 # Print Screen controls
 bindsym Print exec ~/.config/sway/scripts/screenshot
@@ -162,10 +155,10 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # Split in horizontal orientation
-bindsym $mod+Shift+v split h; exec ~/.config/sway/scripts/dunstify_notification "i3horizontal_tiling"
+bindsym $mod+Shift+v split h; exec ~/.config/sway/scripts/notification "i3horizontal_tiling"
 
 # Split in vertical orientation
-bindsym $mod+v split v; exec ~/.config/sway/scripts/dunstify_notification "i3vertical_tiling"
+bindsym $mod+v split v; exec ~/.config/sway/scripts/notification "i3vertical_tiling"
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
