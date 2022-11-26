@@ -9,18 +9,21 @@ if status --is-interactive
         fisher install jorgebucaran/replay.fish
     end
 
+    # This doesn't work with NixOS
+    # because for each updated binary the hash path is different
     # Speed up source commands using functions files and regenerating them one time per week
-    if not test -f ~/.config/fish/functions/fk.fish
-        or test (date '+%s' --date '7 days ago') -ge (date '+%s' -r ~/.config/fish/functions/fk.fish)
-        thefuck --alias fk >~/.config/fish/functions/fk.fish
-        gh completion --shell fish >~/.config/fish/functions/gh.fish
-        zoxide init fish >~/.config/fish/functions/z.fish
-        starship init fish --print-full-init >~/.config/fish/functions/fish_prompt.fish
-        # starship init fish | source
-        # zoxide init fish | source
-        # gh completion --shell fish | source
-        # thefuck --alias fk | source
-    end
+    #if not test -f ~/.config/fish/functions/fk.fish
+    #    or test (date '+%s' --date '7 days ago') -ge (date '+%s' -r ~/.config/fish/functions/fk.fish)
+    #    thefuck --alias fk >~/.config/fish/functions/fk.fish
+    #    gh completion --shell fish >~/.config/fish/functions/gh.fish
+    #    zoxide init fish >~/.config/fish/functions/z.fish
+    #    starship init fish --print-full-init >~/.config/fish/functions/fish_prompt.fish
+    # end
+
+    starship init fish | source
+    zoxide init fish | source
+    gh completion --shell fish | source
+    thefuck --alias fk | source
 
     if not functions --query __direnv_export_eval
         direnv hook fish | source
@@ -35,4 +38,3 @@ if status --is-interactive
     source ~/.config/fish/abbr.fish
     source ~/.config/fish/monokai.fish
 end
-
