@@ -291,6 +291,7 @@ in {
     jc
     jekyll
     jq
+    unstable.julia-bin
     just
     keepassxc
     unstable.kitty
@@ -338,6 +339,8 @@ in {
     unstable.obsidian
     onefetch
     openssl
+    ouch
+    pulseaudio # to be able to use pactl
     pandoc
     parallel
     parted
