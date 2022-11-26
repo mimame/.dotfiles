@@ -40,8 +40,15 @@ let
       datadir = "${schema}/share/gsettings-schemas/${schema.name}";
     in ''
       export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+      export GTK_THEME="Sweet-Dark"
       gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme 'Sweet'
+      gsettings set $gnome_schema gtk-theme "Sweet-Dark"
+      gsettings set $gnome_schema theme "Sweet-Dark"
+      gsettings set $gnome_schema icon-theme "BeautyLine"
+      gsettings set org.gnome.desktop.wm.preferences theme "Sweet-Dark"
+      gsettings set $gnome_schema document-font-name 'Hack 13'
+      gsettings set $gnome_schema font-name 'Hack 13'
+      gsettings set $gnome_schema monospace-font-name 'Hack 13'
     '';
   };
 
@@ -380,7 +387,8 @@ in {
     stress
     stylua
     sudo
-    sweet
+    unstable.sweet
+    unstable.beauty-line-icon-theme
     unstable.tealdeer
     tectonic
     tesseract5
@@ -431,6 +439,7 @@ in {
     dbus-sway-environment
     configure-gtk
     wayland
+    glib # gsettings
     wlrctl
     swaylock
     swayidle
