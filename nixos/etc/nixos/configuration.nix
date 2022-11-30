@@ -286,7 +286,7 @@ in {
     unstable.hyperfine
     hyphen
     # i3lock
-    i3status-rust
+    unstable.i3status-rust
     inkscape
     jc
     jekyll
@@ -307,6 +307,7 @@ in {
     linuxKernel.packages.linux_zen.virtualbox
     litecli
     lnav
+    unstable.logseq
     lsb-release
     lsd
     lsof
@@ -332,7 +333,6 @@ in {
     ninja
     nixfmt
     nixpkgs-review
-    nnn
     nodePackages.npm
     ntfs3g
     unstable.nushell
