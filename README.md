@@ -3,7 +3,7 @@
 1. Try to be more productive and faster according to my needs
 
 # Setup
-- [NixOS](https://github.com/ansible/ansible)
+- [NixOS](https://nixos.org/)
 - [Stow](https://www.gnu.org/software/stow/)
 
 # Tools
