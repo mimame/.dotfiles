@@ -9,18 +9,24 @@
 # Tools
 Here you can find the tools more important for my minimalist workflow
 
-## [i3 (Tiling windows manager) + my own scripts](https://i3wm.org/)
+## [bat (cat with syntax highlighting and git integration)](https://github.com/sharkdp/bat)
 
-## [rofi (applications launcher)](https://github.com/DaveDavenport/rofi)
+## [fd (file searcher)](https://github.com/sharkdp/fd)
 
 ## [fish shell](https://fishshell.com/)
 
-## [lunarvim (opinated nvim distribution)](https://www.lunarvim.org/)
+## [kitty (GPU based terminal)](https://sw.kovidgoyal.net/kitty/  )
 
-## [zellij (terminal multiplexor)](https://zellij.dev/)
+## [lvim/lunarvim (opinated nvim distribution)](https://www.lunarvim.org/)
 
 ## [ranger (file manager)](https://github.com/ranger/ranger)
 
+## [starship (shell prompt)](https://starship.rs/)
+
+## [rofi (applications launcher)](https://github.com/DaveDavenport/rofi)
+
 ## [ripgrep (text searcher)](https://github.com/BurntSushi/ripgrep)
 
-## [fd (file searcher)](https://github.com/sharkdp/fd)
+## [sway (Tiling windows manager)](https://github.com/swaywm/sway)
+
+## [zellij (terminal multiplexor)](https://zellij.dev/)
