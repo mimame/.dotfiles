@@ -122,9 +122,7 @@ critical_swap = 95
 [[block]]
 block = "time"
 format = "%a %d %H:%M:%S"
-timezone = "Europe/Paris"
 interval = 1
-locale = "en_GB"
 
 [[block]]
 block = "pomodoro"
