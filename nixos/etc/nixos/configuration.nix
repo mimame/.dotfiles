@@ -102,7 +102,6 @@ in {
   services.locate.localuser = null;
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
   services.xserver.enable = true;
   services.xserver.displayManager = {
     gdm.enable = true;
@@ -167,17 +166,6 @@ in {
       ];
   };
 
-  # Enable automatic login for the user.
-  # services.xserver.displayManager = {
-  #   lightdm.enable = true;
-  #   autoLogin = {
-  #     enable = true;
-  #     user = "mimame";
-  #   };
-  # };
-
-  # services.xserver.windowManager.i3.enable = true;
-
   services.gnome.gnome-keyring.enable = true;
 
   security.polkit.enable = true;
@@ -193,7 +181,6 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 
-    # zoom-us # timeout when downloading the package
     ansible
     aria2
     asciidoc-full
@@ -285,7 +272,6 @@ in {
     hugo
     unstable.hyperfine
     hyphen
-    # i3lock
     unstable.i3status-rust
     inkscape
     jc
@@ -424,7 +410,6 @@ in {
     unstable.vscode
     watchexec
     wget
-    # xbanish
     xdg-user-dirs
     xdg-utils
     unstable.xh
