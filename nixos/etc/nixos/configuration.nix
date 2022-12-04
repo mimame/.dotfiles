@@ -45,6 +45,8 @@ let
       gsettings set $gnome_schema gtk-theme "Sweet-Dark"
       gsettings set $gnome_schema theme "Sweet-Dark"
       gsettings set $gnome_schema icon-theme "BeautyLine"
+      gsettings set $gnome_schema cursor-theme "capitaine-cursors-white"
+      gsettings set $gnome_schema cursor-size 32
       gsettings set org.gnome.desktop.wm.preferences theme "Sweet-Dark"
       gsettings set $gnome_schema document-font-name 'Hack 13'
       gsettings set $gnome_schema font-name 'Hack 13'
@@ -210,6 +212,7 @@ in {
     bzip2
     caffeine-ng
     unstable.calibre
+    capitaine-cursors
     clang # Maybe breaks the lvim treesitter compilation
     cmake
     coreutils
