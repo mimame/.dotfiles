@@ -93,8 +93,9 @@ in {
 
   # Synchronise time and date
   services.chrony.enable = true;
-  services.localtime.enable = true;
+  services.localtimed.enable = true;
   services.geoclue2.enable = true;
+  services.avahi.enable = true;
 
   # Locate service
   services.locate.enable = true;
@@ -471,7 +472,6 @@ in {
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    gtkUsePortal = true;
   };
 
   # enable sway window manager
@@ -484,6 +484,7 @@ in {
       export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
+      export GTK_USE_PORTAL=1
     '';
   };
 
@@ -520,6 +521,6 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "22.11"; # Did you read the comment?
 
 }
