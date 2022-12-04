@@ -344,9 +344,9 @@ in {
     plantuml
     playerctl
     plocate
-    podman
-    podman-compose
-    podman-tui
+    unstable.podman
+    unstable.podman-compose
+    unstable.podman-tui
     procs
     progress
     pueue
@@ -357,7 +357,7 @@ in {
     python310Packages.cython
     python310Packages.howdoi
     python310Packages.ipython
-    qutebrowser
+    unstable.qutebrowser
     unstable.ranger
     rclone
     ripgrep
@@ -403,7 +403,7 @@ in {
     unrar
     urlscan
     util-linux
-    vagrant
+    unstable.vagrant
     unstable.vifm
     virtualbox
     visidata
