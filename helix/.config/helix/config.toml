@@ -4,6 +4,7 @@ theme = "base16_terminal"
 shell = ["fish", "-c"]
 line-number = "relative"
 cursorline = true
+cursorcolumn = true
 color-modes = true
 
 [editor.cursor-shape]
