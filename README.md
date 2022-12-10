@@ -7,7 +7,7 @@
 - [Stow](https://www.gnu.org/software/stow/)
 
 # Tools
-Here you can find the tools more important for my minimalist workflow
+Most important tools for my minimalist workflow
 
 ## [bat (cat with syntax highlighting and git integration)](https://github.com/sharkdp/bat)
 
@@ -15,18 +15,22 @@ Here you can find the tools more important for my minimalist workflow
 
 ## [fish shell](https://fishshell.com/)
 
-## [kitty (GPU based terminal)](https://sw.kovidgoyal.net/kitty/  )
+## [helix (editor)](https://helix-editor.com/)
 
-## [lvim/lunarvim (opinated nvim distribution)](https://www.lunarvim.org/)
+## [kitty (GPU based terminal)](https://sw.kovidgoyal.net/kitty/)
+
+## [lvim/lunarvim (opinated nvim editor distribution)](https://www.lunarvim.org/)
 
 ## [ranger (file manager)](https://github.com/ranger/ranger)
 
-## [starship (shell prompt)](https://starship.rs/)
+## [ripgrep (text searcher)](https://github.com/BurntSushi/ripgrep)
 
 ## [rofi (applications launcher)](https://github.com/DaveDavenport/rofi)
 
-## [ripgrep (text searcher)](https://github.com/BurntSushi/ripgrep)
+## [starship (shell prompt)](https://starship.rs/)
 
 ## [sway (Tiling windows manager)](https://github.com/swaywm/sway)
+
+## [tealdeer (tldr)](https://dbrgn.github.io/tealdeer/)
 
 ## [zellij (terminal multiplexor)](https://zellij.dev/)
