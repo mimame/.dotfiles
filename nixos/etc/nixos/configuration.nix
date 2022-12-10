@@ -67,12 +67,31 @@ in {
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+  };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;
+  networking = {
+    firewall = {
+      # Or disable the firewall altogether.
+      enable = true;
+      # Open ports in the firewall.
+      allowedUDPPorts = [ ];
+      allowedTCPPorts = [ ];
+    };
+    hostName = "nixos";
+    networkmanager.enable = true;
+  };
+
+  # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true;
+    forwardX11 = true;
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -81,6 +100,7 @@ in {
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  # FIXME: Not working
   powerManagement.cpuFreqGovernor = "ondemand";
 
   system.autoUpgrade = {
@@ -98,32 +118,44 @@ in {
   services.chrony.enable = true;
   services.localtimed.enable = true;
   services.geoclue2.enable = true;
+  services.geoclue2.appConfig.localtimed = {
+    isAllowed = true;
+    isSystem = true;
+    users = [ "1000" ];
+  };
   services.avahi.enable = true;
 
   # Locate service
-  services.locate.enable = true;
-  services.locate.locate = pkgs.plocate;
-  services.locate.localuser = null;
+  services.locate = {
+    enable = true;
+    locate = pkgs.plocate;
+    localuser = null;
+  };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.displayManager = {
-    gdm.enable = true;
-    defaultSession = "sway";
-    autoLogin = {
-      enable = true;
-      user = "mimame";
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      gdm.enable = true;
+      defaultSession = "sway";
+      autoLogin = {
+        enable = true;
+        user = "mimame";
+      };
     };
+    # Enable touchpad support (enabled by default in most desktopManager).
+    libinput.enable = true;
   };
-  services.xserver.libinput.enable = true;
 
-  services.interception-tools.enable = true;
-  services.interception-tools.udevmonConfig = ''
-    - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m 1 | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-      DEVICE:
-        EVENTS:
-          EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
-  '';
+  services.interception-tools = {
+    enable = true;
+    udevmonConfig = ''
+      - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m 1 | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
+        DEVICE:
+          EVENTS:
+            EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+    '';
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -154,28 +186,27 @@ in {
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.defaultUserShell = pkgs.unstable.fish;
-  users.users.mimame = {
-    isNormalUser = true;
-    description = "mimame";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
-    packages = with pkgs;
-      [
-        #  firefox
-        #  thunderbird
-      ];
+  users = {
+    defaultUserShell = pkgs.unstable.fish;
+    users.mimame = {
+      isNormalUser = true;
+      description = "mimame";
+      extraGroups = [ "networkmanager" "wheel" "video" ];
+      packages = with pkgs;
+        [
+          #  firefox
+          #  thunderbird
+        ];
+
+    };
   };
 
   services.gnome.gnome-keyring.enable = true;
 
   security.polkit.enable = true;
 
-  # TODO: fix locate.latitude
-  # for that simply use geoclue2 in the config file instead a fixed latitude
+  # FIXME: use geoclue2 in the config file instead a fixed latitude
   # services.redshift.enable = true;
 
   # Allow unfree packages
@@ -507,20 +538,6 @@ in {
   };
 
   programs.light.enable = true;
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    forwardX11 = true;
-  };
-
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ ];
-  networking.firewall.allowedUDPPorts = [ ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
