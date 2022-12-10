@@ -301,10 +301,10 @@ keybinds clear-defaults=true {
 //
 // on_force_close "quit"
 
-// Send a request for a simplified ui (without arrow fonts) to plugins
-// Options:
-//   - true
-//   - false (Default)
+//  Send a request for a simplified ui (without arrow fonts) to plugins
+//  Options:
+//    - true
+//    - false (Default)
 //
 // simplified_ui true
 
@@ -318,7 +318,7 @@ keybinds clear-defaults=true {
 //   - true (default)
 //   - false
 //
-// pane_frames true
+// pane_frames false
 
 // Define color themes for Zellij
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
@@ -427,7 +427,7 @@ scrollback_editor "/usr/bin/nvim"
 
 // The folder in which Zellij will look for layouts
 //
-// layout_dir /path/to/my/layout_dir
+// layout_dir "/path/to/my/layout_dir"
 
 // The folder in which Zellij will look for themes
 //
