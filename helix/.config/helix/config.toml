@@ -27,7 +27,7 @@ separator = "│"
 hidden = false
 
 [editor.whitespace]
-render = "all"
+render = "none"
 
 [editor.whitespace.characters]
 space = "·"
