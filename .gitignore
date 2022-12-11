@@ -3,6 +3,14 @@ ssh
 **/git/.config.*
 vifminfo*
 vifm-*
-packages/*.txt
-packer_compiled.lua
-.zcompdump
+fish/.config/fish/functions/_*
+fish/.config/fish/completions/
+fish/.config/fish/conf.d/
+fish/.config/fish/fish_plugins
+fish/.config/fish/fish_variables
+fish/.config/fish/functions/fish_prompt.fish
+fish/.config/fish/functions/fisher.fish
+fish/.config/fish/functions/fk.fish
+fish/.config/fish/functions/gh.fish
+fish/.config/fish/functions/replay.fish
+fish/.config/fish/functions/z.fish
