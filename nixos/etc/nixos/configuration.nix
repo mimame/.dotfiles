@@ -348,6 +348,7 @@ in {
       espanso
       exa
       fd
+      file
       filezilla
       firefox
       fish
