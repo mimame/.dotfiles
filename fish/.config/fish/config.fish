@@ -24,6 +24,7 @@ if status --is-interactive
     zoxide init fish | source
     gh completion --shell fish | source
     thefuck --alias fk | source
+    broot --print-shell-function fish | source
 
     if not functions --query __direnv_export_eval
         direnv hook fish | source
