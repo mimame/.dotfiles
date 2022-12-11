@@ -1,10 +1,9 @@
-theme = "base16_terminal"
+theme = "catppuccin_mocha"
 
 [editor]
 shell = ["fish", "-c"]
 line-number = "relative"
 cursorline = true
-cursorcolumn = true
 color-modes = true
 auto-save = true
 bufferline = "always"
