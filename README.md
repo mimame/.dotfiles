@@ -15,6 +15,8 @@ Most important tools for my minimalist workflow
 
 ## [fish shell](https://fishshell.com/)
 
+## [handlr (better xdg-open)](https://github.com/chmln/handlr)
+
 ## [helix (editor)](https://helix-editor.com/)
 
 ## [kitty (GPU based terminal)](https://sw.kovidgoyal.net/kitty/)
