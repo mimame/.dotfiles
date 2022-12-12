@@ -6,8 +6,8 @@
 # Configuration documentation is available at https://dystroy.org/broot
 #
 
-#  --sizes --permissions --dates --show-git-info
-default_flags = "spdg"
+# --hidden --sizes --permissions --dates --show-git-info
+default_flags = "hspdg"
 
 # escape key to quit broot when there's nothing to cancel
 quit_on_last_cancel = true
