@@ -1,6 +1,7 @@
 abbr -a -U sfish source ~/.config/fish/config.fish
 abbr -a -U cat bat
-abbr -a -U ls l
+abbr -a -U ls br
+abbr -a -U l br
 abbr -a -U cd z
 abbr -a -U b 'cd ..'
 abbr -a -U ju juliaup
