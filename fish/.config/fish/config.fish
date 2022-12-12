@@ -35,6 +35,13 @@ if status --is-interactive
         eval (ssh-agent -c) >/dev/null
     end
 
+    # Install vscode fonts for broot
+    set vscode_font ~/.local/share/fonts/vscode.ttf
+    if not test -f $vscode_font
+      wget 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true' -O $vscode_font --quiet
+      fc-cache ~/.local/share/fonts/
+    end
+
     source ~/.config/fish/variables.fish
     source ~/.config/fish/abbr.fish
     source ~/.config/fish/monokai.fish
