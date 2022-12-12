@@ -15,6 +15,8 @@ quit_on_last_cancel = true
 # Themes come from syntect
 syntax_theme = "base16-eighties.dark"
 
+icon_theme = "vscode"
+
 # selected lines marked with triangles
 show_selection_mark = true
 
