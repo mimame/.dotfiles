@@ -56,9 +56,9 @@ internal = ":parent"
 #  execution = "/usr/bin/nvim {file}"
 [[verbs]]
 invocation = "edit"
-shortcut = "e"
+key = "enter"
 apply_to = "file"
-external = "nvim {file}"
+external = "handlr open {file}"
 leave_broot = false
 
 [[verbs]]
