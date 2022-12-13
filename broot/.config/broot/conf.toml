@@ -70,5 +70,5 @@ external = "bat {file}"
 leave_broot = false
 
 [[verbs]]
-invocation = "mkdir {subpath}"
-external = "mkdir -p {directory}/{subpath}"
+invocation = "mc {subpath}"
+cmd = ":mkdir {directory}/{subpath};:focus {directory}/{subpath}"
