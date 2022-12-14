@@ -12,9 +12,13 @@ default_flags = "hspdg"
 # escape key to quit broot when there's nothing to cancel
 quit_on_last_cancel = true
 
+# get a cleaner display with just file names
+show_matching_characters_on_path_searches = false
+
 # Themes come from syntect
 syntax_theme = "base16-eighties.dark"
 
+# Display icons
 icon_theme = "vscode"
 
 # selected lines marked with triangles
