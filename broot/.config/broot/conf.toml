@@ -26,13 +26,13 @@ show_selection_mark = true
 
 # The name should be kept at end as it's the only one with a variable size
 cols_order = [
-    "mark",
-    "git",
-    "branch",
     "permission",
     "date",
     "size",
     "count",
+    "mark",
+    "branch",
+    "git",
     "name",
 ]
 
