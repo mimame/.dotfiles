@@ -251,7 +251,6 @@ in {
       interception-tools
       jc
       keepassxc
-      less
       libarchive
       libevdev
       libinput-gestures
@@ -278,6 +277,7 @@ in {
       parted
       pass
       passExtensions.pass-import
+      pavucontrol
       pulseaudio # to be able to use pactl
       putty
       pv
@@ -384,6 +384,7 @@ in {
       hyperfine
       i3status-rust
       jekyll
+      jless
       jq
       julia-bin
       just
@@ -392,8 +393,10 @@ in {
       klavaro
       lazydocker
       lazygit
+      less
       litecli
       logseq
+      lsd
       lsd
       massren
       mcfly
