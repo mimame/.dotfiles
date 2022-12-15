@@ -11,6 +11,8 @@ Most important tools for my minimalist workflow
 
 ## [bat (cat with syntax highlighting and git integration)](https://github.com/sharkdp/bat)
 
+## [broot (Tree files browser)](https://dystroy.org/broot/)
+
 ## [fd (file searcher)](https://github.com/sharkdp/fd)
 
 ## [fish shell](https://fishshell.com/)
@@ -20,6 +22,8 @@ Most important tools for my minimalist workflow
 ## [helix (editor)](https://helix-editor.com/)
 
 ## [kitty (GPU based terminal)](https://sw.kovidgoyal.net/kitty/)
+
+## [logseq (Zettelkasten note taking)](https://logseq.com/)
 
 ## [lvim/lunarvim (opinated nvim editor distribution)](https://www.lunarvim.org/)
 
