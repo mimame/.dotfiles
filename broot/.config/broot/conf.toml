@@ -68,6 +68,13 @@ external = "handlr open {file}"
 leave_broot = false
 
 [[verbs]]
+invocation = "go"
+key = "enter"
+apply_to = "directory"
+cmd = ":cd"
+leave_broot = true
+
+[[verbs]]
 name = "view"
 invocation = "view"
 external = "bat {file}"
