@@ -53,8 +53,7 @@ set -x -U FZF_DEFAULT_OPTS '
 --color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
-set -x -U LESS '-F -g -i -M -R -S -w -X -z-4'
-set -x -U PAGER less
+set -x -U PAGER bat
 set -x -U MANPAGER 'lvim +Man!'
 set -x -U MANWIDTH 999
 set -x -U BROWSER firefox
