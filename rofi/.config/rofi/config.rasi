@@ -6,7 +6,7 @@ configuration {
 	xoffset: 0;
 	fixed-num-lines: false;
 	show-icons: true;
-	terminal: "alacritty";
+	terminal: "kitty";
 	ssh-client: "ssh";
 	ssh-command: "{terminal} -e {ssh-client} {host}";
 	run-command: "{cmd}";
@@ -148,4 +148,4 @@ configuration {
   }
 }
 
-@theme "molokai"
+@theme "catppuccin-mocha"
