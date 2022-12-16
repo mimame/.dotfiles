@@ -285,6 +285,7 @@ in {
       python3Packages.cython
       python3Packages.howdoi
       python3Packages.ipython
+      python3Packages.ptpython
       rustscan
       rustup
       scrot
@@ -476,6 +477,8 @@ in {
       vscode
       watchexec
       wget
+      xarchiver
+      xdragon
       xh
       xonsh
       zathura
