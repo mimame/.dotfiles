@@ -396,9 +396,9 @@ set $crust     #11111b
 
 # Focus colors
 # target                 title     bg    text   indicator  border
-client.focused           $peach    $base $text  $rosewater $pink
-client.focused_inactive  $mauve    $base $text  $rosewater $mauve
-client.unfocused         $mauve    $base $text  $rosewater $mauve
+client.focused           $peach    $base $peach $peach     $peach
+client.focused_inactive  $mauve    $base $text  $base      $mauve
+client.unfocused         $mauve    $base $text  $base      $mauve
 client.urgent            $red      $base $red   $overlay0  $red
 client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
@@ -429,7 +429,7 @@ bar {
     focused_workspace $peach $base $text
     active_workspace $mauve $base $text
     inactive_workspace $base $base $text
-    urgent_workspace $red $red $text
+    urgent_workspace $red $base $text
   }
 }
 
