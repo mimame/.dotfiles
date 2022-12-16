@@ -39,8 +39,16 @@ if status --is-interactive
     # Install vscode fonts for broot
     set vscode_font ~/.local/share/fonts/vscode.ttf
     if not test -f $vscode_font
+      mkdir -p ~/.local/share/fonts/
       wget 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true' -O $vscode_font --quiet
       fc-cache ~/.local/share/fonts/
+    end
+
+    set bat_theme "$(bat --config-dir)/themes/Catppuccin-mocha.tmTheme"
+    if not test -f $bat_theme
+      mkdir -p "$(bat --config-dir)/themes/"
+      wget https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-mocha.tmTheme -O $bat_theme --quiet
+      bat cache --build
     end
 
     source ~/.config/fish/variables.fish
