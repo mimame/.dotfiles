@@ -13,6 +13,8 @@ Most important tools for my minimalist workflow
 
 ## [broot (Tree files browser)](https://dystroy.org/broot/)
 
+## [catppuccin (themes)](https://github.com/catppuccin/catppuccin)
+
 ## [fd (file searcher)](https://github.com/sharkdp/fd)
 
 ## [fish shell](https://fishshell.com/)
