@@ -47,12 +47,10 @@ set -x -U FZF_ALT_C_COMMAND 'fd --type d --exclude node_modules'
 set -x -U FZF_ALT_C_OPTS "--height 100% --preview br --preview-window wrap"
 # Molokai colors by default
 # https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
-set -x -U FZF_DEFAULT_OPTS '
---reverse
---color fg:255,bg:16,hl:161,fg+:255,bg+:16,hl+:161,info:118
---color border:244,prompt:161,pointer:118,marker:161,spinner:229,header:59
---bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(nvim {} < /dev/tty > /dev/tty 2>&1)+abort"
-'
+set -Ux FZF_DEFAULT_OPTS "\
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 set -x -U PAGER bat
 set -x -U MANPAGER 'lvim +Man!'
 set -x -U MANWIDTH 999
