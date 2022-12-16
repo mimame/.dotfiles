@@ -51,6 +51,11 @@ if status --is-interactive
       bat cache --build
     end
 
+    set wallpaper ~/Pictures/unicat.png
+    if not test -f $wallpaper
+      wget https://github.com/catppuccin/wallpapers/raw/main/minimalistic/unicat.png -O $wallpaper
+    end
+
     source ~/.config/fish/variables.fish
     source ~/.config/fish/abbr.fish
     # Only run the first time
