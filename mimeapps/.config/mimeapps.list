@@ -1,25 +1,24 @@
-[Added Associations]
-inode/directory=pcmanfm.desktop;
-text/html=firefox.desktop;
-
 [Default Applications]
-application/gzip=ranger.desktop;
+application/gzip=xarchiver.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
 application/schema+json=lvim.desktop;
 application/toml=lvim.desktop;
-application/x-bzip2=ranger.desktop;
-application/x-cd-image=ranger.desktop;
-application/x-compressed-tar=ranger.desktop;
+application/x-bzip2=xarchiver.desktop;
+application/x-bzip=xarchiver.desktop;
+application/x-cd-image=xarchiver.desktop;
+application/x-compressed-tar=xarchiver.desktop;
 application/x-extension-htm=firefox.desktop;
 application/x-extension-html=firefox.desktop;
 application/x-extension-shtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
-application/x-rar=ranger.desktop;
-application/x-xz-compressed-tar=ranger.desktop;
+application/x-rar=xarchiver.desktop;
+application/x-tar=xarchiver.desktop;
+application/x-xz-compressed-tar=xarchiver.desktop;
 application/xhtml+xml=firefox.desktop;
-application/zip=ranger.desktop;
-inode/directory=ranger.desktop;
+application/zip=xarchiver.desktop;
+application/zip=xarchiver.desktop;
+inode/directory=xarchiver.desktop;
 text/*=lvim.desktop;
 text/html=firefox.desktop;
 text/json=firefox.desktop;
