@@ -7,6 +7,7 @@ if status --is-interactive
         fisher install jorgebucaran/autopair.fish
         fisher install gazorby/fish-abbreviation-tips
         fisher install jorgebucaran/replay.fish
+        fisher install catppuccin/fish
     end
 
     # This doesn't work with NixOS
@@ -44,5 +45,6 @@ if status --is-interactive
 
     source ~/.config/fish/variables.fish
     source ~/.config/fish/abbr.fish
-    source ~/.config/fish/monokai.fish
+    # Only run the first time
+    # fish_config theme save "Catppuccin Mocha"
 end
