@@ -51,6 +51,7 @@ exec_always --no-startup-id caffeine --kill; caffeine --active &
 # exec_always --no-startup-id pkill barriers; barriers --no-daemon --no-tray --name narnia --enable-crypto --config "$HOME/.config/barrier/barrier.conf" --address ":24800"
 #exec_always --no-startup-id pkill barrier; barrierc --no-daemon --no-tray --name narnia --enable-crypto '[192.168.1.196]:24800'
 
+exec_always --no-startup-id swaymsg -r -q output "*" bg ~/Pictures/unicat.png fill > /dev/null
 
 # Hide cursor when typing
 exec_always --no-startup-id pkill xbanish; xbanish &
