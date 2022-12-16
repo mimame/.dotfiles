@@ -365,31 +365,43 @@ mode "resize" {
   bindsym Escape mode "default"
 }
 
-# Base16 Monokai by Wimer Hazenberg (http://www.monokai.nl)
-# # template by Matt Parnell, @parnmatt
-set $base00 #000000
-set $base01 #383830
-set $base02 #49483e
-set $base03 #75715e
-set $base04 #a59f85
-set $base05 #FFFFFF
-set $base06 #f5f4f1
-set $base07 #f9f8f5
-set $base08 #f92672
-set $base09 #fd971f
-set $base0A #f4bf75
-set $base0B #a6e22e
-set $base0C #a1efe4
-set $base0D #66d9ef
-set $base0E #ae81ff
-set $base0F #cc6633
+# Catppuccin Mocha (https://github.com/catppuccin/i3)
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
+
 
 
 # Focus colors
-client.focused $base05 $base00 $base05 $base05
-client.focused_inactive $base00 $base00 $base05 $base05
-client.unfocused $base00 $base00 $base05 $base00
-client.urgent $base08 $base00 $base08 $base08
+# target                 title     bg    text   indicator  border
+client.focused           $peach    $base $text  $rosewater $pink
+client.focused_inactive  $mauve    $base $text  $rosewater $mauve
+client.unfocused         $mauve    $base $text  $rosewater $mauve
+client.urgent            $red      $base $red   $overlay0  $red
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -411,13 +423,13 @@ bar {
   #	wheel_up_cmd nop
   #	wheel_down_cmd nop
   colors {
-    separator $base05
-    background $base00
-    statusline $base05
-    focused_workspace $base05 $base00 $base05
-    active_workspace $base05 $base05 $base00
-    inactive_workspace $base00 $base00 $base05
-    urgent_workspace $base05 $base08 $base00
+    separator $text
+    background $base
+    statusline $text
+    focused_workspace $peach $base $text
+    active_workspace $mauve $base $text
+    inactive_workspace $base $base $text
+    urgent_workspace $red $red $text
   }
 }
 
