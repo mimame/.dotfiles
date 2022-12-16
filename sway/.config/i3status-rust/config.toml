@@ -22,7 +22,7 @@ chip = "*-isa-*"
 
 [[block]]
 block = "cpu"
-on_click = "alacritty -e htop"
+on_click = "kitty -e htop"
 interval = 2
 critical = 90
 warning = 60
@@ -37,7 +37,7 @@ interval = 1
 
 [[block]]
 block = "net"
-on_click = "alacritty -e nmtui"
+on_click = "kitty -e nmtui"
 device = "eno1"
 format = "{speed_up} {speed_down}"
 interval = 5
@@ -46,7 +46,7 @@ hide_inactive = true
 
 [[block]]
 block = "net"
-on_click = "alacritty -e nmtui"
+on_click = "kitty -e nmtui"
 device = "enp4s0"
 format = "{speed_up} {speed_down}"
 interval = 5
@@ -62,13 +62,13 @@ hide_inactive = true
 # no
 # [[block]]
 # block = "networkmanager"
-# on_click = "alacritty -e nmtui"
+# on_click = "kitty -e nmtui"
 # interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
 # interface_name_include = []
 
 [[block]]
 block = "disk_space"
-on_click = "alacritty -e gdu"
+on_click = "kitty -e gdu"
 path = "/"
 alias = "/"
 info_type = "available"
@@ -81,7 +81,7 @@ alert_absolute = false
 
 # [[block]]
 # block = "disk_space"
-# on_click = "alacritty -e ncdu --color dark --exclude .git /tmp"
+# on_click = "kitty -e ncdu --color dark --exclude .git /tmp"
 # path = "/home"
 # alias = "/home"
 # info_type = "available"
@@ -94,7 +94,7 @@ alert_absolute = false
 
 # [[block]]
 # block = "disk_space"
-# on_click = "alacritty -e ncdu --color dark --exclude .git /tmp"
+# on_click = "kitty -e ncdu --color dark --exclude .git /tmp"
 # path = "/tmp"
 # alias = "/tmp"
 # info_type = "available"
