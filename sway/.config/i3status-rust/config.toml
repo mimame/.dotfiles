@@ -1,8 +1,10 @@
 [theme]
 name = "plain"
 [theme.overrides]
-idle_bg = "#000000"
+idle_bg = "#1e1e2e"
 idle_fg = "#FFFFFF"
+separator_bg = "#1e1e2e"
+good_bg = "#1e1e2e"
 [icons]
 # name = "awesome5"
 name = "material-nf"
