@@ -217,6 +217,7 @@ in {
   environment.systemPackages = with pkgs;
     [
 
+      (catppuccin-gtk.override { tweaks = [ "black" ]; })
       aspell
       aspellDicts.en
       aspellDicts.es
@@ -232,7 +233,6 @@ in {
       bluez
       bluez-tools
       caffeine-ng
-      (catppuccin-gtk.override { tweaks = [ "black" ]; })
       clang # Maybe breaks the lvim treesitter compilation
       clipman
       configure-gtk
@@ -240,6 +240,7 @@ in {
       dosfstools
       fakeroot
       firmwareLinuxNonfree
+      gammastep
       glib # gsettings
       gnome.seahorse
       gparted
@@ -286,6 +287,7 @@ in {
       python3Packages.cython
       python3Packages.howdoi
       python3Packages.ipython
+      python3Packages.pip
       python3Packages.ptpython
       rustscan
       rustup
