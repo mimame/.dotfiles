@@ -192,7 +192,7 @@ in {
     users.mimame = {
       isNormalUser = true;
       description = "mimame";
-      extraGroups = [ "networkmanager" "wheel" "video" ];
+      extraGroups = [ "networkmanager" "wheel" "video" "podman" ];
       packages = with pkgs;
         [
           #  firefox
@@ -201,6 +201,15 @@ in {
 
     };
   };
+
+  # Configure podman to be use by minikube
+  security.sudo.extraRules = [{
+    users = [ "mimame" ];
+    commands = [{
+      command = "/run/current-system/sw/bin/podman";
+      options = [ "NOPASSWD" ];
+    }];
+  }];
 
   services.gnome.gnome-keyring.enable = true;
 
@@ -395,6 +404,7 @@ in {
       kitty
       kitty-themes
       klavaro
+      kubernetes
       lazydocker
       lazygit
       less
@@ -407,6 +417,7 @@ in {
       mdcat
       meson
       micro
+      minikube
       mosh
       mtr
       navi
@@ -506,6 +517,8 @@ in {
     enable = true;
     enableSSHSupport = true;
   };
+
+  virtualisation.podman.enable = true;
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
