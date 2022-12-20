@@ -216,6 +216,22 @@ in {
   services.gnome.gnome-keyring.enable = true;
 
   security.polkit.enable = true;
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wants = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart =
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
+  };
 
   # FIXME: use geoclue2 in the config file instead a fixed latitude
   # services.redshift.enable = true;
@@ -292,6 +308,7 @@ in {
       pass
       passExtensions.pass-import
       pavucontrol
+      polkit_gnome
       pulseaudio # to be able to use pactl
       putty
       pv
