@@ -377,6 +377,8 @@ in {
       dua
       duf
       dura
+      elixir
+      elixir_ls
       entr
       espanso
       exa
