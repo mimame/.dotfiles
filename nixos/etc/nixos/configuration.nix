@@ -121,7 +121,7 @@ in {
   services.geoclue2.appConfig.localtimed = {
     isAllowed = true;
     isSystem = true;
-    users = [ "1000" ];
+    users = [ "1000" "995" "994" "325" ];
   };
   services.avahi.enable = true;
 
