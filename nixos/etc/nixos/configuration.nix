@@ -257,6 +257,7 @@ in {
       grim # screenshot functionality
       gthumb
       gvfs
+      httpie
       hyphen
       inkscape
       interception-tools
@@ -392,7 +393,6 @@ in {
       handlr
       helix
       htop
-      httpie
       hugo
       hyperfine
       i3status-rust
