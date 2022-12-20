@@ -123,6 +123,8 @@ in {
     isSystem = true;
     users = [ "1000" "995" "994" "325" ];
   };
+  services.geoclue2.submitData = true;
+  services.automatic-timezoned.enable = true;
   services.avahi.enable = true;
 
   # Locate service
