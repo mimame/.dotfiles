@@ -500,6 +500,7 @@ in {
       udisks
       universal-ctags
       unrar
+      unzip
       urlscan
       vagrant
       vifm
@@ -519,6 +520,7 @@ in {
       zellij
       zenith
       zig
+      zip
       zlib-ng
       zotero
       zoxide
