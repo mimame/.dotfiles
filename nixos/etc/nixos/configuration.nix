@@ -45,7 +45,7 @@ let
       gsettings set $gnome_schema gtk-theme "Catppuccin-Purple-Dark"
       gsettings set $gnome_schema theme "Catppuccin-Purple-Dark"
       gsettings set $gnome_schema icon-theme "BeautyLine"
-      gsettings set $gnome_schema cursor-theme "capitaine-cursors-white"
+      gsettings set $gnome_schema cursor-theme "Catppuccin-Mocha-Mauve-Cursors"
       gsettings set $gnome_schema cursor-size 32
       gsettings set org.gnome.desktop.wm.preferences theme "Catppuccin-Purple-Dark"
       gsettings set $gnome_schema document-font-name 'Hack 13'
@@ -244,7 +244,6 @@ in {
   environment.systemPackages = with pkgs;
     [
 
-      (catppuccin-gtk.override { tweaks = [ "black" ]; })
       aspell
       aspellDicts.en
       aspellDicts.es
@@ -260,7 +259,6 @@ in {
       bluez
       bluez-tools
       caffeine-ng
-      clang # Maybe breaks the lvim treesitter compilation
       clipman
       configure-gtk
       dbus-sway-environment
@@ -346,6 +344,8 @@ in {
 
     ] ++ (with pkgs.unstable; [
 
+      # clang # breaks the lvim treesitter compilation
+      (catppuccin-gtk.override { tweaks = [ "black" ]; })
       ansible
       aria2
       asciidoc-full
@@ -360,7 +360,7 @@ in {
       btop
       bzip2
       calibre
-      capitaine-cursors
+      catppuccin-cursors.mochaMauve
       cmake
       coreutils
       crystal
