@@ -47,10 +47,13 @@ set -x -U FZF_ALT_C_COMMAND 'fd --type d --exclude node_modules'
 set -x -U FZF_ALT_C_OPTS "--height 100% --preview br --preview-window wrap"
 # Molokai colors by default
 # https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
-set -Ux FZF_DEFAULT_OPTS "\
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+set -Ux FZF_DEFAULT_OPTS '
+--reverse
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 
+--bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(lvim {} < /dev/tty > /dev/tty 2>&1)+abort"
+'
 
 set -x -U BAT_THEME "Catppuccin-mocha"
 set -x -U PAGER bat
