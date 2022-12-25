@@ -109,7 +109,7 @@ in {
   };
 
   # Set your time zone.
-  time.timeZone = "Europe/Paris";
+  # time.timeZone = "America/Mexico_City";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.utf8";
