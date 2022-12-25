@@ -392,6 +392,7 @@ in {
       fuse3
       fzf
       gawk
+      gcc
       gdu
       gimp
       git
