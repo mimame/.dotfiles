@@ -75,6 +75,8 @@ in {
     };
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking = {
     firewall = {
       # Or disable the firewall altogether.
