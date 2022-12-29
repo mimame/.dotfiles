@@ -327,10 +327,6 @@ in {
       stress
       stylua
       sudo
-      sway
-      swayidle
-      swaylock
-      swaynotificationcenter
       tesseract5
       time
       util-linux
@@ -490,6 +486,11 @@ in {
       sshfs
       starship
       stow
+      sway
+      swayidle
+      swaylock
+      swaynotificationcenter
+      swayr
       tealdeer
       tectonic
       testdisk
