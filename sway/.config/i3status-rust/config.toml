@@ -14,26 +14,21 @@ warning_bg = "#1e1e2e"
 # name = "awesome5"
 name = "material-nf"
 
-# [icons.overrides]
-# cpu = ""
-
 [[block]]
 block = "temperature"
 collapsed = false
 interval = 2
 format = "{average}"
 chip = "*-isa-*"
-# inputs = ["CPUTIN", "SYSTIN"]
 
 [[block]]
 block = "cpu"
-on_click = "kitty -e htop"
+on_click = "kitty -e btop"
 interval = 2
 critical = 90
 warning = 60
 info = 30
-# format = "{frequency} {utilization} {boost}"
-format = "{frequency} {utilization}"
+format = "{frequency} {utilization} {boost}"
 
 [[block]]
 block = "load"
