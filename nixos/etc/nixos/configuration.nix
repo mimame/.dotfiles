@@ -118,15 +118,21 @@ in {
   # Synchronise time and date
   services.chrony.enable = true;
   services.localtimed.enable = true;
-  services.geoclue2.enable = true;
-  services.geoclue2.appConfig.localtimed = {
-    isAllowed = true;
-    isSystem = true;
-    users = [ "1000" "995" "994" "325" ];
+  services.geoclue2 = {
+    enable = true;
+    submitData = true;
+    appConfig.localtimed = {
+      isAllowed = true;
+      isSystem = true;
+      users = [ "1000" "995" "994" "325" ];
+    };
   };
-  services.geoclue2.submitData = true;
+
   services.automatic-timezoned.enable = true;
+
   services.avahi.enable = true;
+
+  location.provider = "geoclue2";
 
   # Locate service
   services.locate = {
@@ -233,9 +239,6 @@ in {
       };
     };
   };
-
-  # FIXME: use geoclue2 in the config file instead a fixed latitude
-  # services.redshift.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -397,6 +400,7 @@ in {
       git-extras
       gitg
       github-cli
+      geoclue2-with-demo-agent
       gitoxide
       gitui
       glow
