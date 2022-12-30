@@ -10,8 +10,8 @@ idle_bg = "#1e1e2e"
 info_bg = "#1e1e2e"
 separator_bg = "#1e1e2e"
 warning_bg = "#1e1e2e"
+
 [icons]
-# name = "awesome5"
 name = "material-nf"
 
 [[block]]
@@ -43,7 +43,6 @@ format = "{speed_up} {speed_down}"
 interval = 5
 hide_inactive = true
 
-
 [[block]]
 block = "net"
 on_click = "kitty -e nmtui"
@@ -59,13 +58,6 @@ format = "{ssid} {signal_strength} {speed_down;K*b} {speed_up;K*b}"
 interval = 5
 hide_inactive = true
 
-# no
-# [[block]]
-# block = "networkmanager"
-# on_click = "kitty -e nmtui"
-# interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
-# interface_name_include = []
-
 [[block]]
 block = "disk_space"
 on_click = "kitty -e gdu"
@@ -77,32 +69,6 @@ format = "{icon} / {available} GB"
 alert = 10
 warning = 20
 alert_absolute = false
-
-# [[block]]
-# block = "disk_space"
-# on_click = "kitty -e ncdu --color dark --exclude .git /tmp"
-# path = "/home"
-# alias = "/home"
-# info_type = "available"
-# unit = "GB"
-# format = "{icon} /home {available} GB"
-# alert = 10
-# warning = 20
-# alert_absolute = false
-# alert_absolute = false
-
-# [[block]]
-# block = "disk_space"
-# on_click = "kitty -e ncdu --color dark --exclude .git /tmp"
-# path = "/tmp"
-# alias = "/tmp"
-# info_type = "available"
-# unit = "GB"
-# format = "{icon} /tmp {available} GB"
-# alert = 10
-# warning = 20
-# alert_absolute = false
-# alert_absolute = false
 
 [[block]]
 block = "memory"
@@ -116,9 +82,6 @@ warning_mem = 80
 warning_swap = 80
 critical_mem = 95
 critical_swap = 95
-
-# [[block]]
-# block = "uptime"
 
 [[block]]
 block = "time"
