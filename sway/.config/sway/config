@@ -27,6 +27,19 @@ input "type:touchpad" {
     natural_scroll enabled
     middle_emulation enabled
 }
+
+# Allow switching between workspaces with left and right swipes
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
+bindgesture swipe:up focus right
+bindgesture swipe:down focus left
+
+# Allow container movements by pinching them
+bindgesture pinch:inward+up move up
+bindgesture pinch:inward+down move down
+bindgesture pinch:inward+left move left
+bindgesture pinch:inward+right move right
+
 # Disable touchpad when writting
 exec_always --no-startup-id pkill syndaemon; syndaemon -i 0.5 -K -R -d &
 # Improve touchpad DPIs (touchpad width == screen width)
@@ -181,12 +194,6 @@ bindsym $mod+Ctrl+s sticky toggle
 # Focus the parent container
 bindsym $mod+a focus parent
 
-# Create new workspace
-bindsym $mod+Ctrl+r exec ~/.config/i3/scripts/i3create_workspace
-
-# Rename current workspace
-bindsym $mod+Ctrl+shift+r exec ~/.config/i3/scripts/i3rename_workspace
-
 # Workspace names
 set $ws1 "1:  "
 set $ws2 "2:  "
@@ -321,9 +328,6 @@ bindsym $mod+Shift+c reload
 # Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# Exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # Interactive menu: close windows, lock, exit switch user, sunspend, hibernate, reboot, restore session and shutdown
 set $mode_system (c)lose windows, (l)ock (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
@@ -410,7 +414,7 @@ client.background        $base
 exec --no-startup-id nm-applet
 exec --no-startup-id dropbox
 
-# Toggle (show/hide) i3pystatus bar
+# Toggle (show/hide) i3status-rs bar
 bindsym $mod+m bar mode toggle
 
 bar {
@@ -423,9 +427,9 @@ bar {
   #	wheel_up_cmd nop
   #	wheel_down_cmd nop
   colors {
-    separator $text
+    separator $base
     background $base
-    statusline $text
+    statusline $base
     focused_workspace $peach $base $text
     active_workspace $mauve $base $text
     inactive_workspace $base $base $text
