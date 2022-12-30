@@ -42,6 +42,8 @@ bindgesture pinch:inward+right move right
 
 exec --no-startup-id systemctl --user enable gammastep
 exec --no-startup-id systemctl --user restart gammastep
+exec --no-startup-id systemctl --user enable polkit-gnome-authentication-agent-1
+exec --no-startup-id systemctl --user restart polkit-gnome-authentication-agent-1
 
 # Improve touchpad DPIs (touchpad width == screen width)
 # Add Touchpad gestures
