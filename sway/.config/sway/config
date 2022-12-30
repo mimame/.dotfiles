@@ -40,22 +40,13 @@ bindgesture pinch:inward+down move down
 bindgesture pinch:inward+left move left
 bindgesture pinch:inward+right move right
 
-# Disable touchpad when writting
-exec_always --no-startup-id pkill syndaemon; syndaemon -i 0.5 -K -R -d &
 # Improve touchpad DPIs (touchpad width == screen width)
 # Add Touchpad gestures
 # Enable notifications by default
 exec_always --no-startup-id pkill maku; maku &
 
-# Load desktop
-# Fix latitude and longitude
-exec --no-startup-id pkill geoclue; /usr/lib/geoclue-2.0/demos/agent
-exec_always --no-startup-id pkill gammastep; gammastep
 # Load bluetooth applet
 exec --no-startup-id blueman-applet
-
-# Load alt tab windows cycler
-exec_always pkill alttab; alttab
 
 # Prevents the screensaver from showing up, or the system from going to sleep. It does so when an application is fullscreened
 exec_always --no-startup-id caffeine --kill; caffeine --active &
@@ -65,12 +56,6 @@ exec_always --no-startup-id caffeine --kill; caffeine --active &
 #exec_always --no-startup-id pkill barrier; barrierc --no-daemon --no-tray --name narnia --enable-crypto '[192.168.1.196]:24800'
 
 exec_always --no-startup-id swaymsg -r -q output "*" bg ~/Pictures/unicat.png fill > /dev/null
-
-# Hide cursor when typing
-exec_always --no-startup-id pkill xbanish; xbanish &
-
-# Remove keyboard backlight by default
-exec_always --no-startup-id sudo aucc --color green --backlight 1
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border none
