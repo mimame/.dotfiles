@@ -312,6 +312,10 @@ bindsym $mod+Shift+F12 move container to workspace number $ws22
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
+# inhibit_idle if there are windows in fullscreen mode
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
+
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
