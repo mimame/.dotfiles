@@ -24,9 +24,6 @@ abbr -a -U mk 'mkdir -pv'
 
 abbr -a -U p 'ptipython'
 
-# Always preserve the environment with sudo
-abbr -a -U sudo 'sudo -E'
-
 abbr -a -U grep 'grep --color=auto'
 abbr -a -U fgrep 'fgrep --color=auto'
 abbr -a -U egrep 'egrep --color=auto'
@@ -53,6 +50,9 @@ abbr -a -U vi lvim
 abbr -a -U vim lvim
 abbr -a -U v lvim
 abbr -a -U nvim lvim
+# Always preserve the environment with sudoedit
+abbr -a -U sv sudoedit
+abbr -a -U se sudoedit
 
 abbr -a -U nd 'nvim -d -c "set nofoldenable"'
 # abbr -a -U h 'history' # Use ctrl-r instead
@@ -103,7 +103,7 @@ abbr -a -U zshrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/zsh/.zshrc) 
 abbr -a -U tridactylrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/tridactyl/tridactylrc) && popd'
 abbr -a -U dunstrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/dunst/dunstrc) && popd'
 abbr -a -U fishrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/fish/config.fish) && popd'
-abbr -a -U nixosrc 'sudo -E lvim /etc/nixos/configuration.nix && sudo nixfmt /etc/nixos/configuration.nix && sudo nixos-rebuild switch && cp /etc/nixos/configuration.nix ~/.dotfiles/nixos/etc/nixos/'
+abbr -a -U nixosrc 'sudoedit /etc/nixos/configuration.nix && sudo nixfmt /etc/nixos/configuration.nix && sudo nixos-rebuild switch && cp /etc/nixos/configuration.nix ~/.dotfiles/nixos/etc/nixos/'
 
 # abbr -a -U for pip
 abbr -a -U pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
