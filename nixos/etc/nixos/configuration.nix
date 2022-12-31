@@ -104,6 +104,11 @@ in {
   # Improve battery scaling the CPU governor and optimizing the general power
   services.auto-cpufreq.enable = true;
 
+  # Prevent overheating of Intel CPUs before hardware takes aggressive correction action. 
+  # It does not conflict with auto-cpufreq in any way, and is even recommended
+  # It can increases the performance
+  services.thermald.enable = true;
+
   system.autoUpgrade = {
     allowReboot = false;
     enable = true;
