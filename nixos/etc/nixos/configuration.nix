@@ -11,7 +11,7 @@ let
   # propagate them to relevent services run at the end of sway config
   # see
   # https://github.com/emersion/xdg-desktop-portal-wlr/wiki/"It-doesn't-work"-Troubleshooting-Checklist
-  # note: this is pretty much the same as  /etc/sway/config.d/nixos.conf but also restarts  
+  # note: this is pretty much the same as  /etc/sway/config.d/nixos.conf but also restarts
   # some user services to make sure they have the correct environment variables
   dbus-sway-environment = pkgs.writeTextFile {
     name = "dbus-sway-environment";
@@ -84,7 +84,7 @@ in {
       allowedUDPPorts = [ ];
       allowedTCPPorts = [ ];
     };
-    hostName = "nixos";
+    hostName = "narnia";
     networkmanager.enable = true;
   };
 
