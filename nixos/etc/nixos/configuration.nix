@@ -76,6 +76,9 @@ in {
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # DBus service that allows applications to query and manipulate storage devices
+  services.udisks2.enable = true;
+
   networking = {
     firewall = {
       # Or disable the firewall altogether.
