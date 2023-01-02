@@ -200,8 +200,16 @@ in {
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
-    #media-session.enable = true;
+    # media-session.enable = true;
   };
+
+  # Always enable the shell system-wide
+  # Otherwise it wont source the necessary files
+  programs.fish.enable = true;
+
+  # Many programs look at /etc/shells to determine
+  # if a user is a "normal" user and not a "system" user
+  environment.shells = [ pkgs.unstable.fish ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
