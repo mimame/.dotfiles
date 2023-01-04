@@ -76,6 +76,16 @@ in {
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Suspend in one hour of inactivity and hibernate one hour later
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=yes
+    AllowHibernation=yes
+    AllowSuspendThenHibernate=yes
+    IdleActionSec=60min
+    IdleAction=suspend-then-hibernate
+    HibernateDelaySec=60min
+  '';
+
   # DBus service that allows applications to query and manipulate storage devices
   services.udisks2.enable = true;
 
