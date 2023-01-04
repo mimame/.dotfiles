@@ -76,14 +76,18 @@ in {
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Suspend in one hour of inactivity and hibernate one hour later
-  systemd.sleep.extraConfig = ''
+  # Suspend in 30 minutes of inactivity and hibernate one hour later
+  services.upower.enable = true;
+  services.logind.extraConfig = ''
     AllowSuspend=yes
     AllowHibernation=yes
     AllowSuspendThenHibernate=yes
-    IdleActionSec=60min
+    SuspendMode=suspend-then-hibernate
+    SuspendState=suspend-then-hibernate
+    HandleLidSwitch=suspend-then-hibernate
+    IdleActionSec=1800
     IdleAction=suspend-then-hibernate
-    HibernateDelaySec=60min
+    HibernateDelaySec=3600
   '';
 
   # DBus service that allows applications to query and manipulate storage devices
@@ -309,7 +313,6 @@ in {
       blueman
       bluez
       bluez-tools
-      caffeine-ng
       clipman
       configure-gtk
       dbus-sway-environment
