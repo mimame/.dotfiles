@@ -41,6 +41,8 @@ exec --no-startup-id systemctl --user restart gammastep
 exec --no-startup-id systemctl --user enable polkit-gnome-authentication-agent-1
 exec --no-startup-id systemctl --user restart polkit-gnome-authentication-agent-1
 
+exec_always pkill swayidle; swayidle timeout 1800 'systemctl suspend-then-hibernate' &
+
 # Improve touchpad DPIs (touchpad width == screen width)
 # Add Touchpad gestures
 # Enable notifications by default
