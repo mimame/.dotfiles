@@ -281,6 +281,12 @@ in {
     };
   };
 
+  # Be sure to run nix-collect-garbage one time per week
+  nix.gc.automatic = true;
+  nix.gc.persistent = true;
+  nix.gc.dates = "weekly";
+  nix.gc.options = "--delete-old";
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
