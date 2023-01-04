@@ -57,7 +57,7 @@ set -Ux FZF_DEFAULT_OPTS '
 
 set -x -U BAT_THEME "Catppuccin-mocha"
 set -x -U PAGER bat
-set -x -U MANPAGER 'lvim +Man!'
+set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x -U MANWIDTH 999
 set -x -U BROWSER firefox
 set -x -U JULIA_NUM_THREADS 12
