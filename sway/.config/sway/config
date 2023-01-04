@@ -9,10 +9,6 @@ set $mod Mod4
 # Keyboard layout http://askubuntu.com/a/24930 http://askubuntu.com/a/296437
 # https://wiki.archlinux.org/index.php/xmodmap
 exec_always --no-startup-id pkill udiskie; udiskie --notify --smart-tray --notify-command notify-send &
-# Swap l-ctrl to caps lock and define rctrl as composite key(rctrl+'+e->é)
-# exec_always --no-startup-id setxkbmap -option; setxkbmap -option ctrl:nocaps &
-# Add to the control key the ESC key function
-# exec_always --no-startup-id sleep 1; pkill xcape; xcape -e 'Control_L=Escape' &
 exec dbus-sway-environment
 exec configure-gtk
 exec wl-paste -t text --watch clipman store --no-persist
@@ -52,9 +48,6 @@ exec_always --no-startup-id pkill maku; maku &
 
 # Load bluetooth applet
 exec --no-startup-id blueman-applet
-
-# Prevents the screensaver from showing up, or the system from going to sleep. It does so when an application is fullscreened
-exec_always --no-startup-id caffeine --kill; caffeine --active &
 
 # Load barriers server
 # exec_always --no-startup-id pkill barriers; barriers --no-daemon --no-tray --name narnia --enable-crypto --config "$HOME/.config/barrier/barrier.conf" --address ":24800"
