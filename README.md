@@ -23,8 +23,6 @@ Most important tools for my minimalist workflow
 
 ## [helix (editor)](https://helix-editor.com/)
 
-## [kitty (GPU based terminal)](https://sw.kovidgoyal.net/kitty/)
-
 ## [logseq (Zettelkasten note taking)](https://logseq.com/)
 
 ## [lvim/lunarvim (opinated nvim editor distribution)](https://www.lunarvim.org/)
@@ -40,5 +38,7 @@ Most important tools for my minimalist workflow
 ## [sway (Tiling windows manager)](https://github.com/swaywm/sway)
 
 ## [tealdeer (tldr)](https://dbrgn.github.io/tealdeer/)
+
+## [wezterm (GPU based terminal)](https://wezfurlong.org/wezterm/)
 
 ## [zellij (terminal multiplexor)](https://zellij.dev/)
