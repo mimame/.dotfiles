@@ -39,6 +39,8 @@ Most important tools for my minimalist workflow
 
 ## [tealdeer (tldr)](https://dbrgn.github.io/tealdeer/)
 
+## [topgrade (update everything)](https://github.com/topgrade-rs/topgrade/)
+
 ## [wezterm (GPU based terminal)](https://wezfurlong.org/wezterm/)
 
 ## [zellij (terminal multiplexor)](https://zellij.dev/)
