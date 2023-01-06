@@ -9,6 +9,7 @@ return {
   -- && rm $tempfile
   exit_behavior = "Close",
   enable_wayland = true,
+  enable_kitty_keyboard = true,
   font = wezterm.font("Hack Nerd Font", { weight="Regular"}),
   font_size = 18.0,
   color_scheme = "Catppuccin Mocha",
