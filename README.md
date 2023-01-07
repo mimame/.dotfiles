@@ -13,6 +13,8 @@ Most important tools for my minimalist workflow
 
 ## [broot (Tree files browser)](https://dystroy.org/broot/)
 
+## [btop (monitor of resources)](https://github.com/aristocratos/btop)
+
 ## [catppuccin (themes)](https://github.com/catppuccin/catppuccin)
 
 ## [delta (git diff)](https://github.com/dandavison/delta)
