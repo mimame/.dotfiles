@@ -19,7 +19,6 @@ abbr -a -U pgrep 'pgrep -f'
 abbr -a -U pkill 'pkill -9 -f'
 abbr -a -U k 'pkill -9 -f'
 abbr -a -U bc 'bc -l'
-abbr -a -U kr 'kitty @ set-tab-title'
 abbr -a -U mk 'mkdir -pv'
 
 abbr -a -U p 'ptipython'
@@ -90,7 +89,7 @@ abbr -a -U cp "cp -ri"
 abbr -a -U ln "ln -i"
 
 # abbr -a -U for rc files
-abbr -a -U kittyrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/kitty/kitty.conf) && popd'
+abbr -a -U weztermrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/wezterm/wezterm.lua) && popd'
 abbr -a -U gitrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/git/config) && popd'
 abbr -a -U swayrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/sway/config) && popd'
 abbr -a -U mimerc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/mimeapps.list) && popd'
@@ -134,7 +133,4 @@ abbr -a -U rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --g
 abbr -a -U adoc asciidoctor
 abbr -a -U adoc-pdf asciidoctor-pdf
 
-abbr -a -U ssh 'kitty +kitten ssh'
-
-abbr -a -U transfer-receive 'kitty +kitten transfer --permissions-bypass pass --confirm-paths --transmit-deltas --direction receive'
-abbr -a -U transfer-send 'kitty +kitten transfer --permissions-bypass pass --confirm-paths --transmit-deltas --direction send'
+abbr -a -U ssh 'wezterm ssh'
