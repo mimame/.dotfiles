@@ -79,7 +79,7 @@ font pango:Hack Nerd Font Bold 11
 floating_modifier $mod
 
 # Start a terminal
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $mod+Return exec --no-startup-id wezterm
 
 # Kill focused window
 bindsym $mod+Ctrl+q kill
