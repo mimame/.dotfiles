@@ -15,6 +15,8 @@ Most important tools for my minimalist workflow
 
 ## [catppuccin (themes)](https://github.com/catppuccin/catppuccin)
 
+## [delta (git diff)](https://github.com/dandavison/delta)
+
 ## [fd (file searcher)](https://github.com/sharkdp/fd)
 
 ## [fish shell](https://fishshell.com/)
