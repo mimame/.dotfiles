@@ -546,6 +546,7 @@ in {
       testdisk
       thefuck
       tokei
+      topgrade
       translate-shell
       trash-cli
       tree
