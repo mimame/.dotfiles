@@ -444,13 +444,13 @@ in {
       gawk
       gcc
       gdu
+      geoclue2-with-demo-agent
       gimp
       git
       git-cola
       git-extras
       gitg
       github-cli
-      geoclue2-with-demo-agent
       gitoxide
       gitui
       glow
@@ -465,7 +465,6 @@ in {
       gzip
       handlr
       helix
-      htop
       hugo
       hyperfine
       i3status-rust
@@ -474,8 +473,6 @@ in {
       jq
       julia-bin
       just
-      kitty
-      kitty-themes
       klavaro
       kubernetes
       lazydocker
@@ -568,6 +565,7 @@ in {
       vlc
       vscode
       watchexec
+      wezterm
       wget
       xarchiver
       xdragon
