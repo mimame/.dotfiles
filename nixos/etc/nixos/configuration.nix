@@ -285,11 +285,17 @@ in {
     };
   };
 
-  # Be sure to run nix-collect-garbage one time per week
-  nix.gc.automatic = true;
-  nix.gc.persistent = true;
-  nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-old";
+  nix = {
+    # Be sure to run nix-collect-garbage one time per week
+    gc = {
+      automatic = true;
+      persistent = true;
+      dates = "weekly";
+      options = "--delete-old";
+    };
+    # Replace identical files in the nix store with hard links
+    settings.auto-optimise-store = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
