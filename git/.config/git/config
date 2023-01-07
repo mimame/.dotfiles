@@ -426,8 +426,8 @@
   # diff3 merge style
   conflictstyle = diff3
   # https://git-scm.com/docs/git-config#git-config-mergeff
-  # Never do fast-forward merge use instead rebase
-  ff            = false
+  # Always do fast-forward when merging, use instead --no-ff
+  ff            = true
   # https://git-scm.com/docs/git-mergetool#git-mergetool---gui
   guitool       = meld
   # https://git-scm.com/docs/git-config#git-config-mergetool
