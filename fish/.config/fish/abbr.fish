@@ -20,6 +20,7 @@ abbr -a -U pkill 'pkill -9 -f'
 abbr -a -U k 'pkill -9 -f'
 abbr -a -U bc 'bc -l'
 abbr -a -U mk 'mkdir -pv'
+abbr -a -U u topgrade
 
 abbr -a -U p 'ptipython'
 
