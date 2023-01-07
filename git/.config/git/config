@@ -311,7 +311,7 @@
   whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [delta]
-  side-by-side                 = true
+  side-by-side                 = false
   features                     = unobtrusive-line-numbers decorations
   whitespace-error-style       = 1 reverse
   minus-emph-style             = normal bold "#901011"
