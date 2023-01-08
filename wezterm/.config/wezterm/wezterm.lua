@@ -11,7 +11,10 @@ return {
   enable_wayland = true,
   enable_kitty_keyboard = true,
   use_fancy_tab_bar = false,
-  font = wezterm.font("Hack Nerd Font", { weight="Regular"}),
+  font = wezterm.font_with_fallback {
+    "Hack Nerd Font",
+    "Broot Icons Visual Studio Code",
+  },
   font_size = 18.0,
   color_scheme = "Catppuccin Mocha",
   window_padding = {
