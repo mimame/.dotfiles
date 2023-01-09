@@ -299,9 +299,6 @@
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corefsmonitor
   # Speed up git by avoiding unnecessary processing of files that have not changed
   fsmonitor  = true
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corehooksPath
-  # Default hooks folder
-  hooksPath    = ~/.config/git/hooks
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corepager
   # Use delta as pager https://github.com/dandavison/delta
   pager        = delta --dark
