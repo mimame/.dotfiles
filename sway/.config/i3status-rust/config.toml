@@ -6,9 +6,7 @@ idle_fg = "#ffffff"
 separator_bg = "#1e1e2e"
 critical_bg = "#1e1e2e"
 good_bg = "#1e1e2e"
-idle_bg = "#1e1e2e"
 info_bg = "#1e1e2e"
-separator_bg = "#1e1e2e"
 warning_bg = "#1e1e2e"
 
 [icons]
