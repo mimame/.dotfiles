@@ -6,4 +6,3 @@ function ranger-cd
     commandline -f repaint
 end
 bind -M insert \co ranger-cd
-

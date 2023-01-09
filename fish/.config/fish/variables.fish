@@ -51,7 +51,7 @@ set -Ux FZF_DEFAULT_OPTS '
 --reverse
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(lvim {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 
@@ -69,8 +69,9 @@ if test -z "$XDG_CONFIG_HOME"
     set -x -U XDG_CONFIG_HOME "$HOME/.config"
 end
 
-# Always use user Python pip by default
-set -x -U PIP_USER y
+# Never use user Python pip by default
+# pre-commit is broken with this
+set -x -U PIP_USER false
 
 # Vim as default editor
 fish_add_path "$HOME/.yarn/bin"
