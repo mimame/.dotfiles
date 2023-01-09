@@ -33,6 +33,3 @@ colours=red,bold red
 regexp=.*icmp_seq=(\d+) timeout
 replace=TIMEOUT \1
 colours=red
-
-
-

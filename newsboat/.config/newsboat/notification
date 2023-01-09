@@ -1,3 +1,2 @@
 #!/bin/sh
 fgrep -q '0 unread' <<< "$1" || dunstify --urgency=LOW "$1"
-

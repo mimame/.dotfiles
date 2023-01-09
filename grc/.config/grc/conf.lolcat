@@ -4,4 +4,3 @@ colours=unchanged
 ======
 regexp=([a-zA-Z0-9]+)
 colours=default,green,yellow,red
-

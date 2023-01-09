@@ -70,4 +70,3 @@ count=block
 regexp=^\[
 colours=default
 count=unblock
-

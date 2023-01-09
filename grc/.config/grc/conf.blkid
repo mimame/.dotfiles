@@ -28,4 +28,3 @@ colours=bold green,red
 # PARTUUID
 regexp=PARTUUID="([^"]+)
 colours=green,magenta
-

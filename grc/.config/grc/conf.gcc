@@ -20,7 +20,7 @@ regexp=\s\-(O\d?|f\S+|pthread|g\S*|c|W\S,\S+)\b
 colours=yellow
 .........
 # -O
-regexp=\-O\d 
+regexp=\-O\d
 colours=green
 .........
 # -o

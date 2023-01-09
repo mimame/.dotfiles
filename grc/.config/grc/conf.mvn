@@ -88,5 +88,3 @@ count=more
 regexp=([.]{3,} )(SKIPPED)
 colours=none,none,yellow bold,none
 count=more
-
-

@@ -29,4 +29,3 @@ if [[ "$TERM" != dumb ]] && (( $+commands[grc] )) ; then
   # Clean up variables
   unset cmds cmd
 fi
-

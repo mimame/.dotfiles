@@ -73,4 +73,3 @@ colours=bold green
 # domain status
 regexp=(Domain Status)|(status)
 colours=bold red
-

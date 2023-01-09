@@ -1,4 +1,3 @@
 # for testing purposes, do match but do not change anything
 regexp=([a-g]+)
 colour=''
-
