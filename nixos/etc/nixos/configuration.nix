@@ -534,6 +534,7 @@ in {
       podman
       podman-compose
       podman-tui
+      pre-commit
       procs
       progress
       pueue
