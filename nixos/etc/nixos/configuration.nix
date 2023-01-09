@@ -367,8 +367,6 @@ in {
       lsof
       lua
       lxappearance
-      man-db
-      man-pages
       meld
       networkmanagerapplet
       nixfmt
@@ -503,6 +501,7 @@ in {
       logseq
       lsd
       lsd
+      man-db
       massren
       mcfly
       mdcat
