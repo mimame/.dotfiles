@@ -39,14 +39,14 @@ let
       datadir = "${schema}/share/gsettings-schemas/${schema.name}";
     in ''
       export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-      export GTK_THEME="Catppuccin-Purple-Dark"
+      export GTK_THEME="Sweet-Dark"
       gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme "Catppuccin-Purple-Dark"
-      gsettings set $gnome_schema theme "Catppuccin-Purple-Dark"
+      gsettings set $gnome_schema gtk-theme "Sweet-Dark"
+      gsettings set $gnome_schema theme "Sweet-Dark"
       gsettings set $gnome_schema icon-theme "BeautyLine"
       gsettings set $gnome_schema cursor-theme "Catppuccin-Mocha-Mauve-Cursors"
       gsettings set $gnome_schema cursor-size 32
-      gsettings set org.gnome.desktop.wm.preferences theme "Catppuccin-Purple-Dark"
+      gsettings set org.gnome.desktop.wm.preferences theme "Sweet-Dark"
       gsettings set $gnome_schema document-font-name 'Hack 13'
       gsettings set $gnome_schema font-name 'Hack 13'
       gsettings set $gnome_schema monospace-font-name 'Hack 13'
@@ -415,7 +415,6 @@ in {
     ] ++ (with pkgs.unstable; [
 
       # clang # breaks the lvim treesitter compilation
-      (catppuccin-gtk.override { tweaks = [ "black" ]; })
       ansible
       aria2
       asciidoc-full
@@ -563,6 +562,7 @@ in {
       swaylock
       swaynotificationcenter
       swayr
+      sweet
       tealdeer
       tectonic
       testdisk
