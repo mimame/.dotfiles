@@ -12,6 +12,8 @@ an executable
 -- Vim
 vim.opt.relativenumber = true
 vim.opt.spell = true
+-- set cursor of insert mode as vertical line
+vim.opt.guicursor = "i:ver1"
 
 
 -- general
