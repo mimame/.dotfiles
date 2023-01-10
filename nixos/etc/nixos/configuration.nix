@@ -450,6 +450,7 @@ in {
       elixir_ls
       entr
       espanso
+      evince
       exa
       fd
       file
