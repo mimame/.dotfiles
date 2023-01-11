@@ -485,6 +485,7 @@ in {
       gzip
       handlr
       helix
+      hexyl
       hugo
       hyperfine
       i3status-rust
