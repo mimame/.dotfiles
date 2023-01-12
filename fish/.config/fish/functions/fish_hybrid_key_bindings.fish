@@ -13,6 +13,7 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
       source "$(fzf-share)/key-bindings.fish"
     end
     fzf_key_bindings
+    bind --erase --all \cr # restore built-in-fish>=3.6.0 Ctrl+R history
 
     # bind -M insert \t fzf-complete
 
