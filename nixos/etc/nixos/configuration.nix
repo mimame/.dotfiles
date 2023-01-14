@@ -489,6 +489,7 @@ in {
       hugo
       hyperfine
       i3status-rust
+      imagemagick
       jekyll
       jless
       jq
