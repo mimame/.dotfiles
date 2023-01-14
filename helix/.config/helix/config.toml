@@ -1,39 +1,60 @@
 theme = "catppuccin_mocha"
 
 [editor]
+# Shell to use when running external commands
 shell = ["fish", "-c"]
+# Distance from the current line
+# When unfocused or in insert mode, relative will still show absolute line number
 line-number = "relative"
+# Highlight all lines with a cursor
 cursorline = true
+# Whether to color the mode indicator with different colors depending on the mode itself
 color-modes = true
+# Enable automatic saving on focus moving away
 auto-save = true
+# Renders a line at the top of the editor displaying open buffers
 bufferline = "always"
 
 [editor.cursor-shape]
+# Cursor shape in normal mode
 insert = "bar"
+# Cursor shape in insert mode
 normal = "block"
+# Cursor shape in select mode
 select = "underline"
 
 [editor.lsp]
+# Display LSP progress messages below statusline
 display-messages = true
 
 [editor.statusline]
+# A list of elements aligned to the left of the statusline
 left = ["mode", "spinner"]
+# A list of elements aligned to the middle of the statusline
 center = ["file-name"]
+# A list of elements aligned to the right of the statusline
 right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+# The character used to separate elements in the statusline
 separator = "│"
 
 [editor.file-picker]
+# Enables ignoring hidden files
 hidden = false
 
 [editor.whitespace]
+# Whether to render whitespace
 render = "none"
 
 [editor.whitespace.characters]
+# Literal characters to use when rendering whitespace
+# Sub-keys may be any of
 space = "·"
 nbsp = "⍽"
 tab = "→"
 newline = "⏎"
 
 [editor.indent-guides]
+# Whether to render indent guides
 render = true
+# Literal character to use for rendering the indent guide
 character = "╎"
