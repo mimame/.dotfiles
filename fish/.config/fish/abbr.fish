@@ -56,6 +56,8 @@ abbr -a -U nvim lvim
 abbr -a -U sv sudoedit
 abbr -a -U se sudoedit
 
+abbr -a -U h hx
+
 abbr -a -U nd 'nvim -d -c "set nofoldenable"'
 # abbr -a -U h 'history' # Use ctrl-r instead
 # Lists the ten most used commands.
