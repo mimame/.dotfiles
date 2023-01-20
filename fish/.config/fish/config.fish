@@ -53,6 +53,7 @@ if status --is-interactive
 
     set wallpaper ~/Pictures/unicat.png
     if not test -f $wallpaper
+      mkdir -p ~/Pictures
       wget https://github.com/catppuccin/wallpapers/raw/main/minimalistic/unicat.png -O $wallpaper
     end
 
