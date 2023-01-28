@@ -131,9 +131,6 @@ in {
     enable = true;
   };
 
-  # Set your time zone.
-  # time.timeZone = "America/Mexico_City";
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.utf8";
 
