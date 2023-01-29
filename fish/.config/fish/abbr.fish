@@ -5,6 +5,7 @@ abbr -a -U ls exa --sort .name --color=always --long --links --group --git --ico
 abbr -a -U l br
 abbr -a -U cd z
 abbr -a -U b 'cd ..'
+abbr --add dotdot --regex '^\.\.+$' --function multicd
 abbr -a -U ju juliaup
 abbr -a -U ru rustup
 abbr -a -U n nim
