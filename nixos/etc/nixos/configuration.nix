@@ -569,6 +569,7 @@ in {
       tectonic
       testdisk
       thefuck
+      thunderbird
       tokei
       topgrade
       translate-shell
