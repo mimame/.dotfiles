@@ -427,6 +427,7 @@ in {
       bzip2
       calibre
       catppuccin-cursors.mochaMauve
+      clifm
       cmake
       coreutils
       crystal
