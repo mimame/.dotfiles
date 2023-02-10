@@ -163,23 +163,21 @@ command translate js let googleTranslateCallback = document.createElement('scrip
 "
 " Disable all built-in searchurls
 set searchurls.a   https://wiki.archlinux.org/index.php?search=%s
-set searchurls.aur https://aur.archlinux.org/packages/?O=0&K=%s
 set searchurls.d   https://duckduckgo.com/?q=%s
-set searchurls.gh  https://github.com/search?q=%s
 set searchurls.g   https://www.google.com/?hl=en&gl=en&search?q=%s
+set searchurls.gh  https://github.com/search?q=%s
 set searchurls.gi  https://www.google.com/search?tbm=isch&q=%s
 set searchurls.gm  https://www.google.com/maps?q=%s
 set searchurls.gr  https://www.google.com/search?hl=en&tbo=1&tbs=qdr:y&q=%s
-set searchurls.hn  https://www.hnsearch.com/search#request/submissions&q=%s&start=0
 set searchurls.l   https://www.google.com/search?btnI=I'm+Feeling+Lucky&q=%s
-set searchurls.pa  https://www.archlinux.org/packages/?sort=&q=%s&maintainer=&flagged=
+set searchurls.no  https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=%s
+set searchurls.np  https://search.nixos.org/packages?channel=unstable&size=50&sort=relevance&type=packages&query=%s
 set searchurls.ra  http://dle.rae.es/?w=%s
 set searchurls.so  http://stackoverflow.com/search?q=%s
 set searchurls.su  http://superuser.com/search?q=%s
-set searchurls.tf  https://translate.google.com/#auto/fr/%s
 set searchurls.t   http://translate.google.com/?source=osdd#auto|auto|%s
+set searchurls.tf  https://translate.google.com/#auto/fr/%s
 set searchurls.ts  https://translate.google.com/#auto/es/%s
-set searchurls.wa  http://www.wolframalpha.com/input/?i=%s
 set searchurls.w   http://en.wikipedia.org/wiki/Special:Search?search=%s
 set searchurls.y   http://www.youtube.com/results?search_query=%s
 
