@@ -98,7 +98,7 @@ bind gf hint -qb
 " Hint web name to clipboard
 bind yn hint -Jp
 " Hint web url to clipboard
-bind yw hint -Jy
+bind yf hint -Jy
 
 " Make yy use canonical / short links on the 5 websites that support them
 bind yy clipboard yankshort
@@ -121,7 +121,7 @@ bind gD composite tabduplicate | tabdetach
 " Stupid workaround to let hint -; be used with composite which steals semi-colons
 command hint_focus hint -;
 " Open right click menu on links
-bind ;c composite hint_focus; !s xdotool key Menu
+"bind ;c composite hint_focus; !s xdotool key Menu
 
 " Git{Hub,Lab} git clone via HTTPS yank
 bind yg composite js "git clone " + document.location.href.split("/").slice(0,5).join("/").replace(/https/,"git").replace(/$/,".git") | clipboard yank
