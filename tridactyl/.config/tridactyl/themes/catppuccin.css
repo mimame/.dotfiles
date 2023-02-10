@@ -1,31 +1,40 @@
-:root {    /* Monokai by Chris Kempson (http://chriskempson.com) */
-  --base00: #272822;
-  --base01: #383830;
-  --base02: #49483e;
-  --base03: #75715e;
-  --base04: #a59f85;
-  --base05: #f8f8f2;
-  --base06: #f5f4f1;
-  --base07: #f9f8f5;
-  --base08: #f92672;
-  --base09: #fd971f;
-  --base0A: #f4bf75;
-  --base0B: #a6e22e;
-  --base0C: #a1efe4;
-  --base0D: #66d9ef;
-  --base0E: #ae81ff;
-  --base0F: #cc6633;
+:root {    /* Catppuccin Colors */
+  --bg: #1e1e2e;
+  --currentline: #302D41;
+  --fg: #d9e0ee;
+  --comment: #575268;
+  --flamingo: #f2cdcd;
+  --mauve: #ddb6f2;
+  --pink: #f5c2e7;
+  --maroon: #e8a2af;
+  --red: #f28fad;
+  --peach: #f8bd96;
+  --yellow: #fae3b0;
+  --green: #abe9b3;
+  --teal: #b5e8e0;
+  --blue: #96cdfb;
+  --sky: #89dceb;
+  --lavender: #c9cbff;
+  --rosewater: #f5e0dc;
+  --font: monospace; /*"FiraCode Nerd Font Mono";*/
 
-  --tridactyl-fg: white;
-  --tridactyl-bg: black;
-  --tridactyl-url-fg: var(--base08);
-  --tridactyl-url-bg: black;
-  --tridactyl-highlight-box-bg: var(--base0B);
-  --tridactyl-highlight-box-fg: black;
+ /* vimium theme uses colors: flamingo, peach, rosewater, green, blue, lavender */
+  --tridactyl-fg: var(--fg);
+  --tridactyl-bg: var(--bg);
+  --tridactyl-url-fg: var(--rosewater);
+  --tridactyl-url-bg: var(--bg);
+  --tridactyl-highlight-box-bg: var(--currentline);
+  --tridactyl-highlight-box-fg: var(--fg);
+  --tridactyl-of-fg: var(--fg);
+  --tridactyl-of-bg: var(--currentline);
+  --tridactyl-cmdl-fg: var(--bg);
+  --tridactyl-cmdl-font-family: var(--font);
+  --tridactyl-cmplt-font-family: var(--font);
+  --tridactyl-hintspan-font-family: var(--font);
 
   /* Hint character tags */
-  --tridactyl-hintspan-fg: black !important;
-  --tridactyl-hintspan-bg: var(--base0A) !important;
+  --tridactyl-hintspan-fg: var(--bg) !important;
+  --tridactyl-hintspan-bg: var(--green) !important;
 
   /* Element Highlights */
   --tridactyl-hint-active-fg: none;
@@ -37,8 +46,8 @@
 
 #command-line-holder {
   order: 1;
-  border: 2px solid var(--base0B);
-  color: var(--tridactyl-bg);
+  border: 2px solid var(--lavender);
+  background: var(--tridactyl-bg);
   border-radius: 15px !important;
 }
 
@@ -59,7 +68,7 @@
   font-weight: 200;
   border-spacing: 0;
   table-layout: fixed;
-  padding: 1rem;
+  padding: 1rem 0;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -105,7 +114,8 @@
 #completions table tr td.prefix,#completions table tr td.privatewindow,#completions table tr td.container,#completions table tr td.icon {    display: none;
 }
 
-#completions .BufferCompletionSource table {    width: unset;
+#completions .BufferCompletionSource table {
+  width: unset;
   font-size: unset;
   border-spacing: unset;
   table-layout: unset;
@@ -146,7 +156,7 @@
   bottom: 0 !important;
   background: var(--tridactyl-bg) !important;
   border: unset !important;
-  border: 1px var(--base0B) solid !important;
+  border: 1px var(--purple) solid !important;
   font-size: 12pt !important;
   /*font-weight: 200 !important;*/
   padding: 0.8ex !important;
@@ -154,11 +164,15 @@
 }
 
 #completions .focused {
-  background: var(--base0B);
-  color: black;
+    background: var(--currentline);
+    /* color: var(--blue); */
+    font-weight: bold;
+}
+#completions .focused td.title {
+  color: var(--pink);
 }
 
 #completions .focused .url {
-  background: var(--base0B);
-  color: black;
+    background: var(--currentline);
+    color: var(--green);
 }
