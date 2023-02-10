@@ -133,19 +133,20 @@ bind yG composite js "git clone --depth 1 " + document.location.href.split("/").
 " Only hint search results on Google and DDG
 bindurl www.google.com f hint -Jc #search div:not(.action-menu) > a
 bindurl www.google.com F hint -Jbc #search div:not(.action-menu) > a
-bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
-bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
+bindurl https://duckduckgo.com f hint -Jc [class=result__a]
+bindurl https://duckduckgo.com F hint -Jbc [class=result__a]
 
 
 "
 " quickmarks
 "
 " Afterwards use go[key], gn[key], or gw[key] to open, tabopen, or winopen the URL respectively.
-quickmark c https://calendar.google.com/calendar
-quickmark g https://github.com
-quickmark m https://mail.google.com/mail
-quickmark p https://app.getpocket.com
-quickmark t https://trello.com
+quickmark c  https://calendar.google.com/calendar
+quickmark d  https://duckduckgo.com/
+quickmark g  https://www.google.com/?hl=en&gl=en
+quickmark gh https://github.com
+quickmark m  https://mail.google.com/mail
+quickmark p  https://app.getpocket.com
 
 "
 " commands
