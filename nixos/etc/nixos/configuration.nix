@@ -493,6 +493,7 @@ in {
       jq
       julia-bin
       just
+      kitty
       klavaro
       kubernetes
       lazydocker
