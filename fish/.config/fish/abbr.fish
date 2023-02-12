@@ -139,5 +139,3 @@ abbr -a -U rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --g
 
 abbr -a -U adoc asciidoctor
 abbr -a -U adoc-pdf asciidoctor-pdf
-
-abbr -a -U ssh 'wezterm ssh'
