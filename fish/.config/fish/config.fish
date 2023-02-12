@@ -59,6 +59,10 @@ if status --is-interactive
 
     source ~/.config/fish/variables.fish
     source ~/.config/fish/abbr.fish
+
+    if test -f ~/.config/fish/nnn.fish
+        source ~/.config/fish/nnn.fish
+    end
     # Only run the first time
     # fish_config theme save "Catppuccin Mocha"
 end
