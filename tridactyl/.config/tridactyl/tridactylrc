@@ -163,6 +163,7 @@ command translate js let googleTranslateCallback = document.createElement('scrip
 "
 " Disable all built-in searchurls
 set searchurls.a   https://wiki.archlinux.org/index.php?search=%s
+set searchurls.ap  https://anaconda.org/search?q=%s
 set searchurls.d   https://duckduckgo.com/?q=%s
 set searchurls.g   https://www.google.com/?hl=en&gl=en&search?q=%s
 set searchurls.gh  https://github.com/search?q=%s
