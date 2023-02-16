@@ -176,6 +176,7 @@ set searchurls.ra  http://dle.rae.es/?w=%s
 set searchurls.so  http://stackoverflow.com/search?q=%s
 set searchurls.su  http://superuser.com/search?q=%s
 set searchurls.t   http://translate.google.com/?source=osdd#auto|auto|%s
+set searchurls.te  http://translate.google.com/?source=osdd#auto|en|%s
 set searchurls.tf  https://translate.google.com/#auto/fr/%s
 set searchurls.ts  https://translate.google.com/#auto/es/%s
 set searchurls.w   http://en.wikipedia.org/wiki/Special:Search?search=%s
