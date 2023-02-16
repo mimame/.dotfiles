@@ -317,10 +317,6 @@ in {
   environment.systemPackages = with pkgs;
     [
 
-      aspell
-      aspellDicts.en
-      aspellDicts.es
-      aspellDicts.fr
       at
       avfs
       axel
@@ -485,6 +481,9 @@ in {
       helix
       hexyl
       hugo
+      hunspellDicts.es-es
+      hunspellDicts.en-us-large
+      hunspellDicts.fr-moderne
       hyperfine
       i3status-rust
       imagemagick
@@ -520,6 +519,7 @@ in {
       nim
       ninja
       nushell
+      nuspell
       obsidian
       onefetch
       ouch
