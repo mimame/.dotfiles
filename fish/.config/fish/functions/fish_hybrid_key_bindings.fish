@@ -2,22 +2,16 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     for mode in default insert visual
         fish_default_key_bindings -M $mode
     end
+
     fish_vi_key_bindings --no-erase
+
     # Accept autosuggestion with space in normal mode
     bind -M default \  end-of-line accept-autosuggestion
+
     # Open nvim in normal mode to edit the command
     bind -M default v edit_command_buffer
 
-    # Required by NixOS
-    if command -s fzf-share >/dev/null
-      source "$(fzf-share)/key-bindings.fish"
-    else if string match --regex 'mambaforge' $(which fzf)
-      source "$HOME/mambaforge/share/fzf/shell/key-bindings.fish"
-    end
-
-    fzf_key_bindings
-
-    bind --erase \cr # restore built-in-fish>=3.6.0 Ctrl+R history
-
     bind -M insert \co thefuck-command-line
+
+    fzf_configure_bindings --directory=\ct
 end
