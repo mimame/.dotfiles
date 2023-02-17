@@ -14,11 +14,10 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     else if string match --regex 'mambaforge' $(which fzf)
       source "$HOME/mambaforge/share/fzf/shell/key-bindings.fish"
     end
-    fzf_key_bindings
-    bind --erase -M insert \cr # restore built-in-fish>=3.6.0 Ctrl+R history
-    bind --erase -M normal \cr # restore built-in-fish>=3.6.0 Ctrl+R history
 
-    # bind -M insert \t fzf-complete
+    fzf_key_bindings
+
+    bind --erase \cr # restore built-in-fish>=3.6.0 Ctrl+R history
 
     bind -M insert \co thefuck-command-line
 end
