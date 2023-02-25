@@ -1,6 +1,9 @@
 # Warning: This config does not include keys that have an unset value
 
-# $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$docker_context$package$cmake$cobol$dart$deno$dotnet$elixir$elm$erlang$golang$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$perl$php$pulumi$purescript$python$rlang$red$ruby$rust$scala$swift$terraform$vlang$vagrant$zig$nix_shell$conda$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$shell$character
+palette = "catppuccin_mocha"
+
+# $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$docker_context$package$bun$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$golang$haskell$haxe$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$swift$terraform$vlang$vagrant$zig$buf$guix_shell$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$os$shell$character
+"$schema" = 'https://starship.rs/config-schema.json'
 format = '$all'
 right_format = ''
 continuation_prompt = '[∙](bright-black) '
@@ -8,18 +11,23 @@ scan_timeout = 30
 command_timeout = 500
 add_newline = true
 
+[palettes]
+
 [aws]
-format = '[$symbol($profile )(\($region\) )(\[$duration\])]($style)'
-symbol = 'AWS '
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+symbol = 'aws  '
 style = 'bold yellow'
 disabled = false
-expiration_symbol = 'expiration'
+expiration_symbol = 'X'
+force_display = false
 
 [aws.region_aliases]
 
+[aws.profile_aliases]
+
 [azure]
 format = '[$symbol($subscription)]($style) '
-symbol = 'Azure'
+symbol = 'azure '
 style = 'blue bold'
 disabled = false
 
@@ -36,11 +44,68 @@ format = '[$symbol$percentage]($style) '
 threshold = 10
 style = 'red bold'
 
+[buf]
+format = 'with [$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = 'buf '
+style = 'bold blue'
+disabled = false
+detect_extensions = []
+detect_files = [
+    'buf.yaml',
+    'buf.gen.yaml',
+    'buf.work.yaml',
+]
+detect_folders = []
+
+[bun]
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = 'bun '
+style = 'bold red'
+disabled = false
+detect_extensions = []
+detect_files = [
+    'bun.lockb',
+    'bunfig.toml',
+]
+detect_folders = []
+
+[c]
+format = '[$symbol($version(-$name) )]($style)'
+version_format = 'v${raw}'
+style = '149 bold'
+symbol = 'C '
+disabled = false
+detect_extensions = [
+    'c',
+    'h',
+]
+detect_files = []
+detect_folders = []
+commands = [
+    [
+    'cc',
+    '--version',
+],
+    [
+    'gcc',
+    '--version',
+],
+    [
+    'clang',
+    '--version',
+],
+]
+
 [character]
 format = '$symbol '
-success_symbol = '[❯](bold green)'
-error_symbol = '[❯](bold red)'
-vicmd_symbol = '[❮](bold green)'
+success_symbol = "[[♥](green) ❯](green)"
+error_symbol = "[❯](red)"
+vicmd_symbol = "[❮](green)"
+vimcmd_visual_symbol = '[❮](yellow)'
+vimcmd_replace_symbol = '[❮](purple)'
+vimcmd_replace_one_symbol = '[❮](purple)'
 disabled = false
 
 [cmake]
@@ -58,7 +123,7 @@ detect_folders = []
 
 [cmd_duration]
 min_time = 2000
-format = "took [$duration]($style)"
+format = 'took [$duration]($style) '
 style = 'yellow bold'
 show_milliseconds = false
 disabled = false
@@ -104,6 +169,16 @@ detect_extensions = ['cr']
 detect_files = ['shard.yml']
 detect_folders = []
 
+[daml]
+symbol = 'daml '
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+style = 'bold cyan'
+disabled = false
+detect_extensions = []
+detect_files = ['daml.yaml']
+detect_folders = []
+
 [dart]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
@@ -140,9 +215,10 @@ truncation_length = 0
 truncate_to_repo = false
 fish_style_pwd_dir_length = 0
 use_logical_path = true
-format = '[$path]($style)[ $read_only]($read_only_style) '
-repo_root_format = '[$before_root_path]($style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
-style = 'cyan bold'
+format = '[$path]($style)[$read_only]($read_only_style) '
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) '
+# Catppuccin 'lavender'
+style = "bold lavender"
 disabled = false
 read_only = 'read_only'
 read_only_style = 'red'
@@ -190,7 +266,7 @@ detect_folders = []
 [elixir]
 format = '[$symbol($version \(OTP $otp_version\) )]($style)'
 version_format = 'v${raw}'
-symbol = 'elixir'
+symbol = 'elixir '
 style = 'bold purple'
 disabled = false
 detect_extensions = []
@@ -200,7 +276,7 @@ detect_folders = []
 [elm]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = 'elm'
+symbol = 'elm '
 style = 'cyan bold'
 disabled = false
 detect_extensions = ['elm']
@@ -239,14 +315,17 @@ disabled = false
 
 [gcloud.region_aliases]
 
+[gcloud.project_aliases]
+
 [git_branch]
-format = '[$symbol$branch]($style)(:[$remote]($style)) '
+format = '[$symbol$branch(:$remote_branch)]($style) '
 symbol = ' '
 style = 'bold purple'
 truncation_length = 9223372036854775807
 truncation_symbol = '…'
 only_attached = false
 always_show_remote = false
+ignore_branches = []
 disabled = false
 
 [git_commit]
@@ -255,8 +334,9 @@ format = '[\($hash$tag\)]($style) '
 style = 'green bold'
 only_detached = true
 disabled = false
-tag_symbol = '  '
+tag_symbol = ' 🏷  '
 tag_disabled = true
+tag_max_candidates = 0
 
 [git_metrics]
 added_style = 'bold green'
@@ -278,7 +358,7 @@ format = '\([$state( $progress_current/$progress_total)]($style)\) '
 disabled = false
 
 [git_status]
-format = '([\[ $all_status$ahead_behind\]]($style) )'
+format = '([\[$all_status$ahead_behind\]]($style) )'
 style = 'red bold'
 stashed = 'stashed '
 ahead = 'ahead '
@@ -291,6 +371,7 @@ renamed = 'renamed '
 modified = 'modified '
 staged = 'staged '
 untracked = 'untracked '
+ignore_submodules = false
 disabled = false
 
 [golang]
@@ -303,12 +384,56 @@ detect_extensions = ['go']
 detect_files = [
     'go.mod',
     'go.sum',
+    'go.work',
     'glide.yaml',
     'Gopkg.yml',
     'Gopkg.lock',
     '.go-version',
 ]
 detect_folders = ['Godeps']
+
+[guix_shell]
+format = '[$symbol]($style) '
+symbol = 'guix '
+style = 'yellow bold'
+disabled = false
+
+[haskell]
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = 'haskell '
+style = 'bold purple'
+disabled = false
+detect_extensions = [
+    'hs',
+    'cabal',
+    'hs-boot',
+]
+detect_files = [
+    'stack.yaml',
+    'cabal.project',
+]
+detect_folders = []
+
+[haxe]
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = 'haxe '
+style = 'bold fg:202'
+disabled = false
+detect_extensions = [
+    'hx',
+    'hxml',
+]
+detect_files = [
+    'haxelib.json',
+    'hxformat.json',
+    '.haxerc',
+]
+detect_folders = [
+    '.haxelib',
+    'haxe_libraries',
+]
 
 [helm]
 format = '[$symbol($version )]($style)'
@@ -333,9 +458,10 @@ disabled = true
 
 [hostname]
 ssh_only = false
-style = "bold dimmed blue"
+ssh_symbol = 'ssh '
 trim_at = '.'
-format = '@[$hostname]($style) '
+format = '[$ssh_symbol$hostname]($style):'
+style = 'green dimmed bold'
 disabled = false
 
 [java]
@@ -367,8 +493,8 @@ detect_folders = []
 threshold = 1
 symbol_threshold = 1
 number_threshold = 2
-format = '[$symbol $number]($style) '
-symbol = "jobs "
+format = '[$symbol$number]($style) '
+symbol = 'jobs '
 style = 'bold blue'
 disabled = false
 
@@ -404,8 +530,13 @@ symbol = 'kubernetes '
 format = '[$symbol$context( \($namespace\))]($style) '
 style = 'cyan bold'
 disabled = true
+detect_extensions = []
+detect_files = []
+detect_folders = []
 
 [kubernetes.context_aliases]
+
+[kubernetes.user_aliases]
 
 [line_break]
 disabled = false
@@ -428,11 +559,19 @@ detect_files = ['.lua-version']
 detect_folders = ['lua']
 
 [memory_usage]
-disabled = false
 threshold = -1
-symbol = ""
-format = '$symbol[ram: $ram( | swap: $swap)]($style) '
+format = '$symbol[ram:$ram( | swap:$swap)]($style)'
 style = 'white bold dimmed'
+symbol = ''
+disabled = false
+
+[meson]
+truncation_length = 4294967295
+truncation_symbol = '…'
+format = '[$symbol$project]($style) '
+symbol = 'meson '
+style = 'blue bold'
+disabled = false
 
 [nim]
 format = '[$symbol($version )]($style)'
@@ -450,7 +589,7 @@ detect_folders = []
 
 [nix_shell]
 format = '[$symbol$state( \($name\))]($style) '
-symbol = 'nix_shell'
+symbol = 'nix_shell '
 style = 'bold blue'
 impure_msg = 'impure'
 pure_msg = 'pure'
@@ -468,6 +607,8 @@ detect_extensions = [
     'mjs',
     'cjs',
     'ts',
+    'mts',
+    'cts',
 ]
 detect_files = [
     'package.json',
@@ -503,11 +644,64 @@ detect_folders = [
     'esy.lock',
 ]
 
+[opa]
+format = '[$symbol($version )]($style)'
+version_format = 'v${raw}'
+symbol = 'opa  '
+style = 'bold blue'
+disabled = false
+detect_extensions = ['rego']
+detect_files = []
+detect_folders = []
+
 [openstack]
 format = '[$symbol$cloud(\($project\))]($style) '
 symbol = 'openstack  '
 style = 'bold yellow'
 disabled = false
+
+[os]
+format = '[$symbol]($style)'
+style = 'bold white'
+disabled = false
+
+[os.symbols]
+Alpine = 'Alpine '
+Amazon = 'Amazon '
+Android = 'Android '
+Arch = 'Arch '
+CentOS = 'CentOS '
+Debian = 'Debian '
+DragonFly = 'DragonFly '
+Emscripten = 'Emscripten '
+EndeavourOS = 'EndeavourOS '
+Fedora = 'Fedora '
+FreeBSD = 'FreeBSD '
+Garuda = 'Garuda '
+Gentoo = 'Gentoo '
+HardenedBSD = 'HardenedBSD '
+Illumos = 'Illumos '
+Linux = 'Linux '
+Macos = 'Macos '
+Manjaro = 'Manjaro '
+Mariner = 'Mariner '
+MidnightBSD = 'MidnightBSD '
+Mint = 'Mint '
+NetBSD = 'NetBSD '
+NixOS = 'NixOS '
+OpenBSD = 'OpenBSD '
+openSUSE = 'openSUSE '
+OracleLinux = 'OracleLinux '
+Pop = 'Pop '
+Raspbian = 'Raspbian '
+Redhat = 'Redhat '
+RedHatEnterprise = 'RedHatEnterprise '
+Redox = 'Redox '
+Solus = 'Solus '
+SUSE = 'SUSE '
+Ubuntu = 'Ubuntu '
+Unknown = 'Unknown '
+Windows = 'Windows '
 
 [package]
 format = '[$symbol$version]($style) '
@@ -555,9 +749,10 @@ detect_folders = []
 [pulumi]
 format = '[$symbol($username@)$stack]($style) '
 version_format = 'v${raw}'
-symbol = 'pulumi'
+symbol = 'pulumi '
 style = 'bold 5'
 disabled = false
+search_upwards = true
 
 [purescript]
 format = '[$symbol($version )]($style)'
@@ -594,10 +789,26 @@ detect_files = [
 ]
 detect_folders = []
 
+[raku]
+format = '[$symbol($version-$vm_version )]($style)'
+version_format = '${raw}'
+symbol = 'raku '
+style = '149 bold'
+disabled = false
+detect_extensions = [
+    'p6',
+    'pm6',
+    'pod6',
+    'raku',
+    'rakumod',
+]
+detect_files = ['META6.json']
+detect_folders = []
+
 [red]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
-symbol = '🔺 '
+symbol = 'red '
 style = 'red bold'
 disabled = false
 detect_extensions = [
@@ -681,44 +892,51 @@ xonsh_indicator = 'xsh'
 cmd_indicator = 'cmd'
 unknown_indicator = ''
 style = 'white bold'
-disabled = true
+disabled = false
 
 [shlvl]
-disabled = false
-threshold = 3 # inside tmux the shell level starts with 2
+threshold = 2
 format = '[$symbol$shlvl]($style) '
 symbol = 'shlvl  '
 repeat = false
 style = 'bold yellow'
+disabled = false
 
 [singularity]
-symbol = ''
+symbol = 'singularity'
 format = '[$symbol\[$env\]]($style) '
 style = 'blue bold dimmed'
 disabled = false
 
-[status]
+[spack]
+truncation_length = 1
+format = '[$symbol$environment]($style) '
+symbol = 'spack '
+style = 'blue bold'
 disabled = false
-format = '[$symbol $status]($style) '
-symbol = 'status_error'
-success_symbol = 'success'
-not_executable_symbol = '🚫'
-not_found_symbol = '🔍'
-sigint_symbol = 'signint'
-signal_symbol = 'signal '
+
+[status]
+format = '[$symbol$status]($style) '
+symbol = 'status '
+success_symbol = ''
+not_executable_symbol = 'not_executable'
+not_found_symbol = 'not_found'
+sigint_symbol = 'sigint'
+signal_symbol = 'signal'
 style = 'bold red'
 map_symbol = false
 recognize_signal_code = true
 pipestatus = false
 pipestatus_separator = '|'
 pipestatus_format = '\[$pipestatus\] => [$symbol$common_meaning$signal_name$maybe_int]($style)'
+disabled = false
 
 [sudo]
 format = '[as $symbol]($style)'
 symbol = 'sudo '
 style = 'bold blue'
 allow_windows = false
-disabled = true
+disabled = false
 
 [swift]
 format = '[$symbol($version )]($style)'
@@ -753,7 +971,7 @@ utc_time_offset = 'local'
 time_range = '-'
 
 [username]
-format = '[$user]($style)'
+format = '[$user]($style)@'
 style_root = 'red bold'
 style_user = 'yellow bold'
 show_always = true
@@ -799,5 +1017,32 @@ detect_extensions = ['zig']
 detect_files = []
 detect_folders = []
 
-# [custom]
-#
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+[custom]
