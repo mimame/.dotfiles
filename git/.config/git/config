@@ -292,7 +292,7 @@
 [core]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreeditor
   # Default editor for commits and tags
-  editor       = lvim
+  editor       = hx
   # https://github.com/github/gitignore/tree/master/Global
   # globally useful gitignores
   excludesfile = ~/.config/git/gitignore_global
