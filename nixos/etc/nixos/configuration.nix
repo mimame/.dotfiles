@@ -405,22 +405,25 @@ in {
 
     ] ++ (with pkgs.unstable; [
 
-      # clang # breaks the lvim treesitter compilation
+      ameba
       ansible
       aria2
       asciidoc-full
       asciidoctor
-      auto-cpufreq
       autoconf
+      auto-cpufreq
       automake
       bat
       beauty-line-icon-theme
+      bitwarden
+      bitwarden-cli
       broot
       brotli
       btop
       bzip2
       calibre
       catppuccin-cursors.mochaMauve
+      # clang # breaks the lvim treesitter compilation
       clifm
       cmake
       coreutils
@@ -448,10 +451,9 @@ in {
       file
       filezilla
       firefox
-      fish
       flameshot
-      fuse-common
       fuse3
+      fuse-common
       fzf
       gawk
       gcc
@@ -479,8 +481,8 @@ in {
       helix
       hexyl
       hugo
-      hunspellDicts.es-es
       hunspellDicts.en-us-large
+      hunspellDicts.es-es
       hunspellDicts.fr-moderne
       hyperfine
       i3status-rust
@@ -497,10 +499,13 @@ in {
       lazygit
       less
       litecli
+      llvm
       logseq
+      (lowPrio fish)
+      (lowPrio man)
+      (lowPrio man-db)
       lsd
       lsd
-      man-db
       massren
       mcfly
       mdcat
@@ -514,8 +519,10 @@ in {
       neofetch
       neovim
       newsboat
+      nextflow
       nim
       ninja
+      (nnn.override { withNerdIcons = true; })
       nushell
       nuspell
       obsidian
@@ -533,15 +540,17 @@ in {
       podman
       podman-compose
       podman-tui
+      postgresql
       pre-commit
       procs
       progress
       pueue
-      qutebrowser
+      python3Full
       ranger
       rclone
       ripgrep
       rlwrap
+      rnix-lsp
       rofi
       rsync
       scc
@@ -550,10 +559,9 @@ in {
       shellcheck
       shfmt
       spicetify-cli
-      spotify
       sqlite
-      sqlite-utils
       sqlitebrowser
+      sqlite-utils
       sshfs
       starship
       stow
@@ -585,7 +593,6 @@ in {
       visidata
       vivaldi
       vivid
-      vlang
       vlc
       vscode
       watchexec
@@ -595,12 +602,14 @@ in {
       xdragon
       xh
       xonsh
+      xplr
       zathura
       zellij
       zenith
       zig
       zip
       zlib-ng
+      zoom-us
       zotero
       zoxide
       zstd
