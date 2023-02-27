@@ -339,7 +339,6 @@ in {
       gnome.seahorse
       gparted
       graphviz
-      grim # screenshot functionality
       gthumb
       gvfs
       httpie
@@ -370,9 +369,8 @@ in {
       openssl
       parallel
       parted
-      pass
-      passExtensions.pass-import
       pavucontrol
+      pkg-config
       polkit_gnome
       pulseaudio # to be able to use pactl
       putty
@@ -383,11 +381,11 @@ in {
       python3Packages.ipython
       python3Packages.pip
       python3Packages.ptpython
+      qutebrowser
       rustscan
       rustup
-      scrot
       singularity
-      slurp # screenshot functionality
+      spotify
       strace
       stress
       stylua
