@@ -932,7 +932,7 @@ pipestatus_format = '\[$pipestatus\] => [$symbol$common_meaning$signal_name$mayb
 disabled = false
 
 [sudo]
-format = '[as $symbol]($style)'
+format = ' [as $symbol]($style)'
 symbol = 'sudo '
 style = 'bold blue'
 allow_windows = false
