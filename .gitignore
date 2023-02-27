@@ -15,3 +15,5 @@ fish/.config/fish/functions/gh.fish
 fish/.config/fish/functions/replay.fish
 fish/.config/fish/functions/z.fish
 lazygit/.config/lazygit/state.yml
+qutebrowser
+clifm
