@@ -56,4 +56,5 @@ if status --is-interactive
     end
     # Only run the first time
     # fish_config theme save "Catppuccin Mocha"
+    eval (zellij setup --generate-auto-start fish | string collect)
 end
