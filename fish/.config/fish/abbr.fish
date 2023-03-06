@@ -97,20 +97,22 @@ abbr -a -U cp "cp -ri"
 abbr -a -U ln "ln -i"
 
 # abbr -a -U for rc files
-abbr -a -U weztermrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/wezterm/wezterm.lua) && popd'
-abbr -a -U gitrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/git/config) && popd'
-abbr -a -U swayrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/sway/config) && popd'
-abbr -a -U mimerc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/mimeapps.list) && popd'
-abbr -a -U newsboatrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/newsboat/config) && popd'
-abbr -a -U rofirc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/rofi/config.rasi) && popd'
-abbr -a -U sshrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.ssh/config) && popd'
-abbr -a -U rangerrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/ranger/rc.conf) && popd'
-abbr -a -U vimrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.vimrc) && popd'
-abbr -a -U zshrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/zsh/.zshrc) && popd'
-abbr -a -U tridactylrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/tridactyl/tridactylrc) && popd'
-abbr -a -U dunstrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/dunst/dunstrc) && popd'
-abbr -a -U fishrc 'pushd ~/.dotfiles && lvim $(readlink -f ~/.config/fish/config.fish) && popd'
+abbr -a -U brootrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/broot/conf.toml) && popd'
+abbr -a -U clifmrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/clifm/profiles/default/clifmrc) && popd'
+abbr -a -U dunstrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/dunst/dunstrc) && popd'
+abbr -a -U fishrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/fish/config.fish) && popd'
+abbr -a -U gitrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/git/config) && popd'
+abbr -a -U kittyrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/kitty/kitty.conf) && popd'
+abbr -a -U mimerc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/mimeapps.list) && popd'
+abbr -a -U newsboatrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/newsboat/config) && popd'
 abbr -a -U nixosrc 'sudoedit /etc/nixos/configuration.nix && sudo nixfmt /etc/nixos/configuration.nix && sudo nixos-rebuild switch && cp /etc/nixos/configuration.nix ~/.dotfiles/nixos/etc/nixos/'
+abbr -a -U rofirc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/rofi/config.rasi) && popd'
+abbr -a -U sshrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.ssh/config) && popd'
+abbr -a -U swayrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/sway/config) && popd'
+abbr -a -U tridactylrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/tridactyl/tridactylrc) && popd'
+abbr -a -U weztermrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/wezterm/wezterm.lua) && popd'
+abbr -a -U xplrrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/xplr/init.lua) && popd'
+abbr -a -U zellijrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/zellij/config.kdl) && popd'
 
 # abbr -a -U for pip
 abbr -a -U pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
