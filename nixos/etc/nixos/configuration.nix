@@ -364,7 +364,6 @@ in {
       networkmanagerapplet
       nixfmt
       nixpkgs-review
-      nodePackages.npm
       ntfs3g
       openssl
       parallel
@@ -400,7 +399,6 @@ in {
       wlrctl
       xdg-user-dirs
       xdg-utils
-      yarn
       ydotool
 
     ] ++ (with pkgs.unstable; [
@@ -523,6 +521,8 @@ in {
       nim
       ninja
       (nnn.override { withNerdIcons = true; })
+      nodejs
+      nodePackages.npm
       nushell
       nuspell
       obsidian
