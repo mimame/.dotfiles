@@ -21,6 +21,7 @@ return {
   enable_kitty_keyboard = true,
   use_fancy_tab_bar = false,
   enable_tab_bar = false,
+  window_close_confirmation = 'NeverPrompt',
   font = wezterm.font_with_fallback {
     "Hack Nerd Font",
     "Broot Icons Visual Studio Code",
