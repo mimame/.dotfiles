@@ -13,5 +13,5 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
 
     bind -M insert \co thefuck-command-line
 
-    fzf_configure_bindings --directory=\ct
+    fzf_configure_bindings
 end
