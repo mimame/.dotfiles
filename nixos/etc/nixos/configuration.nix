@@ -616,7 +616,7 @@ in {
 
     ]);
 
-  fonts.fonts = with pkgs; [
+  fonts.fonts = with pkgs.unstable; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
     font-awesome
   ];
