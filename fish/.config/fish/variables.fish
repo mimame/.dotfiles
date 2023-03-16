@@ -34,8 +34,8 @@ set -U fish_cursor_visual block
 
 set -x -U THEFUCK_EXCLUDE_RULES fix_file # Fix https://github.com/nvbn/thefuck/issues/1153
 
-set -U LS_COLORS (vivid generate molokai)
-set -U EXA_COLORS (vivid generate molokai)
+set -U LS_COLORS (vivid generate catppuccin-mocha)
+set -U EXA_COLORS (vivid generate catppuccin-mocha)
 
 # Setting fd as the default source for fzf
 set -x -U FZF_DEFAULT_COMMAND 'fd --type f --exclude node_modules'
