@@ -228,7 +228,7 @@ in {
     users.mimame = {
       isNormalUser = true;
       description = "mimame";
-      extraGroups = [ "networkmanager" "wheel" "video" "podman" ];
+      extraGroups = [ "networkmanager" "wheel" "video" "podman" "vboxusers" ];
       packages = with pkgs;
         [
           #  firefox
@@ -353,8 +353,6 @@ in {
       libnotify
       libreoffice-fresh
       light
-      linuxKernel.kernels.linux_zen
-      linuxKernel.packages.linux_zen.virtualbox
       lnav
       lsb-release
       lsof
@@ -392,7 +390,6 @@ in {
       tesseract5
       time
       util-linux
-      virtualbox
       wayland
       wev
       wl-clipboard
@@ -630,6 +627,7 @@ in {
   };
 
   virtualisation.podman.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
