@@ -381,7 +381,6 @@ in {
       qutebrowser
       rustscan
       rustup
-      singularity
       spotify
       strace
       stress
@@ -628,6 +627,7 @@ in {
 
   virtualisation.podman.enable = true;
   virtualisation.virtualbox.host.enable = true;
+  programs.singularity.enable = true;
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
