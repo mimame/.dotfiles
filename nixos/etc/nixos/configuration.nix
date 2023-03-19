@@ -533,8 +533,6 @@ in {
       plantuml
       playerctl
       plocate
-      podman
-      podman-compose
       podman-tui
       postgresql
       pre-commit
