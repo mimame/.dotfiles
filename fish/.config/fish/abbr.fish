@@ -27,6 +27,8 @@ abbr -a -U bc 'bc -l'
 abbr -a -U mk 'mkdir -pv'
 abbr -a -U u topgrade
 
+abbr -a -U docker podman
+
 abbr -a -U p 'ptipython'
 
 abbr -a -U grep 'grep --color=auto'
