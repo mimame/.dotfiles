@@ -156,7 +156,7 @@ in {
   # Locate service
   services.locate = {
     enable = true;
-    locate = pkgs.plocate;
+    locate = pkgs.unstable.plocate;
     localuser = null;
   };
 
@@ -516,7 +516,6 @@ in {
       pixz
       plantuml
       playerctl
-      plocate
       podman-tui
       postgresql
       pre-commit
