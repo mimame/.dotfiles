@@ -254,9 +254,9 @@ in {
     user.services.gammastep = {
       enable = true;
       description = "gammastep";
-      wants = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      wants = [ "default.target" ];
+      wantedBy = [ "default.target" ];
+      after = [ "default.target" ];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.gammastep}/bin/gammastep";
@@ -268,9 +268,9 @@ in {
     user.services.swayidle = {
       enable = true;
       description = "swayidle";
-      wants = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      wants = [ "default.target" ];
+      wantedBy = [ "default.target" ];
+      after = [ "default.target" ];
       serviceConfig = {
         Type = "simple";
         ExecStart =
