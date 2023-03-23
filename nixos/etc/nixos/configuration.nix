@@ -251,21 +251,6 @@ in {
 
   security.polkit.enable = true;
   systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      enable = true;
-      description = "polkit-gnome-authentication-agent-1";
-      wants = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart =
-          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
     user.services.gammastep = {
       enable = true;
       description = "gammastep";
@@ -368,7 +353,6 @@ in {
       parted
       pavucontrol
       pkg-config
-      polkit_gnome
       pulseaudio # to be able to use pactl
       putty
       pv
