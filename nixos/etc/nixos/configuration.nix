@@ -153,6 +153,7 @@ in {
   };
 
   # Enable the X11 windowing system.
+  programs.xwayland.enable = true;
   services.xserver = {
     enable = true;
     displayManager = {
