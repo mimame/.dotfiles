@@ -581,8 +581,11 @@ in {
 
   virtualisation.podman.enable = true;
   virtualisation.virtualbox.host.enable = true;
-  programs.singularity.enable = true;
-
+  programs.singularity = {
+    enable = true;
+    # enableSuid = true; # FIXME: available in the next nixos release
+    # enableFakeroot = true; # FIXME: available in the next nixos release
+  };
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
   # (org.freedesktop.portal.Desktop) and object path
