@@ -157,7 +157,10 @@ in {
   services.xserver = {
     enable = true;
     displayManager = {
-      gdm.enable = true;
+      gdm = {
+        enable = true;
+        wayland = true;
+      };
       defaultSession = "sway";
       autoLogin = {
         enable = true;
@@ -316,7 +319,6 @@ in {
       graphviz
       gthumb
       gvfs
-      (hiPrio xwayland) # collition warnings: needed for avoid xorg-server
       httpie
       hyphen
       inkscape
