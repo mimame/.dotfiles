@@ -309,8 +309,6 @@ in {
       bc
       bind
       bison
-      blueman
-      bluez
       bluez-tools
       clipman
       configure-gtk
@@ -319,13 +317,13 @@ in {
       dosfstools
       fakeroot
       firmwareLinuxNonfree
-      gammastep
       glib # gsettings
       gnome.seahorse
       gparted
       graphviz
       gthumb
       gvfs
+      (hiPrio xwayland) # collition warnings: needed for avoid xorg-server
       httpie
       hyphen
       inkscape
@@ -337,7 +335,6 @@ in {
       libinput-gestures
       libnotify
       libreoffice-fresh
-      light
       lnav
       lsb-release
       lsof
@@ -389,10 +386,8 @@ in {
       asciidoc-full
       asciidoctor
       autoconf
-      auto-cpufreq
       automake
       bat
-      beauty-line-icon-theme
       bitwarden
       bitwarden-cli
       broot
@@ -430,13 +425,11 @@ in {
       filezilla
       firefox
       flameshot
-      fuse3
       fuse-common
       fzf
       gawk
       gcc
       gdu
-      geoclue2-with-demo-agent
       gimp
       git
       git-cola
@@ -448,7 +441,6 @@ in {
       glow
       gnumake
       gnupatch
-      gnupg
       go
       google-chrome
       grc
@@ -458,6 +450,10 @@ in {
       handlr
       helix
       hexyl
+      (hiPrio
+        beauty-line-icon-theme) # collition warnings: needed for avoid default gnome icon themes
+      (hiPrio fish) # collition warnings: needed for programs.fish.enable
+      (hiPrio sway) # collition warnings: needed for bindgesture
       hugo
       hunspellDicts.en-us-large
       hunspellDicts.es-es
@@ -475,14 +471,9 @@ in {
       kubernetes
       lazydocker
       lazygit
-      less
       litecli
       llvm
       logseq
-      (lowPrio fish)
-      (lowPrio man)
-      (lowPrio man-db)
-      lsd
       lsd
       massren
       mcfly
@@ -503,7 +494,6 @@ in {
       (nnn.override { withNerdIcons = true; })
       nodejs
       nodePackages.npm
-      nushell
       nuspell
       obsidian
       onefetch
@@ -542,9 +532,6 @@ in {
       sshfs
       starship
       stow
-      sway
-      swayidle
-      swaylock
       swaynotificationcenter
       swayr
       sweet
@@ -560,7 +547,6 @@ in {
       tree
       tridactyl-native
       udiskie
-      udisks
       universal-ctags
       unrar
       unzip
