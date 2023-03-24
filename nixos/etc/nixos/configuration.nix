@@ -134,24 +134,11 @@ in {
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.utf8";
 
-  # Synchronise time and date
+  # Synchronise time and date automatically
   services.chrony.enable = true;
-  services.localtimed.enable = true;
-  services.geoclue2 = {
-    enable = true;
-    submitData = true;
-    appConfig.localtimed = {
-      isAllowed = true;
-      isSystem = true;
-      users = [ "1000" "995" "994" "325" ];
-    };
-  };
-
   services.automatic-timezoned.enable = true;
 
   services.avahi.enable = true;
-
-  location.provider = "geoclue2";
 
   # Locate service
   services.locate = {
