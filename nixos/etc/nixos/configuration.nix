@@ -74,6 +74,9 @@ in {
     };
   };
 
+  # Compress ram with zstd when needed to avoid use the swap
+  zramSwap.enable = true;
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Suspend in 10 minutes of inactivity and hibernate half hour later
