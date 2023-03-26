@@ -65,7 +65,7 @@ in {
       };
   };
 
-  # Bootloader.
+  # Bootloader
   boot.loader = {
     systemd-boot.enable = true;
     efi = {
@@ -77,11 +77,14 @@ in {
   # Compress ram with zstd when needed to avoid use the swap
   zramSwap.enable = true;
 
+  # Use the latest available version of Linux
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Suspend in 10 minutes of inactivity and hibernate half hour later
+  # Power
+  # DBus service that provides power management support to applications.
   services.upower.enable = true;
-
+  # Configuration for suspension, hibernation and the laptop lid
+  # Suspend in 10 minutes of inactivity and hibernate half hour later
   services.logind = {
     lidSwitch = "hibernate";
     lidSwitchDocked = "hibernate";
@@ -98,9 +101,10 @@ in {
     '';
   };
 
-  # DBus service that allows applications to query and manipulate storage devices
-  services.udisks2.enable = true;
-
+  # Network
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   networking = {
     firewall = {
       # Or disable the firewall altogether.
@@ -112,19 +116,25 @@ in {
     hostName = "narnia";
     networkmanager.enable = true;
   };
-
-  # Enable the OpenSSH daemon.
+  # OpenSSH daemon
   services.openssh = {
     enable = true;
     forwardX11 = true;
   };
+  # Service discovery on a local network
+  services.avahi.enable = true;
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # DBus service that allows applications to query and manipulate storage devices
+  services.udisks2.enable = true;
 
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  # Virtualisation
+  virtualisation.podman.enable = true;
+  virtualisation.virtualbox.host.enable = true;
+  programs.singularity = {
+    enable = true;
+    # enableSuid = true; # FIXME: available in the next nixos release
+    # enableFakeroot = true; # FIXME: available in the next nixos release
+  };
 
   # Improve battery scaling the CPU governor and optimizing the general power
   services.auto-cpufreq.enable = true;
@@ -134,26 +144,12 @@ in {
   # It can increases the performance
   services.thermald.enable = true;
 
-  system.autoUpgrade = {
-    allowReboot = false;
-    enable = true;
-  };
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.utf8";
 
   # Synchronise time and date automatically
   services.chrony.enable = true;
   services.automatic-timezoned.enable = true;
-
-  services.avahi.enable = true;
-
-  # Locate service
-  services.locate = {
-    enable = true;
-    locate = pkgs.unstable.plocate;
-    localuser = null;
-  };
 
   # Enable the X11 windowing system.
   programs.xwayland.enable = true;
@@ -213,6 +209,20 @@ in {
     # media-session.enable = true;
   };
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+  environment.etc = {
+    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
+      bluez_monitor.properties = {
+        ["bluez5.enable-sbc-xq"] = true,
+        ["bluez5.enable-msbc"] = true,
+        ["bluez5.enable-hw-volume"] = true,
+        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+      }
+    '';
+  };
+
   # Always enable the shell system-wide
   # Otherwise it wont source the necessary files
   programs.fish.enable = true;
@@ -237,6 +247,7 @@ in {
     };
   };
 
+  # Security
   # Configure podman to be use by minikube
   security.sudo.extraRules = [{
     users = [ "mimame" ];
@@ -245,10 +256,12 @@ in {
       options = [ "NOPASSWD" ];
     }];
   }];
-
+  # GNOME Keyring daemon
   services.gnome.gnome-keyring.enable = true;
-
+  # Policy that allows unprivileged processes to speak to privileged processes
   security.polkit.enable = true;
+
+  # systemd units
   systemd = {
     user.services.gammastep = {
       enable = true;
@@ -258,7 +271,7 @@ in {
       after = [ "default.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.gammastep}/bin/gammastep";
+        ExecStart = "${pkgs.unstable.gammastep}/bin/gammastep";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -273,13 +286,50 @@ in {
       serviceConfig = {
         Type = "simple";
         ExecStart =
-          "${pkgs.swayidle}/bin/swayidle timeout 1800 'systemctl suspend-then-hibernate'";
+          "${pkgs.unstable.swayidle}/bin/swayidle timeout 1800 'systemctl suspend-then-hibernate'";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
       };
     };
   };
+
+  # xdg-desktop-portal works by exposing a series of D-Bus interfaces
+  # known as portals under a well-known name
+  # (org.freedesktop.portal.Desktop) and object path
+  # (/org/freedesktop/portal/desktop).
+  # The portal interfaces include APIs for file access, opening URIs,
+  # printing and others.
+  services.dbus.enable = true;
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  # enable sway window manager
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraSessionCommands = ''
+      export SDL_VIDEODRIVER=wayland
+      export QT_QPA_PLATFORM=wayland
+      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export MOZ_ENABLE_WAYLAND=1
+      export GTK_USE_PORTAL=1
+    '';
+  };
+
+  # Primary font paths
+  fonts.fonts = with pkgs.unstable; [
+    (nerdfonts.override { fonts = [ "Hack" ]; })
+    font-awesome
+  ];
+
+  # Enable apropos(1) and the -k option of man(1)
+  documentation.man.generateCaches = true;
 
   nix = {
     # Be sure to run nix-collect-garbage one time per week
@@ -295,6 +345,34 @@ in {
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Auto upgrade packages by default without reboot
+  system.autoUpgrade = {
+    allowReboot = false;
+    enable = true;
+  };
+
+  # Locate service
+  services.locate = {
+    enable = true;
+    locate = pkgs.unstable.plocate;
+    localuser = null;
+  };
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    java.enable = true;
+    light.enable = true;
+    mtr.enable = true;
+    nm-applet.enable = true;
+    seahorse.enable = true;
+    wireshark.enable = true;
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -317,7 +395,6 @@ in {
       fakeroot
       firmwareLinuxNonfree
       glib # gsettings
-      gnome.seahorse
       gparted
       graphviz
       gthumb
@@ -339,7 +416,6 @@ in {
       lua
       lxappearance
       meld
-      networkmanagerapplet
       nixfmt
       nixpkgs-review
       ntfs3g
@@ -413,7 +489,6 @@ in {
       duf
       dura
       elixir
-      elixir_ls
       entr
       espanso
       evince
@@ -479,8 +554,6 @@ in {
       meson
       micro
       minikube
-      mosh
-      mtr
       navi
       ncdu_2
       neofetch
@@ -576,69 +649,6 @@ in {
       zstd
 
     ]);
-
-  fonts.fonts = with pkgs.unstable; [
-    (nerdfonts.override { fonts = [ "Hack" ]; })
-    font-awesome
-  ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
-  virtualisation.podman.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  programs.singularity = {
-    enable = true;
-    # enableSuid = true; # FIXME: available in the next nixos release
-    # enableFakeroot = true; # FIXME: available in the next nixos release
-  };
-  # xdg-desktop-portal works by exposing a series of D-Bus interfaces
-  # known as portals under a well-known name
-  # (org.freedesktop.portal.Desktop) and object path
-  # (/org/freedesktop/portal/desktop).
-  # The portal interfaces include APIs for file access, opening URIs,
-  # printing and others.
-  services.dbus.enable = true;
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
-  # enable sway window manager
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraSessionCommands = ''
-      export SDL_VIDEODRIVER=wayland
-      export QT_QPA_PLATFORM=wayland
-      export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export MOZ_ENABLE_WAYLAND=1
-      export GTK_USE_PORTAL=1
-    '';
-  };
-
-  environment.etc = {
-    "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
-      bluez_monitor.properties = {
-        ["bluez5.enable-sbc-xq"] = true,
-        ["bluez5.enable-msbc"] = true,
-        ["bluez5.enable-hw-volume"] = true,
-        ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
-      }
-    '';
-  };
-
-  programs.light.enable = true;
-
-  documentation.man.generateCaches = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
