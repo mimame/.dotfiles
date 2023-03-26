@@ -358,19 +358,19 @@ format = '\([$state( $progress_current/$progress_total)]($style)\) '
 disabled = false
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
+format = '([\[$conflicted·$stashed·$deleted·$renamed·$modified·$staged·$untracked·$ahead_behind\]]($style))'
 style = 'red bold'
-stashed = 'stashed '
-ahead = 'ahead '
-behind = 'behind '
+stashed = 'stashed'
+ahead = 'ahead'
+behind = 'behind'
 up_to_date = ''
-diverged = 'diverged '
-conflicted = 'conflicted '
-deleted = 'deleted '
-renamed = 'renamed '
-modified = 'modified '
-staged = 'staged '
-untracked = 'untracked '
+diverged = 'diverged'
+conflicted = 'conflicted'
+deleted = 'deleted'
+renamed = 'renamed'
+modified = 'modified'
+staged = 'staged'
+untracked = 'untracked'
 ignore_submodules = false
 disabled = false
 
