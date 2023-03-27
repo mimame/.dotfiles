@@ -114,7 +114,10 @@ in {
       allowedTCPPorts = [ ];
     };
     hostName = "narnia";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.backend = "wpa_supplicant"; # iwd doesn't connect automatically
+    };
   };
   # OpenSSH daemon
   services.openssh = {
@@ -558,6 +561,7 @@ in {
       ncdu_2
       neofetch
       neovim
+      networkmanagerapplet # nm-connect-editor applet
       newsboat
       nextflow
       nim
