@@ -4,6 +4,6 @@ function ssh --description "SSH for wezterm or Kitty terminals"
     else if test "$TERM" = 'xterm-kitty'
         kitty +kitten ssh "$argv"
     else
-        ssh "$argv"
+        command ssh "$argv"
     end
 end
