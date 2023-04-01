@@ -114,11 +114,18 @@ in {
       allowedTCPPorts = [ ];
     };
     hostName = "narnia";
-    networkmanager = {
-      enable = true;
-      wifi.backend = "wpa_supplicant"; # iwd doesn't connect automatically
+    wireless.iwd.settings = {
+      Network = {
+        EnableIPv6 = true;
+        RoutePriorityOffset = 300;
+      };
+      # Verify wifi connections have autoConnect in both iwd and connman configs
+      Settings = { AutoConnect = true; };
     };
   };
+  services.connman.enable = true;
+  services.connman.package = pkgs.unstable.connmanFull;
+  services.connman.wifi.backend = "iwd";
   # OpenSSH daemon
   services.openssh = {
     enable = true;
@@ -240,7 +247,7 @@ in {
     users.mimame = {
       isNormalUser = true;
       description = "mimame";
-      extraGroups = [ "networkmanager" "wheel" "video" "podman" "vboxusers" ];
+      extraGroups = [ "wheel" "video" "podman" "vboxusers" ];
       packages = with pkgs;
         [
           #  firefox
@@ -476,6 +483,7 @@ in {
       # clang # breaks the lvim treesitter compilation
       clifm
       cmake
+      cmst # QT connman GUI
       coreutils
       crystal
       curl
@@ -561,7 +569,6 @@ in {
       ncdu_2
       neofetch
       neovim
-      networkmanagerapplet # nm-connect-editor applet
       newsboat
       nextflow
       nim
