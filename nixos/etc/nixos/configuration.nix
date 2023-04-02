@@ -534,6 +534,7 @@ in {
       gnumake
       gnupatch
       go
+      gomi
       google-chrome
       grc
       grex
@@ -633,7 +634,6 @@ in {
       tokei
       topgrade
       translate-shell
-      trash-cli
       tree
       tridactyl-native
       udiskie
