@@ -104,6 +104,7 @@ abbr clifmrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/clifm/profile
 abbr dunstrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/dunst/dunstrc) && popd'
 abbr fishrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/fish/config.fish) && popd'
 abbr gitrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/git/config) && popd'
+abbr hxrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/helix/config.toml) && popd'
 abbr kittyrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/kitty/kitty.conf) && popd'
 abbr mimerc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/mimeapps.list) && popd'
 abbr newsboatrc 'pushd ~/.dotfiles && $EDITOR $(readlink -f ~/.config/newsboat/config) && popd'
