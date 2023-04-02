@@ -93,7 +93,7 @@ abbr f 'fd --hidden --strip-cwd-prefix'
 
 # Safe ops. Ask the user before doing anything destructive.
 # Move rm files to the trash using trash-cli
-abbr rm trash
+abbr rm gomi
 abbr mv "mv -i"
 abbr cp "cp -ri"
 abbr ln "ln -i"
@@ -136,9 +136,6 @@ abbr tokei 'tokei --sort lines'
 abbr rsync 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
 abbr rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
 # }}}
-
-abbr rm trash-put
-
 
 abbr rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppable'
 
