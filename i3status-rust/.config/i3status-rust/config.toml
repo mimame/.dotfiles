@@ -37,7 +37,7 @@ format = " $icon {$signal_strength $ssid $frequency|Wired connection} via $devic
 interval = 5
 [[block.click]]
 button = "left"
-cmd = "nm-connection-editor"
+cmd = "cmst"
 
 [[block]]
 block = "disk_space"
