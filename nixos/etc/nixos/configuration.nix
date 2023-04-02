@@ -258,14 +258,22 @@ in {
   };
 
   # Security
-  # Configure podman to be use by minikube
-  security.sudo.extraRules = [{
-    users = [ "mimame" ];
-    commands = [{
-      command = "/run/current-system/sw/bin/podman";
-      options = [ "NOPASSWD" ];
+  security.sudo = {
+    # Only ask sudo password one time for all tty
+    # Ask sudo password each 2h instead 5 minutes
+    extraConfig = ''
+      Defaults !tty_tickets
+      Defaults timestamp_timeout=120
+    '';
+    # Configure podman to be use by minikube
+    extraRules = [{
+      users = [ "mimame" ];
+      commands = [{
+        command = "/run/current-system/sw/bin/podman";
+        options = [ "NOPASSWD" ];
+      }];
     }];
-  }];
+  };
   # GNOME Keyring daemon
   services.gnome.gnome-keyring.enable = true;
   # Policy that allows unprivileged processes to speak to privileged processes
