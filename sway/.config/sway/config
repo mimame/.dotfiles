@@ -25,16 +25,18 @@ input "type:touchpad" {
 }
 
 # Allow switching between workspaces with left and right swipes
-bindgesture swipe:right workspace prev
-bindgesture swipe:left workspace next
-bindgesture swipe:up focus right
-bindgesture swipe:down focus left
+# FIXME: Enable after v1.8.0
+# bindgesture swipe:right workspace prev
+# bindgesture swipe:left workspace next
+# bindgesture swipe:up focus right
+# bindgesture swipe:down focus left
 
 # Allow container movements by pinching them
-bindgesture pinch:inward+up move up
-bindgesture pinch:inward+down move down
-bindgesture pinch:inward+left move left
-bindgesture pinch:inward+right move right
+# FIXME: Enable after v1.8.0
+# bindgesture pinch:inward+up move up
+# bindgesture pinch:inward+down move down
+# bindgesture pinch:inward+left move left
+# bindgesture pinch:inward+right move right
 
 # Load bluetooth applet
 exec --no-startup-id blueman-applet
