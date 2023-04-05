@@ -156,7 +156,13 @@ in {
 
   # Virtualisation
   virtualisation.podman.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox = {
+    host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
+    guest = { enable = true; };
+  };
   programs.singularity = {
     enable = true;
     # enableSuid = true; # FIXME: available in the next nixos release
