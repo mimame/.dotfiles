@@ -78,7 +78,8 @@ in {
   zramSwap.enable = true;
 
   # Use the latest available version of Linux
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # By now the stable version is used to avoid break the virtualbox virtualisation
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Power
   # DBus service that provides power management support to applications.
@@ -305,7 +306,7 @@ in {
       after = [ "default.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.unstable.gammastep}/bin/gammastep";
+        ExecStart = "${pkgs.gammastep}/bin/gammastep";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -320,7 +321,7 @@ in {
       serviceConfig = {
         Type = "simple";
         ExecStart =
-          "${pkgs.unstable.swayidle}/bin/swayidle timeout 1800 'systemctl suspend-then-hibernate'";
+          "${pkgs.swayidle}/bin/swayidle timeout 1800 'systemctl suspend-then-hibernate'";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
@@ -449,7 +450,6 @@ in {
       lsb-release
       lsof
       lua
-      lxappearance
       meld
       nixfmt
       nixpkgs-review
@@ -476,6 +476,8 @@ in {
       stress
       stylua
       sudo
+      swaynotificationcenter
+      swayr
       tesseract5
       time
       util-linux
@@ -562,7 +564,6 @@ in {
       (hiPrio
         beauty-line-icon-theme) # collition warnings: needed for avoid default gnome icon themes
       (hiPrio fish) # collition warnings: needed for programs.fish.enable
-      (hiPrio sway) # collition warnings: needed for bindgesture
       hugo
       hunspellDicts.en-us-large
       hunspellDicts.es-es
@@ -639,8 +640,6 @@ in {
       sshfs
       starship
       stow
-      swaynotificationcenter
-      swayr
       sweet
       tealdeer
       tectonic
