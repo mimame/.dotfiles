@@ -123,9 +123,25 @@ in {
       Settings = { AutoConnect = true; };
     };
   };
-  services.connman.enable = true;
-  services.connman.package = pkgs.unstable.connmanFull;
-  services.connman.wifi.backend = "iwd";
+  services.connman = {
+    package = pkgs.connmanFull;
+    enable = true;
+    wifi.backend = "iwd";
+    extraFlags = [ "--nodnsproxy" ];
+  };
+
+  services.unbound = {
+    enable = true;
+    settings = {
+      server = { interface = [ "127.0.0.1" ]; };
+      forward-zone = [{
+        name = ".";
+        forward-addr = "1.1.1.1@853#cloudflare-dns.com";
+      }];
+      remote-control.control-enable = true;
+    };
+  };
+
   # OpenSSH daemon
   services.openssh = {
     enable = true;
@@ -406,6 +422,7 @@ in {
       bison
       bluez-tools
       clipman
+      cmst # QT connman GUI
       configure-gtk
       dbus-sway-environment
       dmenu-wayland
@@ -491,7 +508,6 @@ in {
       # clang # breaks the lvim treesitter compilation
       clifm
       cmake
-      cmst # QT connman GUI
       coreutils
       crystal
       curl
