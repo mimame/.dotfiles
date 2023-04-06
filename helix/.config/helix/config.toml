@@ -15,6 +15,20 @@ auto-save = true
 # Renders a line at the top of the editor displaying open buffers
 bufferline = "always"
 
+[editor.statusline]
+# A list of elements aligned to the left of the statusline
+left = ["mode", "spinner", "version-control", "separator", "file-name"]
+# A list of elements aligned to the right of the statusline
+right = ["diagnostics", "workspace-diagnostics", "separator", "selections", "separator", "position", "position-percentage", "total-line-numbers", "separator", "file-encoding", "file-line-ending", "file-type"]
+# The character used to separate elements in the statusline
+separator = "│"
+
+[editor.lsp]
+# Display LSP progress messages below statusline
+display-messages = true
+# Display inlay hints
+display-inlay-hints = true
+
 [editor.cursor-shape]
 # Cursor shape in normal mode
 insert = "bar"
@@ -22,20 +36,6 @@ insert = "bar"
 normal = "block"
 # Cursor shape in select mode
 select = "underline"
-
-[editor.lsp]
-# Display LSP progress messages below statusline
-display-messages = true
-
-[editor.statusline]
-# A list of elements aligned to the left of the statusline
-left = ["mode", "spinner"]
-# A list of elements aligned to the middle of the statusline
-center = ["file-name"]
-# A list of elements aligned to the right of the statusline
-right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
-# The character used to separate elements in the statusline
-separator = "│"
 
 [editor.file-picker]
 # Enables ignoring hidden files
@@ -58,3 +58,6 @@ newline = "⏎"
 render = true
 # Literal character to use for rendering the indent guide
 character = "╎"
+
+[editor.soft-wrap]
+enable = true
