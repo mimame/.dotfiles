@@ -9,6 +9,7 @@ set $mod Mod4
 # Keyboard layout http://askubuntu.com/a/24930 http://askubuntu.com/a/296437
 # https://wiki.archlinux.org/index.php/xmodmap
 exec_always --no-startup-id pkill udiskie; udiskie --notify --smart-tray --notify-command notify-send &
+exec_always --no-startup-id sudo systemctl restart geoclue.service
 exec dbus-sway-environment
 exec configure-gtk
 exec wl-paste -t text --watch clipman store --no-persist
