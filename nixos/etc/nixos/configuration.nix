@@ -311,34 +311,37 @@ in {
 
   # systemd units
   systemd = {
-    user.services.gammastep = {
-      enable = true;
-      description = "gammastep";
-      wants = [ "default.target" ];
-      wantedBy = [ "default.target" ];
-      after = [ "default.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.gammastep}/bin/gammastep";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
+    user.services = {
+      gammastep = {
+        enable = true;
+        description = "gammastep";
+        wants = [ "default.target" ];
+        wantedBy = [ "default.target" ];
+        after = [ "default.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.gammastep}/bin/gammastep";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
       };
-    };
-    user.services.swayidle = {
-      enable = true;
-      description = "swayidle";
-      wants = [ "default.target" ];
-      wantedBy = [ "default.target" ];
-      after = [ "default.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart =
-          "${pkgs.swayidle}/bin/swayidle timeout 1800 'systemctl suspend-then-hibernate'";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
+      swayidle = {
+        enable = true;
+        description = "swayidle";
+        wants = [ "default.target" ];
+        wantedBy = [ "default.target" ];
+        after = [ "default.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart =
+            "${pkgs.swayidle}/bin/swayidle timeout 1800 'systemctl suspend-then-hibernate'";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
       };
+
     };
   };
 
@@ -574,8 +577,7 @@ in {
       handlr
       helix
       hexyl
-      (hiPrio
-        beauty-line-icon-theme) # collition warnings: needed for avoid default gnome icon themes
+      (hiPrio beauty-line-icon-theme) # avoid default gnome icon themes
       (hiPrio fish) # collition warnings: needed for programs.fish.enable
       hugo
       hunspellDicts.en-us-large
