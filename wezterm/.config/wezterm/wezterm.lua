@@ -26,6 +26,7 @@ return {
     "Hack Nerd Font",
     "Broot Icons Visual Studio Code",
   },
+  check_for_updates = false,
   font_size = 18.0,
   color_scheme = "Catppuccin Mocha",
   window_padding = {
