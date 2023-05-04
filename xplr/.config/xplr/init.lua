@@ -15,7 +15,7 @@ local xplr = xplr -- The globally exposed configuration to be overridden.
 --
 -- ```lua
 -- version = "0.0.0"
-version = '0.20.2'
+version = '0.21.1'
 -- ```
 
 -- # Configuration ------------------------------------------------------------
@@ -160,7 +160,7 @@ xplr.config.general.logs.error.style = { fg = "Red" }
 xplr.config.general.table.header.cols = {
   { format = " index", style = {} },
   { format = "╭─── path", style = {} },
-  { format = "permissions", style = {} },
+  { format = "perm", style = {} },
   { format = "size", style = {} },
   { format = "modified", style = {} },
 }
@@ -246,6 +246,26 @@ xplr.config.general.table.col_widths = {
   { Percentage = 10 },
   { Percentage = 20 },
 }
+
+-- Renderer for each item in the selection list.
+--
+-- Type: nullable string
+xplr.config.general.selection.item.format = "builtin.fmt_general_selection_item"
+
+-- Style for each item in the selection list.
+--
+-- Type: [Style](https://xplr.dev/en/style)
+xplr.config.general.selection.item.style = {}
+
+-- The default search algorithm
+--
+-- Type: [Search Algorithm](https://xplr.dev/en/searching#algorithm)
+xplr.config.general.search.algorithm = "Fuzzy"
+
+-- The default search ordering
+--
+-- Type: boolean
+xplr.config.general.search.unordered = false
 
 -- The content that is placed before the item name for each row by default.
 --
@@ -415,7 +435,6 @@ xplr.config.general.sort_and_filter_ui.filter_identifiers = {
   RelativePathIsNot = { format = "rel!=", style = {} },
   RelativePathDoesMatchRegex = { format = "rel=/", style = {} },
   RelativePathDoesNotMatchRegex = { format = "rel!/", style = {} },
-
   IRelativePathDoesContain = { format = "[i]rel=~", style = {} },
   IRelativePathDoesEndWith = { format = "[i]rel=$", style = {} },
   IRelativePathDoesNotContain = { format = "[i]rel!~", style = {} },
@@ -426,7 +445,6 @@ xplr.config.general.sort_and_filter_ui.filter_identifiers = {
   IRelativePathIsNot = { format = "[i]rel!=", style = {} },
   IRelativePathDoesMatchRegex = { format = "[i]rel=/", style = {} },
   IRelativePathDoesNotMatchRegex = { format = "[i]rel!/", style = {} },
-
   AbsolutePathDoesContain = { format = "abs=~", style = {} },
   AbsolutePathDoesEndWith = { format = "abs=$", style = {} },
   AbsolutePathDoesNotContain = { format = "abs!~", style = {} },
@@ -437,7 +455,6 @@ xplr.config.general.sort_and_filter_ui.filter_identifiers = {
   AbsolutePathIsNot = { format = "abs!=", style = {} },
   AbsolutePathDoesMatchRegex = { format = "abs=/", style = {} },
   AbsolutePathDoesNotMatchRegex = { format = "abs!/", style = {} },
-
   IAbsolutePathDoesContain = { format = "[i]abs=~", style = {} },
   IAbsolutePathDoesEndWith = { format = "[i]abs=$", style = {} },
   IAbsolutePathDoesNotContain = { format = "[i]abs!~", style = {} },
@@ -453,10 +470,21 @@ xplr.config.general.sort_and_filter_ui.filter_identifiers = {
 -- The identifiers used to denote applied search input.
 --
 -- Type: { format = nullable string, style = [Style](https://xplr.dev/en/style) }
-xplr.config.general.sort_and_filter_ui.search_identifier = {
-  format = "search:",
-  style = {},
+xplr.config.general.sort_and_filter_ui.search_identifiers = {
+  Fuzzy = { format = "fzy:", style = {} },
+  Regex = { format = "reg:", style = {} },
 }
+
+-- The shape of ordered indicator for search ordering identifiers in Sort & filter panel.
+--
+-- Type: nullable string
+xplr.config.general.sort_and_filter_ui.search_direction_identifiers.ordered.format =
+  "↓"
+
+-- The shape of unordered indicator for search ordering identifiers in Sort & filter panel.
+--
+-- Type: nullable string
+xplr.config.general.sort_and_filter_ui.search_direction_identifiers.unordered.format = ""
 
 -- The content for panel title by default.
 --
@@ -702,7 +730,7 @@ xplr.config.general.global_key_bindings = {
 --
 -- Type: [Style](https://xplr.dev/en/style)
 xplr.config.node_types.directory.style = {
-  fg = "Cyan",
+  fg = "Blue",
 }
 
 -- Metadata for the directory nodes.
@@ -1233,6 +1261,18 @@ xplr.config.modes.builtin.default = {
           "ScrollDownHalf",
         },
       },
+      ["ctrl-n"] = {
+        help = "next selection",
+        messages = {
+          "FocusNextSelection",
+        },
+      },
+      ["ctrl-p"] = {
+        help = "prev selection",
+        messages = {
+          "FocusPreviousSelection",
+        },
+      },
     },
     on_number = {
       help = "input",
@@ -1245,8 +1285,6 @@ xplr.config.modes.builtin.default = {
   },
 }
 
-xplr.config.modes.builtin.default.key_bindings.on_key["tab"] =
-  xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-i"]
 xplr.config.modes.builtin.default.key_bindings.on_key["v"] =
   xplr.config.modes.builtin.default.key_bindings.on_key["space"]
 xplr.config.modes.builtin.default.key_bindings.on_key["V"] =
@@ -1261,6 +1299,8 @@ xplr.config.modes.builtin.default.key_bindings.on_key["k"] =
   xplr.config.modes.builtin.default.key_bindings.on_key["up"]
 xplr.config.modes.builtin.default.key_bindings.on_key["l"] =
   xplr.config.modes.builtin.default.key_bindings.on_key["right"]
+xplr.config.modes.builtin.default.key_bindings.on_key["tab"] =
+  xplr.config.modes.builtin.default.key_bindings.on_key["ctrl-i"] -- compatibility workaround
 
 -- The builtin debug error mode.
 --
@@ -1277,11 +1317,10 @@ xplr.config.modes.builtin.debug_error = {
       },
       splits = {
         {
-          CustomContent = {
-            title = "debug error",
-            body = {
-              StaticParagraph = {
-                render = [[
+          Static = {
+            CustomParagraph = {
+              ui = { title = { format = "debug error" } },
+              body = [[
 
   Some errors occurred during startup.
   If you think this is a bug, please report it at:
@@ -1293,8 +1332,7 @@ xplr.config.modes.builtin.debug_error = {
 
   To disable this mode, set `xplr.config.general.disable_debug_error_mode`
   to `true` in your config file.
-                ]],
-              },
+              ]],
             },
           },
         },
@@ -1333,11 +1371,10 @@ xplr.config.modes.builtin.debug_error = {
 xplr.config.modes.builtin.recover = {
   name = "recover",
   layout = {
-    CustomContent = {
-      title = " recover ",
-      body = {
-        StaticParagraph = {
-          render = [[
+    Static = {
+      CustomParagraph = {
+        ui = { title = { format = "recover" } },
+        body = [[
 
   You pressed an invalid key and went into "recover" mode.
   This mode saves you from performing unwanted actions.
@@ -1346,8 +1383,7 @@ xplr.config.modes.builtin.recover = {
 
   To disable this mode, set `xplr.config.general.enable_recover_mode`
   to `false` in your config file.
-          ]],
-        },
+        ]],
       },
     },
   },
@@ -1370,7 +1406,7 @@ xplr.config.modes.builtin.go_to_path = {
         messages = {
           {
             BashExecSilently0 = [===[
-              PTH=${XPLR_INPUT_BUFFER}
+              PTH="$XPLR_INPUT_BUFFER"
               PTH_ESC=$(printf %q "$PTH")
               if [ -d "$PTH" ]; then
                 "$XPLR" -m 'ChangeDirectory: %q' "$PTH"
@@ -1407,21 +1443,63 @@ xplr.config.modes.builtin.selection_ops = {
   layout = "HelpMenu",
   key_bindings = {
     on_key = {
+      ["e"] = {
+        help = "edit selection",
+        messages = {
+          {
+            BashExec0 = [===[
+              TMPFILE="$(mktemp)"
+              (while IFS= read -r -d '' PTH; do
+                echo $(printf %q "${PTH:?}") >> "${TMPFILE:?}"
+              done < "${XPLR_PIPE_SELECTION_OUT:?}")
+              ${EDITOR:-vi} "${TMPFILE:?}"
+              [ ! -e "$TMPFILE" ] && exit
+              "$XPLR" -m ClearSelection
+              (while IFS= read -r PTH_ESC; do
+                "$XPLR" -m 'SelectPath: %q' "$(eval printf %s ${PTH_ESC:?})"
+              done < "${TMPFILE:?}")
+              rm -- "${TMPFILE:?}"
+            ]===],
+          },
+          "PopMode",
+        },
+      },
+      ["l"] = {
+        help = "list selection",
+        messages = {
+          {
+            BashExec0 = [===[
+              [ -z "$PAGER" ] && PAGER="less -+F"
+
+              while IFS= read -r -d '' PTH; do
+                echo $(printf %q "$PTH")
+              done < "${XPLR_PIPE_SELECTION_OUT:?}" | ${PAGER:?}
+            ]===],
+          },
+          "PopMode",
+        },
+      },
       ["c"] = {
         help = "copy here",
         messages = {
           {
             BashExec0 = [===[
+              "$XPLR" -m ExplorePwd
               (while IFS= read -r -d '' PTH; do
                 PTH_ESC=$(printf %q "$PTH")
-                if cp -vr -- "${PTH:?}" ./; then
-                  "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC copied to ."
+                BASENAME=$(basename -- "$PTH")
+                BASENAME_ESC=$(printf %q "$BASENAME")
+                while [ -e "$BASENAME" ]; do
+                  BASENAME="$BASENAME (copied)"
+                  BASENAME_ESC=$(printf %q "$BASENAME")
+                done
+                if cp -vr -- "${PTH:?}" "./${BASENAME:?}"; then
+                  "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC copied to ./$BASENAME_ESC"
+                  "$XPLR" -m 'FocusPath: %q' "$BASENAME"
                 else
-                  "$XPLR" -m 'LogError: %q' "Failed to copy $PTH_ESC to ."
+                  "$XPLR" -m 'LogError: %q' "could not copy $PTH_ESC to ./$BASENAME_ESC"
                 fi
               done < "${XPLR_PIPE_SELECTION_OUT:?}")
-              "$XPLR" -m ExplorePwdAsync
-              "$XPLR" -m ClearSelection
               read -p "[enter to continue]"
             ]===],
           },
@@ -1433,15 +1511,76 @@ xplr.config.modes.builtin.selection_ops = {
         messages = {
           {
             BashExec0 = [===[
+              "$XPLR" -m ExplorePwd
               (while IFS= read -r -d '' PTH; do
                 PTH_ESC=$(printf %q "$PTH")
-                if mv -v -- "${PTH:?}" ./; then
-                  "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC moved to ."
+                BASENAME=$(basename -- "$PTH")
+                BASENAME_ESC=$(printf %q "$BASENAME")
+                while [ -e "$BASENAME" ]; do
+                  BASENAME="$BASENAME (moved)"
+                  BASENAME_ESC=$(printf %q "$BASENAME")
+                done
+                if mv -v -- "${PTH:?}" "./${BASENAME:?}"; then
+                  "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC moved to ./$BASENAME_ESC"
+                  "$XPLR" -m 'FocusPath: %q' "$BASENAME"
                 else
-                  "$XPLR" -m 'LogError: %q' "Failed to move $PTH_ESC to ."
+                  "$XPLR" -m 'LogError: %q' "could not move $PTH_ESC to ./$BASENAME_ESC"
                 fi
               done < "${XPLR_PIPE_SELECTION_OUT:?}")
-              "$XPLR" -m ExplorePwdAsync
+              read -p "[enter to continue]"
+            ]===],
+          },
+          "PopMode",
+        },
+      },
+      ["s"] = {
+        help = "softlink here",
+        messages = {
+          {
+            BashExec0 = [===[
+              "$XPLR" -m ExplorePwd
+              (while IFS= read -r -d '' PTH; do
+                PTH_ESC=$(printf %q "$PTH")
+                BASENAME=$(basename -- "$PTH")
+                BASENAME_ESC=$(printf %q "$BASENAME")
+                while [ -e "$BASENAME" ]; do
+                  BASENAME="$BASENAME (softlinked)"
+                  BASENAME_ESC=$(printf %q "$BASENAME")
+                done
+                if ln -sv -- "${PTH:?}" "./${BASENAME:?}"; then
+                  "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC softlinked as ./$BASENAME_ESC"
+                  "$XPLR" -m 'FocusPath: %q' "$BASENAME"
+                else
+                  "$XPLR" -m 'LogError: %q' "could not softlink $PTH_ESC as ./$BASENAME_ESC"
+                fi
+              done < "${XPLR_PIPE_SELECTION_OUT:?}")
+              read -p "[enter to continue]"
+            ]===],
+          },
+          "PopMode",
+        },
+      },
+      ["h"] = {
+        help = "hardlink here",
+        messages = {
+          {
+            BashExec0 = [===[
+              "$XPLR" -m ExplorePwd
+              (while IFS= read -r -d '' PTH; do
+                PTH_ESC=$(printf %q "$PTH")
+                BASENAME=$(basename -- "$PTH")
+                BASENAME_ESC=$(printf %q "$BASENAME")
+                while [ -e "$BASENAME" ]; do
+                  BASENAME="$BASENAME (hardlinked)"
+                  BASENAME_ESC=$(printf %q "$BASENAME")
+                done
+                if ln -v -- "${PTH:?}" "./${BASENAME:?}"; then
+                  "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC hardlinked as ./$BASENAME_ESC"
+                  "$XPLR" -m 'FocusPath: %q' "$BASENAME"
+                else
+                  "$XPLR" -m 'LogError: %q' "could not hardlink $PTH_ESC as ./$BASENAME_ESC"
+                fi
+              done < "${XPLR_PIPE_SELECTION_OUT:?}")
               read -p "[enter to continue]"
             ]===],
           },
@@ -1552,8 +1691,8 @@ xplr.config.modes.builtin.create_file = {
               PTH="$XPLR_INPUT_BUFFER"
               PTH_ESC=$(printf %q "$PTH")
               if [ "$PTH" ]; then
-                mkdir -p -- "$(dirname $(realpath -m $PTH))" \
-                && touch -- "$PTH" \
+                mkdir -p -- "$(dirname $(realpath -m $PTH))"  # This may fail.
+                touch -- "$PTH" \
                 && "$XPLR" -m 'SetInputBuffer: ""' \
                 && "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC created" \
                 && "$XPLR" -m 'ExplorePwd' \
@@ -1675,7 +1814,7 @@ xplr.config.modes.builtin.go_to = {
                 elif command -v open; then
                   OPENER=open
                 else
-                  "$XPLR" -m 'LogError: "$OPENER not found"'
+                  "$XPLR" -m 'LogError: %q' "$OPENER not found"
                   exit 1
                 fi
               fi
@@ -1793,15 +1932,16 @@ xplr.config.modes.builtin.delete = {
         messages = {
           {
             BashExec0 = [===[
+              "$XPLR" -m ExplorePwd
               (while IFS= read -r -d '' PTH; do
                 PTH_ESC=$(printf %q "$PTH")
                 if rm -rfv -- "${PTH:?}"; then
                   "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC deleted"
                 else
-                  "$XPLR" -m 'LogError: %q' "Failed to delete $PTH_ESC"
+                  "$XPLR" -m 'LogError: %q' "could not delete $PTH_ESC"
+                  "$XPLR" -m 'FocusPath: %q' "$PTH"
                 fi
               done < "${XPLR_PIPE_RESULT_OUT:?}")
-              "$XPLR" -m ExplorePwdAsync
               read -p "[enter to continue]"
             ]===],
           },
@@ -1813,23 +1953,25 @@ xplr.config.modes.builtin.delete = {
         messages = {
           {
             BashExec0 = [===[
+              "$XPLR" -m ExplorePwd
               (while IFS= read -r -d '' PTH; do
                 PTH_ESC=$(printf %q "$PTH")
                 if [ -d "$PTH" ] && [ ! -L "$PTH" ]; then
                   if rmdir -v -- "${PTH:?}"; then
                     "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC deleted"
                   else
-                    "$XPLR" -m 'LogError: %q' "Failed to delete $PTH_ESC"
+                    "$XPLR" -m 'LogError: %q' "could not delete $PTH_ESC"
+                    "$XPLR" -m 'FocusPath: %q' "$PTH"
                   fi
                 else
                   if rm -v -- "${PTH:?}"; then
                     "$XPLR" -m 'LogSuccess: %q' "$PTH_ESC deleted"
                   else
-                    "$XPLR" -m 'LogError: %q' "Failed to delete $PTH_ESC"
+                    "$XPLR" -m 'LogError: %q' "could not delete $PTH_ESC"
+                    "$XPLR" -m 'FocusPath: %q' "$PTH"
                   fi
                 fi
               done < "${XPLR_PIPE_RESULT_OUT:?}")
-              "$XPLR" -m ExplorePwdAsync
               read -p "[enter to continue]"
             ]===],
           },
@@ -1898,6 +2040,19 @@ xplr.config.modes.builtin.action = {
         messages = {
           "PopMode",
           "ToggleMouse",
+        },
+      },
+      ["p"] = {
+        help = "edit permissions",
+        messages = {
+          "PopMode",
+          { SwitchModeBuiltin = "edit_permissions" },
+          {
+            BashExecSilently0 = [===[
+              PERM=$(stat -c '%a' -- "${XPLR_FOCUS_PATH:?}")
+              "$XPLR" -m 'SetInputBuffer: %q' "${PERM:?}"
+            ]===],
+          },
         },
       },
       ["v"] = {
@@ -1988,6 +2143,42 @@ xplr.config.modes.builtin.search = {
           "FocusNext",
         },
       },
+      ["ctrl-z"] = {
+        help = "toggle ordering",
+        messages = {
+          "ToggleSearchOrder",
+          "ExplorePwdAsync",
+        },
+      },
+      ["ctrl-a"] = {
+        help = "toggle search algorithm",
+        messages = {
+          "ToggleSearchAlgorithm",
+          "ExplorePwdAsync",
+        },
+      },
+      ["ctrl-r"] = {
+        help = "regex search",
+        messages = {
+          "SearchRegexFromInput",
+          "ExplorePwdAsync",
+        },
+      },
+      ["ctrl-f"] = {
+        help = "fuzzy search",
+        messages = {
+          "SearchFuzzyFromInput",
+          "ExplorePwdAsync",
+        },
+      },
+      ["ctrl-s"] = {
+        help = "sort (no search order)",
+        messages = {
+          "DisableSearchOrder",
+          "ExplorePwdAsync",
+          { SwitchModeBuiltinKeepingInputBuffer = "sort" },
+        },
+      },
       ["right"] = {
         help = "enter",
         messages = {
@@ -2027,7 +2218,7 @@ xplr.config.modes.builtin.search = {
     default = {
       messages = {
         "UpdateInputBufferFromKey",
-        "SearchFuzzyFromInput",
+        "SearchFromInput",
         "ExplorePwdAsync",
       },
     },
@@ -2237,7 +2428,12 @@ xplr.config.modes.builtin.sort = {
       ["enter"] = {
         help = "submit",
         messages = {
-          "PopMode",
+          "PopModeKeepingInputBuffer",
+        },
+      },
+      ["esc"] = {
+        messages = {
+          "PopModeKeepingInputBuffer",
         },
       },
       ["m"] = {
@@ -2408,6 +2604,161 @@ xplr.config.modes.builtin.vroot = {
   },
 }
 
+-- The builtin edit permissions mode.
+--
+-- Type: [Mode](https://xplr.dev/en/mode)
+xplr.config.modes.builtin.edit_permissions = {
+  name = "edit permissions",
+  key_bindings = {
+    on_key = {
+      ["u"] = {
+        help = "+user",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              PERM="${XPLR_INPUT_BUFFER:-000}"
+              U="${PERM: -3:-2}"
+              G="${PERM: -2:-1}"
+              O="${PERM: -1}"
+
+              U="$(( (${U:-0} + 1) % 8 ))"
+              "$XPLR" -m 'SetInputBuffer: %q' "${U:-0}${G:-0}${O:-0}"
+            ]===],
+          },
+        },
+      },
+      ["U"] = {
+        help = "-user",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              PERM="${XPLR_INPUT_BUFFER:-000}"
+              U="${PERM: -3:-2}"
+              G="${PERM: -2:-1}"
+              O="${PERM: -1}"
+
+              U="$(( ${U:-0}-1 < 0 ? 7 : ${U:-0}-1 ))"
+              "$XPLR" -m 'SetInputBuffer: %q' "${U:-0}${G:-0}${O:-0}"
+            ]===],
+          },
+        },
+      },
+      ["g"] = {
+        help = "+group",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              PERM="${XPLR_INPUT_BUFFER:-000}"
+              U="${PERM: -3:-2}"
+              G="${PERM: -2:-1}"
+              O="${PERM: -1}"
+
+              G="$(( (${G:-0} + 1) % 8 ))"
+              "$XPLR" -m 'SetInputBuffer: %q' "${U:-0}${G:-0}${O:-0}"
+            ]===],
+          },
+        },
+      },
+      ["G"] = {
+        help = "-group",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              PERM="${XPLR_INPUT_BUFFER:-000}"
+              U="${PERM: -3:-2}"
+              G="${PERM: -2:-1}"
+              O="${PERM: -1}"
+
+              G="$(( ${G:-0}-1 < 0 ? 7 : ${G:-0}-1 ))"
+              "$XPLR" -m 'SetInputBuffer: %q' "${U:-0}${G:-0}${O:-0}"
+            ]===],
+          },
+        },
+      },
+      ["o"] = {
+        help = "+other",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              PERM="${XPLR_INPUT_BUFFER:-000}"
+              U="${PERM: -3:-2}"
+              G="${PERM: -2:-1}"
+              O="${PERM: -1}"
+
+              O="$(( (${O:-0} + 1) % 8 ))"
+              "$XPLR" -m 'SetInputBuffer: %q' "${U:-0}${G:-0}${O:-0}"
+            ]===],
+          },
+        },
+      },
+      ["O"] = {
+        help = "-other",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              PERM="${XPLR_INPUT_BUFFER:-000}"
+              U="${PERM: -3:-2}"
+              G="${PERM: -2:-1}"
+              O="${PERM: -1}"
+
+              O="$(( ${O:-0}-1 < 0 ? 7 : ${O:-0}-1 ))"
+              "$XPLR" -m 'SetInputBuffer: %q' "${U:-0}${G:-0}${O:-0}"
+            ]===],
+          },
+        },
+      },
+      ["m"] = {
+        help = "max",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              "$XPLR" -m 'SetInputBuffer: %q' "777"
+            ]===],
+          },
+        },
+      },
+      ["M"] = {
+        help = "min",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              "$XPLR" -m 'SetInputBuffer: %q' "000"
+            ]===],
+          },
+        },
+      },
+      ["ctrl-r"] = {
+        help = "reset",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              PERM=$(stat -c '%a' -- "${XPLR_FOCUS_PATH:?}")
+              "$XPLR" -m 'SetInputBuffer: %q' "${PERM:?}"
+            ]===],
+          },
+        },
+      },
+      ["enter"] = {
+        help = "submit",
+        messages = {
+          {
+            BashExecSilently0 = [===[
+              chmod "${XPLR_INPUT_BUFFER:?}" -- "${XPLR_FOCUS_PATH:?}"
+            ]===],
+          },
+          "PopMode",
+          "ExplorePwdAsync",
+        },
+      },
+    },
+    default = {
+      messages = {
+        "UpdateInputBufferFromKey",
+      },
+    },
+  },
+}
+
 -- This is where you define custom modes.
 --
 -- Type: mapping of the following key-value pairs:
@@ -2506,6 +2857,19 @@ xplr.fn.builtin.try_complete_path = function(m)
   end
 end
 
+xplr.fn.builtin.fmt_general_selection_item = function(n)
+  local nl = xplr.util.paint("\\n", { add_modifiers = { "Italic", "Dim" } })
+  local sh_config = { with_prefix_dots = true, without_suffix_dots = true }
+  local shortened = xplr.util.shorten(n.absolute_path, sh_config)
+  if n.is_dir then
+    shortened = shortened .. "/"
+  end
+  local ls_style = xplr.util.lscolor(n.absolute_path)
+  local meta_style = xplr.util.node_type(n).style
+  local style = xplr.util.style_mix({ meta_style, ls_style })
+  return xplr.util.paint(shortened:gsub("\n", nl), style)
+end
+
 -- Renders the first column in the table
 xplr.fn.builtin.fmt_general_table_row_cols_0 = function(m)
   local r = ""
@@ -2522,11 +2886,10 @@ end
 
 -- Renders the second column in the table
 xplr.fn.builtin.fmt_general_table_row_cols_1 = function(m)
+  local nl = xplr.util.paint("\\n", { add_modifiers = { "Italic", "Dim" } })
   local r = m.tree .. m.prefix
-
-  local function path_escape(path)
-    return string.gsub(string.gsub(path, "\\", "\\\\"), "\n", "\\n")
-  end
+  local style = xplr.util.lscolor(m.absolute_path)
+  style = xplr.util.style_mix({ m.style, style })
 
   if m.meta.icon == nil then
     r = r .. ""
@@ -2534,11 +2897,11 @@ xplr.fn.builtin.fmt_general_table_row_cols_1 = function(m)
     r = r .. m.meta.icon .. " "
   end
 
-  r = r .. path_escape(m.relative_path)
-
+  local rel = m.relative_path
   if m.is_dir then
-    r = r .. "/"
+    rel = rel .. "/"
   end
+  r = r .. xplr.util.paint(xplr.util.shell_escape(rel), style)
 
   r = r .. m.suffix .. " "
 
@@ -2548,11 +2911,11 @@ xplr.fn.builtin.fmt_general_table_row_cols_1 = function(m)
     if m.is_broken then
       r = r .. "×"
     else
-      r = r .. path_escape(m.symlink.absolute_path)
-
+      local symlink_path = xplr.util.shorten(m.symlink.absolute_path)
       if m.symlink.is_dir then
-        r = r .. "/"
+        symlink_path = symlink_path .. "/"
       end
+      r = r .. symlink_path:gsub("\n", nl)
     end
   end
 
@@ -2561,84 +2924,23 @@ end
 
 -- Renders the third column in the table
 xplr.fn.builtin.fmt_general_table_row_cols_2 = function(m)
-  local no_color = os.getenv("NO_COLOR")
+  local r = xplr.util.paint("r", { fg = "Green" })
+  local w = xplr.util.paint("w", { fg = "Yellow" })
+  local x = xplr.util.paint("x", { fg = "Red" })
+  local s = xplr.util.paint("s", { fg = "Red" })
+  local S = xplr.util.paint("S", { fg = "Red" })
+  local t = xplr.util.paint("t", { fg = "Red" })
+  local T = xplr.util.paint("T", { fg = "Red" })
 
-  local function green(x)
-    if no_color == nil then
-      return "\x1b[32m" .. x .. "\x1b[0m"
-    else
-      return x
-    end
-  end
-
-  local function yellow(x)
-    if no_color == nil then
-      return "\x1b[33m" .. x .. "\x1b[0m"
-    else
-      return x
-    end
-  end
-
-  local function red(x)
-    if no_color == nil then
-      return "\x1b[31m" .. x .. "\x1b[0m"
-    else
-      return x
-    end
-  end
-
-  local function bit(x, color, cond)
-    if cond then
-      return color(x)
-    else
-      return color("-")
-    end
-  end
-
-  local p = m.permissions
-
-  local r = ""
-
-  r = r .. bit("r", green, p.user_read)
-  r = r .. bit("w", yellow, p.user_write)
-
-  if p.user_execute == false and p.setuid == false then
-    r = r .. bit("-", red, p.user_execute)
-  elseif p.user_execute == true and p.setuid == false then
-    r = r .. bit("x", red, p.user_execute)
-  elseif p.user_execute == false and p.setuid == true then
-    r = r .. bit("S", red, p.user_execute)
-  else
-    r = r .. bit("s", red, p.user_execute)
-  end
-
-  r = r .. bit("r", green, p.group_read)
-  r = r .. bit("w", yellow, p.group_write)
-
-  if p.group_execute == false and p.setuid == false then
-    r = r .. bit("-", red, p.group_execute)
-  elseif p.group_execute == true and p.setuid == false then
-    r = r .. bit("x", red, p.group_execute)
-  elseif p.group_execute == false and p.setuid == true then
-    r = r .. bit("S", red, p.group_execute)
-  else
-    r = r .. bit("s", red, p.group_execute)
-  end
-
-  r = r .. bit("r", green, p.other_read)
-  r = r .. bit("w", yellow, p.other_write)
-
-  if p.other_execute == false and p.setuid == false then
-    r = r .. bit("-", red, p.other_execute)
-  elseif p.other_execute == true and p.setuid == false then
-    r = r .. bit("x", red, p.other_execute)
-  elseif p.other_execute == false and p.setuid == true then
-    r = r .. bit("T", red, p.other_execute)
-  else
-    r = r .. bit("t", red, p.other_execute)
-  end
-
-  return r
+  return xplr.util
+    .permissions_rwx(m.permissions)
+    :gsub("r", r)
+    :gsub("w", w)
+    :gsub("x", x)
+    :gsub("s", s)
+    :gsub("S", S)
+    :gsub("t", t)
+    :gsub("T", T)
 end
 
 -- Renders the fourth column in the table
