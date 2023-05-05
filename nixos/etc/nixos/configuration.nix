@@ -341,7 +341,6 @@ in {
           TimeoutStopSec = 10;
         };
       };
-
     };
   };
 
@@ -390,8 +389,13 @@ in {
       dates = "weekly";
       options = "--delete-old";
     };
-    # Replace identical files in the nix store with hard links
-    settings.auto-optimise-store = true;
+    settings = {
+      # Replace identical files in the nix store with hard links
+      auto-optimise-store = true;
+      # Unify many different Nix package manager utilities
+      # https://nixos.org/manual/nix/stable/command-ref/experimental-commands.html
+      experimental-features = [ "nix-command" ];
+    };
   };
 
   # Allow unfree packages
