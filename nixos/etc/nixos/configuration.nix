@@ -199,8 +199,21 @@ in {
         user = "mimame";
       };
     };
+
     # Enable touchpad support (enabled by default in most desktopManager).
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+      # Ignored here! Implemented by Sway
+      touchpad = {
+        # https://wayland.freedesktop.org/libinput/doc/latest/clickpad-softbuttons.html#clickpad-softbuttons
+        clickMethod = "buttonareas";
+        disableWhileTyping = true;
+        middleEmulation = false;
+        naturalScrolling = true;
+        tappingButtonMap = "lrm";
+        tapping = true;
+      };
+    };
   };
 
   services.interception-tools = {
@@ -217,6 +230,7 @@ in {
   services.xserver = {
     layout = "us";
     xkbVariant = "altgr-intl";
+    exportConfiguration = true;
   };
 
   # Configure console keymap
@@ -463,6 +477,7 @@ in {
       keepassxc
       libarchive
       libevdev
+      libinput
       libinput-gestures
       libnotify
       libreoffice-fresh
