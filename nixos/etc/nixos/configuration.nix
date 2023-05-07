@@ -409,6 +409,7 @@ in {
       # Unify many different Nix package manager utilities
       # https://nixos.org/manual/nix/stable/command-ref/experimental-commands.html
       experimental-features = [ "nix-command" ];
+      trusted-users = [ "root" "@wheel" ];
     };
   };
 
