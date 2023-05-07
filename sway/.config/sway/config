@@ -14,15 +14,22 @@ exec dbus-sway-environment
 exec configure-gtk
 exec wl-paste -t text --watch clipman store --no-persist
 exec swaync
+
 input "type:keyboard" {
     xkb_layout us
     xkb_variant altgr-intl
 }
+
 input "type:touchpad" {
+	scroll_method two_finger
+	# https://wayland.freedesktop.org/libinput/doc/latest/clickpad-softbuttons.html#clickpad-softbuttons
+	click_method button_areas
+	drag_lock enabled
     dwt enabled
-    tap enabled
+    middle_emulation disabled
     natural_scroll enabled
-    middle_emulation enabled
+	tap_button_map lrm
+    tap enabled
 }
 
 # Allow switching between workspaces with left and right swipes
