@@ -1,0 +1,8 @@
+{
+  "analyticsConsentAsked": "1",
+  "autoInstall": "1",
+  "layout": "_sidebar-hidden",
+  "theme": "dark",
+  "analyticsConsent": "0",
+  "docs": "angular/ansible/bash/bootstrap~5/cmake~3.26/crystal/css/docker/fastapi/fish~3.6/flask~2.2/git/gnu_make/go/groovy~4.0/html/http/javascript/jekyll~4/jq/julia~1.8/kubectl/kubernetes/latex/lua~5.4/mariadb/markdown/mongoose/nginx/nim/nix/numpy~1.23/pandas~1/python~3.11/r/ruby~3.2/rust/sass/scikit_image/scikit_learn/sqlite/svelte/vagrant/dom/xslt_xpath/zig"
+}
