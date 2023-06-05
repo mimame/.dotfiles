@@ -12,6 +12,8 @@ in {
   imports = [ # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
     ./base.nix
+    ./base/cli.nix
+    ./base/languages_and_lsp.nix
     ./graphics.nix
     ./laptop.nix
     ./sound.nix

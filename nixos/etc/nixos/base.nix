@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
+
   # Compress ram with zstd when needed to avoid use the swap
   zramSwap.enable = true;
 
@@ -176,245 +177,20 @@
     enable = true;
   };
 
-  # Locate service
-  services.locate = {
-    enable = true;
-    locate = pkgs.unstable.plocate;
-    localuser = null;
-  };
-
   # Use the latest available version of Linux
   # By now the stable version is used to avoid break the virtualbox virtualisation
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    java.enable = true;
-    mtr.enable = true;
-    wireshark.enable = true;
-  };
-
   environment.systemPackages = with pkgs;
     [
 
-      at
-      avfs
-      axel
-      bc
-      bind
-      bison
-      dosfstools
-      fakeroot
       firmwareLinuxNonfree
-      graphviz
-      gvfs
-      httpie
-      hyphen
       interception-tools
-      jc
-      libarchive
       libevdev
       libnotify
-      lnav
-      lsb-release
-      lsof
-      lua
-      nixfmt
-      nixpkgs-review
-      ntfs3g
-      openssl
-      parallel
-      parted
-      pkg-config
-      putty
-      pv
-      pwgen
-      python3Packages.cython
-      python3Packages.howdoi
-      python3Packages.ipython
-      python3Packages.pip
-      python3Packages.ptpython
-      python3Packages.radian
-      rustscan
-      rustup
-      strace
-      stress
-      stylua
-      sudo
-      tesseract5
-      time
-      util-linux
-      xdg-user-dirs
-      xdg-utils
 
-    ] ++ (with pkgs.unstable; [
+    ] ++ (with pkgs.unstable;
+      [
 
-      ameba
-      ansible
-      aria2
-      asciidoc-full
-      asciidoctor
-      autoconf
-      automake
-      bat
-      bitwarden-cli
-      broot
-      brotli
-      btop
-      bzip2
-      # clang # breaks the lvim treesitter compilation
-      clifm
-      cmake
-      coreutils
-      crystal
-      curl
-      curlie
-      delta
-      difftastic
-      direnv
-      diskus
-      dogdns
-      dos2unix
-      dstat
-      dua
-      duf
-      dura
-      elixir
-      entr
-      espanso
-      exa
-      fd
-      file
-      fuse-common
-      fzf
-      gawk
-      gcc
-      gdu
-      git
-      git-extras
-      github-cli
-      gitoxide
-      gitui
-      glow
-      gnumake
-      gnupatch
-      go
-      gomi
-      grc
-      grex
-      gron
-      gzip
-      handlr
-      helix
-      hexyl
-      (hiPrio fish) # collition warnings: needed for programs.fish.enable
-      hugo
-      hunspellDicts.en-us-large
-      hunspellDicts.es-es
-      hunspellDicts.fr-moderne
-      hyperfine
-      imagemagick
-      jekyll
-      jless
-      jq
-      julia-bin
-      just
-      kitty
-      kubernetes
-      lazydocker
-      lazygit
-      litecli
-      llvm
-      lsd
-      massren
-      mcfly
-      mdcat
-      meson
-      micro
-      minikube
-      navi
-      ncdu_2
-      neofetch
-      neovim
-      newsboat
-      nextflow
-      nim
-      ninja
-      (nnn.override { withNerdIcons = true; })
-      nodejs
-      nodePackages.npm
-      nuspell
-      onefetch
-      ouch
-      pandoc
-      pcre2
-      pdftk
-      pigz
-      pixz
-      plantuml
-      podman-tui
-      postgresql
-      pre-commit
-      procs
-      progress
-      pueue
-      python3Full
-      ranger
-      rclone
-      ripgrep
-      rlwrap
-      rnix-lsp
-      rsync
-      ruby_3_2
-      scc
-      sd
-      shards
-      shellcheck
-      shfmt
-      sqlite
-      sqlite-utils
-      sshfs
-      starship
-      stow
-      tealdeer
-      tectonic
-      testdisk
-      thefuck
-      tokei
-      topgrade
-      translate-shell
-      tree
-      typos
-      udiskie
-      universal-ctags
-      unrar
-      unzip
-      urlscan
-      vagrant
-      vifm
-      visidata
-      vivid
-      watchexec
-      wezterm
-      wget
-      xarchiver
-      xdragon
-      xh
-      xonsh
-      xplr
-      zellij
-      zenith
-      zig
-      zip
-      zlib-ng
-      zola
-      zoxide
-      zstd
-
-    ]);
+      ]);
 }

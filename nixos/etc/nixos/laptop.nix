@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
   # Configuration for suspension, hibernation and the laptop lid
   # Suspend in 10 minutes of inactivity and hibernate half hour later
   services.logind = {
