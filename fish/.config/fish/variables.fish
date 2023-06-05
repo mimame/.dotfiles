@@ -79,7 +79,6 @@ fish_add_path "$HOME/.bin"
 fish_add_path "$HOME/go/bin"
 fish_add_path "$HOME/.cargo/bin"
 fish_add_path "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
-fish_add_path "$HOME/.nimble/bin"
 # Always use user Ruby gems by default
 if test -x "$(command -v ruby)"
     fish_add_path "$(ruby -e 'print Gem.user_dir')/bin"
