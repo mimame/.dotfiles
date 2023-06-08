@@ -32,10 +32,37 @@ in {
 
   # Add unstable packages injecting directly the unstable channel url
   nixpkgs.config = {
-    packageOverrides = pkgs:
-      with pkgs; {
-        unstable = import unstableTarball { config = config.nixpkgs.config; };
-      };
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball { config = config.nixpkgs.config; };
+    };
+  };
+
+  nix = {
+    # Be sure to run nix-collect-garbage one time per week
+    gc = {
+      automatic = true;
+      persistent = true;
+      dates = "weekly";
+      options = "--delete-old";
+    };
+    settings = {
+      # Replace identical files in the nix store with hard links
+      auto-optimise-store = true;
+      # Unify many different Nix package manager utilities
+      # https://nixos.org/manual/nix/stable/command-ref/experimental-commands.html
+      experimental-features = [ "nix-command" ];
+      trusted-users = [ "root" "@wheel" ];
+    };
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Auto upgrade packages by default without reboot
+  system.autoUpgrade = {
+    allowReboot = false;
+    enable = true;
+    dates = "daily";
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

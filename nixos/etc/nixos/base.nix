@@ -150,33 +150,6 @@
   # Enable apropos(1) and the -k option of man(1)
   documentation.man.generateCaches = true;
 
-  nix = {
-    # Be sure to run nix-collect-garbage one time per week
-    gc = {
-      automatic = true;
-      persistent = true;
-      dates = "weekly";
-      options = "--delete-old";
-    };
-    settings = {
-      # Replace identical files in the nix store with hard links
-      auto-optimise-store = true;
-      # Unify many different Nix package manager utilities
-      # https://nixos.org/manual/nix/stable/command-ref/experimental-commands.html
-      experimental-features = [ "nix-command" ];
-      trusted-users = [ "root" "@wheel" ];
-    };
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # Auto upgrade packages by default without reboot
-  system.autoUpgrade = {
-    allowReboot = false;
-    enable = true;
-  };
-
   # Use the latest available version of Linux
   # By now the stable version is used to avoid break the virtualbox virtualisation
   # boot.kernelPackages = pkgs.linuxPackages_latest;
