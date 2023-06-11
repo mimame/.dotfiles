@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
 
   # bash script to let dbus know about important env variables and
@@ -145,6 +145,8 @@ in {
       baobab
       clipman
       cmst # QT connman GUI
+      configure-gtk
+      dbus-sway-environment
       glib # gsettings
       gparted
       gthumb
