@@ -110,7 +110,7 @@ abbr newsboatrc 'pushd ~/.dotfiles/newsboat/.config/newsboat/ && $EDITOR config 
 abbr nixosrc 'pushd ~/.dotfiles/nixos/etc/nixos/ && $EDITOR configuration.nix && nixfmt ./**/*.nix && sudo nixos-rebuild switch'
 abbr rofirc 'pushd ~/.dotfiles/rofi/.config/rofi/ && $EDITOR config.rasi && popd'
 abbr sshrc 'pushd ~/.dotfiles/ssh/.ssh/ && $EDITOR config && popd'
-abbr swayrc 'pushd ~/.dotfiles/sway/.config/sway/config && $EDITOR && popd'
+abbr swayrc 'pushd ~/.dotfiles/sway/.config/sway/ && $EDITOR config && popd'
 abbr tridactylrc 'pushd ~/.dotfiles/tridactyl/.config/tridactyl/ && $EDITOR tridactylrc && popd'
 abbr weztermrc 'pushd ~/.dotfiles/wezterm/.config/wezterm/ && $EDITOR wezterm.lua && popd'
 abbr xplrrc 'pushd ~/.dotfiles/xplr/.config/xplr/ && $EDITOR init.lua && popd'
