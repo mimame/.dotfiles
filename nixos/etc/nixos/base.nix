@@ -98,7 +98,7 @@
       enable = true;
       enableExtensionPack = true;
     };
-    guest = { enable = true; };
+    guest = { enable = false; };
   };
   programs.singularity = {
     enable = true;
