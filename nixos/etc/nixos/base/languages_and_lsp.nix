@@ -66,6 +66,7 @@
       python3Packages.radian
       R
       rnix-lsp
+      rtx
       ruby_3_2
       shards
       shellcheck
