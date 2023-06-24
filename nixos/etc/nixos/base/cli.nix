@@ -135,6 +135,7 @@
       pigz
       pixz
       podman-tui
+      poppler_utils
       postgresql
       pre-commit
       procs
