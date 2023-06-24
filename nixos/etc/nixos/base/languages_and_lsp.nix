@@ -74,6 +74,7 @@
       taplo
       tectonic
       texlab
+      texlive.combined.scheme-medium
       typos
       universal-ctags
       vagrant
