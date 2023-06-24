@@ -80,7 +80,8 @@
       server = { interface = [ "127.0.0.1" ]; };
       forward-zone = [{
         name = ".";
-        forward-addr = "1.1.1.1@853#cloudflare-dns.com";
+        forward-addr =
+          [ "1.1.1.1@853#cloudflare-dns.com" "1.0.0.1@853#cloudflare-dns.com" ];
       }];
       remote-control.control-enable = true;
     };
