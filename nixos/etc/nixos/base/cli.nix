@@ -181,6 +181,7 @@
       zig
       zip
       zlib-ng
+      zola
       zoxide
       zstd
 
