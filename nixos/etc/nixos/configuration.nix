@@ -50,7 +50,7 @@ in {
       auto-optimise-store = true;
       # Unify many different Nix package manager utilities
       # https://nixos.org/manual/nix/stable/command-ref/experimental-commands.html
-      experimental-features = [ "nix-command" ];
+      experimental-features = [ "nix-command" "flakes" ];
       trusted-users = [ "root" "@wheel" ];
     };
   };
