@@ -58,6 +58,15 @@ in {
     };
   };
 
+  # nixos-rebuild switch
+  # nvd shows a beautifully formatted list of the version changes in my system packages
+  system.activationScripts.diff = {
+    supportsDryActivation = true;
+    text = ''
+      ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+    '';
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
