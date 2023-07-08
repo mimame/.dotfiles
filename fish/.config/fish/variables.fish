@@ -59,7 +59,7 @@ set -x -U BAT_THEME "Catppuccin-mocha"
 set -g PAGER less -RF
 set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x -U MANWIDTH 999
-set -x -U BROWSER firefox
+set -x -U BROWSER vivaldi
 set -x -U JULIA_NUM_THREADS 12
 set -g EDITOR hx
 set -x -U VISUAL hx
