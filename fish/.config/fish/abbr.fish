@@ -141,3 +141,6 @@ abbr rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppab
 
 abbr adoc asciidoctor
 abbr adoc-pdf asciidoctor-pdf
+
+# NixOS
+abbr nsp 'nix-shell -p'
