@@ -86,7 +86,7 @@ bindsym --release $mod+Shift+q exec xkill
 # Start program launcher
 bindsym $mod+d exec --no-startup-id rofi -show combi
 # Add web searcher launcher
-bindsym $mod+Ctrl+d exec --no-startup-id rofi -show web
+bindsym $mod+Ctrl+w exec --no-startup-id rofi -show web
 # Add finder launcher
 bindsym $mod+Ctrl+f exec --no-startup-id rofi -show finder
 # Add clipboard manager launcher
