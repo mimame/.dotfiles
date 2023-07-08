@@ -1,8 +1,8 @@
 abbr sfish source ~/.config/fish/config.fish
 abbr !! --position anywhere --function last_history_item
 abbr cat bat
-alias ls 'exa --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all'
-abbr ll ls
+alias ll 'exa --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all'
+alias lll 'exa --tree --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all'
 abbr l br
 abbr cd z
 abbr b 'cd ..'
