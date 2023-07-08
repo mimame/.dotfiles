@@ -74,16 +74,34 @@ font pango:Hack Nerd Font Bold 11
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
-# Start a terminal
-bindsym $mod+Return exec --no-startup-id wezterm
-
 # Kill focused window
 bindsym $mod+Ctrl+q kill
 
 # Kill selected window
 bindsym --release $mod+Shift+q exec xkill
 
-# Start program launcher
+# Start a terminal
+bindsym $mod+Return exec --no-startup-id wezterm
+
+# Fast access to most used programs with Alt key
+bindsym $mod+Mod1+c exec --no-startup-id code
+bindsym $mod+Mod1+e exec --no-startup-id emote
+bindsym $mod+Mod1+f exec --no-startup-id flameshot gui
+bindsym $mod+Mod1+l exec --no-startup-id logseq
+bindsym $mod+Mod1+o exec --no-startup-id obsidian
+bindsym $mod+Mod1+p exec --no-startup-id pcmanfm
+bindsym $mod+Mod1+s exec --no-startup-id spotify
+bindsym $mod+Mod1+t exec --no-startup-id thunderbird
+bindsym $mod+Mod1+v exec --no-startup-id vivaldi
+bindsym $mod+Mod1+x exec --no-startup-id wezterm -e xplr
+
+bindsym $mod+Mod1+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && ~/.config/sway/scripts/notification "high_sound"
+bindsym $mod+Mod1+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && ~/.config/sway/scripts/notification "low_sound"
+
+bindsym $mod+Mod1+Right exec --no-startup-id playerctl next && ~/.config/sway/scripts/notification "next_song"
+bindsym $mod+Mod1+Left exec --no-startup-id playerctl previous && ~/.config/sway/scripts/notification "previous_song"
+
+# Start rofi launcher
 bindsym $mod+d exec --no-startup-id rofi -show combi
 # Add web searcher launcher
 bindsym $mod+Ctrl+w exec --no-startup-id rofi -show web
