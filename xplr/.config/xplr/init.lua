@@ -15,7 +15,7 @@ local xplr = xplr -- The globally exposed configuration to be overridden.
 --
 -- ```lua
 -- version = "0.0.0"
-version = '0.21.1'
+version = '0.21.2'
 -- ```
 
 -- # Configuration ------------------------------------------------------------
@@ -1062,6 +1062,13 @@ xplr.config.modes.builtin.default = {
         },
       },
       [":"] = {
+        help = "action",
+        messages = {
+          "PopMode",
+          { SwitchModeBuiltin = "action" },
+        },
+      },
+      [";"] = {
         help = "action",
         messages = {
           "PopMode",
