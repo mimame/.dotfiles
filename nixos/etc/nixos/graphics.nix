@@ -170,6 +170,7 @@ in {
       calibre
       catppuccin-cursors.mochaMauve
       dropbox
+      emote
       evince
       filezilla
       firefox
