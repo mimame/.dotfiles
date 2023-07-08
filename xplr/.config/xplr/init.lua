@@ -3057,10 +3057,9 @@ require("xpm").setup({
     { name = 'dtomvan/extra-icons.xplr' },
     { name = 'dtomvan/ouch.xplr' },
     { name = 'igorepst/context-switch.xplr' },
-    { name = 'sayanarijit/command-mode.xplr' },
+    -- { name = 'sayanarijit/command-mode.xplr' }, -- it breaks action mode
     { name = 'sayanarijit/dragon.xplr' },
     { name = 'sayanarijit/dua-cli.xplr' },
-    { name = 'sayanarijit/fzf.xplr' },
     { name = 'sayanarijit/fzf.xplr' },
     { name = 'sayanarijit/icons.xplr' },
     { name = 'sayanarijit/trash-cli.xplr' },
@@ -3072,7 +3071,7 @@ require("xpm").setup({
   auto_cleanup = true,
 })
 
-require("command-mode").setup()
+-- require("command-mode").setup() -- it breaks action mode
 require("context-switch").setup()
 require("dragon").setup()
 require("dua-cli").setup()
