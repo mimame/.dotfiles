@@ -86,6 +86,7 @@ in {
 
   # GNOME Keyring daemon
   services.gnome.gnome-keyring.enable = true;
+  services.gnome.gnome-settings-daemon.enable = true;
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -97,6 +98,8 @@ in {
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    # use the portal to open programs
+    xdgOpenUsePortal = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
@@ -139,6 +142,14 @@ in {
     desktopManager = { xfce.enable = true; };
   };
 
+  # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
+  services.xserver.desktopManager.runXdgAutostartIfNone = true;
+
+  # ensure gnome-settings-daemon udev rules are enabled
+  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+
+  # Fix dconf-WARNING from GNOME applications
+  programs.dconf.enable = true;
 
   # Add IBus engines for text completion and emojis
   i18n.inputMethod = {
