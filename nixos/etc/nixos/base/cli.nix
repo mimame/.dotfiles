@@ -194,6 +194,7 @@
       tokei
       topgrade
       translate-shell
+      trash-cli
       tree
       udiskie
       unrar
