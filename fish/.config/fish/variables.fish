@@ -84,3 +84,7 @@ if test -x "$(command -v ruby)"
     fish_add_path "$(ruby -e 'print Gem.user_dir')/bin"
 end
 fish_add_path "$HOME/.local/bin"
+
+set -x -U GTK_IM_MODULE ibus
+set -x -U QT_IM_MODULE ibus
+set -x -U XMODIFIERS @im=ibus

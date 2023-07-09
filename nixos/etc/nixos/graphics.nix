@@ -112,6 +112,9 @@ in {
       export _JAVA_AWT_WM_NONREPARENTING=1
       export MOZ_ENABLE_WAYLAND=1
       export GTK_USE_PORTAL=1
+      export QT_IM_MODULE=ibus
+      export XMODIFIERS=@im=ibus
+      export GTK_IM_MODULE=ibus
     '';
   };
 
@@ -120,7 +123,6 @@ in {
   programs = { seahorse.enable = true; };
 
   # Enable the X11 windowing system.
-  programs.xwayland.enable = true;
   services.xserver = {
     enable = true;
     displayManager = {
@@ -137,6 +139,11 @@ in {
     desktopManager = { xfce.enable = true; };
   };
 
+
+  # Add IBus engines for text completion and emojis
+  i18n.inputMethod = {
+    enabled = "ibus";
+    ibus.engines = with pkgs.unstable.ibus-engines; [ typing-booster uniemoji ];
   };
 
   environment.systemPackages = with pkgs;

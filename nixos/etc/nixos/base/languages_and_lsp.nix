@@ -29,6 +29,7 @@
       gopls
       (hiPrio fish) # collition warnings: needed for programs.fish.enable
       hugo
+      hunspell
       hunspellDicts.en-us-large
       hunspellDicts.es-es
       hunspellDicts.fr-moderne
