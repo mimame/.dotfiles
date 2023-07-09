@@ -176,7 +176,6 @@ in {
       spotify
       swaynotificationcenter
       swayr
-      wayland
       wev
       wl-clipboard
       wlrctl
@@ -214,6 +213,7 @@ in {
       vivaldi
       vlc
       vscode
+      xdragon
       zathura
       zoom-us
       zotero
