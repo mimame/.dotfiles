@@ -2,23 +2,23 @@
 # Original file: default.yml
 
 matches:
-  - trigger: ":espanso"
+  - trigger: ";espanso"
     replace: Hi there!
-  - trigger: ":date"
+  - trigger: ";date"
     replace: "{{mydate}}"
     vars:
       - name: mydate
         type: date
         params:
           format: "%m/%d/%Y"
-  - trigger: ":hour"
-    replace: "{{hour}}"
+  - trigger: ";now"
+    replace: "{{now}}"
     vars:
-      - name: hour
+      - name: now
         type: date
         params:
-          format: "%hh:%mm"
-  - trigger: ":shell"
+          format: "%H:%M"
+  - trigger: ";shell"
     replace: "{{output}}"
     vars:
       - name: output
