@@ -18,6 +18,39 @@
     wireshark.enable = true;
   };
 
+  # Enable Espanso
+  security.wrappers.espanso = {
+    capabilities = "cap_dac_override+p";
+    source = "${pkgs.espanso-wayland.out}/bin/espanso";
+    owner = "root";
+    group = "input";
+  };
+
+  # Maybe not needed
+  services.udev.packages = [ pkgs.espanso-wayland ];
+  services.udev.extraRules = ''
+    KERNEL=="uinput", GROUP="input", OPTIONS+="static_node=uinput", MODE=0660
+  '';
+  # systemd unit for espanso not working using sway instead
+  # systemd = {
+  #   user.services = {
+  #     espanso-wayland = {
+  #       enable = true;
+  #       description = "espanso-wayland";
+  #       wants = [ "default.target" ];
+  #       wantedBy = [ "default.target" ];
+  #       after = [ "default.target" ];
+  #       serviceConfig = {
+  #         Type = "simple";
+  #         ExecStart = "${pkgs.espanso-wayland}/bin/espanso worker";
+  #         Restart = "on-failure";
+  #         RestartSec = 3;
+  #         TimeoutStopSec = 10;
+  #       };
+  #     };
+  #   };
+  # };
+
   environment.systemPackages = with pkgs;
     [
 
@@ -27,6 +60,7 @@
       bc
       bind
       dosfstools
+      espanso-wayland
       fakeroot
       gvfs
       httpie
@@ -80,7 +114,6 @@
       duf
       dura
       entr
-      espanso
       exa
       fd
       file
