@@ -134,6 +134,9 @@ in {
         user = "mimame";
       };
     };
+    desktopManager = { xfce.enable = true; };
+  };
+
   };
 
   environment.systemPackages = with pkgs;

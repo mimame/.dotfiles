@@ -62,7 +62,6 @@
       dosfstools
       espanso-wayland
       fakeroot
-      gvfs
       httpie
       jc
       libarchive
