@@ -181,6 +181,7 @@
       rsync
       scc
       sd
+      spacer
       sqlite
       sqlite-utils
       sshfs
