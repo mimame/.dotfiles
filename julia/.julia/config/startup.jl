@@ -5,4 +5,4 @@ using OhMyREPL
     sleep(1)
     OhMyREPL.Prompt.insert_keybindings()
 end
-colorscheme!("Monokai24bit")
+colorscheme!("Base16MaterialDarker")
