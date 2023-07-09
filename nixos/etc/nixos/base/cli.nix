@@ -129,6 +129,7 @@
       gitui
       glow
       gomi
+      gpg-tui
       grc
       grex
       gron
