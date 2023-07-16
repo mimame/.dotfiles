@@ -39,6 +39,7 @@
       lldb
       llvm
       lua
+      luajitPackages.luarocks
       lua-language-server
       marksman
       meson
