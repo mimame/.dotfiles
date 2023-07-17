@@ -196,6 +196,7 @@
       translate-shell
       trash-cli
       tree
+      tz
       udiskie
       unrar
       unzip
