@@ -190,6 +190,7 @@
       stow
       tealdeer
       tectonic
+      termscp
       testdisk
       thefuck
       tokei
