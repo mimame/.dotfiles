@@ -109,6 +109,9 @@
 
   # Always enable the shell system-wide
   # Otherwise it wont source the necessary files
+  # Use completion files provided by other packages
+  # Source configuration snippets provided by other packages
+  # Autoload fish functions provided by other packages
   programs.fish.enable = true;
 
   # Many programs look at /etc/shells to determine
