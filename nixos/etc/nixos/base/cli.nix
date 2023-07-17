@@ -164,6 +164,7 @@
       onefetch
       ouch
       pandoc
+      pciutils
       pdftk
       pigz
       pixz
