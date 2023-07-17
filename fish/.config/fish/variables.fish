@@ -88,3 +88,5 @@ fish_add_path "$HOME/.local/bin"
 set -x -U GTK_IM_MODULE ibus
 set -x -U QT_IM_MODULE ibus
 set -x -U XMODIFIERS @im=ibus
+
+set -x -U TZ_LIST "CET,Central European Time;UTC,Coordinated Universal Time;US/Eastern,Eastern Standard Time;US/Pacific,Pacific Standard Time;Asia/Singapore, Singapore;Mexico/General"
