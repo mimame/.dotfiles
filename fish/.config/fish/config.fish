@@ -1,14 +1,13 @@
 if status --is-interactive
 
     if not functions --query fisher
-        curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
-        fisher install jorgebucaran/replay.fish
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+        fisher install catppuccin/fish
         fisher install franciscolourenco/done
-        fisher install jorgebucaran/autopair.fish
         fisher install gazorby/fish-abbreviation-tips
+        fisher install jorgebucaran/autopair.fish
         fisher install jorgebucaran/replay.fish
         fisher install PatrickF1/fzf.fish
-        fisher install catppuccin/fish
     end
 
     # Initialize commands
