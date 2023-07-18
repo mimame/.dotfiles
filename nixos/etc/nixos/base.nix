@@ -68,10 +68,11 @@
     };
   };
   services.connman = {
-    package = pkgs.connmanFull;
     enable = true;
-    wifi.backend = "iwd";
+    enableVPN = false;
     extraFlags = [ "--nodnsproxy" ];
+    package = pkgs.connmanFull;
+    wifi.backend = "iwd";
   };
 
   services.unbound = {
