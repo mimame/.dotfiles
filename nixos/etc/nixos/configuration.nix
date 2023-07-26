@@ -14,6 +14,7 @@ in {
     ./base.nix
     ./base/cli.nix
     ./base/languages_and_lsp.nix
+    ./base/devops.nix
     ./graphics.nix
     ./laptop.nix
     ./sound.nix

@@ -93,21 +93,6 @@
     enable = true;
     settings = { X11Forwarding = true; };
   };
-  # Virtualisation
-  virtualisation.podman.enable = true;
-  virtualisation.virtualbox = {
-    host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
-    guest = { enable = false; };
-  };
-  programs.singularity = {
-    enable = true;
-    enableSuid = true;
-    enableFakeroot = true;
-  };
-
   # Always enable the shell system-wide
   # Otherwise it wont source the necessary files
   # Use completion files provided by other packages
@@ -132,17 +117,11 @@
     # Configure podman to be use by minikube
     extraRules = [{
       users = [ "mimame" ];
-      commands = [
-        {
-          command = "/run/current-system/sw/bin/podman";
-          options = [ "NOPASSWD" ];
-        }
-        {
-          command =
-            "/run/current-system/sw/bin/systemctl restart geoclue.service";
-          options = [ "NOPASSWD" ];
-        }
-      ];
+      commands = [{
+        command =
+          "/run/current-system/sw/bin/systemctl restart geoclue.service";
+        options = [ "NOPASSWD" ];
+      }];
     }];
   };
 

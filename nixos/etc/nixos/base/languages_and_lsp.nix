@@ -79,7 +79,6 @@
       texlive.combined.scheme-medium
       typos
       universal-ctags
-      vagrant
       xonsh
       zig
       zola

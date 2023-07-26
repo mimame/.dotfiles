@@ -142,7 +142,6 @@
       jq
       just
       kitty
-      kubernetes
       lazydocker
       lazygit
       litecli
@@ -151,7 +150,6 @@
       mcfly
       mdcat
       micro
-      minikube
       navi
       ncdu_2
       neofetch
@@ -168,7 +166,6 @@
       pdftk
       pigz
       pixz
-      podman-tui
       poppler_utils
       postgresql
       pre-commit
@@ -203,7 +200,6 @@
       unrar
       unzip
       urlscan
-      vagrant
       vifm
       visidata
       vivid
