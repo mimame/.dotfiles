@@ -1,19 +1,26 @@
 { pkgs, ... }: {
 
   # Virtualisation
-  virtualisation.podman = {
-    enable = true;
-    dockerSocket.enable = true;
-    dockerCompat = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerSocket.enable = true;
+      dockerCompat = true;
+    };
+    lxc = {
+      enable = true;
+      lxcfs.enable = true;
+    };
+    lxd = { enable = true; };
+    virtualbox = {
+      host = {
+        enable = true;
+        enableExtensionPack = true;
+      };
+      guest = { enable = false; };
+    };
   };
 
-  virtualisation.virtualbox = {
-    host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
-    guest = { enable = false; };
-  };
   programs.singularity = {
     enable = true;
     enableSuid = true;
