@@ -84,7 +84,7 @@ in {
     users.mimame = {
       isNormalUser = true;
       description = "mimame";
-      extraGroups = [ "wheel" "input" "podman" "vboxusers" "video" ];
+      extraGroups = [ "wheel" "input" "podman" "lxd" "vboxusers" "video" ];
       packages = with pkgs;
         [
           #  firefox
