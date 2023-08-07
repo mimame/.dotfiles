@@ -99,7 +99,8 @@ in {
     enable = true;
     wlr.enable = true;
     # use the portal to open programs
-    xdgOpenUsePortal = true;
+    # Broken when XDG_CURRENT_DESKTOP=sway
+    xdgOpenUsePortal = false;
     # gtk portal needed to make gtk apps happy
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
