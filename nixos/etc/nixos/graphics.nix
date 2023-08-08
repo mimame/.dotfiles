@@ -151,6 +151,9 @@ in {
   # ensure gnome-settings-daemon udev rules are enabled
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
+  # Trash support, SFTP, SMB, HTTP, DAV, and many others URIs for gnome
+  services.gvfs.enable = true;
+
   # Fix dconf-WARNING from GNOME applications
   programs.dconf.enable = true;
 
@@ -199,6 +202,7 @@ in {
       git-cola
       gitg
       gnome.gnome-control-center
+      gnome.nautilus
       google-chrome
       (hiPrio beauty-line-icon-theme) # avoid default gnome icon themes
       i3status-rust
