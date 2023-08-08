@@ -86,7 +86,10 @@ in {
 
   # GNOME Keyring daemon
   services.gnome.gnome-keyring.enable = true;
+  # Enable GNOME settings
   services.gnome.gnome-settings-daemon.enable = true;
+  # Enable GNOME online accounts
+  services.gnome.gnome-online-accounts.enable = true;
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -140,7 +143,6 @@ in {
         user = "mimame";
       };
     };
-    desktopManager = { xfce.enable = true; };
   };
 
   # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
@@ -196,6 +198,7 @@ in {
       gimp
       git-cola
       gitg
+      gnome.gnome-control-center
       google-chrome
       (hiPrio beauty-line-icon-theme) # avoid default gnome icon themes
       i3status-rust
