@@ -1,12 +1,12 @@
 * {
-    bg-col:  #1e1e2e;
-    bg-col-light: #1e1e2e;
-    border-col: #1e1e2e;
-    selected-col: #1e1e2e;
-    blue: #89b4fa;
-    fg-col: #cdd6f4;
-    fg-col2: #f38ba8;
-    grey: #6c7086;
+    bg-col:  #222436;
+    bg-col-light: #222436;
+    border-col: #222436;
+    selected-col: #222436;
+    blue: #82aaff;
+    fg-col: #c8d3f5;
+    fg-col2: #ff757f;
+    grey: #c8d3f5;
 }
 
 element-text, element-icon , mode-switcher {
