@@ -55,5 +55,9 @@ if status --is-interactive
     if test -f ~/.config/fish/nnn.fish
         source ~/.config/fish/nnn.fish
     end
+
+    # Reinstall systemd user services broken by NixOS updates
+    fix_broken_services_by_nixos
+
     eval (zellij setup --generate-auto-start fish | string collect)
 end
