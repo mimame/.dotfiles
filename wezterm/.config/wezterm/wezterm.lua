@@ -29,6 +29,7 @@ end
 
 -- This is where you actually apply your config choices
 config.term = 'wezterm'
+config.color_scheme = 'Tokyo Night'
 -- tempfile=$(mktemp) \
 -- && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
 -- && tic -x -o ~/.terminfo $tempfile \
@@ -48,7 +49,6 @@ config.font = wezterm.font_with_fallback {
 }
 config.check_for_updates = false
 config.font_size = 18.0
-config.color_scheme = 'Catppuccin Mocha'
 config.window_padding = {
   left = 0,
   right = 0,
