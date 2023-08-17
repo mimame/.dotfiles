@@ -87,11 +87,14 @@ bindsym $mod+Return exec --no-startup-id wezterm
 # Fast access to most used programs with Alt key
 bindsym $mod+Mod1+c exec --no-startup-id code
 bindsym $mod+Mod1+e exec --no-startup-id emote
-bindsym $mod+Mod1+f exec --no-startup-id flameshot gui
+bindsym $mod+Mod1+f exec --no-startup-id firefox
 bindsym $mod+Mod1+l exec --no-startup-id logseq
 bindsym $mod+Mod1+o exec --no-startup-id obsidian
 bindsym $mod+Mod1+p exec --no-startup-id pcmanfm
 bindsym $mod+Mod1+s exec --no-startup-id spotify
+bindsym $mod+Mod1+Shift+c exec --no-startup-id calibre
+bindsym $mod+Mod1+Shift+e exec --no-startup-id evince
+bindsym $mod+Mod1+Shift+f exec --no-startup-id flameshot gui
 bindsym $mod+Mod1+t exec --no-startup-id thunderbird
 bindsym $mod+Mod1+v exec --no-startup-id vivaldi
 bindsym $mod+Mod1+x exec --no-startup-id wezterm -e xplr
@@ -333,7 +336,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Interactive menu: close windows, lock, exit switch user, sunspend, hibernate, reboot, restore session and shutdown
-set $mode_system (c)lose windows, (l)ock (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+set $mode_system (c)lose windows, (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
 
     bindsym c exec --no-startup-id wlrctl window list | cut -f1 -d':' | xargs -I% wlrctl window close %, mode "default"
@@ -374,42 +377,21 @@ mode "resize" {
   bindsym Escape mode "default"
 }
 
-# Catppuccin Mocha (https://github.com/catppuccin/i3)
-set $rosewater #f5e0dc
-set $flamingo  #f2cdcd
-set $pink      #f5c2e7
-set $mauve     #cba6f7
-set $red       #f38ba8
-set $maroon    #eba0ac
-set $peach     #fab387
-set $green     #a6e3a1
-set $teal      #94e2d5
-set $sky       #89dceb
-set $sapphire  #74c7ec
-set $blue      #89b4fa
-set $lavender  #b4befe
-set $text      #cdd6f4
-set $subtext1  #bac2de
-set $subtext0  #a6adc8
-set $overlay2  #9399b2
-set $overlay1  #7f849c
-set $overlay0  #6c7086
-set $surface2  #585b70
-set $surface1  #45475a
-set $surface0  #313244
-set $base      #1e1e2e
-set $mantle    #181825
-set $crust     #11111b
+# Tokyonight Moon (https://github.com/folke/tokyonight.nvim/blob/main/extras/wezterm/tokyonight_moon.toml)
+set $fg     #c8d3f5
+set $red    #ff757f
+set $orange #ff966c
+set $base   #1e2030
 
 
 
 # Focus colors
-# target                 title     bg    text   indicator  border
-client.focused           $peach    $base $peach $peach     $peach
-client.focused_inactive  $mauve    $base $text  $base      $mauve
-client.unfocused         $mauve    $base $text  $base      $mauve
-client.urgent            $red      $base $red   $overlay0  $red
-client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+# target                 title     bg      text        indicator   border
+client.focused           $orange   $base   $orange     $orange     $orange
+client.focused_inactive  $fg       $base   $fg         $base       $fg
+client.unfocused         $fg       $base   $fg         $base       $fg
+client.urgent            $red      $base   $red        $fg         $red
+client.placeholder       $fg       $base   $fg         $fg         $fg
 client.background        $base
 
 # Autostart applications
@@ -434,13 +416,14 @@ bar {
     separator $base
     background $base
     statusline $base
-    focused_workspace $peach $base $text
-    active_workspace $mauve $base $text
-    inactive_workspace $base $base $text
-    urgent_workspace $red $base $text
+    focused_workspace $orange $base $fg
+    active_workspace $fg $base $fg
+    inactive_workspace $base $base $fg
+    urgent_workspace $red $base $fg
   }
 }
 
 # Init programs in specific workspaces
 # It's necessary wait until each window is shown in its workspace
 # before run the next one
+exec wezterm
