@@ -242,22 +242,22 @@ pane_frames false
 // Default: default
 //
 themes {
-  catppuccin-mocha {
-    bg "#585b70" // Surface2
-    fg "#cdd6f4"
-    red "#f38ba8"
-    green "#a6e3a1"
-    blue "#89b4fa"
-    yellow "#f9e2af"
-    magenta "#f5c2e7" // Pink
-    orange "#fab387" // Peach
-    cyan "#89dceb" // Sky
-    black "#181825" // Mantle
-    white "#cdd6f4"
-  }
+    tokyonight-moon {
+        fg "#c8d3f5"
+        bg "#222436"
+        black "#222436"
+        red "#ff757f"
+        green "#c3e88d"
+        yellow "#ffc777"
+        blue "#82aaff"
+        magenta "#c099ff"
+        cyan "#86e1fc"
+        white "#828bb8"
+        orange "#ff966c"
+    }
 }
 
-theme "catppuccin-mocha"
+theme "tokyonight-moon"
 
 // The name of the default layout to load on startup
 // Default: "default"
