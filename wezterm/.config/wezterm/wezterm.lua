@@ -1,6 +1,5 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm';
-local act = wezterm.action
 -- This table will hold the configuration.
 local config = {}
 
@@ -66,7 +65,6 @@ config.mouse_bindings = {
   make_mouse_binding('Up', 2, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
   make_mouse_binding('Up', 3, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
 }
-
 
 -- and finally, return the configuration to wezterm
 return config
