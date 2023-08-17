@@ -34,8 +34,8 @@ set -U fish_cursor_visual block
 
 set -x -U THEFUCK_EXCLUDE_RULES fix_file # Fix https://github.com/nvbn/thefuck/issues/1153
 
-set -U LS_COLORS (vivid generate catppuccin-mocha)
-set -U EXA_COLORS (vivid generate catppuccin-mocha)
+set -U LS_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
+set -U EXA_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
 
 # Setting fd as the default source for fzf
 set -x -U FZF_DEFAULT_COMMAND 'fd --type f --exclude node_modules'
@@ -45,17 +45,18 @@ set -x -U FZF_CTRL_T_OPTS "--height 100% --preview 'bat --color always {}'"
 # To apply the command to ALT_C
 set -x -U FZF_ALT_C_COMMAND 'fd --type d --exclude node_modules'
 set -x -U FZF_ALT_C_OPTS "--height 100% --preview br --preview-window wrap"
-# Molokai colors by default
+# Tokyonight colors by default
 # https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
 set -Ux FZF_DEFAULT_OPTS '
 --reverse
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
+--color=fg:#c5cdd9,bg:#1e2030,hl:#6cb6eb
+--color=fg+:#c5cdd9,bg+:#1e2030,hl+:#5dbbc1
+--color=info:#88909f,prompt:#ec7279,pointer:#d38aea
+--color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(hx {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 
-set -x -U BAT_THEME "Catppuccin-mocha"
+set -x -U BAT_THEME "Enki-Tokyo-Night"
 set -g PAGER less -RF
 set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x -U MANWIDTH 999

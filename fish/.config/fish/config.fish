@@ -2,9 +2,9 @@ if status --is-interactive
 
     if not functions --query fisher
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-        fisher install catppuccin/fish
+        wget 'https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_moon.theme' -O ~/.config/fish/themes/'Tokyonight Moon.theme'
         # Only run the first time
-        yes | fish_config theme save "Catppuccin Mocha"
+        yes | fish_config theme save "Tokyonight Moon"
         fisher install franciscolourenco/done
         fisher install gazorby/fish-abbreviation-tips
         fisher install jorgebucaran/autopair.fish
@@ -36,10 +36,10 @@ if status --is-interactive
         fc-cache ~/.local/share/fonts/
     end
 
-    set bat_theme "$(bat --config-dir)/themes/Catppuccin-mocha.tmTheme"
+    set bat_theme "$(bat --config-dir)/themes/Enki-Tokyo-Night.tmTheme"
     if not test -f $bat_theme
         mkdir -p "$(bat --config-dir)/themes/"
-        wget https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-mocha.tmTheme -O $bat_theme --quiet
+        wget https://raw.githubusercontent.com/enkia/enki-theme/master/scheme/Enki-Tokyo-Night.tmTheme -O $bat_theme --quiet
         bat cache --build
     end
 
