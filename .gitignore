@@ -13,6 +13,7 @@ fish/.config/fish/functions/gh.fish
 fish/.config/fish/functions/replay.fish
 fish/.config/fish/functions/z.fish
 fish/.config/fish/themes/
+gh/.config/gh/hosts.yml
 **/git/.config.*
 lazygit/.config/lazygit/state.yml
 qutebrowser
