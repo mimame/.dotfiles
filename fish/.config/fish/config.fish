@@ -3,6 +3,8 @@ if status --is-interactive
     if not functions --query fisher
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
         fisher install catppuccin/fish
+        # Only run the first time
+        yes | fish_config theme save "Catppuccin Mocha"
         fisher install franciscolourenco/done
         fisher install gazorby/fish-abbreviation-tips
         fisher install jorgebucaran/autopair.fish
@@ -53,7 +55,5 @@ if status --is-interactive
     if test -f ~/.config/fish/nnn.fish
         source ~/.config/fish/nnn.fish
     end
-    # Only run the first time
-    # fish_config theme save "Catppuccin Mocha"
     eval (zellij setup --generate-auto-start fish | string collect)
 end
