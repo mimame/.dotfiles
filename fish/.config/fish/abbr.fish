@@ -28,8 +28,6 @@ abbr bc 'bc -l'
 abbr mk 'mkdir -pv'
 abbr u topgrade
 
-abbr docker podman
-
 abbr p 'ptipython'
 
 abbr grep 'grep --color=auto'
