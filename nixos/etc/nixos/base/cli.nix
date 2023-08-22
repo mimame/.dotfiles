@@ -79,7 +79,6 @@
       python3Packages.howdoi
       python3Packages.pip
       rustscan
-      rustup
       strace
       stress
       sudo
@@ -108,14 +107,18 @@
       diskus
       dogdns
       dos2unix
+      dotter
       dstat
       dua
+      du-dust
       duf
       dura
       entr
       exa
       fd
+      fend
       file
+      frawk
       fuse-common
       fzf
       gawk
@@ -129,6 +132,7 @@
       glow
       gomi
       gpg-tui
+      gping
       grc
       grex
       gron
@@ -136,10 +140,12 @@
       handlr
       helix
       hexyl
+      hurl
       hyperfine
       imagemagick
       jless
       jq
+      jujutsu
       just
       kitty
       lazydocker
@@ -150,6 +156,7 @@
       mcfly
       mdcat
       micro
+      monolith
       navi
       ncdu_2
       neofetch
@@ -185,6 +192,7 @@
       sshfs
       starship
       stow
+      systeroid
       tealdeer
       tectonic
       termscp
