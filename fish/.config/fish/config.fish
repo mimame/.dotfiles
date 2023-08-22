@@ -19,7 +19,7 @@ if status --is-interactive
     thefuck --alias fk | source
     broot --print-shell-function fish | source
 
-    if not functions --query __direnv_export_eval
+    if command -q direnv
         direnv hook fish | source
     end
 
