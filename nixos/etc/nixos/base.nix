@@ -22,6 +22,9 @@
   # Configure console keymap
   console.keyMap = "us";
 
+  # Enable uinput support
+  hardware.uinput.enable = true;
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.utf8";
 
