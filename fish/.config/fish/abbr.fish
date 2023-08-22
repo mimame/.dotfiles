@@ -66,7 +66,7 @@ abbr nd 'nvim -d -c "set nofoldenable"'
 # abbr h 'history' # Use ctrl-r instead
 # Lists the ten most used commands.
 abbr hs "history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | bat --number"
-abbr du 'du -h'
+abbr du 'dust'
 abbr dus diskus
 abbr df 'df -h'
 abbr free 'free -h'
