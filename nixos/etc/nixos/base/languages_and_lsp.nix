@@ -2,42 +2,40 @@
   environment.systemPackages = with pkgs;
     [
 
-      nixfmt
-      nixpkgs-review
-      rustup
-      stylua
-
     ] ++ (with pkgs.unstable; [
 
       ameba
       ansible
+      apache-airflow
       asciidoc-full
       asciidoctor
       autoconf
       automake
       bison
+      bundler
+      # clang # breaks the lvim treesitter compilation
       cmake
-      hyphen
-      graphviz
       coreutils
       crystal
       elixir
       gnumake
       gnupatch
-      # clang # breaks the lvim treesitter compilation
       go
       gopls
+      graphviz
       (hiPrio fish) # collition warnings: needed for programs.fish.enable
       hugo
       hunspell
       hunspellDicts.en-us-large
       hunspellDicts.es-es
       hunspellDicts.fr-moderne
+      hyphen
       jekyll
       julia-bin
       just
       lldb
       llvm
+      languagetool
       lua
       luajitPackages.luarocks
       lua-language-server
@@ -46,7 +44,11 @@
       nextflow
       nil
       nim
+      nixfmt
+      nixpkgs-review
+      nls
       nodePackages.bash-language-server
+      nodePackages.svelte-language-server
       nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-css-languageserver-bin
@@ -69,12 +71,19 @@
       R
       rnix-lsp
       rtx
-      ruby_3_2
+      ruby-lsp
+      rubyPackages.pry
+      rubyPackages.railties
+      rustup
+      rye
       shards
       shellcheck
       shfmt
+      solargraph
+      stylua
       taplo
       tectonic
+      terraform-ls
       texlab
       texlive.combined.scheme-medium
       typos
