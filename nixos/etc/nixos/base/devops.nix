@@ -67,6 +67,8 @@
       packer
       podman-tui
       prometheus
+      pulumi-bin
+      terraform
       vagrant
 
     ]);
