@@ -16,7 +16,7 @@ in {
     ./base/languages_and_lsp.nix
     ./base/devops.nix
     ./base/databases.nix
-    ./graphics.nix
+    ./desktop.nix
     ./laptop.nix
     ./sound.nix
     ./bluetooth.nix
