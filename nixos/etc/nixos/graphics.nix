@@ -143,6 +143,7 @@ in {
         user = "mimame";
       };
     };
+    desktopManager = { xfce.enable = false; };
   };
 
   # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
@@ -176,10 +177,7 @@ in {
       gthumb
       inkscape
       keepassxc
-      libreoffice-fresh
-      meld
       qutebrowser
-      spotify
       swaynotificationcenter
       swayr
       wev
@@ -201,19 +199,26 @@ in {
       gimp
       git-cola
       gitg
+      glxinfo
       gnome.gnome-control-center
       gnome.nautilus
       google-chrome
       (hiPrio beauty-line-icon-theme) # avoid default gnome icon themes
       i3status-rust
+      joplin-desktop
       klavaro
+      lapce
+      # libreoffice
+      # libreoffice-fresh
       logseq
+      meld
       nheko
       obsidian
       pcmanfm
       playerctl
       rofi
       spicetify-cli
+      spotify
       sqlitebrowser
       sweet
       thunderbird
