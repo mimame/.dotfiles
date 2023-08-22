@@ -18,9 +18,9 @@
     virtualbox = {
       host = {
         enable = true;
-        enableExtensionPack = true;
+        enableExtensionPack = false; # Avoid compilation
       };
-      guest = { enable = false; };
+      guest.enable = false;
     };
     libvirtd.enable = true;
   };
