@@ -35,6 +35,9 @@ in {
     };
   };
 
+  # Delete all files in /tmp during boot
+  # boot.tmp.cleanOnBoot = true;
+
   # Add unstable packages injecting directly the unstable channel url
   nixpkgs.config = {
     packageOverrides = pkgs: {

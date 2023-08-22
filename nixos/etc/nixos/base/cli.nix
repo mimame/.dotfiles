@@ -143,6 +143,7 @@
       hurl
       hyperfine
       imagemagick
+      inxi
       jless
       jq
       jujutsu
@@ -156,6 +157,7 @@
       mcfly
       mdcat
       micro
+      moar
       monolith
       navi
       ncdu_2
@@ -168,6 +170,7 @@
       nodePackages.npm
       onefetch
       ouch
+      ov
       pandoc
       pciutils
       pdftk
