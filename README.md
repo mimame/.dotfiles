@@ -15,7 +15,7 @@ Most important tools for my minimalist workflow
 
 ## [btop (monitor of resources)](https://github.com/aristocratos/btop/)
 
-## [catppuccin (themes)](https://github.com/catppuccin/catppuccin/)
+## [Tokyo Night (themes)](https://github.com/folke/tokyonight.nvim)
 
 ## [delta (git diff)](https://github.com/dandavison/delta/)
 
