@@ -62,6 +62,7 @@
 
       grafana
       grafana-loki
+      kubectl
       kubernetes
       minikube
       packer
