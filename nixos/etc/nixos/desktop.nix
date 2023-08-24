@@ -193,6 +193,7 @@ in {
       dropbox
       emote
       evince
+      ffmpeg-full
       filezilla
       firefox
       flameshot
@@ -203,6 +204,11 @@ in {
       gnome.gnome-control-center
       gnome.nautilus
       google-chrome
+      gst_all_1.gst-plugins-bad
+      gst_all_1.gst-plugins-base
+      gst_all_1.gst-plugins-good
+      gst_all_1.gst-plugins-ugly
+      gst_all_1.gstreamer
       (hiPrio beauty-line-icon-theme) # avoid default gnome icon themes
       i3status-rust
       joplin-desktop
