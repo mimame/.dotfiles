@@ -64,6 +64,7 @@
       grafana-loki
       kubectl
       kubernetes
+      kubernetes-helm
       minikube
       packer
       podman-tui
