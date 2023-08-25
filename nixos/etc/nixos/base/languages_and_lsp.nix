@@ -33,9 +33,10 @@
       jekyll
       julia-bin
       just
+      languagetool
       lldb
       llvm
-      languagetool
+      ltex-ls
       lua
       luajitPackages.luarocks
       lua-language-server
