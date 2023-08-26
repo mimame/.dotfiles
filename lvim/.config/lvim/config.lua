@@ -186,6 +186,11 @@ lvim.plugins = {
   --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
   --   end,
   -- },
+  -- git diff in a single tabpage
+  {
+    "sindrets/diffview.nvim",
+    event = "BufRead",
+  },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
