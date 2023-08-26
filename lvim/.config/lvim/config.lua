@@ -113,6 +113,39 @@ lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "rege
 --       cmd = "TroubleToggle",
 --     },
 -- }
+lvim.plugins = {
+  -- Neovim plugin for Obsidian
+  {
+    'epwalsh/obsidian.nvim',
+    config = function()
+      -- Use gf for follow Obsidian links
+      vim.keymap.set("n", "gf", function()
+        if require("obsidian").util.cursor_on_markdown_link() then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          return "gf"
+        end
+      end, { noremap = false, expr = true })
+
+
+      -- Required Default vault
+      require("obsidian").setup({
+        dir = "~/Documents/SecondBrain",
+        mappings = {}
+      })
+
+      -- Syntax highlighting
+      vim.g.vim_markdown_frontmatter = 1
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "markdown", "markdown_inline" },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = { "markdown" },
+        },
+      })
+    end,
+  },
+}
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 -- vim.api.nvim_create_autocmd("FileType", {
