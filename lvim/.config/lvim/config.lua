@@ -330,6 +330,8 @@ lvim.plugins = {
       require("todo-comments").setup()
     end,
   },
+  -- enable repeating supported plugin maps with "."
+  { "tpope/vim-repeat" },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
