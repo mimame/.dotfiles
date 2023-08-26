@@ -290,6 +290,13 @@ lvim.plugins = {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
   },
+  -- automatically saving your work whenever you make changes to it
+  {
+    "Pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup()
+    end,
+  },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
