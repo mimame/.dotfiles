@@ -198,6 +198,11 @@ lvim.plugins = {
       require("nvim-ts-autotag").setup()
     end,
   },
+  -- commentstring option based on the cursor location
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    event = "BufRead",
+  },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
