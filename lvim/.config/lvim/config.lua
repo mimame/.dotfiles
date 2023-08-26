@@ -203,6 +203,34 @@ lvim.plugins = {
     "JoosepAlviste/nvim-ts-context-commentstring",
     event = "BufRead",
   },
+  -- rainbow parentheses
+  {
+    url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+    config = function()
+      local rainbow_delimiters = require 'rainbow-delimiters'
+
+      vim.g.rainbow_delimiters = {
+        strategy = {
+          [''] = rainbow_delimiters.strategy['global'],
+          vim = rainbow_delimiters.strategy['local'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          lua = 'rainbow-blocks',
+        },
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
+        },
+      }
+      lvim.builtin.treesitter.rainbow.enable = true
+    end
+  },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
