@@ -297,6 +297,11 @@ lvim.plugins = {
       require("auto-save").setup()
     end,
   },
+  -- preview markdown in neovim
+  {
+    "npxbr/glow.nvim",
+    ft = { "markdown" }
+  },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
