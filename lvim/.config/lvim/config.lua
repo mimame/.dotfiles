@@ -145,6 +145,11 @@ lvim.plugins = {
       })
     end,
   },
+  -- jetpack codebase navigation
+  {
+    "ggandor/lightspeed.nvim",
+    event = "BufRead",
+  },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
