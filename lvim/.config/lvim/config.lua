@@ -177,6 +177,15 @@ lvim.plugins = {
       })
     end,
   },
+  -- navigate and highlight matching words
+  -- query.lua:259: query: invalid node type at position 6 for language lua
+  -- {
+  --   "andymass/vim-matchup",
+  --   event = "CursorMoved",
+  --   config = function()
+  --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+  --   end,
+  -- },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
