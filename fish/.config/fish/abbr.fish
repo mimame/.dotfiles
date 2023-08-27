@@ -106,7 +106,7 @@ abbr hxrc 'pushd ~/.dotfiles/helix/.config/helix/ && $EDITOR config.toml && popd
 abbr kittyrc 'pushd ~/.dotfiles/kitty/.config/kitty/ && $EDITOR kitty.conf && popd'
 abbr mimerc 'pushd ~/.dotfiles/mimeapps/.config/ && $EDITOR mimeapps.list && popd'
 abbr newsboatrc 'pushd ~/.dotfiles/newsboat/.config/newsboat/ && $EDITOR config && popd'
-abbr nixosrc 'pushd ~/.dotfiles/nixos/etc/nixos/ && $EDITOR configuration.nix && nixfmt ./**/*.nix && sudo nixos-rebuild switch && popd'
+abbr nixosrc 'pushd ~/.dotfiles/nixos/etc/nixos/ && $EDITOR configuration.nix && nixfmt ./**/*.nix && sudo nixos-rebuild switch --fast && popd'
 abbr rofirc 'pushd ~/.dotfiles/rofi/.config/rofi/ && $EDITOR config.rasi && popd'
 abbr sshrc 'pushd ~/.dotfiles/ssh/.ssh/ && $EDITOR config && popd'
 abbr swayrc 'pushd ~/.dotfiles/sway/.config/sway/ && $EDITOR config && popd'
