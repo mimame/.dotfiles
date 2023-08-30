@@ -10,12 +10,12 @@ function fix_broken_services_by_nixos
         end
     end
     for service_path in $services
-        set -l nix_path $(realpath $service_path)
+        set -l nix_path $(realpath --canonicalize-missing $service_path)
         if not test -e $nix_path
             set_color --bold red
             echo "Fixing $(basename $service_path) broken by a NixOS update..."
             set_color normal
-            if test -e $service_path
+            if test -L $service_path
                 rm $service_path 2>/dev/null
             end
             systemctl enable --user $(basename $service_path) 2>/dev/null
