@@ -9,7 +9,9 @@ vim.opt.relativenumber = true
 vim.opt.spell = true
 -- set cursor of insert mode as vertical line
 vim.opt.guicursor = "i:ver1"
-
+-- Set sh as default shell
+-- https://www.lunarvim.org/docs/troubleshooting#are-you-using-fish
+vim.opt.shell = "/bin/sh"
 
 -- general
 lvim.log.level = "info"
