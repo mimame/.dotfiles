@@ -15,6 +15,7 @@ fish/.config/fish/functions/z.fish
 fish/.config/fish/themes/
 gh/.config/gh/hosts.yml
 **/git/.config.*
+history.txt
 lazygit/.config/lazygit/state.yml
 qutebrowser
 ssh
