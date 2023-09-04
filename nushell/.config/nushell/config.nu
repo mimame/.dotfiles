@@ -766,3 +766,6 @@ $env.config = {
         }
     ]
 }
+
+# Load plugins
+use ~/.cache/nushell/starship/init.nu
