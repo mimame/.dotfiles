@@ -28,14 +28,14 @@ set -U fish_cursor_visual block
 
 # Use default fzf functions and bindings
 # fisher install PatrickF1/fzf.fish
-# set -U fzf_preview_dir_cmd exa --sort .name --tree --classify --git --long --color=always --ignore-glob=node_modules
+# set -U fzf_preview_dir_cmd eza --sort .name --tree --classify --git --long --color=always --ignore-glob=node_modules
 # fzf_configure_bindings --git_status=\cg --history=\cr --directory=\ct --processes=\cp
 # set -U fzf_fd_opts --exclude=node_modules
 
 set -x -U THEFUCK_EXCLUDE_RULES fix_file # Fix https://github.com/nvbn/thefuck/issues/1153
 
 set -U LS_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
-set -U EXA_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
+set -U EZA_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
 
 # Setting fd as the default source for fzf
 set -x -U FZF_DEFAULT_COMMAND 'fd --type f --exclude node_modules'
