@@ -769,3 +769,4 @@ $env.config = {
 
 # Load plugins
 use ~/.cache/nushell/starship/init.nu
+source ~/.cache/nushell/zoxide/init.nu

@@ -84,3 +84,7 @@ $env.NU_PLUGIN_DIRS = [
 # Generate starship prompt
 mkdir ~/.cache/nushell/starship
 starship init nu | save -f ~/.cache/nushell/starship/init.nu
+
+# Generate zoxide source
+mkdir ~/.cache/nushell/zoxide
+zoxide init nushell | save -f ~/.cache/nushell/zoxide/init.nu
