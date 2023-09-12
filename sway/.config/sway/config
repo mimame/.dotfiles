@@ -45,9 +45,6 @@ bindgesture pinch:inward+down move down
 bindgesture pinch:inward+left move left
 bindgesture pinch:inward+right move right
 
-# Load bluetooth applet
-exec --no-startup-id blueman-applet
-
 # Load barriers server
 # exec_always --no-startup-id pkill barriers; barriers --no-daemon --no-tray --name narnia --enable-crypto --config "$HOME/.config/barrier/barrier.conf" --address ":24800"
 #exec_always --no-startup-id pkill barrier; barrierc --no-daemon --no-tray --name narnia --enable-crypto '[192.168.1.196]:24800'
@@ -86,6 +83,7 @@ bindsym $mod+Return exec --no-startup-id wezterm
 
 # Fast access to most used programs with Alt key
 bindsym $mod+Mod1+c exec --no-startup-id code
+bindsym $mod+Mod1+b exec --no-startup-id blueman-manager
 bindsym $mod+Mod1+e exec --no-startup-id emote
 bindsym $mod+Mod1+f exec --no-startup-id firefox
 bindsym $mod+Mod1+l exec --no-startup-id logseq
