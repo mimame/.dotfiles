@@ -17,11 +17,17 @@
     # media-session.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs;
+    [
 
-    pavucontrol
-    pulseaudio # to be able to use pactl
+      pavucontrol
+      pulseaudio # to be able to use pactl
 
-  ];
+    ] ++ (with pkgs.unstable; [
+
+      beets
+      cmus
+
+    ]);
 
 }
