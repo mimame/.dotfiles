@@ -235,6 +235,7 @@ in {
       vscode
       xdragon
       zathura
+      zettlr
       zoom-us
       zotero
 
