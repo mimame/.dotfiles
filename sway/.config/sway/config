@@ -94,6 +94,8 @@ bindsym $mod+Mod1+Shift+f exec --no-startup-id flameshot gui
 bindsym $mod+Mod1+t exec --no-startup-id thunderbird
 bindsym $mod+Mod1+v exec --no-startup-id vivaldi
 bindsym $mod+Mod1+x exec --no-startup-id wezterm -e xplr
+# Notifications center
+bindsym $mod+Mod1+n exec --no-startup-id swaync-client -t -sw
 
 bindsym $mod+Mod1+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && ~/.config/sway/scripts/notification "high_sound"
 bindsym $mod+Mod1+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && ~/.config/sway/scripts/notification "low_sound"
