@@ -201,6 +201,7 @@ in {
       git-cola
       gitg
       glxinfo
+      gnome.file-roller
       gnome.gnome-control-center
       gnome.nautilus
       google-chrome
