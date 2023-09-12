@@ -215,8 +215,7 @@ in {
       joplin-desktop
       klavaro
       lapce
-      # libreoffice
-      # libreoffice-fresh
+      libreoffice-fresh
       logseq
       meld
       nheko
