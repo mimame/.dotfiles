@@ -56,6 +56,7 @@
       nodePackages.vscode-html-languageserver-bin
       nodePackages.vscode-json-languageserver
       nodePackages.yaml-language-server
+      nushellFull
       nuspell
       pandoc
       pcre2
