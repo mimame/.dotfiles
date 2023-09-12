@@ -62,6 +62,7 @@
 
       grafana
       grafana-loki
+      kompose
       kubectl
       kubernetes
       kubernetes-helm
