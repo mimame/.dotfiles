@@ -114,7 +114,7 @@
       duf
       dura
       entr
-      exa
+      eza
       fd
       fend
       file
