@@ -82,6 +82,15 @@ in {
     dates = "daily";
   };
 
+  # Be able to execute dynamic linked binaries compiled outside NixOS
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      curl # choosenim
+    ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
     defaultUserShell = pkgs.unstable.fish;
