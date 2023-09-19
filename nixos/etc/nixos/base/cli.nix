@@ -11,7 +11,7 @@
   programs = {
     gnupg.agent = {
       enable = true;
-      enableSSHSupport = true;
+      enableSSHSupport = false; # Don't allow to use empty passphrases
     };
     java.enable = true;
     mtr.enable = true;
