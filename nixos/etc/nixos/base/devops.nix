@@ -66,6 +66,7 @@
       kubectl
       kubernetes
       kubernetes-helm
+      localstack
       minikube
       packer
       podman-tui
