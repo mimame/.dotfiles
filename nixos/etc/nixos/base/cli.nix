@@ -113,6 +113,7 @@
       du-dust
       duf
       dura
+      emacs29
       entr
       eza
       fd
