@@ -190,6 +190,7 @@ in {
       bitwarden
       calibre
       catppuccin-cursors.mochaMauve
+      dbeaver
       dropbox
       emote
       evince
