@@ -224,6 +224,7 @@
       xh
       xonsh
       xplr
+      yq
       zellij
       zenith
       zig
