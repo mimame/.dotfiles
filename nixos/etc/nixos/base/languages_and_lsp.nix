@@ -5,6 +5,7 @@
     ] ++ (with pkgs.unstable; [
 
       ameba
+      ammonite # scala
       ansible
       apache-airflow
       asciidoc-full
@@ -16,6 +17,7 @@
       # clang # breaks the lvim treesitter compilation
       cmake
       coreutils
+      coursier # scala
       crystal
       elixir
       gnumake
@@ -42,6 +44,8 @@
       lua-language-server
       marksman
       meson
+      mill # scala
+      metals # scala
       nextflow
       nil
       nim
@@ -78,6 +82,10 @@
       rubyPackages.railties
       rustup
       rye
+      sbt-with-scala-native # scala
+      scala_3
+      scalafix
+      scalafmt
       shards
       shellcheck
       shfmt
