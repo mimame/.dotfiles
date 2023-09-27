@@ -49,7 +49,7 @@
       metals # scala
       nextflow
       nil
-      nim
+      nim2
       nixfmt
       nixpkgs-review
       nls
