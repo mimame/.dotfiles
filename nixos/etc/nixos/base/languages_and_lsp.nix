@@ -20,6 +20,7 @@
       coursier # scala
       crystal
       elixir
+      elixir-ls
       gnumake
       gnupatch
       go
