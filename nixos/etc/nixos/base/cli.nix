@@ -120,6 +120,7 @@
       file
       frawk
       fuse-common
+      fx
       fzf
       gawk
       gcc
