@@ -342,6 +342,33 @@ lvim.plugins = {
     --  vim.o.timeoutlen = 500
     -- end
   },
+  {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("neorg").setup {
+        load = {
+          ["core.defaults"] = {},  -- Loads default behaviour
+          ["core.concealer"] = {}, -- Adds pretty icons to your documents
+          ["core.summary"] = {},   -- Creates links to all files in any workspace
+          ["core.completion"] = {
+            config = {
+              engine = "nvim-cmp"
+            }
+          },                  -- Creates links to all files in any workspace
+          -- TODO: neovim +v0.10.0 ["core.ui.calendar"] = {}, -- Opens an interactive calendar for date-related task.
+          ["core.dirman"] = { -- Manages Neorg workspaces
+            config = {
+              workspaces = {
+                notes = "~/notes",
+              },
+            },
+          },
+        },
+      }
+    end,
+  },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
