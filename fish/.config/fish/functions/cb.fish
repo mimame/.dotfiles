@@ -6,23 +6,26 @@
 function cb
     # stdin is a pipe
     # https://github.com/fish-shell/fish-shell/issues/3792#issuecomment-276206686
+    # stdin -> clipboard
     if command test -p /dev/stdin
-        # stdin -> clipboard
-        xclip -selection clipboard -in
-        # stdin is not a pipe
+        set -l stdin_list
+        while read line
+            set stdin_list $stdin_list $line
+        end
+        wl-copy $stdin_list
+    # stdin is not a pipe
     else if ! test -z "$argv[1]"
+        # file -> clipboard
         if test -f "$argv[1]"
-            # file -> clipboard
-            xclip -selection clipboard -in "$argv[1]"
+            wl-copy < "$argv[1]"
+        # string -> clipboard
         else
-            echo "STRING!!!"
-            # string -> clipboard
-            echo "$argv" | xclip -selection clipboard -in
+            wl-copy "$argv"
         end
     else
         # clipboard -> stdout
         # no arguments were passed
-        # xclip -selection clipboard -out
+        # wl-paste
     end
-    xclip -selection clipboard -out
+    wl-paste
 end
