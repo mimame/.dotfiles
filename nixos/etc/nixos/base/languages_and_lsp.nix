@@ -16,6 +16,7 @@
       bundler
       # clang # breaks the lvim treesitter compilation
       cmake
+      codespell
       coreutils
       coursier # scala
       crystal
