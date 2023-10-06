@@ -202,6 +202,7 @@ in {
       git-cola
       gitg
       glxinfo
+      gnome.eog
       gnome.file-roller
       gnome.gnome-control-center
       gnome.nautilus
