@@ -69,6 +69,7 @@
       pandoc
       pcre2
       plantuml
+      protobuf
       python3Full
       python3Packages.cython
       python3Packages.ipython
