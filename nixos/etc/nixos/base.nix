@@ -97,7 +97,7 @@
     settings = { X11Forwarding = true; };
   };
   # Always enable the shell system-wide
-  # Otherwise it wont source the necessary files
+  # Otherwise it won't source the necessary files
   # Use completion files provided by other packages
   # Source configuration snippets provided by other packages
   # Autoload fish functions provided by other packages

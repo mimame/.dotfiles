@@ -138,6 +138,7 @@
       grc
       grex
       gron
+      grpcurl
       gzip
       handlr
       helix
