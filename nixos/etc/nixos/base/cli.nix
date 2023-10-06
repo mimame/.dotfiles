@@ -169,8 +169,6 @@
       newsboat
       ninja
       (nnn.override { withNerdIcons = true; })
-      nodejs
-      nodePackages.npm
       onefetch
       ouch
       ov

@@ -53,7 +53,9 @@
       nixfmt
       nixpkgs-review
       nls
+      nodejs
       nodePackages.bash-language-server
+      nodePackages.npm
       nodePackages.svelte-language-server
       nodePackages.typescript
       nodePackages.typescript-language-server
