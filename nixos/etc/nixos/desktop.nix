@@ -229,6 +229,7 @@ in {
       spotify
       sqlitebrowser
       sweet
+      telegram-desktop
       thunderbird
       tridactyl-native
       vivaldi
