@@ -104,6 +104,7 @@
       typos
       universal-ctags
       xonsh
+      yarn
       zig
       zola
 
