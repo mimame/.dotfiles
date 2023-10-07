@@ -30,7 +30,7 @@ kitty = { target = "~/.config/kitty", type = "symbolic"}
 # latex = "~/"
 lazygit = "~/.config/lazygit"
 lvim = "~/.config/lvim"
-# mimeapps = "~/.config/"
+mimeapps = "~/.config/"
 # newsboat = "~/.config/"
 # nixos = "/etc/"
 # nnn = "~/.config/"
