@@ -16,6 +16,7 @@ cmus = "~/.config/cmus"
 # conda = "~/"
 # devdocs = ""
 espanso = { target = "~/.config/espanso", type = "symbolic" } # Files with {{}} automatically detected as templates
+fd = "~/.config/fd"
 # fish = "~/.config/"
 # gammastep = "~/.config/"
 # gh = "~/.config/"
