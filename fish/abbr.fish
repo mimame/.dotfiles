@@ -98,22 +98,21 @@ abbr cp "cp -ri"
 abbr ln "ln -i"
 
 # abbr for rc files
-abbr brootrc 'pushd ~/.dotfiles/broot/.config/broot/ && $EDITOR conf.toml && popd'
-abbr clifmrc 'pushd ~/.dotfiles/clifm/.config/clifm/profiles/default/ && $EDITOR clifmrc && popd'
-abbr fishrc 'pushd ~/.dotfiles/fish/.config/fish/ && $EDITOR config.fish && popd'
-abbr gitrc 'pushd ~/.dotfiles/git/.config/git/ && $EDITOR config && popd'
-abbr hxrc 'pushd ~/.dotfiles/helix/.config/helix/ && $EDITOR config.toml && popd'
-abbr kittyrc 'pushd ~/.dotfiles/kitty/.config/kitty/ && $EDITOR kitty.conf && popd'
-abbr mimerc 'pushd ~/.dotfiles/mimeapps/.config/ && $EDITOR mimeapps.list && popd'
-abbr newsboatrc 'pushd ~/.dotfiles/newsboat/.config/newsboat/ && $EDITOR config && popd'
-abbr nixosrc 'pushd ~/.dotfiles/nixos/etc/nixos/ && $EDITOR configuration.nix && nixfmt ./**/*.nix && sudo nixos-rebuild switch --fast && popd'
-abbr rofirc 'pushd ~/.dotfiles/rofi/.config/rofi/ && $EDITOR config.rasi && popd'
-abbr sshrc 'pushd ~/.dotfiles/ssh/.ssh/ && $EDITOR config && popd'
-abbr swayrc 'pushd ~/.dotfiles/sway/.config/sway/ && $EDITOR config && popd'
-abbr tridactylrc 'pushd ~/.dotfiles/tridactyl/.config/tridactyl/ && $EDITOR tridactylrc && popd'
-abbr weztermrc 'pushd ~/.dotfiles/wezterm/.config/wezterm/ && $EDITOR wezterm.lua && popd'
-abbr xplrrc 'pushd ~/.dotfiles/xplr/.config/xplr/ && $EDITOR init.lua && popd'
-abbr zellijrc 'pushd ~/.dotfiles/zellij/.config/zellij/ && $EDITOR config.kdl && popd'
+abbr brootrc 'pushd ~/.dotfiles/broot/ && $EDITOR conf.toml && popd'
+abbr clifmrc 'pushd ~/.dotfiles/clifm/profiles/default/ && $EDITOR clifmrc && popd'
+abbr fishrc 'pushd ~/.dotfiles/fish/ && $EDITOR config.fish && popd'
+abbr gitrc 'pushd ~/.dotfiles/git/ && $EDITOR config && popd'
+abbr hxrc 'pushd ~/.dotfiles/helix/ && $EDITOR config.toml && popd'
+abbr kittyrc 'pushd ~/.dotfiles/kitty/ && $EDITOR kitty.conf && popd'
+abbr mimerc 'pushd ~/.dotfiles/mimeapps/ && $EDITOR mimeapps.list && popd'
+abbr nixosrc 'pushd ~/.dotfiles/nixos/ && $EDITOR configuration.nix && nixfmt ./**/*.nix && sudo nixos-rebuild switch --fast && popd'
+abbr rofirc 'pushd ~/.dotfiles/rofi/ && $EDITOR config.rasi && popd'
+abbr sshrc 'pushd ~/.dotfiles/ssh/ && $EDITOR config && popd'
+abbr swayrc 'pushd ~/.dotfiles/sway/ && $EDITOR config && popd'
+abbr tridactylrc 'pushd ~/.dotfiles/tridactyl/ && $EDITOR tridactylrc && popd'
+abbr weztermrc 'pushd ~/.dotfiles/wezterm/ && $EDITOR wezterm.lua && popd'
+abbr xplrrc 'pushd ~/.dotfiles/xplr/ && $EDITOR init.lua && popd'
+abbr zellijrc 'pushd ~/.dotfiles/zellij/ && $EDITOR config.kdl && popd'
 
 # abbr for pip
 abbr pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
