@@ -13,6 +13,7 @@
       autoconf
       automake
       bison
+      bloop
       bundler
       # clang # breaks the lvim treesitter compilation
       cmake
@@ -46,14 +47,15 @@
       lua-language-server
       marksman
       meson
-      mill # scala
       metals # scala
+      micromamba
+      mill # scala
       nextflow
       nil
       nim2
       nixfmt
       nixpkgs-review
-      nls
+      # nls
       nodejs
       nodePackages.bash-language-server
       nodePackages.npm
@@ -69,9 +71,11 @@
       pandoc
       pcre2
       plantuml
+      pipx
       protobuf
       python3Full
       python3Packages.cython
+      python3Packages.flake8
       python3Packages.ipython
       python3Packages.ptpython
       python3Packages.pylsp-mypy

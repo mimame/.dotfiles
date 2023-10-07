@@ -98,6 +98,7 @@
       btop
       bzip2
       clifm
+      copyq
       coreutils
       curl
       curlie
@@ -129,7 +130,7 @@
       git
       git-extras
       github-cli
-      gitoxide
+      # gitoxide
       gitui
       glow
       gomi

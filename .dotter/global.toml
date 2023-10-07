@@ -32,7 +32,7 @@ lazygit = "~/.config/lazygit"
 lvim = "~/.config/lvim"
 mimeapps = "~/.config/"
 # newsboat = "~/.config/"
-# nixos = "/etc/"
+nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
 # nnn = "~/.config/"
 # parallel = "~/.config/"
 # ptpython = "~/.config/"
