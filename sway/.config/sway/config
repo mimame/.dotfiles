@@ -80,8 +80,8 @@ bindsym --release $mod+Shift+q exec xkill
 bindsym $mod+Return exec --no-startup-id wezterm
 
 # Fast access to most used programs with Alt key
-bindsym $mod+Mod1+c exec --no-startup-id code
 bindsym $mod+Mod1+b exec --no-startup-id blueman-manager
+bindsym $mod+Mod1+c exec --no-startup-id code
 bindsym $mod+Mod1+e exec --no-startup-id emote
 bindsym $mod+Mod1+f exec --no-startup-id firefox
 bindsym $mod+Mod1+l exec --no-startup-id logseq
