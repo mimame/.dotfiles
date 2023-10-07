@@ -64,7 +64,10 @@ if status --is-interactive
     end
 
     # Reinstall systemd user services broken by NixOS updates
-    fix_broken_services_by_nixos
+    set system $(lsb_release -i | cut -f2)
+    if test $system = 'NixOS'
+        fix_broken_services_by_nixos
+    end
 
     eval (zellij setup --generate-auto-start fish | string collect)
 end
