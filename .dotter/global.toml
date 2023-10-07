@@ -33,7 +33,7 @@ lvim = "~/.config/lvim"
 mimeapps = "~/.config/"
 # newsboat = "~/.config/"
 nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
-# nnn = "~/.config/"
+nnn = "~/.config/fish/"
 # parallel = "~/.config/"
 # ptpython = "~/.config/"
 # qutebrowser = "~/.config/"
