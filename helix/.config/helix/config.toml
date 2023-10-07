@@ -10,8 +10,14 @@ line-number = "relative"
 cursorline = true
 # Whether to color the mode indicator with different colors depending on the mode itself
 color-modes = true
+# Enable automatic pop up of auto-completion
+auto-completion = true
+# Set to true to make completions always replace the entire word and not just the part before the cursor
+completion-replace = false
 # Enable automatic saving on focus moving away
 auto-save = true
+# Enable automatic pop up of auto-completion
+auto-format = true
 # Renders a line at the top of the editor displaying open buffers
 bufferline = "always"
 
@@ -48,6 +54,7 @@ render = "none"
 [editor.whitespace.characters]
 # Literal characters to use when rendering whitespace
 # Sub-keys may be any of
+# Options for rendering whitespace with visible characters. Use `:set whitespace.render all` to temporarily enable visible whitespace.
 space = "·"
 nbsp = "⍽"
 tab = "→"
