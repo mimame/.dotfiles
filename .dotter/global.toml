@@ -29,7 +29,7 @@ julia = "~/.julia/config/"
 kitty = { target = "~/.config/kitty", type = "symbolic"}
 # latex = "~/"
 lazygit = "~/.config/lazygit"
-# libinput = "~/.config/"
+libinput = "~/.config/libinput"
 # lvim = "~/.config/"
 # mimeapps = "~/.config/"
 # newsboat = "~/.config/"
