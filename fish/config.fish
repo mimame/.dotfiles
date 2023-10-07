@@ -1,6 +1,15 @@
 if status --is-interactive
 
-    if not functions --query fisher
+    if not functions --query fisher; or not test -f ~/.config/fish/fish_plugins
+        # Delete all plugins files ignore fail if if they don't exist
+        rm -f ~/.config/fish/functions/__abbr*
+        rm -f ~/.config/fish/functions/_autopair*
+        rm -f ~/.config/fish/functions/fisher.fish
+        rm -f ~/.config/fish/functions/fzf_configure_bindings.fish
+        rm -f ~/.config/fish/functions/fzf.fish
+        rm -f ~/.config/fish/functions/replay.fish
+        rm -fr ~/.config/fish/completions
+        rm -fr ~/.config/fish/conf.d
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
         wget 'https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_moon.theme' -O ~/.config/fish/themes/'Tokyonight Moon.theme'
         # Only run the first time
