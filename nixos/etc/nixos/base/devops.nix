@@ -66,6 +66,7 @@
 
     ] ++ (with pkgs.unstable; [
 
+      awscli # v1 for awslocal localstack compatibility
       grafana
       grafana-loki
       kompose
@@ -74,10 +75,13 @@
       kubernetes-helm
       localstack
       minikube
+      nodePackages.serverless
       packer
       podman-tui
       prometheus
       pulumi-bin
+      python3Packages.boto3
+      python3Packages.localstack
       terraform
       vagrant
 
