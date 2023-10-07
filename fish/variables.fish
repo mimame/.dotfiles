@@ -65,6 +65,7 @@ set -x -U JULIA_NUM_THREADS 12
 set -g EDITOR hx
 set -x -U VISUAL hx
 set -x -U TMPDIR /tmp
+set -x -U TERMINAL wezterm
 
 if test -z "$XDG_CONFIG_HOME"
     set -x -U XDG_CONFIG_HOME "$HOME/.config"
