@@ -52,6 +52,12 @@
     }];
   };
 
+  services.jenkins = {
+    enable = false;
+    withCLI = true;
+    extraGroups = [ "podman" "docker" ];
+  };
+
   environment.systemPackages = with pkgs;
     [
 
