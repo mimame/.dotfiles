@@ -1,3 +1,4 @@
+bin/awslocal
 clifm
 .dotter/cache.toml
 .dotter/local.toml
