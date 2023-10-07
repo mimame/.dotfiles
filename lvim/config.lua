@@ -375,6 +375,10 @@ lvim.plugins = {
       }
     end,
   },
+  -- Metals plugin
+  {
+    "scalameta/nvim-metals",
+  },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
