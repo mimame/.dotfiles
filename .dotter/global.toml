@@ -34,6 +34,7 @@ mimeapps = "~/.config/"
 # newsboat = "~/.config/"
 nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
 nnn = "~/.config/fish/"
+nushell = "~/.config/nushell"
 # parallel = "~/.config/"
 # ptpython = "~/.config/"
 # qutebrowser = "~/.config/"

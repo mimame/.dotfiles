@@ -770,3 +770,33 @@ $env.config = {
 # Load plugins
 use ~/.cache/nushell/starship/init.nu
 source ~/.cache/nushell/zoxide/init.nu
+
+alias b = cd ..
+alias cd = z
+alias g = git
+alias ju = juliaup
+alias k = pkill -9 -f
+alias lg = lazygit
+alias md = mkdir -v
+alias mkdir = mkdir -v
+alias nvim = lvim
+# alias open = o
+alias pc = pre-commit
+alias ru = rustup
+alias u = topgrade
+alias vi = lvim
+alias vim = lvim
+alias v = lvim
+alias x = chmod +x
+alias h = hx
+alias j = just
+alias re = massren
+alias T = tail -F
+alias nano = micro
+alias less = bat
+alias more = bat
+alias m = man
+alias sv = sudoedit
+alias se = sudoedit
+
+source "/home/mimame/.dotfiles/nushell/rtx.nu"

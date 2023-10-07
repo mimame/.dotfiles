@@ -88,3 +88,11 @@ starship init nu | save -f ~/.cache/nushell/starship/init.nu
 # Generate zoxide source
 mkdir ~/.cache/nushell/zoxide
 zoxide init nushell | save -f ~/.cache/nushell/zoxide/init.nu
+
+# Load rtx
+# FIXME: Use local cache
+do {
+  let rtxpath = ($nu.config-path | path dirname | path join "rtx.nu")
+  run-external rtx activate nu --redirect-stdout | save $rtxpath -f
+  $"\nsource "($rtxpath)"" | save $nu.config-path --append
+}
