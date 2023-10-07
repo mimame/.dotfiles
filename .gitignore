@@ -1,4 +1,6 @@
 clifm
+.dotter/cache.toml
+.dotter/local.toml
 fish/.config/fish/bat_theme
 fish/.config/fish/completions/
 fish/.config/fish/conf.d/
