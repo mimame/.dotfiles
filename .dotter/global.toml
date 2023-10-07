@@ -19,7 +19,7 @@ espanso = { target = "~/.config/espanso", type = "symbolic" } # Files with {{}} 
 fd = "~/.config/fd"
 fish = "~/.config/fish" # Use `dotter --force` to avoid issues with existing plugin files
 gammastep = "~/.config/gammastep"
-# gh = "~/.config/"
+gh = "~/.config/gh"
 # git = "~/.config/"
 # grc = "~/.config/"
 # greenclip = "~/.config/"
