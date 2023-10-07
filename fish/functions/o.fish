@@ -1,5 +1,5 @@
-# # o function and open function with handlr {{{
-# # It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
+# o function and open function with handlr
+# It works better than xdg-open in i3-wm and also it provides a better and nicer terminal interface than their xdg-utils equivalents
 function o
     if test (count $argv) -eq 0
         vifm .
