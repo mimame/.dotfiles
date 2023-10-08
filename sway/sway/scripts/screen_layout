@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# MIT License
+
+# Copyright (c) 2018 Miguel Madrid Mencía
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+# Requirements:
+  # xrandr
+
+# Description:
+# Add a secondary (EXT) top screen if it is connected
+
+# Usage:
+  # ./screen_layout
+
+export DISPLAY=:0
+export XAUTHORITY="$HOME/.Xauthority"
+
+IN=$(xrandr | fgrep -w 'connected' | fgrep -v -- '-0' | cut -d' ' -f1)
+EXT=$(xrandr | fgrep -w 'connected' | fgrep -v "$IN" | cut -d' ' -f1)
+
+if [[ -z "${EXT}" ]]; then
+  for EXT in $(xrandr | fgrep 'disconnect'); do
+    xrandr --output "$IN" --auto --primary --output "$EXT" --off
+  done
+else
+  MAX_RESOLUTION_IN=$(xrandr | fgrep "$IN" | cut -d' ' -f4 | cut -d'+' -f1)
+  MAX_RESOLUTION_EXT=$(xrandr | fgrep "$EXT" -A1 | fgrep -v "$EXT" | cut -d' ' -f4)
+  MAX_HEIGHT_EXT=$(echo "$MAX_RESOLUTION_EXT" | cut -d'x' -f2)
+
+  xrandr --output "$IN" --primary --mode "$MAX_RESOLUTION_IN" --pos "0x${MAX_HEIGHT_EXT}" --rotate normal --output "$EXT" --mode "$MAX_RESOLUTION_EXT" --pos 0x0 --rotate normal
+fi

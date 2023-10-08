@@ -11,7 +11,9 @@ set $mod Mod4
 exec_always --no-startup-id pkill udiskie; udiskie --notify --smart-tray --notify-command notify-send &
 exec dbus-sway-environment
 exec configure-gtk
+# Enable clipboard manager
 exec wl-paste -t text --watch clipman store --no-persist
+# exec_always --no-startup-id pkill greenclip; greenclip daemon > /dev/null &
 exec swaync
 
 input "type:keyboard" {
@@ -111,6 +113,8 @@ bindsym $mod+Ctrl+w exec --no-startup-id rofi -show web
 bindsym $mod+Ctrl+f exec --no-startup-id rofi -show finder
 # Add clipboard manager launcher
 bindsym $mod+c exec --no-startup-id clipman pick --tool rofi
+# bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
 
 # Player controls
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
