@@ -26,6 +26,8 @@ Host *
   # When using ssh key first try with the key without passphrase for instant login
   IdentityFile ~/.ssh/id_rsa_no_passphrase
   IdentityFile ~/.ssh/id_rsa
+  # Only use the identity keys configured
+  # IdentitiesOnly yes
   # Always add used ssh keys to the agent
   AddKeysToAgent yes
 
