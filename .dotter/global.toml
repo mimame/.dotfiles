@@ -36,7 +36,7 @@ nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
 nnn = "~/.config/fish/"
 nushell = "~/.config/nushell"
 # parallel = "~/.config/"
-# ptpython = "~/.config/"
+ptpython = "~/.config/ptpython"
 # qutebrowser = "~/.config/"
 # rofi = "~/.config/"
 # ssh = "~"
