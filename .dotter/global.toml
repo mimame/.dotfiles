@@ -51,7 +51,7 @@ vivid = "~/.config/vivid"
 # vscode = ""
 wezterm = "~/.config/wezterm"
 xplr = "~/.config/xplr"
-# zathura = "~/.config/"
+zathura = "~/.config/zathura"
 # zellij = "~/.config/"
 
 [default.variables]
