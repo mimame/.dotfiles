@@ -52,6 +52,6 @@ vivid = "~/.config/vivid"
 wezterm = "~/.config/wezterm"
 xplr = "~/.config/xplr"
 zathura = "~/.config/zathura"
-# zellij = "~/.config/"
+zellij = "~/.config/zellij"
 
 [default.variables]
