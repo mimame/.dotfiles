@@ -50,7 +50,7 @@ vimiv = "~/.config/vimiv"
 vivid = "~/.config/vivid"
 # vscode = ""
 wezterm = "~/.config/wezterm"
-# xplr = "~/.config/"
+xplr = "~/.config/xplr"
 # zathura = "~/.config/"
 # zellij = "~/.config/"
 
