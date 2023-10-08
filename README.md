@@ -4,7 +4,7 @@
 
 # Setup
 - [NixOS](https://nixos.org/)
-- [Stow](https://www.gnu.org/software/stow/)
+- [Dotter](https://github.com/SuperCuber/dotter)
 
 # Tools
 Most important tools for my minimalist workflow
@@ -33,8 +33,6 @@ Most important tools for my minimalist workflow
 
 ## [lvim/lunarvim (opinated nvim editor distribution)](https://www.lunarvim.org/)
 
-## [ranger (file manager)](https://github.com/ranger/ranger/)
-
 ## [ripgrep (text searcher)](https://github.com/BurntSushi/ripgrep/)
 
 ## [rofi (applications launcher)](https://github.com/DaveDavenport/rofi/)
@@ -48,5 +46,7 @@ Most important tools for my minimalist workflow
 ## [topgrade (update everything)](https://github.com/topgrade-rs/topgrade/)
 
 ## [wezterm (GPU based terminal)](https://wezfurlong.org/wezterm/)
+
+## [xplr (file manager)](https://github.com/sayanarijit/xplr)
 
 ## [zellij (terminal multiplexor)](https://zellij.dev/)
