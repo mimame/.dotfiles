@@ -62,8 +62,8 @@ set -g PAGER moar --wrap
 set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x -U BROWSER vivaldi
 set -x -U JULIA_NUM_THREADS 12
-set -g EDITOR hx
-set -x -U VISUAL hx
+set -g EDITOR lvim
+set -x -U VISUAL lvim
 set -x -U TMPDIR /tmp
 set -x -U TERMINAL wezterm
 
