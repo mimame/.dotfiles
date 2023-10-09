@@ -220,7 +220,6 @@
       watchexec
       wezterm
       wget
-      xarchiver
       xh
       xonsh
       xplr
