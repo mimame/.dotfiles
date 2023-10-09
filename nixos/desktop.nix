@@ -224,7 +224,7 @@ in {
       obsidian
       pcmanfm
       playerctl
-      rofi
+      rofi-wayland
       spicetify-cli
       spotify
       sqlitebrowser
