@@ -53,7 +53,7 @@ set -Ux FZF_DEFAULT_OPTS '
 --color=fg+:#c5cdd9,bg+:#1e2030,hl+:#5dbbc1
 --color=info:#88909f,prompt:#ec7279,pointer:#d38aea
 --color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1
---bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute(hx {} < /dev/tty > /dev/tty 2>&1)+abort"
+--bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 
 set -x -U BAT_THEME "Enki-Tokyo-Night"
@@ -63,7 +63,7 @@ set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x -U BROWSER vivaldi
 set -x -U JULIA_NUM_THREADS 12
 set -g EDITOR lvim
-set -x -U VISUAL lvim
+set -g VISUAL lvim
 set -x -U TMPDIR /tmp
 set -x -U TERMINAL wezterm
 
