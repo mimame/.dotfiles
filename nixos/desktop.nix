@@ -177,7 +177,6 @@ in {
       gthumb
       inkscape
       keepassxc
-      qutebrowser
       swaynotificationcenter
       swayr
       wev
@@ -224,6 +223,7 @@ in {
       obsidian
       pcmanfm
       playerctl
+      qutebrowser
       rofi-wayland
       spicetify-cli
       spotify
