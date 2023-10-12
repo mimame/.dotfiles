@@ -63,7 +63,7 @@ set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x -U BROWSER vivaldi
 set -x -U JULIA_NUM_THREADS 12
 set -g EDITOR lvim
-set -g VISUAL lvim
+set -g VISUAL $EDITOR
 set -x -U TMPDIR /tmp
 set -x -U TERMINAL wezterm
 
