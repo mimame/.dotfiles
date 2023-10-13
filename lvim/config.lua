@@ -11,6 +11,7 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.relativenumber = true
 vim.opt.spell = true
+vim.opt.wrap = true
 -- set cursor of insert mode as vertical line
 vim.opt.guicursor = "i:ver1"
 -- Set sh as default shell
