@@ -155,6 +155,7 @@
       kitty
       lazydocker
       lazygit
+      libqalculate
       litecli
       lsd
       massren

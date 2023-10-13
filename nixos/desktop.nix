@@ -223,6 +223,7 @@ in {
       obsidian
       pcmanfm
       playerctl
+      qalculate-gtk
       qutebrowser
       rofi-wayland
       spicetify-cli
