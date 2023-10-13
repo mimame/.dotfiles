@@ -89,6 +89,7 @@ bindsym $mod+Mod1+f exec --no-startup-id firefox
 bindsym $mod+Mod1+l exec --no-startup-id logseq
 bindsym $mod+Mod1+o exec --no-startup-id obsidian
 bindsym $mod+Mod1+p exec --no-startup-id pcmanfm
+bindsym $mod+Mod1+q exec --no-startup-id qutebrowser
 bindsym $mod+Mod1+s exec --no-startup-id spotify
 bindsym $mod+Mod1+Shift+c exec --no-startup-id calibre
 bindsym $mod+Mod1+Shift+e exec --no-startup-id evince
