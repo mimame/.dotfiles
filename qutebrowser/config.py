@@ -2145,10 +2145,9 @@ c.url.open_base_url = True
 ## qutebrowser`.
 ## Type: Dict
 c.url.searchengines = {
-        'DEFAULT': 'https://duckduckgo.com/?q={}',
+        'DEFAULT': 'https://google.com/search?hl=en&q={}',
         'd': 'https://duckduckgo.com/?q={}',
-        'gh': 'https://github.com/search?q={}',
-        'g': 'https://www.google.com/?hl=en&gl=en&search?q={}',
+        'g': 'https://github.com/search?q={}',
         # gi: https://www.google.com/search?tbm=isch&q={},
         # gm: https://www.google.com/maps?q={},
         # gr: https://www.google.com/search?hl=en&tbo=1&tbs=qdr:y&q={},
@@ -2161,8 +2160,8 @@ c.url.searchengines = {
         'te': 'http://translate.google.com/?source=osdd#auto|en|{}',
         'tf': 'https://translate.google.com/#auto/fr/{}',
         't': 'http://translate.google.com/?source=osdd#auto|auto|{}',
-        # w: http://en.wikipedia.org/wiki/Special:Search?search={},
         'ts': 'https://translate.google.com/#auto/es/{}',
+        # w: http://en.wikipedia.org/wiki/Special:Search?search={},
         'w': 'https://wiki.archlinux.org/index.php?search={}',
         # y: http://www.youtube.com/results?search_query={},
 
