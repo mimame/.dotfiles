@@ -93,6 +93,7 @@
       rye
       sbt-with-scala-native # scala
       scala_3
+      scala-cli
       scalafix
       scalafmt
       shards
