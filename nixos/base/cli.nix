@@ -171,6 +171,7 @@
       newsboat
       ninja
       (nnn.override { withNerdIcons = true; })
+      oha
       onefetch
       ouch
       ov
