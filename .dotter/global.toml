@@ -37,7 +37,7 @@ nnn = "~/.config/fish/"
 nushell = "~/.config/nushell"
 # parallel = "~/.config/"
 ptpython = "~/.config/ptpython"
-qutebrowser = "~/.config/qutebrowser"
+qutebrowser = { target = "~/.config/qutebrowser", type = "symbolic"}
 rofi = "~/.config/rofi"
 ssh = "~/.ssh"
 starship = "~/.config/"
