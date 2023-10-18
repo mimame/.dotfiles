@@ -179,13 +179,16 @@ in {
       keepassxc
       swaynotificationcenter
       swayr
+      waybar
       wev
       wl-clipboard
       wlrctl
+      wtype
       ydotool
 
     ] ++ (with pkgs.unstable; [
 
+      betterbird
       bitwarden
       calibre
       catppuccin-cursors.mochaMauve
