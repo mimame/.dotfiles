@@ -101,7 +101,14 @@
   # Use completion files provided by other packages
   # Source configuration snippets provided by other packages
   # Autoload fish functions provided by other packages
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    vendor = {
+      functions.enable = true;
+      config.enable =
+        false; # Fix issue with fzf_key_bindings vendor.d provided by fzf package
+    };
+  };
 
   # Many programs look at /etc/shells to determine
   # if a user is a "normal" user and not a "system" user
