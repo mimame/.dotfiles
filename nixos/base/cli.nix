@@ -62,10 +62,6 @@
       dosfstools
       espanso-wayland
       fakeroot
-      httpie
-      jc
-      libarchive
-      lnav
       lsb-release
       lsof
       ntfs3g
@@ -122,6 +118,10 @@
       file
       frawk
       fuse-common
+      httpie
+      jc
+      libarchive
+      lnav
       fx
       fzf
       gawk
