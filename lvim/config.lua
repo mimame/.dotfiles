@@ -134,37 +134,6 @@ lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "rege
 --     },
 -- }
 lvim.plugins = {
-  -- Neovim plugin for Obsidian
-  {
-    'epwalsh/obsidian.nvim',
-    config = function()
-      -- Use gf for follow Obsidian links
-      vim.keymap.set("n", "gf", function()
-        if require("obsidian").util.cursor_on_markdown_link() then
-          return "<cmd>ObsidianFollowLink<CR>"
-        else
-          return "gf"
-        end
-      end, { noremap = false, expr = true })
-
-
-      -- Required Default vault
-      require("obsidian").setup({
-        dir = "~/Documents/SecondBrain",
-        mappings = {}
-      })
-
-      -- Syntax highlighting
-      vim.g.vim_markdown_frontmatter = 1
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "markdown", "markdown_inline" },
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = { "markdown" },
-        },
-      })
-    end,
-  },
   -- jetpack codebase navigation
   {
     "ggandor/lightspeed.nvim",
@@ -379,6 +348,84 @@ lvim.plugins = {
   -- Metals plugin
   {
     "scalameta/nvim-metals",
+  },
+  -- Neovim plugin for Obsidian
+  {
+    'epwalsh/obsidian.nvim',
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+      -- see below for full list of optional dependencies
+    },
+    config = function()
+      -- Use gf for follow Obsidian links
+      vim.keymap.set("n", "gf", function()
+        if require("obsidian").util.cursor_on_markdown_link() then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          return "gf"
+        end
+      end, { noremap = false, expr = true })
+
+
+      -- Required Default vault
+      require("obsidian").setup({
+        -- dir = "~/Documents/SecondBrain",
+        --
+        disable_frontmatter = true,
+        workspaces = {
+          {
+            name = "SecondBrain",
+            path = "~/Documents/SecondBrain",
+          },
+        },
+        daily_notes = {
+          -- Optional, if you keep daily notes in a separate directory.
+          folder = "00 Bullet Journal (Inbox)",
+          -- Optional, if you want to change the date format for the ID of daily notes.
+          date_format = "%d-%m-%Y",
+          -- Optional, if you want to change the date format of the default alias of daily notes.
+          alias_format = "%B %-d, %Y",
+          -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+          template = nil
+        },
+        mappings = {
+          -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+          -- ["gf"] = {
+          --   action = function()
+          --     return require("obsidian").util.gf_passthrough()
+          --   end,
+          --   opts = { noremap = false, expr = true, buffer = true },
+          -- },
+        },
+        -- Optional, completion.
+        completion = {
+          -- If using nvim-cmp, otherwise set to false
+          nvim_cmp = true,
+          -- Trigger completion at 2 chars
+          min_chars = 3,
+          -- Where to put new notes created from completion. Valid options are
+          --  * "current_dir" - put new notes in same directory as the current buffer.
+          --  * "notes_subdir" - put new notes in the default notes subdirectory.
+          new_notes_location = "current_dir",
+
+          -- Whether to add the output of the node_id_func to new notes in autocompletion.
+          -- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
+          prepend_note_id = false
+        },
+      })
+
+      -- Syntax highlighting
+      vim.g.vim_markdown_frontmatter = 1
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "markdown", "markdown_inline" },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = { "markdown" },
+        },
+      })
+    end,
   },
 }
 
