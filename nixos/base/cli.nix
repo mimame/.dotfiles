@@ -193,7 +193,6 @@
       rsync
       scc
       sd
-      shared-mime-info
       spacer
       sqlite
       sqlite-utils

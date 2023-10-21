@@ -11,7 +11,7 @@
 
     ] ++ (with pkgs.unstable; [
 
-      mariadb-connector-c
+      # mariadb-connector-c # For Rails but generates too much collisions
       mycli
       redis
 
