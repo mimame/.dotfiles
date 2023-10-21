@@ -135,6 +135,18 @@
     }];
   };
 
+  services.kmscon = {
+    enable = true;
+    extraConfig = ''
+      font-name=Hack Nerd Font
+      font-size=16
+      xkb-layout=us
+      xkb-variant=altgr-intl
+    '';
+    extraOptions = "--term wezterm";
+    hwRender = true;
+  };
+
   # Primary font paths
   fonts.fonts = with pkgs.unstable; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
