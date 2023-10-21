@@ -374,6 +374,11 @@ lvim.plugins = {
         -- dir = "~/Documents/SecondBrain",
         --
         disable_frontmatter = true,
+        -- Don't use any kind of Zettelkasten ID format
+        -- Simply use the title as filename
+        note_id_func = function(title)
+          return title
+        end,
         workspaces = {
           {
             name = "SecondBrain",
