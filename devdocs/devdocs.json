@@ -4,5 +4,5 @@
   "layout": "_sidebar-hidden",
   "theme": "dark",
   "analyticsConsent": "0",
-  "docs": "angular/ansible/bash/bootstrap~5/cmake~3.26/crystal/css/d3~7/docker/elixir~1.15/erlang~26/fastapi/fish~3.6/flask~2.3/git/gnu_make/gnuplot/go/groovy~4.0/html/http/i3/javascript/jekyll~4/jq/julia~1.8/kubectl/kubernetes/latex/lua~5.4/mariadb/markdown/mongoose/nginx/nginx_lua_module/nim/nix/numpy~1.23/ocaml/pandas~1/phoenix/python~3.11/r/redis/ruby~3.2/rust/sass/scala~3.2/scikit_image/scikit_learn/sqlite/svelte/tensorflow~2.9/typescript/vagrant/dom/xslt_xpath/zig"
+  "docs": "angular/ansible/bash/bootstrap~5/cmake~3.26/crystal/css/d3~7/docker/elixir~1.15/erlang~26/fastapi/fish~3.6/flask~2.3/git/gnu_make/gnuplot/go/groovy~4.0/html/http/i3/javascript/jekyll~4/jq/julia~1.8/kubectl/kubernetes/latex/lua~5.4/mariadb/markdown/mongoose/nginx/nginx_lua_module/nim/nix/numpy~1.23/ocaml/openjdk~19/openjdk~8_gui/openjdk~8_web/pandas~1/phoenix/python~3.11/r/redis/ruby~3.2/rust/sass/scala~3.2/scikit_image/scikit_learn/sqlite/svelte/tensorflow~2.9/typescript/vagrant/dom/xslt_xpath/zig"
 }
