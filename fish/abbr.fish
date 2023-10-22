@@ -1,10 +1,10 @@
 abbr sfish source ~/.config/fish/config.fish
 abbr !! --position anywhere --function last_history_item
 abbr cat bat
-alias ll 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
-alias ls ll
-alias lll 'eza --tree --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
-abbr l br
+alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
+alias ll 'l --tree'
+alias ls l
+abbr lll br
 abbr cd z
 abbr b 'cd ..'
 abbr dotdot --regex '^\.\.+$' --function multicd
