@@ -118,10 +118,6 @@
       file
       frawk
       fuse-common
-      httpie
-      jc
-      libarchive
-      lnav
       fx
       fzf
       gawk
@@ -144,10 +140,12 @@
       handlr
       helix
       hexyl
+      httpie
       hurl
       hyperfine
       imagemagick
       inxi
+      jc
       jless
       jq
       jujutsu
@@ -155,8 +153,10 @@
       kitty
       lazydocker
       lazygit
+      libarchive
       libqalculate
       litecli
+      lnav
       lsd
       massren
       mcfly
