@@ -35,6 +35,7 @@
       hunspellDicts.es-es
       hunspellDicts.fr-moderne
       hyphen
+      inlyne
       jekyll
       julia-bin
       just
@@ -46,6 +47,7 @@
       luajitPackages.luarocks
       lua-language-server
       marksman
+      mdbook
       meson
       metals # scala
       micromamba

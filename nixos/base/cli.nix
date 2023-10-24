@@ -93,6 +93,7 @@
       brotli
       btop
       bzip2
+      choose
       clifm
       copyq
       coreutils
@@ -110,6 +111,7 @@
       du-dust
       duf
       dura
+      dysk
       emacs29
       entr
       eza
@@ -162,6 +164,7 @@
       mcfly
       mdcat
       micro
+      miniserve
       moar
       monolith
       navi
@@ -176,6 +179,7 @@
       ouch
       ov
       pandoc
+      pastel
       pciutils
       pdftk
       pigz
@@ -185,11 +189,14 @@
       procs
       progress
       pueue
+      # qsv
       ranger
       rclone
       ripgrep
       rlwrap
+      rnr
       rsync
+      ruplacer
       scc
       sd
       spacer
