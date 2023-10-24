@@ -16,3 +16,7 @@ repos:
     hooks:
     -   id: commitlint
         stages: [commit-msg]
+-   repo: https://github.com/sirwart/ripsecrets
+    rev: v0.1.7  # Use latest tag on GitHub
+    hooks:
+    -   id: ripsecrets
