@@ -173,6 +173,7 @@
       neovim
       newsboat
       ninja
+      nix-tree
       (nnn.override { withNerdIcons = true; })
       oha
       onefetch
