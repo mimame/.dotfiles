@@ -220,7 +220,7 @@
       vivid
       watchexec
       wezterm
-      wget
+      wget2
       xh
       xonsh
       xplr
