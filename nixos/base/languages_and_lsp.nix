@@ -87,6 +87,7 @@
       python3Packages.python-lsp-server
       python3Packages.radian
       R
+      ripsecrets
       rnix-lsp
       rtx
       ruby-lsp
