@@ -70,8 +70,9 @@
       nuspell
       pandoc
       pcre2
-      plantuml
       pipx
+      plantuml
+      pre-commit
       protobuf
       python3Full
       python3Packages.cython

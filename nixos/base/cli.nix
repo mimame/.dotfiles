@@ -182,7 +182,6 @@
       pixz
       poppler_utils
       postgresql
-      pre-commit
       procs
       progress
       pueue
