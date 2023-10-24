@@ -68,7 +68,7 @@ abbr nd 'nvim -d -c "set nofoldenable"'
 abbr hs "history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | bat --number"
 abbr du 'dust'
 abbr dus diskus
-abbr df 'df -h'
+abbr df 'duf'
 abbr free 'free -h'
 # abbr j "jobs -l"
 abbr j just
