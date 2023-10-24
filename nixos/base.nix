@@ -150,6 +150,7 @@
   # Primary font paths
   fonts.fonts = with pkgs.unstable; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
+    noto-fonts-color-emoji
     font-awesome
   ];
 
