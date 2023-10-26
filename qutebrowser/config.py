@@ -2107,7 +2107,7 @@ c.tabs.position = 'left'
 ## Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 ## for a blank page.
 ## Type: FuzzyUrl
-c.url.default_page = 'https://www.google.com/search?hl=en'
+c.url.default_page = 'https://duckduckgo.com/'
 
 ## URL segments where `:navigate increment/decrement` will search for a
 ## number.
@@ -2145,9 +2145,10 @@ c.url.open_base_url = True
 ## qutebrowser`.
 ## Type: Dict
 c.url.searchengines = {
-        'DEFAULT': 'https://google.com/search?hl=en&q={}',
+        'DEFAULT': 'https://duckduckgo.com/?q={}',
         'd': 'https://duckduckgo.com/?q={}',
-        'g': 'https://github.com/search?q={}',
+        'gh': 'https://github.com/search?q={}',
+        'g': 'https://google.com/search?hl=en&q={}',
         # gi: https://www.google.com/search?tbm=isch&q={},
         # gm: https://www.google.com/maps?q={},
         # gr: https://www.google.com/search?hl=en&tbo=1&tbs=qdr:y&q={},
@@ -2161,11 +2162,10 @@ c.url.searchengines = {
         'tf': 'https://translate.google.com/#auto/fr/{}',
         't': 'http://translate.google.com/?source=osdd#auto|auto|{}',
         'ts': 'https://translate.google.com/#auto/es/{}',
-        # w: http://en.wikipedia.org/wiki/Special:Search?search={},
+        'wi': 'http://en.wikipedia.org/wiki/Special:Search?search={}',
         'w': 'https://wiki.archlinux.org/index.php?search={}',
-        # y: http://www.youtube.com/results?search_query={},
-
-                       }
+        'y': 'http://www.youtube.com/results?search_query={}',
+}
 
 ## Page(s) to open at the start.
 ## Type: List of FuzzyUrl, or FuzzyUrl
