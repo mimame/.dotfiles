@@ -23,7 +23,7 @@ lvim.log.level = "info"
 lvim.format_on_save = {
   enabled = true,
   pattern = "*.lua",
-  timeout = 1000,
+  timeout = 50000,
 }
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
