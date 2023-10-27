@@ -60,6 +60,50 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "right"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 lvim.builtin.autopairs.active = true
+-- Manual mode doesn't automatically change your root directory, so you have
+-- the option to manually do so using `:ProjectRoot`
+-- lvim.builtin.project.active = false
+lvim.builtin.project.manual_mode = true
+-- Show hidden files in telescope
+lvim.builtin.project.show_hidden = true
+
+-- lvim.builtin.lualine.style = "lvim"
+lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
+lvim.builtin.lualine.options.component_separators = { left = '|', right = '|' }
+local components = require("lvim.core.lualine.components")
+components.filename.path = 3
+components.filename.color = {
+  gui = "bold"
+}
+components.filetype.separator = ""
+lvim.builtin.lualine.sections.lualine_a = { "mode" }
+lvim.builtin.lualine.sections.lualine_c = {
+  components.diff,
+  components.diagnostics,
+  components.location,
+  components.progress,
+  components.filetype,
+  components.filename,
+}
+lvim.builtin.lualine.sections.lualine_x = {
+  components.lsp,
+  components.spaces,
+  components.encoding,
+}
+lvim.builtin.lualine.sections.lualine_y = {
+}
+lvim.builtin.lualine.sections.lualine_z = {
+  "fileformat"
+}
+
+lvim.builtin.lualine.inactive_sections.lualine_c = {
+  components.diff,
+  components.lsp,
+  components.diagnostics,
+  components.spaces,
+  components.filename,
+}
+lvim.builtin.lualine.inactive_sections.lualine_x = {}
 
 -- Enable DAP support by default
 lvim.builtin.dap.active = true
