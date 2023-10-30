@@ -101,6 +101,7 @@
       ctop
       curl
       curlie
+      ddgr
       delta
       difftastic
       direnv
