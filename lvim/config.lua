@@ -71,7 +71,7 @@ lvim.builtin.project.show_hidden = true
 lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
 lvim.builtin.lualine.options.component_separators = { left = '|', right = '|' }
 local components = require("lvim.core.lualine.components")
-components.filename.path = 3
+components.filename.path = 4
 components.filename.color = {
   gui = "bold"
 }
