@@ -98,6 +98,7 @@
       clifm
       copyq
       coreutils
+      ctop
       curl
       curlie
       delta
