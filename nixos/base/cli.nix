@@ -59,6 +59,7 @@
       axel
       bc
       bind
+      (buku.override { withServer = true; })
       dosfstools
       espanso-wayland
       fakeroot
