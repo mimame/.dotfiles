@@ -1,5 +1,5 @@
 # Set font
-set font "Hack Nerd Font 13"
+set font "JetBrainsMonoNL Nerd Font 13"
 # Enable copy to clipboard
 set selection-clipboard clipboard
 # Tokyo Night theme
