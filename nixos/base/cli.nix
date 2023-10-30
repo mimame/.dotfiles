@@ -204,6 +204,7 @@
       scc
       sd
       spacer
+      speedtest-go
       sqlite
       sqlite-utils
       sshfs
