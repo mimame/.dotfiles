@@ -5,6 +5,7 @@ alias l 'eza --sort .name --color=always --long --links --group --git --icons --
 alias ll 'l --tree'
 alias ls l
 abbr lll br
+abbr tree tre
 abbr cd z
 abbr b 'cd ..'
 abbr dotdot --regex '^\.\.+$' --function multicd
