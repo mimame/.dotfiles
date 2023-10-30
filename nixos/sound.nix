@@ -17,6 +17,9 @@
     # media-session.enable = true;
   };
 
+  # Real-time microphone noise suppression
+  programs.noisetorch.enable = true;
+
   environment.systemPackages = with pkgs;
     [
 
