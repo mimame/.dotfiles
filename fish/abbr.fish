@@ -27,6 +27,7 @@ abbr k 'pkill -9 -f'
 abbr bc 'bc -l'
 abbr mk 'mkdir -pv'
 abbr u topgrade
+abbr inlyne inlyne --theme dark
 abbr wget wget2
 
 abbr p 'ptipython'
