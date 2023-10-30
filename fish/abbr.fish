@@ -30,6 +30,7 @@ abbr mk 'mkdir -pv'
 abbr u topgrade
 abbr inlyne inlyne --theme dark
 abbr wget wget2
+abbr d ddgr
 
 abbr p 'ptipython'
 
