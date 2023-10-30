@@ -220,6 +220,7 @@
       topgrade
       translate-shell
       trash-cli
+      tre
       tree
       tz
       udiskie
