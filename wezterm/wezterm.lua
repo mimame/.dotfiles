@@ -44,8 +44,9 @@ config.hide_mouse_cursor_when_typing = false
 config.window_close_confirmation = 'NeverPrompt'
 config.warn_about_missing_glyphs = false
 config.font = wezterm.font_with_fallback {
-    "Hack Nerd Font",
-    "Broot Icons Visual Studio Code",
+  "JetBrainsMonoNL Nerd Font",
+  "Hack Nerd Font",
+  "Broot Icons Visual Studio Code",
 }
 config.check_for_updates = false
 config.font_size = 18.0
