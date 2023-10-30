@@ -236,6 +236,7 @@
       xh
       xonsh
       xplr
+      yazi
       yq
       zellij
       zenith
