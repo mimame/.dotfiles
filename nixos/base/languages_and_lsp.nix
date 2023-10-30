@@ -18,6 +18,7 @@
       buf-language-server # protocol buffers
       bundler
       # clang # breaks the lvim treesitter compilation
+      clojure
       cmake
       codespell
       coreutils
