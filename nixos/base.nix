@@ -131,7 +131,7 @@
   services.kmscon = {
     enable = true;
     extraConfig = ''
-      font-name=Hack Nerd Font
+      font-name=JetBrainsMonoNL Nerd Font
       font-size=16
       xkb-layout=us
       xkb-variant=altgr-intl
@@ -142,7 +142,12 @@
 
   # Primary font paths
   fonts.fonts = with pkgs.unstable; [
-    (nerdfonts.override { fonts = [ "Hack" ]; })
+    # https://github.com/freeCodeCamp/freeCodeCamp/issues/49174
+    # JetBrainsMono (No Ligatures) vs Hack
+    # Although Hack is a monospaced font: bad visual illusion around some characters are of variable width such as:
+    # Parenthesis, brackets, characters with incongruent styles, ||
+    # JetBrains Mono focuses on consistent spacing and legibility
+    (nerdfonts.override { fonts = [ "JetBrainsMono" "Hack" ]; })
     noto-fonts-color-emoji
     font-awesome
   ];

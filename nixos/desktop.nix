@@ -41,9 +41,9 @@ let
       gsettings set $gnome_schema cursor-theme "Catppuccin-Mocha-Mauve-Cursors"
       gsettings set $gnome_schema cursor-size 32
       gsettings set org.gnome.desktop.wm.preferences theme "Sweet-Dark"
-      gsettings set $gnome_schema document-font-name 'Hack 13'
-      gsettings set $gnome_schema font-name 'Hack 13'
-      gsettings set $gnome_schema monospace-font-name 'Hack 13'
+      gsettings set $gnome_schema document-font-name 'JetBrainsMonoNL 13'
+      gsettings set $gnome_schema font-name 'JetBrainsMonoNL 13'
+      gsettings set $gnome_schema monospace-font-name 'JetBrainsMonoNL 13'
     '';
   };
 
