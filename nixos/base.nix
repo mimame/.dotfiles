@@ -162,13 +162,14 @@
   environment.systemPackages = with pkgs;
     [
 
-      firmwareLinuxNonfree
       interception-tools
       libevdev
       libnotify
 
     ] ++ (with pkgs.unstable;
       [
+
+        firmwareLinuxNonfree
 
       ]);
 }
