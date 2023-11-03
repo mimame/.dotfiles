@@ -200,6 +200,7 @@ in {
       filezilla
       firefox
       flameshot
+      floorp
       gimp
       git-cola
       gitg
