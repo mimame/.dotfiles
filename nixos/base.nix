@@ -157,7 +157,7 @@
 
   # Use the latest available version of Linux
   # By now the stable version is used to avoid break the virtualbox virtualisation
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   environment.systemPackages = with pkgs;
     [
