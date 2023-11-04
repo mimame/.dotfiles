@@ -113,6 +113,7 @@
       terraform-ls
       texlab
       texlive.combined.scheme-medium
+      treefmt
       typos
       universal-ctags
       xonsh

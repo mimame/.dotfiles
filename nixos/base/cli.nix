@@ -211,6 +211,7 @@
       starship
       stow
       systeroid
+      tailspin
       tealdeer
       tectonic
       termscp
