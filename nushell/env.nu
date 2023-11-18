@@ -100,7 +100,7 @@ $env.EZA_COLORS = (vivid generate ~/.config/vivid/tokyonight_moon.yml)
 # Setting fd as the default source for fzf
 $env.FZF_DEFAULT_COMMAND = 'fd --type file --exclude node_modules'
 # To apply the command to CTRL-T as well
-$env.FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+$env.FZF_CTRL_T_COMMAND = "$FZF_DEFAULT_COMMAND"
 $env.FZF_CTRL_T_OPTS = "--height 100% --preview 'bat --color always {}'"
 # To apply the command to ALT_C
 $env.FZF_ALT_C_COMMAND = 'fd --type directory --exclude node_modules'
@@ -124,7 +124,7 @@ $env.JULIA_NUM_THREADS = 8
 $env.TMPDIR = /tmp
 $env.TERMINAL = wezterm
 
-$env.PAGER = moar --wrap
+$env.PAGER = 'moar --wrap'
 $env.EDITOR = lvim
 $env.VISUAL = $env.EDITOR
 
