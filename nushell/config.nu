@@ -759,5 +759,3 @@ alias more = bat
 alias m = man
 alias sv = sudoedit
 alias se = sudoedit
-
-source "/home/mimame/.dotfiles/nushell/rtx.nu"
