@@ -70,9 +70,46 @@ let dark_theme = {
 }
 
 # External completer example
-# let carapace_completer = {|spans|
-#     carapace $spans.0 nushell $spans | from json
-# }
+let carapace_completer = {|spans|
+    carapace $spans.0 nushell $spans | from json
+}
+
+let fish_completer = {|spans|
+    fish --command $'complete "--do-complete=($spans | str join " ")"'
+    | $"value(char tab)description(char newline)" + $in
+    | from tsv --flexible --no-infer
+}
+
+# # if the current command is an alias, get it's expansion
+# let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+
+# # overwrite
+# let spans = (if $expanded_alias != null  {
+#     # put the first word of the expanded alias first in the span
+#     $spans | skip 1 | prepend ($expanded_alias | split row " ")
+# } else { $spans })
+
+# This completer will use carapace by default
+let external_completer = {|spans|
+    let expanded_alias = scope aliases
+    | where name == $spans.0
+    | get -i 0.expansion
+
+    let spans = if $expanded_alias != null {
+        $spans
+        | skip 1
+        | prepend ($expanded_alias | split row ' ')
+    } else {
+        $spans
+    }
+
+    # use fish_completer for specific completions and carapace as default
+    match $spans.0 {
+        nu => $fish_completer
+        git => $fish_completer
+        _ => $carapace_completer
+    } | do $in $spans
+}
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
@@ -154,7 +191,7 @@ $env.config = {
         external: {
             enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
             max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
-            completer: null # check 'carapace_completer' above as an example
+            completer: $external_completer
         }
     }
 
