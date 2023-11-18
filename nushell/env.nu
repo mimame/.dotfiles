@@ -88,6 +88,52 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.rustup/toolchai
 $env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.local/coursier/bin")
 $env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.local/bin")
 
+$env.GTK_IM_MODULE = ibus
+$env.QT_IM_MODULE = ibus
+$env.XMODIFIERS = @im=ibus
+
+$env.THEFUCK_EXCLUDE_RULES = fix_file # Fix https://github.com/nvbn/thefuck/issues/1153
+
+$env.LS_COLORS = (vivid generate ~/.config/vivid/tokyonight_moon.yml)
+$env.EZA_COLORS = (vivid generate ~/.config/vivid/tokyonight_moon.yml)
+
+# Setting fd as the default source for fzf
+$env.FZF_DEFAULT_COMMAND = 'fd --type file --exclude node_modules'
+# To apply the command to CTRL-T as well
+$env.FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+$env.FZF_CTRL_T_OPTS = "--height 100% --preview 'bat --color always {}'"
+# To apply the command to ALT_C
+$env.FZF_ALT_C_COMMAND = 'fd --type directory --exclude node_modules'
+$env.FZF_ALT_C_OPTS = "--height 100% --preview br --preview-window wrap"
+# Tokyonight colors by default
+# https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
+$env.FZF_DEFAULT_OPTS = '
+--reverse
+--color=fg:#c5cdd9,bg:#1e2030,hl:#6cb6eb
+--color=fg+:#c5cdd9,bg+:#1e2030,hl+:#5dbbc1
+--color=info:#88909f,prompt:#ec7279,pointer:#d38aea
+--color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1
+--bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
+'
+
+$env.BAT_THEME = "Enki-Tokyo-Night"
+$env.MOAR = '--statusbar=bold --no-linenumbers'
+$env.MANPAGER = "sh -c 'col -bx | bat -l man -p'"
+$env.BROWSER = floorp
+$env.JULIA_NUM_THREADS = 8
+$env.TMPDIR = /tmp
+$env.TERMINAL = wezterm
+
+$env.PAGER = moar --wrap
+$env.EDITOR = lvim
+$env.VISUAL = $env.EDITOR
+
+$env.TZ_LIST = "CET,Central European Time;UTC,Coordinated Universal Time;US/Eastern,Eastern Standard Time;US/Pacific,Pacific Standard Time;Asia/Singapore, Singapore;Mexico/General"
+
+
+# Never use user Python pip by default
+# pre-commit is broken with this
+$env.PIP_USER = false
 
 # Generate starship prompt
 mkdir ~/.cache/nushell/starship
