@@ -699,6 +699,32 @@ $env.config = {
             mode: emacs
             event: {edit: capitalizechar}
         }
+        {
+            name: fzf_search_directory
+            modifier: control_alt
+            keycode: char_d
+            mode: [ emacs, vi_normal, vi_insert ]
+            event: [
+                     { edit: Clear }
+                     { edit: InsertString,
+                       value: "z (fd --type directory --color=always | fzf --ansi | decode utf-8 | str trim)"
+
+                     }
+                     { send: Enter }
+                   ]
+        }
+        {
+            name: fzf_search_file
+            modifier: control_alt
+            keycode: char_f
+            mode: [ emacs, vi_normal, vi_insert ]
+            event: [
+                     { edit: InsertString,
+                       value: "(fd --type file --color=always | fzf --ansi | decode utf-8 | str trim)"
+                     }
+                     {send: Enter}
+                   ]
+        }
     ]
 }
 
