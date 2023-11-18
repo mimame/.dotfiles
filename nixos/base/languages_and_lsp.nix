@@ -115,6 +115,7 @@
       texlive.combined.scheme-medium
       treefmt
       typos
+      typst
       universal-ctags
       xonsh
       yarn
