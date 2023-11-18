@@ -1,6 +1,6 @@
 # Nushell Environment Config File
 #
-# version = "0.84.0"
+# version = "0.87.0"
 
 def create_left_prompt [] {
     mut home = ""
@@ -80,6 +80,14 @@ $env.NU_PLUGIN_DIRS = [
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
+$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.yarn/bin")
+$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.bin")
+$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/go/bin")
+$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.cargo/bin")
+$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin")
+$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.local/coursier/bin")
+$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.local/bin")
+
 
 # Generate starship prompt
 mkdir ~/.cache/nushell/starship
