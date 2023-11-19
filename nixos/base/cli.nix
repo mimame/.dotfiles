@@ -94,6 +94,7 @@
       brotli
       btop
       bzip2
+      carapace
       choose
       clifm
       copyq
