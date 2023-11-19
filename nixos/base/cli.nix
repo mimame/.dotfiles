@@ -97,6 +97,7 @@
       carapace
       choose
       clifm
+      convco
       copyq
       coreutils
       ctop
