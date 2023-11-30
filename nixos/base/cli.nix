@@ -2,7 +2,7 @@
   # Locate service
   services.locate = {
     enable = true;
-    locate = pkgs.unstable.plocate;
+    package = pkgs.unstable.plocate;
     localuser = null;
   };
 
@@ -78,7 +78,7 @@
       rustscan
       strace
       stress
-      sudo
+      sudo-rs
       tesseract5
       time
       util-linux

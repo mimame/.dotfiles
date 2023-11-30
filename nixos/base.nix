@@ -110,7 +110,7 @@
   # Policy that allows unprivileged processes to speak to privileged processes
   security.polkit.enable = true;
   # Security
-  security.sudo = {
+  security.sudo-rs = {
     # Only ask sudo password one time for all tty
     # Ask sudo password each 2h instead 5 minutes
     extraConfig = ''
@@ -141,7 +141,7 @@
   };
 
   # Primary font paths
-  fonts.fonts = with pkgs.unstable; [
+  fonts.packages = with pkgs.unstable; [
     # https://github.com/freeCodeCamp/freeCodeCamp/issues/49174
     # JetBrainsMono (No Ligatures) vs Hack
     # Although Hack is a monospaced font: bad visual illusion around some characters are of variable width such as:
