@@ -35,6 +35,7 @@
       gnumake
       gnupatch
       go
+      golangci-lint
       gopls
       graphviz
       (hiPrio fish) # collition warnings: needed for programs.fish.enable
