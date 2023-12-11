@@ -120,6 +120,7 @@
       emacs29
       entr
       eza
+      fastfetch
       fd
       fend
       file
