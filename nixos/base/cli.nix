@@ -153,6 +153,7 @@
       hyperfine
       imagemagick
       inxi
+      jaq
       jc
       jless
       jq
