@@ -127,6 +127,7 @@
       xonsh
       yarn
       zig
+      zls
       zola
 
     ]);
