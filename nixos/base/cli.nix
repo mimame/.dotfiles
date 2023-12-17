@@ -192,6 +192,7 @@
       pdftk
       pigz
       pixz
+      poop
       poppler_utils
       postgresql
       procs
