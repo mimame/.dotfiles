@@ -137,6 +137,7 @@
       # gitoxide
       gitui
       glow
+      goawk
       gomi
       gpg-tui
       gping
