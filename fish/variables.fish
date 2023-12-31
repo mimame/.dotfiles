@@ -38,12 +38,12 @@ set -U LS_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
 set -U EZA_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
 
 # Setting fd as the default source for fzf
-set -x -U FZF_DEFAULT_COMMAND 'fd --type f --exclude node_modules'
+set -x -U FZF_DEFAULT_COMMAND 'fd --type file --exclude node_modules'
 # To apply the command to CTRL-T as well
 set -x -U FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -x -U FZF_CTRL_T_OPTS "--height 100% --preview 'bat --color always {}'"
 # To apply the command to ALT_C
-set -x -U FZF_ALT_C_COMMAND 'fd --type d --exclude node_modules'
+set -x -U FZF_ALT_C_COMMAND 'fd --type directory --exclude node_modules'
 set -x -U FZF_ALT_C_OPTS "--height 100% --preview br --preview-window wrap"
 # Tokyonight colors by default
 # https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
