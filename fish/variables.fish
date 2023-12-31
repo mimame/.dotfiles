@@ -58,15 +58,15 @@ set -Ux FZF_DEFAULT_OPTS '
 
 set -x -U BAT_THEME "Enki-Tokyo-Night"
 set -x -U MOAR '--statusbar=bold --no-linenumbers'
-set -g PAGER moar --wrap
 set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
-set -g EDITOR lvim
-set -g VISUAL $EDITOR
 set -x -U BROWSER floorp
 set -x -U JULIA_NUM_THREADS 8
 set -x -U TMPDIR /tmp
 set -x -U TERMINAL wezterm
 
+set -g EDITOR lvim
+set -g VISUAL $EDITOR
+set -g PAGER moar --wrap
 if test -z "$XDG_CONFIG_HOME"
     set -x -U XDG_CONFIG_HOME "$HOME/.config"
 end
