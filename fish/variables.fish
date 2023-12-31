@@ -76,6 +76,7 @@ end
 set -x -U PIP_USER false
 
 # Vim as default editor
+fish_add_path "$HOME/.juliaup/bin"
 fish_add_path "$HOME/.yarn/bin"
 fish_add_path "$HOME/.bin"
 fish_add_path "$HOME/go/bin"
