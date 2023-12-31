@@ -31,6 +31,7 @@ abbr u topgrade
 abbr inlyne inlyne --theme dark
 abbr wget wget2
 abbr d ddgr
+abbr tail tspin
 
 abbr p 'ptipython'
 
