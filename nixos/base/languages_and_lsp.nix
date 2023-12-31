@@ -48,6 +48,7 @@
       inlyne
       jekyll
       julia-bin
+      jupyter-all
       just
       languagetool
       leiningen # clojure
