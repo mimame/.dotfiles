@@ -65,12 +65,11 @@ if status --is-interactive
         source ~/.config/fish/nnn.fish
     end
 
-
-    set aws_local ~/.bin/awslocal
-    if not command -q awslocal
-        wget https://raw.githubusercontent.com/localstack/awscli-local/master/bin/awslocal -O $aws_local
-        chmod 755 $aws_local
-    end
+    # set aws_local ~/.bin/awslocal
+    # if not command -q awslocal
+    #     wget2 https://raw.githubusercontent.com/localstack/awscli-local/master/bin/awslocal -O $aws_local
+    #     chmod 755 $aws_local
+    # end
 
     # Reinstall systemd user services broken by NixOS updates
     set system $(lsb_release -i | cut -f2)
