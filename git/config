@@ -555,7 +555,7 @@
 [web]
   # https://git-scm.com/docs/git-config#git-config-webbrowser
   # Specify the web browser
-  browser = firefox
+  browser = floorp
 
 [credential]
   # https://git-scm.com/docs/gitcredentials#Documentation/gitcredentials.txt-cache
