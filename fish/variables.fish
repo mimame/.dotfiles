@@ -60,10 +60,10 @@ set -x -U BAT_THEME "Enki-Tokyo-Night"
 set -x -U MOAR '--statusbar=bold --no-linenumbers'
 set -g PAGER moar --wrap
 set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
-set -x -U JULIA_NUM_THREADS 12
 set -g EDITOR lvim
 set -g VISUAL $EDITOR
 set -x -U BROWSER floorp
+set -x -U JULIA_NUM_THREADS 8
 set -x -U TMPDIR /tmp
 set -x -U TERMINAL wezterm
 
