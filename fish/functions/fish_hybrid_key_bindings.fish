@@ -6,7 +6,7 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     fish_vi_key_bindings --no-erase
 
     # Accept autosuggestion with space in normal mode
-    bind -M default \  end-of-line accept-autosuggestion
+    bind -M default \ end-of-line accept-autosuggestion
 
     # Open nvim in normal mode to edit the command
     bind -M default v edit_command_buffer
