@@ -22,11 +22,11 @@ if status --is-interactive
     end
 
     # Initialize commands
-    starship init fish | source
-    zoxide init fish | source
-    gh completion --shell fish | source
-    thefuck --alias fk | source
     broot --print-shell-function fish | source
+    gh completion --shell fish | source
+    starship init fish | source
+    thefuck --alias fk | source
+    zoxide init fish | source
 
     if command -q direnv
         direnv hook fish | source
