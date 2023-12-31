@@ -50,6 +50,7 @@
       julia-bin
       just
       languagetool
+      leiningen # clojure
       lldb
       llvm
       ltex-ls
