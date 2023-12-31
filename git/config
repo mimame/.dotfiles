@@ -427,8 +427,9 @@
 
 [merge]
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
-  # diff3 merge style
-  conflictstyle = diff3
+  # zdiff3 is similar to diff3 but removes matching lines on the two sides from the conflict region
+  # when those matching lines appear near either the beginning or end of a conflict region.
+  conflictstyle = zdiff3
   # https://git-scm.com/docs/git-config#git-config-mergeff
   # Always do fast-forward when merging, use instead --no-ff
   ff            = true
