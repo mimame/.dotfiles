@@ -85,7 +85,7 @@ bindsym $mod+Return exec --no-startup-id wezterm
 bindsym $mod+Mod1+b exec --no-startup-id blueman-manager
 bindsym $mod+Mod1+c exec --no-startup-id code
 bindsym $mod+Mod1+e exec --no-startup-id emote
-bindsym $mod+Mod1+f exec --no-startup-id firefox
+bindsym $mod+Mod1+f exec --no-startup-id floorp
 bindsym $mod+Mod1+l exec --no-startup-id logseq
 bindsym $mod+Mod1+o exec --no-startup-id obsidian
 bindsym $mod+Mod1+p exec --no-startup-id pcmanfm
@@ -301,7 +301,7 @@ bindsym $mod+Shift+F11 move container to workspace number $ws21
 bindsym $mod+Shift+F12 move container to workspace number $ws22
 
 # Open applications on specific workspaces (using init_workspaces script instead)
-# assign [class="firefox"] number $ws2
+# assign [class="floorp"] number $ws2
 # for_window [title="^Google Hangouts.*$"] move to workspace number $ws3
 # for_window [title="^Hangouts Video Call.*$"] move to workspace number $ws3
 # assign [class="Google-chrome"] number $ws2
@@ -312,8 +312,8 @@ bindsym $mod+Shift+F12 move container to workspace number $ws22
 
 # Start programs by default (using init_workspaces script instead)
 # exec --no-startup-id alacritty
-# exec --no-startup-id firefox
-# exec --no-startup-id firefox --private-window'
+# exec --no-startup-id floorp
+# exec --no-startup-id floorp --private-window'
 # exec --no-startup-id google-chrome-stable
 # exec --no-startup-id thunderbird
 # exec --no-startup-id slack
