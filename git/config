@@ -217,7 +217,7 @@
   t  = tag
   ta = tag --annotate
   # show - https://git-scm.com/docs/git-reset
-  w  = show
+  w  = show --ext-diff
   wi = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
   ws = show --show-signature
   wt = show --stat
@@ -303,6 +303,10 @@
   # Use delta as pager https://github.com/dandavison/delta
   pager        = delta --dark
 
+[pager]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pagerltcmdgt
+  difftool = true
+
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corewhitespace
   # Notify whitespace issues
   whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -353,7 +357,7 @@
   # Use a prefix pair that is different from the standard "a/" and "b/" depending on what is being compared
   mnemonicPrefix  = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftool
-  tool            = nvimdiff
+  tool            = difftastic
   # https://difftastic.wilfred.me.uk/git.html
   external        = difft
 
