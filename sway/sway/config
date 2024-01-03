@@ -324,6 +324,7 @@ bindsym $mod+Shift+F12 move container to workspace number $ws22
 # Open specific applications in floating mode
 #for_window [class="^.*"] border pixel 1
 #for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [title="Qalculate!"] floating enable, resize set 800 800
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
