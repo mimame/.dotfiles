@@ -247,7 +247,6 @@
       yq
       zellij
       zenith
-      zig
       zip
       zlib-ng
       zola

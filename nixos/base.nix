@@ -32,9 +32,6 @@
   services.chrony.enable = true;
   services.automatic-timezoned.enable = true;
 
-  # Service discovery on a local network
-  services.avahi.enable = true;
-
   # DBus service that allows applications to query and manipulate storage devices
   services.udisks2.enable = true;
 
