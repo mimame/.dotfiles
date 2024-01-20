@@ -8,6 +8,8 @@ if status --is-interactive
         rm -f ~/.config/fish/functions/fzf_configure_bindings.fish
         rm -f ~/.config/fish/functions/fzf.fish
         rm -f ~/.config/fish/functions/replay.fish
+        rm -f ~/.config/fish/functions/__bass.py
+        rm -f ~/.config/fish/functions/bass.fish
         rm -fr ~/.config/fish/completions
         rm -fr ~/.config/fish/conf.d
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
@@ -18,6 +20,7 @@ if status --is-interactive
         fisher install gazorby/fish-abbreviation-tips
         fisher install jorgebucaran/autopair.fish
         fisher install jorgebucaran/replay.fish
+        fisher install edc/bass
         fisher install PatrickF1/fzf.fish
     end
 
