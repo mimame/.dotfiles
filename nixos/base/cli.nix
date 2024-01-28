@@ -209,6 +209,7 @@
       ruplacer
       scc
       sd
+      sequoia-sq
       spacer
       speedtest-go
       sqlite
