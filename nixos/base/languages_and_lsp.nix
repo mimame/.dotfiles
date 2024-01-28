@@ -38,7 +38,8 @@
       golangci-lint
       gopls
       graphviz
-      (hiPrio fish) # collition warnings: needed for programs.fish.enable
+      hatch
+      (hiPrio fish) # collision warnings: needed for programs.fish.enable
       hugo
       hunspell
       hunspellDicts.en-us-large
@@ -58,8 +59,10 @@
       lua
       luajitPackages.luarocks
       lua-language-server
+      markdownlint-cli2
       marksman
       mdbook
+      mdl
       meson
       metals # scala
       micromamba
