@@ -51,6 +51,7 @@ vivid = "~/.config/vivid"
 # vscode = ""
 wezterm = "~/.config/wezterm"
 xplr = "~/.config/xplr"
+yazi = { target = "~/.config/yazi", type = "symbolic" }
 zathura = "~/.config/zathura"
 zellij = "~/.config/zellij"
 
