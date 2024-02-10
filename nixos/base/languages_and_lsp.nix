@@ -67,6 +67,7 @@
       metals # scala
       micromamba
       mill # scala
+      mise
       nextflow
       nil
       nim2
@@ -104,7 +105,6 @@
       R
       ripsecrets
       rnix-lsp
-      rtx
       ruby-lsp
       rubyPackages.pry
       rubyPackages.railties
