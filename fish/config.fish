@@ -30,6 +30,7 @@ if status --is-interactive
     starship init fish | source
     thefuck --alias fk | source
     zoxide init fish | source
+    mise activate fish | source
 
     if command -q direnv
         direnv hook fish | source
