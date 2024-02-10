@@ -7,25 +7,31 @@ function cb
     # stdin is a pipe
     # https://github.com/fish-shell/fish-shell/issues/3792#issuecomment-276206686
     # stdin -> clipboard
+    set copy_command wl-copy
+    set paste_command wl-paste
+    if test $(uname) = Darwin
+        set copy_command pbcopy
+        set paste_command pbpaste
+    end
     if command test -p /dev/stdin
         set -l stdin_list
         while read line
             set stdin_list $stdin_list $line
         end
-        wl-copy $stdin_list
+        $copy_command $stdin_list
         # stdin is not a pipe
     else if ! test -z "$argv[1]"
         # file -> clipboard
         if test -f "$argv[1]"
-            wl-copy <"$argv[1]"
+            $copy_command <"$argv[1]"
             # string -> clipboard
         else
-            wl-copy "$argv"
+            $copy_command "$argv"
         end
     else
         # clipboard -> stdout
         # no arguments were passed
-        # wl-paste
+        # $paste_command
     end
-    wl-paste
+    $paste_command
 end
