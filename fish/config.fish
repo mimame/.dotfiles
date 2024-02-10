@@ -41,6 +41,15 @@ if status --is-interactive
         eval (ssh-agent -c) >/dev/null
     end
 
+    # Download wezterm terminfo automatically
+    if not test -f ~/.terminfo/w/wezterm
+      set tempfile $(mktemp) \
+      && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
+      && tic -x -o ~/.terminfo $tempfile \
+      && sudo tic -x -o /usr/share/terminfo $tempfile \
+      && rm $tempfile
+    end
+
     # Install vscode fonts for broot
     set vscode_font ~/.local/share/fonts/vscode.ttf
     if not test -f $vscode_font
