@@ -58,7 +58,7 @@ if status --is-interactive
     set wallpaper ~/Pictures/unicat.png
     if not test -f $wallpaper
         mkdir -p ~/Pictures
-        wget2 https://github.com/catppuccin/wallpapers/raw/main/minimalistic/unicat.png -O $wallpaper
+        wget2 https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png -O $wallpaper --quiet
     end
 
     source ~/.config/fish/variables.fish
