@@ -56,7 +56,7 @@ set -Ux FZF_DEFAULT_OPTS '
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 
-set -x -U BAT_THEME "Enki-Tokyo-Night"
+set -x -U BAT_THEME Enki-Tokyo-Night
 set -x -U MOAR '--statusbar=bold --no-linenumbers'
 set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -x -U BROWSER floorp

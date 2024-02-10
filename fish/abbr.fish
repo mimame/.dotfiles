@@ -33,7 +33,7 @@ abbr wget wget2
 abbr d ddgr
 abbr tail tspin
 
-abbr p 'ptipython'
+abbr p ptipython
 
 abbr grep 'grep --color=auto'
 abbr fgrep 'fgrep --color=auto'
@@ -71,9 +71,9 @@ abbr nd 'nvim -d -c "set nofoldenable"'
 # abbr h 'history' # Use ctrl-r instead
 # Lists the ten most used commands.
 abbr hs "history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | bat --number"
-abbr du 'dust'
+abbr du dust
 abbr dus diskus
-abbr df 'duf'
+abbr df duf
 abbr free 'free -h'
 # abbr j "jobs -l"
 abbr j just

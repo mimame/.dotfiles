@@ -13,12 +13,12 @@ function cb
             set stdin_list $stdin_list $line
         end
         wl-copy $stdin_list
-    # stdin is not a pipe
+        # stdin is not a pipe
     else if ! test -z "$argv[1]"
         # file -> clipboard
         if test -f "$argv[1]"
-            wl-copy < "$argv[1]"
-        # string -> clipboard
+            wl-copy <"$argv[1]"
+            # string -> clipboard
         else
             wl-copy "$argv"
         end

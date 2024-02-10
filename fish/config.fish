@@ -43,11 +43,11 @@ if status --is-interactive
 
     # Download wezterm terminfo automatically
     if not test -f ~/.terminfo/w/wezterm
-      set tempfile $(mktemp) \
-      && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
-      && tic -x -o ~/.terminfo $tempfile \
-      && sudo tic -x -o /usr/share/terminfo $tempfile \
-      && rm $tempfile
+        set tempfile $(mktemp) \
+            && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
+            && tic -x -o ~/.terminfo $tempfile \
+            && sudo tic -x -o /usr/share/terminfo $tempfile \
+            && rm $tempfile
     end
 
     # Install vscode fonts for broot
@@ -86,11 +86,11 @@ if status --is-interactive
 
     # Reinstall systemd user services broken by NixOS updates
     # There is not lsb_release in Darwin
-    if not test $(uname) = 'Darwin'
-      set system $(lsb_release -i | cut -f2)
-      if test $system = 'NixOS'
-          fix_broken_services_by_nixos
-      end
+    if not test $(uname) = Darwin
+        set system $(lsb_release -i | cut -f2)
+        if test $system = NixOS
+            fix_broken_services_by_nixos
+        end
     end
 
     eval (zellij setup --generate-auto-start fish | string collect)
