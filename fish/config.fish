@@ -85,9 +85,12 @@ if status --is-interactive
     # end
 
     # Reinstall systemd user services broken by NixOS updates
-    set system $(lsb_release -i | cut -f2)
-    if test $system = 'NixOS'
-        fix_broken_services_by_nixos
+    # There is not lsb_release in Darwin
+    if not test $(uname) = 'Darwin'
+      set system $(lsb_release -i | cut -f2)
+      if test $system = 'NixOS'
+          fix_broken_services_by_nixos
+      end
     end
 
     eval (zellij setup --generate-auto-start fish | string collect)
