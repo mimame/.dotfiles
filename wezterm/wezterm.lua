@@ -30,11 +30,6 @@ end
 -- This is where you actually apply your config choices
 config.term = 'wezterm'
 config.color_scheme = 'Tokyo Night'
--- tempfile=$(mktemp) \
--- && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
--- && tic -x -o ~/.terminfo $tempfile \
--- && sudo tic -x -o /usr/share/terminfo $tempfile \
--- && rm $tempfile
 config.exit_behavior = 'Close'
 config.enable_wayland = true
 config.enable_kitty_keyboard = true
@@ -59,10 +54,13 @@ config.window_padding = {
 
 -- Add copy on select
 config.mouse_bindings = {
-  make_mouse_binding('Up', 1, 'Left', 'NONE', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
-  make_mouse_binding('Up', 1, 'Left', 'SHIFT', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
+  make_mouse_binding('Up', 1, 'Left', 'NONE',
+    wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
+  make_mouse_binding('Up', 1, 'Left', 'SHIFT',
+    wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
   make_mouse_binding('Up', 1, 'Left', 'ALT', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
-  make_mouse_binding('Up', 1, 'Left', 'SHIFT|ALT', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
+  make_mouse_binding('Up', 1, 'Left', 'SHIFT|ALT',
+    wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
   make_mouse_binding('Up', 2, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
   make_mouse_binding('Up', 3, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
 }
