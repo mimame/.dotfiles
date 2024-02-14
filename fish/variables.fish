@@ -93,6 +93,10 @@ if test -f /opt/homebrew/bin/brew
   /opt/homebrew/bin/brew shellenv | source
 end
 
+if test -z GPG_TTY
+  set -X GPG_TTY $(tty)
+end
+
 set -x -U GTK_IM_MODULE ibus
 set -x -U QT_IM_MODULE ibus
 set -x -U XMODIFIERS @im=ibus
