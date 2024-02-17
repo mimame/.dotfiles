@@ -187,6 +187,7 @@
       onefetch
       ouch
       ov
+      oxker
       pandoc
       pastel
       pciutils
