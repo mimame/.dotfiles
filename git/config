@@ -562,6 +562,11 @@
   # Summary of commits for modified submodules will be shown
   submoduleSummary = true
 
+[submodule]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-submodulerecurse
+  # Most operations, like git checkout, fetch, pull, push, etc. to automatically recurse into submodules
+  recurse = true
+
 [tag]
   # https://git-scm.com/docs/git-config#git-config-tagforceSignAnnotated
   # Always sign tags with GPG
