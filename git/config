@@ -575,6 +575,11 @@
   # sort by most recently tags instead of alphabetical
   sort = taggerdate
 
+[transfer]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-transferfsckObjects
+  # fetch or receive will abort in the case of a malformed object or a link to a nonexistent object
+  fsckobjects = true
+
 # https://git-scm.com/docs/git-config#git-config-urlltbasegtinsteadOf
 # Always rewrite https:// with git:// git clone included
 [url "git@github.com:"]
