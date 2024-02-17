@@ -314,6 +314,11 @@
   # Notify whitespace issues
   whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
+[credential]
+  # https://git-scm.com/docs/gitcredentials#Documentation/gitcredentials.txt-cache
+  # Cache credentials in memory for a short period of time
+  helper = cache
+
 [delta]
   side-by-side                 = false
   features                     = unobtrusive-line-numbers decorations
@@ -564,10 +569,6 @@
   # Specify the web browser
   browser = floorp
 
-[credential]
-  # https://git-scm.com/docs/gitcredentials#Documentation/gitcredentials.txt-cache
-  # Cache credentials in memory for a short period of time
-  helper = cache
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
