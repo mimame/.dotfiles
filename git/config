@@ -364,6 +364,9 @@
   # https://git-scm.com/docs/git-config#Documentation/Documentation/git.txt-config.txt-diffmnemonicPrefix
   # Use a prefix pair that is different from the standard "a/" and "b/" depending on what is being compared
   mnemonicPrefix  = true
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-diffsubmodule
+  # The "diff" format shows an inline diff of the changed contents of the submodule
+  submodule = log
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftool
   tool            = difftastic
   # https://difftastic.wilfred.me.uk/git.html
