@@ -530,6 +530,9 @@
   # https://git-scm.com/docs/git-config#git-config-rebaseautoStash
   # Let run rebase on a dirty worktree running stash and restore automatically
   autoStash  = true
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-rebasemissingCommitsCheck
+  # print a error if some commits are removed (e.g. a line was deleted), the rebase will fail
+  missingCommitsCheck = true
   # https://git-scm.com/docs/git-config#git-config-rebasestat
   # Show a diffstat of what changed upstream since the last rebase
   stat       = true
