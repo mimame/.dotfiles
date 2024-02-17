@@ -393,6 +393,9 @@
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchprune
   # Remove any remote-tracking references that no longer exist on the remote
   prune = true
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchpruneTags
+  # Remove any remote-tag references that no longer exist on the remote
+  prunetags = true
 
 [gpg]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgprogram
