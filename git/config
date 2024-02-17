@@ -506,6 +506,9 @@
   rebase = merges
 
 [push]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushautoSetupRemote
+  # assume --set-upstream on default push when no upstream tracking
+  autoSetupRemote = true
   # https://git-scm.com/docs/git-config#git-config-pushdefault
   # http://stackoverflow.com/a/23918418/89484
   # Push the current branch to update a branch with the same name although it doesn't exist
