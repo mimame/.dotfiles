@@ -536,6 +536,10 @@
   # https://git-scm.com/docs/git-config#git-config-rebasestat
   # Show a diffstat of what changed upstream since the last rebase
   stat       = true
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-rebaseupdateRefs
+  # https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/
+  # easier to rebase multiple stacked branches at a time
+  updateRefs = true
 
 [rerere]
   # https://git-scm.com/docs/git-config#git-config-rerereautoUpdate
