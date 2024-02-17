@@ -387,6 +387,9 @@
   cmd = meld "$LOCAL" "$REMOTE"
 
 [fetch]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchfsckObjects
+  # git-fetch-pack will check all fetched objects
+  fsckobjects = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchprune
   # Remove any remote-tracking references that no longer exist on the remote
   prune = true
