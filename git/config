@@ -236,6 +236,9 @@
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-branchltnamegtrebase
   # Pass --preserve-merges along to git rebase so that locally committed merge commits will not be flattened by running git pull.
   rebase = merges
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-branchsort
+  # Sort by most recently used branches instead of alphabetical
+  sort = committerdate
 
 [checkout]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-checkoutdefaultRemote
