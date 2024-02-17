@@ -65,7 +65,6 @@
       mdl
       meson
       metals # scala
-      micromamba
       mill # scala
       mise
       nextflow
@@ -88,7 +87,6 @@
       nuspell
       pandoc
       pcre2
-      pipx
       plantuml
       pre-commit
       protobuf
@@ -109,7 +107,6 @@
       rubyPackages.pry
       rubyPackages.railties
       rustup
-      rye
       sbt-with-scala-native # scala
       scala_3
       scala-cli
@@ -129,6 +126,7 @@
       typos
       typst
       universal-ctags
+      uv
       xonsh
       yarn
       zig
