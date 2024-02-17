@@ -31,6 +31,7 @@ if status --is-interactive
     thefuck --alias fk | source
     zoxide init fish | source
     mise activate fish | source
+    navi widget fish | source
 
     if command -q direnv
         direnv hook fish | source

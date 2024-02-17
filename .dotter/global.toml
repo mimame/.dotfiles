@@ -32,6 +32,7 @@ lazygit = "~/.config/lazygit"
 lvim = "~/.config/lvim"
 lvim-dictionary = "~/.local/share/lunarvim/site/pack/lazy/opt/nvim-treesitter/spell/"
 mimeapps = "~/.config/"
+navi = "~/.config/navi"
 # newsboat = "~/.config/"
 nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
 nnn = "~/.config/fish/"
