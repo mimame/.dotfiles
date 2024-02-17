@@ -541,6 +541,11 @@
   # easier to rebase multiple stacked branches at a time
   updateRefs = true
 
+[receive]
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-receivefsckObjects
+  # git-receive-pack will check all received objects
+  fsckObjects = true
+
 [rerere]
   # https://git-scm.com/docs/git-config#git-config-rerereautoUpdate
   # Updates the index after resolves conflicts using recorded resolution
