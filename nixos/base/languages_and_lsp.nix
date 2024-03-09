@@ -102,7 +102,6 @@
       python3Packages.radian
       R
       ripsecrets
-      rnix-lsp
       ruby-lsp
       rubyPackages.pry
       rubyPackages.railties
