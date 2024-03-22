@@ -133,6 +133,7 @@
       gawk
       gcc
       gdu
+      gfold
       git
       git-extras
       github-cli
