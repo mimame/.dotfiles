@@ -120,6 +120,7 @@
       dysk
       emacs29
       entr
+      erdtree
       eza
       fastfetch
       fd
