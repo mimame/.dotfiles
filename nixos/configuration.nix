@@ -21,6 +21,7 @@ in {
     ./sound.nix
     ./bluetooth.nix
     ./printer.nix
+    ./scanner.nix
   ];
 
   # Bootloader
