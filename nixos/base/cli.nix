@@ -95,6 +95,7 @@
       btop
       bzip2
       carapace
+      chafa
       choose
       clifm
       convco
