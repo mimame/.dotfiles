@@ -18,6 +18,7 @@
       asciidoctor
       autoconf
       automake
+      bazelisk
       bison
       bloop
       buf # protocol buffers
