@@ -142,6 +142,7 @@
       glow
       goawk
       gomi
+      gopass
       gpg-tui
       gping
       grc
