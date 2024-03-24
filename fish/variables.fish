@@ -58,7 +58,7 @@ set -Ux FZF_DEFAULT_OPTS '
 
 set -x -U BAT_THEME Enki-Tokyo-Night
 set -x -U MOAR '--statusbar=bold --no-linenumbers'
-set -x -U MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -x -U MANPAGER "bat -l man -p'"
 set -x -U BROWSER floorp
 set -x -U JULIA_NUM_THREADS 8
 set -x -U TMPDIR /tmp
