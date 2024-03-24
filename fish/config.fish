@@ -94,5 +94,10 @@ if status --is-interactive
         end
     end
 
+    # Use default system command-not-found for checking existing commands
+    function fish_command_not_found
+        command-not-found $argv
+    end
+
     eval (zellij setup --generate-auto-start fish | string collect)
 end
