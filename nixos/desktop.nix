@@ -185,6 +185,7 @@ in {
       wlrctl
       wtype
       ydotool
+      zoom-us # White screen if the version is linked from pkgs.unstable
 
     ] ++ (with pkgs.unstable; [
 
@@ -243,7 +244,6 @@ in {
       xdragon
       zathura
       zettlr
-      zoom-us
       zotero
 
     ]);
