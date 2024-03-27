@@ -34,8 +34,8 @@ set -U fish_cursor_visual block
 
 set -x -U THEFUCK_EXCLUDE_RULES fix_file # Fix https://github.com/nvbn/thefuck/issues/1153
 
-set -U LS_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
-set -U EZA_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
+set -x -U LS_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
+set -x -U EZA_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
 
 # Setting fd as the default source for fzf
 set -x -U FZF_DEFAULT_COMMAND 'fd --type file --exclude node_modules'
@@ -94,7 +94,7 @@ if test -f /opt/homebrew/bin/brew
 end
 
 if test -z GPG_TTY
-  set -X GPG_TTY $(tty)
+    set -x GPG_TTY $(tty)
 end
 
 set -x -U GTK_IM_MODULE ibus
