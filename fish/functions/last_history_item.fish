@@ -1,3 +1,3 @@
 function last_history_item
-  echo $history[1]
+    echo $history[1]
 end

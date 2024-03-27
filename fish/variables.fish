@@ -90,7 +90,7 @@ fish_add_path "$HOME/.local/bin"
 
 # Load brew package manager in Darwin
 if test -f /opt/homebrew/bin/brew
-  /opt/homebrew/bin/brew shellenv | source
+    /opt/homebrew/bin/brew shellenv | source
 end
 
 if test -z GPG_TTY
