@@ -19,7 +19,6 @@ abbr pc pre-commit
 abbr t " t"
 abbr open o
 abbr ff ' ff'
-abbr fk 'fk --yes'
 abbr md 'mkdir -pv'
 abbr mkdir 'mkdir -pv'
 abbr pgrep 'pgrep -f'
