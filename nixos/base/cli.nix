@@ -239,6 +239,7 @@
       tree
       tz
       udiskie
+      unar
       unrar
       unzip
       urlscan
