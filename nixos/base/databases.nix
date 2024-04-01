@@ -14,6 +14,8 @@
       # mariadb-connector-c # For Rails but generates too much collisions
       mycli
       redis
+      usql
+      litecli
 
     ]);
 }

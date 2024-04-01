@@ -170,7 +170,6 @@
       lazygit
       libarchive
       libqalculate
-      litecli
       lnav
       lsd
       lshw
