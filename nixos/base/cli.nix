@@ -173,6 +173,7 @@
       litecli
       lnav
       lsd
+      lshw
       massren
       mcfly
       mdcat
