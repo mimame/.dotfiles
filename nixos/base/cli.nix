@@ -161,6 +161,7 @@
       jaq
       jc
       jless
+      jnv
       jq
       jujutsu
       just
