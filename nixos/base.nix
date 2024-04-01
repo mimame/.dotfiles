@@ -1,5 +1,8 @@
 { pkgs, ... }: {
 
+  # Update the CPU microcode for Intel processors
+  hardware.cpu.intel.updateMicrocode = true;
+
   # Compress ram with zstd when needed to avoid use the swap
   zramSwap.enable = true;
 
