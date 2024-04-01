@@ -3,6 +3,9 @@
   # Update the CPU microcode for Intel processors
   hardware.cpu.intel.updateMicrocode = true;
 
+  # Enable periodic SSD TRIM
+  services.fstrim.enable = true;
+
   # Compress ram with zstd when needed to avoid use the swap
   zramSwap.enable = true;
 
