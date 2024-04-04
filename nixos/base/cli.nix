@@ -134,6 +134,7 @@
       gcc
       gdu
       gfold
+      ghostscript
       git
       git-extras
       github-cli
