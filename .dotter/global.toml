@@ -37,6 +37,7 @@ navi = "~/.config/navi"
 nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
 nnn = "~/.config/fish/"
 nushell = { target = "~/.config/nushell", type = "symbolic" }
+nvchad = "~/.config/nvim/"
 # parallel = "~/.config/"
 ptpython = "~/.config/ptpython"
 qutebrowser = { target = "~/.config/qutebrowser", type = "symbolic"}
