@@ -31,8 +31,8 @@ local servers = {
   "nim_langserver",
   "nushell",
   "postgres_lsp",
-  "pylyzer",
-  -- "pyright", -- try to use pylyzer instead
+  -- "pylyzer", -- not working by now
+  "pyright",
   "rubocop",
   "ruby_ls",
   "ruff",
