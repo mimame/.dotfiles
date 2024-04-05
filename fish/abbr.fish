@@ -11,7 +11,7 @@ abbr b 'cd ..'
 abbr dotdot --regex '^\.\.+$' --function multicd
 abbr ju juliaup
 abbr ru rustup
-abbr n nim
+abbr n nvim
 abbr cr crystal
 abbr g git
 abbr lg lazygit
@@ -59,7 +59,7 @@ abbr vbm VBoxManage
 abbr vi lvim
 abbr vim lvim
 abbr v lvim
-abbr nvim lvim
+# abbr nvim lvim
 # Always preserve the environment with sudoedit
 abbr sv sudoedit
 abbr se sudoedit
