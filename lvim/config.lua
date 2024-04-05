@@ -366,9 +366,19 @@ lvim.plugins = {
     -- end
   },
   {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+  },
+  {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "luarocks.nvim"
+    },
+    lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = "*", -- Pin Neorg to the latest stable release
+    config = true,
     config = function()
       require("neorg").setup {
         load = {
@@ -455,8 +465,10 @@ lvim.plugins = {
 
       -- Required Default vault
       require("obsidian").setup({
-        -- dir = "~/Documents/Brain",
-        --
+        -- Where to put new notes created from completion. Valid options are
+        --  * "current_dir" - put new notes in same directory as the current buffer.
+        --  * "notes_subdir" - put new notes in the default notes subdirectory.
+        new_notes_location = "current_dir",
         disable_frontmatter = true,
         -- Optional, for templates (see below).
         templates = {
@@ -502,10 +514,6 @@ lvim.plugins = {
           nvim_cmp = true,
           -- Trigger completion at 2 chars
           min_chars = 3,
-          -- Where to put new notes created from completion. Valid options are
-          --  * "current_dir" - put new notes in same directory as the current buffer.
-          --  * "notes_subdir" - put new notes in the default notes subdirectory.
-          new_notes_location = "current_dir",
           -- Optional, customize how wiki links are formatted. You can set this to one of:
           --  * "use_alias_only", e.g. '[[Foo Bar]]'
           --  * "prepend_note_id", e.g. '[[foo-bar|Foo Bar]]'
