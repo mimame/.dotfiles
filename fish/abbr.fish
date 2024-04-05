@@ -96,7 +96,11 @@ abbr f 'fd --hidden --strip-cwd-prefix'
 
 # Safe ops. Ask the user before doing anything destructive.
 # Move rm files to the trash using trash-cli
-abbr rm gomi
+if command -q gomi
+    abbr rm gomi
+else
+    abbr rm trash-put
+end
 abbr mv "mv -i"
 abbr cp "cp -ri"
 abbr ln "ln -i"
