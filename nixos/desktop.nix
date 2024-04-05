@@ -146,6 +146,9 @@ in {
     desktopManager = { xfce.enable = false; };
   };
 
+  # Enable Wayland compatibility with X11
+  programs.xwayland.enable = true;
+
   # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
