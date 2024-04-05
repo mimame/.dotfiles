@@ -28,7 +28,6 @@ local servers = {
   "marksman",
   "metals",
   "nil_ls",
-  "nil_ls",
   "nim_langserver",
   "nushell",
   "postgres_lsp",

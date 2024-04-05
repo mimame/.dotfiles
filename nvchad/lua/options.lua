@@ -15,6 +15,5 @@ vim.opt.guicursor = "i:ver1"
 -- https://www.lunarvim.org/docs/troubleshooting#are-you-using-fish
 vim.opt.shell = "/bin/sh"
 
-
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
