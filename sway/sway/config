@@ -100,9 +100,6 @@ bindsym $mod+Mod1+x exec --no-startup-id wezterm -e xplr
 # Notifications center
 bindsym $mod+Mod1+n exec --no-startup-id swaync-client -t -sw
 
-bindsym $mod+Mod1+Up exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% && ~/.config/sway/scripts/notification "high_sound"
-bindsym $mod+Mod1+Down exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% && ~/.config/sway/scripts/notification "low_sound"
-
 bindsym $mod+Mod1+Right exec --no-startup-id playerctl next && ~/.config/sway/scripts/notification "next_song"
 bindsym $mod+Mod1+Left exec --no-startup-id playerctl previous && ~/.config/sway/scripts/notification "previous_song"
 
@@ -126,11 +123,14 @@ bindsym Shift+XF86AudioMute exec --no-startup-id playerctl play-pause && ~/.conf
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next && ~/.config/sway/scripts/notification "next_song"
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous && ~/.config/sway/scripts/notification "previous_song"
 
-# Pulse Audio controls
-exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@  0
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && ~/.config/sway/scripts/notification "high_sound"
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && ~/.config/sway/scripts/notification "low_sound"
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && ~/.config/sway/scripts/notification "play-mute_sound"
+# Wireplumber controls
+exec wpctl set-volume @DEFAULT_SINK@ 0
+bindsym $mod+Mod1+Up exec wpctl set-volume @DEFAULT_SINK@ 1%+ -l 1 && ~/.config/sway/scripts/notification "high_sound"
+bindsym $mod+Mod1+Down exec wpctl set-volume @DEFAULT_SINK@ 1%- -l 1 && ~/.config/sway/scripts/notification "low_sound"
+
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+ -l 1 && ~/.config/sway/scripts/notification "high_sound"
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- -l 1 && ~/.config/sway/scripts/notification "low_sound"
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle && ~/.config/sway/scripts/notification "play-mute_sound"
 
 # Screen brightness controls
 exec --no-startup-id light -S 10
