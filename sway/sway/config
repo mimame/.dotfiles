@@ -8,12 +8,12 @@ set $mod Mod4
 
 # Keyboard layout http://askubuntu.com/a/24930 http://askubuntu.com/a/296437
 # https://wiki.archlinux.org/index.php/xmodmap
-exec_always --no-startup-id pkill udiskie; udiskie --notify --smart-tray --notify-command notify-send &
+exec_always pkill udiskie; udiskie --notify --smart-tray --notify-command notify-send &
 exec dbus-sway-environment
 exec configure-gtk
 # Enable clipboard manager
 exec wl-paste -t text --watch clipman store --no-persist
-# exec_always --no-startup-id pkill greenclip; greenclip daemon > /dev/null &
+# exec_always pkill greenclip; greenclip daemon > /dev/null &
 exec swaync
 
 input "type:keyboard" {
@@ -26,11 +26,11 @@ input "type:touchpad" {
 	# https://wayland.freedesktop.org/libinput/doc/latest/clickpad-softbuttons.html#clickpad-softbuttons
 	click_method button_areas
 	drag_lock enabled
-    dwt enabled
-    middle_emulation disabled
-    natural_scroll enabled
+  dwt enabled
+  middle_emulation disabled
+  natural_scroll enabled
 	tap_button_map lrm
-    tap enabled
+  tap enabled
 }
 
 # Allow switching between workspaces with left and right swipes
@@ -46,10 +46,10 @@ bindgesture pinch:inward+left move left
 bindgesture pinch:inward+right move right
 
 # Load barriers server
-# exec_always --no-startup-id pkill barriers; barriers --no-daemon --no-tray --name narnia --enable-crypto --config "$HOME/.config/barrier/barrier.conf" --address ":24800"
-#exec_always --no-startup-id pkill barrier; barrierc --no-daemon --no-tray --name narnia --enable-crypto '[192.168.1.196]:24800'
+# exec_always pkill barriers; barriers --no-daemon --no-tray --name narnia --enable-crypto --config "$HOME/.config/barrier/barrier.conf" --address ":24800"
+#exec_always pkill barrier; barrierc --no-daemon --no-tray --name narnia --enable-crypto '[192.168.1.196]:24800'
 
-exec_always --no-startup-id swaymsg -r -q output "*" bg ~/Pictures/unicat.png fill > /dev/null
+exec_always swaymsg -r -q output "*" bg ~/Pictures/unicat.png fill > /dev/null
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border none
@@ -79,49 +79,50 @@ bindsym $mod+Ctrl+q kill
 bindsym --release $mod+Shift+q exec xkill
 
 # Start a terminal
-bindsym $mod+Return exec --no-startup-id wezterm
+bindsym $mod+Return exec wezterm
 
 # Fast access to most used programs with Alt key
-bindsym $mod+Mod1+b exec --no-startup-id blueman-manager
-bindsym $mod+Mod1+c exec --no-startup-id code
-bindsym $mod+Mod1+e exec --no-startup-id emote
-bindsym $mod+Mod1+f exec --no-startup-id floorp
-bindsym $mod+Mod1+l exec --no-startup-id logseq
-bindsym $mod+Mod1+o exec --no-startup-id obsidian
-bindsym $mod+Mod1+p exec --no-startup-id pcmanfm
-bindsym $mod+Mod1+q exec --no-startup-id qutebrowser
-bindsym $mod+Mod1+s exec --no-startup-id spotify
-bindsym $mod+Mod1+Shift+c exec --no-startup-id calibre
-bindsym $mod+Mod1+Shift+e exec --no-startup-id evince
-bindsym $mod+Mod1+Shift+f exec --no-startup-id flameshot gui
-bindsym $mod+Mod1+t exec --no-startup-id thunderbird
-bindsym $mod+Mod1+v exec --no-startup-id vivaldi
-bindsym $mod+Mod1+x exec --no-startup-id wezterm -e xplr
+bindsym $mod+Mod1+b exec blueman-manager
+bindsym $mod+Mod1+c exec code
+bindsym $mod+Mod1+e exec emote
+bindsym $mod+Mod1+f exec floorp
+bindsym $mod+Mod1+l exec logseq
+bindsym $mod+Mod1+o exec obsidian
+bindsym $mod+Mod1+p exec pcmanfm
+bindsym $mod+Mod1+q exec qutebrowser
+bindsym $mod+Mod1+s exec spotify
+bindsym $mod+Mod1+Shift+c exec calibre
+bindsym $mod+Mod1+Shift+e exec evince
+bindsym $mod+Mod1+Shift+f exec flameshot gui
+bindsym $mod+Mod1+t exec thunderbird
+bindsym $mod+Mod1+v exec vivaldi
+bindsym $mod+Mod1+x exec wezterm -e xplr
 # Notifications center
-bindsym $mod+Mod1+n exec --no-startup-id swaync-client -t -sw
-
-bindsym $mod+Mod1+Right exec --no-startup-id playerctl next && ~/.config/sway/scripts/notification "next_song"
-bindsym $mod+Mod1+Left exec --no-startup-id playerctl previous && ~/.config/sway/scripts/notification "previous_song"
+bindsym $mod+Mod1+n exec swaync-client -t -sw
 
 # Start rofi launcher
-bindsym $mod+d exec --no-startup-id rofi -show combi
+bindsym $mod+d exec rofi -show combi
 # Add web searcher launcher
-bindsym $mod+Ctrl+w exec --no-startup-id rofi -show web
+bindsym $mod+Ctrl+w exec rofi -show web
 # Add finder launcher
-bindsym $mod+Ctrl+f exec --no-startup-id rofi -show finder
+bindsym $mod+Ctrl+f exec rofi -show finder
 # Add clipboard manager launcher
-bindsym $mod+c exec --no-startup-id clipman pick --tool rofi
-# bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+bindsym $mod+c exec clipman pick --tool rofi
+# bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 
 # Player controls
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
-bindsym XF86AudioNext exec --no-startup-id playerctl next && ~/.config/sway/scripts/notification "next_song"
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous && ~/.config/sway/scripts/notification "previous_song"
+bindsym XF86AudioPlay exec playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
+bindsym XF86AudioNext exec playerctl next && ~/.config/sway/scripts/notification "next_song"
+bindsym XF86AudioPrev exec playerctl previous && ~/.config/sway/scripts/notification "previous_song"
+
 # No player controls available
-bindsym Shift+XF86AudioMute exec --no-startup-id playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
-bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl next && ~/.config/sway/scripts/notification "next_song"
-bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl previous && ~/.config/sway/scripts/notification "previous_song"
+bindsym Shift+XF86AudioMute exec playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
+bindsym Shift+XF86AudioRaiseVolume exec playerctl next && ~/.config/sway/scripts/notification "next_song"
+bindsym Shift+XF86AudioLowerVolume exec playerctl previous && ~/.config/sway/scripts/notification "previous_song"
+bindsym $mod+Mod1+Right exec playerctl next && ~/.config/sway/scripts/notification "next_song"
+bindsym $mod+Mod1+Left exec playerctl previous && ~/.config/sway/scripts/notification "previous_song"
+
 
 # Wireplumber controls
 exec wpctl set-volume @DEFAULT_SINK@ 0
@@ -133,9 +134,9 @@ bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- -l 1 && ~/
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle && ~/.config/sway/scripts/notification "play-mute_sound"
 
 # Screen brightness controls
-exec --no-startup-id light -S 10
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 && ~/.config/sway/scripts/notification "light"
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 && ~/.config/sway/scripts/notification "light"
+exec light -S 10
+bindsym XF86MonBrightnessUp exec light -A 5 && ~/.config/sway/scripts/notification "light"
+bindsym XF86MonBrightnessDown exec light -U 5 && ~/.config/sway/scripts/notification "light"
 
 # Print Screen controls
 bindsym Print exec ~/.config/sway/scripts/screenshot
@@ -311,14 +312,14 @@ bindsym $mod+Shift+F12 move container to workspace number $ws22
 # assign [class="Zotero"] number $ws4
 
 # Start programs by default (using init_workspaces script instead)
-# exec --no-startup-id alacritty
-# exec --no-startup-id floorp
-# exec --no-startup-id floorp --private-window'
-# exec --no-startup-id google-chrome-stable
-# exec --no-startup-id thunderbird
-# exec --no-startup-id slack
-# exec --no-startup-id zotero
-# exec --no-startup-id spotify
+# exec alacritty
+# exec floorp
+# exec floorp --private-window'
+# exec google-chrome-stable
+# exec thunderbird
+# exec slack
+# exec zotero
+# exec spotify
 
 
 # Open specific applications in floating mode
@@ -343,13 +344,13 @@ bindsym $mod+Shift+r restart
 set $mode_system (c)lose windows, (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
 
-    bindsym c exec --no-startup-id wlrctl window list | cut -f1 -d':' | xargs -I% wlrctl window close %, mode "default"
-    bindsym l exec --no-startup-id swaylock, mode "default"
-    bindsym e exec --no-startup-id swaymsg exit, mode "default"
-    bindsym s exec --no-startup-id systemctl suspend-then-hibernate, mode "default"
-    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+    bindsym c exec wlrctl window list | cut -f1 -d':' | xargs -I% wlrctl window close %, mode "default"
+    bindsym l exec swaylock, mode "default"
+    bindsym e exec swaymsg exit, mode "default"
+    bindsym s exec systemctl suspend-then-hibernate, mode "default"
+    bindsym h exec systemctl hibernate, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym Shift+s exec systemctl poweroff -i, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -401,8 +402,8 @@ client.background        $base
 # Autostart applications
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-exec --no-startup-id dropbox
+exec nm-applet
+exec dropbox
 
 # Toggle (show/hide) i3status-rs bar
 bindsym $mod+m bar mode toggle
