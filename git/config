@@ -324,25 +324,10 @@
   side-by-side                 = true
   features                     = unobtrusive-line-numbers decorations
   whitespace-error-style       = 1 reverse
-  minus-emph-style             = normal bold "#901011"
-  plus-emph-style              = normal bold "#006000"
 [delta "unobtrusive-line-numbers"]
   line-numbers-left-format     = "{nm:>4}┊"
-  line-numbers-left-style      = blue
-  line-numbers-minus-style      = "#b55a67"
-  line-numbers-plus-style       = "#627259"
   line-numbers-right-format    = "{np:>4}│"
-  line-numbers-right-style     = blue
   line-numbers                 = true
-  line-numbers-zero-style       = "#3b4261"
-  minus-emph-style              = syntax "#6b2e43"
-  minus-empty-line-marker-style = syntax "#3a273a"
-  minus-non-emph-style          = syntax "#3a273a"
-  minus-style                   = syntax "#3a273a"
-  plus-emph-style               = syntax "#305f6f"
-  plus-empty-line-marker-style  = syntax "#273849"
-  plus-non-emph-style           = syntax "#273849"
-  plus-style                    = syntax "#273849"
 [delta "decorations"]
   commit-decoration-style      = bold yellow box ul
   file-style                   = bold yellow ul
