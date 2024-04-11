@@ -72,17 +72,17 @@
   clm = commit --all --message
   cm  = commit --message
   # diff - https://git-scm.com/docs/git-diff
-  d    = diff
-  di   = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }') && [[ -n ${FILES} ]] && git diff ${FILES}
-  ds   = diff --staged
-  dst  = diff --staged --stat
-  dsw  = diff --staged --ignore-all-space
-  dt   = diff --stat
-  dtl  = difftool
-  dtlg = difftool --gui
-  dts  = difftool --staged
-  dtsg = difftool --staged --gui
-  dw   = diff --ignore-all-space
+  d     = diff
+  di    = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }') && [[ -n ${FILES} ]] && git diff ${FILES}
+  ds    = diff --staged
+  dst   = diff --staged --stat
+  dsw   = diff --staged --ignore-all-space
+  dt    = diff --stat
+  dft   = difftool
+  dftg  = difftool --gui
+  dfts  = difftool --staged
+  dftsg = difftool --staged --gui
+  dw    = diff --ignore-all-space
   # fetch - https://git-scm.com/docs/git-fetch
   f  = fetch
   fa = fetch --all
