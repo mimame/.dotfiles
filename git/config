@@ -370,7 +370,7 @@
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftool
   tool            = difftastic
   # https://difftastic.wilfred.me.uk/git.html
-  external        = difft
+  # external        = difft
 
 [difftool]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftoolprompt
