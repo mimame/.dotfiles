@@ -118,6 +118,7 @@
   k = !gitk
   # log - https://git-scm.com/docs/git-log
   l    = log --pretty=l
+  ld   = "-c diff.external=difft log -p --ext-diff --pretty=l"
   ll   = l --numstat
   lll  = l --patch
     # Use fzf to select commits and copy their hash to the clipboard
