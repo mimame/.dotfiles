@@ -320,7 +320,7 @@
   helper = cache
 
 [delta]
-  side-by-side                 = false
+  side-by-side                 = true
   features                     = unobtrusive-line-numbers decorations
   whitespace-error-style       = 1 reverse
   minus-emph-style             = normal bold "#901011"
