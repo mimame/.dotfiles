@@ -180,10 +180,13 @@ lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "rege
 --     },
 -- }
 lvim.plugins = {
-  -- jetpack codebase navigation
+  -- general-purpose motion plugin
   {
-    "ggandor/lightspeed.nvim",
-    event = "BufRead",
+    "ggandor/leap.nvim",
+    config = function()
+      require('leap').create_default_mappings()
+    end
+  },
   },
   -- better quickfix window
   {
