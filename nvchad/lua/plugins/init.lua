@@ -60,4 +60,13 @@ return {
       vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
     end,
   },
+  -- search & replace panel
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    lazy = false,
+    config = function()
+      require("spectre").setup()
+    end,
+  },
 }
