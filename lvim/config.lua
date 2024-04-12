@@ -187,6 +187,13 @@ lvim.plugins = {
       require('leap').create_default_mappings()
     end
   },
+  -- search & replace panel
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require('spectre').setup()
+    end
   },
   -- better quickfix window
   {
