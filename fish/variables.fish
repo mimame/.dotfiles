@@ -58,7 +58,7 @@ set -Ux FZF_DEFAULT_OPTS '
 
 set -x -U BAT_THEME Enki-Tokyo-Night
 set -x -U MOAR '--statusbar=bold --no-linenumbers'
-set -x -U MANPAGER "bat -l man -p'"
+set -x -U MANPAGER "bat -l man -p"
 if command -q vivaldi
     set -x -U BROWSER vivaldi
 end
