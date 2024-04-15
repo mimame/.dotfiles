@@ -12,7 +12,7 @@ if status --is-interactive
         rm -f ~/.config/fish/functions/bass.fish
         rm -fr ~/.config/fish/completions
         rm -fr ~/.config/fish/conf.d
-        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+        wget2 -O- https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
         wget2 'https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_moon.theme' -O ~/.config/fish/themes/'Tokyonight Moon.theme'
         # Only run the first time
         yes | fish_config theme save "Tokyonight Moon"
@@ -45,7 +45,7 @@ if status --is-interactive
     # Download wezterm terminfo automatically
     if not test -f ~/.terminfo/w/wezterm
         set tempfile $(mktemp) \
-            && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
+            && wget2 -O $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
             && tic -x -o ~/.terminfo $tempfile \
             && sudo tic -x -o /usr/share/terminfo $tempfile \
             && rm $tempfile
@@ -55,21 +55,21 @@ if status --is-interactive
     set vscode_font ~/.local/share/fonts/vscode.ttf
     if not test -f $vscode_font
         mkdir -p ~/.local/share/fonts/
-        wget2 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true' -O $vscode_font --quiet
+        wget2 -O $vscode_font 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true'
         fc-cache ~/.local/share/fonts/
     end
 
     set bat_theme "$(bat --config-dir)/themes/Enki-Tokyo-Night.tmTheme"
     if not test -f $bat_theme
         mkdir -p "$(bat --config-dir)/themes/"
-        wget2 https://raw.githubusercontent.com/enkia/enki-theme/master/scheme/Enki-Tokyo-Night.tmTheme -O $bat_theme --quiet
+        wget2 -O $bat_theme https://raw.githubusercontent.com/enkia/enki-theme/master/scheme/Enki-Tokyo-Night.tmTheme
         bat cache --build
     end
 
     set wallpaper ~/Pictures/unicat.png
     if not test -f $wallpaper
         mkdir -p ~/Pictures
-        wget2 https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png -O $wallpaper --quiet
+        wget2 -O $wallpaper https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png
     end
 
     source ~/.config/fish/variables.fish
