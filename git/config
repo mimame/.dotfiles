@@ -222,6 +222,7 @@
   wi = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
   ws = show --show-signature
   wt = show --stat
+  wm = show -m
   # wip - save work in progress quickly and ready to push it if necessary
   wip = "!f() { git checkout -b wip/\"$1\" && git add --update && git commit -m \"wip: $1\"; }; f"
 
