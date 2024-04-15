@@ -34,7 +34,7 @@ local servers = {
   -- "pylyzer", -- not working by now
   "pyright",
   "rubocop",
-  "ruby_ls",
+  "ruby_lsp",
   "ruff",
   "sqls",
   "svelte",
