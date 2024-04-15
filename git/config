@@ -488,8 +488,8 @@
   # Only allow fast forward merges when pulling
   ff = only
   # https://git-scm.com/docs/git-config#git-config-pullrebase
-  # Always rebase preserving merges when pulling
-  rebase = merges
+  # Always rebase when pulling
+  rebase = true
 
 [push]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushautoSetupRemote
