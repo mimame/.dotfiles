@@ -12,7 +12,7 @@ if status --is-interactive
         rm -f ~/.config/fish/functions/bass.fish
         rm -fr ~/.config/fish/completions
         rm -fr ~/.config/fish/conf.d
-        wget2 -O- https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+        wget2 -q -O- https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
         wget2 'https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_moon.theme' -O ~/.config/fish/themes/'Tokyonight Moon.theme'
         # Only run the first time
         yes | fish_config theme save "Tokyonight Moon"
