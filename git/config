@@ -219,7 +219,7 @@
   ta = tag --annotate
   # show - https://git-scm.com/docs/git-reset
   w  = show --ext-diff
-  wi = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git show $(echo ${HASH} | awk '{ print $1 }')
+  wi = "!f() { HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git show ${HASH} && echo ${HASH} | tr -d '\n' | fish -c 'copy_to_clipboard'; }; f"
   ws = show --show-signature
   wt = show --stat
   wm = show -m
