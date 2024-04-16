@@ -14,6 +14,9 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     bind -M insert \co thefuck-command-line
 
     fzf_configure_bindings
+    # Use default fzf functions and bindings
+    # fisher install PatrickF1/fzf.fish
+    # set fzf_preview_dir_cmd eza --sort .name --tree --classify --git --long --color=always --ignore-glob=node_modules
     set -gx ATUIN_NOBIND true
     atuin init fish | source
 
