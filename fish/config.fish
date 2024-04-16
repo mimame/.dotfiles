@@ -5,6 +5,7 @@ if status --is-interactive
         rm -f ~/.config/fish/functions/__abbr*
         rm -f ~/.config/fish/functions/_autopair*
         rm -f ~/.config/fish/functions/fisher.fish
+        rm -f ~/.config/fish/functions/_fzf_*.fish
         rm -f ~/.config/fish/functions/fzf_configure_bindings.fish
         rm -f ~/.config/fish/functions/fzf.fish
         rm -f ~/.config/fish/functions/replay.fish
