@@ -62,6 +62,7 @@ set -x -U TERMINAL wezterm
 
 set -g EDITOR lvim
 set -g VISUAL $EDITOR
+set -g -x GIT_EDITOR $EDITOR
 set -g PAGER moar --wrap
 if test -z "$XDG_CONFIG_HOME"
     set -x -U XDG_CONFIG_HOME "$HOME/.config"
