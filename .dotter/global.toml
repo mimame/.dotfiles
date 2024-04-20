@@ -7,6 +7,7 @@ depends = []
 # LICENSE = ""
 # "README.md" = ""
 # barrier = "~/.config/"
+atuin = { target = "~/.config/atuin", type = "symbolic" }
 beets = "~/.config/beets"
 bin = "~/.bin"
 broot = "~/.config/broot"
