@@ -16,6 +16,7 @@ clifm = "~/.config/clifm"
 cmus = "~/.config/cmus"
 # conda = "~/"
 # devdocs = ""
+direnv = "~/.config/direnv"
 espanso = { target = "~/.config/espanso", type = "symbolic" } # Files with {{}} automatically detected as templates
 fd = "~/.config/fd"
 fish = "~/.config/fish" # Use `dotter --force` to avoid issues with existing plugin files
