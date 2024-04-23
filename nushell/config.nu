@@ -90,9 +90,18 @@ let tokyo_night = {
     cursor: "#c0caf5"
 }
 
-# External completer example
+# External completers
+
+# if the current command is an alias, get it's expansion
+let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
+
+# overwrite
+let spans = (if $expanded_alias != null  {
+    # put the first word of the expanded alias first in the span
+    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
+} else { $spans })
 let carapace_completer = {|spans|
-    carapace $spans.0 nushell $spans | from json
+    carapace $spans.0 nushell ...$spans | from json
 }
 
 let fish_completer = {|spans|
@@ -101,14 +110,9 @@ let fish_completer = {|spans|
     | from tsv --flexible --no-infer
 }
 
-# # if the current command is an alias, get it's expansion
-# let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
-
-# # overwrite
-# let spans = (if $expanded_alias != null  {
-#     # put the first word of the expanded alias first in the span
-#     $spans | skip 1 | prepend ($expanded_alias | split row " ")
-# } else { $spans })
+let zoxide_completer = {|spans|
+    $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
+}
 
 # This completer will use carapace by default
 let external_completer = {|spans|
@@ -119,15 +123,20 @@ let external_completer = {|spans|
     let spans = if $expanded_alias != null {
         $spans
         | skip 1
-        | prepend ($expanded_alias | split row ' ')
+        | prepend ($expanded_alias | split row ' ' | take 1)
     } else {
         $spans
     }
 
-    # use fish_completer for specific completions and carapace as default
     match $spans.0 {
+        # carapace completions are incorrect for nu
         nu => $fish_completer
+        # fish completes commits and branch names in a nicer way
         git => $fish_completer
+        # carapace doesn't have completions for asdf
+        asdf => $fish_completer
+        # use zoxide completions for zoxide commands
+        __zoxide_z | __zoxide_zi => $zoxide_completer
         _ => $carapace_completer
     } | do $in $spans
 }
