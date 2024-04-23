@@ -142,3 +142,8 @@ starship init nu | save -f ~/.cache/nushell/starship/init.nu
 # Generate zoxide source
 mkdir ~/.cache/nushell/zoxide
 zoxide init nushell | save -f ~/.cache/nushell/zoxide/init.nu
+
+# Generate carapace source
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
+mkdir ~/.cache/carapace
+carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
