@@ -38,6 +38,7 @@ local servers = {
   "ruff",
   "sqls",
   "svelte",
+  "taplo",
   "terraformls",
   "texlab",
   "tflint",
