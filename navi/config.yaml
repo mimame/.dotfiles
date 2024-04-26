@@ -20,7 +20,7 @@ finder:
 
 cheats:
   paths:
-    - ~/.config/navi/me-cheats/
+    - ~/.config/navi/mimame-cheats/
     - ~/.local/share/navi/cheats/
     # - /path/to/some/dir
     # - /path/to/another/dir
