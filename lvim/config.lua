@@ -274,6 +274,13 @@ lvim.plugins = {
 			-- vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap-from-window)')
 		end,
 	},
+	-- Enhanced f/t motions for Leap
+	{
+		"ggandor/flit.nvim",
+		config = function()
+			require("flit").setup()
+		end,
+	},
 
       vim.g.rainbow_delimiters = {
         strategy = {
