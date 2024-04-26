@@ -1,4 +1,5 @@
 return {
+  -- Lightweight yet powerful formatter plugin
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- uncomment for format on save
@@ -41,6 +42,7 @@ return {
       },
     },
   },
+  -- Add/change/delete surrounding delimiter pairs with ease
   {
     "kylechui/nvim-surround",
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -69,6 +71,7 @@ return {
       require("spectre").setup()
     end,
   },
+  -- Automatically highlighting other uses of the word under the cursor
   {
     "RRethy/vim-illuminate",
     lazy = false,
