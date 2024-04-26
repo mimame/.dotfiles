@@ -176,13 +176,6 @@ lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "rege
 --     },
 -- }
 lvim.plugins = {
-  -- general-purpose motion plugin
-  {
-    "ggandor/leap.nvim",
-    config = function()
-      require('leap').create_default_mappings()
-    end
-  },
   -- search & replace panel
   {
     "nvim-pack/nvim-spectre",
@@ -269,6 +262,16 @@ lvim.plugins = {
 					lsp_fallback = true,
 				},
 			})
+		end,
+	},
+	-- general-purpose motion plugin
+	{
+		"ggandor/leap.nvim",
+		config = function()
+			-- require('leap').create_default_mappings()
+			vim.keymap.set({ "n", "x", "o" }, "gs", "<Plug>(leap-forward)")
+			vim.keymap.set({ "n", "x", "o" }, "gS", "<Plug>(leap-backward)")
+			-- vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap-from-window)')
 		end,
 	},
 
