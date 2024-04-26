@@ -1,0 +1,3 @@
+# Start Portainer Service for Podman
+% podman, portainer
+sudo docker run -d -p 8000:8000 -p 9443:9443 -p 9000:9000 --privileged --name portainer --restart=always -v /var/run/podman/podman.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
