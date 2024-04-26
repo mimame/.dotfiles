@@ -33,13 +33,13 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 
 -- Trouble.nvim
 lvim.builtin.which_key.mappings["t"] = {
-  name = "Diagnostics",
-  t = { "<cmd>TroubleToggle<cr>", "trouble" },
-  w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
-  d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
-  q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-  l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
-  r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
+	name = "Diagnostics",
+	t = { "<cmd>TroubleToggle<cr>", "trouble" },
+	w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
+	d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
+	q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+	l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+	r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 }
 
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
@@ -66,40 +66,39 @@ lvim.builtin.project.manual_mode = true
 lvim.builtin.project.show_hidden = true
 
 -- lvim.builtin.lualine.style = "lvim"
-lvim.builtin.lualine.options.section_separators = { left = '', right = '' }
-lvim.builtin.lualine.options.component_separators = { left = '|', right = '|' }
+lvim.builtin.lualine.options.section_separators = { left = "", right = "" }
+lvim.builtin.lualine.options.component_separators = { left = "|", right = "|" }
 local components = require("lvim.core.lualine.components")
 components.filename.path = 4
 components.filename.color = {
-  gui = "bold"
+	gui = "bold",
 }
 components.filetype.separator = ""
 lvim.builtin.lualine.sections.lualine_a = { "mode" }
 lvim.builtin.lualine.sections.lualine_c = {
-  components.diff,
-  components.diagnostics,
-  components.location,
-  components.progress,
-  components.filetype,
-  components.filename,
+	components.diff,
+	components.diagnostics,
+	components.location,
+	components.progress,
+	components.filetype,
+	components.filename,
 }
 lvim.builtin.lualine.sections.lualine_x = {
-  components.lsp,
-  components.spaces,
-  components.encoding,
+	components.lsp,
+	components.spaces,
+	components.encoding,
 }
-lvim.builtin.lualine.sections.lualine_y = {
-}
+lvim.builtin.lualine.sections.lualine_y = {}
 lvim.builtin.lualine.sections.lualine_z = {
-  "fileformat"
+	"fileformat",
 }
 
 lvim.builtin.lualine.inactive_sections.lualine_c = {
-  components.diff,
-  components.lsp,
-  components.diagnostics,
-  components.spaces,
-  components.filename,
+	components.diff,
+	components.lsp,
+	components.diagnostics,
+	components.spaces,
+	components.filename,
 }
 lvim.builtin.lualine.inactive_sections.lualine_x = {}
 
@@ -176,72 +175,6 @@ lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "rege
 --     },
 -- }
 lvim.plugins = {
-  -- search & replace panel
-  {
-    "nvim-pack/nvim-spectre",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require('spectre').setup()
-    end
-  },
-  -- better quickfix window
-  {
-    "kevinhwang91/nvim-bqf",
-    event = { "BufRead", "BufNew" },
-    config = function()
-      require("bqf").setup({
-        auto_enable = true,
-        preview = {
-          win_height = 12,
-          win_vheight = 12,
-          delay_syntax = 80,
-          border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
-        },
-        func_map = {
-          vsplit = "",
-          ptogglemode = "z,",
-          stoggleup = "",
-        },
-        filter = {
-          fzf = {
-            action_for = { ["ctrl-s"] = "split" },
-            extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
-          },
-        },
-      })
-    end,
-  },
-  -- navigate and highlight matching words
-  -- query.lua:259: query: invalid node type at position 6 for language lua
-  -- {
-  --   "andymass/vim-matchup",
-  --   event = "CursorMoved",
-  --   config = function()
-  --     vim.g.matchup_matchparen_offscreen = { method = "popup" }
-  --   end,
-  -- },
-  -- git diff in a single tabpage
-  {
-    "sindrets/diffview.nvim",
-    event = "BufRead",
-  },
-  -- autoclose and autorename html tag
-  {
-    "windwp/nvim-ts-autotag",
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
-  },
-  -- commentstring option based on the cursor location
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    event = "BufRead",
-  },
-  -- rainbow parentheses
-  {
-    url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
-    config = function()
-      local rainbow_delimiters = require 'rainbow-delimiters'
 	-- Lightweight yet powerful formatter plugin
 	{
 		"stevearc/conform.nvim",
@@ -281,345 +214,413 @@ lvim.plugins = {
 			require("flit").setup()
 		end,
 	},
+	-- search & replace panel
+	{
+		"nvim-pack/nvim-spectre",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("spectre").setup()
+		end,
+	},
+	-- better quickfix window
+	{
+		"kevinhwang91/nvim-bqf",
+		event = { "BufRead", "BufNew" },
+		config = function()
+			require("bqf").setup({
+				auto_enable = true,
+				preview = {
+					win_height = 12,
+					win_vheight = 12,
+					delay_syntax = 80,
+					border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+				},
+				func_map = {
+					vsplit = "",
+					ptogglemode = "z,",
+					stoggleup = "",
+				},
+				filter = {
+					fzf = {
+						action_for = { ["ctrl-s"] = "split" },
+						extra_opts = { "--bind", "ctrl-o:toggle-all", "--prompt", "> " },
+					},
+				},
+			})
+		end,
+	},
+	-- navigate and highlight matching words
+	-- query.lua:259: query: invalid node type at position 6 for language lua
+	-- {
+	--   "andymass/vim-matchup",
+	--   event = "CursorMoved",
+	--   config = function()
+	--     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+	--   end,
+	-- },
+	-- git diff in a single tabpage
+	{
+		"sindrets/diffview.nvim",
+		event = "BufRead",
+	},
+	-- autoclose and autorename html tag
+	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
+	-- commentstring option based on the cursor location
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		event = "BufRead",
+	},
+	-- rainbow parentheses
+	{
+		url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+		config = function()
+			local rainbow_delimiters = require("rainbow-delimiters")
 
-      vim.g.rainbow_delimiters = {
-        strategy = {
-          [''] = rainbow_delimiters.strategy['global'],
-          vim = rainbow_delimiters.strategy['local'],
-        },
-        query = {
-          [''] = 'rainbow-delimiters',
-          lua = 'rainbow-blocks',
-        },
-        highlight = {
-          'RainbowDelimiterRed',
-          'RainbowDelimiterYellow',
-          'RainbowDelimiterBlue',
-          'RainbowDelimiterOrange',
-          'RainbowDelimiterGreen',
-          'RainbowDelimiterViolet',
-          'RainbowDelimiterCyan',
-        },
-      }
-      lvim.builtin.treesitter.rainbow.enable = true
-    end
-  },
-  -- FIXME: enable it again when it works again
-  -- Show current function at the top of the screen when function does not fit in screen
-  -- {
-  --   "romgrk/nvim-treesitter-context",
-  --   config = function()
-  --     require("treesitter-context").setup {
-  --       enable = true,   -- Enable this plugin (Can be enabled/disabled later via commands)
-  --       throttle = true, -- Throttles plugin updates (may improve performance)
-  --       max_lines = 0,   -- How many lines the window should span. Values <= 0 mean no limit.
-  --       patterns = {     -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-  --         -- For all filetypes
-  --         -- Note that setting an entry here replaces all other patterns for this entry.
-  --         -- By setting the 'default' entry below, you can control which nodes you want to
-  --         -- appear in the context window.
-  --         default = {
-  --           'class',
-  --           'function',
-  --           'method',
-  --         },
-  --       },
-  --     }
-  --   end
-  -- },
-  -- color highlighter
-  {
-    "NvChad/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup({
-        user_default_options = {
-          RGB = true,      -- #RGB hex codes
-          RRGGBB = true,   -- #RRGGBB hex codes
-          RRGGBBAA = true, -- #RRGGBBAA hex codes
-          rgb_fn = true,   -- CSS rgb() and rgba() functions
-          hsl_fn = true,   -- CSS hsl() and hsla() functions
-          css = true,      -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-          css_fn = true,   -- Enable all CSS *functions*: rgb_fn, hsl_fn
-        }
-      })
-    end,
-  },
-  -- hint when you type
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "BufRead",
-    config = function() require "lsp_signature".on_attach() end,
-  },
-  -- diagnostics, references, telescope results, quickfix and location lists
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
-  -- automatically saving your work whenever you make changes to it
-  {
-    "Pocco81/auto-save.nvim",
-    config = function()
-      require("auto-save").setup()
-    end,
-  },
-  -- preview markdown in neovim
-  {
-    "npxbr/glow.nvim",
-    ft = { "markdown" }
-  },
-  -- smooth scrolling
-  {
-    "karb94/neoscroll.nvim",
-    event = "WinScrolled",
-    config = function()
-      require('neoscroll').setup({
-        -- All these keys will be mapped to their corresponding default scrolling animation
-        mappings = { '<C-u>', '<C-d>', '<C-b>', '<C-f>',
-          '<C-y>', '<C-e>', 'zt', 'zz', 'zb' },
-        hide_cursor = true,          -- Hide cursor while scrolling
-        stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-        use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
-        respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-        cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-        easing_function = nil,       -- Default easing function
-        pre_hook = nil,              -- Function to run before the scrolling animation starts
-        post_hook = nil,             -- Function to run after the scrolling animation ends
-      })
-    end
-  },
-  -- highlight and search for todo comments
-  {
-    "folke/todo-comments.nvim",
-    event = "BufRead",
-    config = function()
-      require("todo-comments").setup()
-    end,
-  },
-  -- enable repeating supported plugin maps with "."
-  { "tpope/vim-repeat" },
-  -- mappings to delete, change and add surroundings
-  {
-    "tpope/vim-surround",
-    -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
-    -- setup = function()
-    --  vim.o.timeoutlen = 500
-    -- end
-  },
-  {
-    "vhyrro/luarocks.nvim",
-    priority = 1000,
-    config = true,
-  },
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    dependencies = {
-      "luarocks.nvim"
-    },
-    lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-    version = "*", -- Pin Neorg to the latest stable release
-    config = true,
-    config = function()
-      require("neorg").setup {
-        load = {
-          ["core.defaults"] = {},  -- Loads default behaviour
-          ["core.concealer"] = {}, -- Adds pretty icons to your documents
-          ["core.summary"] = {},   -- Creates links to all files in any workspace
-          ["core.completion"] = {
-            config = {
-              engine = "nvim-cmp"
-            }
-          },                  -- Creates links to all files in any workspace
-          -- TODO: neovim +v0.10.0 ["core.ui.calendar"] = {}, -- Opens an interactive calendar for date-related task.
-          ["core.dirman"] = { -- Manages Neorg workspaces
-            config = {
-              workspaces = {
-                notes = "~/notes",
-              },
-            },
-          },
-        },
-      }
-    end,
-  },
-  -- Metals plugin
-  {
-    "scalameta/nvim-metals",
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      local metals_config = require("metals").bare_config()
+			vim.g.rainbow_delimiters = {
+				strategy = {
+					[""] = rainbow_delimiters.strategy["global"],
+					vim = rainbow_delimiters.strategy["local"],
+				},
+				query = {
+					[""] = "rainbow-delimiters",
+					lua = "rainbow-blocks",
+				},
+				highlight = {
+					"RainbowDelimiterRed",
+					"RainbowDelimiterYellow",
+					"RainbowDelimiterBlue",
+					"RainbowDelimiterOrange",
+					"RainbowDelimiterGreen",
+					"RainbowDelimiterViolet",
+					"RainbowDelimiterCyan",
+				},
+			}
+			lvim.builtin.treesitter.rainbow.enable = true
+		end,
+	},
+	-- FIXME: enable it again when it works again
+	-- Error detected while processing CursorMoved Autocommands for "*":
+	-- Unable to load context query for diff:
+	-- ...ed-0.9.5/share/nvim/runtime/lua/vim/treesitter/query.lua:259: query: invalid node type at position 6 for language diff
+	-- Show current function at the top of the screen when function does not fit in screen
+	-- {
+	-- 	"romgrk/nvim-treesitter-context",
+	-- 	config = function()
+	-- 		require("treesitter-context").setup({
+	-- 			enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+	-- 			throttle = true, -- Throttles plugin updates (may improve performance)
+	-- 			max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+	-- 			patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+	-- 				-- For all filetypes
+	-- 				-- Note that setting an entry here replaces all other patterns for this entry.
+	-- 				-- By setting the 'default' entry below, you can control which nodes you want to
+	-- 				-- appear in the context window.
+	-- 				default = {
+	-- 					"class",
+	-- 					"function",
+	-- 					"method",
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
+	-- color highlighter
+	{
+		"NvChad/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup({
+				user_default_options = {
+					RGB = true, -- #RGB hex codes
+					RRGGBB = true, -- #RRGGBB hex codes
+					RRGGBBAA = true, -- #RRGGBBAA hex codes
+					rgb_fn = true, -- CSS rgb() and rgba() functions
+					hsl_fn = true, -- CSS hsl() and hsla() functions
+					css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+					css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+				},
+			})
+		end,
+	},
+	-- hint when you type
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "BufRead",
+		config = function()
+			require("lsp_signature").on_attach()
+		end,
+	},
+	-- diagnostics, references, telescope results, quickfix and location lists
+	{
+		"folke/trouble.nvim",
+		cmd = "TroubleToggle",
+	},
+	-- automatically saving your work whenever you make changes to it
+	{
+		"Pocco81/auto-save.nvim",
+		config = function()
+			require("auto-save").setup()
+		end,
+	},
+	-- preview markdown in neovim
+	{
+		"npxbr/glow.nvim",
+		ft = { "markdown" },
+	},
+	-- smooth scrolling
+	{
+		"karb94/neoscroll.nvim",
+		event = "WinScrolled",
+		config = function()
+			require("neoscroll").setup({
+				-- All these keys will be mapped to their corresponding default scrolling animation
+				mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+				hide_cursor = true, -- Hide cursor while scrolling
+				stop_eof = true, -- Stop at <EOF> when scrolling downwards
+				use_local_scrolloff = false, -- Use the local scope of scrolloff instead of the global scope
+				respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+				cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+				easing_function = nil, -- Default easing function
+				pre_hook = nil, -- Function to run before the scrolling animation starts
+				post_hook = nil, -- Function to run after the scrolling animation ends
+			})
+		end,
+	},
+	-- highlight and search for todo comments
+	{
+		"folke/todo-comments.nvim",
+		event = "BufRead",
+		config = function()
+			require("todo-comments").setup()
+		end,
+	},
+	-- enable repeating supported plugin maps with "."
+	{ "tpope/vim-repeat" },
+	-- Add/change/delete surrounding delimiter pairs with ease
+	{
+		"echasnovski/mini.nvim",
+		config = function()
+			require("mini.surround").setup()
+		end,
+	},
+	{
+		"vhyrro/luarocks.nvim",
+		priority = 1000,
+		config = true,
+	},
+	-- {
+	--   "nvim-neorg/neorg",
+	--   build = ":Neorg sync-parsers",
+	--   dependencies = {
+	--     "luarocks.nvim"
+	--   },
+	--   lazy = false,  -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+	--   version = "*", -- Pin Neorg to the latest stable release
+	--   config = true,
+	--   config = function()
+	--     require("neorg").setup {
+	--       load = {
+	--         ["core.defaults"] = {},  -- Loads default behaviour
+	--         ["core.concealer"] = {}, -- Adds pretty icons to your documents
+	--         ["core.summary"] = {},   -- Creates links to all files in any workspace
+	--         ["core.completion"] = {
+	--           config = {
+	--             engine = "nvim-cmp"
+	--           }
+	--         },                  -- Creates links to all files in any workspace
+	--         -- TODO: neovim +v0.10.0 ["core.ui.calendar"] = {}, -- Opens an interactive calendar for date-related task.
+	--         ["core.dirman"] = { -- Manages Neorg workspaces
+	--           config = {
+	--             workspaces = {
+	--               notes = "~/notes",
+	--             },
+	--           },
+	--         },
+	--       },
+	--     }
+	--   end,
+	-- },
+	-- Metals plugin
+	{
+		"scalameta/nvim-metals",
+		dependencies = {
+			-- Required.
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			local metals_config = require("metals").bare_config()
 
-      -- Example of settings
-      metals_config.settings = {
-        showImplicitArguments = true,
-        excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
-        useGlobalExecutable = true, -- For NixOS, use system metals binary
-      }
+			-- Example of settings
+			metals_config.settings = {
+				showImplicitArguments = true,
+				excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+				useGlobalExecutable = true, -- For NixOS, use system metals binary
+			}
 
-      -- *READ THIS*
-      -- I *highly* recommend setting statusBarProvider to true, however if you do,
-      -- you *have* to have a setting to display this in your statusline or else
-      -- you'll not see any messages from metals. There is more info in the help
-      -- docs about this
-      metals_config.init_options.statusBarProvider = "on"
+			-- *READ THIS*
+			-- I *highly* recommend setting statusBarProvider to true, however if you do,
+			-- you *have* to have a setting to display this in your statusline or else
+			-- you'll not see any messages from metals. There is more info in the help
+			-- docs about this
+			metals_config.init_options.statusBarProvider = "on"
 
-      -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
-      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+			-- Example if you are using cmp how to make sure the correct capabilities for snippets are set
+			metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      -- Autocmd that will actually be in charging of starting the whole thing
-      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-      vim.api.nvim_create_autocmd("FileType", {
-        -- NOTE: You may or may not want java included here. You will need it if you
-        -- want basic Java support but it may also conflict if you are using
-        -- something like nvim-jdtls which also works on a java filetype autocmd.
-        pattern = { "scala", "sbt", "java" },
-        callback = function()
-          require("metals").initialize_or_attach(metals_config)
-        end,
-        group = nvim_metals_group,
-      })
-    end
-  },
-  -- Neovim plugin for Obsidian
-  {
-    'epwalsh/obsidian.nvim',
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-      -- see below for full list of optional dependencies
-    },
-    config = function()
-      -- Use gf for follow Obsidian links
-      vim.keymap.set("n", "gf", function()
-        if require("obsidian").util.cursor_on_markdown_link() then
-          return "<cmd>ObsidianFollowLink<CR>"
-        else
-          return "gf"
-        end
-      end, { noremap = false, expr = true })
+			-- Autocmd that will actually be in charging of starting the whole thing
+			local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+			vim.api.nvim_create_autocmd("FileType", {
+				-- NOTE: You may or may not want java included here. You will need it if you
+				-- want basic Java support but it may also conflict if you are using
+				-- something like nvim-jdtls which also works on a java filetype autocmd.
+				pattern = { "scala", "sbt", "java" },
+				callback = function()
+					require("metals").initialize_or_attach(metals_config)
+				end,
+				group = nvim_metals_group,
+			})
+		end,
+	},
+	-- Neovim plugin for Obsidian
+	{
+		"epwalsh/obsidian.nvim",
+		dependencies = {
+			-- Required.
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+			-- see below for full list of optional dependencies
+		},
+		config = function()
+			-- Use gf for follow Obsidian links
+			vim.keymap.set("n", "gf", function()
+				if require("obsidian").util.cursor_on_markdown_link() then
+					return "<cmd>ObsidianFollowLink<CR>"
+				else
+					return "gf"
+				end
+			end, { noremap = false, expr = true })
 
+			-- Required Default vault
+			require("obsidian").setup({
+				-- Where to put new notes created from completion. Valid options are
+				--  * "current_dir" - put new notes in same directory as the current buffer.
+				--  * "notes_subdir" - put new notes in the default notes subdirectory.
+				new_notes_location = "current_dir",
+				disable_frontmatter = true,
+				-- Optional, for templates (see below).
+				templates = {
+					subdir = "02.Templates",
+					date_format = "%Y.%m-%d",
+					time_format = "%H:%M",
+					-- A map for custom variables, the key should be the variable and the value a function
+					substitutions = {},
+				},
+				-- Don't use any kind of Zettelkasten ID format
+				-- Simply use the title as filename
+				note_id_func = function(title)
+					return title
+				end,
+				workspaces = {
+					{
+						name = "Brain",
+						path = "~/Documents/Brain",
+					},
+				},
+				daily_notes = {
+					-- Optional, if you keep daily notes in a separate directory.
+					folder = "00.Bullet-Journal-Inbox",
+					-- Optional, if you want to change the date format for the ID of daily notes.
+					date_format = "%y.%m.%d.%a",
+					-- Optional, if you want to change the date format of the default alias of daily notes.
+					alias_format = "%B %-d, %Y",
+					-- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+					template = nil,
+				},
+				mappings = {
+					-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
+					-- ["gf"] = {
+					--   action = function()
+					--     return require("obsidian").util.gf_passthrough()
+					--   end,
+					--   opts = { noremap = false, expr = true, buffer = true },
+					-- },
+				},
+				-- Optional, completion.
+				completion = {
+					-- If using nvim-cmp, otherwise set to false
+					nvim_cmp = true,
+					-- Trigger completion at 2 chars
+					min_chars = 3,
+					-- Optional, customize how wiki links are formatted. You can set this to one of:
+					--  * "use_alias_only", e.g. '[[Foo Bar]]'
+					--  * "prepend_note_id", e.g. '[[foo-bar|Foo Bar]]'
+					--  * "prepend_note_path", e.g. '[[foo-bar.md|Foo Bar]]'
+					--  * "use_path_only", e.g. '[[foo-bar.md]]'
+					-- Or you can set it to a function that takes a table of options and returns a string, like this:
+					wiki_link_func = function(opts)
+						if opts.id == nil then
+							return string.format("[[%s]]", opts.label)
+						elseif opts.label ~= opts.id then
+							return string.format("[[%s|%s]]", opts.id, opts.label)
+						else
+							return string.format("[[%s]]", opts.id)
+						end
+					end,
+				},
+				-- Optional, configure additional syntax highlighting / extmarks.
+				ui = {
+					enable = true, -- set to false to disable all additional syntax features
+					update_debounce = 200, -- update delay after a text change (in milliseconds)
+					-- Define how various check-boxes are displayed
+					checkboxes = {
+						-- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
+						[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+						["x"] = { char = "", hl_group = "ObsidianDone" },
+						[">"] = { char = "", hl_group = "ObsidianRightArrow" },
+						["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
+						-- Replace the above with this if you don't have a patched font:
+						-- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
+						-- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
 
-      -- Required Default vault
-      require("obsidian").setup({
-        -- Where to put new notes created from completion. Valid options are
-        --  * "current_dir" - put new notes in same directory as the current buffer.
-        --  * "notes_subdir" - put new notes in the default notes subdirectory.
-        new_notes_location = "current_dir",
-        disable_frontmatter = true,
-        -- Optional, for templates (see below).
-        templates = {
-          subdir = "02.Templates",
-          date_format = "%Y.%m-%d",
-          time_format = "%H:%M",
-          -- A map for custom variables, the key should be the variable and the value a function
-          substitutions = {},
-        },
-        -- Don't use any kind of Zettelkasten ID format
-        -- Simply use the title as filename
-        note_id_func = function(title)
-          return title
-        end,
-        workspaces = {
-          {
-            name = "Brain",
-            path = "~/Documents/Brain",
-          },
-        },
-        daily_notes = {
-          -- Optional, if you keep daily notes in a separate directory.
-          folder = "00.Bullet-Journal-Inbox",
-          -- Optional, if you want to change the date format for the ID of daily notes.
-          date_format = "%y.%m.%d.%a",
-          -- Optional, if you want to change the date format of the default alias of daily notes.
-          alias_format = "%B %-d, %Y",
-          -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-          template = nil
-        },
-        mappings = {
-          -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-          -- ["gf"] = {
-          --   action = function()
-          --     return require("obsidian").util.gf_passthrough()
-          --   end,
-          --   opts = { noremap = false, expr = true, buffer = true },
-          -- },
-        },
-        -- Optional, completion.
-        completion = {
-          -- If using nvim-cmp, otherwise set to false
-          nvim_cmp = true,
-          -- Trigger completion at 2 chars
-          min_chars = 3,
-          -- Optional, customize how wiki links are formatted. You can set this to one of:
-          --  * "use_alias_only", e.g. '[[Foo Bar]]'
-          --  * "prepend_note_id", e.g. '[[foo-bar|Foo Bar]]'
-          --  * "prepend_note_path", e.g. '[[foo-bar.md|Foo Bar]]'
-          --  * "use_path_only", e.g. '[[foo-bar.md]]'
-          -- Or you can set it to a function that takes a table of options and returns a string, like this:
-          wiki_link_func = function(opts)
-            if opts.id == nil then
-              return string.format("[[%s]]", opts.label)
-            elseif opts.label ~= opts.id then
-              return string.format("[[%s|%s]]", opts.id, opts.label)
-            else
-              return string.format("[[%s]]", opts.id)
-            end
-          end,
-        },
-        -- Optional, configure additional syntax highlighting / extmarks.
-        ui = {
-          enable = true,         -- set to false to disable all additional syntax features
-          update_debounce = 200, -- update delay after a text change (in milliseconds)
-          -- Define how various check-boxes are displayed
-          checkboxes = {
-            -- NOTE: the 'char' value has to be a single character, and the highlight groups are defined below.
-            [" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-            ["x"] = { char = "", hl_group = "ObsidianDone" },
-            [">"] = { char = "", hl_group = "ObsidianRightArrow" },
-            ["~"] = { char = "󰰱", hl_group = "ObsidianTilde" },
-            -- Replace the above with this if you don't have a patched font:
-            -- [" "] = { char = "☐", hl_group = "ObsidianTodo" },
-            -- ["x"] = { char = "✔", hl_group = "ObsidianDone" },
+						-- You can also add more custom ones...
+					},
+					external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
+					-- Replace the above with this if you don't have a patched font:
+					-- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
+					reference_text = { hl_group = "ObsidianRefText" },
+					highlight_text = { hl_group = "ObsidianHighlightText" },
+					tags = { hl_group = "ObsidianTag" },
+					hl_groups = {
+						-- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
+						ObsidianTodo = { bold = true, fg = "#f78c6c" },
+						ObsidianDone = { bold = true, fg = "#89ddff" },
+						ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
+						ObsidianTilde = { bold = true, fg = "#ff5370" },
+						ObsidianRefText = { underline = true, fg = "#c792ea" },
+						ObsidianExtLinkIcon = { fg = "#c792ea" },
+						ObsidianTag = { italic = true, fg = "#89ddff" },
+						ObsidianHighlightText = { bg = "#75662e" },
+					},
+				},
+			})
 
-            -- You can also add more custom ones...
-          },
-          external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-          -- Replace the above with this if you don't have a patched font:
-          -- external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
-          reference_text = { hl_group = "ObsidianRefText" },
-          highlight_text = { hl_group = "ObsidianHighlightText" },
-          tags = { hl_group = "ObsidianTag" },
-          hl_groups = {
-            -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
-            ObsidianTodo = { bold = true, fg = "#f78c6c" },
-            ObsidianDone = { bold = true, fg = "#89ddff" },
-            ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
-            ObsidianTilde = { bold = true, fg = "#ff5370" },
-            ObsidianRefText = { underline = true, fg = "#c792ea" },
-            ObsidianExtLinkIcon = { fg = "#c792ea" },
-            ObsidianTag = { italic = true, fg = "#89ddff" },
-            ObsidianHighlightText = { bg = "#75662e" },
-          },
-        },
-      })
-
-      -- Syntax highlighting
-      vim.g.vim_markdown_frontmatter = 1
-      vim.g.vim_markdown_follow_anchor = 1
-      vim.g.vim_markdown_folding_disabled = 1
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = { "markdown", "markdown_inline" },
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = { "markdown" },
-        },
-      })
-    end,
-  },
+			-- Syntax highlighting
+			vim.g.vim_markdown_frontmatter = 1
+			vim.g.vim_markdown_follow_anchor = 1
+			vim.g.vim_markdown_folding_disabled = 1
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = { "markdown", "markdown_inline" },
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = { "markdown" },
+				},
+			})
+		end,
+	},
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
