@@ -1,9 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   # Enable CUPS to print documents.
   services.printing = {
     enable = true;
-    drivers = with pkgs.unstable; [ mfcl2720dwlpr mfcl2720dwcupswrapper ];
+    drivers = with pkgs.unstable; [
+      mfcl2720dwlpr
+      mfcl2720dwcupswrapper
+    ];
   };
 
   # Service discovery on a local network
@@ -15,5 +19,4 @@
     # like  "Impossible to connect to XXX.local: Name or service not known"
     nssmdns = true;
   };
-
 }

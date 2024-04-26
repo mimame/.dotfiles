@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   # Bluetooth
   hardware.bluetooth.enable = true;
@@ -14,10 +15,8 @@
     '';
   };
 
-  environment.systemPackages = with pkgs;
-    [
+  environment.systemPackages = with pkgs; [
 
-      bluez-tools
-
-    ];
+    bluez-tools
+  ];
 }

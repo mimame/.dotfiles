@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
 
   services.saned.enable = true;
   hardware.sane = {
@@ -14,5 +15,4 @@
       };
     };
   };
-
 }

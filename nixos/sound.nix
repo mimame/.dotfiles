@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -20,17 +21,16 @@
   # Real-time microphone noise suppression
   programs.noisetorch.enable = true;
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
 
       pavucontrol
       pulseaudio # to be able to use pactl
-
-    ] ++ (with pkgs.unstable; [
+    ]
+    ++ (with pkgs.unstable; [
 
       beets
       cmus
-
     ]);
-
 }
