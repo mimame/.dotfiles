@@ -42,6 +42,7 @@ nushell = { target = "~/.config/nushell", type = "symbolic" }
 nvchad = "~/.config/nvim/"
 # parallel = "~/.config/"
 ptpython = "~/.config/ptpython"
+pueue = "~/.config/pueue"
 qutebrowser = { target = "~/.config/qutebrowser", type = "symbolic"}
 rofi = "~/.config/rofi"
 ssh = "~/.ssh"
