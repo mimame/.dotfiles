@@ -44,13 +44,10 @@ return {
   },
   -- Add/change/delete surrounding delimiter pairs with ease
   {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    "echasnovski/mini.nvim",
     event = "VeryLazy",
     config = function()
-      require("nvim-surround").setup {
-        -- Configuration here, or leave empty to use defaults
-      }
+      require("mini.surround").setup()
     end,
   },
   -- general-purpose motion plugin
