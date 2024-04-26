@@ -27,4 +27,8 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     bind \e\[A _atuin_bind_up
     bind -M insert \e\[A _atuin_bind_up
 
+    # Add navi binds
+    navi widget fish | source
+    bind -M insert \cf _navi_smart_replace
+
 end
