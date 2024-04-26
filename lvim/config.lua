@@ -22,11 +22,7 @@ vim.opt.shell = "/bin/sh"
 
 -- general
 lvim.log.level = "info"
-lvim.format_on_save = {
-  enabled = true,
-  pattern = "*.lua",
-  timeout = 50000,
-}
+lvim.format_on_save.enable = false
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -253,6 +249,28 @@ lvim.plugins = {
     url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
     config = function()
       local rainbow_delimiters = require 'rainbow-delimiters'
+	-- Lightweight yet powerful formatter plugin
+	{
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					-- Conform will run multiple formatters sequentially
+					python = { "isort", "black" },
+					-- Use a sub-list to run only the first available formatter
+					javascript = { { "prettierd", "prettier" } },
+				},
+				format_on_save = {
+					-- These options will be passed to conform.format()
+					timeout_ms = 500,
+					lsp_fallback = true,
+				},
+			})
+		end,
+	},
 
       vim.g.rainbow_delimiters = {
         strategy = {
