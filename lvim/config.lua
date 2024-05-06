@@ -197,22 +197,53 @@ lvim.plugins = {
 			})
 		end,
 	},
-	-- general-purpose motion plugin
+	-- Navigate your code with search labels, enhanced character motions and Treesitter integration
 	{
-		"ggandor/leap.nvim",
-		config = function()
-			-- require('leap').create_default_mappings()
-			vim.keymap.set({ "n", "x", "o" }, "gs", "<Plug>(leap-forward)")
-			vim.keymap.set({ "n", "x", "o" }, "gS", "<Plug>(leap-backward)")
-			-- vim.keymap.set({'n', 'x', 'o'}, 'gs', '<Plug>(leap-from-window)')
-		end,
-	},
-	-- Enhanced f/t motions for Leap
-	{
-		"ggandor/flit.nvim",
-		config = function()
-			require("flit").setup()
-		end,
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
+		keys = {
+			{
+				"s",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").jump()
+				end,
+				desc = "Flash",
+			},
+			{
+				"S",
+				mode = { "n", "x", "o" },
+				function()
+					require("flash").treesitter()
+				end,
+				desc = "Flash Treesitter",
+			},
+			{
+				"r",
+				mode = "o",
+				function()
+					require("flash").remote()
+				end,
+				desc = "Remote Flash",
+			},
+			{
+				"R",
+				mode = { "o", "x" },
+				function()
+					require("flash").treesitter_search()
+				end,
+				desc = "Treesitter Search",
+			},
+			{
+				"<c-s>",
+				mode = { "c" },
+				function()
+					require("flash").toggle()
+				end,
+				desc = "Toggle Flash Search",
+			},
+		},
 	},
 	-- search & replace panel
 	{
