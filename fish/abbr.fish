@@ -85,7 +85,7 @@ abbr T 'tail -F'
 abbr nano micro
 abbr less bat
 abbr more bat
-abbr m man
+abbr m tldr
 
 # rg with grep -r behavior
 abbr ag 'ag --smart-case --ignore node_modules'
