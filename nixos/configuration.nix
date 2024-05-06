@@ -4,12 +4,12 @@
 
 { config, pkgs, ... }:
 let
-  unstableTarball =
-    fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
-
-in {
+  unstableTarball = fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
+in
+{
   # sudo ln -s ~/.dotfiles/nixos/etc/nixos/*.nix /etc/nixos/
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
     ./base.nix
     ./base/cli.nix
@@ -41,9 +41,7 @@ in {
 
   # Add unstable packages injecting directly the unstable channel url
   nixpkgs.config = {
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball { config = config.nixpkgs.config; };
-    };
+    packageOverrides = pkgs: { unstable = import unstableTarball { config = config.nixpkgs.config; }; };
   };
 
   nix = {
@@ -59,8 +57,14 @@ in {
       auto-optimise-store = true;
       # Unify many different Nix package manager utilities
       # https://nixos.org/manual/nix/stable/command-ref/experimental-commands.html
-      experimental-features = [ "nix-command" "flakes" ];
-      trusted-users = [ "root" "@wheel" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
     };
   };
 
@@ -98,23 +102,32 @@ in {
     users.mimame = {
       isNormalUser = true;
       description = "mimame";
-      extraGroups =
-        [ "wheel" "input" "podman" "lxd" "vboxusers" "video" "audio" ];
-      packages = with pkgs;
-        [
-          #  firefox
-          #  thunderbird
-        ];
-
+      extraGroups = [
+        "audio"
+        "input"
+        "lxd"
+        # "networkmanager"
+        "podman"
+        "vboxusers"
+        "video"
+        "wheel"
+      ];
+      packages = with pkgs; [
+        #  firefox
+        #  thunderbird
+      ];
     };
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
 
-    ] ++ (with pkgs.unstable;
+    ]
+    ++ (
+      with pkgs.unstable;
 
       [
 

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Locate service
   services.locate = {
     enable = true;
@@ -51,7 +52,8 @@
   #   };
   # };
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
 
       at
@@ -84,8 +86,8 @@
       util-linux
       xdg-user-dirs
       xdg-utils
-
-    ] ++ (with pkgs.unstable; [
+    ]
+    ++ (with pkgs.unstable; [
 
       aria2
       bat
@@ -261,6 +263,5 @@
       zola
       zoxide
       zstd
-
     ]);
 }

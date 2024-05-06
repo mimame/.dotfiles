@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   # Update the CPU microcode for Intel processors
   hardware.cpu.intel.updateMicrocode = true;
@@ -97,7 +98,9 @@
   # OpenSSH daemon
   services.openssh = {
     enable = true;
-    settings = { X11Forwarding = true; };
+    settings = {
+      X11Forwarding = true;
+    };
   };
   # Always enable the shell system-wide
   # Otherwise it won't source the necessary files
@@ -108,7 +111,9 @@
 
   # Many programs look at /etc/shells to determine
   # if a user is a "normal" user and not a "system" user
-  environment.shells = [ pkgs.unstable.fish ];
+  environment.shells = [
+    pkgs.unstable.fish
+  ];
 
   # Policy that allows unprivileged processes to speak to privileged processes
   security.polkit.enable = true;
@@ -121,14 +126,17 @@
       Defaults timestamp_timeout=120
     '';
     # Configure podman to be use by minikube
-    extraRules = [{
-      users = [ "mimame" ];
-      commands = [{
-        command =
-          "/run/current-system/sw/bin/systemctl restart geoclue.service";
-        options = [ "NOPASSWD" ];
-      }];
-    }];
+    extraRules = [
+      {
+        users = [ "mimame" ];
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/systemctl restart geoclue.service";
+            options = [ "NOPASSWD" ];
+          }
+        ];
+      }
+    ];
   };
 
   services.kmscon = {
@@ -150,7 +158,12 @@
     # Although Hack is a monospaced font: bad visual illusion around some characters are of variable width such as:
     # Parenthesis, brackets, characters with incongruent styles, ||
     # JetBrains Mono focuses on consistent spacing and legibility
-    (nerdfonts.override { fonts = [ "JetBrainsMono" "Hack" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+        "Hack"
+      ];
+    })
     noto-fonts-color-emoji
     font-awesome
   ];
@@ -162,17 +175,16 @@
   # By now the stable version is used to avoid break the virtualbox virtualisation
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
 
       interception-tools
       libevdev
       libnotify
+    ]
+    ++ (with pkgs.unstable; [
 
-    ] ++ (with pkgs.unstable;
-      [
-
-        firmwareLinuxNonfree
-
-      ]);
+      firmwareLinuxNonfree
+    ]);
 }

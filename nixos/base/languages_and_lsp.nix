@@ -1,14 +1,17 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   programs.java = {
     enable = true;
     package = pkgs.unstable.jdk21;
   };
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
 
-    ] ++ (with pkgs.unstable; [
+    ]
+    ++ (with pkgs.unstable; [
 
       ameba
       ammonite # scala
@@ -132,6 +135,5 @@
       zig
       zls
       zola
-
     ]);
 }

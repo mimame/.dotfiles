@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 let
 
   # bash script to let dbus know about important env variables and
@@ -28,26 +31,29 @@ let
     name = "configure-gtk";
     destination = "/bin/configure-gtk";
     executable = true;
-    text = let
-      schema = pkgs.gsettings-desktop-schemas;
-      datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-    in ''
-      export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-      export GTK_THEME="Sweet-Dark"
-      gnome_schema=org.gnome.desktop.interface
-      gsettings set $gnome_schema gtk-theme "Sweet-Dark"
-      gsettings set $gnome_schema theme "Sweet-Dark"
-      gsettings set $gnome_schema icon-theme "BeautyLine"
-      gsettings set $gnome_schema cursor-theme "Catppuccin-Mocha-Mauve-Cursors"
-      gsettings set $gnome_schema cursor-size 32
-      gsettings set org.gnome.desktop.wm.preferences theme "Sweet-Dark"
-      gsettings set $gnome_schema document-font-name 'JetBrainsMonoNL 13'
-      gsettings set $gnome_schema font-name 'JetBrainsMonoNL 13'
-      gsettings set $gnome_schema monospace-font-name 'JetBrainsMonoNL 13'
-    '';
+    text =
+      let
+        schema = pkgs.gsettings-desktop-schemas;
+        datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+      in
+      ''
+        export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+        export GTK_THEME="Sweet-Dark"
+        gnome_schema=org.gnome.desktop.interface
+        gsettings set $gnome_schema gtk-theme "Sweet-Dark"
+        gsettings set $gnome_schema theme "Sweet-Dark"
+        gsettings set $gnome_schema icon-theme "BeautyLine"
+        gsettings set $gnome_schema cursor-theme "Catppuccin-Mocha-Mauve-Cursors"
+        gsettings set $gnome_schema cursor-size 32
+        gsettings set org.gnome.desktop.wm.preferences theme "Sweet-Dark"
+        gsettings set $gnome_schema document-font-name 'JetBrainsMonoNL 13'
+        gsettings set $gnome_schema font-name 'JetBrainsMonoNL 13'
+        gsettings set $gnome_schema monospace-font-name 'JetBrainsMonoNL 13'
+      '';
   };
+in
+{
 
-in {
 
   # systemd units
   systemd = {
@@ -74,8 +80,7 @@ in {
         after = [ "default.target" ];
         serviceConfig = {
           Type = "simple";
-          ExecStart =
-            "${pkgs.swayidle}/bin/swayidle timeout 1800 'systemctl suspend-then-hibernate'";
+          ExecStart = "${pkgs.swayidle}/bin/swayidle timeout 1800 'systemctl suspend-then-hibernate'";
           Restart = "on-failure";
           RestartSec = 1;
           TimeoutStopSec = 10;
@@ -127,7 +132,9 @@ in {
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs = { seahorse.enable = true; };
+  programs = {
+    seahorse.enable = true;
+  };
 
   # Enable the X11 windowing system.
   services.xserver = {
@@ -143,7 +150,9 @@ in {
         user = "mimame";
       };
     };
-    desktopManager = { xfce.enable = false; };
+    desktopManager = {
+      xfce.enable = false;
+    };
   };
 
   # Enable Wayland compatibility with X11
@@ -164,10 +173,14 @@ in {
   # Add IBus engines for text completion and emojis
   i18n.inputMethod = {
     enabled = "ibus";
-    ibus.engines = with pkgs.unstable.ibus-engines; [ typing-booster uniemoji ];
+    ibus.engines = with pkgs.unstable.ibus-engines; [
+      typing-booster
+      uniemoji
+    ];
   };
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
 
       baobab
@@ -189,8 +202,8 @@ in {
       wtype
       ydotool
       zoom-us # White screen if the version is linked from pkgs.unstable
-
-    ] ++ (with pkgs.unstable; [
+    ]
+    ++ (with pkgs.unstable; [
 
       betterbird
       bitwarden
@@ -248,7 +261,5 @@ in {
       zathura
       zettlr
       zotero
-
     ]);
-
 }
