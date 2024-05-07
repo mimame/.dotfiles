@@ -10,6 +10,10 @@
       enable = true;
       dockerSocket.enable = true;
       dockerCompat = true;
+      # containers and processes connected to this network can resolve hostnames
+      defaultNetwork.settings = {
+        dns_enabled = true;
+      };
     };
     lxc = {
       enable = true;

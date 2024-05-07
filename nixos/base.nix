@@ -125,7 +125,6 @@
       Defaults !tty_tickets
       Defaults timestamp_timeout=120
     '';
-    # Configure podman to be use by minikube
     extraRules = [
       {
         users = [ "mimame" ];
