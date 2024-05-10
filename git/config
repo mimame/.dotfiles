@@ -117,10 +117,11 @@
   # gitk - https://git-scm.com/docs/gitk
   k = !gitk
   # log - https://git-scm.com/docs/git-log
-  l    = log --all --graph --pretty=lg
-  ld   = "!git l --patch"
-  ll   = "!git l --numstat"
-  lde  = "!git -c diff.external=difft l -p --ext-diff"
+  l   = log --graph --pretty=lg
+  ll  = log --all --graph --pretty=lg
+  ld  = "!git l --patch"
+  lt  = "!git l --numstat"
+  lde = "!git -c diff.external=difft l -p --ext-diff"
     # Use fzf to select commits and copy their hash to the clipboard
   li = "!git l --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | tr -d '\n' | fish -c 'copy_to_clipboard'"
   # merge - https://git-scm.com/docs/git-merge
@@ -293,7 +294,7 @@
 [core]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreeditor
   # Default editor for commits and tags
-  # editor       = $EDITOR
+  # editor       = $GIT_EDITOR
   # https://github.com/github/gitignore/tree/master/Global
   # globally useful gitignores
   excludesfile = ~/.config/git/gitignore_global
