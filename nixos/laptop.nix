@@ -3,9 +3,9 @@
   # Configuration for suspension, hibernation and the laptop lid
   # Suspend in 10 minutes of inactivity and hibernate half hour later
   services.logind = {
-    lidSwitch = "hibernate";
-    lidSwitchDocked = "hibernate";
-    lidSwitchExternalPower = "hibernate";
+    lidSwitch = "suspend-then-hibernate";
+    lidSwitchDocked = "suspend-then-hibernate";
+    lidSwitchExternalPower = "suspend-then-hibernate";
     extraConfig = ''
       AllowSuspend=yes
       AllowHibernation=yes
