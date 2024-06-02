@@ -44,6 +44,11 @@
       gopls
     ])
     ++ (with pkgs.unstable; [
+      # Janet
+      janet
+      jpm
+    ])
+    ++ (with pkgs.unstable; [
       # JavaScript/TypeScript
       yarn
     ])
