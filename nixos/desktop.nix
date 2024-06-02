@@ -260,6 +260,7 @@ in
       xdragon
       zathura
       zeal
+      zed-editor
       zettlr
       zotero
     ]);
