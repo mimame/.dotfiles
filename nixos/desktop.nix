@@ -116,6 +116,7 @@ in
   # enable sway window manager
   programs.sway = {
     enable = true;
+    package = pkgs.unstable.sway;
     wrapperFeatures.gtk = true;
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -139,19 +140,17 @@ in
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    displayManager = {
-      gdm = {
-        enable = true;
-        wayland = true;
-      };
-      defaultSession = "sway";
-      autoLogin = {
-        enable = true;
-        user = "mimame";
-      };
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
     };
-    desktopManager = {
-      xfce.enable = false;
+  };
+
+  services.displayManager = {
+    defaultSession = "sway";
+    autoLogin = {
+      enable = true;
+      user = "mimame";
     };
   };
 

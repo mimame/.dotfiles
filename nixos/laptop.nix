@@ -21,7 +21,7 @@
   services.auto-cpufreq.enable = true;
 
   # Enable touchpad support (enabled by default in most desktopManager).
-  services.xserver.libinput = {
+  services.libinput = {
     enable = true;
     # Ignored here! Implemented by Sway
     touchpad = {

@@ -21,8 +21,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us";
-    xkbVariant = "altgr-intl";
+    xkb = {
+      layout = "us";
+      variant = "altgr-intl";
+    };
     exportConfiguration = true;
   };
 
@@ -107,7 +109,9 @@
   # Use completion files provided by other packages
   # Source configuration snippets provided by other packages
   # Autoload fish functions provided by other packages
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    package = pkgs.unstable.fish;
 
   # Many programs look at /etc/shells to determine
   # if a user is a "normal" user and not a "system" user
