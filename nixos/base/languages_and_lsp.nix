@@ -12,91 +12,89 @@
 
     ]
     ++ (with pkgs.unstable; [
-
-      ameba
-      ammonite # scala
-      ansible
-      apache-airflow
+      # Asciidoc
       asciidoc-full
       asciidoctor
-      autoconf
-      automake
-      bazelisk
-      bison
-      bloop
-      buf # protocol buffers
-      buf-language-server # protocol buffers
-      bundler
-      # clang # breaks the lvim treesitter compilation
+    ])
+    ++ (with pkgs.unstable; [
+      # Bash
+      shellcheck
+      shfmt
+    ])
+    ++ (with pkgs.unstable; [
+      # Clojure
       clojure
-      cmake
-      codespell
-      coreutils
-      coursier # scala
+      leiningen
+    ])
+    ++ (with pkgs.unstable; [
+      # Crystal
+      ameba
       crystal
+      shards
+    ])
+    ++ (with pkgs.unstable; [
+      # Elixir
       elixir
       elixir-ls
-      gnumake
-      gnupatch
+    ])
+    ++ (with pkgs.unstable; [
+      # Go
       go
       golangci-lint
       gopls
-      graphviz
-      hatch
-      (hiPrio fish) # collision warnings: needed for programs.fish.enable
-      hugo
-      hunspell
-      hunspellDicts.en-us-large
-      hunspellDicts.es-es
-      hunspellDicts.fr-moderne
-      hyphen
-      inlyne
-      jekyll
+    ])
+    ++ (with pkgs.unstable; [
+      # JavaScript/TypeScript
+      yarn
+    ])
+    ++ (with pkgs.unstable; [
+      # Julia
       julia-bin
-      jupyter-all
-      just
-      languagetool
-      leiningen # clojure
-      lldb
-      llvm
-      ltex-ls
+    ])
+    ++ (with pkgs.unstable; [
+      # Latex
+      tectonic
+      texlab
+      texlive.combined.scheme-medium
+    ])
+    ++ (with pkgs.unstable; [
+      # Lua
       lua
       luajitPackages.luarocks
       lua-language-server
+      stylua
+    ])
+    ++ (with pkgs.unstable; [
+      # Markdown
+      frogmouth
+      inlyne
       markdownlint-cli2
       marksman
       mdbook
       mdl
-      meson
-      metals # scala
-      mill # scala
-      mise
-      nextflow
+    ])
+    ++ (with pkgs.unstable; [
+      # Nix
       nil
-      nim2
-      nixfmt
+      nixfmt-rfc-style
       nixpkgs-review
-      # nls
-      nodejs
-      nodePackages.bash-language-server
-      nodePackages.npm
-      nodePackages.svelte-language-server
-      nodePackages.typescript
-      nodePackages.typescript-language-server
-      nodePackages.vscode-css-languageserver-bin
-      nodePackages.vscode-html-languageserver-bin
-      nodePackages.vscode-json-languageserver
-      nodePackages.yaml-language-server
-      nushellFull
-      nuspell
-      pandoc
-      pcre2
-      plantuml
-      pre-commit
+    ])
+    ++ (with pkgs.unstable; [
+      # Nim
+      nim
+    ])
+    ++ (with pkgs.unstable; [
+      # Protocol Buffers
+      buf
+      buf-language-server
       protobuf
-      python3Full
-      python3Packages.cython
-      python3Packages.flake8
+    ])
+    ++ (with pkgs.unstable; [
+      # Python
+      # hatch
+      jupyter-all
+      poetry
+      pre-commit
       python3Packages.ipython
       python3Packages.ptpython
       python3Packages.pylsp-mypy
@@ -104,36 +102,105 @@
       python3Packages.python-lsp-ruff
       python3Packages.python-lsp-server
       python3Packages.radian
-      R
-      ripsecrets
+      ruff
+      rye
+      uv
+    ])
+    ++ (with pkgs.unstable; [
+      # Ruby
+      bundler
       ruby-lsp
       rubyPackages.pry
       rubyPackages.railties
+      solargraph
+    ])
+    ++ (with pkgs.unstable; [
+      # Rust
       rustup
-      sbt-with-scala-native # scala
+    ])
+    ++ (with pkgs.unstable; [
+      # Scala
+      ammonite
+      bloop
+      coursier
+      metals
+      mill
+      sbt-with-scala-native
       scala_3
       scala-cli
       scalafix
       scalafmt
-      shards
-      shellcheck
-      shfmt
-      solargraph
-      stylua
-      taplo
-      tectonic
-      terraform-ls
-      texlab
-      texlive.combined.scheme-medium
-      treefmt
-      typos
-      typst
-      universal-ctags
-      uv
+    ])
+    ++ (with pkgs.unstable; [
+      # Shell
+      nushellFull
       xonsh
-      yarn
+      zsh
+    ])
+    ++ (with pkgs.unstable; [
+      # Static HTML
+      hugo
+      jekyll
+      zola
+    ])
+    ++ (with pkgs.unstable; [
+      # TypeScript/Node.js
+      nodejs
+      nodePackages.bash-language-server
+      nodePackages.npm
+      nodePackages.svelte-language-server
+      nodePackages.typescript
+      typescript
+      nodePackages.typescript-language-server
+      nodePackages.vscode-css-languageserver-bin
+      nodePackages.vscode-html-languageserver-bin
+      nodePackages.vscode-json-languageserver
+      nodePackages.yaml-language-server
+    ])
+    ++ (with pkgs.unstable; [
+      # Typst
+      typst
+    ])
+    ++ (with pkgs.unstable; [
+      # Zig
       zig
       zls
-      zola
+    ])
+    ++ (with pkgs.unstable; [
+      # Miscellaneous
+      ansible
+      ast-grep
+      autoconf
+      automake
+      bazelisk
+      bison
+      buf
+      codespell
+      coreutils
+      devenv
+      gnumake
+      gnupatch
+      graphviz
+      hunspell
+      hunspellDicts.en-us-large
+      hunspellDicts.es-es
+      hunspellDicts.fr-moderne
+      hyphen
+      lldb
+      llvm
+      ltex-ls
+      meson
+      mise
+      nextflow
+      pandoc
+      pcre2
+      languagetool
+      plantuml
+      ripsecrets
+      taplo
+      terraform-ls
+      treefmt
+      typos
+      universal-ctags
     ]);
 }
