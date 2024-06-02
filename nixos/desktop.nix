@@ -209,7 +209,7 @@ in
       bitwarden
       calibre
       catppuccin-cursors.mochaMauve
-      dbeaver
+      dbeaver-bin
       dropbox
       emote
       evince
