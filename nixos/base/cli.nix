@@ -20,15 +20,18 @@
   };
 
   # Enable Espanso
+
+  services.espanso = {
+    enable = true;
   security.wrappers.espanso = {
     capabilities = "cap_dac_override+p";
-    source = "${pkgs.espanso-wayland.out}/bin/espanso";
+    source = "${pkgs.unstable.espanso-wayland.out}/bin/espanso";
     owner = "root";
     group = "input";
   };
 
   # Maybe not needed
-  services.udev.packages = [ pkgs.espanso-wayland ];
+  services.udev.packages = [ pkgs.unstable.espanso-wayland ];
   services.udev.extraRules = ''
     KERNEL=="uinput", GROUP="input", OPTIONS+="static_node=uinput", MODE=0660
   '';
@@ -65,7 +68,6 @@
       bind
       (buku.override { withServer = true; })
       dosfstools
-      espanso-wayland
       fakeroot
       lsb-release
       lsof
@@ -126,6 +128,7 @@
       emacs29
       entr
       erdtree
+      espanso-wayland
       eza
       fastfetch
       fd
