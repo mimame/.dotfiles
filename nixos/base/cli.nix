@@ -92,6 +92,7 @@
     ++ (with pkgs.unstable; [
 
       aria2
+      atuin
       bat
       bitwarden-cli
       broot
