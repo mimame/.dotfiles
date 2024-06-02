@@ -259,6 +259,7 @@ in
       vscode
       xdragon
       zathura
+      zeal
       zettlr
       zotero
     ]);
