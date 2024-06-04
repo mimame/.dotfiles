@@ -11,7 +11,6 @@ abbr b 'cd ..'
 abbr dotdot --regex '^\.\.+$' --function multicd
 abbr ju juliaup
 abbr ru rustup
-abbr n nvim
 abbr cr crystal
 abbr g git
 abbr lg lazygit
@@ -56,17 +55,23 @@ abbr ap ansible-playbook
 abbr vbm VBoxManage
 
 # Never use vi
-abbr vi lvim
-abbr vim lvim
-abbr v lvim
-# abbr nvim lvim
+set -g -x default_nvim nvim
+abbr vi $default_nvim
+abbr vim $default_nvim
+abbr v $default_nvim
+abbr n nvim
+
+set -g -x EDITOR $default_nvim
+set -g VISUAL $EDITOR
+set -g -x GIT_EDITOR $EDITOR
+
 # Always preserve the environment with sudoedit
 abbr sv sudoedit
 abbr se sudoedit
 
 abbr h hx
 
-abbr nd 'nvim -d -c "set nofoldenable"'
+abbr nd '$default_nvim -d -c "set nofoldenable"'
 # abbr h 'history' # Use ctrl-r instead
 # Lists the ten most used commands.
 abbr hs "history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | bat --number"
