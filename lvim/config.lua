@@ -30,7 +30,8 @@ lvim.format_on_save.enable = false
 lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-
+lvim.keys.insert_mode["ff"] = "<Esc>"
+lvim.keys.insert_mode["jj"] = "<Enter>"
 -- Trouble.nvim
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Diagnostics",
