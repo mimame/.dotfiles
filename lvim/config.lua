@@ -32,6 +32,14 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.insert_mode["ff"] = "<Esc>"
 lvim.keys.insert_mode["jj"] = "<Enter>"
+local function show_colon_and_enter_command_mode()
+  -- Print a colon to simulate entering command mode
+  vim.api.nvim_echo({ { ":", "Normal" } }, false, {})
+  -- Enter command mode
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(":", true, false, true), 'n', true)
+end
+-- Map semicolon to the custom function in normal mode
+lvim.keys.normal_mode[";"] = show_colon_and_enter_command_mode
 -- Trouble.nvim
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Diagnostics",
