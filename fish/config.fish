@@ -43,7 +43,7 @@ if status --is-interactive
     end
 
     # Download wezterm terminfo automatically
-    if not test -f ~/.terminfo/w/wezterm
+    if not test -f ~/.terminfo/**/wezterm
         set tempfile $(mktemp) \
             && wget2 -O $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
             && tic -x -o ~/.terminfo $tempfile \
