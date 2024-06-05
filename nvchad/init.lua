@@ -1,3 +1,7 @@
+-- Initial deployment
+-- git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+-- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 
