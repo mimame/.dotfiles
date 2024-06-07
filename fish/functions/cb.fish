@@ -11,23 +11,22 @@
 # or 'wl-copy' and 'wl-paste' on Linux with Wayland.
 function cb
     # Determine the appropriate copy and paste commands based on the OS
-    set copy_command (if test (uname) = Darwin; echo pbcopy; else; echo wl-copy; end)
-    set paste_command (if test (uname) = Darwin; echo pbpaste; else; echo wl-paste; end)
+    set -l copy_command (if test (uname) = Darwin; echo pbcopy; else; echo wl-copy; end)
+    set -l paste_command (if test (uname) = Darwin; echo pbpaste; else; echo wl-paste; end)
 
     # If stdin is a pipe, read from stdin and copy to clipboard
-    # https://github.com/fish-shell/fish-shell/issues/3792#issuecomment-276206686
     if command test -p /dev/stdin
         cat - | $copy_command
-        # If arguments are provided, check if it's a file or a string
+    # If arguments are provided, check if it's a file or a string
     else if set -q argv[1]
         # If the first argument is a file, copy its contents to the clipboard
         if test -f "$argv[1]"
             cat "$argv[1]" | $copy_command
-            # Otherwise, treat the arguments as a string and copy to the clipboard
+        # Otherwise, treat the arguments as a string and copy to the clipboard
         else
-            echo -n $argv | $copy_command
+            echo -n "$argv" | $copy_command
         end
-        # If no arguments and not a pipe, paste from clipboard to stdout
+    # If no arguments and not a pipe, paste from clipboard to stdout
     else
         $paste_command
     end
