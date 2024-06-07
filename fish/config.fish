@@ -1,31 +1,37 @@
 if status --is-interactive
 
-    if not functions --query fisher; or not test -f ~/.config/fish/fish_plugins
-        # Delete all plugins files ignore fail if if they don't exist
-        rm -f ~/.config/fish/functions/__abbr*
-        rm -f ~/.config/fish/functions/_autopair*
-        rm -f ~/.config/fish/functions/fisher.fish
-        rm -f ~/.config/fish/functions/_fzf_*.fish
-        rm -f ~/.config/fish/functions/fzf_configure_bindings.fish
-        rm -f ~/.config/fish/functions/fzf.fish
-        rm -f ~/.config/fish/functions/replay.fish
-        rm -f ~/.config/fish/functions/__bass.py
-        rm -f ~/.config/fish/functions/bass.fish
-        rm -fr ~/.config/fish/completions
-        rm -fr ~/.config/fish/conf.d
-        wget2 -q -O- https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
-        wget2 'https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_moon.theme' -O ~/.config/fish/themes/'Tokyonight Moon.theme'
-        # Only run the first time
-        yes | fish_config theme save "Tokyonight Moon"
-        fisher install franciscolourenco/done
-        fisher install gazorby/fish-abbreviation-tips
-        fisher install jorgebucaran/autopair.fish
-        fisher install jorgebucaran/replay.fish
-        fisher install edc/bass
-        fisher install PatrickF1/fzf.fish
+    # Function to clean up old plugin files
+    function clean_old_plugins
+        set plugin_files ~/.config/fish/functions/__abbr* \
+                         ~/.config/fish/functions/_autopair* \
+                         ~/.config/fish/functions/fisher.fish \
+                         ~/.config/fish/functions/_fzf_*.fish \
+                         ~/.config/fish/functions/fzf_configure_bindings.fish \
+                         ~/.config/fish/functions/fzf.fish \
+                         ~/.config/fish/functions/replay.fish \
+                         ~/.config/fish/functions/__bass.py \
+                         ~/.config/fish/functions/bass.fish
+        for file in $plugin_files
+            rm -f $file
+        end
+        rm -fr ~/.config/fish/completions ~/.config/fish/conf.d
     end
 
-    # Initialize commands
+    # Check if Fisher or plugin file is missing, then clean and reinstall plugins
+    if not functions --query fisher; or not test -f ~/.config/fish/fish_plugins
+        clean_old_plugins
+
+        # Install Fisher and plugins
+        wget2 -q -O- https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+        fisher install jorgebucaran/fisher
+        fisher install franciscolourenco/done gazorby/fish-abbreviation-tips jorgebucaran/autopair.fish jorgebucaran/replay.fish edc/bass PatrickF1/fzf.fish
+
+        # Install and set the theme
+        wget2 -q 'https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_moon.theme' -O ~/.config/fish/themes/'Tokyonight Moon.theme'
+        fish_config theme save "Tokyonight Moon"
+    end
+
+    # Initialize various commands and completions
     broot --print-shell-function fish | source
     gh completion --shell fish | source
     starship init fish | source
@@ -33,68 +39,70 @@ if status --is-interactive
     zoxide init fish | source
     mise activate fish | source
 
+    # Initialize direnv if available
     if command -q direnv
         direnv hook fish | source
     end
 
-    # Start ssh agent by default
-    if test -z "$SSH_AUTH_SOCK"
+    # Start ssh-agent if not already running
+    if not set -q SSH_AUTH_SOCK
         eval (ssh-agent -c) >/dev/null
     end
 
-    # Download wezterm terminfo automatically
+    # Download wezterm terminfo if not present
     if not test -f ~/.terminfo/**/wezterm
-        set tempfile $(mktemp) \
-            && wget2 -O $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
-            && tic -x -o ~/.terminfo $tempfile \
-            && sudo tic -x -o /usr/share/terminfo $tempfile \
-            && rm $tempfile
+        set terminfo_tempfile (mktemp)
+        wget2 -q -O $terminfo_tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo
+        tic -x -o ~/.terminfo $terminfo_tempfile
+        sudo tic -x -o /usr/share/terminfo $terminfo_tempfile
+        rm $terminfo_tempfile
     end
 
-    # Install vscode fonts for broot
-    set vscode_font ~/.local/share/fonts/vscode.ttf
-    if not test -f $vscode_font
+    # Install VSCode font for broot if not present
+    set vscode_font_path ~/.local/share/fonts/vscode.ttf
+    if not test -f $vscode_font_path
         mkdir -p ~/.local/share/fonts/
-        wget2 -O $vscode_font 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true'
+        wget2 -q -O $vscode_font_path 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true'
         fc-cache ~/.local/share/fonts/
     end
 
-    set bat_theme "$(bat --config-dir)/themes/Enki-Tokyo-Night.tmTheme"
-    if not test -f $bat_theme
-        mkdir -p "$(bat --config-dir)/themes/"
-        wget2 -O $bat_theme https://raw.githubusercontent.com/enkia/enki-theme/master/scheme/Enki-Tokyo-Night.tmTheme
+    # Download and set bat theme if not present
+    set bat_theme_path (bat --config-dir)/themes/Enki-Tokyo-Night.tmTheme
+    if not test -f $bat_theme_path
+        mkdir -p (bat --config-dir)/themes/
+        wget2 -q -O $bat_theme_path https://raw.githubusercontent.com/enkia/enki-theme/master/scheme/Enki-Tokyo-Night.tmTheme
         bat cache --build
     end
 
-    set wallpaper ~/Pictures/unicat.png
-    if not test -f $wallpaper
+    # Set wallpaper if not present
+    set wallpaper_path ~/Pictures/unicat.png
+    if not test -f $wallpaper_path
         mkdir -p ~/Pictures
-        wget2 -O $wallpaper https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png
+        wget2 -q -O $wallpaper_path https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png
     end
 
+    # Source custom Fish scripts
     source ~/.config/fish/variables.fish
     source ~/.config/fish/abbr.fish
 
+    # Source nnn script if it exists
     if test -f ~/.config/fish/nnn.fish
         source ~/.config/fish/nnn.fish
     end
 
-    # set aws_local ~/.bin/awslocal
-    # if not command -q awslocal
-    #     wget2 https://raw.githubusercontent.com/localstack/awscli-local/master/bin/awslocal -O $aws_local
-    #     chmod 755 $aws_local
-    # end
+    # Start pueued daemon if not running
+    if not pgrep -x "pueued" >/dev/null
+        pueued --daemonize >/dev/null
+    end
 
     # Reinstall systemd user services broken by NixOS updates
-    # There is not lsb_release in Darwin
-    if not test $(uname) = Darwin
-        set system $(lsb_release -i | cut -f2)
-        if test $system = NixOS
+    if test (uname) != "Darwin"
+        if test (lsb_release -i | cut -f2) = "NixOS"
             fix_broken_services_by_nixos
         end
     end
 
-    # Use default system command-not-found for checking existing commands
+    # Define a custom command-not-found handler
     function fish_command_not_found
         if command -q command-not-found
             command-not-found $argv
@@ -103,5 +111,6 @@ if status --is-interactive
         end
     end
 
+    # Zellij setup
     eval (zellij setup --generate-auto-start fish | string collect)
 end

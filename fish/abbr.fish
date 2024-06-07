@@ -1,15 +1,21 @@
+# Fish abbreviations and aliases configuration
+
+# Define abbreviations for common commands
 abbr sfish source ~/.config/fish/config.fish
 abbr !! --position anywhere --function last_history_item
 abbr cat bat
+
+# Aliases for eza with various options
 alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
 alias ll 'l --tree'
 alias ls l
+
+# Define more abbreviations for common commands
 abbr lll br
 abbr tree erd --layout inverted --human
 abbr cd z
 abbr b 'cd ..'
 abbr dotdot --regex '^\.\.+$' --function multicd
-abbr ju juliaup
 abbr ru rustup
 abbr cr crystal
 abbr g git
@@ -30,18 +36,20 @@ abbr inlyne inlyne --theme dark
 abbr wget wget2
 abbr d ddgr
 abbr tail tspin
-
 abbr p ptipython
 
+# Grep with color
 abbr grep 'grep --color=auto'
 abbr fgrep 'fgrep --color=auto'
 abbr egrep 'egrep --color=auto'
 
+# Make scripts executable
 abbr x 'chmod +x'
 
+# SSHFS with specific options
 abbr sshfs "sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
 
-# systemctl
+# Systemctl commands with sudo
 abbr sstatus 'sudo systemctl status'
 abbr srestart 'sudo systemctl restart'
 abbr sstart 'sudo systemctl start'
@@ -49,18 +57,17 @@ abbr senable 'sudo systemctl enable'
 abbr sdisable 'sudo systemctl disable'
 abbr sstop 'sudo systemctl stop'
 
+# Abbreviations for frequently used commands
 abbr a ansible
 abbr ap ansible-playbook
-
 abbr vbm VBoxManage
 
-# Never use vi
+# Use nvim as the default editor
 set -g -x default_nvim nvim
 abbr vi $default_nvim
 abbr vim $default_nvim
 abbr v $default_nvim
 abbr n nvim
-
 set -g -x EDITOR $default_nvim
 set -g VISUAL $EDITOR
 set -g -x GIT_EDITOR $EDITOR
@@ -69,17 +76,20 @@ set -g -x GIT_EDITOR $EDITOR
 abbr sv sudoedit
 abbr se sudoedit
 
+# Helix editor abbreviation
 abbr h hx
 
+# Open nvim in diff mode
 abbr nd '$default_nvim -d -c "set nofoldenable"'
-# abbr h 'history' # Use ctrl-r instead
-# Lists the ten most used commands.
+
+# Abbreviations for listing history and disk usage commands
 abbr hs "history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | bat --number"
 abbr du dust
 abbr dus diskus
 abbr df duf
 abbr free 'free -h'
-# abbr j "jobs -l"
+
+# Directory navigation and system monitoring
 abbr j just
 abbr ncdu 'ncdu --color dark'
 abbr news newsboat
@@ -92,15 +102,12 @@ abbr less bat
 abbr more bat
 abbr m tldr
 
-# rg with grep -r behavior
+# Ripgrep and fd with specific options
 abbr ag 'ag --smart-case --ignore node_modules'
 abbr s 'rg --smart-case --no-heading --with-filename --hidden --ignore-file ~/.config/fd/ignore'
-
-# fd with find behavior
 abbr f 'fd --hidden --strip-cwd-prefix'
 
-# Safe ops. Ask the user before doing anything destructive.
-# Move rm files to the trash using trash-cli
+# Safe operations for rm, mv, cp, and ln
 if command -q gomi
     abbr rm gomi
 else
@@ -110,46 +117,57 @@ abbr mv "mv -i"
 abbr cp "cp -ri"
 abbr ln "ln -i"
 
-# abbr for rc files
+# Abbreviations for editing configuration files
 abbr brootrc 'pushd ~/.dotfiles/broot/ && $EDITOR conf.toml && popd'
 abbr clifmrc 'pushd ~/.dotfiles/clifm/profiles/default/ && $EDITOR clifmrc && popd'
 abbr fishrc 'pushd ~/.dotfiles/fish/ && $EDITOR config.fish && popd'
 abbr gitrc 'pushd ~/.dotfiles/git/ && $EDITOR config && popd'
 abbr hxrc 'pushd ~/.dotfiles/helix/ && $EDITOR config.toml && popd'
 abbr kittyrc 'pushd ~/.dotfiles/kitty/ && $EDITOR kitty.conf && popd'
+abbr lvimrc 'pushd ~/.dotfiles/lvim/ && $EDITOR config.lua && popd'
 abbr mimerc 'pushd ~/.dotfiles/mimeapps/ && $EDITOR mimeapps.list && popd'
+abbr navirc 'pushd ~/.dotfiles/navi/ && $EDITOR config.yaml && popd'
 abbr nixosrc 'pushd ~/.dotfiles/nixos/ && $EDITOR configuration.nix && nixfmt . && sudo nixos-rebuild switch --fast && popd'
+abbr nvimrc 'pushd ~/.dotfiles/nvchad/ && $EDITOR init.lua && popd'
 abbr qutebrowserrc 'pushd ~/.dotfiles/qutebrowser/ && $EDITOR config.py && popd'
 abbr rofirc 'pushd ~/.dotfiles/rofi/ && $EDITOR config.rasi && popd'
 abbr sshrc 'pushd ~/.dotfiles/ssh/ && $EDITOR config && popd'
+abbr starshiprc 'pushd ~/.dotfiles/starship/ && $EDITOR starship.toml && popd'
 abbr swayrc 'pushd ~/.dotfiles/sway/sway/ && $EDITOR config && popd'
+abbr tldrrc 'pushd ~/.dotfiles/tealdeer/ && $EDITOR config.toml && popd'
+abbr topgraderc 'pushd ~/.dotfiles/topgrade/ && $EDITOR topgrade.toml && popd'
 abbr weztermrc 'pushd ~/.dotfiles/wezterm/ && $EDITOR wezterm.lua && popd'
 abbr xplrrc 'pushd ~/.dotfiles/xplr/ && $EDITOR init.lua && popd'
+abbr yazirc 'pushd ~/.dotfiles/yazi/ && $EDITOR yazi.toml && popd'
 abbr zellijrc 'pushd ~/.dotfiles/zellij/ && $EDITOR config.kdl && popd'
 
-# abbr for pip
+# Abbreviation for updating pip packages
 abbr pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
-# https://www.cyberciti.biz/faq/how-to-find-my-public-ip-address-from-command-line-on-a-linux/
+# Command to find public IP address
 abbr myip "dig +short myip.opendns.com @resolver1.opendns.com"
 
+# Abbreviations for system monitoring
 abbr tp btop
 abbr htop btop
 abbr top btop
 
+# LibreOffice Calc
 abbr lc 'libreoffice --calc'
 
+# Abbreviations for code statistics
 abbr loc 'scc --sort lines'
 abbr scc 'scc --sort lines'
 abbr tokei 'tokei --sort lines'
 
-# rsync abbr
+# Rsync with specific options
 abbr rsync 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
 abbr rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
-# }}}
 
+# Rustscan
 abbr rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppable'
 
+# Asciidoctor
 abbr adoc asciidoctor
 abbr adoc-pdf asciidoctor-pdf
 
