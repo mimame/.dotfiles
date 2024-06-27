@@ -155,21 +155,54 @@
   };
 
   # Primary font paths
-  fonts.packages = with pkgs.unstable; [
-    # https://github.com/freeCodeCamp/freeCodeCamp/issues/49174
-    # JetBrainsMono (No Ligatures) vs Hack
-    # Although Hack is a monospaced font: bad visual illusion around some characters are of variable width such as:
-    # Parenthesis, brackets, characters with incongruent styles, ||
-    # JetBrains Mono focuses on consistent spacing and legibility
-    (nerdfonts.override {
-      fonts = [
-        "JetBrainsMono"
-        "Hack"
-      ];
-    })
-    noto-fonts-color-emoji
-    font-awesome
-  ];
+  fonts = {
+    packages = with pkgs.unstable; [
+      # Comparing JetBrainsMono (No Ligatures) and Hack:
+      # - Hack is a monospaced font, but has visual inconsistencies with characters of variable width
+      #   (e.g., parenthesis, brackets, and characters with different styles, like ||).
+      # - JetBrains Mono focuses on consistent spacing and legibility, making it a preferred choice for coding.
+      # Referenced issue for context: https://github.com/freeCodeCamp/freeCodeCamp/issues/49174
+
+      # Merriweather:
+      # - A serif font that is more contemporary and warm compared to Noto Serif.
+      # - Optimized for screen readability, making it suitable for both body text and headlines.
+
+      # Roboto:
+      # - A modern, geometric sans-serif font known for its high readability.
+      # - Preferred over Noto Sans for its clean and versatile design.
+      (nerdfonts.override {
+        fonts = [
+          "JetBrainsMono"
+          "Hack"
+        ];
+      })
+      font-awesome
+      merriweather
+      noto-fonts
+      noto-fonts-color-emoji
+      roboto
+    ];
+    fontconfig = {
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        serif = [
+          "Merriweather"
+          # "Noto Serif"
+          "Noto Color Emoji"
+        ];
+        sansSerif = [
+          "Roboto"
+          # "Noto Sans"
+          "Noto Color Emoji"
+        ];
+        monospace = [
+          "JetBrainsMonoNL Nerd Font Mono"
+          "Noto Color Emoji"
+          # "Hack"
+        ];
+      };
+    };
+  };
 
   # Enable apropos(1) and the -k option of man(1)
   documentation.man.generateCaches = true;
