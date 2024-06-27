@@ -4,22 +4,19 @@
   # Update the CPU microcode for Intel processors
   hardware.cpu.intel.updateMicrocode = true;
 
-  # Enable periodic SSD TRIM
+  # Enable periodic SSD TRIM to maintain SSD performance
   services.fstrim.enable = true;
 
-  # Compress ram with zstd when needed to avoid use the swap
+  # Enable ZRAM with zstd compression to avoid using swap
   zramSwap.enable = true;
 
-  # Prevent overheating of Intel CPUs before hardware takes aggressive correction action.
-  # It does not conflict with auto-cpufreq in any way, and is even recommended
-  # It can increases the performance
+  # Prevent overheating of Intel CPUs and improve performance
   services.thermald.enable = true;
 
-  # Power
-  # DBus service that provides power management support to applications.
+  # Enable power management support via UPower
   services.upower.enable = true;
 
-  # Configure keymap in X11
+  # Configure X11 keymap with US layout and AltGr international variant
   services.xserver = {
     xkb = {
       layout = "us";
@@ -28,22 +25,23 @@
     exportConfiguration = true;
   };
 
-  # Configure console keymap
+  # Configure console keymap to US layout
   console.keyMap = "us";
 
-  # Enable uinput support
+  # Enable uinput support for user-level input handling
   hardware.uinput.enable = true;
 
-  # Select internationalisation properties.
+  # Set default locale to US English with UTF-8 encoding
   i18n.defaultLocale = "en_US.utf8";
 
-  # Synchronise time and date automatically
+  # Enable automatic time synchronization
   services.chrony.enable = true;
   services.automatic-timezoned.enable = true;
 
-  # DBus service that allows applications to query and manipulate storage devices
+  # Enable UDisks2 for storage device management
   services.udisks2.enable = true;
 
+  # Enable and configure interception-tools for Caps Lock to Escape remapping
   services.interception-tools = {
     enable = true;
     udevmonConfig = ''
@@ -87,12 +85,18 @@
   services.unbound = {
     enable = true;
     settings = {
-      server = { interface = [ "127.0.0.1" ]; };
-      forward-zone = [{
-        name = ".";
-        forward-addr =
-          [ "1.1.1.1@853#cloudflare-dns.com" "1.0.0.1@853#cloudflare-dns.com" ];
-      }];
+      server = {
+        interface = [ "127.0.0.1" ];
+      };
+      forward-zone = [
+        {
+          name = ".";
+          forward-addr = [
+            "1.1.1.1@853#cloudflare-dns.com"
+            "1.0.0.1@853#cloudflare-dns.com"
+          ];
+        }
+      ];
       remote-control.control-enable = true;
     };
   };
