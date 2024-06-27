@@ -138,7 +138,7 @@
     ])
     ++ (with pkgs.unstable; [
       # Shell
-      nushellFull
+      nushell
       xonsh
       zsh
     ])
