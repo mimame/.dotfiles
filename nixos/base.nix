@@ -65,13 +65,18 @@
       allowedTCPPorts = [ ];
     };
     hostName = "narnia";
-    wireless.iwd.settings = {
-      Network = {
-        EnableIPv6 = true;
-        RoutePriorityOffset = 300;
+    wireless.iwd = {
+      package = pkgs.unstable.iwd;
+      settings = {
+        Network = {
+          EnableIPv6 = true;
+          RoutePriorityOffset = 300;
+        };
+        # Verify wifi connections have autoConnect in both iwd and connman configs
+        Settings = {
+          AutoConnect = true;
+        };
       };
-      # Verify wifi connections have autoConnect in both iwd and connman configs
-      Settings = { AutoConnect = true; };
     };
   };
   services.connman = {
@@ -79,7 +84,8 @@
     enableVPN = false;
     extraFlags = [ "--nodnsproxy" ];
     package = pkgs.connmanFull;
-    wifi.backend = "iwd";
+    wifi.backend = "iwd"; # iwd doesn't connect automatically after suspension/hibernation, still experimental
+    # wifi.backend = "wpa_supplicant";
   };
 
   services.unbound = {
