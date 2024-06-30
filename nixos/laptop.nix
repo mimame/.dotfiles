@@ -1,20 +1,18 @@
 { pkgs, ... }:
 {
-  # Configuration for suspension, hibernation and the laptop lid
-  # Suspend in 10 minutes of inactivity and hibernate half hour later
+  # Configuration for managing suspension, hibernation, and laptop lid actions
+  # Suspend after 10 minutes of inactivity and hibernate 30 minutes later
   services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    lidSwitchDocked = "suspend-then-hibernate";
-    lidSwitchExternalPower = "suspend-then-hibernate";
+    lidSwitch = "suspend-then-hibernate"; # Action when laptop lid is closed
+    lidSwitchDocked = "suspend-then-hibernate"; # Action when laptop lid is closed while docked
+    lidSwitchExternalPower = "suspend-then-hibernate"; # Action when laptop lid is closed while on external power
     extraConfig = ''
-      AllowSuspend=yes
-      AllowHibernation=yes
-      AllowSuspendThenHibernate=yes
-      SuspendMode=suspend-then-hibernate
-      SuspendState=suspend-then-hibernate
-      IdleActionSec=10min
-      IdleAction=suspend-then-hibernate
-      HibernateDelaySec=30min
+      AllowSuspend=yes                              # Enable system suspension
+      AllowHibernation=yes                          # Enable system hibernation
+      AllowSuspendThenHibernate=yes                 # Enable suspend-then-hibernate action
+      IdleAction=suspend-then-hibernate             # Action after the system is idle
+      IdleActionSec=10min                           # Time before idle action is triggered (10 minutes)
+      HibernateDelaySec=30min                       # Time delay before hibernating after suspension (30 minutes)
     '';
   };
   # Improve battery scaling the CPU governor and optimizing the general power
