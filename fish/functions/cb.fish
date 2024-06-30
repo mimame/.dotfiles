@@ -17,16 +17,16 @@ function cb
     # If stdin is a pipe, read from stdin and copy to clipboard
     if command test -p /dev/stdin
         cat - | $copy_command
-    # If arguments are provided, check if it's a file or a string
+        # If arguments are provided, check if it's a file or a string
     else if set -q argv[1]
         # If the first argument is a file, copy its contents to the clipboard
         if test -f "$argv[1]"
             cat "$argv[1]" | $copy_command
-        # Otherwise, treat the arguments as a string and copy to the clipboard
+            # Otherwise, treat the arguments as a string and copy to the clipboard
         else
             echo -n "$argv" | $copy_command
         end
-    # If no arguments and not a pipe, paste from clipboard to stdout
+        # If no arguments and not a pipe, paste from clipboard to stdout
     else
         $paste_command
     end

@@ -13,14 +13,14 @@ set -U fish_escape_delay_ms 10
 # Configure cursor shape to emulate Vim's behavior
 # Reference: https://fishshell.com/docs/current/interactive.html#vi-mode-commands
 # Set cursor shapes for different modes
-set -U fish_vi_force_cursor  # Ensure Fish detects terminal's features correctly
-set -U fish_cursor_default block  # Normal and visual mode cursor
-set -U fish_cursor_insert line  # Insert mode cursor
-set -U fish_cursor_replace_one underscore  # Replace mode cursor
-set -U fish_cursor_visual block  # Visual mode cursor
+set -U fish_vi_force_cursor # Ensure Fish detects terminal's features correctly
+set -U fish_cursor_default block # Normal and visual mode cursor
+set -U fish_cursor_insert line # Insert mode cursor
+set -U fish_cursor_replace_one underscore # Replace mode cursor
+set -U fish_cursor_visual block # Visual mode cursor
 
 # Configure 'thefuck' tool to exclude a specific rule
-set -x -U THEFUCK_EXCLUDE_RULES fix_file  # Fix issue: https://github.com/nvbn/thefuck/issues/1153
+set -x -U THEFUCK_EXCLUDE_RULES fix_file # Fix issue: https://github.com/nvbn/thefuck/issues/1153
 
 # Set colors for LS and EZA using 'vivid'
 set -x -U LS_COLORS (vivid generate tokyonight-moon)
@@ -82,7 +82,7 @@ if test -x "$(command -v ruby)"
 end
 
 fish_add_path "$HOME/.local/bin"
-fish_add_path "$HOME/.local/share/coursier/bin"  # Coursier install directory
+fish_add_path "$HOME/.local/share/coursier/bin" # Coursier install directory
 
 # Load Homebrew environment on macOS
 if test -f /opt/homebrew/bin/brew

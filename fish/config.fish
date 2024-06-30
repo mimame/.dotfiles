@@ -3,14 +3,14 @@ if status --is-interactive
     # Function to clean up old plugin files
     function clean_old_plugins
         set plugin_files ~/.config/fish/functions/__abbr* \
-                         ~/.config/fish/functions/_autopair* \
-                         ~/.config/fish/functions/fisher.fish \
-                         ~/.config/fish/functions/_fzf_*.fish \
-                         ~/.config/fish/functions/fzf_configure_bindings.fish \
-                         ~/.config/fish/functions/fzf.fish \
-                         ~/.config/fish/functions/replay.fish \
-                         ~/.config/fish/functions/__bass.py \
-                         ~/.config/fish/functions/bass.fish
+            ~/.config/fish/functions/_autopair* \
+            ~/.config/fish/functions/fisher.fish \
+            ~/.config/fish/functions/_fzf_*.fish \
+            ~/.config/fish/functions/fzf_configure_bindings.fish \
+            ~/.config/fish/functions/fzf.fish \
+            ~/.config/fish/functions/replay.fish \
+            ~/.config/fish/functions/__bass.py \
+            ~/.config/fish/functions/bass.fish
         for file in $plugin_files
             rm -f $file
         end
@@ -32,9 +32,9 @@ if status --is-interactive
     end
 
     # Initialize various commands and completions
-    broot --print-shell-function fish | source
-    gh completion --shell fish | source
     starship init fish | source
+    gh completion --shell fish | source
+    broot --print-shell-function fish | source
     thefuck --alias fk | source
     zoxide init fish | source
     mise activate fish | source
@@ -91,13 +91,13 @@ if status --is-interactive
     end
 
     # Start pueued daemon if not running
-    if not pgrep -x "pueued" >/dev/null
+    if not pgrep -x pueued >/dev/null
         pueued --daemonize >/dev/null
     end
 
     # Reinstall systemd user services broken by NixOS updates
-    if test (uname) != "Darwin"
-        if test (lsb_release -i | cut -f2) = "NixOS"
+    if test (uname) != Darwin
+        if test (lsb_release -i | cut -f2) = NixOS
             fix_broken_services_by_nixos
         end
     end
