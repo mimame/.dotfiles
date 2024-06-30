@@ -23,8 +23,8 @@ set -U fish_cursor_visual block  # Visual mode cursor
 set -x -U THEFUCK_EXCLUDE_RULES fix_file  # Fix issue: https://github.com/nvbn/thefuck/issues/1153
 
 # Set colors for LS and EZA using 'vivid'
-set -x -U LS_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
-set -x -U EZA_COLORS (vivid generate ~/.config/vivid/tokyonight_moon.yml)
+set -x -U LS_COLORS (vivid generate tokyonight-moon)
+set -x -U EZA_COLORS (vivid generate tokyonight-moon)
 
 # Set fd as the default source for fzf
 set -x -U FZF_DEFAULT_COMMAND 'fd --type file --exclude node_modules'
