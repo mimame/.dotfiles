@@ -12,14 +12,19 @@ repos:
     -   id: check-added-large-files
     -   id: detect-private-key
 -   repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
-    rev: v9.14.0
+    rev: v9.16.0
     hooks:
     -   id: commitlint
         stages: [commit-msg]
 -   repo: https://github.com/sirwart/ripsecrets
-    rev: v0.1.7
+    rev: v0.1.8
     hooks:
     -   id: ripsecrets-system
+
+-   repo: https://github.com/gitleaks/gitleaks
+    rev: v8.16.1
+    hooks:
+      - id: gitleaks
 
 - repo: https://github.com/hugoh/pre-commit-fish.git
   rev: v1.2
