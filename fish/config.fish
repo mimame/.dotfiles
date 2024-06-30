@@ -18,7 +18,7 @@ if status --is-interactive
     end
 
     # Check if Fisher or plugin file is missing, then clean and reinstall plugins
-    if not functions --query fisher; or not test -f ~/.config/fish/fish_plugins
+    if not test -f ~/.config/fish/functions/fisher.fish
         clean_old_plugins
 
         # Install Fisher and plugins
@@ -31,14 +31,6 @@ if status --is-interactive
         fish_config theme save "Tokyonight Moon"
     end
 
-    # Initialize various commands and completions
-    starship init fish | source
-    gh completion --shell fish | source
-    broot --print-shell-function fish | source
-    thefuck --alias fk | source
-    zoxide init fish | source
-    mise activate fish | source
-
     # Initialize direnv if available
     if command -q direnv
         direnv hook fish | source
@@ -50,6 +42,7 @@ if status --is-interactive
     end
 
     # Download wezterm terminfo if not present
+    #if not infocmp wezterm >/dev/null 2>&1
     if not test -f ~/.terminfo/**/wezterm
         set terminfo_tempfile (mktemp)
         wget2 -q -O $terminfo_tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo
@@ -85,11 +78,6 @@ if status --is-interactive
     source ~/.config/fish/variables.fish
     source ~/.config/fish/abbr.fish
 
-    # Source nnn script if it exists
-    if test -f ~/.config/fish/nnn.fish
-        source ~/.config/fish/nnn.fish
-    end
-
     # Start pueued daemon if not running
     if not pgrep -x pueued >/dev/null
         pueued --daemonize >/dev/null
@@ -113,4 +101,42 @@ if status --is-interactive
 
     # Zellij setup
     eval (zellij setup --generate-auto-start fish | string collect)
+
+    # Define function to load configurations and completions for various tools
+    function load_completions --on-event fish_prompt
+        set -l tools starship gh broot thefuck zoxide mise
+
+        for tool in $tools
+            switch $tool
+                case starship
+                    starship init fish | source
+                case gh
+                    gh completion --shell fish | source
+                case broot
+                    broot --print-shell-function fish | source
+                case thefuck
+                    thefuck --alias fk | source
+                case zoxide
+                    zoxide init fish | source
+                case mise
+                    mise activate fish | source
+                case "*"
+                    echo "Unknown tool: $tool"
+            end
+        end
+
+        # Create directory and generate carapace completions
+        mkdir -p ~/.config/fish/completions
+        set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
+        carapace --list | cut -d ' ' -f 1 | while read -l program
+            touch ~/.config/fish/completions/$program.fish
+        end
+        carapace _carapace | source
+
+        # Clean up function definitions
+        functions --erase load_completions
+    end
+
+    # Trigger the deferred loading functions on first prompt
+    emit fish_prompt
 end
