@@ -31,7 +31,7 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.insert_mode["aa"] = "<Esc>"
-lvim.keys.insert_mode["jj"] = "<Enter>"
+lvim.keys.insert_mode[";;"] = "<Enter>"
 local function show_colon_and_enter_command_mode()
 	-- Print a colon to simulate entering command mode
 	vim.api.nvim_echo({ { ":", "Normal" } }, false, {})
