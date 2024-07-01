@@ -21,9 +21,10 @@ gh/hosts.yml
 **/git/.config.*
 history.txt
 lazygit/state.yml
+*.log
+nvchad/lazy-lock.json
 qutebrowser
 ssh
 .vagrant
 vifm-*
 vifminfo*
-*.log
