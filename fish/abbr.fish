@@ -39,9 +39,10 @@ abbr tail tspin
 abbr p ptipython
 
 # Grep with color
-abbr grep 'grep --color=auto'
-abbr fgrep 'fgrep --color=auto'
-abbr egrep 'egrep --color=auto'
+abbr grep rg
+abbr fgrep 'rg --fixed-strings'
+abbr egrep rg
+abbr frg 'rg --fixed-strings'
 
 # Make scripts executable
 abbr x 'chmod +x'
