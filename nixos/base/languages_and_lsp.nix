@@ -157,8 +157,7 @@
       nodePackages.typescript
       typescript
       nodePackages.typescript-language-server
-      nodePackages.vscode-css-languageserver-bin
-      nodePackages.vscode-html-languageserver-bin
+      nodePackages.vscode-langservers-extracted
       nodePackages.vscode-json-languageserver
       nodePackages.yaml-language-server
     ])
