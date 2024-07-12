@@ -80,6 +80,7 @@ format = " $icon $percentage {$time |} "
 [[block]]
 block = "backlight"
 step_width = 1
+minimum = 1
 
 [[block]]
 block = "sound"
