@@ -24,11 +24,16 @@ if status --is-interactive
         # Install Fisher and plugins
         wget2 -q -O- https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
         fisher install jorgebucaran/fisher
-        fisher install franciscolourenco/done gazorby/fish-abbreviation-tips jorgebucaran/autopair.fish jorgebucaran/replay.fish edc/bass PatrickF1/fzf.fish
+        fisher install franciscolourenco/done \
+            gazorby/fish-abbreviation-tips \
+            jorgebucaran/autopair.fish \
+            jorgebucaran/replay.fish \
+            edc/bass \
+            PatrickF1/fzf.fish
 
         # Install and set the theme
         wget2 -q 'https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_moon.theme' -O ~/.config/fish/themes/'Tokyonight Moon.theme'
-        fish_config theme save "Tokyonight Moon"
+        yes | fish_config theme save "Tokyonight Moon"
     end
 
     # Initialize direnv if available
