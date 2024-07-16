@@ -184,6 +184,12 @@ lvim.builtin.treesitter.ensure_installed = { "comment", "markdown_inline", "rege
 --     },
 -- }
 lvim.plugins = {
+	-- Easily install luarocks with lazy.nvim
+	{
+		"vhyrro/luarocks.nvim",
+		priority = 1000,
+		config = true,
+	},
 	-- Lightweight yet powerful formatter plugin
 	{
 		"stevearc/conform.nvim",
@@ -455,11 +461,6 @@ lvim.plugins = {
 		config = function()
 			require("nvim-surround").setup({})
 		end,
-	},
-	{
-		"vhyrro/luarocks.nvim",
-		priority = 1000,
-		config = true,
 	},
 	-- {
 	--   "nvim-neorg/neorg",
