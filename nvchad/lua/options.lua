@@ -14,6 +14,7 @@ vim.opt.guicursor = "i:ver1"
 -- Set sh as default shell
 -- https://www.lunarvim.org/docs/troubleshooting#are-you-using-fish
 vim.opt.shell = "/bin/sh"
-
+-- Don't use swap files
+vim.opt.swapfile = false
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
