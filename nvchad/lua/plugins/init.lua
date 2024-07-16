@@ -46,6 +46,15 @@ return {
       }
     end,
   },
+  -- File explorer tree
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      view = {
+        side = "right",
+      },
+    },
+  },
   -- Lightweight yet powerful formatter plugin
   {
     "stevearc/conform.nvim",
