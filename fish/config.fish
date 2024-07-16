@@ -118,13 +118,14 @@ if status --is-interactive
                 case gh
                     gh completion --shell fish | source
                 case broot
-                    broot --print-shell-function fish | source
+                    #broot --print-shell-function fish | source
                 case thefuck
-                    thefuck --alias fk | source
+                    # Using ~/.config/functions/fk.fish instead for performance
+                    # thefuck --alias fk | source
                 case zoxide
                     zoxide init fish | source
                 case mise
-                    mise activate fish | source
+                    #mise activate fish | source
                 case "*"
                     echo "Unknown tool: $tool"
             end
