@@ -58,6 +58,18 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- lua_ls
+-- Fix undefined global `vim` warning
+lspconfig.lua_ls.setup {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
+}
+
 -- typescript
 -- lspconfig.tsserver.setup {
 --   on_attach = on_attach,
