@@ -190,6 +190,11 @@ lvim.plugins = {
 		priority = 1000,
 		config = true,
 	},
+	-- Improve the default vim.ui interfaces
+	{
+		"stevearc/dressing.nvim",
+		opts = {},
+	},
 	-- Lightweight yet powerful formatter plugin
 	{
 		"stevearc/conform.nvim",
