@@ -1,4 +1,10 @@
 return {
+  -- Easily install luarocks with lazy.nvim
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+  },
   -- Lightweight yet powerful formatter plugin
   {
     "stevearc/conform.nvim",
