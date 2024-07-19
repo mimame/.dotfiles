@@ -16,5 +16,7 @@ vim.opt.guicursor = "i:ver1"
 vim.opt.shell = "/bin/sh"
 -- Don't use swap files
 vim.opt.swapfile = false
+-- For a better experience with auto-session
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 -- local o = vim.o
 -- o.cursorlineopt ='both' -- to enable cursorline!
