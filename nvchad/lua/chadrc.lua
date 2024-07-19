@@ -4,6 +4,11 @@
 ---@type ChadrcConfig
 local M = {}
 
+-- use noice plugin instead default lsp signature
+M.lsp = {
+  signature = false,
+}
+
 M.ui = {
   theme = "tokyonight",
 
@@ -57,8 +62,6 @@ M.ui = {
     },
   },
   cheatsheet = { theme = "grid" }, -- simple/grid
-
-  lsp = { signature = true },
 
   term = {
     hl = "Normal:term,WinSeparator:WinSeparator",

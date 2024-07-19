@@ -5,6 +5,14 @@ return {
     priority = 1000,
     config = true,
   },
+  -- Configs for lsp
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("nvchad.configs.lspconfig").defaults()
+      require "configs.lspconfig"
+    end,
+  },
   -- Improve the default vim.ui interfaces
   {
     "stevearc/dressing.nvim",
@@ -63,16 +71,7 @@ return {
       require "configs.conform"
     end,
   },
-
-  -- These are some examples, uncomment them if you want to see them work!
-  {
-    "neovim/nvim-lspconfig",
-    config = function()
-      require("nvchad.configs.lspconfig").defaults()
-      require "configs.lspconfig"
-    end,
-  },
-
+  -- Portable package manager
   {
     "williamboman/mason.nvim",
     opts = {
