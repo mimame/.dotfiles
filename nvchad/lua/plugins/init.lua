@@ -119,7 +119,7 @@ return {
   },
   -- Add/change/delete surrounding delimiter pairs with ease
   {
-    "echasnovski/mini.nvim",
+    "echasnovski/mini.surround",
     event = "VeryLazy",
     config = function()
       require("mini.surround").setup()
