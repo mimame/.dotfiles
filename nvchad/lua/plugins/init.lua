@@ -74,6 +74,39 @@ return {
       }
     end,
   },
+  --  Pretty diagnostics, references, telescope results, quickfix and location list
+  {
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>tt",
+        "<cmd>Trouble<cr>",
+        desc = "Trouble",
+      },
+      {
+        "<leader>td",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "diagnostics (trouble)",
+      },
+      {
+        "<leader>tq",
+        "<cmd>Trouble quickfix toggle<cr>",
+        desc = "quickfix list (trouble)",
+      },
+      {
+        "<leader>ts",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "symbols (trouble)",
+      },
+      {
+        "<leader>tl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP (trouble)",
+      },
+    },
+  },
   -- File explorer tree
   {
     "nvim-tree/nvim-tree.lua",
