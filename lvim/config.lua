@@ -45,12 +45,11 @@ lvim.keys.normal_mode[";"] = show_colon_and_enter_command_mode
 -- Trouble.nvim
 lvim.builtin.which_key.mappings["t"] = {
 	name = "Diagnostics",
-	t = { "<cmd>TroubleToggle<cr>", "trouble" },
-	w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
-	d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
-	q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
-	l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
-	r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
+	t = { "<cmd>Trouble<cr>", "trouble" },
+	d = { "<cmd>Trouble diagnostics toggle<cr>", "diagnostics" },
+	q = { "<cmd>Trouble quickfix toggle<cr>", "quickfix" },
+	l = { "<cmd>Trouble lsp toggle focus=false win.position=right<cr>", "lsp" },
+	s = { "<cmd>Trouble symbols toggle focus=false<cr>", "symbols" },
 }
 
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
@@ -434,10 +433,11 @@ lvim.plugins = {
 	-- 		require("lsp_signature").on_attach()
 	-- 	end,
 	-- },
-	-- diagnostics, references, telescope results, quickfix and location lists
+	-- Diagnostics, references, telescope results, quickfix and location lists
 	{
 		"folke/trouble.nvim",
-		cmd = "TroubleToggle",
+		opts = {},
+		cmd = "Trouble",
 	},
 	-- automatically saving your work whenever you make changes to it
 	{
