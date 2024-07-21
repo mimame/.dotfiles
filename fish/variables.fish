@@ -101,3 +101,6 @@ set -x -U XMODIFIERS @im=ibus
 
 # Define time zones for easy access
 set -x -U TZ_LIST "CET,Central European Time;UTC,Coordinated Universal Time;US/Eastern,Eastern Standard Time;US/Pacific,Pacific Standard Time;Asia/Singapore, Singapore;Mexico/General"
+
+# Define libvirt as the default vagrant provider
+set -x -U VAGRANT_DEFAULT_PROVIDER libvirt
