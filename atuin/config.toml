@@ -44,51 +44,51 @@ update_check = false
 ## possible values: global, host, session, directory
 # filter_mode = "global"
 
-## With workspace filtering enabled, Atuin will filter for commands executed
-## in any directory within a git repository tree (default: false)
-# workspaces = false
+## which search mode to use when atuin is invoked from a shell up-key binding
+## the accepted values are identical to those of "search_mode"
+## leave unspecified to use same mode set in "search_mode"
+# search_mode_shell_up_key_binding = "fuzzy"
 
 ## which filter mode to use when atuin is invoked from a shell up-key binding
 ## the accepted values are identical to those of "filter_mode"
 ## leave unspecified to use same mode set in "filter_mode"
 # filter_mode_shell_up_key_binding = "global"
 
-## which search mode to use when atuin is invoked from a shell up-key binding
-## the accepted values are identical to those of "search_mode"
-## leave unspecified to use same mode set in "search_mode"
-# search_mode_shell_up_key_binding = "fuzzy"
+## With workspace filtering enabled, Atuin will filter for commands executed
+## in any directory within a git repository tree (default: false)
+# workspaces = false
 
 ## which style to use
 ## possible values: auto, full, compact
 # style = "auto"
 
+## Invert the UI - put the search bar at the top , Default to `false`
+invert = true
+
 ## the maximum number of lines the interface should take up
 ## set it to 0 to always go full screen
 # inline_height = 0
 
-## Invert the UI - put the search bar at the top , Default to `false`
-invert = true
-
 ## enable or disable showing a preview of the selected command
 ## useful when the command is longer than the terminal width and is cut off
-# show_preview = false
+# show_preview = true
+
+## Configure the maximum height of the preview to show.
+## Useful when you have long scripts in your history that you want to distinguish
+## by more than the first few lines.
+# max_preview_height = 4
+
+## Configure whether or not to show the help row, which includes the current Atuin
+## version (and whether an update is available), a keymap hint, and the total
+## amount of commands in your history.
+# show_help = true
+
+## Configure whether or not to show tabs for search and inspect
+# show_tabs = true
 
 ## what to do when the escape key is pressed when searching
 ## possible values: return-original, return-query
 # exit_mode = "return-original"
-
-## possible values: emacs, subl
-# word_jump_mode = "emacs"
-
-## characters that count as a part of a word
-# word_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-
-## number of context lines to show when scrolling by pages
-# scroll_context_lines = 1
-
-## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts
-## alt-0 .. alt-9
-# ctrl_n_shortcuts = false
 
 ## default history list format - can also be specified with the --format arg
 # history_format = "{time}\t{command}\t{duration}"
@@ -112,18 +112,6 @@ invert = true
 #   "^/very/secret/area",
 # ]
 
-## Configure the maximum height of the preview to show.
-## Useful when you have long scripts in your history that you want to distinguish
-## by more than the first few lines.
-# max_preview_height = 4
-
-## Configure whether or not to show the help row, which includes the current Atuin
-## version (and whether an update is available), a keymap hint, and the total
-## amount of commands in your history.
-# show_help = true
-
-## Configure whether or not to show tabs for search and inspect
-# show_tabs = true
 ## configures whether to store commands that failed
 ## (those with non-zero exist status or not)
 store_failed = false
@@ -135,6 +123,17 @@ store_failed = false
 ## 4. Slack webhooks
 ## 5. Stripe live/test keys
 # secrets_filter = true
+
+
+## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts
+## alt-0 .. alt-9
+ctrl_n_shortcuts = false
+
+# network_connect_timeout = 5
+# network_timeout = 5
+
+## Timeout (in seconds) for acquiring a local database connection (sqlite)
+# local_timeout = 5
 
 ## Defaults to true. If enabled, upon hitting enter Atuin will immediately execute the command. Press tab to return to the shell and edit.
 # This applies for new installs. Old installs will keep the old behaviour unless configured otherwise.
@@ -156,6 +155,15 @@ keymap_cursor = { emacs = "blink-block", vim_insert = "blink-bar", vim_normal = 
 ## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc.
 ## Alternatively, set env NO_MOTION=true
 # prefers_reduced_motion = false
+
+## possible values: emacs, subl
+# word_jump_mode = "emacs"
+
+## characters that count as a part of a word
+# word_chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+
+## number of context lines to show when scrolling by pages
+# scroll_context_lines = 1
 
 [stats]
 ## Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
@@ -193,4 +201,4 @@ keymap_cursor = { emacs = "blink-block", vim_insert = "blink-bar", vim_normal = 
 
 [keys]
 # Defaults to true. If disabled, using the up/down key won't exit the TUI when scrolled past the first/last entry.
-# scroll_exits = false
+# scroll_exits = true
