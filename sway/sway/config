@@ -106,8 +106,7 @@ bindsym $mod+Ctrl+w exec rofi -show web
 # Add finder launcher
 bindsym $mod+Ctrl+f exec rofi -show finder
 # Add clipboard manager launcher
-bindsym $mod+c exec clipman pick --tool rofi
-
+bindsym $mod+c exec "clipman pick --tool rofi --err-on-no-selection && wtype -M ctrl -M shift v"
 
 # Player controls
 bindsym XF86AudioPlay exec playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
