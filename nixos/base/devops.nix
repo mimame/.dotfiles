@@ -47,6 +47,11 @@
     };
   };
 
+  programs.virt-manager = {
+    enable = true;
+    package = pkgs.unstable.virt-manager;
+  };
+
   programs.singularity = {
     enable = true;
     enableSuid = true;
