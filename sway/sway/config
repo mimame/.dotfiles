@@ -13,7 +13,6 @@ exec dbus-sway-environment
 exec configure-gtk
 # Enable clipboard manager
 exec wl-paste -t text --watch clipman store --no-persist
-# exec_always pkill greenclip; greenclip daemon > /dev/null &
 exec swaync
 
 input "type:keyboard" {
@@ -108,7 +107,6 @@ bindsym $mod+Ctrl+w exec rofi -show web
 bindsym $mod+Ctrl+f exec rofi -show finder
 # Add clipboard manager launcher
 bindsym $mod+c exec clipman pick --tool rofi
-# bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 
 # Player controls
