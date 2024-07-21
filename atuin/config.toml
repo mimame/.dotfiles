@@ -151,13 +151,7 @@ keymap_mode = "vim-insert"
 ## Cursor style in each keymap mode.  If specified, the cursor style is changed
 ## in entering the cursor shape.  Available values are "default" and
 ## "{blink,steady}-{block,underline,bar}".
-# keymap_cursor = { emacs = "blink-block", vim_insert = "blink-block", vim_normal = "steady-block" }
-
-# network_connect_timeout = 5
-# network_timeout = 5
-
-## Timeout (in seconds) for acquiring a local database connection (sqlite)
-# local_timeout = 5
+keymap_cursor = { emacs = "blink-block", vim_insert = "blink-bar", vim_normal = "steady-block" }
 
 ## Set this to true and Atuin will minimize motion in the UI - timers will not update live, etc.
 ## Alternatively, set env NO_MOTION=true
