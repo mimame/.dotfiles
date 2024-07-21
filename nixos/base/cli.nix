@@ -129,6 +129,7 @@
       entr
       erdtree
       espanso-wayland
+      evil-helix
       eza
       fastfetch
       fd
@@ -160,7 +161,6 @@
       grpcurl
       gzip
       handlr
-      helix
       hexyl
       httpie
       hurl
