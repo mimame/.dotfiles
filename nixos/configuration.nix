@@ -109,6 +109,7 @@ in
       extraGroups = [
         "audio"
         "input"
+        "libvirtd"
         "lxd"
         # "networkmanager"
         "podman"
