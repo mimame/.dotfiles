@@ -72,20 +72,22 @@ in
           TimeoutStopSec = 10;
         };
       };
-      swayidle = {
-        enable = true;
-        description = "swayidle";
-        wants = [ "default.target" ];
-        wantedBy = [ "default.target" ];
-        after = [ "default.target" ];
-        serviceConfig = {
-          Type = "simple";
-          ExecStart = "${pkgs.swayidle}/bin/swayidle timeout 1800 'systemctl suspend-then-hibernate'";
-          Restart = "on-failure";
-          RestartSec = 1;
-          TimeoutStopSec = 10;
-        };
-      };
+      # The systemd-logind.service already handles idle detection
+      # and can trigger suspend-then-hibernate on its own
+      # swayidle = {
+      #   enable = true;
+      #   description = "swayidle";
+      #   wants = [ "default.target" ];
+      #   wantedBy = [ "default.target" ];
+      #   after = [ "default.target" ];
+      #   serviceConfig = {
+      #     Type = "simple";
+      #     ExecStart = "${pkgs.swayidle}/bin/swayidle timeout 600 'systemctl suspend-then-hibernate'";
+      #     Restart = "on-failure";
+      #     RestartSec = 1;
+      #     TimeoutStopSec = 10;
+      #   };
+      # };
     };
   };
 

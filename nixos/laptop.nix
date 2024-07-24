@@ -6,15 +6,22 @@
     lidSwitch = "suspend-then-hibernate"; # Action when laptop lid is closed
     lidSwitchDocked = "suspend-then-hibernate"; # Action when laptop lid is closed while docked
     lidSwitchExternalPower = "suspend-then-hibernate"; # Action when laptop lid is closed while on external power
+    powerKey = "suspend-then-hibernate";
+    powerKeyLongPress = "poweroff";
+    # https://www.freedesktop.org/software/systemd/man/latest/logind.conf.html#Options
     extraConfig = ''
-      AllowSuspend=yes                              # Enable system suspension
-      AllowHibernation=yes                          # Enable system hibernation
-      AllowSuspendThenHibernate=yes                 # Enable suspend-then-hibernate action
-      IdleAction=suspend-then-hibernate             # Action after the system is idle
-      IdleActionSec=10min                           # Time before idle action is triggered (10 minutes)
-      HibernateDelaySec=30min                       # Time delay before hibernating after suspension (30 minutes)
+      IdleAction=suspend-then-hibernate
+      IdleActionSec=10min
     '';
   };
+  # https://www.freedesktop.org/software/systemd/man/latest/sleep.conf.d.html#Options
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=yes
+    AllowHibernation=yes
+    AllowSuspendThenHibernate=yes
+    SuspendMode=suspend-then-hibernate
+    HibernateDelaySec=30min
+  '';
   # Improve battery scaling the CPU governor and optimizing the general power
   services.auto-cpufreq.enable = true;
 
