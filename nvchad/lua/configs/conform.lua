@@ -7,6 +7,7 @@ local options = {
     json = { "biome" },
     latex = { "latexindent" },
     lua = { "stylua" },
+    nix = { "nixfmt" },
     python = { "ruff" },
     ruby = { "rubocop" },
     typescript = { "biome" },
