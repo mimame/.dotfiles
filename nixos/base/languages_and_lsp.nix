@@ -182,6 +182,7 @@
       codespell
       coreutils
       devenv
+      gitleaks
       gnumake
       gnupatch
       graphviz
