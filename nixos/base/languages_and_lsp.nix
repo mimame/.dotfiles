@@ -53,6 +53,11 @@
       yarn
     ])
     ++ (with pkgs.unstable; [
+      # Json
+      nodePackages.vscode-json-languageserver
+      jsonfmt
+    ])
+    ++ (with pkgs.unstable; [
       # Julia
       julia-bin
     ])
@@ -158,12 +163,15 @@
       typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
-      nodePackages.vscode-json-languageserver
-      nodePackages.yaml-language-server
     ])
     ++ (with pkgs.unstable; [
       # Typst
       typst
+    ])
+    ++ (with pkgs.unstable; [
+      # Yaml
+      yaml-language-server
+      yamlfmt
     ])
     ++ (with pkgs.unstable; [
       # Zig
