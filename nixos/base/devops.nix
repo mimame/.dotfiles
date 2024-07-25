@@ -19,7 +19,10 @@
       enable = true;
       lxcfs.enable = true;
     };
-    lxd.enable = true;
+    incus = {
+      enable = true;
+      ui.enable = true;
+    };
     virtualbox = {
       host = {
         enable = true;
@@ -47,6 +50,7 @@
     };
   };
 
+  # GUI for libvirtd
   programs.virt-manager = {
     enable = true;
     package = pkgs.unstable.virt-manager;
