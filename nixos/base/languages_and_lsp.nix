@@ -218,6 +218,7 @@
       terraform-ls
       treefmt
       typos
+      typos-lsp
       universal-ctags
     ]);
 }
