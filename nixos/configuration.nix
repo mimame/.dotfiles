@@ -42,11 +42,6 @@ in
   # Delete all files in /tmp during boot
   # boot.tmp.cleanOnBoot = true;
 
-  # Add unstable packages injecting directly the unstable channel url
-  nixpkgs.config = {
-    packageOverrides = pkgs: { unstable = import unstableTarball { config = config.nixpkgs.config; }; };
-  };
-
   nix = {
     # Be sure to run nix-collect-garbage one time per week
     gc = {
@@ -71,17 +66,13 @@ in
     };
   };
 
-  # nixos-rebuild switch
-  # nvd shows a beautifully formatted list of the version changes in my system packages
-  system.activationScripts.diff = {
-    supportsDryActivation = true;
-    text = ''
-      ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
-    '';
+  nixpkgs.config = {
+    # Allow unfree packages
+    allowUnfree = true;
+    # Add unstable packages injecting directly the unstable channel url
+    packageOverrides = pkgs: { unstable = import unstableTarball { config = config.nixpkgs.config; }; };
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Auto upgrade packages by default without reboot
   system.autoUpgrade = {
