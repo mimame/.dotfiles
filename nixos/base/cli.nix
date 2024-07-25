@@ -87,7 +87,6 @@
       rustscan
       strace
       stress
-      sudo-rs
       tesseract5
       time
       util-linux

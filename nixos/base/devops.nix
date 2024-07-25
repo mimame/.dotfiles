@@ -99,8 +99,6 @@
     with pkgs;
     [
 
-      qemu_test
-      qemu-utils # Let lxc to create --vm
     ++ (with pkgs.unstable; [
 
       awscli # v1 for awslocal localstack compatibility
@@ -120,6 +118,8 @@
       python3Packages.boto3
       python3Packages.localstack
       terraform
+      # qemu_test
+      # qemu-utils # Let lxc to create --vm
       vagrant
     ]);
 }

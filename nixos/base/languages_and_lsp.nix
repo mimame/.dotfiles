@@ -65,8 +65,8 @@
     ++ (with pkgs.unstable; [
       # Lua
       lua
-      luajitPackages.luarocks
       lua-language-server
+      luaPackages.luarocks
       stylua
     ])
     ++ (with pkgs.unstable; [
