@@ -57,6 +57,8 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   networking = {
+    # Incus on NixOS is unsupported using iptables
+    nftables.enable = true;
     firewall = {
       # Or disable the firewall altogether.
       enable = true;
@@ -79,6 +81,7 @@
       };
     };
   };
+
   services.connman = {
     enable = true;
     enableVPN = false;
@@ -122,6 +125,7 @@
   programs.fish = {
     enable = true;
     package = pkgs.unstable.fish;
+  };
 
   # Many programs look at /etc/shells to determine
   # if a user is a "normal" user and not a "system" user
