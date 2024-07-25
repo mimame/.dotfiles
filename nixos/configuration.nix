@@ -73,12 +73,21 @@ in
     packageOverrides = pkgs: { unstable = import unstableTarball { config = config.nixpkgs.config; }; };
   };
 
-
-  # Auto upgrade packages by default without reboot
-  system.autoUpgrade = {
-    allowReboot = false;
-    enable = true;
-    dates = "daily";
+  system = {
+    # Auto upgrade packages by default without reboot
+    autoUpgrade = {
+      allowReboot = false;
+      enable = true;
+      dates = "daily";
+    };
+    # nixos-rebuild switch
+    # nvd shows a beautifully formatted list of the version changes in my system packages
+    activationScripts.diff = {
+      supportsDryActivation = true;
+      text = ''
+        ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+      '';
+    };
   };
 
   # Be able to execute dynamic linked binaries compiled outside NixOS
