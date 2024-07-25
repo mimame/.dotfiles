@@ -43,6 +43,7 @@ in
   # boot.tmp.cleanOnBoot = true;
 
   nix = {
+    package = pkgs.nixVersions.latest;
     # Be sure to run nix-collect-garbage one time per week
     gc = {
       automatic = true;
