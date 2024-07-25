@@ -171,6 +171,8 @@
 
   # Primary font paths
   fonts = {
+    fontDir.enable = true;
+    enableDefaultPackages = true;
     packages = with pkgs.unstable; [
       # Comparing JetBrainsMono (No Ligatures) and Hack:
       # - Hack is a monospaced font, but has visual inconsistencies with characters of variable width
