@@ -160,6 +160,7 @@
     enable = true;
     extraConfig = ''
       font-name=JetBrainsMonoNL Nerd Font
+      font-name=JetBrainsMonoNL Nerd Font Mono
       font-size=16
       xkb-layout=us
       xkb-variant=altgr-intl
