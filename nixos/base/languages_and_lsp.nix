@@ -33,6 +33,10 @@
       shards
     ])
     ++ (with pkgs.unstable; [
+      # Dart
+      flutter # dart included
+    ])
+    ++ (with pkgs.unstable; [
       # Elixir
       elixir
       elixir-ls
