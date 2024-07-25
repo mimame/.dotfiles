@@ -58,8 +58,9 @@
 
   programs.singularity = {
     enable = true;
-    enableSuid = true;
     enableFakeroot = true;
+    enableSuid = true;
+    package = pkgs.unstable.singularity;
   };
 
   security.sudo = {
