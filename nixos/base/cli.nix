@@ -21,14 +21,17 @@
 
   # Enable Espanso
 
-  services.espanso = {
-    enable = true;
-  security.wrappers.espanso = {
-    capabilities = "cap_dac_override+p";
-    source = "${pkgs.unstable.espanso-wayland.out}/bin/espanso";
-    owner = "root";
-    group = "input";
-  };
+  # FIXME: Enable after https://github.com/NixOS/nixpkgs/pull/316519 is merged
+  # services.espanso = {
+  #   enable = true;
+  #   package = pkgs.unstable.espanso-wayland;
+  # };
+  # security.wrappers.espanso = {
+  #   capabilities = "cap_dac_override+p";
+  #   source = "${pkgs.unstable.espanso-wayland.out}/bin/espanso";
+  #   owner = "root";
+  #   group = "input";
+  # };
 
   # Maybe not needed
   services.udev.packages = [ pkgs.unstable.espanso-wayland ];
@@ -46,7 +49,7 @@
   #       after = [ "default.target" ];
   #       serviceConfig = {
   #         Type = "simple";
-  #         ExecStart = "${pkgs.espanso-wayland}/bin/espanso worker";
+  #         ExecStart = "${pkgs.unstable.espanso-wayland}/bin/espanso worker";
   #         Restart = "on-failure";
   #         RestartSec = 3;
   #         TimeoutStopSec = 10;
@@ -128,7 +131,6 @@
       emacs29
       entr
       erdtree
-      espanso-wayland
       evil-helix
       eza
       fastfetch
