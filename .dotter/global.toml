@@ -24,7 +24,6 @@ gammastep = "~/.config/gammastep"
 gh = "~/.config/gh"
 git = "~/.config/git"
 grc = "~/.config/grc"
-greenclip = "~/.config/greenclip"
 helix = "~/.config/helix"
 i3status-rust = "~/.config/i3status-rust"
 julia = "~/.julia/config/"
@@ -39,7 +38,7 @@ navi = "~/.config/navi"
 nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
 nnn = "~/.config/fish/"
 nushell = { target = "~/.config/nushell", type = "symbolic" }
-nvchad = "~/.config/nvim/"
+nvchad = "~/.config/nvchad/"
 # parallel = "~/.config/"
 ptpython = "~/.config/ptpython"
 pueue = { target = "~/.config/pueue", type = "symbolic" }
