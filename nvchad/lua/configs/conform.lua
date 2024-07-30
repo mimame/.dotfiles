@@ -2,6 +2,7 @@ local options = {
   formatters_by_ft = {
     bash = { "shfmt" },
     css = { "prettier" },
+    fish = { "fish_indent" },
     html = { "prettier" },
     javascript = { "biome" },
     json = { "biome" },
