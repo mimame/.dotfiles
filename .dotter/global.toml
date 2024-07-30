@@ -30,6 +30,7 @@ julia = "~/.julia/config/"
 kitty = { target = "~/.config/kitty", type = "symbolic" }
 # latex = "~/"
 lazygit = "~/.config/lazygit"
+lazyvim = "~/.config/lazyvim/"
 lvim = "~/.config/lvim"
 lvim-dictionary = "~/.local/share/lunarvim/site/pack/lazy/opt/nvim-treesitter/spell/"
 mimeapps = "~/.config/"
