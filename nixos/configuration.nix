@@ -112,6 +112,7 @@ in
       description = "mimame";
       extraGroups = [
         "audio"
+        "incus-admin"
         "input"
         "libvirtd"
         "lxd"
