@@ -223,10 +223,10 @@ in
       git-cola
       gitg
       glxinfo
-      gnome.eog
-      gnome.file-roller
+      eog
+      file-roller
       gnome.gnome-control-center
-      gnome.nautilus
+      nautilus
       google-chrome
       gst_all_1.gst-plugins-bad
       gst_all_1.gst-plugins-base
