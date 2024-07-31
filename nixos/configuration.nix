@@ -67,6 +67,9 @@ in
     };
   };
 
+  # Enable all firmware regardless of license
+  hardware.enableAllFirmware = true;
+
   nixpkgs.config = {
     # Allow unfree packages
     allowUnfree = true;
