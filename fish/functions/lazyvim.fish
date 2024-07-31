@@ -1,6 +1,6 @@
 function lazyvim
     set -x NVIM_APPNAME lazyvim
-    if test -z "$argv"
+    if test (count $argv) -eq 0
         nvim
     else
         nvim "$argv"
