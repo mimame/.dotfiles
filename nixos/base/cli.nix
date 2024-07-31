@@ -96,6 +96,7 @@
     ++ (with pkgs.unstable; [
 
       aria2
+      artem
       atuin
       bat
       bitwarden-cli
@@ -172,6 +173,7 @@
       jc
       jless
       jnv
+      jp2a
       jq
       jujutsu
       just
