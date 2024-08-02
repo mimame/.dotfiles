@@ -65,6 +65,11 @@
       # Open ports in the firewall.
       allowedUDPPorts = [ ];
       allowedTCPPorts = [ ];
+      trustedInterfaces = [
+        "incusbr0"
+        "virbr0"
+        "virbr1"
+      ];
     };
     hostName = "narnia";
     wireless.iwd = {
