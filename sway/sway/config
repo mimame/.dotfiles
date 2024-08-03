@@ -1,5 +1,7 @@
 # vim: filetype=i3config
 
+include ./themes/catppuccin-mocha
+
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
@@ -388,12 +390,12 @@ set $base   #1e2030
 
 
 # Focus colors
-# target                 title     bg      text        indicator   border
-client.focused           $orange   $base   $orange     $orange     $orange
-client.focused_inactive  $fg       $base   $fg         $base       $fg
-client.unfocused         $fg       $base   $fg         $base       $fg
-client.urgent            $red      $base   $red        $fg         $red
-client.placeholder       $fg       $base   $fg         $fg         $fg
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
 # Autostart applications
@@ -415,13 +417,15 @@ bar {
   #	wheel_up_cmd nop
   #	wheel_down_cmd nop
   colors {
-    separator $base
-    background $base
-    statusline $base
-    focused_workspace $orange $base $fg
-    active_workspace $fg $base $fg
-    inactive_workspace $base $base $fg
-    urgent_workspace $red $base $fg
+    background         $base
+    statusline         $text
+    focused_statusline $text
+    focused_separator  $base
+    focused_workspace  $base $base $green
+    active_workspace   $base $base $blue
+    inactive_workspace $base $base $surface1
+    urgent_workspace   $base $base $surface1
+    binding_mode       $base $base $surface1
   }
 }
 
