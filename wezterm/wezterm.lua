@@ -1,5 +1,5 @@
 -- Pull in the wezterm API
-local wezterm = require 'wezterm';
+local wezterm = require('wezterm')
 -- This table will hold the configuration.
 local config = {}
 
@@ -38,11 +38,11 @@ config.enable_tab_bar = false
 config.hide_mouse_cursor_when_typing = false
 config.window_close_confirmation = 'NeverPrompt'
 config.warn_about_missing_glyphs = false
-config.font = wezterm.font_with_fallback {
-  "JetBrainsMonoNL Nerd Font",
-  "Hack Nerd Font",
-  "Broot Icons Visual Studio Code",
-}
+config.font = wezterm.font_with_fallback({
+  'JetBrainsMonoNL Nerd Font Mono',
+  'Hack Nerd Font',
+  'Broot Icons Visual Studio Code',
+})
 config.check_for_updates = false
 config.font_size = 18.0
 config.window_padding = {
@@ -54,15 +54,30 @@ config.window_padding = {
 
 -- Add copy on select
 config.mouse_bindings = {
-  make_mouse_binding('Up', 1, 'Left', 'NONE',
-    wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
-  make_mouse_binding('Up', 1, 'Left', 'SHIFT',
-    wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
-  make_mouse_binding('Up', 1, 'Left', 'ALT', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
-  make_mouse_binding('Up', 1, 'Left', 'SHIFT|ALT',
-    wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
-  make_mouse_binding('Up', 2, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
-  make_mouse_binding('Up', 3, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
+  make_mouse_binding(
+    'Up',
+    1,
+    'Left',
+    'NONE',
+    wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor('ClipboardAndPrimarySelection')
+  ),
+  make_mouse_binding(
+    'Up',
+    1,
+    'Left',
+    'SHIFT',
+    wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor('ClipboardAndPrimarySelection')
+  ),
+  make_mouse_binding('Up', 1, 'Left', 'ALT', wezterm.action.CompleteSelection('ClipboardAndPrimarySelection')),
+  make_mouse_binding(
+    'Up',
+    1,
+    'Left',
+    'SHIFT|ALT',
+    wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor('ClipboardAndPrimarySelection')
+  ),
+  make_mouse_binding('Up', 2, 'Left', 'NONE', wezterm.action.CompleteSelection('ClipboardAndPrimarySelection')),
+  make_mouse_binding('Up', 3, 'Left', 'NONE', wezterm.action.CompleteSelection('ClipboardAndPrimarySelection')),
 }
 
 -- and finally, return the configuration to wezterm
