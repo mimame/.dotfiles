@@ -43,8 +43,7 @@ set -Ux FZF_DEFAULT_OPTS '
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 
-# Configure Bat and Moar for better man page viewing
-set -x -U BAT_THEME Enki-Tokyo-Night
+# Configure Moar for better man page viewing
 set -x -U MOAR '--statusbar=bold --no-linenumbers'
 set -x -U MANPAGER "bat -l man -p"
 

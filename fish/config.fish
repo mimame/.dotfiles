@@ -65,11 +65,12 @@ if status --is-interactive
     end
 
     # Download and set bat theme if not present
-    set bat_theme_path (bat --config-dir)/themes/Enki-Tokyo-Night.tmTheme
+    set bat_theme_path (bat --config-dir)/themes/Catppuccin\ Mocha.tmTheme
     if not test -f $bat_theme_path
         mkdir -p (bat --config-dir)/themes/
-        wget2 -q -O $bat_theme_path https://raw.githubusercontent.com/enkia/enki-theme/master/scheme/Enki-Tokyo-Night.tmTheme
+        wget2 -q -O $bat_theme_path https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
         bat cache --build
+        set -x -U BAT_THEME Catppuccin Mocha
     end
 
     # Set wallpaper if not present
