@@ -181,7 +181,7 @@ keybinds {
         bind "Ctrl h" { SwitchToMode "Move"; }
     }
     shared_except "tmux" "locked" {
-        bind "Ctrl b" { SwitchToMode "Tmux"; }
+        bind "Ctrl Space" { SwitchToMode "Tmux"; }
     }
 }
 
