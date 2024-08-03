@@ -68,10 +68,11 @@ set -g -x default_nvim nvchad
 set -g -x EDITOR $default_nvim
 set -g VISUAL $EDITOR
 set -g -x GIT_EDITOR $EDITOR
+abbr n $default_nvim
+abbr nvim $default_nvim
+abbr v $default_nvim
 abbr vi $default_nvim
 abbr vim $default_nvim
-abbr v $default_nvim
-abbr n $default_nvim
 
 # Always preserve the environment with sudoedit
 abbr sv sudoedit
