@@ -10,7 +10,8 @@ if status --is-interactive
             ~/.config/fish/functions/fzf.fish \
             ~/.config/fish/functions/replay.fish \
             ~/.config/fish/functions/__bass.py \
-            ~/.config/fish/functions/bass.fish
+            ~/.config/fish/functions/bass.fish \
+            ~./config/fish/themes/Catppuccin*
         for file in $plugin_files
             rm -f $file
         end
@@ -29,11 +30,10 @@ if status --is-interactive
             jorgebucaran/autopair.fish \
             jorgebucaran/replay.fish \
             edc/bass \
+            catppuccin/fish \
             PatrickF1/fzf.fish
 
-        # Install and set the theme
-        wget2 -q 'https://raw.githubusercontent.com/folke/tokyonight.nvim/main/extras/fish_themes/tokyonight_moon.theme' -O ~/.config/fish/themes/'Tokyonight Moon.theme'
-        yes | fish_config theme save "Tokyonight Moon"
+        yes | fish_config theme save "Catppuccin Mocha"
     end
 
     # Initialize direnv if available
