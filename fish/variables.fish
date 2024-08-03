@@ -32,14 +32,13 @@ set -x -U FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -x -U FZF_CTRL_T_OPTS "--height 100% --preview 'bat --color always {}'"
 set -x -U FZF_ALT_C_COMMAND 'fd --type directory --exclude node_modules'
 set -x -U FZF_ALT_C_OPTS "--height 100% --preview br --preview-window wrap"
-# Set default colors for fzf to match Tokyo Night theme
+# Set default colors for fzf to match Catppuccin Mocha theme
 # Reference: https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
 set -Ux FZF_DEFAULT_OPTS '
 --reverse
---color=fg:#c5cdd9,bg:#1e2030,hl:#6cb6eb
---color=fg+:#c5cdd9,bg+:#1e2030,hl+:#5dbbc1
---color=info:#88909f,prompt:#ec7279,pointer:#d38aea
---color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
+--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 
