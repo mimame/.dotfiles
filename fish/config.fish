@@ -87,6 +87,12 @@ if status --is-interactive
         wget2 -q -O $sway_theme_path https://raw.githubusercontent.com/catppuccin/i3/main/themes/catppuccin-mocha
     end
 
+    # Download and set kitty theme if not present
+    set kitty_theme_path ~/.config/kitty/current-theme.conf
+    if not test -f $kitty_theme_path
+        kitty +kitten themes Catppuccin-Mocha
+    end
+
     # Set wallpaper if not present
     set wallpaper_path ~/Pictures/unicat.png
     if not test -f $wallpaper_path
