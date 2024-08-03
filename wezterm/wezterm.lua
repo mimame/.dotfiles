@@ -29,7 +29,7 @@ end
 
 -- This is where you actually apply your config choices
 config.term = 'wezterm'
-config.color_scheme = 'Tokyo Night'
+config.color_scheme = 'Catppuccin Mocha'
 config.exit_behavior = 'Close'
 config.enable_wayland = true
 config.enable_kitty_keyboard = true
