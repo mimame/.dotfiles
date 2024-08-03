@@ -91,6 +91,7 @@ if status --is-interactive
     # Reinstall systemd user services broken by NixOS updates
     if test (uname) != Darwin
         if test (lsb_release -i | cut -f2) = NixOS
+            any-nix-shell fish --info-right | source
             fix_broken_services_by_nixos
         end
     end
