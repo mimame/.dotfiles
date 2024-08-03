@@ -11,6 +11,7 @@ local options = {
     nix = { "nixfmt" },
     python = { "ruff" },
     ruby = { "rubocop" },
+    toml = { "taplo" },
     typescript = { "biome" },
     tyspt = { "typstfmt" },
     yaml = { "rubocop" },
