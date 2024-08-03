@@ -73,6 +73,13 @@ if status --is-interactive
         set -x -U BAT_THEME Catppuccin Mocha
     end
 
+    # Download and set btop theme if not present
+    set btop_theme_path ~/.config/btop/themes/catppuccin_mocha.theme
+    if not test -f $btop_theme_path
+        mkdir -p ~/.config/btop/themes/
+        wget2 -q -O $btop_theme_path https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme
+    end
+
     # Set wallpaper if not present
     set wallpaper_path ~/Pictures/unicat.png
     if not test -f $wallpaper_path
