@@ -80,6 +80,13 @@ if status --is-interactive
         wget2 -q -O $btop_theme_path https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme
     end
 
+    # Download and set sway theme if not present
+    set sway_theme_path ~/.config/sway/themes/catppuccin-mocha
+    if not test -f $sway_theme_path
+        mkdir -p ~/.config/sway/themes/
+        wget2 -q -O $sway_theme_path https://raw.githubusercontent.com/catppuccin/i3/main/themes/catppuccin-mocha
+    end
+
     # Set wallpaper if not present
     set wallpaper_path ~/Pictures/unicat.png
     if not test -f $wallpaper_path
