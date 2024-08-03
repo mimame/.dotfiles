@@ -233,6 +233,7 @@ lvim.plugins = {
 					fish = { "fish_indent" },
 					typst = { "typstyle" },
 					json = { "biome" },
+					toml = { "taplo" },
 				},
 				format_on_save = {
 					-- These options will be passed to conform.format()
