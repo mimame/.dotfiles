@@ -10,7 +10,7 @@ M.lsp = {
 }
 
 M.ui = {
-  theme = "tokyonight",
+  theme = "catppuccin",
 
   cmp = {
     icons = true,
