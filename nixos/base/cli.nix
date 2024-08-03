@@ -95,6 +95,7 @@
     ]
     ++ (with pkgs.unstable; [
 
+      any-nix-shell
       aria2
       artem
       atuin
