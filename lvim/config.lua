@@ -234,6 +234,7 @@ lvim.plugins = {
 					typst = { "typstyle" },
 					json = { "biome" },
 					toml = { "taplo" },
+					latex = { "latexindent" },
 				},
 				format_on_save = {
 					-- These options will be passed to conform.format()
