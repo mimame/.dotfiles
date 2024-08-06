@@ -224,18 +224,19 @@ lvim.plugins = {
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {
-					lua = { "stylua" },
 					-- Conform will run multiple formatters sequentially
-					python = { "isort", "black" },
 					-- Use a sub-list to run only the first available formatter
-					javascript = { { "prettierd", "prettier" } },
-					nix = { "nixfmt" },
+					bash = { "shfmt" },
 					fish = { "fish_indent" },
-					typst = { "typstyle" },
+					javascript = { { "prettierd", "prettier" } },
 					json = { "biome" },
-					toml = { "taplo" },
-					terraform = { "terraform_fmt" },
 					latex = { "latexindent" },
+					lua = { "stylua" },
+					nix = { "nixfmt" },
+					python = { "isort", "black" },
+					terraform = { "terraform_fmt" },
+					toml = { "taplo" },
+					typst = { "typstyle" },
 				},
 				format_on_save = {
 					-- These options will be passed to conform.format()
