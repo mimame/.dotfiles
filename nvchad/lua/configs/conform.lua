@@ -11,11 +11,11 @@ local options = {
     nix = { "nixfmt" },
     python = { "ruff" },
     ruby = { "rubocop" },
+    terraform = { "terraform_fmt" },
     toml = { "taplo" },
     typescript = { "biome" },
     tyspt = { "typstyle" },
     yaml = { "rubocop" },
-    terraform = { "terraform_fmt" },
   },
 
   format_on_save = {
