@@ -234,6 +234,7 @@ lvim.plugins = {
 					typst = { "typstyle" },
 					json = { "biome" },
 					toml = { "taplo" },
+					terraform = { "terraform_fmt" },
 					latex = { "latexindent" },
 				},
 				format_on_save = {
