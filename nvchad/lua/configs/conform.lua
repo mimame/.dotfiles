@@ -15,6 +15,7 @@ local options = {
     typescript = { "biome" },
     tyspt = { "typstyle" },
     yaml = { "rubocop" },
+    terraform = { "terraform_fmt" },
   },
 
   format_on_save = {
