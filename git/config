@@ -463,6 +463,16 @@
   # Specify whether the exit code of the merge command is used to determine whether the merge was successful
   trustExitCode = true
 
+[mergetool "kdiff"]
+  # http://meldmerge.org/
+  # User diff3 merge style in meld
+  cmd = "kdiff3 $LOCAL $BASE $REMOTE -o $MERGED"
+  # https://git-scm.com/docs/git-mergetool#Documentation/git-mergetool.txt-mergetoolmelduseAutoMerge
+  useAutoMerge = true
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergetoollttoolgttrustExitCode
+  # Specify whether the exit code of the merge command is used to determine whether the merge was successful
+  trustExitCode = true
+
 [mergetool "meld"]
   # http://meldmerge.org/
   # User diff3 merge style in meld
