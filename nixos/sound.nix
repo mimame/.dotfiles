@@ -26,7 +26,6 @@
     [
 
       pavucontrol
-      pulseaudio # to be able to use pactl
     ]
     ++ (with pkgs.unstable; [
 
