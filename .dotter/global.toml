@@ -57,6 +57,7 @@ wezterm = "~/.config/wezterm"
 xplr = "~/.config/xplr"
 yazi = { target = "~/.config/yazi", type = "symbolic" }
 zathura = "~/.config/zathura"
+zed = "~/.config/zed"
 zellij = "~/.config/zellij"
 
 [default.variables]
