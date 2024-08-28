@@ -134,9 +134,7 @@
 
   # Many programs look at /etc/shells to determine
   # if a user is a "normal" user and not a "system" user
-  environment.shells = [
-    pkgs.unstable.fish
-  ];
+  environment.shells = [ pkgs.unstable.fish ];
 
   # Policy that allows unprivileged processes to speak to privileged processes
   security.polkit.enable = true;
