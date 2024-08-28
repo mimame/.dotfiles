@@ -250,6 +250,7 @@
       trash-cli
       tre-command
       tree
+      trurl
       tz
       udiskie
       unar
