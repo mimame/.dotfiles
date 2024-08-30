@@ -187,6 +187,7 @@
       lnav
       lsd
       lshw
+      lychee
       massren
       mcfly
       mdcat
