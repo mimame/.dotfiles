@@ -87,6 +87,7 @@ bindsym $mod+Mod1+b exec blueman-manager
 bindsym $mod+Mod1+c exec code
 bindsym $mod+Mod1+e exec emote
 bindsym $mod+Mod1+f exec floorp
+bindsym $mod+Mod1+k exec kitty
 bindsym $mod+Mod1+l exec logseq
 bindsym $mod+Mod1+o exec obsidian
 bindsym $mod+Mod1+p exec pcmanfm
