@@ -2,7 +2,16 @@
 {
 
   # Bluetooth
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+    settings = {
+      General = {
+        # Enable experimental features like battery level
+        Experimental = true;
+      };
+    };
+  };
   services.blueman.enable = true;
   environment.etc = {
     "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
