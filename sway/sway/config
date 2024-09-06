@@ -98,7 +98,7 @@ bindsym $mod+Mod1+Shift+e exec evince
 bindsym $mod+Mod1+Shift+f exec flameshot gui
 bindsym $mod+Mod1+t exec thunderbird
 bindsym $mod+Mod1+v exec vivaldi
-bindsym $mod+Mod1+x exec wezterm -e xplr
+bindsym $mod+Mod1+x exec wezterm -e yazi
 # Notifications center
 bindsym $mod+Mod1+n exec swaync-client -t -sw
 
