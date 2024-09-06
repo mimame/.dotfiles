@@ -25,7 +25,7 @@
     with pkgs;
     [
 
-      pavucontrol
+      pwvucontrol
     ]
     ++ (with pkgs.unstable; [
 
