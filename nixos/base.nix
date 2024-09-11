@@ -200,6 +200,7 @@
       noto-fonts
       noto-fonts-color-emoji
       roboto
+      source-sans-pro
     ];
     fontconfig = {
       defaultFonts = {
