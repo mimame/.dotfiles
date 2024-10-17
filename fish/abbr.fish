@@ -147,7 +147,7 @@ abbr zellijrc 'pushd ~/.dotfiles/zellij/ && $EDITOR config.kdl && popd'
 abbr pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
 # Command to find public IP address
-abbr myip "dig +short myip.opendns.com @resolver1.opendns.com"
+abbr myip "dig -4 +short myip.opendns.com @resolver1.opendns.com"
 
 # Abbreviations for system monitoring
 abbr tp btop
