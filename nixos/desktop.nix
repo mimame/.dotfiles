@@ -118,7 +118,8 @@ in
   # enable sway window manager
   programs.sway = {
     enable = true;
-    package = pkgs.unstable.sway;
+    # sway unstable breaks electron apps like vivaldi, obsidian and google-chrome
+    # package = pkgs.unstable.sway;
     wrapperFeatures.gtk = true;
     extraSessionCommands = ''
       export SDL_VIDEODRIVER=wayland
@@ -157,7 +158,8 @@ in
   };
 
   # Enable Wayland compatibility with X11
-  programs.xwayland.enable = true;
+  # Already enabled by programs.sway
+  # programs.xwayland.enable = true;
 
   # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
