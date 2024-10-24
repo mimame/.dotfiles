@@ -14,25 +14,25 @@ return {
     end,
   },
   -- Small automated session manager
-  {
-    "rmagatti/auto-session",
-    dependencies = {
-      "nvim-telescope/telescope.nvim", -- Only needed if you want to use session lens
-    },
-    lazy = false,
-    config = function()
-      require("auto-session").setup {
-        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-        cwd_change_handling = {
-          auto_save_enabled = true,
-          restore_upcoming_session = true, -- Disabled by default, set to true to enable
-          post_cwd_changed_hook = function() -- example refreshing the lualine status line _after_ the cwd changes
-            require("lualine").refresh() -- refresh lualine so the new session name is displayed in the status bar
-          end,
-        },
-      }
-    end,
-  },
+  -- {
+  --   "rmagatti/auto-session",
+  --   dependencies = {
+  --     "nvim-telescope/telescope.nvim", -- Only needed if you want to use session lens
+  --   },
+  --   lazy = false,
+  --   config = function()
+  --     require("auto-session").setup {
+  --       auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+  --       cwd_change_handling = {
+  --         auto_save_enabled = false,
+  --         restore_upcoming_session = false, -- Disabled by default, set to true to enable
+  --         post_cwd_changed_hook = function() -- example refreshing the lualine status line _after_ the cwd changes
+  --           require("lualine").refresh() -- refresh lualine so the new session name is displayed in the status bar
+  --         end,
+  --       },
+  --     }
+  --   end,
+  -- },
   -- Improve the default vim.ui interfaces
   {
     "stevearc/dressing.nvim",
