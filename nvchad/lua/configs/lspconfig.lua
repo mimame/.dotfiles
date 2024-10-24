@@ -42,9 +42,8 @@ local servers = {
   "terraformls",
   "texlab",
   "tflint",
-  -- "tinymist", -- use typst-lsp instead
+  "tinymist",
   "typos_lsp",
-  "typst_lsp",
   "yamlls",
   "zls",
 }
