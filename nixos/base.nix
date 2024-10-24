@@ -241,6 +241,5 @@
     ]
     ++ (with pkgs.unstable; [
 
-      firmwareLinuxNonfree
     ]);
 }

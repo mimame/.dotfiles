@@ -14,6 +14,7 @@ in
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
+    ./hardware/firmware.nix
     ./base.nix
     ./base/cli.nix
     ./base/languages_and_lsp.nix
@@ -66,9 +67,6 @@ in
       ];
     };
   };
-
-  # Enable all firmware regardless of license
-  hardware.enableAllFirmware = true;
 
   nixpkgs.config = {
     # Allow unfree packages
