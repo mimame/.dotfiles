@@ -257,7 +257,10 @@ in
       telegram-desktop
       thunderbird
       tridactyl-native
-      vivaldi
+      (vivaldi.override {
+        proprietaryCodecs = true;
+        enableWidevine = true;
+      })
       vlc
       vscode
       xdragon
