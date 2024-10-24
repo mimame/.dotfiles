@@ -116,6 +116,8 @@ return {
       },
     },
   },
+  -- Move by subwords and skip insignificant punctuation
+  { "chrisgrieser/nvim-spider", lazy = true },
   -- Lightweight yet powerful formatter plugin
   {
     "stevearc/conform.nvim",
