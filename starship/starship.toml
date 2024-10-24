@@ -78,11 +78,7 @@ symbol = 'buf '
 style = 'bold blue'
 disabled = false
 detect_extensions = []
-detect_files = [
-    'buf.yaml',
-    'buf.gen.yaml',
-    'buf.work.yaml',
-]
+detect_files = ['buf.yaml', 'buf.gen.yaml', 'buf.work.yaml']
 detect_folders = []
 
 [bun]
@@ -92,10 +88,7 @@ symbol = 'bun '
 style = 'bold red'
 disabled = false
 detect_extensions = []
-detect_files = [
-    'bun.lockb',
-    'bunfig.toml',
-]
+detect_files = ['bun.lockb', 'bunfig.toml']
 detect_folders = []
 
 [c]
@@ -104,26 +97,10 @@ version_format = 'v${raw}'
 style = '149 bold'
 symbol = 'C '
 disabled = false
-detect_extensions = [
-    'c',
-    'h',
-]
+detect_extensions = ['c', 'h']
 detect_files = []
 detect_folders = []
-commands = [
-    [
-    'cc',
-    '--version',
-],
-    [
-    'gcc',
-    '--version',
-],
-    [
-    'clang',
-    '--version',
-],
-]
+commands = [['cc', '--version'], ['gcc', '--version'], ['clang', '--version']]
 
 [character]
 format = '$symbol '
@@ -142,10 +119,7 @@ symbol = 'cmake '
 style = 'bold blue'
 disabled = false
 detect_extensions = []
-detect_files = [
-    'CMakeLists.txt',
-    'CMakeCache.txt',
-]
+detect_files = ['CMakeLists.txt', 'CMakeCache.txt']
 detect_folders = []
 
 [cmd_duration]
@@ -163,12 +137,7 @@ version_format = 'v${raw}'
 symbol = 'cobol '
 style = 'bold blue'
 disabled = false
-detect_extensions = [
-    'cbl',
-    'cob',
-    'CBL',
-    'COB',
-]
+detect_extensions = ['cbl', 'cob', 'CBL', 'COB']
 detect_files = []
 detect_folders = []
 
@@ -213,11 +182,7 @@ symbol = 'dart '
 style = 'bold blue'
 disabled = false
 detect_extensions = ['dart']
-detect_files = [
-    'pubspec.yaml',
-    'pubspec.yml',
-    'pubspec.lock',
-]
+detect_files = ['pubspec.yaml', 'pubspec.yml', 'pubspec.lock']
 detect_folders = ['.dart_tool']
 
 [deno]
@@ -228,12 +193,12 @@ style = 'green bold'
 disabled = false
 detect_extensions = []
 detect_files = [
-    'deno.json',
-    'deno.jsonc',
-    'mod.ts',
-    'deps.ts',
-    'mod.js',
-    'deps.js',
+  'deno.json',
+  'deno.jsonc',
+  'mod.ts',
+  'deps.ts',
+  'mod.js',
+  'deps.js',
 ]
 detect_folders = []
 
@@ -261,11 +226,7 @@ format = '[$symbol$context]($style) '
 only_with_files = true
 disabled = false
 detect_extensions = []
-detect_files = [
-    'docker-compose.yml',
-    'docker-compose.yaml',
-    'Dockerfile',
-]
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
 detect_folders = []
 
 [dotnet]
@@ -275,17 +236,13 @@ symbol = '.NET '
 style = 'blue bold'
 heuristic = true
 disabled = false
-detect_extensions = [
-    'csproj',
-    'fsproj',
-    'xproj',
-]
+detect_extensions = ['csproj', 'fsproj', 'xproj']
 detect_files = [
-    'global.json',
-    'project.json',
-    'Directory.Build.props',
-    'Directory.Build.targets',
-    'Packages.props',
+  'global.json',
+  'project.json',
+  'Directory.Build.props',
+  'Directory.Build.targets',
+  'Packages.props',
 ]
 detect_folders = []
 
@@ -306,11 +263,7 @@ symbol = 'elm '
 style = 'cyan bold'
 disabled = false
 detect_extensions = ['elm']
-detect_files = [
-    'elm.json',
-    'elm-package.json',
-    '.elm-version',
-]
+detect_files = ['elm.json', 'elm-package.json', '.elm-version']
 detect_folders = ['elm-stuff']
 
 [env_var]
@@ -322,10 +275,7 @@ symbol = 'erlang '
 style = 'bold red'
 disabled = false
 detect_extensions = []
-detect_files = [
-    'rebar.config',
-    'erlang.mk',
-]
+detect_files = ['rebar.config', 'erlang.mk']
 detect_folders = []
 
 [fill]
@@ -408,13 +358,13 @@ style = 'bold cyan'
 disabled = false
 detect_extensions = ['go']
 detect_files = [
-    'go.mod',
-    'go.sum',
-    'go.work',
-    'glide.yaml',
-    'Gopkg.yml',
-    'Gopkg.lock',
-    '.go-version',
+  'go.mod',
+  'go.sum',
+  'go.work',
+  'glide.yaml',
+  'Gopkg.yml',
+  'Gopkg.lock',
+  '.go-version',
 ]
 detect_folders = ['Godeps']
 
@@ -430,15 +380,8 @@ version_format = 'v${raw}'
 symbol = 'haskell '
 style = 'bold purple'
 disabled = false
-detect_extensions = [
-    'hs',
-    'cabal',
-    'hs-boot',
-]
-detect_files = [
-    'stack.yaml',
-    'cabal.project',
-]
+detect_extensions = ['hs', 'cabal', 'hs-boot']
+detect_files = ['stack.yaml', 'cabal.project']
 detect_folders = []
 
 [haxe]
@@ -447,19 +390,9 @@ version_format = 'v${raw}'
 symbol = 'haxe '
 style = 'bold fg:202'
 disabled = false
-detect_extensions = [
-    'hx',
-    'hxml',
-]
-detect_files = [
-    'haxelib.json',
-    'hxformat.json',
-    '.haxerc',
-]
-detect_folders = [
-    '.haxelib',
-    'haxe_libraries',
-]
+detect_extensions = ['hx', 'hxml']
+detect_files = ['haxelib.json', 'hxformat.json', '.haxerc']
+detect_folders = ['.haxelib', 'haxe_libraries']
 
 [helm]
 format = '[$symbol($version )]($style)'
@@ -468,10 +401,7 @@ symbol = 'helm '
 style = 'bold white'
 disabled = false
 detect_extensions = []
-detect_files = [
-    'helmfile.yaml',
-    'Chart.yaml',
-]
+detect_files = ['helmfile.yaml', 'Chart.yaml']
 detect_folders = []
 
 [hg_branch]
@@ -496,22 +426,15 @@ format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 style = 'red dimmed'
 symbol = 'java '
-detect_extensions = [
-    'java',
-    'class',
-    'jar',
-    'gradle',
-    'clj',
-    'cljc',
-]
+detect_extensions = ['java', 'class', 'jar', 'gradle', 'clj', 'cljc']
 detect_files = [
-    'pom.xml',
-    'build.gradle.kts',
-    'build.sbt',
-    '.java-version',
-    'deps.edn',
-    'project.clj',
-    'build.boot',
+  'pom.xml',
+  'build.gradle.kts',
+  'build.sbt',
+  '.java-version',
+  'deps.edn',
+  'project.clj',
+  'build.boot',
 ]
 detect_folders = []
 
@@ -531,10 +454,7 @@ symbol = 'julia '
 style = 'bold purple'
 disabled = false
 detect_extensions = ['jl']
-detect_files = [
-    'Project.toml',
-    'Manifest.toml',
-]
+detect_files = ['Project.toml', 'Manifest.toml']
 detect_folders = []
 
 [kotlin]
@@ -544,10 +464,7 @@ symbol = 'kotlin '
 style = 'bold blue'
 kotlin_binary = 'kotlin'
 disabled = false
-detect_extensions = [
-    'kt',
-    'kts',
-]
+detect_extensions = ['kt', 'kts']
 detect_files = []
 detect_folders = []
 
@@ -605,11 +522,7 @@ version_format = 'v${raw}'
 symbol = 'nim '
 style = 'yellow bold'
 disabled = false
-detect_extensions = [
-    'nim',
-    'nims',
-    'nimble',
-]
+detect_extensions = ['nim', 'nims', 'nimble']
 detect_files = ['nim.cfg']
 detect_folders = []
 
@@ -628,19 +541,8 @@ symbol = 'nodejs '
 style = 'bold green'
 disabled = false
 not_capable_style = 'bold red'
-detect_extensions = [
-    'js',
-    'mjs',
-    'cjs',
-    'ts',
-    'mts',
-    'cts',
-]
-detect_files = [
-    'package.json',
-    '.node-version',
-    '.nvmrc',
-]
+detect_extensions = ['js', 'mjs', 'cjs', 'ts', 'mts', 'cts']
+detect_files = ['package.json', '.node-version', '.nvmrc']
 detect_folders = ['node_modules']
 
 [ocaml]
@@ -651,24 +553,9 @@ local_switch_indicator = '*'
 symbol = 'ocaml '
 style = 'bold yellow'
 disabled = false
-detect_extensions = [
-    'opam',
-    'ml',
-    'mli',
-    're',
-    'rei',
-]
-detect_files = [
-    'dune',
-    'dune-project',
-    'jbuild',
-    'jbuild-ignore',
-    '.merlin',
-]
-detect_folders = [
-    '_opam',
-    'esy.lock',
-]
+detect_extensions = ['opam', 'ml', 'mli', 're', 'rei']
+detect_files = ['dune', 'dune-project', 'jbuild', 'jbuild-ignore', '.merlin']
+detect_folders = ['_opam', 'esy.lock']
 
 [opa]
 format = '[$symbol($version )]($style)'
@@ -743,19 +630,15 @@ version_format = 'v${raw}'
 symbol = 'perl '
 style = '149 bold'
 disabled = false
-detect_extensions = [
-    'pl',
-    'pm',
-    'pod',
-]
+detect_extensions = ['pl', 'pm', 'pod']
 detect_files = [
-    'Makefile.PL',
-    'Build.PL',
-    'cpanfile',
-    'cpanfile.snapshot',
-    'META.json',
-    'META.yml',
-    '.perl-version',
+  'Makefile.PL',
+  'Build.PL',
+  'cpanfile',
+  'cpanfile.snapshot',
+  'META.json',
+  'META.yml',
+  '.perl-version',
 ]
 detect_folders = []
 
@@ -766,10 +649,7 @@ symbol = 'php '
 style = '147 bold'
 disabled = false
 detect_extensions = ['php']
-detect_files = [
-    'composer.json',
-    '.php-version',
-]
+detect_files = ['composer.json', '.php-version']
 detect_folders = []
 
 [pulumi]
@@ -793,11 +673,7 @@ detect_folders = []
 [python]
 pyenv_version_name = false
 pyenv_prefix = 'pyenv '
-python_binary = [
-    'python',
-    'python3',
-    'python2',
-]
+python_binary = ['python', 'python3', 'python2']
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 version_format = 'v${raw}'
 style = 'yellow bold'
@@ -805,13 +681,13 @@ symbol = 'python '
 disabled = false
 detect_extensions = ['py']
 detect_files = [
-    'requirements.txt',
-    '.python-version',
-    'pyproject.toml',
-    'Pipfile',
-    'tox.ini',
-    'setup.py',
-    '__init__.py',
+  'requirements.txt',
+  '.python-version',
+  'pyproject.toml',
+  'Pipfile',
+  'tox.ini',
+  'setup.py',
+  '__init__.py',
 ]
 detect_folders = []
 
@@ -821,13 +697,7 @@ version_format = '${raw}'
 symbol = 'raku '
 style = '149 bold'
 disabled = false
-detect_extensions = [
-    'p6',
-    'pm6',
-    'pod6',
-    'raku',
-    'rakumod',
-]
+detect_extensions = ['p6', 'pm6', 'pod6', 'raku', 'rakumod']
 detect_files = ['META6.json']
 detect_folders = []
 
@@ -837,10 +707,7 @@ version_format = 'v${raw}'
 symbol = 'red '
 style = 'red bold'
 disabled = false
-detect_extensions = [
-    'red',
-    'reds',
-]
+detect_extensions = ['red', 'reds']
 detect_files = []
 detect_folders = []
 
@@ -850,13 +717,7 @@ version_format = 'v${raw}'
 style = 'blue bold'
 symbol = 'Rlang '
 disabled = false
-detect_extensions = [
-    'R',
-    'Rd',
-    'Rmd',
-    'Rproj',
-    'Rsx',
-]
+detect_extensions = ['R', 'Rd', 'Rmd', 'Rproj', 'Rsx']
 detect_files = ['.Rprofile']
 detect_folders = ['.Rproj.user']
 
@@ -867,15 +728,9 @@ symbol = 'ruby '
 style = 'bold red'
 disabled = false
 detect_extensions = ['rb']
-detect_files = [
-    'Gemfile',
-    '.ruby-version',
-]
+detect_files = ['Gemfile', '.ruby-version']
 detect_folders = []
-detect_variables = [
-    'RUBY_VERSION',
-    'RBENV_VERSION',
-]
+detect_variables = ['RUBY_VERSION', 'RBENV_VERSION']
 
 [rust]
 format = '[$symbol($version )]($style)'
@@ -893,15 +748,8 @@ version_format = 'v${raw}'
 disabled = false
 style = 'red bold'
 symbol = 'scala '
-detect_extensions = [
-    'sbt',
-    'scala',
-]
-detect_files = [
-    '.scalaenv',
-    '.sbtenv',
-    'build.sbt',
-]
+detect_extensions = ['sbt', 'scala']
+detect_files = ['.scalaenv', '.sbtenv', 'build.sbt']
 detect_folders = ['.metals']
 
 [shell]
@@ -980,11 +828,7 @@ version_format = 'v${raw}'
 symbol = 'terraform '
 style = 'bold 105'
 disabled = false
-detect_extensions = [
-    'tf',
-    'tfplan',
-    'tfstate',
-]
+detect_extensions = ['tf', 'tfplan', 'tfstate']
 detect_files = []
 detect_folders = ['.terraform']
 
@@ -1026,11 +870,7 @@ symbol = 'Vlang '
 style = 'blue bold'
 disabled = false
 detect_extensions = ['v']
-detect_files = [
-    'v.mod',
-    'vpkg.json',
-    '.vpkg-lock.json',
-]
+detect_files = ['v.mod', 'vpkg.json', '.vpkg-lock.json']
 detect_folders = []
 
 [zig]
@@ -1042,11 +882,5 @@ disabled = false
 detect_extensions = ['zig']
 detect_files = []
 detect_folders = []
-
-[palettes.tokyonight_moon]
-red = "#ff757f"
-yellow = "#ffc777"
-blue = "#86e1fc"
-purple = "#fca7ea"
 
 [custom]
