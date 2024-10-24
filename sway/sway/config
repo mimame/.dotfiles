@@ -302,6 +302,10 @@ bindsym $mod+Shift+F11 move container to workspace number $ws21
 bindsym $mod+Shift+F12 move container to workspace number $ws22
 
 # Open applications on specific workspaces (using init_workspaces script instead)
+assign [class="Wezterm"] number $ws1
+assign [class="Vivaldi"] number $ws2
+assign [class="Obsidian"] number $ws3
+assign [class="Spotify"] number $ws4
 # assign [class="floorp"] number $ws2
 # for_window [title="^Google Hangouts.*$"] move to workspace number $ws3
 # for_window [title="^Hangouts Video Call.*$"] move to workspace number $ws3
@@ -310,16 +314,14 @@ bindsym $mod+Shift+F12 move container to workspace number $ws22
 # assign [class="Thunderbird"] number $ws3
 # assign [class="Slack"] number $ws3
 # assign [class="Zotero"] number $ws4
+# for_window [title="^Spotify"] move to workspace number $ws0
 
 # Start programs by default (using init_workspaces script instead)
-# exec alacritty
-# exec floorp
-# exec floorp --private-window'
-# exec google-chrome-stable
-# exec thunderbird
-# exec slack
-# exec zotero
-# exec spotify
+exec wezterm
+exec vivaldi
+exec vivaldi --private-window
+exec obsidian
+exec spotify
 
 
 # Open specific applications in floating mode
@@ -433,4 +435,3 @@ bar {
 # Init programs in specific workspaces
 # It's necessary wait until each window is shown in its workspace
 # before run the next one
-exec wezterm
