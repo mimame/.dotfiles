@@ -15,6 +15,7 @@ in
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
     ./hardware/firmware.nix
+    ./hardware/graphics.nix
     ./base.nix
     ./base/cli.nix
     ./base/languages_and_lsp.nix
