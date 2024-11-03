@@ -62,6 +62,8 @@
 
   programs.mosh.enable = true;
 
+  programs.fuse.userAllowOther = true;
+
   environment.systemPackages =
     with pkgs;
     [
@@ -142,7 +144,6 @@
       fend
       file
       frawk
-      fuse-common
       fx
       fzf
       gawk
