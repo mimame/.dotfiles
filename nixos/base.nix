@@ -161,6 +161,10 @@
   # By now the stable version is used to avoid break the virtualbox virtualisation
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
+
   environment.systemPackages =
     with pkgs;
     [
