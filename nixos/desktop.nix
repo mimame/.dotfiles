@@ -218,7 +218,10 @@ in
       evince
       ffmpeg-full
       filezilla
-      firefox
+      (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {
+        ffmpegSupport = true;
+        pipewireSupport = true;
+      }) { })
       flameshot
       floorp
       gimp
