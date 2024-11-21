@@ -384,8 +384,8 @@
   prunetags = true
 
 [gpg]
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgprogram
-  program = gpg
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgformat
+	format = ssh
 
 [grep]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-greplineNumber
