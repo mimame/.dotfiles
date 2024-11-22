@@ -167,7 +167,9 @@
     ])
     ++ (with pkgs.unstable; [
       # Typst
+      tinymist
       typst
+      typstyle
     ])
     ++ (with pkgs.unstable; [
       # Yaml
