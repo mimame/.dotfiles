@@ -107,7 +107,6 @@
       # hatch
       jupyter-all
       poetry
-      pre-commit
       python3Packages.ipython
       python3Packages.ptpython
       python3Packages.pylsp-mypy
@@ -116,7 +115,6 @@
       python3Packages.python-lsp-server
       python3Packages.radian
       ruff
-      rye
       uv
     ])
     ++ (with pkgs.unstable; [
