@@ -100,7 +100,6 @@
     ++ (with pkgs.unstable; [
       # Protocol Buffers
       buf
-      buf-language-server
       protobuf
     ])
     ++ (with pkgs.unstable; [
