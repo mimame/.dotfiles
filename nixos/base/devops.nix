@@ -117,9 +117,9 @@
       pulumi-bin
       python3Packages.boto3
       python3Packages.localstack
-      terraform
       # qemu_test
       # qemu-utils # Let lxc to create --vm
       vagrant
+      tenv # opentofu and terraform
     ]);
 }
