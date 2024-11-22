@@ -12,7 +12,7 @@
 
   # Service discovery on a local network
   services.avahi = {
-    enable = true;
+    enable = true; # Required by the default services.geoclue2.enableNmea option
     package = pkgs.unstable.avahi;
     openFirewall = true;
     # Important to resolve .local domains of printers, otherwise you get an error
