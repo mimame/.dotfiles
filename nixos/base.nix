@@ -34,10 +34,6 @@
   # Set default locale to US English with UTF-8 encoding
   i18n.defaultLocale = "en_US.utf8";
 
-  # Enable automatic time synchronization
-  services.chrony.enable = true;
-  services.automatic-timezoned.enable = true;
-
   # Enable UDisks2 for storage device management
   services.udisks2.enable = true;
 
