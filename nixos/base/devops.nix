@@ -63,7 +63,7 @@
     package = pkgs.unstable.singularity;
   };
 
-  security.sudo = {
+  security.sudo-rs = {
     # Configure podman to be use by minikube
     extraRules = [
       {
