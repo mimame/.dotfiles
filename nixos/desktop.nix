@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 let
 
   # bash script to let dbus know about important env variables and
@@ -53,20 +50,6 @@ let
   };
 in
 {
-  # Start GeoClue2 daemon
-  # enabled by services.automatic-timezoned.enable = true;
-  # services.geoclue2.enable = true;
-  # location.provider = "geoclue2";
-  # https://github.com/NixOS/nixpkgs/issues/321121
-  services.geoclue2 = {
-    geoProviderUrl = "https://beacondb.net/v1/geolocate";
-    # submitData = true;
-    # submissionUrl = "https://beacondb.net/v2/geosubmit";
-  };
-  services.geoclue2.appConfig.gammastep = {
-    isAllowed = true;
-    isSystem = true;
-  };
   # systemd units
   systemd = {
     user.services = {
@@ -216,6 +199,7 @@ in
       wlrctl
       wtype
       ydotool
+      libreoffice
       zoom-us # White screen if the version is linked from pkgs.unstable
     ]
     ++ (with pkgs.unstable; [
@@ -255,7 +239,6 @@ in
       joplin-desktop
       klavaro
       lapce
-      libreoffice-fresh
       logseq
       meld
       nheko
