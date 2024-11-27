@@ -154,8 +154,10 @@
   documentation.man.generateCaches = true;
 
   # Use the latest available version of Linux
-  # By now the stable version is used to avoid break the virtualbox virtualisation
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # By now the stable version is used to avoid issues:
+  # - btrfs corruption
+  # - break the virtualbox virtualisation
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernel.sysctl = {
     "vm.swappiness" = 10;
