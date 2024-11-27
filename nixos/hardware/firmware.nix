@@ -6,9 +6,10 @@
 
   environment.systemPackages =
     with pkgs;
-    [ ]
+    [
+      firmwareLinuxNonfree
+    ]
     ++ (with pkgs.unstable; [
 
-      firmwareLinuxNonfree
     ]);
 }
