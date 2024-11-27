@@ -48,6 +48,16 @@
     '';
   };
 
+  # 3200-2000-1200-800DPI
+  # ls -l /dev/input/by-id/*
+  # mouse-dpi-tool /dev/input/event27
+  # mouse:usb:v1bcfp0053:name:USB Optical Mouse  Mouse:
+  #  MOUSE_DPI=2000@145
+  services.udev.extraHwdb = ''
+    mouse:usb:*
+     MOUSE_DPI=3200@145
+  '';
+
   # Always enable the shell system-wide
   # Otherwise it won't source the necessary files
   # Use completion files provided by other packages
@@ -168,8 +178,9 @@
     [
 
       interception-tools
-      libevdev
+      libevdev # mouse-dpi-tool
       libnotify
+
     ]
     ++ (with pkgs.unstable; [
 
