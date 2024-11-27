@@ -8,6 +8,7 @@
   virtualisation = {
     podman = {
       enable = true;
+      autoPrune.enable = true;
       dockerSocket.enable = true;
       dockerCompat = true;
       # containers and processes connected to this network can resolve hostnames
