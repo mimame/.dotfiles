@@ -11,13 +11,14 @@
     with pkgs;
     [
 
-    ]
-    ++ (with pkgs.unstable; [
-
+      litecli
       # mariadb-connector-c # For Rails but generates too much collisions
       mycli
       redis
       usql
-      litecli
+
+    ]
+    ++ (with pkgs.unstable; [
+
     ]);
 }
