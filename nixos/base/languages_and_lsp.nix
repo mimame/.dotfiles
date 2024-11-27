@@ -165,14 +165,15 @@
     ])
     ++ (with pkgs.unstable; [
       # TypeScript/Node.js
+      biome
       nodejs
       nodePackages.bash-language-server
       nodePackages.npm
       nodePackages.svelte-language-server
       nodePackages.typescript
-      typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
+      typescript
     ])
     ++ (with pkgs.unstable; [
       # Typst
@@ -223,7 +224,6 @@
       plantuml
       ripsecrets
       taplo
-      terraform-ls
       treefmt
       typos
       typos-lsp
