@@ -29,9 +29,16 @@ input "type:touchpad" {
 	drag_lock enabled
   dwt enabled
   middle_emulation disabled
+
   natural_scroll enabled
 	tap_button_map lrm
   tap enabled
+  pointer_accel 1
+}
+
+input "type:pointer" {
+    # accel_profile flat
+    pointer_accel 1
 }
 
 # Allow switching between workspaces with left and right swipes
