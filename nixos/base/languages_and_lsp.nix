@@ -48,6 +48,11 @@
       gopls
     ])
     ++ (with pkgs.unstable; [
+      # Inko
+      inko
+      ivm
+    ])
+    ++ (with pkgs.unstable; [
       # Janet
       janet
       jpm
