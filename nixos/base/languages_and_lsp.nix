@@ -78,9 +78,13 @@
     ])
     ++ (with pkgs.unstable; [
       # Lua
-      lua
+      # lua
+      # Lua 5.1 required by all the neovim setups
+      lua51Packages.jsregexp
+      lua51Packages.lua
+      lua51Packages.luarocks
       lua-language-server
-      luaPackages.luarocks
+      # luarocks
       stylua
     ])
     ++ (with pkgs.unstable; [
