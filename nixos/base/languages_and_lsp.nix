@@ -203,6 +203,7 @@
       codespell
       coreutils
       devenv
+      exercism
       gitleaks
       gnumake
       gnupatch
@@ -212,6 +213,7 @@
       hunspellDicts.es-es
       hunspellDicts.fr-moderne
       hyphen
+      languagetool
       lldb
       llvm
       ltex-ls
@@ -220,7 +222,6 @@
       nextflow
       pandoc
       pcre2
-      languagetool
       plantuml
       ripsecrets
       taplo
