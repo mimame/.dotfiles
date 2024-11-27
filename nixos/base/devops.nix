@@ -101,6 +101,11 @@
     with pkgs;
     [
 
+      guestfs-tools
+      libguestfs
+      vagrant
+
+    ]
     ++ (with pkgs.unstable; [
 
       awscli # v1 for awslocal localstack compatibility
@@ -121,7 +126,6 @@
       python3Packages.localstack
       # qemu_test
       # qemu-utils # Let lxc to create --vm
-      vagrant
       tenv # opentofu and terraform
     ]);
 }
