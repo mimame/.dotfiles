@@ -56,11 +56,11 @@
     package = pkgs.unstable.virt-manager;
   };
 
+  # apptainer
   programs.singularity = {
     enable = true;
     enableFakeroot = true;
     enableSuid = true;
-    package = pkgs.unstable.singularity;
   };
 
   security.sudo-rs = {
