@@ -18,6 +18,59 @@ require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+
+    -- Coding
+    -- Feature-rich surround actions
+    { import = "lazyvim.plugins.extras.coding.mini-surround" },
+    -- Better annotation generator
+    { import = "lazyvim.plugins.extras.coding.neogen" },
+    -- Improved Yank and Put functionalities
+    { import = "lazyvim.plugins.extras.coding.yanky" },
+
+    -- DAP
+    -- Debug Adapter Protocol client
+    { import = "lazyvim.plugins.extras.dap.core" },
+
+    -- Editor
+    -- Getting you where you want with the fewest keystrokes
+    { import = "lazyvim.plugins.extras.editor.harpoon2" },
+    -- Automatically highlighting other uses of the word under the cursor
+    { import = "lazyvim.plugins.extras.editor.illuminate" },
+    -- Incremental LSP renaming
+    { import = "lazyvim.plugins.extras.editor.inc-rename" },
+    -- Move any selection in any direction
+    { import = "lazyvim.plugins.extras.editor.mini-move" },
+    -- A task runner and job management
+    { import = "lazyvim.plugins.extras.editor.overseer" },
+    -- The Refactoring library based off the Refactoring book by Martin Fowler
+    { import = "lazyvim.plugins.extras.editor.refactoring" },
+    -- Find, Filter, Preview, Pick
+    { import = "lazyvim.plugins.extras.editor.telescope" },
+
+    -- Languages
+    { import = "lazyvim.plugins.extras.lang.ansible" },
+    { import = "lazyvim.plugins.extras.lang.clojure" },
+    { import = "lazyvim.plugins.extras.lang.docker" },
+    { import = "lazyvim.plugins.extras.lang.git" },
+    { import = "lazyvim.plugins.extras.lang.go" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.lang.markdown" },
+    { import = "lazyvim.plugins.extras.lang.nix" },
+    { import = "lazyvim.plugins.extras.lang.nushell" },
+    { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.lang.rust" },
+    { import = "lazyvim.plugins.extras.lang.sql" },
+    { import = "lazyvim.plugins.extras.lang.terraform" },
+    { import = "lazyvim.plugins.extras.lang.toml" },
+    { import = "lazyvim.plugins.extras.lang.yaml" },
+
+    -- LSP
+    { import = "lazyvim.plugins.extras.lsp.neoconf" },
+    { import = "lazyvim.plugins.extras.lsp.none-ls" },
+
+    -- Test
+    { import = "lazyvim.plugins.extras.test.core" },
+
     -- import/override with your plugins
     { import = "plugins" },
   },
