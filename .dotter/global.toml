@@ -30,8 +30,7 @@ julia = "~/.julia/config/"
 kitty = { target = "~/.config/kitty", type = "symbolic" }
 # latex = "~/"
 lazygit = "~/.config/lazygit"
-lazyvim = "~/.config/lazyvim/"
-lvim = "~/.config/lvim"
+lazyvim = "~/.config/nvim/"
 lvim-dictionary = "~/.local/share/lunarvim/site/pack/lazy/opt/nvim-treesitter/spell/"
 mimeapps = "~/.config/"
 navi = "~/.config/navi"
@@ -39,7 +38,6 @@ navi = "~/.config/navi"
 nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
 nnn = "~/.config/fish/"
 nushell = { target = "~/.config/nushell", type = "symbolic" }
-nvchad = "~/.config/nvchad/"
 # parallel = "~/.config/"
 ptpython = "~/.config/ptpython"
 pueue = { target = "~/.config/pueue", type = "symbolic" }

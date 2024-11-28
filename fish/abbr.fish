@@ -64,7 +64,7 @@ abbr ap ansible-playbook
 abbr vbm VBoxManage
 
 # Use nvim as the default editor
-set -g -x default_nvim lazyvim
+set -g -x default_nvim nvim
 set -g -x EDITOR $default_nvim
 set -g VISUAL $EDITOR
 set -g -x GIT_EDITOR $EDITOR
