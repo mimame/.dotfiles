@@ -71,6 +71,14 @@ require("lazy").setup({
     -- Test
     { import = "lazyvim.plugins.extras.test.core" },
 
+    -- Utils
+    -- Recognize config files
+    { import = "lazyvim.plugins.extras.util.dot" },
+    -- Highlight patterns in text
+    { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+    -- A minimal HTTP-client interface
+    { import = "lazyvim.plugins.extras.util.rest" },
+
     -- import/override with your plugins
     { import = "plugins" },
   },
