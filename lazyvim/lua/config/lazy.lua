@@ -20,6 +20,8 @@ require("lazy").setup({
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
     -- Coding
+    -- Snippet Engine
+    { import = "lazyvim.plugins.extras.coding.luasnip" },
     -- Feature-rich surround actions
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
     -- Better annotation generator
