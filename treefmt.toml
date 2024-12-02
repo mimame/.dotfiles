@@ -1,0 +1,13 @@
+# One CLI to format the code tree - https://git.numtide.com/numtide/treefmt
+
+[formatter.nixfmt]
+command = "nixfmt"
+options = []
+includes = ["*.nix"]
+excludes = []
+
+[formatter.fish-fmt]
+command = "fish_indent"
+options = ["-w"]
+includes = ["*.fish"]
+excludes = []
