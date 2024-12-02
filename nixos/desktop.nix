@@ -160,7 +160,7 @@ in
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
   # ensure gnome-settings-daemon udev rules are enabled
-  services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
   # Trash support, SFTP, SMB, HTTP, DAV, and many others URIs for gnome
   services.gvfs.enable = true;
@@ -170,7 +170,8 @@ in
 
   # Add IBus engines for text completion and emojis
   i18n.inputMethod = {
-    enabled = "ibus";
+    enable = true;
+    type = "ibus";
     ibus.engines = with pkgs.unstable.ibus-engines; [
       typing-booster
       uniemoji
