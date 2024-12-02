@@ -54,7 +54,6 @@ end
 # Configure system environment variables
 set -x -U JULIA_NUM_THREADS 8
 set -x -U TMPDIR /tmp
-set -x -U TERMINAL wezterm
 
 # Configure moar as the default pager with line wrapping, replacing the deprecated less pager
 # Continue using bat as the default replacement for cat, less, and more commands
