@@ -125,12 +125,8 @@
       # Roboto:
       # - A modern, geometric sans-serif font known for its high readability.
       # - Preferred over Noto Sans for its clean and versatile design.
-      (nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-          "Hack"
-        ];
-      })
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.hack
       font-awesome
       merriweather
       noto-fonts
