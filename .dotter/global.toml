@@ -52,7 +52,6 @@ topgrade = "~/.config/topgrade"
 vimiv = "~/.config/vimiv"
 # vscode = ""
 wezterm = "~/.config/wezterm"
-xplr = "~/.config/xplr"
 yazi = { target = "~/.config/yazi", type = "symbolic" }
 zathura = "~/.config/zathura"
 zed = "~/.config/zed"
