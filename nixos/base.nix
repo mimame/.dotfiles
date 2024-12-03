@@ -1,17 +1,11 @@
 { pkgs, ... }:
 {
 
-  # Update the CPU microcode for Intel processors
-  hardware.cpu.intel.updateMicrocode = true;
-
   # Enable periodic SSD TRIM to maintain SSD performance
   services.fstrim.enable = true;
 
   # Enable ZRAM with zstd compression to avoid using swap
   zramSwap.enable = true;
-
-  # Prevent overheating of Intel CPUs and improve performance
-  services.thermald.enable = true;
 
   # Enable power management support via UPower
   services.upower.enable = true;
