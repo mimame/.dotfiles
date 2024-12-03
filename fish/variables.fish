@@ -42,10 +42,6 @@ set -Ux FZF_DEFAULT_OPTS '
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 
-# Configure Moar for better man page viewing
-set -x -U MOAR '--statusbar=bold --no-linenumbers'
-set -x -U MANPAGER "bat -l man -p"
-
 # Set default web browser to Vivaldi if available
 if command -q vivaldi
     set -x -U BROWSER vivaldi
@@ -55,10 +51,14 @@ end
 set -x -U JULIA_NUM_THREADS 8
 set -x -U TMPDIR /tmp
 
+# bat as the default replacement for cat, less & more commands
+set -x -U PAGER bat --wrap auto
+# Use nvim as default man pager to avoid rendering ascii issues
+set -x -U MANPAGER "nvim +Man!"
+# Don't use moar pager, better visualization with bat by no
 # Configure moar as the default pager with line wrapping, replacing the deprecated less pager
-# Continue using bat as the default replacement for cat, less, and more commands
-# set -g PAGER bat --wrap auto
-set -g PAGER moar --wrap
+# set -x -U MOAR '--statusbar=bold --no-linenumbers'
+# set -x -U PAGER moar
 
 # Ensure XDG_CONFIG_HOME is set
 if test -z "$XDG_CONFIG_HOME"
