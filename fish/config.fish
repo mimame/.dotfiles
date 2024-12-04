@@ -156,13 +156,13 @@ if status --is-interactive
         end
 
         # Create directory and generate carapace completions
-        mkdir -p ~/.config/fish/completions
-        set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense'
-        carapace --list | cut -d ' ' -f 1 | while read -l program
-            touch ~/.config/fish/completions/$program.fish
-        end
-        carapace _carapace | source
-
+        # mkdir -p ~/.config/fish/completions
+        # set -Ux CARAPACE_BRIDGES 'fish,zsh,bash,inshellisense'
+        # carapace --list | cut -d ' ' -f 1 | while read -l program
+        #    touch ~/.config/fish/completions/$program.fish
+        # end
+        # carapace _carapace | source
+        #
         # Clean up function definitions
         functions --erase load_completions
     end

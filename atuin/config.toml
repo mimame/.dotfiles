@@ -114,7 +114,7 @@ invert = true
 
 ## configures whether to store commands that failed
 ## (those with non-zero exist status or not)
-store_failed = false
+store_failed = true
 
 ## Defaults to true. This matches history against a set of default regex, and will not save it if we get a match. Defaults include
 ## 1. AWS key id
