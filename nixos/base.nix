@@ -10,6 +10,10 @@
   # Enable power management support via UPower
   services.upower.enable = true;
 
+  # Aims to provide high performance and reliability,
+  # while keeping compatibility to the D-Bus reference implementation
+  services.dbus.implementation = "broker";
+
   # Configure X11 keymap with US layout and AltGr international variant
   services.xserver = {
     xkb = {
@@ -152,16 +156,6 @@
 
   # Enable apropos(1) and the -k option of man(1)
   documentation.man.generateCaches = true;
-
-  # Use the latest available version of Linux
-  # By now the stable version is used to avoid issues:
-  # - btrfs corruption
-  # - break the virtualbox virtualisation
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 10;
-  };
 
   environment.systemPackages =
     with pkgs;

@@ -97,33 +97,36 @@
     ];
   };
 
+  # services.prometheus.enable = true;
+  # services.grafana.enable = true;
+
   environment.systemPackages =
     with pkgs;
     [
 
       guestfs-tools
       libguestfs
-      vagrant
+      # vagrant
 
     ]
     ++ (with pkgs.unstable; [
 
-      awscli # v1 for awslocal localstack compatibility
-      grafana
-      grafana-loki
+      # awscli # v1 for awslocal localstack compatibility
+      fly
+      # grafana
+      # grafana-loki
       kompose
       kubectl
       kubernetes
       kubernetes-helm
-      localstack
+      # localstack
       minikube
-      nodePackages.serverless
+      # nodePackages.serverless
       packer
       podman-tui
-      prometheus
-      pulumi-bin
-      python3Packages.boto3
-      python3Packages.localstack
+      # prometheus
+      # pulumi-bin # terraform
+      # python3Packages.localstack
       # qemu_test
       # qemu-utils # Let lxc to create --vm
       tenv # opentofu and terraform
