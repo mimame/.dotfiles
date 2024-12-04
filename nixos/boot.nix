@@ -13,6 +13,17 @@
     };
   };
 
+  # Use the latest available version of Linux
+  # By now the stable version is used to avoid issues:
+  # - btrfs corruption
+  # - break the virtualbox virtualisation
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Reducing aggressive swapping, the system can avoid disk I/O overhead, which can negatively impact responsiveness.
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
+
   # Disable all CPU possible mitigations, lead to performance gains, especially on older Intel CPUs (pre-10th gen)
   # The risk is that sensitive information, such as cryptographic secrets, could leak between different tasks on the system.
   # For typical embedded systems with two user levels, where a remote attacker can already compromise the non-privileged user,

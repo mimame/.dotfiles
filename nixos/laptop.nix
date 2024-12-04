@@ -22,8 +22,6 @@
     SuspendMode=suspend-then-hibernate
     HibernateDelaySec=30min
   '';
-  # Improve battery scaling the CPU governor and optimizing the general power
-  services.auto-cpufreq.enable = true;
 
   # Enable touchpad support (enabled by default in most desktopManager).
   services.libinput = {
