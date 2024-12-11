@@ -567,6 +567,9 @@
   # https://git-scm.com/docs/git-config#git-config-tagforceSignAnnotated
   # Always sign tags with GPG
   forceSignAnnotated = true
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-taggpgSign
+  # Use an agent to avoid typing your gpg passphrase several times.
+  gpgsign = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-tagsort
   # sort by most recently tags instead of alphabetical
   sort = taggerdate
