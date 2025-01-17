@@ -54,7 +54,8 @@ set -x -U TMPDIR /tmp
 # bat as the default replacement for cat, less & more commands
 set -x -U PAGER bat --wrap auto
 # Use nvim as default man pager to avoid rendering ascii issues
-set -x -U MANPAGER "nvim +Man!"
+# set -x -U MANPAGER "nvim +Man!"
+set -x -U MANPAGER "bat --strip-ansi=auto -l man -p"
 # Don't use moar pager, better visualization with bat by no
 # Configure moar as the default pager with line wrapping, replacing the deprecated less pager
 # set -x -U MOAR '--statusbar=bold --no-linenumbers'
