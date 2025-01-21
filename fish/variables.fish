@@ -21,6 +21,7 @@ set -U fish_cursor_visual block # Visual mode cursor
 
 # Configure 'thefuck' tool to exclude a specific rule
 set -x -U THEFUCK_EXCLUDE_RULES fix_file # Fix issue: https://github.com/nvbn/thefuck/issues/1153
+set -x THEFUCK_OVERRIDDEN_ALIASES 'nixosrc,yazirc'
 
 # Set colors for LS and EZA using 'vivid'
 set -x -U LS_COLORS (vivid generate catppuccin-mocha)
@@ -90,6 +91,7 @@ if test -f /opt/homebrew/bin/brew
 end
 
 # Set GPG_TTY for GPG agent
+# if test (uname) = Darwin
 if test -z GPG_TTY
     set -x GPG_TTY (tty)
 end

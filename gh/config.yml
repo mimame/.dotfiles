@@ -17,3 +17,4 @@ aliases:
     pco: pr checkout
     pv: pr view
     g: gist create
+version: "1"

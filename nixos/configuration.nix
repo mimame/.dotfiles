@@ -5,10 +5,10 @@
 { config, pkgs, ... }:
 let
   unstableTarball = fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
-  nix-alien-pkgs =
-    import (builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master")
-      { };
 in
+# nix-alien-pkgs =
+#   import (builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master")
+#     { };
 {
   # sudo ln -s ~/.dotfiles/nixos/etc/nixos/*.nix /etc/nixos/
   nixpkgs.config.permittedInsecurePackages = [
@@ -131,11 +131,11 @@ in
       with pkgs.unstable;
 
       [ ]
-    )
-    ++ (with nix-alien-pkgs; [
-      # Run unpatched binaries on Nix/NixOS
-      nix-alien
-    ]);
+    );
+  # ++ (with nix-alien-pkgs; [
+  #   # Run unpatched binaries on Nix/NixOS
+  #   nix-alien
+  # ]);
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -34,10 +34,10 @@
   # };
 
   # Maybe not needed
-  services.udev.packages = [ pkgs.unstable.espanso-wayland ];
-  services.udev.extraRules = ''
-    KERNEL=="uinput", GROUP="input", OPTIONS+="static_node=uinput", MODE=0660
-  '';
+  # services.udev.packages = [ pkgs.unstable.espanso-wayland ];
+  # services.udev.extraRules = ''
+  #   KERNEL=="uinput", GROUP="input", OPTIONS+="static_node=uinput", MODE=0660
+  # '';
   # systemd unit for espanso not working using sway instead
   # systemd = {
   #   user.services = {
@@ -60,8 +60,16 @@
 
   services.ollama.enable = true;
 
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    user = "mimame";
+    dataDir = "/home/mimame";
+  };
+
   programs.mosh.enable = true;
 
+  # programs.fuse
   programs.fuse.userAllowOther = true;
 
   environment.systemPackages =
@@ -73,7 +81,7 @@
       axel
       bc
       bind
-      (buku.override { withServer = true; })
+      # (buku.override { withServer = true; })
       dosfstools
       fakeroot
       lsb-release
@@ -86,14 +94,15 @@
       putty
       pv
       pwgen
-      python3Packages.howdoi
-      python3Packages.pip
+      # python3Packages.howdoi
+      # python3Packages.pip
       rustscan
       strace
       stress
+      tailspin
+      termscp
       tesseract5
       time
-      util-linux
       xdg-user-dirs
       xdg-utils
     ]
@@ -113,6 +122,7 @@
       chafa
       choose
       clifm
+      comma
       convco
       copyq
       coreutils
@@ -151,10 +161,11 @@
       gdu
       gfold
       ghostscript
+      ghostty
       git
       git-extras
       github-cli
-      # gitoxide
+      gitoxide
       gitui
       glow
       goawk
@@ -167,6 +178,7 @@
       gron
       grpcurl
       gzip
+      halp
       handlr
       hexyl
       httpie
@@ -187,6 +199,7 @@
       lazygit
       libarchive
       libqalculate
+      libsecret
       lnav
       lsd
       lshw
@@ -204,8 +217,13 @@
       neovim
       newsboat
       ninja
+      nix-direnv
+      nix-index
+      nixos-generators
       nix-tree
+      nix-update
       (nnn.override { withNerdIcons = true; })
+      nvme-cli
       oha
       onefetch
       ouch
@@ -220,6 +238,7 @@
       poop
       poppler_utils
       postgresql
+      pre-commit
       procs
       progress
       pueue
@@ -234,6 +253,7 @@
       scc
       sd
       sequoia-sq
+      smartmontools
       spacer
       speedtest-go
       sqlite
@@ -242,10 +262,8 @@
       starship
       stow
       systeroid
-      tailspin
       tealdeer
       tectonic
-      termscp
       testdisk
       thefuck
       tokei
@@ -261,6 +279,7 @@
       unrar
       unzip
       urlscan
+      util-linux
       vifm
       visidata
       vivid

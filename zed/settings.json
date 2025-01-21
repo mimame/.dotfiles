@@ -1,21 +1,37 @@
 {
-    "theme": "Catppuccin Mocha",
-    "telemetry": {
-        "metrics": false
-    },
-    "vim_mode": true,
-    "ui_font_size": 16,
-    "buffer_font_size": 16,
-    "buffer_font_family": "JetBrainsMono Nerd Font Mono",
-    "format_on_save": "on",
-    "terminal": {
-        "font_family": "JetBrainsMono Nerd Font Mono",
-        "blinking": "off"
-    },
-    "autosave": {
-        "after_delay": {
-            "milliseconds": 1000
-        }
-    },
-    "autoupdate": false
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Frappé",
+    "dark": "Catppuccin Mocha"
+  },
+  "telemetry": {
+    "metrics": false
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "format_on_save": "on",
+  "terminal": {
+    "font_family": "JetBrainsMono Nerd Font Mono",
+    "blinking": "off"
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "auto_install_extension": {
+    "catppuccin": true,
+    "csv": true,
+    "docker-compose": true,
+    "dockerfile": true,
+    "html": true,
+    "lua": true,
+    "nix": true,
+    "ruff": true,
+    "json": true,
+    "toml": true
+  },
+  "autoupdate": false
 }

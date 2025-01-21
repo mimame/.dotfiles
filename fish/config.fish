@@ -133,16 +133,17 @@ if status --is-interactive
 
     # Define function to load configurations and completions for various tools
     function load_completions --on-event fish_prompt
-        set -l tools starship gh broot thefuck zoxide mise
+        set -l tools starship gh broot thefuck zoxide mise jj
 
         for tool in $tools
             switch $tool
                 case starship
                     starship init fish | source
                 case gh
-                    gh completion --shell fish | source
+                    #gh completion --shell fish | source
                 case broot
-                    #broot --print-shell-function fish | source
+                    # Using ~/.config/functions/br.fish instead for performance
+                    # broot --print-shell-function fish | source
                 case thefuck
                     # Using ~/.config/functions/fk.fish instead for performance
                     # thefuck --alias fk | source
@@ -150,6 +151,8 @@ if status --is-interactive
                     zoxide init fish | source
                 case mise
                     #mise activate fish | source
+                case jj
+                    jj util completion fish | source
                 case "*"
                     echo "Unknown tool: $tool"
             end

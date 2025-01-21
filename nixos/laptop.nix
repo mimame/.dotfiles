@@ -11,7 +11,7 @@
     # https://www.freedesktop.org/software/systemd/man/latest/logind.conf.html#Options
     extraConfig = ''
       IdleAction=suspend-then-hibernate
-      IdleActionSec=10min
+      IdleActionSec=60min
     '';
   };
   # https://www.freedesktop.org/software/systemd/man/latest/sleep.conf.d.html#Options
@@ -20,7 +20,7 @@
     AllowHibernation=yes
     AllowSuspendThenHibernate=yes
     SuspendMode=suspend-then-hibernate
-    HibernateDelaySec=30min
+    HibernateDelaySec=60min
   '';
 
   # Enable touchpad support (enabled by default in most desktopManager).

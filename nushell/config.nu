@@ -798,6 +798,17 @@ $env.config = {
 # Load plugins
 use ~/.cache/nushell/starship/init.nu
 source ~/.cache/nushell/zoxide/init.nu
+source ~/.cache/carapace/init.nu
+
+# Load functions
+source ~/.config/nushell/functions/cb.nu
+source ~/.config/nushell/functions/t.nu
+source ~/.config/nushell/functions/o.nu
+source ~/.config/nushell/functions/paths.nu
+
+alias l = eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink
+alias ll = l --tree
+alias ls = l
 
 alias b = cd ..
 alias cd = z

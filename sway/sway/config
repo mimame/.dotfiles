@@ -28,7 +28,6 @@ input "type:touchpad" {
 	click_method button_areas
 	drag_lock enabled
   dwt enabled
-  middle_emulation disabled
 
   natural_scroll enabled
 	tap_button_map lrm
@@ -141,7 +140,7 @@ bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- -l 1 && ~/
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle && ~/.config/sway/scripts/notification "play-mute_sound"
 
 # Screen brightness controls
-exec light -S 10
+# exec light -S 10
 bindsym XF86MonBrightnessUp exec light -A 5 && ~/.config/sway/scripts/notification "light"
 bindsym XF86MonBrightnessDown exec light -U 5 && ~/.config/sway/scripts/notification "light"
 
@@ -325,10 +324,10 @@ assign [class="Spotify"] number $ws4
 
 # Start programs by default (using init_workspaces script instead)
 exec wezterm
-exec vivaldi
-exec vivaldi --private-window
-exec obsidian
-exec spotify
+# exec vivaldi
+# exec vivaldi --private-window
+# exec obsidian
+# exec spotify
 
 
 # Open specific applications in floating mode

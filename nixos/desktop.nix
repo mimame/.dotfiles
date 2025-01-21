@@ -67,22 +67,20 @@ in
           TimeoutStopSec = 10;
         };
       };
-      # The systemd-logind.service already handles idle detection
-      # and can trigger suspend-then-hibernate on its own
-      # swayidle = {
-      #   enable = true;
-      #   description = "swayidle";
-      #   wants = [ "default.target" ];
-      #   wantedBy = [ "default.target" ];
-      #   after = [ "default.target" ];
-      #   serviceConfig = {
-      #     Type = "simple";
-      #     ExecStart = "${pkgs.swayidle}/bin/swayidle timeout 600 'systemctl suspend-then-hibernate'";
-      #     Restart = "on-failure";
-      #     RestartSec = 1;
-      #     TimeoutStopSec = 10;
-      #   };
-      # };
+      swayidle = {
+        enable = true;
+        description = "swayidle";
+        wants = [ "default.target" ];
+        wantedBy = [ "default.target" ];
+        after = [ "default.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.unstable.swayidle}/bin/swayidle timeout 3600 'systemctl suspend-then-hibernate'";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
     };
   };
 
@@ -187,47 +185,38 @@ in
       cmst # QT connman GUI
       configure-gtk
       dbus-sway-environment
-      glib # gsettings
       gparted
       gthumb
       inkscape
       keepassxc
-      swaynotificationcenter
-      swayr
-      waybar
-      wev
-      wl-clipboard
-      wlrctl
-      wtype
-      ydotool
       libreoffice
       zoom-us # White screen if the version is linked from pkgs.unstable
     ]
     ++ (with pkgs.unstable; [
 
-      betterbird
+      # betterbird
       bitwarden
       calibre
       catppuccin-cursors.mochaMauve
+      cytoscape
       dbeaver-bin
       dropbox
       emote
       evince
-      ffmpeg-full
+      eww
       filezilla
       (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {
         ffmpegSupport = true;
         pipewireSupport = true;
       }) { })
       flameshot
-      floorp
+      # floorp
       gimp
-      git-cola
+      # git-cola
       gitg
       glxinfo
       eog
       file-roller
-      nautilus
       gnome-control-center
       google-chrome
       gst_all_1.gst-plugins-bad
@@ -235,14 +224,19 @@ in
       gst_all_1.gst-plugins-good
       gst_all_1.gst-plugins-ugly
       gst_all_1.gstreamer
+      ffmpeg-full
+      glib # gsettings
       (hiPrio beauty-line-icon-theme) # avoid default gnome icon themes
       i3status-rust
       joplin-desktop
+      kdiff3
       klavaro
       lapce
       logseq
       meld
-      nheko
+      nautilus
+      neovide
+      # nheko
       obsidian
       pcmanfm
       playerctl
@@ -252,21 +246,33 @@ in
       spicetify-cli
       spotify
       sqlitebrowser
+      swaynotificationcenter
       sweet
       telegram-desktop
       thunderbird
       tridactyl-native
+      ulauncher
+      swayr
+      usbimager
       (vivaldi.override {
         proprietaryCodecs = true;
         enableWidevine = true;
       })
       vlc
       vscode
+      # waybar
+      wev
+      wl-clipboard
+      wlrctl
+      wtype
       xdragon
+      ydotool
       zathura
       zeal
       zed-editor
       zettlr
       zotero
+      unetbootin
+
     ]);
 }

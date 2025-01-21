@@ -5,7 +5,6 @@ return {
     dependencies = {
       -- Required.
       "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
       -- see below for full list of optional dependencies
     },
     config = function()
@@ -66,7 +65,7 @@ return {
         -- Optional, completion.
         completion = {
           -- If using nvim-cmp, otherwise set to false
-          nvim_cmp = true,
+          nvim_cmp = false,
           -- Trigger completion at 2 chars
           min_chars = 3,
           -- Optional, customize how wiki links are formatted. You can set this to one of:

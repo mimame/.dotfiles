@@ -11,3 +11,27 @@ command = "fish_indent"
 options = ["-w"]
 includes = ["*.fish"]
 excludes = []
+
+[formatter.stylua-wezterm]
+command = "stylua"
+excludes = ["./lazyvim"]
+includes = ["./wezterm/*.lua"]
+options = ["--config-path ./wezterm/stylua.toml"]
+
+[formatter.stylua-lazyvim]
+command = "stylua"
+excludes = ["./wezterm"]
+includes = ["./lazyvim/*.lua"]
+options = ["--config-path ./lazyvim/stylua.toml"]
+
+# [formatter.yamlfmt]
+# command = "yamlfmt"
+# excludes = []
+# includes = ["*.yaml", "*.yml"]
+# options = []
+
+# [formatter.taplo]
+# command = "taplo"
+# options = ["format"]
+# includes = ["*.toml"]
+# excludes = []
