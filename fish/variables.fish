@@ -52,6 +52,8 @@ end
 set -x -U JULIA_NUM_THREADS 8
 set -x -U TMPDIR /tmp
 
+set -x -U RIPGREP_CONFIG_PATH ~/.config/ripgrep/ripgreprc
+
 # bat as the default replacement for cat, less & more commands
 set -x -U PAGER bat --wrap auto
 # Use nvim as default man pager to avoid rendering ascii issues

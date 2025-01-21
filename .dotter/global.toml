@@ -43,6 +43,7 @@ nushell = { target = "~/.config/nushell", type = "symbolic" }
 ptpython = "~/.config/ptpython"
 pueue = { target = "~/.config/pueue", type = "symbolic" }
 qutebrowser = { target = "~/.config/qutebrowser", type = "symbolic" }
+ripgrep = "~/.config/ripgrep"
 rofi = "~/.config/rofi"
 ssh = "~/.ssh"
 starship = "~/.config/"

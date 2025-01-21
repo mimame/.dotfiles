@@ -106,7 +106,9 @@ abbr m tldr
 
 # Ripgrep and fd with specific options
 abbr ag 'ag --smart-case --ignore node_modules'
-abbr s 'rg --smart-case --no-heading --with-filename --hidden --ignore-file ~/.config/fd/ignore'
+# abbr s 'rg --smart-case --no-heading --with-filename --hidden --ignore-file ~/.config/fd/ignore'
+abbr s 'rg --ignore-file ~/.config/fd/ignore'
+abbr rg 'rg --ignore-file ~/.config/fd/ignore'
 abbr f 'fd --hidden --strip-cwd-prefix'
 
 # Safe operations for rm, mv, cp, and ln
