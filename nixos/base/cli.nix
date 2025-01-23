@@ -162,7 +162,7 @@
       gfold
       ghostscript
       ghostty
-      git
+      gitFull
       git-extras
       github-cli
       gitoxide
