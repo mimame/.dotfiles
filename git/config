@@ -318,7 +318,7 @@
   # Cache credentials in the system's secure keyring
   # providing better security and long periods than the git cache
   # helper = cache
-  helper = libsecret
+  helper = /run/current-system/sw/bin/git-credential-libsecret # gitFull required
 
 [delta]
   side-by-side                 = true
