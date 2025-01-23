@@ -46,8 +46,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.overseer" },
     -- The Refactoring library based off the Refactoring book by Martin Fowler
     { import = "lazyvim.plugins.extras.editor.refactoring" },
-    -- Find, Filter, Preview, Pick
-    { import = "lazyvim.plugins.extras.editor.telescope" },
 
     -- Languages
     { import = "lazyvim.plugins.extras.lang.ansible" },
