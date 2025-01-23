@@ -138,19 +138,19 @@
       # Rust
       rustup
     ])
-    ++ (with pkgs.unstable; [
-      # Scala
-      ammonite
-      bloop
-      coursier
-      metals
-      mill
-      sbt-with-scala-native
-      scala_3
-      scala-cli
-      scalafix
-      scalafmt
-    ])
+    # ++ (with pkgs.unstable; [
+    #   # Scala
+    #   ammonite
+    #   bloop
+    #   coursier
+    #   metals
+    #   mill
+    #   sbt-with-scala-native
+    #   scala_3
+    #   scala-cli
+    #   scalafix
+    #   scalafmt
+    # ])
     ++ (with pkgs.unstable; [
       # Shell
       nushell
