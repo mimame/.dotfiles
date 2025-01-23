@@ -32,7 +32,6 @@ kitty = { target = "~/.config/kitty", type = "symbolic" }
 # latex = "~/"
 lazygit = "~/.config/lazygit"
 lazyvim = "~/.config/nvim/"
-lvim-dictionary = "~/.local/share/lunarvim/site/pack/lazy/opt/nvim-treesitter/spell/"
 mimeapps = "~/.config/"
 navi = "~/.config/navi"
 # newsboat = "~/.config/"
