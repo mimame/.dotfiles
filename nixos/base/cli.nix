@@ -136,9 +136,9 @@
       direnv
       diskus
       dogdns
+      dool
       dos2unix
       dotter
-      dstat
       dua
       du-dust
       duf
