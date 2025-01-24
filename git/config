@@ -317,8 +317,10 @@
   # https://git-scm.com/docs/gitcredentials#Documentation/gitcredentials.txt-cache
   # Cache credentials in the system's secure keyring
   # providing better security and long periods than the git cache
-  # helper = cache
-  helper = /run/current-system/sw/bin/git-credential-libsecret # gitFull required
+  helper = cache
+  # FIXME: Be able to use libsecret for the credentials cache
+  # helper = libsecret # gitFull required
+  # helper = /run/current-system/sw/bin/git-credential-libsecret # gitFull required
 
 [delta]
   side-by-side                 = true
