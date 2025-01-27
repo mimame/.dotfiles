@@ -9,6 +9,7 @@ depends = []
 # barrier = "~/.config/"
 atuin = { target = "~/.config/atuin", type = "symbolic" }
 beets = "~/.config/beets"
+aerospace = "~/.config/aerospace"
 bin = "~/.bin"
 broot = "~/.config/broot"
 btop = "~/.config/btop"
