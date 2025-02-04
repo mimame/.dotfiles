@@ -1,0 +1,33 @@
+# Ghostty Configuration File
+
+# This file configures the behavior and appearance of Ghostty
+# For a comprehensive list of options and their descriptions,
+# refer to the official documentation:
+# https://ghostty.org/docs/config/reference
+
+# Copy on Select: Enables copying selected text to the clipboard by hovering the mouse over the selection
+# Options:
+#   - "clipboard": Copies the selected text to the clipboard and system clipboard
+copy-on-select = clipboard
+
+# Font Family: Specifies the font used in the terminal
+# List available fonts with `ghostty +list-fonts`
+# Multiple fonts can be specified as a fallback in case the first font is not available
+font-family = "JetBrainsMonoNL Nerd Font Mono"
+
+# Font Size: Sets the font size in points
+font-size = 18.0
+
+# Minimum Contrast: Defines the minimum contrast ratio between foreground and background colors
+# This setting helps ensure readability and accessibility, adhering to WCAG 2.0 guidelines
+# Range: 1 (no contrast, e.g., black on black) to 21 (maximum contrast, e.g., black on white)
+# Recommended values:
+#   - 1.1: Prevents invisible text (text color identical to the background)
+#   - 3.0 or higher: Ensures readable text.  This is a good starting point
+#   - Higher values: Increase the likelihood of text becoming pure black or white to meet the contrast requirement,
+#                    which might not be aesthetically pleasing
+minimum-contrast = 3
+
+# Theme: Sets the color theme for the terminal
+# List available themes with `ghostty +list-themes`
+theme = catppuccin-mocha

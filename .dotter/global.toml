@@ -23,6 +23,7 @@ fd = "~/.config/fd"
 fish = "~/.config/fish"                                       # Use `dotter --force` to avoid issues with existing plugin files
 gammastep = "~/.config/gammastep"
 gh = "~/.config/gh"
+ghostty = "~/.config/ghostty"
 git = "~/.config/git"
 grc = "~/.config/grc"
 helix = "~/.config/helix"
