@@ -99,6 +99,9 @@ if status --is-interactive
         mkdir -p ~/Pictures
         wget2 -q -O $wallpaper_path https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png
     end
+    if not fd --quiet --type d catppuccin-mocha.yazi ~/.local/state/yazi/packages/
+        ya pack -u
+    end
 
     # Source custom Fish scripts
     source ~/.config/fish/variables.fish
