@@ -125,6 +125,7 @@ abbr ln "ln -i"
 abbr brootrc 'pushd ~/.dotfiles/broot/ && $EDITOR conf.toml && popd'
 abbr clifmrc 'pushd ~/.dotfiles/clifm/profiles/default/ && $EDITOR clifmrc && popd'
 abbr fishrc 'pushd ~/.dotfiles/fish/ && $EDITOR config.fish && popd'
+abbr ghosttyrc 'pushd ~/.dotfiles/ghostty/ && $EDITOR config && popd'
 abbr gitrc 'pushd ~/.dotfiles/git/ && $EDITOR config && popd'
 abbr hxrc 'pushd ~/.dotfiles/helix/ && $EDITOR config.toml && popd'
 abbr kittyrc 'pushd ~/.dotfiles/kitty/ && $EDITOR kitty.conf && popd'
