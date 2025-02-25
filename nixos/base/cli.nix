@@ -263,7 +263,6 @@
       stow
       systeroid
       tealdeer
-      tectonic
       testdisk
       thefuck
       tokei
@@ -275,6 +274,7 @@
       trurl
       tz
       udiskie
+      ueberzugpp
       unar
       unrar
       unzip
