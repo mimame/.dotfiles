@@ -130,9 +130,9 @@ if status --is-interactive
     end
 
     # Zellij setup
-    if test $TERM != xterm-kitty
-        eval (zellij setup --generate-auto-start fish | string collect)
-    end
+    # if test $TERM != xterm-kitty -a $TERM != xterm-ghostty
+    #     eval (zellij setup --generate-auto-start fish | string collect)
+    # end
 
     # Define function to load configurations and completions for various tools
     function load_completions --on-event fish_prompt

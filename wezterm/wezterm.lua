@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require("wezterm")
+-- See keys with `wezterm show-keys` command
 local act = wezterm.action
 -- This table will hold the configuration.
 local config = {}
@@ -35,8 +36,8 @@ config.color_scheme = "Catppuccin Mocha"
 config.exit_behavior = "Close"
 config.enable_wayland = true
 config.enable_kitty_keyboard = true
-config.use_fancy_tab_bar = false
-config.enable_tab_bar = false
+config.use_fancy_tab_bar = true
+config.enable_tab_bar = true
 config.hide_mouse_cursor_when_typing = false
 config.window_close_confirmation = "NeverPrompt"
 config.warn_about_missing_glyphs = false
