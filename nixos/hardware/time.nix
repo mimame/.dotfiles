@@ -6,12 +6,16 @@
 
   # Start GeoClue2 daemon
   # enabled by services.automatic-timezoned.enable = true;
-  # services.geoclue2.enable = true;
-  # location.provider = "geoclue2";
   # https://github.com/NixOS/nixpkgs/issues/321121
+  location.provider = "geoclue2";
   services.geoclue2 = {
+    enable = true;
+    enable3G = false;
+    enableCDMA = false;
+    enableModemGPS = false;
     geoProviderUrl = "https://beacondb.net/v1/geolocate";
-    # submitData = true;
+    # submit data, only possible with a GPS antenna
+    submitData = false;
     # submissionUrl = "https://beacondb.net/v2/geosubmit";
   };
   services.geoclue2.appConfig.gammastep = {
