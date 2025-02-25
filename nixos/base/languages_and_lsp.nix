@@ -116,7 +116,6 @@
       # hatch
       jupyter-all
       poetry
-      python3Packages.ipython
       python3Packages.ptpython
       python3Packages.pylsp-mypy
       python3Packages.pylsp-rope
