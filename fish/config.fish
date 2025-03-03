@@ -1,27 +1,24 @@
 if status --is-interactive
 
     # Function to clean up old plugin files
-    function clean_old_plugins
-        set plugin_files ~/.config/fish/functions/__abbr* \
-            ~/.config/fish/functions/_autopair* \
-            ~/.config/fish/functions/fisher.fish \
-            ~/.config/fish/functions/_fzf_*.fish \
-            ~/.config/fish/functions/fzf_configure_bindings.fish \
-            ~/.config/fish/functions/fzf.fish \
+    function _clean_old_plugins
+        rm -rf "~/.config/fish/functions/__abbr*" \
+            "~/.config/fish/functions/_autopair*" \
+            "~/.config/fish/functions/_fzf_*.fish" \
             ~/.config/fish/functions/replay.fish \
             ~/.config/fish/functions/__bass.py \
             ~/.config/fish/functions/bass.fish \
-            ~./config/fish/themes/Catppuccin*
-        for file in $plugin_files
-            rm -f $file
-        end
-        rm -fr ~/.config/fish/completions ~/.config/fish/conf.d
+            "~/.config/fish/themes/*.theme" \
+            ~/.config/fish/completions \
+            ~/.config/fish/conf.d \
+            ~/.config/fish/functions/fisher.fish \
+            ~/.config/fish/functions/fzf_configure_bindings.fish \
+            ~/.config/fish/functions/fzf.fish
     end
 
-    # Check if Fisher or plugin file is missing, then clean and reinstall plugins
+    # Check if Fisher function file is missing, then clean and reinstall plugins
     if not test -f ~/.config/fish/functions/fisher.fish
-        clean_old_plugins
-
+        _clean_old_plugins
         # Install Fisher and plugins
         wget2 -q -O- https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
         fisher install jorgebucaran/fisher
@@ -46,11 +43,16 @@ if status --is-interactive
         eval (ssh-agent -c) >/dev/null
     end
 
+    function _download --argument url path
+        mkdir -p (dirname $path)
+        wget2 -q -O $path $url
+    end
+
     # Download wezterm terminfo if not present
     #if not infocmp wezterm >/dev/null 2>&1
     if not test -f ~/.terminfo/**/wezterm
         set terminfo_tempfile (mktemp)
-        wget2 -q -O $terminfo_tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo
+        _download 'https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo' $terminfo_tempfile
         tic -x -o ~/.terminfo $terminfo_tempfile
         sudo tic -x -o /usr/share/terminfo $terminfo_tempfile
         rm $terminfo_tempfile
@@ -59,16 +61,14 @@ if status --is-interactive
     # Install VSCode font for broot if not present
     set vscode_font_path ~/.local/share/fonts/vscode.ttf
     if not test -f $vscode_font_path
-        mkdir -p ~/.local/share/fonts/
-        wget2 -q -O $vscode_font_path 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true'
-        fc-cache ~/.local/share/fonts/
+        _download 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true' $vscode_font_path
+        fc-cache (dirname $vscode_font_path)
     end
 
     # Download and set bat theme if not present
     set bat_theme_path (bat --config-dir)/themes/Catppuccin\ Mocha.tmTheme
     if not test -f $bat_theme_path
-        mkdir -p (bat --config-dir)/themes/
-        wget2 -q -O $bat_theme_path https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+        _download 'https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme' $bat_theme_path
         bat cache --build
         set -x -U BAT_THEME Catppuccin Mocha
     end
@@ -76,16 +76,21 @@ if status --is-interactive
     # Download and set btop theme if not present
     set btop_theme_path ~/.config/btop/themes/catppuccin_mocha.theme
     if not test -f $btop_theme_path
-        mkdir -p ~/.config/btop/themes/
-        wget2 -q -O $btop_theme_path https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme
+        _download 'https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme' $btop_theme_path
     end
 
     # Download and set sway theme if not present
     set sway_theme_path ~/.config/sway/themes/catppuccin-mocha
     if not test -f $sway_theme_path
-        mkdir -p ~/.config/sway/themes/
-        wget2 -q -O $sway_theme_path https://raw.githubusercontent.com/catppuccin/i3/main/themes/catppuccin-mocha
+        _download 'https://raw.githubusercontent.com/catppuccin/i3/main/themes/catppuccin-mocha' $sway_theme_path
     end
+
+    # Set wallpaper if not present
+    set wallpaper_path ~/Pictures/unicat.png
+    if not test -f $wallpaper_path
+        _download 'https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png' $wallpaper_path
+    end
+
 
     # Download and set kitty theme if not present
     set kitty_theme_path ~/.config/kitty/current-theme.conf
@@ -93,12 +98,6 @@ if status --is-interactive
         kitty +kitten themes Catppuccin-Mocha
     end
 
-    # Set wallpaper if not present
-    set wallpaper_path ~/Pictures/unicat.png
-    if not test -f $wallpaper_path
-        mkdir -p ~/Pictures
-        wget2 -q -O $wallpaper_path https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png
-    end
     if not fd --quiet --type d catppuccin-mocha.yazi ~/.local/state/yazi/packages/
         ya pack -u
     end
