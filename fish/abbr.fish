@@ -121,30 +121,6 @@ abbr mv "mv -i"
 abbr cp "cp -ri"
 abbr ln "ln -i"
 
-# Abbreviations for editing configuration files
-abbr brootrc 'pushd ~/.dotfiles/broot/ && $EDITOR conf.toml && popd'
-abbr clifmrc 'pushd ~/.dotfiles/clifm/profiles/default/ && $EDITOR clifmrc && popd'
-abbr fishrc 'pushd ~/.dotfiles/fish/ && $EDITOR config.fish && popd'
-abbr ghosttyrc 'pushd ~/.dotfiles/ghostty/ && $EDITOR config && popd'
-abbr gitrc 'pushd ~/.dotfiles/git/ && $EDITOR config && popd'
-abbr hxrc 'pushd ~/.dotfiles/helix/ && $EDITOR config.toml && popd'
-abbr kittyrc 'pushd ~/.dotfiles/kitty/ && $EDITOR kitty.conf && popd'
-abbr mimerc 'pushd ~/.dotfiles/mimeapps/ && $EDITOR mimeapps.list && popd'
-abbr navirc 'pushd ~/.dotfiles/navi/ && $EDITOR config.yaml && popd'
-# abbr nixosrc 'pushd ~/.dotfiles/nixos/ && $EDITOR configuration.nix && treefmt && sudo nixos-rebuild switch --fast && popd'
-abbr nixosrc 'pushd ~/.dotfiles/nixos/ && $EDITOR configuration.nix && sudo nixos-rebuild switch --fast && popd'
-abbr nvimrc 'pushd ~/.dotfiles/nvchad/ && $EDITOR init.lua && popd'
-abbr qutebrowserrc 'pushd ~/.dotfiles/qutebrowser/ && $EDITOR config.py && popd'
-abbr rofirc 'pushd ~/.dotfiles/rofi/ && $EDITOR config.rasi && popd'
-abbr sshrc 'pushd ~/.dotfiles/ssh/ && $EDITOR config && popd'
-abbr starshiprc 'pushd ~/.dotfiles/starship/ && $EDITOR starship.toml && popd'
-abbr swayrc 'pushd ~/.dotfiles/sway/sway/ && $EDITOR config && popd'
-abbr tldrrc 'pushd ~/.dotfiles/tealdeer/ && $EDITOR config.toml && popd'
-abbr topgraderc 'pushd ~/.dotfiles/topgrade/ && $EDITOR topgrade.toml && popd'
-abbr weztermrc 'pushd ~/.dotfiles/wezterm/ && $EDITOR wezterm.lua && popd'
-abbr xplrrc 'pushd ~/.dotfiles/xplr/ && $EDITOR init.lua && popd'
-abbr yazirc 'pushd ~/.dotfiles/yazi/ && $EDITOR yazi.toml && popd'
-abbr zellijrc 'pushd ~/.dotfiles/zellij/ && $EDITOR config.kdl && popd'
 
 # Abbreviation for updating pip packages
 abbr pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
@@ -175,6 +151,33 @@ abbr rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppab
 # Asciidoctor
 abbr adoc asciidoctor
 abbr adoc-pdf asciidoctor-pdf
+# --- Configuration File Editing ---
+function edit_config --argument config_name config_path config_file
+    abbr $config_name "pushd $config_path && $EDITOR $config_file && popd"
+end
 
 # NixOS
 abbr nsp 'nix-shell -p'
+edit_config brootrc ~/.dotfiles/broot/ conf.toml
+edit_config clifmrc ~/.dotfiles/clifm/profiles/default/ clifmrc
+edit_config fishrc ~/.dotfiles/fish/ config.fish
+edit_config ghosttyrc ~/.dotfiles/ghostty/ config
+edit_config gitrc ~/.dotfiles/git/ config
+edit_config hxrc ~/.dotfiles/helix/ config.toml
+edit_config kittyrc ~/.dotfiles/kitty/ kitty.conf
+edit_config mimerc ~/.dotfiles/mimeapps/ mimeapps.list
+edit_config navirc ~/.dotfiles/navi/ config.yaml
+# abbr nixosrc 'pushd ~/.dotfiles/nixos/ && $EDITOR configuration.nix && treefmt && sudo nixos-rebuild switch --fast && popd'
+edit_config nvimrc ~/.dotfiles/nvchad/ init.lua
+edit_config qutebrowserrc ~/.dotfiles/qutebrowser/ config.py
+edit_config rofirc ~/.dotfiles/rofi/ config.rasi
+edit_config sshrc ~/.dotfiles/ssh/ config
+edit_config starshiprc ~/.dotfiles/starship/ starship.toml
+edit_config swayrc ~/.dotfiles/sway/sway/ config
+edit_config tldrrc ~/.dotfiles/tealdeer/ config.toml
+edit_config topgraderc ~/.dotfiles/topgrade/ topgrade.toml
+edit_config weztermrc ~/.dotfiles/wezterm/ wezterm.lua
+edit_config xplrrc ~/.dotfiles/xplr/ init.lua
+edit_config yazirc ~/.dotfiles/yazi/ yazi.toml
+edit_config zellijrc ~/.dotfiles/zellij/ config.kdl
+
