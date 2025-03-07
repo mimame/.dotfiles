@@ -20,6 +20,10 @@
   "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "buffer_font_size": 16,
   "format_on_save": "on",
+  "icon_theme": {
+    "mode": "system",
+    "light": "Catppuccin Frappé",
+    "dark": "Catppuccin Mocha"
   },
   "relative_line_numbers": true,
   "telemetry": {
