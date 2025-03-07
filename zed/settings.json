@@ -33,5 +33,6 @@
     "json": true,
     "toml": true
   },
-  "autoupdate": false
+  "autoupdate": false,
+  "relative_line_numbers": true
 }
