@@ -1,20 +1,24 @@
 function pdfc
     if test -z "$argv"
-        echo "Usage: file.pdf ... fileN.pdf [resolution_in_dpi]"
+        echo "Usage: pdfc file.pdf ... fileN.pdf [resolution_in_dpi]"
         return 1
     end
 
-    if string match --quiet --regex '\d' "$argv[-1]"
-        set resolution "$argv[-1]"
+    set -l resolution 90
+    set -l pdfs $argv
+
+    if string match --quiet --regex '^\d+$' "$argv[-1]"
+        set resolution $argv[-1]
         set pdfs $argv[1..-2]
-    else
-        set resolution 90
-        set pdfs $argv
     end
 
     for pdf in $pdfs
+        if not test -f "$pdf"
+            echo "Error: File '$pdf' not found." >&2
+            continue
+        end
 
-        set original_pdf "$(string split --max 1 --field 1 "." "$pdf")_original.pdf"
+        set -l original_pdf (string replace -r '\.pdf$' '_original.pdf' "$pdf")
 
         mv "$pdf" "$original_pdf"
 
@@ -36,19 +40,25 @@ function pdfc
             "$original_pdf"
 
         if test $status -eq 0
-            set pdf_size (wc -c "$pdf" | cut -f1 -d' ' )
-            set original_pdf_size (wc -c "$original_pdf" | cut -f1 -d' ')
+            set -l human_pdf_size (du -h "$pdf" | cut -f1)
+            set -l human_original_pdf_size (du -h "$original_pdf" | cut -f1)
+            set -l pdf_size (stat -c '%s' "$pdf")
+            set -l original_pdf_size (stat -c '%s' "$original_pdf")
+
             if test "$original_pdf_size" -le "$pdf_size"
-                echo "'$pdf' can't be compressed!" 2>&1
+                echo "'$pdf' could not be compressed (result larger or same size)." >&2
                 mv "$original_pdf" "$pdf"
             else
-                set compression_ration (awk "BEGIN{printf \"%0.2f\", $original_pdf_size/$pdf_size}")
+                set -l compression_ratio (printf "%.2f" (math "$original_pdf_size / $pdf_size"))
                 echo "$pdf"
-                echo "Compression ration: $compression_ration"
-                echo "Final size: $(du -h $pdf | cut -f1)"
+                echo "Original size: $human_original_pdf_size"
+                echo "Compressed size: $human_pdf_size"
+                echo "Compression ratio: $compression_ratio"
+                # rm "$original_pdf" # Don't remove the original even successfully compressed.
             end
         else
-            echo "'$pdf' can't be processed!" 2>&1
+            echo "Error: '$pdf' could not be processed by Ghostscript." >&2
+            mv "$original_pdf" "$pdf" #restore original if gs failed.
         end
     end
 end
