@@ -23,6 +23,7 @@ in
     ./hardware/time.nix
     ./hardware/networking.nix
     ./hardware/graphics.nix
+    ./lix.nix
     ./base.nix
     ./base/cli.nix
     ./base/languages_and_lsp.nix
@@ -37,7 +38,7 @@ in
   ];
 
   nix = {
-    package = pkgs.nixVersions.latest;
+    # package = pkgs.nixVersions.latest; # Use lix instead
     # Be sure to run nix-collect-garbage one time per week
     gc = {
       automatic = true;
