@@ -206,7 +206,6 @@
       lychee
       massren
       mcfly
-      mdcat
       micro
       miniserve
       moar
