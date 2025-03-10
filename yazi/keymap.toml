@@ -536,3 +536,8 @@ desc = "Move in relative steps"
 on = ["m"]
 run = "plugin relative-motions"
 desc = "Trigger a new relative motion"
+
+
+[[manager.prepend_keymap]]
+on = "M"
+run = "plugin mount"

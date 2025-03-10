@@ -24,6 +24,11 @@ use = "dedukun/relative-motions"
 rev = "8103065"
 hash = "9f13f0740fa3a0c18e47ec6fb62ddfaa"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "2bf70d8"
+hash = "dd97eede8e20e59cd2604e8006e470e2"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
 rev = "1a419b2"
