@@ -144,7 +144,7 @@
       duf
       dura
       dysk
-      emacs29
+      emacs
       entr
       erdtree
       evil-helix
