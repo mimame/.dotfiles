@@ -34,11 +34,7 @@ abbr re massren
 abbr x 'chmod +x'
 
 # --- Safe File Operations ---
-if command -q gomi
-    abbr rm gomi
-else
-    abbr rm trash-put
-end
+abbr rm gomi
 abbr cp "cp -ri"
 abbr ln "ln -i"
 abbr mv "mv -i"
