@@ -239,6 +239,7 @@ in
       # nheko
       obsidian
       pcmanfm
+      pdfarranger
       playerctl
       qalculate-gtk
       qutebrowser
