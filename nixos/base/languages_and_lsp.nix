@@ -72,9 +72,9 @@
     ])
     ++ (with pkgs.unstable; [
       # Latex
-      tectonic
-      texlab
-      texlive.combined.scheme-medium
+      # tectonic
+      # texlab
+      # texlive.combined.scheme-medium
     ])
     ++ (with pkgs.unstable; [
       # Lua
