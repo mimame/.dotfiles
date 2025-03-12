@@ -2,72 +2,91 @@
 function c
     # Check if the number of arguments is greater than 1
     if test (count $argv) -le 1
-        echo "Usage: file1 ... fileN t|z|g|zs|x|b|7"
+        echo "Usage: c file1 [file2 ...] compression_format"
+        echo "Compression formats:"
+        echo "  t  - tar archive"
+        echo "  z  - zip archive"
+        echo "  g  - gzip compression (tar.gz for directories)"
+        echo "  zs - zstd compression (tar.zst for directories)"
+        echo "  x  - xz compression (tar.xz for directories)"
+        echo "  7  - 7zip archive"
+        echo "  b  - bzip3 compression (tar.bz3 for directories)"
+        echo "  b2  - bzip2 compression (tar.bz2 for directories)"
         return 1
     end
 
     # Extract the list of files and the compression format from arguments
     set -l files $argv[1..-2]
     set -l compression_format $argv[-1]
-
-    # Loop through each file and apply the specified compression
+    set -l ext ''
+    set -l is_dir (test -d $file && echo true || echo false)
+    # Loop through each file/folder and apply the specified compression
     for file in $files
         switch $compression_format
             case t
-                tar cvf {$file}.tar $file
-                set -l ext tar
+                set ext tar
+                tar cvf {$file}.$ext $file
             case z
-                zip -r {$file}.zip $file
-                set -l ext zip
+                set ext zip
+                zip -r {$file}.$ext $file
             case 7
-                7z a {$file}.7z $file
-                set -l ext 7z
+                set ext 7z
+                7z a {$file}.$ext $file
             case g
-                if test -d $file
-                    tar -I pigz -cvf {$file}.tar.gz $file
-                    set -l ext tar.gz
+                if $is_dir
+                    set ext tar.gz
+                    tar -I pigz -cvf {$file}.$ext $file
                 else
+                    set ext gz
                     pigz -kv $file
-                    set -l ext gz
+                end
+            case b2
+                if $is_dir
+                    set -l ext tar.bz2
+                    tar -I pbzip2 -cvf {$file}.$ext $file
+                else
+                    set ext bz2
+                    pbzip2 -kv $file
                 end
             case b
-                if test -d $file
-                    tar -I pbzip2 -cvf {$file}.tar.bz2 $file
-                    set -l ext tar.bz2
+                if $is_dir
+                    set ext tar.bz3
+                    tar -cv $file | bzip3 -j 4 -kv >{$file}.$ext
                 else
-                    pbzip2 -kv $file
-                    set -l ext bz2
+                    set ext bz3
+                    bzip3 -j 4 -kv $file
                 end
             case x
-                if test -d $file
-                    tar -I pixz -cvf $file.tar.xz $file
-                    set -l ext tar.xz
+                if $is_dir
+                    set ext tar.xz
+                    tar -I pixz -cvf $file.$ext $file
                 else
-                    pixz -k $file
-                    set -l ext xz
+                    set ext xz
+                    pixz -kv $file
                 end
             case zs
-                if test -d $file
-                    tar -I 'zstdmt -19' -cvf {$file}.tar.zst $file
-                    set -l ext tar.zst
+                if $is_dir
+                    set ext tar.zst
+                    tar -I 'zstdmt -19' -cvf {$file}.$ext $file
                 else
+                    set ext zst
                     zstdmt -19 -kv $file
-                    set -l ext zst
                 end
             case '*'
-                echo "'$file' cannot be compressed, unknown '$compression_format' compression format" 2>&1
+                echo "Error: Cannot compress '$file' - '$compression_format' is not a valid compression format" >&2
+                echo "Valid formats are: t(tar), z(zip), g(gzip), zs(zstd), x(xz), 7(7zip), b(bzip3), b2(bzip2)" >&2
                 return 1
         end
 
         # Calculate and display compression details
-        set -l compressed_file $file.$ext
-        set -l original_size (command du -s "$file" | cut -f1)
-        set -l compressed_size (command du "$compressed_file" | cut -f1)
-        echo "Compressed file: $compressed_file"
-        set -l compression_ratio (awk "BEGIN{printf \"%0.2f\", $original_size/$compressed_size}")
+        set -l compressed_file "$file.$ext"
+        set -l original_size (du -sb "$file" | cut -f1)
+        set -l compressed_size (du -b "$compressed_file" | cut -f1)
         echo ""
+        echo "Compressed file: $compressed_file"
+        set -l compression_ratio (printf "%.2f" (math "$original_size / $compressed_size"))
         echo "Compression ratio: $compression_ratio"
-        echo "Final size: (command du -h $compressed_file | cut -f1)"
-        echo "Initial size: (command du -hs $file | cut -f1)"
+        echo "Initial size: $(command du -sh $file | cut -f1)"
+        echo "Final size: $(command du -h $compressed_file | cut -f1)"
     end
 end
