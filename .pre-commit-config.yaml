@@ -31,3 +31,10 @@ repos:
   hooks:
     - id: fish_syntax
     - id: fish_indent
+
+- repo: local
+  hooks:
+    - id: treefmt
+      name: treefmt
+      language: system
+      entry: treefmt
