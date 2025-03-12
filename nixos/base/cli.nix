@@ -125,7 +125,6 @@
       comma
       convco
       copyq
-      coreutils
       ctop
       curl
       curlie
@@ -279,6 +278,7 @@
       unzip
       urlscan
       util-linux
+      uutils-coreutils-noprefix
       vifm
       visidata
       vivid
