@@ -9,25 +9,41 @@
 #
 # The function automatically detects the operating system and uses 'pbcopy' and 'pbpaste' on macOS,
 # or 'wl-copy' and 'wl-paste' on Linux with Wayland.
-function cb
-    # Determine the appropriate copy and paste commands based on the OS
-    set -l copy_command (if test (uname) = Darwin; echo pbcopy; else; echo wl-copy; end)
-    set -l paste_command (if test (uname) = Darwin; echo pbpaste; else; echo wl-paste; end)
+function cb --description "Universal clipboard utility for macOS and Linux"
+    # Determine the appropriate copy and paste commands based on environment
+    set -l os (uname)
+
+    if test "$os" = Darwin
+        set copy_command pbcopy
+        set paste_command pbpaste
+    else
+        set copy_command wl-copy
+        set paste_command "wl-paste -n" # Avoid adding newline
+    end
 
     # If stdin is a pipe, read from stdin and copy to clipboard
     if command test -p /dev/stdin
-        cat - | $copy_command
+        cat - | eval $copy_command
+        echo "✓ Copied from stdin to clipboard" >&2
         # If arguments are provided, check if it's a file or a string
     else if set -q argv[1]
         # If the first argument is a file, copy its contents to the clipboard
         if test -f "$argv[1]"
-            cat "$argv[1]" | $copy_command
+            cat "$argv[1]" | eval $copy_command
+            echo "✓ Copied contents of '$argv[1]' to clipboard" >&2
             # Otherwise, treat the arguments as a string and copy to the clipboard
         else
-            echo -n "$argv" | $copy_command
+            printf "%s" "$argv" | eval $copy_command
+            echo "✓ Copied text to clipboard" >&2
         end
         # If no arguments and not a pipe, paste from clipboard to stdout
     else
-        $paste_command
+        # Check if clipboard has content
+        if eval $paste_command >/dev/null 2>&1
+            eval $paste_command
+        else
+            echo "Error: Clipboard is empty" >&2
+            return 1
+        end
     end
 end
