@@ -5,18 +5,18 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
     set -l fixed_count 0
     set -l error_count 0
 
-    echo "🔍 Scanning for broken systemd user services..."
+    # echo "🔍 Scanning for broken systemd user services..."
 
     # If no services are found, use a predefined list of service names
     if test (count $services) -eq 0
         set -l names gammastep swayidle xdg-desktop-portal-rewrite-launchers
-        echo "No services found in $user_services_dir. Using default list."
+        # echo "No services found in $user_services_dir. Using default list."
         for name in $names
             set services $services $user_services_dir/$name.service
         end
     end
 
-    echo "Checking "(count $services)" service files..."
+    # echo "Checking "(count $services)" service files..."
 
     # Repair each broken service
     for service_path in $services
