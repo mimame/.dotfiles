@@ -19,9 +19,9 @@ function c
     set -l files $argv[1..-2]
     set -l compression_format $argv[-1]
     set -l ext ''
-    set -l is_dir (test -d $file && echo true || echo false)
     # Loop through each file/folder and apply the specified compression
     for file in $files
+        set -l is_dir (test -d $file && echo true || echo false)
         switch $compression_format
             case t
                 set ext tar
@@ -33,7 +33,7 @@ function c
                 set ext 7z
                 7z a {$file}.$ext $file
             case g
-                if $is_dir
+                if test "$is_dir" = true
                     set ext tar.gz
                     tar -I pigz -cvf {$file}.$ext $file
                 else
@@ -41,7 +41,7 @@ function c
                     pigz -kv $file
                 end
             case b2
-                if $is_dir
+                if test "$is_dir" = true
                     set -l ext tar.bz2
                     tar -I pbzip2 -cvf {$file}.$ext $file
                 else
@@ -49,7 +49,7 @@ function c
                     pbzip2 -kv $file
                 end
             case b
-                if $is_dir
+                if test "$is_dir" = true
                     set ext tar.bz3
                     tar -cv $file | bzip3 -j 4 -kv >{$file}.$ext
                 else
@@ -57,7 +57,7 @@ function c
                     bzip3 -j 4 -kv $file
                 end
             case x
-                if $is_dir
+                if test "$is_dir" = true
                     set ext tar.xz
                     tar -I pixz -cvf $file.$ext $file
                 else
@@ -65,7 +65,7 @@ function c
                     pixz -kv $file
                 end
             case zs
-                if $is_dir
+                if test "$is_dir" = true
                     set ext tar.zst
                     tar -I 'zstdmt -19' -cvf {$file}.$ext $file
                 else
