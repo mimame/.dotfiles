@@ -80,11 +80,12 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
         set_color normal
     end
 
-    if test $fixed_count -eq 0 -a $error_count -eq 0
-        set_color green
-        echo "✅ No broken services found!"
-        set_color normal
-    end
+    # Don't output if there are not broken services
+    # if test $fixed_count -eq 0 -a $error_count -eq 0
+    #     set_color green
+    #     echo "✅ No broken services found!"
+    #     set_color normal
+    # end
 
     # Return error code if any errors occurred
     test $error_count -eq 0
