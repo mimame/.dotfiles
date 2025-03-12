@@ -1,6 +1,14 @@
-function t
+function t --description "Translate text to Spanish and copy to clipboard"
+    if test (count $argv) -eq 0
+        echo "Usage: t [text to translate]"
+        return 1
+    end
+
     # Use command to avoid recursion
-    # Remove spaces at beginning of the translated input
-    # Copy the translated input to the system clipboard
-    command trans -brief -no-ansi :es "$argv" | tail --lines 1 | sed 's/^\s*//' | cb
+    # Process the translation: trim whitespace and copy to clipboard
+    command trans -brief -no-ansi :es "$argv" |
+        tail --lines 1 |
+        string trim |
+        tee /dev/stderr | # Show result in terminal
+        cb
 end
