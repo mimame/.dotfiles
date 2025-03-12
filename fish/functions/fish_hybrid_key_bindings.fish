@@ -1,37 +1,47 @@
-# Vi style bindings that inherit emacs style binding in all modes
+# Hybrid key bindings combining Vi and Emacs styles
 function fish_hybrid_key_bindings --description "Vi style bindings that inherit emacs style binding in all modes"
-    # Set default key bindings for all modes
+    # First, establish Emacs-style bindings as the foundation for all modes
+    # This provides familiar shortcuts like Ctrl+A, Ctrl+E in all modes
     for mode in default insert visual
         fish_default_key_bindings -M $mode
     end
 
-    # Set Vi key bindings without erasing
+    # Layer Vi bindings on top without erasing the Emacs bindings
+    # This preserves Emacs shortcuts while adding Vi navigation and mode switching
     fish_vi_key_bindings --no-erase
 
-    # Accept autosuggestion with space in normal mode
+    # Use space in normal mode to accept autosuggestion and move to end of line
+    # This provides a quick way to complete suggestions without entering insert mode
     bind -M default \ end-of-line accept-autosuggestion
 
-    # Open nvim in normal mode to edit the command
+    # Bind 'v' in normal mode to launch editor for current command
+    # Similar to Vi's visual mode but opens the full editor for complex edits
     bind -M default v edit_command_buffer
 
-    # Execute TheFuck command line in insert mode
+    # Bind Ctrl+O in insert mode to correct previous command with TheFuck
+    # Allows quickly fixing command errors without leaving insert mode
     bind -M insert \co thefuck-command-line
 
-    # Configure fzf bindings and preview directory command
+    # Configure fzf file finder with custom directory preview using eza
+    # Shows colorized, classified directory listings with hidden files but excludes node_modules
     set fzf_preview_dir_cmd eza --all --color=always --sort .name --classify --color=always --ignore-glob=node_modules
     fzf_configure_bindings --history=
 
-    # Disable key bindings for Atuin navigation
+    # Disable Atuin's default keybindings to prevent conflicts
+    # This allows custom configuration of history search keys below
     set -gx ATUIN_NOBIND true
     atuin init fish | source
 
-    # Bind ctrl-r and up key in normal and insert mode for Atuin search
+    # Configure Atuin shell history search for both modes:
+    # Ctrl+R - Opens interactive history search with filtering
+    # Up Arrow - Quick access to previous commands by context
     bind \cr _atuin_search
     bind -M insert \cr _atuin_search
     bind \e\[A _atuin_bind_up
     bind -M insert \e\[A _atuin_bind_up
 
-    # Add navi widget binds for smart replace
+    # Enable navi command cheatsheet integration
+    # Bind Ctrl+F in insert mode for context-aware command suggestions
     navi widget fish | source
     bind -M insert \cf _navi_smart_replace
 end
