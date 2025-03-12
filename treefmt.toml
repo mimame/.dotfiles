@@ -14,15 +14,15 @@ excludes = []
 
 [formatter.stylua-wezterm]
 command = "stylua"
-excludes = ["./lazyvim"]
-includes = ["./wezterm/*.lua"]
-options = ["--config-path ./wezterm/stylua.toml"]
+excludes = ["lazyvim"]
+includes = ["wezterm/*.lua"]
+options = ["--config-path", "wezterm/stylua.toml"]
 
 [formatter.stylua-lazyvim]
 command = "stylua"
-excludes = ["./wezterm"]
-includes = ["./lazyvim/*.lua"]
-options = ["--config-path ./lazyvim/stylua.toml"]
+excludes = ["wezterm"]
+includes = ["lazyvim/*.lua"]
+options = ["--config-path", "lazyvim/stylua.toml"]
 
 # [formatter.yamlfmt]
 # command = "yamlfmt"
