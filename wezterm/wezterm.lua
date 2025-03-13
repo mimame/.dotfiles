@@ -30,6 +30,7 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
+config.mux_enable_ssh_agent = false -- It breaks ssh-agent due to an invalid socket path
 config.front_end = 'WebGpu'
 config.term = 'wezterm'
 config.color_scheme = 'Catppuccin Mocha'
