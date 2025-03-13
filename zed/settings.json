@@ -24,12 +24,14 @@
     }
   },
   "autoupdate": false,
+  "autoupdate": true,
   "base_keymap": "VSCode",
   "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "buffer_font_size": 16,
   "collaboration_panel": {
     "dock": "right"
   },
+  "current_line_highlight": "all",
   "format_on_save": "on",
   "icon_theme": {
     "mode": "system",
@@ -45,6 +47,7 @@
   },
   "relative_line_numbers": true,
   "restore_on_startup": "last_session",
+  "selection_highlight": true,
   "telemetry": {
     "metrics": false
   },
