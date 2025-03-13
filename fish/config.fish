@@ -38,9 +38,10 @@ if status --is-interactive
         direnv hook fish | source
     end
 
-    # Start ssh-agent if not already running
-    if not set -q SSH_AUTH_SOCK
-        eval (ssh-agent -c) >/dev/null
+    if not pgrep -f ssh-agent >/dev/null
+        eval (ssh-agent -c)
+        set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
+        set -Ux SSH_AGENT_PID $SSH_AGENT_PID
     end
 
     function _download --argument url path
@@ -90,7 +91,6 @@ if status --is-interactive
     if not test -f $wallpaper_path
         _download 'https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png' $wallpaper_path
     end
-
 
     # Download and set kitty theme if not present
     set kitty_theme_path ~/.config/kitty/current-theme.conf
