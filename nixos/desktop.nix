@@ -232,7 +232,7 @@ in
       kdiff3
       klavaro
       lapce
-      logseq
+      # logseq # removed from nixpkgs
       meld
       nautilus
       neovide

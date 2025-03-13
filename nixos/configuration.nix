@@ -10,9 +10,7 @@ in
 #   import (builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master")
 #     { };
 {
-  # sudo ln -s ~/.dotfiles/nixos/etc/nixos/*.nix /etc/nixos/
   nixpkgs.config.permittedInsecurePackages = [
-    "electron-27.3.11" # required by logseq-0.10.9
   ];
   imports = [
     # Include the results of the hardware scan.
