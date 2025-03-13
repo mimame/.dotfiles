@@ -128,6 +128,7 @@ edit_config kittyrc ~/.dotfiles/kitty/ kitty.conf
 edit_config mimerc ~/.dotfiles/mimeapps/ mimeapps.list
 edit_config navirc ~/.dotfiles/navi/ config.yaml
 # abbr nixosrc 'pushd ~/.dotfiles/nixos/ && $EDITOR configuration.nix && treefmt && sudo nixos-rebuild switch --fast && popd'
+abbr nixosrc 'pushd ~/.dotfiles/nixos/ && $EDITOR configuration.nix && sudo nixos-rebuild switch --fast && popd'
 edit_config nvimrc ~/.dotfiles/lazyvim/ init.lua
 edit_config qutebrowserrc ~/.dotfiles/qutebrowser/ config.py
 edit_config rofirc ~/.dotfiles/rofi/ config.rasi
