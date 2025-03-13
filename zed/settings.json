@@ -38,6 +38,7 @@
   },
   "file_icons": true,
   "format_on_save": "on",
+  "git_status": true,
   "icon_theme": {
     "mode": "system",
     "light": "Catppuccin Frappé",
