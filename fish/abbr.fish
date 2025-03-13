@@ -8,14 +8,13 @@ abbr !! --position anywhere --function last_history_item
 abbr b 'cd ..'
 abbr cd z
 abbr dotdot --regex '^\.\.+$' --function multicd
-abbr lll br
 abbr md 'mkdir -pv'
 abbr mk 'mkdir -pv'
 abbr tree erd --layout inverted --human
 
 # --- File System Operations ---
 alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
-alias ll 'l --tree'
+alias ll br
 alias ls l
 abbr T 'tail -F'
 abbr df duf
