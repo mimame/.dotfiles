@@ -38,10 +38,11 @@ if status --is-interactive
         direnv hook fish | source
     end
 
+    # Start ssh-agent if not running
     if not pgrep -f ssh-agent >/dev/null
-        eval (ssh-agent -c)
-        set -Ux SSH_AUTH_SOCK $SSH_AUTH_SOCK
-        set -Ux SSH_AGENT_PID $SSH_AGENT_PID
+        eval (ssh-agent -c) >/dev/null
+        set -gx SSH_AUTH_SOCK $SSH_AUTH_SOCK
+        set -gx SSH_AGENT_PID $SSH_AGENT_PID
     end
 
     function _download --argument url path
