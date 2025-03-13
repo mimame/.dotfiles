@@ -23,7 +23,6 @@
       "milliseconds": 1000
     }
   },
-  "autoupdate": false,
   "autoupdate": true,
   "base_keymap": "VSCode",
   "buffer_font_family": "JetBrainsMono Nerd Font Mono",
@@ -37,6 +36,7 @@
       "enabled": true
     }
   },
+  "file_icons": true,
   "format_on_save": "on",
   "icon_theme": {
     "mode": "system",
