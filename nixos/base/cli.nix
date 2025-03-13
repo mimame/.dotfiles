@@ -118,6 +118,7 @@
       brotli
       btop
       bzip2
+      bzip3
       carapace
       chafa
       choose
@@ -138,8 +139,8 @@
       dool
       dos2unix
       dotter
-      dua
       du-dust
+      dua
       duf
       dura
       dysk
@@ -161,8 +162,8 @@
       gfold
       ghostscript
       ghostty
-      gitFull
       git-extras
+      gitFull
       github-cli
       gitoxide
       gitui
@@ -217,9 +218,9 @@
       ninja
       nix-direnv
       nix-index
-      nixos-generators
       nix-tree
       nix-update
+      nixos-generators
       (nnn.override { withNerdIcons = true; })
       nvme-cli
       oha
@@ -229,6 +230,7 @@
       oxker
       pandoc
       pastel
+      pbzip2
       pciutils
       pdftk
       pigz
