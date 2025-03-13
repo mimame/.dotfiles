@@ -27,6 +27,9 @@
   "base_keymap": "VSCode",
   "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "buffer_font_size": 16,
+  "collaboration_panel": {
+    "dock": "right"
+  },
   "format_on_save": "on",
   "icon_theme": {
     "mode": "system",
@@ -34,6 +37,12 @@
     "dark": "Catppuccin Mocha"
   },
   "load_direnv": "direct",
+  "outline_panel": {
+    "dock": "right"
+  },
+  "project_panel": {
+    "dock": "right"
+  },
   "relative_line_numbers": true,
   "restore_on_startup": "last_session",
   "telemetry": {
