@@ -55,6 +55,35 @@
     "toggle_on_modifiers_press": null
   },
   "load_direnv": "direct",
+  "lsp": {
+    // TOML
+    "taplo": {
+      "settings": {
+        "array_auto_collapse": false
+      }
+    },
+    "terraform-ls": {
+      "initialization_options": {
+        "experimentalFeatures": {
+          "prefillRequiredFields": true
+        }
+      }
+    }
+  },
+  "yaml-language-server": {
+    "settings": {
+      "yaml": {
+        "keyOrdering": true,
+        "format": {
+          "singleQuote": true
+        },
+        "schemas": {
+          "http://json.schemastore.org/composer": ["/*"],
+          "../relative/path/schema.json": ["/config*.yaml"]
+        }
+      }
+    }
+  },
   "outline_panel": {
     "dock": "right"
   },
