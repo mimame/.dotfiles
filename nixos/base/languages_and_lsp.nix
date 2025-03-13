@@ -200,7 +200,6 @@
       bison
       buf
       codespell
-      coreutils
       devenv
       exercism
       gitleaks
