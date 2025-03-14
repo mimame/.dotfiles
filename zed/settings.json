@@ -94,6 +94,13 @@
   "relative_line_numbers": true,
   "restore_on_startup": "last_session",
   "selection_highlight": true,
+  "tabs": {
+    "close_position": "right",
+    "file_icons": true,
+    "git_status": true,
+    "activate_on_close": "history",
+    "show_close_button": "hover"
+  },
   "telemetry": {
     "metrics": false
   },
