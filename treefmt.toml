@@ -30,8 +30,8 @@ excludes = []
 includes = ["*.yaml", "*.yml"]
 options = []
 
-# [formatter.taplo]
-# command = "taplo"
-# options = ["format"]
-# includes = ["*.toml"]
-# excludes = []
+[formatter.taplo]
+command = "taplo"
+options = ["format"]
+includes = ["*.toml"]
+excludes = []
