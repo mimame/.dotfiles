@@ -105,8 +105,9 @@
     "metrics": false
   },
   "terminal": {
+    "blinking": "off",
+    "copy_on_select": true,
     "font_family": "JetBrainsMono Nerd Font Mono",
-    "blinking": "off"
   },
   "theme": {
     "mode": "system",
