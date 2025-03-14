@@ -24,6 +24,12 @@ excludes = ["wezterm"]
 includes = ["lazyvim/*.lua"]
 options = ["--config-path", "lazyvim/stylua.toml"]
 
+[formatter.jsonfmt]
+command = "jsonfmt"
+excludes = []
+includes = ["*.json"]
+options = ["-w"]
+
 [formatter.yamlfmt]
 command = "yamlfmt"
 excludes = []
