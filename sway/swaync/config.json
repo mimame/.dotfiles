@@ -1,6 +1,5 @@
 {
   "$schema": "/etc/xdg/swaync/configSchema.json",
-
   "positionX": "right",
   "positionY": "top",
   "control-center-margin-top": 8,
@@ -10,7 +9,6 @@
   "control-center-width": 500,
   "control-center-height": 600,
   "fit-to-screen": false,
-
   "layer": "overlay",
   "cssPriority": "user",
   "notification-icon-size": 64,
@@ -26,7 +24,6 @@
   "hide-on-clear": true,
   "hide-on-action": true,
   "script-fail-notify": true,
-
   "widgets": [
     "title",
     "dnd",
