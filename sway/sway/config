@@ -307,7 +307,7 @@ bindsym $mod+Shift+F10 move container to workspace number $ws20
 bindsym $mod+Shift+F11 move container to workspace number $ws21
 bindsym $mod+Shift+F12 move container to workspace number $ws22
 
-# Open applications on specific workspaces (using init_workspaces script instead)
+# Open applications on specific workspaces
 assign [class="Wezterm"] number $ws1
 assign [class="Vivaldi"] number $ws2
 assign [class="Obsidian"] number $ws3
@@ -322,7 +322,7 @@ assign [class="Spotify"] number $ws4
 # assign [class="Zotero"] number $ws4
 # for_window [title="^Spotify"] move to workspace number $ws0
 
-# Start programs by default (using init_workspaces script instead)
+# Start programs by default
 exec wezterm
 # exec vivaldi
 # exec vivaldi --private-window
