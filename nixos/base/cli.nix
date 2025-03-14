@@ -173,7 +173,6 @@
       gopass
       gpg-tui
       gping
-      grc
       grex
       gron
       grpcurl
