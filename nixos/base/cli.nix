@@ -264,6 +264,7 @@
       stow
       systeroid
       tealdeer
+      television
       testdisk
       tokei
       topgrade
