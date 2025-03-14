@@ -136,6 +136,8 @@ if status --is-interactive
 
     starship init fish | source
     zoxide init fish | source
+    pay-respects fish --alias fk | source
+
     gh completion --shell fish | source
     jj util completion fish | source
     #mise activate fish | source

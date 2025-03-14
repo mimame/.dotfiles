@@ -230,6 +230,7 @@
       oxker
       pandoc
       pastel
+      pay-respects
       pbzip2
       pciutils
       pdftk
@@ -264,7 +265,6 @@
       systeroid
       tealdeer
       testdisk
-      thefuck
       tokei
       topgrade
       translate-shell
