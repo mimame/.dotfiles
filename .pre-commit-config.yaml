@@ -27,7 +27,6 @@ repos:
     rev: v1.2
     hooks:
       - id: fish_syntax
-      - id: fish_indent
   - repo: local
     hooks:
       - id: treefmt
