@@ -134,44 +134,21 @@ if status --is-interactive
     #     eval (zellij setup --generate-auto-start fish | string collect)
     # end
 
-    # Define function to load configurations and completions for various tools
-    function load_completions --on-event fish_prompt
-        set -l tools starship gh broot thefuck zoxide mise jj
+    starship init fish | source
+    zoxide init fish | source
+    gh completion --shell fish | source
+    jj util completion fish | source
+    #mise activate fish | source
 
-        for tool in $tools
-            switch $tool
-                case starship
-                    starship init fish | source
-                case gh
-                    #gh completion --shell fish | source
-                case broot
-                    # Using ~/.config/functions/br.fish instead for performance
-                    # broot --print-shell-function fish | source
-                case thefuck
-                    # Using ~/.config/functions/fk.fish instead for performance
-                    # thefuck --alias fk | source
-                case zoxide
-                    zoxide init fish | source
-                case mise
-                    #mise activate fish | source
-                case jj
-                    jj util completion fish | source
-                case "*"
-                    echo "Unknown tool: $tool"
-            end
-        end
-
-        # Create directory and generate carapace completions
-        # mkdir -p ~/.config/fish/completions
-        # set -Ux CARAPACE_BRIDGES 'fish,zsh,bash,inshellisense'
-        # carapace --list | cut -d ' ' -f 1 | while read -l program
-        #    touch ~/.config/fish/completions/$program.fish
-        # end
-        # carapace _carapace | source
-        #
-        # Clean up function definitions
-        functions --erase load_completions
-    end
+    # Create directory and generate carapace completions
+    # mkdir -p ~/.config/fish/completions
+    # set -Ux CARAPACE_BRIDGES 'fish,zsh,bash,inshellisense'
+    # carapace --list | cut -d ' ' -f 1 | while read -l program
+    #    touch ~/.config/fish/completions/$program.fish
+    # end
+    # carapace _carapace | source
+    #
+    # Clean up function definitions
 
     # Trigger the deferred loading functions on first prompt
     emit fish_prompt
