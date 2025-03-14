@@ -24,11 +24,11 @@ excludes = ["wezterm"]
 includes = ["lazyvim/*.lua"]
 options = ["--config-path", "lazyvim/stylua.toml"]
 
-# [formatter.yamlfmt]
-# command = "yamlfmt"
-# excludes = []
-# includes = ["*.yaml", "*.yml"]
-# options = []
+[formatter.yamlfmt]
+command = "yamlfmt"
+excludes = []
+includes = ["*.yaml", "*.yml"]
+options = []
 
 # [formatter.taplo]
 # command = "taplo"
