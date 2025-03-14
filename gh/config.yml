@@ -4,17 +4,17 @@ git_protocol: ssh
 editor: !!null nvim
 # Aliases allow you to create nicknames for gh commands
 aliases:
-    r: repo view --web
-    rc: repo create
-    rcl: repo clone
-    rf: repo fork
-    i: issue list
-    ic: issue create
-    is: issue status
-    iv: issue view
-    p: pr list
-    pc: pr create
-    pco: pr checkout
-    pv: pr view
-    g: gist create
+  r: repo view --web
+  rc: repo create
+  rcl: repo clone
+  rf: repo fork
+  i: issue list
+  ic: issue create
+  is: issue status
+  iv: issue view
+  p: pr list
+  pc: pr create
+  pco: pr checkout
+  pv: pr view
+  g: gist create
 version: "1"

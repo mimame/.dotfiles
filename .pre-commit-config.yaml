@@ -1,39 +1,36 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-yaml
-    -   id: check-toml
-    -   id: check-added-large-files
-    -   id: detect-private-key
--   repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-added-large-files
+      - id: detect-private-key
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
     rev: v9.16.0
     hooks:
-    -   id: commitlint
+      - id: commitlint
         stages: [commit-msg]
--   repo: https://github.com/sirwart/ripsecrets
+  - repo: https://github.com/sirwart/ripsecrets
     rev: v0.1.8
     hooks:
-    -   id: ripsecrets-system
-
--   repo: https://github.com/gitleaks/gitleaks
+      - id: ripsecrets-system
+  - repo: https://github.com/gitleaks/gitleaks
     rev: v8.18.4
     hooks:
       - id: gitleaks-system
-
-- repo: https://github.com/hugoh/pre-commit-fish.git
-  rev: v1.2
-  hooks:
-    - id: fish_syntax
-    - id: fish_indent
-
-- repo: local
-  hooks:
-    - id: treefmt
-      name: treefmt
-      language: system
-      entry: treefmt
+  - repo: https://github.com/hugoh/pre-commit-fish.git
+    rev: v1.2
+    hooks:
+      - id: fish_syntax
+      - id: fish_indent
+  - repo: local
+    hooks:
+      - id: treefmt
+        name: treefmt
+        language: system
+        entry: treefmt
