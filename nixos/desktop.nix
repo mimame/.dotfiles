@@ -108,6 +108,12 @@ in
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
+  # enable niri tiling windows manager
+  # programs.niri = {
+  #   enable = true;
+  #   package = pkgs.unstable.niri;
+  # };
+
   # enable sway window manager
   programs.sway = {
     enable = true;
