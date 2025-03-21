@@ -249,6 +249,7 @@ in
       playerctl
       qalculate-gtk
       qutebrowser
+      ripdrag
       rofi-wayland
       spicetify-cli
       spotify
@@ -272,7 +273,6 @@ in
       wl-clipboard
       wlrctl
       wtype
-      xdragon
       ydotool
       zathura
       zeal
