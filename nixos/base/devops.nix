@@ -65,7 +65,8 @@
     enableSuid = true;
   };
 
-  security.sudo-rs = {
+  # FIXME: sudo-rs doesn't write to /etc/sudoers file the extraConfig and extraRules
+  security.sudo = {
     # Configure podman to be use by minikube
     extraRules = [
       {

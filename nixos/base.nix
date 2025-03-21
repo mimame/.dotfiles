@@ -76,6 +76,10 @@
   security.sudo-rs = {
     # Only ask sudo password one time for all tty
     # Ask sudo password each 2h instead 5 minutes
+    package = pkgs.unstable.sudo-rs;
+  };
+  # FIXME: sudo-rs doesn't write to /etc/sudoers file the extraConfig and extraRules
+  security.sudo = {
     extraConfig = ''
       Defaults !tty_tickets
       Defaults timestamp_timeout=120
