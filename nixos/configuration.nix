@@ -65,7 +65,15 @@ in
     # Allow unfree packages
     allowUnfree = true;
     # Add unstable packages injecting directly the unstable channel url
-    packageOverrides = pkgs: { unstable = import unstableTarball { config = config.nixpkgs.config; }; };
+    packageOverrides = pkgs: {
+      unstable = import unstableTarball { config = config.nixpkgs.config; };
+      # NEVER use devenv package, it containts abusive telemetry, see:
+      # https://chaos.social/@hexa/114009069746212598
+      # https://news.ycombinator.com/item?id=43060368
+      # https://infosec.exchange/@flashfox/114216087400393131
+      # https://github.com/cachix/devenv/pull/1776/files
+      devenv = null;
+    };
   };
 
   system = {

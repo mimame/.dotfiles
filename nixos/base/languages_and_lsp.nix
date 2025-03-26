@@ -200,7 +200,6 @@
       bison
       buf
       codespell
-      devenv
       exercism
       gitleaks
       gnumake
