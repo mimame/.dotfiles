@@ -23,6 +23,7 @@ in
     ./hardware/graphics.nix
     ./lix.nix
     ./base.nix
+    ./fonts.nix
     ./base/cli.nix
     ./base/languages_and_lsp.nix
     ./base/devops.nix
