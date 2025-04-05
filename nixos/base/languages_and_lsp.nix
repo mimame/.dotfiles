@@ -114,15 +114,14 @@
     ++ (with pkgs.unstable; [
       # Python
       # hatch
-      jupyter-all
-      poetry
-      python3Packages.ptpython
-      python3Packages.pylsp-mypy
-      python3Packages.pylsp-rope
-      python3Packages.python-lsp-ruff
-      python3Packages.python-lsp-server
-      python3Packages.radian
-      ruff
+      # jupyter-all
+      # python3Packages.ptpython
+      # python3Packages.pylsp-mypy
+      # python3Packages.pylsp-rope
+      # python3Packages.python-lsp-ruff
+      # python3Packages.python-lsp-server
+      # python3Packages.radian
+      # ruff
       uv
     ])
     ++ (with pkgs.unstable; [
