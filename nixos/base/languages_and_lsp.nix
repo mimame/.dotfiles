@@ -99,6 +99,7 @@
     ++ (with pkgs.unstable; [
       # Nix
       nil
+      nixd
       nixfmt-rfc-style
       nixpkgs-review
     ])
