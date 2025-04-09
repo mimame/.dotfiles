@@ -16,6 +16,7 @@ exec configure-gtk
 # Enable clipboard manager
 exec wl-paste -t text --watch clipman store --no-persist
 exec swaync
+exec swayosd-server --top-margin=0
 
 input "type:keyboard" {
     xkb_layout us
@@ -118,31 +119,28 @@ bindsym $mod+Ctrl+f exec rofi -show finder
 bindsym $mod+c exec "clipman pick --tool rofi --err-on-no-selection && wtype -M ctrl -M shift v"
 
 # Player controls
-bindsym XF86AudioPlay exec playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
-bindsym XF86AudioNext exec playerctl next && ~/.config/sway/scripts/notification "next_song"
-bindsym XF86AudioPrev exec playerctl previous && ~/.config/sway/scripts/notification "previous_song"
-
-# No player controls available
-bindsym Shift+XF86AudioMute exec playerctl play-pause && ~/.config/sway/scripts/notification "play-stop_song"
-bindsym Shift+XF86AudioRaiseVolume exec playerctl next && ~/.config/sway/scripts/notification "next_song"
-bindsym Shift+XF86AudioLowerVolume exec playerctl previous && ~/.config/sway/scripts/notification "previous_song"
-bindsym $mod+Mod1+Right exec playerctl next && ~/.config/sway/scripts/notification "next_song"
-bindsym $mod+Mod1+Left exec playerctl previous && ~/.config/sway/scripts/notification "previous_song"
-
+bindsym XF86AudioPlay exec swayosd-client --playerctl play-pause
+bindsym XF86AudioStop exec swayosd-client --playerctl stop
+bindsym XF86AudioNext exec swayosd-client --playerctl next
+bindsym XF86AudioPrev exec swayosd-client --playerctl prev
 
 # Wireplumber controls
 exec wpctl set-volume @DEFAULT_SINK@ 0
-bindsym $mod+Mod1+Up exec wpctl set-volume @DEFAULT_SINK@ 1%+ -l 1 && ~/.config/sway/scripts/notification "high_sound"
-bindsym $mod+Mod1+Down exec wpctl set-volume @DEFAULT_SINK@ 1%- -l 1 && ~/.config/sway/scripts/notification "low_sound"
-
-bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_SINK@ 5%+ -l 1 && ~/.config/sway/scripts/notification "high_sound"
-bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%- -l 1 && ~/.config/sway/scripts/notification "low_sound"
-bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle && ~/.config/sway/scripts/notification "play-mute_sound"
+# Sink volume raise optionally with --device
+bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume raise
+# Sink volume lower optionally with --device
+bindsym XF86AudioLowerVolume exec swayosd-client --output-volume lower
+# Sink volume toggle mute
+bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
+# Source volume toggle mute
+bindsym XF86AudioMicMute exec swayosd-client --input-volume mute-toggle
 
 # Screen brightness controls
 # exec light -S 10
-bindsym XF86MonBrightnessUp exec light -A 5 && ~/.config/sway/scripts/notification "light"
-bindsym XF86MonBrightnessDown exec light -U 5 && ~/.config/sway/scripts/notification "light"
+# Brightness raise
+bindsym XF86MonBrightnessUp exec swayosd-client --brightness raise
+# Brightness lower
+bindsym XF86MonBrightnessDown exec swayosd-client --brightness lower
 
 # Print Screen controls
 bindsym Print exec ~/.config/sway/scripts/screenshot

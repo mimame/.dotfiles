@@ -197,6 +197,7 @@ in
       keepassxc
       libreoffice
       zoom-us # White screen if the version is linked from pkgs.unstable
+      swayosd
     ]
     ++ (with pkgs.unstable; [
 
