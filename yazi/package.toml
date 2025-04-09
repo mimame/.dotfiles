@@ -4,7 +4,6 @@ rev = "c76bf4f"
 hash = "a6b78bf9af5390e3a85a6951fbb7b93"
 
 [[plugin.deps]]
-
 use = "yazi-rs/plugins:full-border"
 rev = "2bf70d8"
 hash = "9dce00232a0e0e2502565c7aa2b0ed4e"
@@ -28,6 +27,11 @@ hash = "9f13f0740fa3a0c18e47ec6fb62ddfaa"
 use = "yazi-rs/plugins:mount"
 rev = "2bf70d8"
 hash = "dd97eede8e20e59cd2604e8006e470e2"
+
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "73b7842"
+hash = "1b2f25c9a34b98e596c65bd3e84c51ef"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"

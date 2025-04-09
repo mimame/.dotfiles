@@ -112,7 +112,6 @@ image_bound = [0, 0]
 suppress_preload = false
 
 [plugin]
-
 fetchers = [
   # Mimetype
   { id = "mime", name = "*", run = "mime", prio = "high" },
@@ -142,7 +141,19 @@ preloaders = [
   { mime = "font/*", run = "font" },
   { mime = "application/ms-opentype", run = "font" },
 ]
-prepend_previewers = [{ name = "*.md", run = "glow" }]
+prepend_previewers = [
+  { name = "*.md", run = "glow" },
+  # Archive previewer
+  { mime = "application/*zip", run = "ouch" },
+  { mime = "application/zip", run = "ouch" },
+  { mime = "application/x-tar", run = "ouch" },
+  { mime = "application/x-bzip2", run = "ouch" },
+  { mime = "application/x-7z-compressed", run = "ouch" },
+  { mime = "application/x-rar", run = "ouch" },
+  { mime = "application/xz", run = "ouch" },
+  { mime = "application/zstd", run = "ouch" },
+  { mime = "application/x-zstd-compressed-tar", run = "ouch" },
+]
 previewers = [
   { name = "*/", run = "folder", sync = true },
   # Code
