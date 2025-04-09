@@ -1,0 +1,110 @@
+#!/usr/bin/env fish
+# Home directory backup script using rsync and compression
+# This script backs up selected parts of the home directory, excluding large/unnecessary folders
+
+# Configuration paths
+set -l LOG_FILE "/tmp/home_backup_rsync.log"
+set -l BACKUP_DRIVE_PATH "/run/media/$USER/TOSHIBA_EXT/"
+set -l RSYNC_TEMP_PATH /tmp/home_backup_rsync/
+set -l COMPRESSED_BACKUP_FILE "/tmp/home_backup_rsync.tar.zst"
+
+# Color definitions
+set -l GREEN "\033[0;32m"
+set -l YELLOW "\033[0;33m"
+set -l RED "\033[0;31m"
+set -l BLUE "\033[0;34m"
+set -l BOLD "\033[1m"
+set -l RESET "\033[0m"
+
+# Delete log file if it exists
+if test -f $LOG_FILE
+    rm $LOG_FILE
+end
+
+# Build rsync command with all options
+# --archive: preserve permissions, ownership, timestamps (combines -rlptgoD)
+# --hard-links: preserve hard links
+# --compress: compress file data during transfer
+# --human-readable: output numbers in human-readable format
+# --update: skip files that are newer on the receiver
+# -az: archive mode with compression
+# --delete: delete extraneous files from destination dirs
+set -l RSYNC_COMMAND rsync \
+    --log-file=$LOG_FILE \
+    --stats \
+    --archive \
+    --hard-links \
+    --compress \
+    --human-readable \
+    --update -az \
+    --delete \
+    --delete-excluded \
+    --exclude=".local/" \
+    --exclude=".sbt" \
+    --exclude=".dropbox" \
+    --exclude=".cache/" \
+    --exclude=".config/google-chrome/" \
+    --exclude=".cargo/" \
+    --exclude=".thunderbird/" \
+    --exclude=".ollama/" \
+    --exclude=".vscode/" \
+    --exclude=".minikube/" \
+    --exclude=".rustup/" \
+    --exclude=".julia/" \
+    --exclude=".mozilla/" \
+    --exclude=".vagrant.d/" \
+    --exclude="go/pkg/" \
+    --exclude=".config/Code/" \
+    --exclude=".config/helix/runtime/" \
+    --exclude="deps" \
+    --exclude="node_modules" \
+    --exclude="site-packages" \
+    --exclude="CytoscapeConfiguration" \
+    --exclude="Downloads" \
+    --exclude=".config/vivaldi" \
+    --exclude=".config/yarn" \
+    --exclude=".config/zed/node" \
+    "$HOME/" $RSYNC_TEMP_PATH
+
+# Run the rsync backup
+echo -e "$BLUE$BOLD""[BACKUP]""$RESET Starting home directory backup with rsync..."
+$RSYNC_COMMAND
+
+# Only process if rsync succeeded
+if test $status -eq 0
+    echo -e "$GREEN$BOLD""[SUCCESS]""$RESET Rsync backup completed successfully!"
+    # Check if there were file changes (created or deleted files)
+    if not grep -q "Number of created files: 0" "$LOG_FILE"; or not grep -q "Number of deleted files: 0" "$LOG_FILE"
+        echo -e "$BLUE$BOLD""[INFO]""$RESET Changes detected, creating compressed archive..."
+        # Create compressed archive with zstandard multithreaded compression
+        tar -cf $COMPRESSED_BACKUP_FILE --use-compress-program='zstdmt' -C $RSYNC_TEMP_PATH .
+        echo -e "$GREEN$BOLD""[SUCCESS]""$RESET Compression complete: $COMPRESSED_BACKUP_FILE"
+
+        # Test if the compressed file is not corrupted
+        echo -e "$BLUE$BOLD""[INFO]""$RESET Testing archive integrity..."
+        zstd -t $COMPRESSED_BACKUP_FILE
+
+        if test $status -eq 0
+            echo -e "$GREEN$BOLD""[SUCCESS]""$RESET Archive integrity check passed!"
+            # Copy to external backup drive if it's mounted
+            if test -e $BACKUP_DRIVE_PATH
+                echo -e "$BLUE$BOLD""[INFO]""$RESET External drive detected at $BACKUP_DRIVE_PATH"
+                echo -e "$BLUE$BOLD""[INFO]""$RESET Copying backup to external drive..."
+                cp $COMPRESSED_BACKUP_FILE $BACKUP_DRIVE_PATH
+                sync # Ensure data is written to disk before completion
+                echo -e "$GREEN$BOLD""[SUCCESS]""$RESET Backup successfully copied to external drive!"
+            else
+                echo -e "$YELLOW$BOLD""[WARNING]""$RESET External drive not found at $BACKUP_DRIVE_PATH"
+                echo -e "$YELLOW$BOLD""[WARNING]""$RESET Backup stored at $COMPRESSED_BACKUP_FILE only"
+            end
+        else
+            echo -e "$RED$BOLD""[ERROR]""$RESET Archive integrity check failed! The backup file may be corrupted."
+            echo -e "$RED$BOLD""[ERROR]""$RESET Backup not copied to external drive."
+        end
+    else
+        echo -e "$YELLOW$BOLD""[INFO]""$RESET No file changes detected. No new backup needed."
+    end
+else
+    echo -e "$RED$BOLD""[ERROR]""$RESET Rsync backup failed with status code $status"
+    echo -e "$RED$BOLD""[ERROR]""$RESET Check the log file at $LOG_FILE for details"
+end
