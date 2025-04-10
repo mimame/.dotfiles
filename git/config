@@ -584,22 +584,15 @@
 # https://git-scm.com/docs/git-config#git-config-urlltbasegtinsteadOf
 # Always rewrite https:// with git:// git clone included
 [url "git@github.com:"]
-  pushInsteadOf = https://github.com/
-  pushInsteadOf = git://github.com/
-  pushInsteadOf = gh:
-[url "https://github.com/"]
+  insteadOf = https://github.com/
   insteadOf = gh:
 
 [url "git@gitlab.com:"]
-  pushInsteadOf = https://gitlab.com/
-  pushInsteadOf = gl:
-[url "https://gitlab.com/"]
+  insteadOf = https://gitlab.com/
   insteadOf = gl:
 
 [url "git@bitbucket.org:"]
-  pushInsteadOf = https://bitbucket.org/
-  pushInsteadOf = bb:
-[url "https://bitbucket.org/"]
+  insteadOf = https://bitbucket.org/
   insteadOf = bb:
 
 [web]
