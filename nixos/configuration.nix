@@ -29,6 +29,9 @@ in
     ./base/devops.nix
     ./base/databases.nix
     ./desktop.nix
+    ./gnome_layer.nix
+    # ./sway.nix
+    ./niri.nix
     ./laptop.nix
     ./sound.nix
     ./bluetooth.nix
