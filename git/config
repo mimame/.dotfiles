@@ -605,7 +605,7 @@
 [web]
   # https://git-scm.com/docs/git-config#git-config-webbrowser
   # Specify the web browser
-  browser = floorp
+  browser = firefox
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
