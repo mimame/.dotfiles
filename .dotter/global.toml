@@ -38,7 +38,7 @@ mimeapps = "~/.config/"
 navi = "~/.config/navi"
 # newsboat = "~/.config/"
 nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
-nnn = "~/.config/fish/"
+niri = "~/.config/niri"
 nushell = { target = "~/.config/nushell", type = "symbolic" }
 # parallel = "~/.config/"
 ptpython = "~/.config/ptpython"
