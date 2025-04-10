@@ -13,6 +13,12 @@ warning_bg = "#1e1e2e"
 icons = "material-nf"
 
 [[block]]
+block = "focused_window"
+[block.format]
+full = " $title.str(max_w:25) |"
+short = " $title.str(max_w:20) |"
+
+[[block]]
 block = "temperature"
 interval = 2
 format = " $icon $average avg, $max max "
@@ -33,7 +39,8 @@ interval = 1
 
 [[block]]
 block = "net"
-format = " $icon {$signal_strength $ssid $frequency|Wired connection} via $device ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K) "
+# format = " $icon {$signal_strength $ssid $frequency|Wired connection} via $device ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K) "
+format = " $icon {$signal_strength|Wired connection}"
 interval = 5
 [[block.click]]
 button = "left"
@@ -65,7 +72,7 @@ critical_swap = 95
 block = "time"
 interval = 1
 [block.format]
-full = " $icon $timestamp.datetime(f:'%a %d %H:%M:%S') "
+full = " $icon $timestamp.datetime(f:'%a %d %H:%M') "
 short = " $icon $timestamp.datetime(f:'%a %d %H:%M') "
 
 [[block]]
