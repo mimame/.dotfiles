@@ -21,45 +21,36 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
     # Repair each broken service
     for service_path in $services
         set -l service_name (basename $service_path)
-        set -l nix_path (realpath --canonicalize-missing $service_path)
 
-        # Check if service path is broken (missing target)
-        if test -L $service_path -a ! -e $nix_path
+        # Check if service_path is broken (missing target)
+        if not test -L $service_path
             set_color --bold yellow
-            echo "⚠️  Found broken service: $service_name → $nix_path"
+            echo "⚠️  Found broken service: $service_name → $service_path"
             set_color normal
 
             echo -n "  Fixing... "
 
-            # Remove broken symlink
-            if rm $service_path 2>/dev/null
-                # Re-enable and restart service
-                if systemctl enable --user $service_name >/dev/null 2>&1
-                    set_color green
-                    echo "✓ Enabled"
-                    set_color normal
+            # Re-enable and restart service
+            if systemctl enable --user $service_name >/dev/null 2>&1
+                set_color green
+                echo "✓ Enabled"
+                set_color normal
 
-                    echo -n "  Restarting... "
-                    if systemctl restart --user $service_name >/dev/null 2>&1
-                        set_color green
-                        echo "✓ Restarted"
-                        set_color normal
-                        set fixed_count (math $fixed_count + 1)
-                    else
-                        set_color red
-                        echo "✗ Failed to restart"
-                        set_color normal
-                        set error_count (math $error_count + 1)
-                    end
+                echo -n "  Restarting... "
+                if systemctl restart --user $service_name >/dev/null 2>&1
+                    set_color green
+                    echo "✓ Restarted"
+                    set_color normal
+                    set fixed_count (math $fixed_count + 1)
                 else
                     set_color red
-                    echo "✗ Failed to enable"
+                    echo "✗ Failed to restart"
                     set_color normal
                     set error_count (math $error_count + 1)
                 end
             else
                 set_color red
-                echo "✗ Failed to remove symlink"
+                echo "✗ Failed to enable"
                 set_color normal
                 set error_count (math $error_count + 1)
             end
