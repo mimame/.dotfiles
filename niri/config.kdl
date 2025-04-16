@@ -481,3 +481,17 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 }
+
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    SDL_VIDEODRIVER "wayland"
+    QT_QPA_PLATFORM "wayland"
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+    _JAVA_AWT_WM_NONREPARENTING "1"
+    MOZ_ENABLE_WAYLAND "1"
+    GTK_USE_PORTAL "1"
+    QT_IM_MODULE "ibus"
+    XMODIFIERS "@im ibus"
+    GTK_IM_MODULE "ibus"
+    DISPLAY ":0"
+}
