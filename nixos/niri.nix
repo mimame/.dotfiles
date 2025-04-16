@@ -32,6 +32,7 @@ in
     with pkgs;
     [
 
+      xwayland-satellite
     ]
     ++ (with pkgs.unstable; [
 
