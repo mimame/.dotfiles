@@ -38,14 +38,9 @@
     };
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs = {
-    light.enable = true;
-  };
-
   environment.systemPackages = with pkgs; [
 
+    brightnessctl
     libinput
     libinput-gestures
   ];
