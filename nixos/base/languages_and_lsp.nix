@@ -127,11 +127,11 @@
     ])
     ++ (with pkgs.unstable; [
       # Ruby
-      bundler
-      ruby-lsp
-      rubyPackages.pry
-      rubyPackages.railties
-      solargraph
+      # bundler
+      # ruby-lsp
+      # rubyPackages.pry
+      # rubyPackages.railties
+      # solargraph
     ])
     ++ (with pkgs.unstable; [
       # Rust
