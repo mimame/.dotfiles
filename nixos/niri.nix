@@ -11,10 +11,9 @@ in
 
   services.xserver = {
     enable = true;
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+    # FIXME: Enable lightdm when working
+    # displayManager.lightdm.enable = true;
+    displayManager.gdm.enable = true;
   };
 
   services.displayManager = {
