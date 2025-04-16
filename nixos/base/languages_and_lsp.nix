@@ -164,15 +164,15 @@
     ])
     ++ (with pkgs.unstable; [
       # TypeScript/Node.js
-      biome
+      # biome
       nodejs
-      nodePackages.bash-language-server
+      # nodePackages.bash-language-server
       nodePackages.npm
-      nodePackages.svelte-language-server
-      nodePackages.typescript
-      nodePackages.typescript-language-server
-      nodePackages.vscode-langservers-extracted
-      typescript
+      # nodePackages.svelte-language-server
+      # nodePackages.typescript
+      # nodePackages.typescript-language-server
+      # nodePackages.vscode-langservers-extracted
+      # typescript
     ])
     ++ (with pkgs.unstable; [
       # Typst
