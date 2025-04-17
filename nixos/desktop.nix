@@ -26,6 +26,8 @@ in
       inkscape
       keepassxc
       libreoffice
+      rofi-wayland
+      spotify
       zoom-us # White screen if the version is linked from pkgs.unstable
     ]
     ++ (with pkgs.unstable; [
@@ -72,9 +74,7 @@ in
       qalculate-gtk
       qutebrowser
       ripdrag
-      rofi-wayland
       spicetify-cli
-      spotify
       sqlitebrowser
       telegram-desktop
       thunderbird
