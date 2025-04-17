@@ -58,7 +58,12 @@
   #   };
   # };
 
-  services.ollama.enable = true;
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-cuda;
+    acceleration = "cuda";
+  };
+  services.nextjs-ollama-llm-ui.enable = true;
 
   services.syncthing = {
     enable = true;
