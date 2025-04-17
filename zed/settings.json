@@ -8,15 +8,26 @@
   },
   "auto_install_extension": {
     "catppuccin": true,
+    "css": true,
     "csv": true,
     "docker-compose": true,
     "dockerfile": true,
+    "fish": true,
+    "git-firefly": true,
     "html": true,
-    "lua": true,
-    "nix": true,
-    "ruff": true,
     "json": true,
-    "toml": true
+    "just": true,
+    "log": true,
+    "lua": true,
+    "make": true,
+    "nix": true,
+    "ruby": true,
+    "ruff": true,
+    "sql": true,
+    "ssh-config": true,
+    "terraform": true,
+    "toml": true,
+    "xml": true
   },
   "autosave": {
     "after_delay": {
@@ -38,7 +49,7 @@
   },
   "format_on_save": "on",
   "git": {
-    "git_gutter":"tracked_files",
+    "git_gutter": "tracked_files",
     "inline_blame": {
       "enabled": true
     }
@@ -63,7 +74,6 @@
   },
   "load_direnv": "direct",
   "lsp": {
-    // TOML
     "taplo": {
       "settings": {
         "array_auto_collapse": false
@@ -85,8 +95,12 @@
           "singleQuote": true
         },
         "schemas": {
-          "http://json.schemastore.org/composer": ["/*"],
-          "../relative/path/schema.json": ["/config*.yaml"]
+          "http://json.schemastore.org/composer": [
+            "/*"
+          ],
+          "../relative/path/schema.json": [
+            "/config*.yaml"
+          ]
         }
       }
     }
@@ -113,7 +127,7 @@
   "terminal": {
     "blinking": "off",
     "copy_on_select": true,
-    "font_family": "JetBrainsMono Nerd Font Mono",
+    "font_family": "JetBrainsMono Nerd Font Mono"
   },
   "theme": {
     "mode": "system",
