@@ -61,9 +61,11 @@ in
   # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
+  security.pam.services.gtklock = { };
   environment.systemPackages =
     with pkgs;
     [
+      gtklock
       xwayland-satellite
     ]
     ++ (with pkgs.unstable; [
