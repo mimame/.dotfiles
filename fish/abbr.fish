@@ -139,6 +139,7 @@ edit_config topgraderc ~/.dotfiles/topgrade/ topgrade.toml
 edit_config weztermrc ~/.dotfiles/wezterm/ wezterm.lua
 edit_config xplrrc ~/.dotfiles/xplr/ init.lua
 edit_config yazirc ~/.dotfiles/yazi/ yazi.toml
+edit_config zedrc ~/.dotfiles/zed/ settings.json
 edit_config zellijrc ~/.dotfiles/zellij/ config.kdl
 
 # --- Applications ---
