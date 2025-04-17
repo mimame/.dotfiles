@@ -24,8 +24,8 @@ Host *
   # Remote X11 clients will have full access to the original X11 display (required to share the X11 clipboard)
   ForwardX11Trusted yes
   # When using ssh key first try with the key without passphrase for instant login
-  IdentityFile ~/.ssh/id_rsa_no_passphrase
-  IdentityFile ~/.ssh/id_rsa
+  IdentityFile ~/.ssh/id_ed25519_no_passphrase
+  IdentityFile ~/.ssh/id_ed25519
   # Only use the identity keys configured
   # IdentitiesOnly yes
   # Always add used ssh keys to the agent
