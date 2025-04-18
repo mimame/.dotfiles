@@ -136,7 +136,6 @@
       curlie
       ddgr
       delta
-      devbox
       difftastic
       direnv
       diskus

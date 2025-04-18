@@ -2,7 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
   unstableTarball = fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
 in
@@ -75,7 +79,10 @@ in
       # https://news.ycombinator.com/item?id=43060368
       # https://infosec.exchange/@flashfox/114216087400393131
       # https://github.com/cachix/devenv/pull/1776/files
+      devbox = null;
       devenv = null;
+      flox = null;
+
     };
   };
 
