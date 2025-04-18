@@ -171,6 +171,7 @@
       gitFull
       github-cli
       gitoxide
+      gitu
       gitui
       glow
       goawk
