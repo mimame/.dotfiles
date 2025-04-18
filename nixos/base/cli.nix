@@ -104,6 +104,7 @@
       rustscan
       strace
       stress
+      systeroid
       tailspin
       termscp
       tesseract5
@@ -265,7 +266,6 @@
       sshfs
       starship
       stow
-      systeroid
       tealdeer
       television
       testdisk
