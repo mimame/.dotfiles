@@ -305,6 +305,16 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true  { spawn "brightnessctl" "set" "10%-"; }
     XF86MonBrightnessUp allow-when-locked=true  { spawn "brightnessctl" "set" "10%+"; }
 
+    // Misc XF86 keys
+    XF86HomePage { spawn "wezterm"; }
+    XF86Explorer { spawn "files"; }
+    XF86Mail { spawn "thunderbird"; }
+    XF86Tools { spawn "spotify"; }
+    XF86Calculator { spawn "qalculate-gtk"; }
+    XF86Search { spawn "firefox"; }
+    Scroll_Lock { spawn "gtklock"; }
+    // Pause
+
     Mod+Q { close-window; }
 
     Mod+Left  { focus-column-left; }
