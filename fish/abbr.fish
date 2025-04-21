@@ -113,34 +113,37 @@ abbr rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppab
 abbr sshfs "sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
 
 # --- Configuration File Editing ---
-function edit_config --argument config_name config_path config_file
-    abbr $config_name "pushd $config_path && $EDITOR $config_file && popd"
+function edit_config --argument abbr_alias config_path
+    set -l path (dirname $config_path)
+    set -l filename (basename $config_path)
+    abbr $abbr_alias "pushd $path && $EDITOR $filename && popd"
 end
 
-edit_config brootrc ~/.dotfiles/broot/ conf.toml
-edit_config clifmrc ~/.dotfiles/clifm/profiles/default/ clifmrc
-edit_config fishrc ~/.dotfiles/fish/ config.fish
-edit_config ghosttyrc ~/.dotfiles/ghostty/ config
-edit_config gitrc ~/.dotfiles/git/ config
-edit_config hxrc ~/.dotfiles/helix/ config.toml
-edit_config kittyrc ~/.dotfiles/kitty/ kitty.conf
-edit_config mimerc ~/.dotfiles/mimeapps/ mimeapps.list
-edit_config navirc ~/.dotfiles/navi/ config.yaml
-edit_config nirirc ~/.dotfiles/niri/ config.kdl
+edit_config brootrc ~/.dotfiles/broot/conf.toml
+edit_config clifmrc ~/.dotfiles/clifm/profiles/default/clifmrc
+edit_config fishrc ~/.dotfiles/fish/config.fish
+edit_config ghosttyrc ~/.dotfiles/ghostty/config
+edit_config gitrc ~/.dotfiles/git/config
+edit_config hxrc ~/.dotfiles/helix/config.toml
+edit_config kittyrc ~/.dotfiles/kitty/kitty.conf
+edit_config mimerc ~/.dotfiles/mimeapps/mimeapps.list
+edit_config navirc ~/.dotfiles/navi/config.yaml
+edit_config nirirc ~/.dotfiles/niri/config.kdl
 abbr nixosrc 'pushd ~/.dotfiles/nixos/ && $EDITOR configuration.nix && sudo nixos-rebuild switch --fast && popd'
-edit_config nvimrc ~/.dotfiles/lazyvim/ init.lua
-edit_config qutebrowserrc ~/.dotfiles/qutebrowser/ config.py
-edit_config rofirc ~/.dotfiles/rofi/ config.rasi
-edit_config sshrc ~/.dotfiles/ssh/ config
-edit_config starshiprc ~/.dotfiles/starship/ starship.toml
-edit_config swayrc ~/.dotfiles/sway/sway/ config
-edit_config tldrrc ~/.dotfiles/tealdeer/ config.toml
-edit_config topgraderc ~/.dotfiles/topgrade/ topgrade.toml
-edit_config weztermrc ~/.dotfiles/wezterm/ wezterm.lua
-edit_config xplrrc ~/.dotfiles/xplr/ init.lua
-edit_config yazirc ~/.dotfiles/yazi/ yazi.toml
-edit_config zedrc ~/.dotfiles/zed/ settings.json
-edit_config zellijrc ~/.dotfiles/zellij/ config.kdl
+edit_config nvimrc ~/.dotfiles/lazyvim/init.lua
+edit_config qutebrowserrc ~/.dotfiles/qutebrowser/config.py
+edit_config rofirc ~/.dotfiles/rofi/config.rasi
+edit_config sshrc ~/.dotfiles/ssh/config
+edit_config starshiprc ~/.dotfiles/starship/starship.toml
+edit_config swayrc ~/.dotfiles/sway/sway/config
+edit_config tldrrc ~/.dotfiles/tealdeer/config.toml
+edit_config topgraderc ~/.dotfiles/topgrade/topgrade.toml
+edit_config waybarrc ~/.dotfiles/waybar/config.jsonc
+edit_config weztermrc ~/.dotfiles/wezterm/wezterm.lua
+edit_config xplrrc ~/.dotfiles/xplr/init.lua
+edit_config yazirc ~/.dotfiles/yazi/yazi.toml
+edit_config zedrc ~/.dotfiles/zed/settings.json
+edit_config zellijrc ~/.dotfiles/zellij/config.kdl
 
 # --- Applications ---
 abbr lc 'libreoffice --calc'
