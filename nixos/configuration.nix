@@ -19,28 +19,41 @@ in
   imports = [
     # Include the results of the hardware scan.
     /etc/nixos/hardware-configuration.nix
-    ./boot.nix
-    ./firmware.nix
+
+    # System core
+    ./core/boot.nix
+    ./core/firmware.nix
+    ./core/lix.nix
+
+    # Hardware
     ./hardware/cpu.nix
     ./hardware/time.nix
     ./hardware/networking.nix
     ./hardware/graphics.nix
-    ./lix.nix
-    ./base.nix
-    ./fonts.nix
-    ./base/cli.nix
-    ./base/languages_and_lsp.nix
-    ./base/devops.nix
-    ./base/databases.nix
-    ./desktop.nix
-    ./gnome_layer.nix
-    # ./sway.nix
-    ./niri.nix
-    ./laptop.nix
-    ./sound.nix
-    ./bluetooth.nix
-    ./printer.nix
-    ./scanner.nix
+    ./hardware/bluetooth.nix
+    ./hardware/sound.nix
+    ./hardware/peripherals/printer.nix
+    ./hardware/peripherals/scanner.nix
+
+    # Device-specific
+    ./profiles/laptop.nix
+
+    # Base system
+    ./system/base.nix
+    ./system/fonts.nix
+
+    # Programs and Development tools
+    ./programs/cli.nix
+    ./programs/languages_and_lsp.nix
+    ./programs/devops.nix
+    ./programs/databases.nix
+
+    # Desktop environment
+    ./desktop/base.nix
+    ./desktop/gnome_layer.nix
+    # ./desktop/sway.nix
+    ./desktop/niri.nix
+
   ];
 
   nix = {
