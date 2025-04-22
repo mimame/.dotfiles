@@ -131,7 +131,7 @@
       clifm
       comma
       convco
-      copyq
+      # copyq
       ctop
       curl
       curlie

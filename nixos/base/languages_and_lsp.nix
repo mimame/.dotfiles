@@ -211,7 +211,7 @@
       hunspellDicts.fr-moderne
       hyphen
       languagetool
-      lldb
+      # lldb
       llvm
       ltex-ls
       meson

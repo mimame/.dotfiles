@@ -26,6 +26,7 @@ in
       inkscape
       keepassxc
       libreoffice
+      obsidian
       rofi-wayland
       spotify
       zoom-us # White screen if the version is linked from pkgs.unstable
@@ -61,13 +62,12 @@ in
       gst_all_1.gst-plugins-ugly
       gst_all_1.gstreamer
       joplin-desktop
-      kdiff3
+      # kdiff3
       klavaro
       lapce
       # logseq # removed from nixpkgs
       neovide
       # nheko
-      obsidian
       pcmanfm
       pdfarranger
       playerctl
