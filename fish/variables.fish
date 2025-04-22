@@ -44,8 +44,8 @@ set -Ux FZF_DEFAULT_OPTS '
 '
 
 # Set default web browser to Vivaldi if available
-if command -q vivaldi
-    set -x -U BROWSER vivaldi
+if command -q firefox
+    set -x -U BROWSER firefox
 end
 
 # Configure system environment variables
