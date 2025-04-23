@@ -44,8 +44,9 @@ input {
 
     // Switching to the same workspace by index twice will switch back to the previous workspace
     workspace-auto-back-and-forth
+
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // focus-follows-mouse
