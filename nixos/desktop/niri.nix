@@ -55,6 +55,20 @@ in
           TimeoutStopSec = 10;
         };
       };
+      udiskie = {
+        enable = true;
+        description = "udiskie";
+        wantedBy = [ "niri.service" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.unstable.udiskie}/bin/udiskie --notify --smart-tray --event-hook notify-send";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
     };
   };
 
