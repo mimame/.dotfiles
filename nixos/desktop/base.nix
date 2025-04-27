@@ -22,6 +22,7 @@ in
 
       clipman
       cmst # QT connman GUI
+      (flameshot.override { enableWlrSupport = true; })
       gthumb
       inkscape
       keepassxc
@@ -48,7 +49,6 @@ in
         ffmpegSupport = true;
         pipewireSupport = true;
       }) { })
-      flameshot
       # floorp
       gimp
       # git-cola
