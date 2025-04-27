@@ -51,7 +51,7 @@ starship = "~/.config/"
 # sway = "~/.config/"
 swaync = "~/.config/swaync"
 tealdeer = "~/.config/tealdeer"
-television = "~/.config/television"
+television = { target = "~/.config/television", type = "symbolic" }
 topgrade = "~/.config/topgrade"
 # vifm = "~/.config/"
 vimiv = "~/.config/vimiv"
