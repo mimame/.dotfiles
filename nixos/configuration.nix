@@ -24,6 +24,7 @@ in
     ./core/boot.nix
     ./core/firmware.nix
     ./core/lix.nix
+    ./core/posix-compatibility.nix
 
     # Hardware
     ./hardware/cpu.nix
