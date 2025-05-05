@@ -14,8 +14,9 @@ in
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
-      stdenv.cc.cc
       curl
+      stdenv.cc.cc
+      zlib
     ];
   };
 
