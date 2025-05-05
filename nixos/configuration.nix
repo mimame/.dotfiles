@@ -10,9 +10,6 @@
 let
   unstableTarball = fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
 in
-# nix-alien-pkgs =
-#   import (builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master")
-#     { };
 {
   nixpkgs.config.permittedInsecurePackages = [
   ];
@@ -91,16 +88,6 @@ in
         ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
       '';
     };
-  };
-
-  # Be able to execute dynamic linked binaries compiled outside NixOS
-  # Needed for `nix-alien-ld` command
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc
-      curl
-    ];
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
