@@ -6,6 +6,13 @@
     package = pkgs.unstable.jdk21;
   };
 
+  # Enable the LanguageTool system service to provide a local grammar and spell checking server
+  # Manually configure the Firefox LanguageTool extension in its preferences (Advanced settings)
+  services.languagetool = {
+    enable = true;
+    package = pkgs.unstable.languagetool;
+  };
+
   environment.systemPackages =
     with pkgs;
     [
