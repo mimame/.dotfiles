@@ -8,6 +8,7 @@
   },
   "auto_install_extension": {
     "catppuccin": true,
+    "catppuccin-icons": true,
     "css": true,
     "csv": true,
     "docker-compose": true,
