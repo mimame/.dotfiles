@@ -4,7 +4,6 @@
   services.locate = {
     enable = true;
     package = pkgs.unstable.plocate;
-    localuser = null;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
