@@ -1,6 +1,9 @@
 { ... }:
 {
 
+  # TODO: Remove after 25.11
+  system.rebuild.enableNg = true;
+
   nix = {
     # package = pkgs.nixVersions.latest; # Use lix instead
     # Be sure to run nix-collect-garbage one time per week
