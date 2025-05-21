@@ -13,10 +13,8 @@
     enable3G = false;
     enableCDMA = false;
     enableModemGPS = false;
-    geoProviderUrl = "https://beacondb.net/v1/geolocate";
     # submit data, only possible with a GPS antenna
     submitData = false;
-    # submissionUrl = "https://beacondb.net/v2/geosubmit";
   };
   services.geoclue2.appConfig.gammastep = {
     isAllowed = true;
