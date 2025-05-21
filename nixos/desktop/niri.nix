@@ -31,8 +31,8 @@ in
         enable = true;
         description = "gammastep";
         wantedBy = [ "niri.service" ];
-        wants = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
+        wants = [ "niri.service" ];
+        after = [ "niri.service" ];
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.gammastep}/bin/gammastep";
@@ -45,8 +45,8 @@ in
         enable = true;
         description = "swayidle";
         wantedBy = [ "niri.service" ];
-        wants = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
+        wants = [ "niri.service" ];
+        after = [ "niri.service" ];
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.unstable.swayidle}/bin/swayidle timeout 3600 'systemctl suspend-then-hibernate'";
@@ -59,8 +59,8 @@ in
         enable = true;
         description = "udiskie";
         wantedBy = [ "niri.service" ];
-        wants = [ "graphical-session.target" ];
-        after = [ "graphical-session.target" ];
+        wants = [ "niri.service" ];
+        after = [ "niri.service" ];
         serviceConfig = {
           Type = "simple";
           ExecStart = "${pkgs.unstable.udiskie}/bin/udiskie --notify --smart-tray --event-hook notify-send";
