@@ -23,18 +23,15 @@ in
       clipman
       cmst # QT connman GUI
       (flameshot.override { enableWlrSupport = true; })
-      gthumb
-      inkscape
-      keepassxc
-      libreoffice
-      obsidian
-      rofi-wayland
-      spotify
-      zoom-us # White screen if the version is linked from pkgs.unstable
     ]
     ++ (with pkgs.unstable; [
 
       # betterbird
+      # floorp
+      # git-cola
+      # kdiff3
+      # nheko
+      # wl-clipboard-rs
       bitwarden
       calibre
       catppuccin-cursors.mochaMauve
@@ -44,42 +41,46 @@ in
       emote
       evince
       eww
+      ffmpeg-full
       filezilla
       (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {
         ffmpegSupport = true;
         pipewireSupport = true;
       }) { })
-      # floorp
-      gimp
-      # git-cola
+      gimp3
       gitg
       glxinfo
-      ffmpeg-full
       google-chrome
       gst_all_1.gst-plugins-bad
       gst_all_1.gst-plugins-base
       gst_all_1.gst-plugins-good
       gst_all_1.gst-plugins-ugly
       gst_all_1.gstreamer
+      gthumb
+      inkscape
       joplin-desktop
-      # kdiff3
+      keepassxc
       klavaro
       lapce
-      # logseq # removed from nixpkgs
+      libreoffice
+      logseq # removed from nixpkgs
       neovide
-      # nheko
+      obsidian
       pcmanfm
       pdfarranger
       playerctl
       qalculate-gtk
       qutebrowser
       ripdrag
+      rofi-wayland
       spicetify-cli
+      spotify
       sqlitebrowser
       telegram-desktop
       thunderbird
       tridactyl-native
       ulauncher
+      unetbootin
       usbimager
       (vivaldi.override {
         proprietaryCodecs = true;
@@ -88,7 +89,6 @@ in
       vlc
       vscode
       wev
-      # wl-clipboard-rs
       wl-clipboard
       wlrctl
       wtype
@@ -97,8 +97,8 @@ in
       zeal
       zed-editor
       zettlr
+      zoom-us
       zotero
-      unetbootin
 
     ]);
 }
