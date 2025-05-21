@@ -61,6 +61,7 @@
     enable = true;
     package = pkgs.ollama-cuda;
     acceleration = "cuda";
+    loadModels = [ "gemma3" ];
   };
   services.nextjs-ollama-llm-ui.enable = true;
 
