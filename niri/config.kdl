@@ -53,6 +53,8 @@ input {
 }
 
 cursor {
+    xcursor-theme "catppuccin-mocha-mauve-cursors"
+    xcursor-size 32
     hide-when-typing
 }
 
