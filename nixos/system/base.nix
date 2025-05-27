@@ -116,6 +116,7 @@
     with pkgs;
     [
 
+      exfatprogs # exfat format support
       interception-tools
       libevdev # mouse-dpi-tool
       libnotify
