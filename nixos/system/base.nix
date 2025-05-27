@@ -30,7 +30,7 @@
   hardware.uinput.enable = true;
 
   # Set default locale to US English with UTF-8 encoding
-  i18n.defaultLocale = "en_US.utf8";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable UDisks2 for storage device management
   services.udisks2.enable = true;
