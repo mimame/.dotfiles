@@ -10,6 +10,9 @@
 #   - "clipboard": Copies the selected text to the clipboard and system clipboard
 copy-on-select = clipboard
 
+# Disable specific app-notifications
+app-notifications = no-clipboard-copy
+
 # Font Family: Specifies the font used in the terminal
 # List available fonts with `ghostty +list-fonts`
 # Multiple fonts can be specified as a fallback in case the first font is not available
