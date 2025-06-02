@@ -113,6 +113,7 @@
     ++ (with pkgs.unstable; [
 
       # awscli # v1 for awslocal localstack compatibility
+      distrobox
       fly
       # grafana
       # grafana-loki
@@ -125,6 +126,7 @@
       # nodePackages.serverless
       packer
       podman-tui
+      ptyxis
       # prometheus
       # pulumi-bin # terraform
       # python3Packages.localstack
