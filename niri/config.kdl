@@ -267,7 +267,7 @@ layout {
 // spawn-at-startup "alacritty" "-e" "fish"
 spawn-at-startup "ghostty"
 spawn-at-startup "waybar"
-// spawn-at-startup "walker --gapplication-service"
+spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "xwayland-satellite"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -350,14 +350,10 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+T { spawn "wezterm"; }
-    // FIXME: rofi doesn't work neither walker with --modules
-    // Mod+D { spawn "rofi -show combi"; }
-    // Mod+Space { spawn "rofi -show combi"; }
-    // Mod+Space { spawn "walker --modules applications,calculator,emojis,translation,windows,websearch,clipboard"; }
-    // Mod+D { spawn "walker --modules applications,calculator,emojis,translation,windows,websearch,clipboard"; }
-    // Mod+space { spawn "walker --modules 'applications,calculator'"; }
-    // Mod+Space { spawn "walker --modules=applications"; }
+    Mod+T repeat=false { spawn "ghostty"; }
+    Mod+D repeat=false { spawn "rofi" "-show" "combi"; }
+    // Type / to change to specific modules:
+    Mod+Space repeat=false { spawn "walker" ; }
 
     Mod+D { spawn "walker"; }
     Super+Alt+L { spawn "swaylock"; }
