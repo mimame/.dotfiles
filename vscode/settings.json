@@ -30,6 +30,7 @@
   "vim.autoSwitchInputMethod.enable": true,
   "vim.camelCaseMotion.enable": true,
   "vim.easymotion": true,
+  "vim.enableNeovim": true,
   "vim.gdefault": true,
   "vim.highlightedyank.enable": true,
   "vim.hlsearch": true,
