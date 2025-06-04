@@ -1,0 +1,4 @@
+github.copilot
+github.copilot-chat
+ms-azuretools.vscode-containers
+vscodevim.vim

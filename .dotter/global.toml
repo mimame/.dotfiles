@@ -55,7 +55,7 @@ television = { target = "~/.config/television", type = "symbolic" }
 topgrade = "~/.config/topgrade"
 # vifm = "~/.config/"
 vimiv = "~/.config/vimiv"
-# vscode = "~/.config/Code/User"
+vscode = "~/.config/Code/User/"
 waybar = "~/.config/waybar"
 wezterm = "~/.config/wezterm"
 yazi = { target = "~/.config/yazi", type = "symbolic" }
