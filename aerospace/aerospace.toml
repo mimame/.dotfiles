@@ -133,16 +133,16 @@ alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-alt-1 = 'workspace 1Work'
-alt-2 = 'workspace 2Web'
-alt-3 = 'workspace 3Communication'
-alt-4 = 'workspace 4Notes'
+alt-1 = 'workspace 1.Work'
+alt-2 = 'workspace 2.Web'
+alt-3 = 'workspace 3.Communication'
+alt-4 = 'workspace 4.Notes'
 alt-5 = 'workspace 5'
 alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
-alt-0 = 'workspace 10Music'
+alt-0 = 'workspace 10.Music'
 # alt-a = 'workspace A'  # In your config, you can drop workspace bindings that you don't need
 # alt-b = 'workspace B'
 # # alt-c = 'workspace C'
@@ -167,16 +167,16 @@ alt-0 = 'workspace 10Music'
 # alt-z = 'workspace Z'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
-alt-shift-1 = 'move-node-to-workspace 1Work'
-alt-shift-2 = 'move-node-to-workspace 2Web'
-alt-shift-3 = 'move-node-to-workspace 3Communication'
-alt-shift-4 = 'move-node-to-workspace 4Notes'
+alt-shift-1 = 'move-node-to-workspace 1.Work'
+alt-shift-2 = 'move-node-to-workspace 2.Web'
+alt-shift-3 = 'move-node-to-workspace 3.Communication'
+alt-shift-4 = 'move-node-to-workspace 4.Notes'
 alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
-alt-shift-0 = 'move-node-to-workspace 10Music'
+alt-shift-0 = 'move-node-to-workspace 10.Music'
 # alt-shift-a = 'move-node-to-workspace A'
 # alt-shift-b = 'move-node-to-workspace B'
 # # alt-shift-c = 'move-node-to-workspace C'
@@ -246,28 +246,32 @@ shift-down = ['volume set 0', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
-run = 'move-node-to-workspace 1Work'
+run = 'move-node-to-workspace 1.Work'
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-run = 'move-node-to-workspace 1Work'
+run = 'move-node-to-workspace 1.Work'
+
+[[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = 'move-node-to-workspace 1.Work'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = 'move-node-to-workspace 2Web'
+run = 'move-node-to-workspace 2.Web'
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace 3Communication'
+run = 'move-node-to-workspace 3.Communication'
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-run = 'move-node-to-workspace 4Notes'
+run = 'move-node-to-workspace 4.Notes'
 
 [[on-window-detected]]
 if.app-id = 'com.electron.logseq'
-run = 'move-node-to-workspace 4Notes'
+run = 'move-node-to-workspace 4.Notes'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 10Music'
+run = 'move-node-to-workspace 10.Music'
