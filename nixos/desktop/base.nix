@@ -33,7 +33,7 @@ in
       # wl-clipboard-rs
       bitwarden
       calibre
-      catppuccin-cursors.mochaMauve
+      catppuccin-cursors.mochaBlue
       cytoscape
       dbeaver-bin
       dropbox
