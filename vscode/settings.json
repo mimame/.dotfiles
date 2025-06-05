@@ -1,10 +1,7 @@
 {
   "breadcrumbs.enabled": false,
-  "editor.cursorBlinking": "solid",
   "editor.formatOnSave": true,
   "editor.minimap.enabled": false,
-  "editor.quickSuggestionsDelay": 100,
-  "editor.renderWhitespace": "boundary",
   "files.autoSave": "onFocusChange",
   "files.watcherExclude": {
     "**/node_modules/**": true,
@@ -27,6 +24,7 @@
     "**/tmp/**": true,
     "**/target/**": true
   },
+  "search.maxResults": 500,
   "vim.autoSwitchInputMethod.enable": true,
   "vim.camelCaseMotion.enable": true,
   "vim.easymotion": true,
@@ -41,6 +39,6 @@
   "vim.startInInsertMode": true,
   "vim.useSystemClipboard": true,
   "workbench.editor.enablePreview": false,
-  "workbench.editor.historyPerEditorGroup": 5,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.sideBar.location": "right"
 }
