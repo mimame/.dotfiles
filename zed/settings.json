@@ -1,4 +1,12 @@
 {
+  "agent": {
+    "model_parameters": [],
+    "single_file_review": true,
+    "version": "2"
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "auto_install_extension": {
     "catppuccin": true,
     "catppuccin-icons": true,
@@ -11,6 +19,7 @@
     "html": true,
     "json": true,
     "just": true,
+    "kdl": true,
     "log": true,
     "lua": true,
     "make": true,
