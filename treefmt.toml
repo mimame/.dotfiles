@@ -3,41 +3,41 @@
 [formatter.nixfmt]
 command = "nixfmt"
 options = []
-includes = ["*.nix"]
+includes = ["**/*.nix"]
 excludes = []
 
 [formatter.fish-fmt]
 command = "fish_indent"
 options = ["-w"]
-includes = ["*.fish"]
+includes = ["**/*.fish"]
 excludes = []
 
 [formatter.stylua-wezterm]
 command = "stylua"
 excludes = ["lazyvim"]
-includes = ["wezterm/*.lua"]
+includes = ["wezterm/**/*.lua"]
 options = ["--config-path", "wezterm/stylua.toml"]
 
 [formatter.stylua-lazyvim]
 command = "stylua"
 excludes = ["wezterm"]
-includes = ["lazyvim/*.lua"]
+includes = ["lazyvim/**/*.lua"]
 options = ["--config-path", "lazyvim/stylua.toml"]
 
 [formatter.jsonfmt]
 command = "jsonfmt"
 excludes = []
-includes = ["*.json"]
+includes = ["**/*.json"]
 options = ["-w"]
 
 [formatter.yamlfmt]
 command = "yamlfmt"
 excludes = []
-includes = ["*.yaml", "*.yml"]
+includes = ["**/*.yaml", "**/*.yml"]
 options = []
 
 [formatter.taplo]
 command = "taplo"
 options = ["format"]
-includes = ["*.toml"]
+includes = ["**/*.toml"]
 excludes = []
