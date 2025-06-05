@@ -1,9 +1,31 @@
-This README showcases the tools and configuration strategies I use to achieve a productive, efficient, and reproducible workflow on NixOS.
+# Dotfiles for NixOS: Productive, Modular, and Declarative
+
+## Table of Contents
+- [Goals](#goals)
+- [Configuration Philosophy](#configuration-philosophy)
+- [Setup](#setup)
+- [Essential Tools](#essential-tools)
+  - [Terminals](#terminals)
+  - [Shells](#shells)
+  - [Editors](#editors)
+  - [Productivity & Automation](#productivity--automation)
+  - [Windows Management](#windows-management)
+  - [Files Management](#files-management)
+- [Themes](#themes)
+- [Conclusion](#conclusion)
 
 # Goals
 
 - Deepen my understanding of NixOS and its ecosystem through hands-on, declarative configuration.
 - Enhance my productivity by streamlining daily tasks with thoughtfully chosen tools and automation.
+
+## Configuration Philosophy
+
+All configurations are managed declaratively, leveraging NixOS modules and per-tool config files. This ensures:
+- **Reproducibility:** The environment can be rebuilt or migrated easily.
+- **Modularity:** Each tool's configuration is isolated and easy to update.
+- **Consistency:** Theming and formatting are unified across editors, shells, and productivity tools.
+- **Automation:** Scripts and tools automate repetitive tasks and system maintenance.
 
 # Setup
 
