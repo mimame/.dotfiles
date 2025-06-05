@@ -22,7 +22,6 @@ in
 
       clipman
       cmst # QT connman GUI
-      (flameshot.override { enableWlrSupport = true; })
     ]
     ++ (with pkgs.unstable; [
 
@@ -43,6 +42,7 @@ in
       eww
       ffmpeg-full
       filezilla
+      (flameshot.override { enableWlrSupport = true; })
       (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {
         ffmpegSupport = true;
         pipewireSupport = true;
