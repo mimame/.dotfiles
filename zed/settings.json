@@ -1,5 +1,9 @@
 {
   "agent": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-latest"
+    },
     "model_parameters": [],
     "single_file_review": true,
     "version": "2"
