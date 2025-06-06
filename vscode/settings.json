@@ -27,6 +27,7 @@
   "git.autofetch": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestionsFixes.enabled": true,
+  "githubPullRequests.pushBranch": "always",
   "search.maxResults": 500,
   "vim.autoSwitchInputMethod.enable": true,
   "vim.camelCaseMotion.enable": true,
