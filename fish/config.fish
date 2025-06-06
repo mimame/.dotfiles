@@ -137,15 +137,10 @@ if status --is-interactive
     jj util completion fish | source
     #mise activate fish | source
 
-    # Create directory and generate carapace completions
-    # mkdir -p ~/.config/fish/completions
-    # set -Ux CARAPACE_BRIDGES 'fish,zsh,bash,inshellisense'
-    # carapace --list | cut -d ' ' -f 1 | while read -l program
-    #    touch ~/.config/fish/completions/$program.fish
-    # end
-    # carapace _carapace | source
-    #
-    # Clean up function definitions
+    # Setup Carapace for enhanced shell completions
+    # CARAPACE_BRIDGES enables completion bridging from other shells (zsh, fish, bash, inshellisense)
+    set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+    carapace _carapace | source
 
     # Trigger the deferred loading functions on first prompt
     emit fish_prompt
