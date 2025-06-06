@@ -371,6 +371,7 @@ binds {
     Mod+D repeat=false { spawn "rofi" "-show" "combi"; }
     // Type / to change to specific modules:
     Mod+Space repeat=false { spawn "walker" ; }
+    Mod+Shift+C { spawn "copyq" "menu"; }
 
     Mod+D { spawn "walker"; }
     Super+Alt+L { spawn "swaylock"; }
