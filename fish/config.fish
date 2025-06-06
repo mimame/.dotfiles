@@ -38,12 +38,7 @@ if status --is-interactive
         direnv hook fish | source
     end
 
-    # Start ssh-agent if not running
-    if not pgrep -f ssh-agent >/dev/null
-        eval (ssh-agent -c) >/dev/null
-        set -gx SSH_AUTH_SOCK $SSH_AUTH_SOCK
-        set -gx SSH_AGENT_PID $SSH_AGENT_PID
-    end
+    # SSH agent managed by NixOS programs.ssh.startAgent
 
     function _download --argument url path
         mkdir -p (dirname $path)
