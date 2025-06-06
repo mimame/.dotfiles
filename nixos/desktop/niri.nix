@@ -9,13 +9,6 @@ in
     # package = pkgs.unstable.niri;
   };
 
-  services.xserver = {
-    enable = true;
-    # FIXME: Enable lightdm when working
-    # displayManager.lightdm.enable = true;
-    displayManager.gdm.enable = true;
-  };
-
   services.displayManager = {
     defaultSession = "niri";
     autoLogin = {
