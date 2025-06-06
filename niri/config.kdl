@@ -609,9 +609,11 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    // Screenshot bindings using flameshot for GUI capture and niri built-ins for screen/window capture
+    // Print { screenshot; }  // Default niri screenshot (commented out in favor of flameshot)
+    Print hotkey-overlay-title="Flameshot" repeat=false { spawn "flameshot" "gui"; }  // Interactive screenshot with flameshot GUI
+    Ctrl+Print { screenshot-screen; }   // Capture entire screen using niri's built-in tool
+    Alt+Print { screenshot-window; }    // Capture focused window using niri's built-in tool
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
