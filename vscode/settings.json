@@ -24,6 +24,8 @@
     "**/tmp/**": true,
     "**/target/**": true
   },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.nextEditSuggestionsFixes.enabled": true,
   "search.maxResults": 500,
   "vim.autoSwitchInputMethod.enable": true,
   "vim.camelCaseMotion.enable": true,
