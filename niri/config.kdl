@@ -329,6 +329,22 @@ window-rule {
     clip-to-geometry true
 }
 
+// Use 'niri msg windows' to see running windows and their app IDs
+// This helps identify the correct app-id patterns for window rules
+// Examples of common patterns:
+// match app-id=r#"^(rofi)$"#
+// match app-id=r#"^(org\.pulseaudio\.pavucontrol)$"#
+// match app-id=r#"^(nm-applet|nm-connection-editor|blueman-manager)$"#
+// match app-id=r#"^(flameshot)$"#
+window-rule {
+  match app-id=r#"^(rofi)$"#
+  match app-id=r#"(copyq)"#
+  match app-id=r#"^(flameshot)$"#
+  match app-id=r#"^(walker)$"#
+  match app-id=r#"(firefox)"# title="^Picture-in-Picture$"
+  open-floating true
+}
+
 // Don't show the hotkey help at niri startup
 hotkey-overlay {
   skip-at-startup
