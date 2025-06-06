@@ -24,6 +24,7 @@
     "**/tmp/**": true,
     "**/target/**": true
   },
+  "git.autofetch": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestionsFixes.enabled": true,
   "search.maxResults": 500,
