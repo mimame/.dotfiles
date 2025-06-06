@@ -269,6 +269,7 @@ spawn-at-startup "ghostty"
 spawn-at-startup "waybar"
 spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "xwayland-satellite"
+spawn-at-startup "copyq"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
