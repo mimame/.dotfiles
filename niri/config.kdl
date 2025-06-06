@@ -373,11 +373,10 @@ binds {
     Mod+Space repeat=false { spawn "walker" ; }
     Mod+Shift+C { spawn "copyq" "menu"; }
 
-    Mod+D { spawn "walker"; }
-    Super+Alt+L { spawn "swaylock"; }
+    Super+Alt+L { spawn "gtklock"; }
 
     // You can also use a shell:
-    // Mod+T { spawn "bash" "-c" "notify-send hello && exec wezterm"; }
+    // Mod+T { spawn "bash" "-c" "notify-send hello && exec ghostty"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -397,7 +396,7 @@ binds {
     XF86MonBrightnessUp allow-when-locked=true  { spawn "brightnessctl" "set" "10%+"; }
 
     // Misc XF86 keys
-    XF86HomePage { spawn "wezterm"; }
+    XF86HomePage { spawn "ghostty"; }
     XF86Explorer { spawn "files"; }
     XF86Mail { spawn "thunderbird"; }
     XF86Tools { spawn "spotify"; }
