@@ -18,10 +18,6 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     # Similar to Vi's visual mode but opens the full editor for complex edits
     bind -M default v edit_command_buffer
 
-    # Bind Ctrl+O in insert mode to correct previous command with TheFuck
-    # Allows quickly fixing command errors without leaving insert mode
-    bind -M insert \co thefuck-command-line
-
     # Configure fzf file finder with custom directory preview using eza
     # Shows colorized, classified directory listings with hidden files but excludes node_modules
     set fzf_preview_dir_cmd eza --all --color=always --sort .name --classify --color=always --ignore-glob=node_modules

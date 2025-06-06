@@ -19,10 +19,6 @@ set -U fish_cursor_insert line # Insert mode cursor
 set -U fish_cursor_replace_one underscore # Replace mode cursor
 set -U fish_cursor_visual block # Visual mode cursor
 
-# Configure 'thefuck' tool to exclude a specific rule
-set -x -U THEFUCK_EXCLUDE_RULES fix_file # Fix issue: https://github.com/nvbn/thefuck/issues/1153
-set -x THEFUCK_OVERRIDDEN_ALIASES 'nixosrc,yazirc'
-
 # Set colors for LS and EZA using 'vivid'
 set -x -U LS_COLORS (vivid generate catppuccin-mocha)
 set -x -U EZA_COLORS (vivid generate catppuccin-mocha)
