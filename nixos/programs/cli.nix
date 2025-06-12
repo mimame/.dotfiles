@@ -100,7 +100,6 @@
       pv
       pwgen
       # python3Packages.howdoi
-      # python3Packages.pip
       rustscan
       strace
       stress
@@ -131,7 +130,7 @@
       clifm
       comma
       convco
-      # copyq
+      copyq
       ctop
       curl
       curlie
@@ -211,6 +210,7 @@
       lychee
       massren
       mcfly
+      mermaid-cli
       micro
       miniserve
       moar
@@ -292,6 +292,7 @@
       watchexec
       wezterm
       wget2
+      xan
       xh
       xonsh
       xplr
