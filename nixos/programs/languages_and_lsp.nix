@@ -121,6 +121,9 @@
     ])
     ++ (with pkgs.unstable; [
       # Python
+      python3
+      python3Packages.pip
+      uv
       # hatch
       # jupyter-all
       # python3Packages.ptpython
@@ -130,7 +133,6 @@
       # python3Packages.python-lsp-server
       # python3Packages.radian
       # ruff
-      uv
     ])
     ++ (with pkgs.unstable; [
       # Ruby
