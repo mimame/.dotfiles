@@ -141,6 +141,8 @@
       # rubyPackages.pry
       # rubyPackages.railties
       # solargraph
+      # rubyPackages
+      ruby
     ])
     ++ (with pkgs.unstable; [
       # Rust
