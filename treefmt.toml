@@ -2,15 +2,12 @@
 
 [formatter.nixfmt]
 command = "nixfmt"
-options = []
 includes = ["**/*.nix"]
-excludes = []
 
 [formatter.fish-fmt]
 command = "fish_indent"
 options = ["-w"]
 includes = ["**/*.fish"]
-excludes = []
 
 [formatter.stylua-wezterm]
 command = "stylua"
@@ -26,18 +23,19 @@ options = ["--config-path", "lazyvim/stylua.toml"]
 
 [formatter.jsonfmt]
 command = "jsonfmt"
-excludes = []
 includes = ["**/*.json"]
 options = ["-w"]
 
 [formatter.yamlfmt]
 command = "yamlfmt"
-excludes = []
 includes = ["**/*.yaml", "**/*.yml"]
-options = []
 
 [formatter.taplo]
 command = "taplo"
 options = ["format"]
 includes = ["**/*.toml"]
-excludes = []
+
+[formatter.vscode-sort-settings]
+command = "jaq"
+options = ["--in-place", "--sort-keys", "."]
+includes = ["vscode/settings.json"]
