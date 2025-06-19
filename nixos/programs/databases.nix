@@ -16,6 +16,7 @@
       mycli
       redis
       sqlite
+      sqlite-utils
       usql
 
     ]

@@ -262,8 +262,6 @@
       smartmontools
       spacer
       speedtest-go
-      sqlite
-      sqlite-utils
       sshfs
       starship
       stow
