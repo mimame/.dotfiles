@@ -1,15 +1,12 @@
 {
   "agent": {
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-latest"
+      "model": "claude-sonnet-4-latest",
+      "provider": "zed.dev"
     },
     "model_parameters": [],
     "single_file_review": true,
     "version": "2"
-  },
-  "features": {
-    "edit_prediction_provider": "zed"
   },
   "auto_install_extension": {
     "catppuccin": true,
@@ -54,6 +51,9 @@
       "enabled": true
     }
   },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
   "format_on_save": "on",
   "git": {
     "git_gutter": "tracked_files",
@@ -65,18 +65,18 @@
     "dock": "right"
   },
   "icon_theme": {
-    "mode": "system",
+    "dark": "Catppuccin Mocha",
     "light": "Catppuccin Frappé",
-    "dark": "Catppuccin Mocha"
+    "mode": "system"
   },
   "inlay_hints": {
-    "enabled": true,
-    "show_type_hints": true,
-    "show_parameter_hints": true,
-    "show_other_hints": true,
-    "show_background": false,
     "edit_debounce_ms": 700,
+    "enabled": true,
     "scroll_debounce_ms": 50,
+    "show_background": false,
+    "show_other_hints": true,
+    "show_parameter_hints": true,
+    "show_type_hints": true,
     "toggle_on_modifiers_press": null
   },
   "load_direnv": "direct",
@@ -94,24 +94,6 @@
       }
     }
   },
-  "yaml-language-server": {
-    "settings": {
-      "yaml": {
-        "keyOrdering": true,
-        "format": {
-          "singleQuote": true
-        },
-        "schemas": {
-          "http://json.schemastore.org/composer": [
-            "/*"
-          ],
-          "../relative/path/schema.json": [
-            "/config*.yaml"
-          ]
-        }
-      }
-    }
-  },
   "outline_panel": {
     "dock": "right"
   },
@@ -122,10 +104,10 @@
   "restore_on_startup": "last_session",
   "selection_highlight": true,
   "tabs": {
+    "activate_on_close": "history",
     "close_position": "right",
     "file_icons": true,
     "git_status": true,
-    "activate_on_close": "history",
     "show_close_button": "hover"
   },
   "telemetry": {
@@ -137,10 +119,28 @@
     "font_family": "JetBrainsMono Nerd Font Mono"
   },
   "theme": {
-    "mode": "system",
+    "dark": "Catppuccin Mocha",
     "light": "Catppuccin Frappé",
-    "dark": "Catppuccin Mocha"
+    "mode": "system"
   },
   "ui_font_size": 16,
-  "vim_mode": true
+  "vim_mode": true,
+  "yaml-language-server": {
+    "settings": {
+      "yaml": {
+        "format": {
+          "singleQuote": true
+        },
+        "keyOrdering": true,
+        "schemas": {
+          "../relative/path/schema.json": [
+            "/config*.yaml"
+          ],
+          "http://json.schemastore.org/composer": [
+            "/*"
+          ]
+        }
+      }
+    }
+  }
 }
