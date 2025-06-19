@@ -34,6 +34,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.dap.core" },
 
     -- Editor
+    -- Enhanced increment/decrement
+    { import = "lazyvim.plugins.extras.editor.dial" },
     -- Getting you where you want with the fewest keystrokes
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
     -- Automatically highlighting other uses of the word under the cursor
