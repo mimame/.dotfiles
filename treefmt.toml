@@ -35,7 +35,7 @@ command = "taplo"
 options = ["format"]
 includes = ["**/*.toml"]
 
-[formatter.vscode-sort-settings]
+[formatter.sort-editors-json-settings]
 command = "jaq"
 options = ["--in-place", "--sort-keys", "."]
-includes = ["vscode/settings.json"]
+includes = ["zed/settings.json", "vscode/settings.json"]
