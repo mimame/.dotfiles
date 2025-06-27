@@ -191,11 +191,13 @@
       baobab
       eog
       file-roller
-      geary
       glib # gsettings
       gnome-control-center
       gparted
+      loupe
       meld
+      gthumb
+      evince
       nautilus
       sweet
     ]);

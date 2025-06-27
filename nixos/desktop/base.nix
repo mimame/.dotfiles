@@ -38,7 +38,6 @@ in
       dbeaver-bin
       dropbox
       emote
-      evince
       eww
       ffmpeg-full
       filezilla
@@ -48,6 +47,7 @@ in
         pipewireSupport = true;
       }) { })
       gimp3
+      gitbutler
       gitg
       glxinfo
       google-chrome
@@ -56,7 +56,6 @@ in
       gst_all_1.gst-plugins-good
       gst_all_1.gst-plugins-ugly
       gst_all_1.gstreamer
-      gthumb
       inkscape
       joplin-desktop
       keepassxc
@@ -70,7 +69,7 @@ in
       pdfarranger
       playerctl
       qalculate-gtk
-      qutebrowser
+      # qutebrowser
       ripdrag
       rofi-wayland
       spicetify-cli
