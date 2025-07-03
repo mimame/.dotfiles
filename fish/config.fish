@@ -46,8 +46,7 @@ if status --is-interactive
     end
 
     # Download wezterm terminfo if not present
-    #if not infocmp wezterm >/dev/null 2>&1
-    if not test -f ~/.terminfo/**/wezterm
+    if test $TERM = wezterm -a not infocmp wezterm >/dev/null 2>&1
         set terminfo_tempfile (mktemp)
         _download 'https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo' $terminfo_tempfile
         tic -x -o ~/.terminfo $terminfo_tempfile
