@@ -24,6 +24,7 @@
     "**/tmp/**": true,
     "**/venv/**": true
   },
+  "geminicodeassist.enableTelemetry": false,
   "git.autofetch": true,
   "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.nextEditSuggestionsFixes.enabled": true,
