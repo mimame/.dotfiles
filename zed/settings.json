@@ -30,6 +30,7 @@
     "ssh-config": true,
     "terraform": true,
     "toml": true,
+    "typst": true,
     "xml": true
   },
   "autosave": {
