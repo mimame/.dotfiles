@@ -1,14 +1,13 @@
 {
   "agent": {
     "default_model": {
-      "model": "claude-sonnet-4-latest",
+      "model": "claude-sonnet-4",
       "provider": "zed.dev"
     },
     "model_parameters": [],
-    "single_file_review": true,
-    "version": "2"
+    "single_file_review": true
   },
-  "auto_install_extension": {
+  "auto_install_extensions": {
     "catppuccin": true,
     "catppuccin-icons": true,
     "css": true,
@@ -38,7 +37,7 @@
       "milliseconds": 1000
     }
   },
-  "autoupdate": true,
+  "auto_update": true,
   "base_keymap": "VSCode",
   "buffer_font_family": "JetBrainsMono Nerd Font Mono",
   "buffer_font_size": 16,
@@ -133,12 +132,8 @@
         },
         "keyOrdering": true,
         "schemas": {
-          "../relative/path/schema.json": [
-            "/config*.yaml"
-          ],
-          "http://json.schemastore.org/composer": [
-            "/*"
-          ]
+          "../relative/path/schema.json": ["/config*.yaml"],
+          "http://json.schemastore.org/composer": ["/*"]
         }
       }
     }
