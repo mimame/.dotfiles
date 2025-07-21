@@ -33,14 +33,17 @@
     "typst": true,
     "xml": true
   },
+  "auto_update": true,
   "autosave": {
     "after_delay": {
       "milliseconds": 1000
     }
   },
-  "auto_update": true,
   "base_keymap": "VSCode",
   "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "buffer_font_features": {
+    "calt": false
+  },
   "buffer_font_size": 16,
   "collaboration_panel": {
     "dock": "right"
@@ -133,8 +136,12 @@
         },
         "keyOrdering": true,
         "schemas": {
-          "../relative/path/schema.json": ["/config*.yaml"],
-          "http://json.schemastore.org/composer": ["/*"]
+          "../relative/path/schema.json": [
+            "/config*.yaml"
+          ],
+          "http://json.schemastore.org/composer": [
+            "/*"
+          ]
         }
       }
     }
