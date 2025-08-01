@@ -53,6 +53,7 @@ in
     ./desktop/gnome_layer.nix
     # ./desktop/sway.nix
     ./desktop/niri.nix
+    # ./desktop/cosmic.nix
 
   ];
 
