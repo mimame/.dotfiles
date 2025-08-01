@@ -39,6 +39,7 @@ in
 
     # Base system
     ./system/base.nix
+    ./system/btrfs.nix
     ./system/fonts.nix
 
     # Programs and Development tools
