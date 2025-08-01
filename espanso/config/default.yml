@@ -27,16 +27,12 @@
 # backend: Clipboard
 
 # --- Auto-restart
-
 # Enable/disable the config auto-reload after a file change is detected.
 # auto_restart: false
-
 # --- Clipboard threshold
-
 # Because injecting long texts char-by-char is a slow operation, espanso automatically
 # uses the clipboard if the text is longer than 'clipboard_threshold' characters.
 # clipboard_threshold: 100
-
 # For a list of all the available options, visit the official docs at: https://espanso.org/docs/
 keyboard_layout:
   rules: evdev
