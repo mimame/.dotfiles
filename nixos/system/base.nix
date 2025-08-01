@@ -105,7 +105,7 @@
       xkb-layout=us
       xkb-variant=altgr-intl
     '';
-    extraOptions = "--term wezterm";
+    extraOptions = "--term xterm-ghostty";
     hwRender = true;
   };
 
