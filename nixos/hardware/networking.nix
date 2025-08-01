@@ -26,7 +26,6 @@
     };
     hostName = "narnia";
     wireless.iwd = {
-      package = pkgs.unstable.iwd;
       settings = {
         Network = {
           EnableIPv6 = true;
