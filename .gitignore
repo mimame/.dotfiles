@@ -1,7 +1,11 @@
-bin/awslocal
-clifm
+**/git/.config.*
+*.log
 .dotter/cache.toml
 .dotter/local.toml
+.vagrant
+Manifest.toml
+bin/awslocal
+clifm
 fish/bat_theme
 fish/completions/
 fish/conf.d/
@@ -9,8 +13,8 @@ fish/fish_plugins
 fish/fish_variables
 fish/functions/_*
 fish/functions/br.fish
-fish/functions/fisher.fish
 fish/functions/fish_prompt.fish
+fish/functions/fisher.fish
 fish/functions/fk.fish
 fish/functions/fzf_configure_bindings.fish
 fish/functions/gh.fish
@@ -18,13 +22,10 @@ fish/functions/replay.fish
 fish/functions/z.fish
 fish/themes/
 gh/hosts.yml
-**/git/.config.*
 history.txt
 lazygit/state.yml
-*.log
 nvchad/lazy-lock.json
 qutebrowser
 ssh
-.vagrant
 vifm-*
 vifminfo*
