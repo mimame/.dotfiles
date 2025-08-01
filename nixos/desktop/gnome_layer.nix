@@ -189,16 +189,15 @@
 
       (hiPrio beauty-line-icon-theme) # avoid default gnome icon themes
       baobab
-      eog
       file-roller
       glib # gsettings
       gnome-control-center
       gparted
-      loupe
-      meld
       gthumb
-      evince
+      loupe
       nautilus
+      meld
+      papers
       sweet
     ]);
 }
