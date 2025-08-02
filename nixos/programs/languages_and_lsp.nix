@@ -8,10 +8,10 @@
 
   # Enable the LanguageTool system service to provide a local grammar and spell checking server
   # Manually configure the Firefox LanguageTool extension in its preferences (Advanced settings)
-  services.languagetool = {
-    enable = true;
-    package = pkgs.unstable.languagetool;
-  };
+  # services.languagetool = {
+  #   enable = true;
+  #   package = pkgs.unstable.languagetool;
+  # };
 
   environment.systemPackages =
     with pkgs;
@@ -96,7 +96,7 @@
     ])
     ++ (with pkgs.unstable; [
       # Markdown
-      frogmouth
+      # frogmouth
       inlyne
       markdownlint-cli2
       marksman
@@ -107,8 +107,9 @@
       # Nix
       nil
       nixd
-      nixfmt-rfc-style
+      nixfmt
       nixpkgs-review
+      statix
     ])
     ++ (with pkgs.unstable; [
       # Nim
@@ -143,6 +144,10 @@
       # solargraph
       # rubyPackages
       ruby
+    ])
+    ++ (with pkgs.unstable; [
+      # R
+      R
     ])
     ++ (with pkgs.unstable; [
       # Rust
