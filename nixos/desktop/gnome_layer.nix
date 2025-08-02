@@ -192,11 +192,12 @@
       file-roller
       glib # gsettings
       gnome-control-center
+      gnome-font-viewer
       gparted
       gthumb
       loupe
-      nautilus
       meld
+      nautilus
       papers
       sweet
     ]);
