@@ -165,6 +165,7 @@ application/zstd=org.gnome.FileRoller.desktop;
 #-------------------------------------------------------------------------------
 application/x-keepass2=org.keepassxc.KeePassXC.desktop;
 inode/directory=org.gnome.Nautilus.desktop;
+x-scheme-handler/logseq=Logseq.desktop
 x-scheme-handler/mailto=thunderbird.desktop;
 x-scheme-handler/spotify=spotify.desktop;
 x-scheme-handler/vscode=code-url-handler.desktop;
