@@ -104,7 +104,7 @@ in
         "input"
         "libvirtd"
         "lxd"
-        # "networkmanager"
+        "networkmanager"
         "podman"
         "vboxusers"
         "video"

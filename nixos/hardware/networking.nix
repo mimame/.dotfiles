@@ -39,40 +39,40 @@
     };
   };
 
-  # networking.networkmanager = {
+  networking.networkmanager = {
+    enable = true;
+    # wifi.backend = "iwd"; # iwd doesn't connect automatically after suspension/hibernation, still experimental
+    wifi.backend = "wpa_supplicant";
+    # dns = "unbound";
+  };
+
+  # services.connman = {
   #   enable = true;
-  #   # wifi.backend = "iwd"; # iwd doesn't connect automatically after suspension/hibernation, still experimental
-  #   wifi.backend = "wpa_supplicant";
-  #   dns = "unbound";
+  #   enableVPN = false;
+  #   extraFlags = [ "--nodnsproxy" ];
+  #   package = pkgs.connmanFull;
+  #   wifi.backend = "iwd"; # iwd doesn't connect automatically after suspension/hibernation, still experimental
+  # wifi.backend = "wpa_supplicant";
   # };
 
-  services.connman = {
-    enable = true;
-    enableVPN = false;
-    extraFlags = [ "--nodnsproxy" ];
-    package = pkgs.connmanFull;
-    wifi.backend = "iwd"; # iwd doesn't connect automatically after suspension/hibernation, still experimental
-    # wifi.backend = "wpa_supplicant";
-  };
-
-  services.unbound = {
-    enable = true;
-    settings = {
-      server = {
-        interface = [ "127.0.0.1" ];
-      };
-      forward-zone = [
-        {
-          name = ".";
-          forward-addr = [
-            "1.1.1.1@853#cloudflare-dns.com"
-            "1.0.0.1@853#cloudflare-dns.com"
-          ];
-        }
-      ];
-      remote-control.control-enable = true;
-    };
-  };
+  # services.unbound = {
+  #   enable = true;
+  #   settings = {
+  #     server = {
+  #       interface = [ "127.0.0.1" ];
+  #     };
+  #     forward-zone = [
+  #       {
+  #         name = ".";
+  #         forward-addr = [
+  #           "1.1.1.1@853#cloudflare-dns.com"
+  #           "1.0.0.1@853#cloudflare-dns.com"
+  #         ];
+  #       }
+  #     ];
+  #     remote-control.control-enable = true;
+  #   };
+  # };
 
   # OpenSSH daemon
   services.openssh = {
@@ -87,8 +87,8 @@
   environment.systemPackages =
     with pkgs;
     [
-
-      # networkmanagerapplet
+      # cmst # QT connman GUI
+      networkmanagerapplet
     ]
     ++ (with pkgs.unstable; [
 

@@ -21,7 +21,6 @@ in
     [
 
       clipman
-      cmst # QT connman GUI
     ]
     ++ (with pkgs.unstable; [
 
