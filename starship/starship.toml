@@ -1,6 +1,6 @@
 # Warning: This config does not include keys that have an unset value
 
-palette = "catppuccin_mocha"
+palette = "dracula"
 
 # $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$directory$vcsh$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$docker_context$package$bun$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$golang$haskell$haxe$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$opa$perl$php$pulumi$purescript$python$raku$rlang$red$ruby$rust$scala$swift$terraform$vlang$vagrant$zig$buf$guix_shell$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$os$shell$character
 "$schema" = 'https://starship.rs/config-schema.json'
@@ -12,33 +12,19 @@ command_timeout = 500
 add_newline = true
 
 [palettes]
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
+[palettes.dracula]
+background = "#282a36"
+# current_line = "#44475a"
+foreground = "#f8f8f2"
+comment = "#6272a4"
+cyan = "#8be9fd"
+green = "#50fa7b"
+orange = "#ffb86c"
+pink = "#ff79c6"
+purple = "#bd93f9"
+red = "#ff5555"
+yellow = "#f1fa8c"
+
 
 [aws]
 format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
@@ -55,7 +41,7 @@ force_display = false
 [azure]
 format = '[$symbol($subscription)]($style) '
 symbol = 'azure '
-style = 'blue bold'
+style = 'cyan bold'
 disabled = false
 
 [battery]
@@ -75,7 +61,7 @@ style = 'red bold'
 format = 'with [$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = 'buf '
-style = 'bold blue'
+style = 'bold cyan'
 disabled = false
 detect_extensions = []
 detect_files = ['buf.yaml', 'buf.gen.yaml', 'buf.work.yaml']
@@ -116,7 +102,7 @@ disabled = false
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = 'cmake '
-style = 'bold blue'
+style = 'bold cyan'
 disabled = false
 detect_extensions = []
 detect_files = ['CMakeLists.txt', 'CMakeCache.txt']
@@ -135,7 +121,7 @@ min_time_to_notify = 45000
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = 'cobol '
-style = 'bold blue'
+style = 'bold cyan'
 disabled = false
 detect_extensions = ['cbl', 'cob', 'CBL', 'COB']
 detect_files = []
@@ -179,7 +165,7 @@ detect_folders = []
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = 'dart '
-style = 'bold blue'
+style = 'bold cyan'
 disabled = false
 detect_extensions = ['dart']
 detect_files = ['pubspec.yaml', 'pubspec.yml', 'pubspec.lock']
@@ -221,7 +207,7 @@ use_os_path_sep = true
 
 [docker_context]
 symbol = 'docker '
-style = 'blue bold'
+style = 'cyan bold'
 format = '[$symbol$context]($style) '
 only_with_files = true
 disabled = false
@@ -233,7 +219,7 @@ detect_folders = []
 format = '[$symbol($version )( $tfm )]($style)'
 version_format = 'v${raw}'
 symbol = '.NET '
-style = 'blue bold'
+style = 'cyan bold'
 heuristic = true
 disabled = false
 detect_extensions = ['csproj', 'fsproj', 'xproj']
@@ -286,7 +272,7 @@ disabled = false
 [gcloud]
 format = '[$symbol$account(@$domain)(\($region\))]($style) '
 symbol = 'gcloud '
-style = 'bold blue'
+style = 'bold cyan'
 disabled = false
 
 [gcloud.region_aliases]
@@ -388,7 +374,7 @@ detect_folders = []
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = 'haxe '
-style = 'bold fg:202'
+style = 'bold foreground'
 disabled = false
 detect_extensions = ['hx', 'hxml']
 detect_files = ['haxelib.json', 'hxformat.json', '.haxerc']
@@ -444,7 +430,7 @@ symbol_threshold = 1
 number_threshold = 2
 format = '[$symbol$number]($style) '
 symbol = 'jobs '
-style = 'bold blue'
+style = 'bold cyan'
 disabled = false
 
 [julia]
@@ -461,7 +447,7 @@ detect_folders = []
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = 'kotlin '
-style = 'bold blue'
+style = 'bold cyan'
 kotlin_binary = 'kotlin'
 disabled = false
 detect_extensions = ['kt', 'kts']
@@ -494,7 +480,7 @@ disabled = true
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = 'lua '
-style = 'bold blue'
+style = 'bold cyan'
 lua_binary = 'lua'
 disabled = false
 detect_extensions = ['lua']
@@ -513,7 +499,7 @@ truncation_length = 4294967295
 truncation_symbol = '…'
 format = '[$symbol$project]($style) '
 symbol = 'meson '
-style = 'blue bold'
+style = 'cyan bold'
 disabled = false
 
 [nim]
@@ -529,7 +515,7 @@ detect_folders = []
 [nix_shell]
 format = '[$symbol$state( \($name\))]($style) '
 symbol = 'nix_shell '
-style = 'bold blue'
+style = 'bold cyan'
 impure_msg = 'impure'
 pure_msg = 'pure'
 disabled = false
@@ -561,7 +547,7 @@ detect_folders = ['_opam', 'esy.lock']
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = 'opa  '
-style = 'bold blue'
+style = 'bold cyan'
 disabled = false
 detect_extensions = ['rego']
 detect_files = []
@@ -714,7 +700,7 @@ detect_folders = []
 [rlang]
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
-style = 'blue bold'
+style = 'cyan bold'
 symbol = 'Rlang '
 disabled = false
 detect_extensions = ['R', 'Rd', 'Rmd', 'Rproj', 'Rsx']
@@ -779,14 +765,14 @@ disabled = false
 [singularity]
 symbol = 'singularity'
 format = '[$symbol\[$env\]]($style) '
-style = 'blue bold dimmed'
+style = 'cyan bold dimmed'
 disabled = false
 
 [spack]
 truncation_length = 1
 format = '[$symbol$environment]($style) '
 symbol = 'spack '
-style = 'blue bold'
+style = 'cyan bold'
 disabled = false
 
 [status]
@@ -808,7 +794,7 @@ disabled = false
 [sudo]
 format = ' [as $symbol]($style)'
 symbol = 'sudo '
-style = 'bold blue'
+style = 'bold cyan'
 allow_windows = false
 disabled = false
 
@@ -867,7 +853,7 @@ disabled = false
 format = '[$symbol($version )]($style)'
 version_format = 'v${raw}'
 symbol = 'Vlang '
-style = 'blue bold'
+style = 'cyan bold'
 disabled = false
 detect_extensions = ['v']
 detect_files = ['v.mod', 'vpkg.json', '.vpkg-lock.json']

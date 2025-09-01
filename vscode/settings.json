@@ -46,6 +46,7 @@
   "vim.sneakUseIgnorecaseAndSmartcase": true,
   "vim.startInInsertMode": true,
   "vim.useSystemClipboard": true,
+  "workbench.colorTheme": "Dracula Theme",
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.sideBar.location": "right"

@@ -8,21 +8,22 @@
     "single_file_review": true
   },
   "auto_install_extensions": {
-    "catppuccin": true,
-    "catppuccin-icons": true,
     "css": true,
     "csv": true,
     "docker-compose": true,
     "dockerfile": true,
+    "dracula": true,
     "fish": true,
     "git-firefly": true,
     "html": true,
+    "janet": true,
     "json": true,
     "just": true,
     "kdl": true,
     "log": true,
     "lua": true,
     "make": true,
+    "material-icon-theme": true,
     "nix": true,
     "ruby": true,
     "ruff": true,
@@ -31,7 +32,8 @@
     "terraform": true,
     "toml": true,
     "typst": true,
-    "xml": true
+    "xml": true,
+    "zig": true
   },
   "auto_update": true,
   "autosave": {
@@ -68,8 +70,8 @@
     "dock": "right"
   },
   "icon_theme": {
-    "dark": "Catppuccin Mocha",
-    "light": "Catppuccin Frappé",
+    "dark": "Material Icon Theme",
+    "light": "Material Icon Theme",
     "mode": "system"
   },
   "inlay_hints": {
@@ -122,28 +124,10 @@
     "font_family": "JetBrainsMono Nerd Font Mono"
   },
   "theme": {
-    "dark": "Catppuccin Mocha",
-    "light": "Catppuccin Frappé",
+    "dark": "Dracula",
+    "light": "Dracula Light (Alucard",
     "mode": "system"
   },
   "ui_font_size": 16,
-  "vim_mode": true,
-  "yaml-language-server": {
-    "settings": {
-      "yaml": {
-        "format": {
-          "singleQuote": true
-        },
-        "keyOrdering": true,
-        "schemas": {
-          "../relative/path/schema.json": [
-            "/config*.yaml"
-          ],
-          "http://json.schemastore.org/composer": [
-            "/*"
-          ]
-        }
-      }
-    }
-  }
+  "vim_mode": true
 }

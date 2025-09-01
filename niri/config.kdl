@@ -265,7 +265,11 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 // spawn-at-startup "alacritty" "-e" "fish"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "Dracula"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "Dracula"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
 spawn-at-startup "ghostty"
+// spawn-at-startup "nm-applet"
 spawn-at-startup "waybar"
 spawn-at-startup "walker" "--gapplication-service"
 spawn-at-startup "xwayland-satellite"

@@ -33,4 +33,4 @@ minimum-contrast = 3
 
 # Theme: Sets the color theme for the terminal
 # List available themes with `ghostty +list-themes`
-theme = catppuccin-mocha
+theme = Dracula

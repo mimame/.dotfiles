@@ -33,7 +33,7 @@ end
 config.mux_enable_ssh_agent = false -- It breaks ssh-agent due to an invalid socket path
 config.front_end = 'WebGpu'
 config.term = 'wezterm'
-config.color_scheme = 'Catppuccin Mocha'
+config.color_scheme = 'Dracula'
 config.exit_behavior = 'Close'
 config.enable_wayland = true
 config.enable_kitty_keyboard = true

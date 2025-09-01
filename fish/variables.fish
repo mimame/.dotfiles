@@ -20,8 +20,11 @@ set -U fish_cursor_replace_one underscore # Replace mode cursor
 set -U fish_cursor_visual block # Visual mode cursor
 
 # Set colors for LS and EZA using 'vivid'
-set -x -U LS_COLORS (vivid generate catppuccin-mocha)
-set -x -U EZA_COLORS (vivid generate catppuccin-mocha)
+set -x -U LS_COLORS (vivid generate dracula)
+set -x -U EZA_COLORS (vivid generate dracula)
+
+# Set colors for bat pager
+set -x -U BAT_THEME Dracula
 
 # Set fd as the default source for fzf
 set -x -U FZF_DEFAULT_COMMAND 'fd --type file --exclude node_modules'
@@ -29,13 +32,14 @@ set -x -U FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -x -U FZF_CTRL_T_OPTS "--height 100% --preview 'bat --color always {}'"
 set -x -U FZF_ALT_C_COMMAND 'fd --type directory --exclude node_modules'
 set -x -U FZF_ALT_C_OPTS "--height 100% --preview br --preview-window wrap"
-# Set default colors for fzf to match Catppuccin Mocha theme
+# Set default colors for fzf to match Dracula theme
 # Reference: https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
 set -Ux FZF_DEFAULT_OPTS '
 --reverse
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
---color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
+--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
+--color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
+--color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
+--color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 

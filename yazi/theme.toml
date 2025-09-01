@@ -1,4 +1,4 @@
-# https://github.com/yazi-rs/flavors/tree/main/catppuccin-mocha.yazi
-# ya pack -a yazi-rs/flavors:catppuccin-mocha
+# https://github.com/yazi-rs/flavors/tree/main/dracula.yazi
+# ya pkg add yazi-rs/flavors:dracula
 [flavor]
-dark = "catppuccin-mocha"
+dark = "dracula"

@@ -27,10 +27,11 @@ if status --is-interactive
             jorgebucaran/autopair.fish \
             jorgebucaran/replay.fish \
             edc/bass \
-            catppuccin/fish \
+            dracula/fish \
             PatrickF1/fzf.fish
 
-        yes | fish_config theme save "Catppuccin Mocha"
+        yes | fish_config theme choose 'Dracula Official'
+        yes | fish_config theme save 'Dracula Official'
     end
 
     # Initialize direnv if available
@@ -61,40 +62,25 @@ if status --is-interactive
         fc-cache (dirname $vscode_font_path)
     end
 
-    # Download and set bat theme if not present
-    set bat_theme_path (bat --config-dir)/themes/Catppuccin\ Mocha.tmTheme
-    if not test -f $bat_theme_path
-        _download 'https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme' $bat_theme_path
-        bat cache --build
-        set -x -U BAT_THEME Catppuccin Mocha
-    end
-
     # Download and set btop theme if not present
-    set btop_theme_path ~/.config/btop/themes/catppuccin_mocha.theme
+    set btop_theme_path ~/.config/btop/themes/dracula
     if not test -f $btop_theme_path
-        _download 'https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme' $btop_theme_path
+        _download 'https://raw.githubusercontent.com/dracula/bashtop/refs/heads/master/dracula.theme' $btop_theme_path
     end
 
-    # Download and set sway theme if not present
-    set sway_theme_path ~/.config/sway/themes/catppuccin-mocha
-    if not test -f $sway_theme_path
-        _download 'https://raw.githubusercontent.com/catppuccin/i3/main/themes/catppuccin-mocha' $sway_theme_path
-    end
-
-    # Set wallpaper if not present
-    set wallpaper_path ~/Pictures/unicat.png
-    if not test -f $wallpaper_path
-        _download 'https://github.com/zhichaoh/catppuccin-wallpapers/raw/main/minimalistic/unicat.png' $wallpaper_path
+    set rofi_theme_path ~/.config/rofi/dracula.rasi
+    if not test -f $rofi_theme_path
+        _download 'https://raw.githubusercontent.com/dracula/rofi/refs/heads/main/theme/config1.rasi' $rofi_theme_path
     end
 
     # Download and set kitty theme if not present
     set kitty_theme_path ~/.config/kitty/current-theme.conf
     if not test -f $kitty_theme_path
-        kitty +kitten themes Catppuccin-Mocha
+        kitty +kitten themes Dracula
     end
 
-    if not fd --quiet --type d catppuccin-mocha.yazi ~/.local/state/yazi/packages/
-        ya pack -u
+    if not fd --quiet --type f tmtheme.xml ~/.local/state/yazi/packages/
+        ya pkg upgrade
     end
 
     # Source custom Fish scripts

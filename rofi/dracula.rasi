@@ -1,12 +1,18 @@
 * {
-    bg-col:  #1e1e2e;
-    bg-col-light: #1e1e2e;
-    border-col: #1e1e2e;
-    selected-col: #1e1e2e;
-    blue: #89b4fa;
-    fg-col: #cdd6f4;
-    fg-col2: #f38ba8;
-    grey: #6c7086;
+    // --- Dracula Palette Colors ---
+    // Background: #282a36
+    // Foreground: #f8f8f2
+    // Active/Selected: #6272a4
+    // Urgent/Accent: #ff5555
+
+    bg-col: #282a36;           // Main background, maps to 'background-color'
+    bg-col-light: #282a36;     // Secondary background, maps to 'background-color'
+    border-col: #6272a4;       // Border color, maps to 'active-background'
+    selected-col: #6272a4;     // Selected element color, maps to 'active-background'
+    blue: #6272a4;             // Accent color, maps to 'active-background'
+    fg-col: #f8f8f2;           // Main text color, maps to 'foreground'
+    fg-col2: #ff5555;          // Secondary text or accent color, maps to 'urgent-background'
+    grey: #f8f8f2;             // Grey tone, maps to 'foreground'
 
     width: 600;
     font: "JetBrainsMono Nerd Font 14";

@@ -14,30 +14,30 @@ ui:
   style:
     list_view:
       indent_on_select: true
-      cursor: "#AD58B4"
-      selected: "#5FB458"
+      cursor: "#BD93F9"
+      selected: "#50FA7B"
     detail_view:
-      border: "#EEEEDD"
+      border: "#F8F8F2"
       info_pane:
         deleted_from:
-          fg: "#EEEEEE"
-          bg: "#1C1C1C"
+          fg: "#F8F8F2"
+          bg: "#282A36"
         deleted_at:
-          fg: "#EEEEEE"
-          bg: "#1C1C1C"
+          fg: "#F8F8F2"
+          bg: "#282A36"
       preview_pane:
-        border: "#3C3C3C"
+        border: "#44475A"
         size:
-          fg: "#EEEEDD"
-          bg: "#3C3C3C"
+          fg: "#F8F8F2"
+          bg: "#44475A"
         scroll:
-          fg: "#EEEEDD"
-          bg: "#3C3C3C"
-    deletion_dialog: "#FF007F"
+          fg: "#F8F8F2"
+          bg: "#44475A"
+    deletion_dialog: "#FF5555"
   exit_message: ""
   preview:
     syntax_highlight: true
-    colorscheme: catppuccin-mocha
+    colorscheme: dracula
     # directory_command: ls -GF -1 -A --color=always
     directory_command: eza --sort .name --color=always --long --links --group --git --icons --classify --extended --all --hyperlink
   paginator_type: dots

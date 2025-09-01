@@ -80,8 +80,8 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 
 # Themes
 
-- [Catppuccin](https://catppuccin.com): Community-driven pastel theme for a cohesive, visually pleasing environment across tools.
-- [Tokyo Night](https://github.com/folke/tokyonight.nvim): Clean, vibrant theme inspired by the lights of downtown Tokyo at night.
+- [Dracula](https://draculatheme.com): A dark theme for all the things.
+
 
 # Conclusion
 
