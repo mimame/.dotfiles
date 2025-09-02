@@ -32,11 +32,8 @@ in
       # wl-clipboard-rs
       bitwarden
       calibre
-      catppuccin-cursors.mochaBlue
       cytoscape
       dbeaver-bin
-      dracula-icon-theme
-      dracula-theme
       dropbox
       emote
       eww

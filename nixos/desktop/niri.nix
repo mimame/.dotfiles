@@ -1,9 +1,5 @@
 { pkgs, ... }:
-let
-in
 {
-  # https://github.com/NixOS/nixpkgs/issues/373273
-  # https://github.com/nix-community/nixGL/pull/190
   programs.niri = {
     enable = true;
     # package = pkgs.unstable.niri;
