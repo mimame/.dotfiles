@@ -115,7 +115,7 @@
     "format": " {:L%a %d %H:%M}"
   },
   "cpu": {
-    "format": " {usage}% {avg_frequency}Gz",
+    "format": "  {usage}% {avg_frequency}Gz",
     "tooltip": true,
     "states": {
       "warning": 30,
@@ -179,7 +179,7 @@
   },
   "network": {
     // "interface": "wlp2*", // (Optional) To force the use of this interface
-    "format-wifi": " {signalStrength}%",
+    "format-wifi": "  {signalStrength}%",
     // "format-wifi": "{essid} ({signalStrength}%) ",
     "format-ethernet": "{ipaddr}/{cidr} ",
     "tooltip-format": "{ifname} via {gwaddr} ",
@@ -205,9 +205,9 @@
       "portable": "",
       "car": "",
       "default": [
-        "",
-        "",
-        ""
+        " ",
+        " ",
+        " "
       ]
     },
     "on-click": "pwvucontrol",
