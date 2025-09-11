@@ -197,12 +197,13 @@
       # biome
       nodejs
       # nodePackages.bash-language-server
-      nodePackages.npm
+      nodePackages.vscode-json-languageserver
       # nodePackages.svelte-language-server
       # nodePackages.typescript
       # nodePackages.typescript-language-server
       # nodePackages.vscode-langservers-extracted
       # typescript
+      yarn
     ])
     ++ (with pkgs.unstable; [
       # Typst
