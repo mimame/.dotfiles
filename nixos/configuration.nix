@@ -80,7 +80,7 @@ in
     autoUpgrade = {
       allowReboot = false;
       enable = true;
-      dates = "daily";
+      dates = "weekly";
     };
     # nixos-rebuild switch
     # nvd shows a beautifully formatted list of the version changes in my system packages
