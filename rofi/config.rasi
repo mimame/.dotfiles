@@ -14,7 +14,7 @@ configuration {
 	run-shell-command: "{terminal} -e {cmd}";
 	window-command: "xkill -id {window}";
 /*	window-match-fields: "all";*/
-	icon-theme: "Sweet-Rainbow";
+	icon-theme: "candy-icons";
 /*	drun-match-fields: "name,generic,exec,categories,keywords";*/
 /*	drun-categories: ;*/
 /*	drun-show-actions: false;*/
