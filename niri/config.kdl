@@ -66,8 +66,8 @@ input {
 }
 
 cursor {
-    xcursor-theme "catppuccin-mocha-blue-cursors"
-    xcursor-size 32
+    xcursor-theme "capitaine-cursors-white"
+    xcursor-size 48
     hide-when-typing
 }
 
