@@ -29,9 +29,6 @@
       shfmt
     ])
     ++ (with pkgs.unstable; [
-      # Clojure
-      clojure
-      leiningen
     ])
     ++ (with pkgs.unstable; [
       # Crystal
@@ -56,21 +53,11 @@
     ])
     ++ (with pkgs.unstable; [
       # Inko
-      inko
-      ivm
-    ])
-    ++ (with pkgs.unstable; [
-      # Janet
-      janet
-      jpm
-    ])
-    ++ (with pkgs.unstable; [
-      # JavaScript/TypeScript
-      yarn
+      # inko
+      # ivm
     ])
     ++ (with pkgs.unstable; [
       # Json
-      nodePackages.vscode-json-languageserver
       jsonfmt
     ])
     ++ (with pkgs.unstable; [
@@ -82,6 +69,33 @@
       # tectonic
       # texlab
       # texlive.combined.scheme-medium
+    ])
+    ++ (with pkgs.unstable; [
+      # Lisp
+
+      # Clojure
+      clojure
+      leiningen
+
+      # Fennel
+      fennel-ls
+      fnlfmt
+      luajitPackages.fennel
+
+      # Janet
+      janet
+      jpm
+
+      # Lisp
+      sbcl
+
+      # Racket
+      racket
+
+      # Scheme
+      chez
+      guile
+
     ])
     ++ (with pkgs.unstable; [
       # Lua
