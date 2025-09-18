@@ -82,12 +82,17 @@ in
       enable = true;
       dates = "weekly";
     };
-    # nixos-rebuild switch
-    # nvd shows a beautifully formatted list of the version changes in my system packages
+
+    # Show a diff of system packages after a successful rebuild.
+    # This is triggered by commands like `nixos-rebuild switch` or `nixos-rebuild boot`.
+    # It uses `dix` to compare the new system configuration with the current one,
+    # providing a clear overview of package version changes.
+    # `supportsDryActivation` allows this to run during a `nixos-rebuild dry-activate` as well.
     activationScripts.diff = {
       supportsDryActivation = true;
       text = ''
-        ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff /run/current-system "$systemConfig"
+        # Compare the new system derivation ($systemConfig) with the current one.
+        ${pkgs.unstable.dix}/bin/dix /run/current-system "$systemConfig"
       '';
     };
   };
