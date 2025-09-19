@@ -35,7 +35,7 @@ input {
         tap-button-map "left-right-middle" // Map tap gestures to mouse buttons (e.g., two-finger tap is right click)
         click-method "button-areas" // Use defined button areas for clicking (usually bottom corners)
         scroll-method "two-finger" // Use two fingers for scrolling
-        accel-speed 1.0 // Set pointer acceleration speed
+        accel-speed 0.5 // Set pointer acceleration speed
         accel-profile "adaptive" // Set pointer acceleration profile (e.g., "adaptive" or "flat")
     }
 
