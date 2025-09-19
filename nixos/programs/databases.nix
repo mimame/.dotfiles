@@ -15,7 +15,8 @@
       # mariadb-connector-c # For Rails but generates too much collisions
       mycli
       redis
-      sqlite
+      sqlfluff
+      sqlite-interactive
       sqlite-utils
       usql
 
