@@ -163,6 +163,7 @@
       gawk
       gcc
       gdu
+      gemini-cli
       gfold
       ghostscript
       ghostty
@@ -201,6 +202,7 @@
       kitty
       lazydocker
       lazygit
+      lazyssh
       libarchive
       libqalculate
       libsecret
@@ -217,7 +219,6 @@
       monolith
       navi
       ncdu_2
-      neofetch
       neovim
       newsboat
       ninja
@@ -238,13 +239,14 @@
       pay-respects
       pbzip2
       pciutils
-      pdftk
+      pdftk # pdf
       pigz
       pixz
       poop
       poppler_utils
       postgresql
       pre-commit
+      prek
       procs
       progress
       pueue
@@ -265,6 +267,8 @@
       sshfs
       starship
       stow
+      # superfile
+      tdf # pdf
       tealdeer
       television
       testdisk
@@ -283,7 +287,7 @@
       unzip
       urlscan
       util-linux
-      uutils-coreutils-noprefix
+      (hiPrio uutils-coreutils-noprefix)
       vifm
       visidata
       vivid
