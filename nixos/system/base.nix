@@ -35,15 +35,28 @@
   # Enable UDisks2 for storage device management
   services.udisks2.enable = true;
 
-  # Enable and configure interception-tools for Caps Lock to Escape remapping
-  services.interception-tools = {
+  # Enable and configure keyd for advanced, ergonomic key remapping.
+  # This setup applies to all keyboards and introduces two main features:
+  # 1. Dual-function Caps Lock: Acts as Control when held, and Escape when tapped.
+  # 2. Oneshot Modifiers: Ctrl, Alt, Meta, and Shift can be tapped once to modify
+  #    the next key press, reducing the need to hold them down for shortcuts.
+  services.keyd = {
     enable = true;
-    udevmonConfig = ''
-      - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m 1 | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-        DEVICE:
-          EVENTS:
-            EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
-    '';
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            capslock = "overload(control, esc)";
+            control = "oneshot(control)";
+            leftalt = "oneshot(alt)";
+            meta = "oneshot(meta)";
+            rightalt = "oneshot(altgr)";
+            shift = "oneshot(shift)";
+          };
+        };
+      };
+    };
   };
 
   # 3200-2000-1200-800DPI
