@@ -113,6 +113,8 @@
     ++ (with pkgs.unstable; [
 
       # awscli # v1 for awslocal localstack compatibility
+      cloud-init
+      cloud-utils
       distrobox
       fly
       # grafana
@@ -133,5 +135,6 @@
       # qemu_test
       # qemu-utils # Let lxc to create --vm
       tenv # opentofu and terraform
+      virt-viewer
     ]);
 }
