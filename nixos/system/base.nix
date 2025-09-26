@@ -48,11 +48,15 @@
         settings = {
           main = {
             capslock = "overload(control, esc)";
-            control = "oneshot(control)";
-            leftalt = "oneshot(alt)";
-            meta = "oneshot(meta)";
-            rightalt = "oneshot(altgr)";
-            shift = "oneshot(shift)";
+            # Oneshot modifiers can be dangerous. For example, the meta key can
+            # block the tiling manager and other apps that expect key combinations.
+            # While it's more natural to not have to hold down the keys, it can
+            # be difficult to get used to.
+            # control = "oneshot(control)";
+            # leftalt = "oneshot(alt)";
+            # meta = "oneshot(meta)";
+            # rightalt = "oneshot(altgr)";
+            # shift = "oneshot(shift)";
           };
         };
       };
