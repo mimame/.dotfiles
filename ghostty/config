@@ -31,6 +31,17 @@ font-size = 18.0
 #                    which might not be aesthetically pleasing
 minimum-contrast = 3
 
+# Enables Ghostty's shell integration features.
+# To disable a feature, use the "no-" prefix.
+#
+# Available features:
+#   - cursor: Blinking bar cursor at the prompt.
+#   - sudo: Sudo wrapper to preserve terminfo.
+#   - title: Updates the window title via shell integration.
+#   - ssh-env: Manages environment variables for SSH sessions.
+#   - ssh-terminfo: Automatically installs Ghostty's terminfo on remote hosts.
+shell-integration-features = cursor,no-sudo,ssh-env,ssh-terminfo
+
 # Theme: Sets the color theme for the terminal
 # List available themes with `ghostty +list-themes`
 theme = Dracula
