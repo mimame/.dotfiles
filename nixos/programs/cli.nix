@@ -239,11 +239,9 @@
       pay-respects
       pbzip2
       pciutils
-      pdftk # pdf
       pigz
       pixz
       poop
-      poppler_utils
       postgresql
       pre-commit
       prek
@@ -268,7 +266,6 @@
       starship
       stow
       # superfile
-      tdf # pdf
       tealdeer
       television
       testdisk

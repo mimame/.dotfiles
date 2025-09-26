@@ -90,8 +90,7 @@ in
       wlrctl
       wtype
       ydotool
-      zathura
-      zeal
+      # zeal
       zed-editor
       zettlr
       zoom-us

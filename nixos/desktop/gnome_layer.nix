@@ -149,7 +149,6 @@ in
       loupe
       meld
       nautilus
-      papers
       sweet
     ]);
 }

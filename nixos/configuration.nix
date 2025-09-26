@@ -49,6 +49,7 @@ in
     ./programs/ci-cd.nix
     ./programs/devops.nix
     ./programs/databases.nix
+    ./programs/pdf.nix
 
     # Desktop environment
     ./desktop/base.nix
