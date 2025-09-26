@@ -91,13 +91,22 @@ abbr pgrep 'pgrep -f'
 abbr pkill 'pkill -9 -f'
 abbr rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
 abbr rsync 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
-abbr sdisable 'sudo systemctl disable'
+# --- Systemd ---
+# System services
+abbr scd 'sudo systemctl disable'
+abbr sce 'sudo systemctl enable'
+abbr scr 'sudo systemctl restart'
+abbr scs 'sudo systemctl start'
+abbr sct 'sudo systemctl status'
+abbr sck 'sudo systemctl stop'
+# User services
+abbr scud 'systemctl --user disable'
+abbr scue 'systemctl --user enable'
+abbr scur 'systemctl --user restart'
+abbr scus 'systemctl --user start'
+abbr scut 'systemctl --user status'
+abbr scuk 'systemctl --user stop'
 abbr se sudoedit
-abbr senable 'sudo systemctl enable'
-abbr srestart 'sudo systemctl restart'
-abbr sstart 'sudo systemctl start'
-abbr sstatus 'sudo systemctl status'
-abbr sstop 'sudo systemctl stop'
 abbr sv sudoedit
 abbr tail tspin
 abbr top btop
