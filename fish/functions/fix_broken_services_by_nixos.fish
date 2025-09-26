@@ -9,7 +9,7 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
 
     # If no services are found, use a predefined list of service names
     if test (count $services) -eq 0
-        set -l names gammastep swayidle udiskie polkit-gnome-authentication-agent-1
+        set -l names configure-gtk gammastep swayidle udiskie polkit-gnome-authentication-agent-1
         # echo "No services found in $user_services_dir. Using default list."
         for name in $names
             set services $services $user_services_dir/$name.service
