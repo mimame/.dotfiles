@@ -45,6 +45,8 @@ in
     # Programs and Development tools
     ./programs/cli.nix
     ./programs/languages_and_lsp.nix
+    ./programs/virtualisation.nix
+    ./programs/ci-cd.nix
     ./programs/devops.nix
     ./programs/databases.nix
 
