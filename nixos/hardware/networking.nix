@@ -95,9 +95,40 @@
     dns = "systemd-resolved";
   };
 
+  # wpa_supplicant is known to have issues with Wi-Fi after hibernation.
+  # This option forces wpa_supplicant to restart when the system wakes up,
+  # which should fix the issue.
+  # systemd.services.wpa_supplicant.serviceConfig = {
+  #   Restart = "always";
+  #   RestartSec = "5s";
+  # };
+  # powerManagement.resumeCommands = ''
+  #   # Restart wpa_supplicant to fix Wi-Fi after hibernation
+  #   systemctl restart wpa_supplicant
+  #   systemctl restart systemd-resolved
+  #   systemctl restart NetworkManager
+  # '';
+
   services.resolved = {
     enable = true;
-    # Use DNS-over-TLS
+    # DNS-over-TLS (DoT) Configuration:
+    # DoT encrypts DNS queries, enhancing privacy by preventing eavesdropping.
+    # The `dnsovertls` option is set to "true", which enables opportunistic mode.
+    #
+    # In opportunistic mode, `systemd-resolved` attempts to use DoT. However,
+    # if the server doesn't support it, or if an active attacker on the network
+    # blocks the DoT connection (port 853), it will fall back to standard,
+    # unencrypted DNS (port 53).
+    #
+    # This mode is vulnerable to active downgrade attacks.
+    # It is chosen to prioritize reliability and compatibility across different
+    # networks over strict security. It protects against passive eavesdropping,
+    # but not an active man-in-the-middle attacker.
+    #
+    # A stricter setup would involve exclusively defining DoT-enabled servers in
+    # `extraConfig` and potentially using firewall rules to block outgoing
+    # unencrypted DNS traffic, but this can lead to connection failures on
+    # restrictive networks.
     dnsovertls = "true";
 
     # DNSSEC Validation:
@@ -113,13 +144,42 @@
     # It is currently disabled to prioritize reliability over strict validation.
     # dnssec = "true";
 
-    # Define the primary DNS servers using the `DNS=` setting. These will be
-    # used with DNS-over-TLS and override any servers provided by the network.
-    # The servers are listed in the order of Cloudflare, then Google.
-    # - Cloudflare: 1.1.1.1, 1.0.0.1, 2606:4700:4700::1111, 2606:4700:4700::1001
-    # - Google:     8.8.8.8, 8.8.4.4, 2001:4860:4860::8888, 2001:4860:4860::8844
+    # Fallback DNS Configuration:
+    # While it is possible to force specific DNS servers using `extraConfig`,
+    # this can lead to network instability. For example, a mismatch between
+    # a globally forced DNS (e.g., 1.1.1.1) and a network-provided DNS
+    # (e.g., 8.8.8.8 from a Wi-Fi network) can cause resolution failures,
+    # requiring a manual restart of the `systemd-resolved` service.
+    #
+    # To avoid this, we rely on the default `FallbackDNS` servers built into
+    # `systemd-resolved`. This provides a reliable "just works" experience.
+    # When `dnsovertls` is enabled, `systemd-resolved` automatically attempts
+    # to use DNS-over-TLS with these fallback servers. It gracefully manages
+    # connections by using DoT when available and falling back to standard DNS
+    # when not, ensuring a balance of security and reliability. This approach,
+    # combined with respecting DNS servers from the local network, ensures
+    # seamless connectivity across different network environments.
+    #
+    # By default, systemd-resolved uses Cloudflare, Google, Quad9 and DNS0 Public DNS servers.
+    # For more details, see: https://github.com/systemd/systemd/blob/main/docs/DISTRO_PORTING.md
+    #
+    # The following `extraConfig` examples are commented out to prevent DNS conflicts.
+    # If you need to enforce a specific set of servers, uncomment one of them,
+    # but be aware of the potential for network issues as described above.
+    #
+    # The first format provides a space-separated list of IP addresses.
+    # extraConfig = ''
+    #   # Cloudflare and Google DNS servers
+    #   DNS=1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001 8.8.8.8 8.8.4.4 2001:4860:4860::8888 2001:4860:4860::8844
+    # '';
+    #
+    # The second format (`IP#ServerName`) is used for DNS-over-TLS (DoT) to
+    # authenticate the server. The part after the '#' is the server's
+    # authentication domain name, which is used to verify its TLS certificate.
+    # This ensures you are connecting to the intended DNS server.
     extraConfig = ''
-      DNS=1.1.1.1 1.0.0.1 2606:4700:4700::1111 2606:4700:4700::1001 8.8.8.8 8.8.4.4 2001:4860:4860::8888 2001:4860:4860::8844
+      # DNS servers with hostnames for verification
+      DNS = 1.1.1.1#cloudflare-dns.com 8.8.8.8#dns.google 1.0.0.1#cloudflare-dns.com 8.8.4.4#dns.google 2606:4700:4700::1111#cloudflare-dns.com 2001:4860:4860::8888#dns.google 2606:4700:4700::1001#cloudflare-dns.com 2001:4860:4860::8844#dns.google
     '';
   };
 

@@ -1,3 +1,9 @@
+# ----------------------------------------------------------------------------
+# Graphics Configuration (NVIDIA Optimus)
+#
+# This file configures the graphics stack, with a focus on a hybrid setup
+# involving both Intel and NVIDIA GPUs (NVIDIA Optimus).
+# ----------------------------------------------------------------------------
 {
   config,
   lib,
@@ -5,58 +11,82 @@
   ...
 }:
 {
+  # Accept the NVIDIA driver license.
   nixpkgs.config.nvidia.acceptLicense = true;
-  # nixpkgs.config.cudaSupport = true;
-  # boot.initrd.kernelModules = [ "nvidia" ];
-  # KMS will load the module, regardless of blacklisting
-  # boot.kernelParams = lib.mkDefault [
-  #   "module_blacklist=i915"
-  #   "i915.modeset=0"
-  # ];
-  # boot.blacklistedKernelModules = lib.mkDefault [ "i915" ];
-  # boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+
+  # Enable the core graphics stack.
   hardware.graphics = {
     enable = true;
+    # Install packages for VA-API, enabling hardware-accelerated video decoding.
+    # This offloads video playback from the CPU to the GPU, saving power.
     extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-      vaapiVdpau
-      libvdpau-va-gl
+      nvidia-vaapi-driver # NVIDIA's VA-API implementation
+      vaapiVdpau # VDPAU backend for VA-API
+      libvdpau-va-gl # VA-API/VDPAU interoperability
     ];
   };
+
+  # Set the primary X.org video driver to NVIDIA.
   services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
-  # # services.xserver.videoDrivers = lib.mkDefault [ "nvidiaLegacy470" ];
+
+  # ----------------------------------------------------------------------------
+  # NVIDIA Driver Settings
+  # ----------------------------------------------------------------------------
   hardware.nvidia = {
-    # package = config.boot.kernelPackages.nvidiaPackages.latest;
+    # The NVIDIA driver package is typically determined automatically.
+    # Manual overrides for specific versions (e.g., legacy) can be set here.
     # package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-    # package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+
+    # Disable the persistence daemon. It keeps the driver loaded even when not
+    # in use, which can consume unnecessary power on an Optimus laptop.
     nvidiaPersistenced = false;
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
+
+    # Enable the `nvidia-settings` utility for graphical configuration.
     nvidiaSettings = true;
-    # Modesetting is required.
+
+    # Use kernel modesetting (KMS). This is required for modern display
+    # servers like Wayland and provides a smoother boot experience.
     modesetting.enable = true;
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-    # of just the bare essentials.
+
+    # Power management features. Can be unstable.
+    # Enable this if you experience graphical corruption after waking from sleep.
+    # It works by saving the entire VRAM to system RAM during suspend.
     powerManagement.enable = false;
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
+
+    # Use the proprietary kernel module. Set to `true` to use the open-source module.
     open = false;
+
+    # --------------------------------------------------------------------------
+    # PRIME Settings for NVIDIA Optimus
+    #
+    # Configures PRIME for rendering on the NVIDIA GPU and displaying on the
+    # screen connected to the Intel GPU.
+    # --------------------------------------------------------------------------
     prime = {
+      # Enable PRIME Sync to prevent screen tearing in hybrid graphics setups.
       sync.enable = true;
-      # reverseSync.enable = true;
-      # Enable if using an external GPU
-      # allowExternalGpu = false;
-      # offload = {
-      #   enable = lib.mkOverride 990 true;
-      #   enableOffloadCmd = lib.mkIf config.hardware.nvidia.prime.offload.enable true; # Provides `nvidia-offload` command.
-      # };
-      #   # Hardware should specify the bus ID for intel/nvidia devices with lspci
-      #   # lspci | grep -E 'VGA|3D'
-      #   # sudo lshw -c display
+
+      # IMPORTANT: These Bus IDs are specific to this machine's hardware.
+      # To find the correct IDs for your system, run: `lspci | grep -E 'VGA|3D'`
       nvidiaBusId = "PCI:01:00:0";
       intelBusId = "PCI:00:02:0";
     };
   };
+
+  # --- Historical/Alternative Configurations (Disabled) ---
+  # These are kept for reference but are not currently active.
+
+  # CUDA support
+  # nixpkgs.config.cudaSupport = true;
+
+  # Attempts to force NVIDIA by blacklisting the Intel driver.
+  # This is generally not the recommended approach for Optimus.
+  # boot.kernelParams = lib.mkDefault [ "module_blacklist=i915" ];
+  # boot.blacklistedKernelModules = lib.mkDefault [ "i91is5" ];
+
+  # PRIME Render Offload, an alternative to the sync method.
+  # offload = {
+  #   enable = true;
+  #   enableOffloadCmd = true;
+  # };
 }

@@ -1,22 +1,33 @@
+# ----------------------------------------------------------------------------
+# Printing Services (CUPS)
+#
+# This file configures the Common Unix Printing System (CUPS) and related
+# services for network printer discovery.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
-
-  # Enable CUPS to print documents.
+  # Enable the CUPS printing service.
   services.printing = {
     enable = true;
+    # Install specific drivers for the Brother MFC-L2720DW printer.
+    # Drivers are pulled from the unstable channel for better hardware support.
     drivers = with pkgs.unstable; [
       mfcl2720dwlpr
       mfcl2720dwcupswrapper
     ];
   };
 
-  # Service discovery on a local network
+  # Enable Avahi for zero-configuration networking (mDNS/DNS-SD).
+  # This is essential for discovering network printers, scanners, and other
+  # services on the local network automatically.
   services.avahi = {
-    enable = true; # Required by the default services.geoclue2.enableNmea option
+    enable = true;
     package = pkgs.unstable.avahi;
+    # Open the firewall for mDNS traffic.
     openFirewall = true;
-    # Important to resolve .local domains of printers, otherwise you get an error
-    # like  "Impossible to connect to XXX.local: Name or service not known"
+    # Enable NSS integration for .local domain resolution.
+    # IMPORTANT: This is required to connect to devices using their .local
+    # hostname (e.g., `My-Printer.local`). Without it, connections will fail.
     nssmdns4 = true;
     nssmdns6 = true;
   };

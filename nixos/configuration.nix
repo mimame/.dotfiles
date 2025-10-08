@@ -1,30 +1,48 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
+# ----------------------------------------------------------------------------
+# Main NixOS Configuration
+#
+# This is the entry point for the NixOS system configuration. It defines the
+# overall system setup by importing modular components from other files in this
+# directory.
+#
+# For a deep dive into NixOS configuration, refer to the official manual:
+# https://nixos.org/manual/nixos/stable/
+# ----------------------------------------------------------------------------
 {
   config,
   pkgs,
   ...
 }:
 let
+  # Fetch the nixpkgs-unstable channel as a tarball. This allows access to
+  # bleeding-edge packages without needing to manage system-wide channels
+  # imperatively with `nix-channel`.
   unstableTarball = fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
 in
 {
+  # A list of insecure packages that are explicitly allowed to be installed.
+  # This should be used with caution.
   nixpkgs.config.permittedInsecurePackages = [
   ];
+
+  # ----------------------------------------------------------------------------
+  # Modular Imports
+  #
+  # The system configuration is broken down into logical modules, which are
+  # imported here. This keeps the configuration organized and maintainable.
+  # ----------------------------------------------------------------------------
   imports = [
-    # Include the results of the hardware scan.
+    # Automatically generated hardware configuration.
     /etc/nixos/hardware-configuration.nix
 
-    # System core
+    # --- Core System Configuration ---
     ./core/boot.nix
     ./core/firmware.nix
     ./core/lix.nix
     ./core/nix-config.nix
     ./core/posix-compatibility.nix
 
-    # Hardware
+    # --- Hardware Support ---
     ./hardware/cpu.nix
     ./hardware/time.nix
     ./hardware/networking.nix
@@ -34,15 +52,15 @@ in
     ./hardware/peripherals/printer.nix
     ./hardware/peripherals/scanner.nix
 
-    # Device-specific
+    # --- Device-Specific Profiles ---
     ./profiles/laptop.nix
 
-    # Base system
+    # --- Base System Services & Settings ---
     ./system/base.nix
     ./system/btrfs.nix
     ./system/fonts.nix
 
-    # Programs and Development tools
+    # --- Programs & Development Environments ---
     ./programs/cli.nix
     ./programs/languages_and_lsp.nix
     ./programs/virtualisation.nix
@@ -51,46 +69,54 @@ in
     ./programs/databases.nix
     ./programs/pdf.nix
 
-    # Desktop environment
+    # --- Desktop Environment ---
     ./desktop/base.nix
     ./desktop/gnome_layer.nix
     # ./desktop/sway.nix
     ./desktop/niri.nix
     # ./desktop/cosmic.nix
-
   ];
 
+  # ----------------------------------------------------------------------------
+  # Nixpkgs Configuration
+  # ----------------------------------------------------------------------------
   nixpkgs.config = {
-    # Allow unfree packages
+    # Allow the installation of packages with non-free licenses.
     allowUnfree = true;
-    # Add unstable packages injecting directly the unstable channel url
+
+    # Use an overlay to add the `unstable` package set, making it available
+    # as `pkgs.unstable`.
     packageOverrides = pkgs: {
       unstable = import unstableTarball { config = config.nixpkgs.config; };
-      # NEVER use devenv package, it containts abusive telemetry, see:
-      # https://chaos.social/@hexa/114009069746212598
-      # https://news.ycombinator.com/item?id=43060368
-      # https://infosec.exchange/@flashfox/114216087400393131
-      # https://github.com/cachix/devenv/pull/1776/files
+
+      # Nullify packages with abusive telemetry or undesirable features.
+      # This prevents them from being installed accidentally.
+      # See:
+      # - https://chaos.social/@hexa/114009069746212598
+      # - https://news.ycombinator.com/item?id=43060368
+      # - https://github.com/cachix/devenv/pull/1776/files
       devbox = null;
       devenv = null;
       flox = null;
-
     };
   };
 
+  # ----------------------------------------------------------------------------
+  # System-wide Settings
+  # ----------------------------------------------------------------------------
   system = {
-    # Auto upgrade packages by default without reboot
+    # Configure automatic system upgrades.
     autoUpgrade = {
+      # Run upgrades weekly.
+      dates = "weekly";
+      # Allow the system to upgrade without requiring a reboot for the changes to take effect.
       allowReboot = false;
       enable = true;
-      dates = "weekly";
     };
 
     # Show a diff of system packages after a successful rebuild.
-    # This is triggered by commands like `nixos-rebuild switch` or `nixos-rebuild boot`.
-    # It uses `dix` to compare the new system configuration with the current one,
-    # providing a clear overview of package version changes.
-    # `supportsDryActivation` allows this to run during a `nixos-rebuild dry-activate` as well.
+    # This script uses `dix` to compare the new system configuration with the
+    # current one, providing a clear overview of what changed.
     activationScripts.diff = {
       supportsDryActivation = true;
       text = ''
@@ -100,24 +126,29 @@ in
     };
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # ----------------------------------------------------------------------------
+  # User Accounts
+  # ----------------------------------------------------------------------------
   users = {
+    # Set the default shell for all users.
     defaultUserShell = pkgs.unstable.fish;
     users.mimame = {
       isNormalUser = true;
       description = "mimame";
+      # Add user to essential groups for hardware access and system management.
       extraGroups = [
-        "audio"
-        "incus-admin"
-        "input"
-        "libvirtd"
-        "lxd"
-        "networkmanager"
-        "podman"
-        "vboxusers"
-        "video"
-        "wheel"
+        "audio" # Audio devices
+        "incus-admin" # Incus/LXD container management
+        "input" # Input devices (controllers, etc.)
+        "libvirtd" # Libvirt virtualization
+        "lxd" # LXD container management
+        "networkmanager" # Network management
+        "podman" # Podman container management
+        "vboxusers" # VirtualBox access
+        "video" # Video devices and hardware acceleration
+        "wheel" # Sudo access
       ];
+      # User-specific packages can be installed here.
       packages = with pkgs; [
         #  firefox
         #  thunderbird
@@ -125,30 +156,31 @@ in
     };
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # ----------------------------------------------------------------------------
+  # System-wide Packages
+  #
+  # Packages installed here are available to all users.
+  # To search for packages, run: $ nix search wget
+  # ----------------------------------------------------------------------------
   environment.systemPackages =
     with pkgs;
     [
-
+      # e.g. wget
     ]
-    ++ (
-      with pkgs.unstable;
+    ++ (with pkgs.unstable; [
+      # e.g. btop
+    ]);
 
-      [ ]
-    );
-  # ++ (with nix-alien-pkgs; [
-  #   # Run unpatched binaries on Nix/NixOS
-  #   nix-alien
-  # ]);
-
+  # ----------------------------------------------------------------------------
+  # State Version
+  #
   # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  # settings for stateful data were taken. It‘s crucial to read the
+  # NixOS manual before changing this value.
+  # ----------------------------------------------------------------------------
   system.stateVersion = "24.11"; # Did you read the comment?
+
+  # --- Manual Upgrade Notes ---
   # sudo nix-channel --add https://nixos.org/channels/nixos-25.05 nixos
   # sudo nix-channel --update
   # sudo nix-channel --list

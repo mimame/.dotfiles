@@ -1,61 +1,91 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
-
-  # Bootloader
+  # ----------------------------------------------------------------------------
+  # Bootloader Configuration
+  #
+  # Configures the bootloader for UEFI systems. Systemd-boot is chosen for its
+  # simplicity and integration with systemd.
+  # ----------------------------------------------------------------------------
   boot.loader = {
+    # Use systemd-boot as the bootloader.
     systemd-boot = {
       enable = true;
+      # Add a boot menu option for Memtest86+, a memory testing tool.
       memtest86.enable = true;
     };
+
+    # Configure EFI settings.
     efi = {
+      # Allow the bootloader to write to EFI variables. This is necessary for
+      # managing boot entries automatically.
       canTouchEfiVariables = true;
+      # Specify the mount point for the EFI System Partition (ESP).
       efiSysMountPoint = "/boot/efi";
     };
   };
 
-  # Use the latest available version of Linux
-  # By now the stable version is used to avoid issues:
-  # - btrfs corruption
-  # - break the virtualbox virtualisation
+  # ----------------------------------------------------------------------------
+  # Kernel Selection
+  #
+  # The stable Linux kernel is used by default to avoid potential issues with
+  # newer, less-tested versions. For example, previous attempts to use the
+  # latest kernel resulted in Btrfs corruption and broken VirtualBox support.
+  # ----------------------------------------------------------------------------
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Reducing aggressive swapping, the system can avoid disk I/O overhead, which can negatively impact responsiveness.
+  # ----------------------------------------------------------------------------
+  # Kernel Runtime Parameters (Sysctl)
+  # ----------------------------------------------------------------------------
   boot.kernel.sysctl = {
+    # Lower `vm.swappiness` to reduce aggressive swapping to the disk.
+    # This improves system responsiveness, especially on systems with ample RAM,
+    # by making the kernel favor keeping data in RAM instead of swapping it out.
+    # A value of 10 is a common and balanced choice.
     "vm.swappiness" = 10;
   };
 
-  # Disable all CPU possible mitigations, lead to performance gains, especially on older Intel CPUs (pre-10th gen)
-  # The risk is that sensitive information, such as cryptographic secrets, could leak between different tasks on the system.
-  # For typical embedded systems with two user levels, where a remote attacker can already compromise the non-privileged user,
-  # enabling these mitigations provides no additional security.
-
-  # l1tf=off: Disables the L1TF (L1 Terminal Fault) mitigation.
-  # mds=off: Disables the Microarchitectural Data Sampling (MDS) mitigation.
-  # mitigations=off: Disables a range of security mitigations, including Spectre and Meltdown.
-  # no_stf_barrier: Disables the Store-to-Load Forwarding (STF) barrier mitigation.
-  # noibpb: Disables the Indirect Branch Prediction Barrier (IBPB) mitigation.
-  # noibrs: Disables the Indirect Branch Restricted Speculation (IBRS) mitigation.
-  # nopti: Disables the Optimistic Timing Estimator (OTE) mitigation.
-  # nospec_store_bypass_disable: Disables the Speculative Store Bypass (SSB) mitigation.
-  # nospectre_v1 and nospectre_v2: Disable specific Spectre mitigations.
-  # tsx=on: Enables Transactional Synchronization Extensions (TSX), a hardware feature that can improve performance.
-  # tsx_async_abort=off: Disables a specific TSX mitigation.
+  # ----------------------------------------------------------------------------
+  # Kernel Boot Parameters
+  #
+  # Disables various CPU speculative execution mitigations to improve
+  # performance. This can be particularly beneficial on older Intel CPUs
+  # (pre-10th gen).
+  #
+  # WARNING: Disabling these mitigations introduces security risks, as it could
+  # allow sensitive information (e.g., cryptographic secrets) to leak between
+  # different tasks on the system. This configuration prioritizes performance
+  # over security from these specific hardware vulnerabilities.
+  #
+  # For more details on kernel parameters, see:
+  # https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html
+  # ----------------------------------------------------------------------------
   boot.kernelParams = [
-    "l1tf=off"
-    "mds=off"
-    "mitigations=off"
-    "no_stf_barrier"
-    "noibpb"
-    "noibrs"
-    "nopti"
-    "nospec_store_bypass_disable"
-    "nospectre_v1"
-    "nospectre_v2"
-    "tsx=on"
-    "tsx_async_abort=off"
+    # Generic toggle for all mitigations
+    "mitigations=off" # Disables a wide range of security mitigations (Spectre, Meltdown, etc.).
+
+    # Spectre & Meltdown related mitigations
+    "noibpb" # Disables Indirect Branch Prediction Barrier.
+    "noibrs" # Disables Indirect Branch Restricted Speculation.
+    "nopti" # Disables Kernel Page Table Isolation (Meltdown mitigation).
+    "nospectre_v1" # Disables Spectre Variant 1 mitigation.
+    "nospectre_v2" # Disables Spectre Variant 2 mitigation.
+    "nospec_store_bypass_disable" # Disables Speculative Store Bypass mitigation.
+    "no_stf_barrier" # Disables Store-to-Load Forwarding barrier.
+
+    # Other hardware vulnerability mitigations
+    "l1tf=off" # Disables L1 Terminal Fault (L1TF) mitigation.
+    "mds=off" # Disables Microarchitectural Data Sampling (MDS) mitigation.
+
+    # Performance-related tweaks
+    "tsx=on" # Enables Transactional Synchronization Extensions (TSX) for better performance.
+    "tsx_async_abort=off" # Disables a specific TSX mitigation (Async Abort).
   ];
 
-  # Delete all files in /tmp during boot
+  # ----------------------------------------------------------------------------
+  # Temporary Files Management
+  # ----------------------------------------------------------------------------
+  # Clears the /tmp directory on every boot.
+  # This is useful for ensuring a clean state for temporary files.
   # boot.tmp.cleanOnBoot = true;
 
 }
