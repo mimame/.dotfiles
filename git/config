@@ -64,7 +64,7 @@
   ca  = commit --amend
   caa = commit --all --amend
   can = commit --amend --no-edit
-  cd = "!f() { message=$(git log -1 --pretty=%B); if [[ ! \"$message\" =~ ^[0-9]{2}\\.[0-9]{2}\\.[0-9]{2}\\.[a-zA-Z]{2} ]]; then date_stamp=$(date +%y.%m.%d.%a | sed s/.$//); git commit --amend --no-edit -m \"$date_stamp $message\"; else git commit --amend --no-edit; fi }; f"
+  cd = !fish -c git_cd
   ce  = commit --allow-empty
   cem = commit --allow-empty --message
   cf  = commit --fixup
@@ -400,8 +400,8 @@
 
 [help]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-helpautoCorrect
-  # Automatically correct and execute mistyped commands immediately
-  autocorrect = 0
+  # Show the suggestion and prompt for confirmation to run the command
+  autocorrect = prompt
 
 [hub]
   # https://hub.github.com/hub.1.html
