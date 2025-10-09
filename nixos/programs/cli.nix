@@ -199,6 +199,7 @@
       jq
       jujutsu
       just
+      keychain
       kitty
       lazydocker
       lazygit

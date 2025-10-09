@@ -40,6 +40,7 @@ if status --is-interactive
     end
 
     # SSH agent managed by NixOS programs.ssh.startAgent
+    keychain --eval --quiet $HOME/.ssh/id_ed25519 | source
 
     function _download --argument url path
         mkdir -p (dirname $path)
