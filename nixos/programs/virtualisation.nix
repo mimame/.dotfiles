@@ -42,8 +42,13 @@
     # https://nixos.wiki/wiki/Libvirt
     libvirtd = {
       enable = true;
+      # Enable libvirt to integrate with NSS (Name Service Switch) for resolving hostnames of virtual machines.
+      # This allows guests to be resolved by their hostname on the host system.
+      nss = {
+        enable = true;
+        enableGuest = true;
+      };
       qemu = {
-        package = pkgs.unstable.qemu_kvm; # Use the unstable QEMU package.
         runAsRoot = true;
         swtpm.enable = true; # Enable TPM emulation.
         ovmf = {
@@ -55,6 +60,7 @@
             }).fd
           ];
         };
+        vhostUserPackages = [ pkgs.virtiofsd ];
       };
     };
 
@@ -65,7 +71,6 @@
   # virt-manager: A graphical user interface for managing virtual machines through libvirt.
   programs.virt-manager = {
     enable = true;
-    package = pkgs.unstable.virt-manager;
   };
 
   # Apptainer (formerly Singularity): A container platform for HPC and enterprise.
@@ -104,17 +109,9 @@
   environment.systemPackages =
     with pkgs;
     [
-      # Tools for accessing and modifying virtual machine disk images.
-      guestfs-tools
-      libguestfs
-      # vagrant # A tool for building and managing virtual machine environments.
-    ]
-    ++ (with pkgs.unstable; [
       # Cloud and Virtualization tools
       cloud-init # For bootstrapping cloud instances.
       cloud-utils # Utilities for cloud images.
-      distrobox # Use any Linux distribution inside your terminal.
-      virt-viewer # A lightweight UI for connecting to the graphical display of virtual machines.
 
       # Kubernetes and Container tools
       kompose # A conversion tool to go from Docker Compose to Kubernetes.
@@ -122,11 +119,21 @@
       kubernetes # The Kubernetes container orchestration system.
       kubernetes-helm # The Kubernetes package manager.
       minikube # A tool that runs a single-node Kubernetes cluster locally.
+
+      # Tools for accessing and modifying virtual machine disk images.
+      guestfs-tools # Tools for accessing and modifying virtual machine disk images.
+      libguestfs # Library and tools for accessing and modifying virtual machine disk images.
+      # qemu-utils # Utilities for QEMU, including qemu-img for disk image manipulation. Also used by LXC to create --vm.
+      # vagrant # A tool for building and managing virtual machine environments.
+      virt-viewer # A lightweight UI for connecting to the graphical display of virtual machines.
+    ]
+    ++ (with pkgs.unstable; [
+      # Cloud and Virtualization tools
+      distrobox # Use any Linux distribution inside your terminal.
+
+      # Container tools
       podman-tui # A Terminal User Interface for Podman.
       ptyxis # A container-based terminal.
-      qemu-utils # Let lxc to create --vm
 
-      # Disabled packages
-      # qemu_test
     ]);
 }
