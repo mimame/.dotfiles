@@ -21,6 +21,7 @@ in
     [
 
       clipman
+      libreoffice-fresh
     ]
     ++ (with pkgs.unstable; [
 
@@ -59,7 +60,6 @@ in
       keepassxc
       klavaro
       lapce
-      libreoffice
       logseq # removed from nixpkgs
       neovide
       obsidian
