@@ -2,7 +2,10 @@
 *.log
 .dotter/cache.toml
 .dotter/local.toml
+.github/copilot-instructions.md
 .vagrant
+AGENTS.md
+GEMINI.md
 Manifest.toml
 bin/awslocal
 clifm
