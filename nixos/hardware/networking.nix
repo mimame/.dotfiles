@@ -52,7 +52,7 @@
 # default choice for this machine.
 #
 #------------------------------------------------------------------------------
-{ pkgs, ... }:
+{ pkgs, hostname, ... }:
 {
 
   # Network
@@ -74,7 +74,7 @@
         "virbr1"
       ];
     };
-    hostName = "narnia";
+    hostName = hostname;
     # wireless.iwd = {
     #   settings = {
     #     Network = {
