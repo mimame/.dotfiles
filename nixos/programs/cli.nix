@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   # Locate service
   services.locate = {
@@ -68,8 +68,8 @@
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
-    user = "mimame";
-    dataDir = "/home/mimame";
+    user = "${username}";
+    dataDir = "/home/${username}";
   };
 
   programs.mosh.enable = true;

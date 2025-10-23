@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
 
   # Enable periodic SSD TRIM to maintain SSD performance
@@ -103,7 +103,7 @@
     '';
     extraRules = [
       {
-        users = [ "mimame" ];
+        users = [ "${username}" ];
         commands = [
           {
             command = "/run/current-system/sw/bin/systemctl restart geoclue.service";

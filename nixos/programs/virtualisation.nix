@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   # Required kernel module for running virtual machines with LXC/LXD (incus).
   boot.kernelModules = [ "vhost_vsock" ];
@@ -86,7 +86,7 @@
     # Allow running virtualization CLIs without a password.
     extraRules = [
       {
-        users = [ "mimame" ];
+        users = [ "${username}" ];
         commands = [
           {
             command = "/run/current-system/sw/bin/podman";

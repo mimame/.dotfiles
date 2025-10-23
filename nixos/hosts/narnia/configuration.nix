@@ -18,6 +18,7 @@
   ... # Catch-all for other arguments (e.g., `lib`, `modulesPath`).
 }:
 let
+  username = "mimame";
   # Fetch the nixpkgs-unstable channel as a tarball. This allows access to
   # bleeding-edge packages without needing to manage system-wide channels
   # imperatively with `nix-channel`.
@@ -66,14 +67,15 @@ in
     ../../profiles/laptop.nix
 
     # --- Base System Services & Settings ---
-    ../../system/base.nix
+
+    (import ../../system/base.nix { inherit pkgs username; })
     ../../system/btrfs.nix
     ../../system/fonts.nix
 
     # --- Programs & Development Environments ---
-    ../../programs/cli.nix
+    (import ../../programs/cli.nix { inherit pkgs username; })
     ../../programs/languages_and_lsp.nix
-    ../../programs/virtualisation.nix
+    (import ../../programs/virtualisation.nix { inherit pkgs username; })
     ../../programs/ci-cd.nix
     ../../programs/devops.nix
     ../../programs/databases.nix
@@ -83,7 +85,7 @@ in
     ../../desktop/base.nix
     ../../desktop/gnome_layer.nix
     # ./desktop/sway.nix
-    ../../desktop/niri.nix
+    (import ../../desktop/niri.nix { inherit pkgs username; })
     # ./desktop/cosmic.nix
   ];
 
@@ -145,9 +147,9 @@ in
   users = {
     # Set the default shell for all users.
     defaultUserShell = pkgs.unstable.fish;
-    users.mimame = {
+    users.${username} = {
       isNormalUser = true;
-      description = "mimame";
+      description = "${username} Account";
       # Add user to essential groups for hardware access and system management.
       extraGroups = [
         "audio" # Audio devices

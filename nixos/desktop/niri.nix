@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, username, ... }:
 {
   programs.niri = {
     enable = true;
@@ -9,7 +9,7 @@
     defaultSession = "niri";
     autoLogin = {
       enable = true;
-      user = "mimame";
+      user = "${username}";
     };
   };
 
