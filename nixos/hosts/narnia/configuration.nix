@@ -81,6 +81,9 @@ in
     ../../programs/databases.nix
     ../../programs/pdf.nix
 
+    # --- User Accounts ---
+    (import ../../users/${username}/default.nix { inherit pkgs username; })
+
     # --- Desktop Environment ---
     ../../desktop/base.nix
     ../../desktop/gnome_layer.nix
@@ -138,36 +141,6 @@ in
         # Compare the new system derivation ($systemConfig) with the current one.
         ${pkgs.unstable.dix}/bin/dix /run/current-system "$systemConfig"
       '';
-    };
-  };
-
-  # ----------------------------------------------------------------------------
-  # User Accounts
-  # ----------------------------------------------------------------------------
-  users = {
-    # Set the default shell for all users.
-    defaultUserShell = pkgs.unstable.fish;
-    users.${username} = {
-      isNormalUser = true;
-      description = "${username} Account";
-      # Add user to essential groups for hardware access and system management.
-      extraGroups = [
-        "audio" # Audio devices
-        "incus-admin" # Incus/LXD container management
-        "input" # Input devices (controllers, etc.)
-        "libvirtd" # Libvirt virtualization
-        "lxd" # LXD container management
-        "networkmanager" # Network management
-        "podman" # Podman container management
-        "vboxusers" # VirtualBox access
-        "video" # Video devices and hardware acceleration
-        "wheel" # Sudo access
-      ];
-      # User-specific packages can be installed here.
-      packages = with pkgs; [
-        #  firefox
-        #  thunderbird
-      ];
     };
   };
 
