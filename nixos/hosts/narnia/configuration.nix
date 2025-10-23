@@ -105,7 +105,7 @@ in
     # Use an overlay to add the `unstable` package set, making it available
     # as `pkgs.unstable`.
     packageOverrides = pkgs: {
-      unstable = import unstableTarball { config = config.nixpkgs.config; };
+      unstable = import unstableTarball { inherit (config.nixpkgs) config; };
 
       # Nullify packages with abusive telemetry or undesirable features.
       # This prevents them from being installed accidentally.
@@ -152,10 +152,7 @@ in
   # ----------------------------------------------------------------------------
   environment.systemPackages =
     with pkgs;
-    [
-      # e.g. wget
-    ]
-    ++ (with pkgs.unstable; [
+    (with pkgs.unstable; [
       # e.g. btop
     ]);
 

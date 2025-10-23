@@ -6,9 +6,7 @@
 
   environment.systemPackages =
     with pkgs;
-    [
-    ]
-    ++ (with pkgs.unstable; [
+    (with pkgs.unstable; [
       # Cloud and Infrastructure as Code tools
       # awscli # v1 for awslocal localstack compatibility
       fly # Fly.io CLI

@@ -15,10 +15,7 @@
 
   environment.systemPackages =
     with pkgs;
-    [
-
-    ]
-    ++ (with pkgs.unstable; [
+    (with pkgs.unstable; [
       # Asciidoc
       asciidoc-full
       asciidoctor

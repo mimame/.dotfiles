@@ -4,7 +4,7 @@
 # This file configures CPU-specific settings, including microcode updates,
 # thermal management, and performance/power optimization services.
 # ----------------------------------------------------------------------------
-{ ... }:
+_:
 {
   # Enable automatic updates for Intel CPU microcode.
   # This is crucial for applying security patches and stability fixes provided

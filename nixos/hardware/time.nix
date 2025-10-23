@@ -4,7 +4,7 @@
 # This file configures services related to keeping the system time accurate
 # and automatically setting the timezone based on location.
 # ----------------------------------------------------------------------------
-{ ... }:
+_:
 {
   # Enable Chrony for Network Time Protocol (NTP) synchronization.
   # This keeps the system clock accurate by syncing with a network of time servers.

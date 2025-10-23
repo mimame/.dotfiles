@@ -1,6 +1,4 @@
 { pkgs, ... }:
-let
-in
 {
 
   # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
