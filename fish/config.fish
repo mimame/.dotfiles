@@ -124,9 +124,11 @@ if status --is-interactive
     #mise activate fish | source
 
     # Setup Carapace for enhanced shell completions
+    # Temporarily disabled due to issues with ssh and git checkout completions.
+    # The default fish completions are working correctly.
     # CARAPACE_BRIDGES enables completion bridging from other shells (zsh, fish, bash, inshellisense)
-    set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
-    carapace _carapace | source
+    # set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+    # carapace _carapace | source
 
     # Trigger the deferred loading functions on first prompt
     emit fish_prompt
