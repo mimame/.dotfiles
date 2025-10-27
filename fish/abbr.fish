@@ -116,7 +116,7 @@ abbr vbm VBoxManage
 abbr wget wget2
 
 # --- Network ---
-abbr d ddgr
+abbr duck ddgr
 abbr myip "dig -4 +short myip.opendns.com @resolver1.opendns.com"
 abbr rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppable'
 abbr sshfs "sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
@@ -157,3 +157,23 @@ edit_config zellijrc ~/.dotfiles/zellij/config.kdl
 # --- Applications ---
 abbr lc 'libreoffice --calc'
 abbr news newsboat
+
+# --- Zellij ---
+abbr zj zellij
+abbr za 'zellij attach'
+abbr zl 'zellij list-sessions'
+abbr zk 'zellij kill-session'
+abbr ze 'zellij edit'
+abbr zr 'zellij run'
+
+# -- Docker ---
+abbr d docker
+abbr dc docker compose
+abbr dcb 'docker compose build'
+abbr dcd 'docker compose down'
+abbr dcl 'docker compose logs -f'
+abbr dcu 'docker compose up -d'
+abbr dex 'docker exec -it'
+abbr di 'docker images'
+abbr dps 'docker ps'
+abbr dpsa 'docker ps -a'
