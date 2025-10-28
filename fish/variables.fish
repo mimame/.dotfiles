@@ -43,7 +43,7 @@ set -Ux FZF_DEFAULT_OPTS '
 --bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
 '
 
-# Set default web browser to Vivaldi if available
+# Set default web browser to Firefox if available
 if command -q firefox
     set -x -U BROWSER firefox
 end
@@ -73,19 +73,19 @@ end
 set -x -U PIP_USER false
 
 # Add paths for various tools and languages
-fish_add_path "$HOME/.yarn/bin"
-fish_add_path "$HOME/.bin"
-fish_add_path "$HOME/go/bin"
-fish_add_path "$HOME/.cargo/bin"
-fish_add_path "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
+fish_add_path \
+    "$HOME/.yarn/bin" \
+    "$HOME/.bin" \
+    "$HOME/go/bin" \
+    "$HOME/.cargo/bin" \
+    "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin" \
+    "$HOME/.local/bin" \
+    "$HOME/.local/share/coursier/bin" # Coursier install directory
 
 # Add user Ruby gems path if Ruby is installed
 if test -x "$(command -v ruby)"
     fish_add_path "$(ruby -e 'print Gem.user_dir')/bin"
 end
-
-fish_add_path "$HOME/.local/bin"
-fish_add_path "$HOME/.local/share/coursier/bin" # Coursier install directory
 
 # Load Homebrew environment on macOS
 if test -f /opt/homebrew/bin/brew
