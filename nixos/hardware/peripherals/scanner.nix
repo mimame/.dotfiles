@@ -4,8 +4,7 @@
 # This file configures the Scanner Access Now Easy (SANE) framework for
 # using scanners, both locally and over the network.
 # ----------------------------------------------------------------------------
-_:
-{
+_: {
   # Enable the SANE network scanning daemon (saned).
   # This allows other computers on the network to access this machine's scanner.
   services.saned.enable = true;

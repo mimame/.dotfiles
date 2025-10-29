@@ -1,5 +1,4 @@
-_:
-{
+_: {
   # --- CI/CD ---
   # Jenkins: A continuous integration and continuous delivery server.
   services.jenkins = {

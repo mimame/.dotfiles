@@ -74,6 +74,23 @@
 
   programs.mosh.enable = true;
 
+  # --------------------------------------------------------------------------
+  # Direnv Configuration
+  #
+  # Direnv is a shell extension that loads and unloads environment variables
+  # depending on the current directory.
+  #
+  # - `programs.direnv.enable = true`: Installs direnv and adds the necessary
+  #   hook to the shell.
+  # - `programs.direnv.nix-direnv.enable = true`: Enables seamless integration
+  #   with Nix, allowing direnv to use `flake.nix` or `shell.nix` files to
+  #   manage development environments automatically.
+  # --------------------------------------------------------------------------
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   # programs.fuse
   programs.fuse.userAllowOther = true;
 
@@ -137,7 +154,6 @@
       ddgr
       delta
       difftastic
-      direnv
       diskus
       dogdns
       dool
@@ -223,7 +239,6 @@
       neovim
       newsboat
       ninja
-      nix-direnv
       nix-index
       nix-tree
       nix-update
