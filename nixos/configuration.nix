@@ -17,16 +17,14 @@
   ... # Catch-all for other arguments (e.g., `lib`, `modulesPath`).
 }:
 let
-  # Define the hostname for this specific machine.
-  # This variable is used to dynamically select the appropriate host-specific
-  # configuration file from the `hosts` directory.
-  hostname = "narnia";
+  # Import the shared variables
+  vars = import ./variables.nix;
 in
 {
   # Import the host-specific configuration module.
   # The `hostname` variable (defined above) is passed as an argument to
   # the imported module, making it available for use within that module.
   imports = [
-    (import ./hosts/${hostname}/configuration.nix { inherit config pkgs hostname; })
+    (import ./hosts/${vars.hostname}/configuration.nix { inherit config pkgs vars; })
   ];
 }

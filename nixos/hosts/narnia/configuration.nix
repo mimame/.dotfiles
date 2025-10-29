@@ -14,12 +14,10 @@
 {
   config, # The aggregated configuration of all imported modules.
   pkgs, # The default Nixpkgs package set.
-  hostname, # The hostname of the current machine, passed from the main configuration.
+  vars, # The set of variables from variables.nix
   ... # Catch-all for other arguments (e.g., `lib`, `modulesPath`).
 }:
 let
-  username = "mimame";
-  desktop = "niri";
   # Fetch the nixpkgs-unstable channel as a tarball. This allows access to
   # bleeding-edge packages without needing to manage system-wide channels
   # imperatively with `nix-channel`.
@@ -56,7 +54,10 @@ in
     ../../hardware/time.nix
 
     # Networking configuration, passed the hostname for host-specific settings.
-    (import ../../hardware/networking.nix { inherit config pkgs hostname; })
+    (import ../../hardware/networking.nix {
+      inherit config pkgs;
+      inherit (vars) hostname;
+    })
     ../../hardware/graphics.nix
     ../../hardware/bluetooth.nix
     ../../hardware/sound.nix
@@ -69,32 +70,44 @@ in
 
     # --- Base System Services & Settings ---
 
-    (import ../../system/base.nix { inherit pkgs username; })
+    (import ../../system/base.nix {
+      inherit pkgs;
+      inherit (vars) username;
+    })
     ../../system/btrfs.nix
     ../../system/fonts.nix
 
     # --- Programs & Development Environments ---
-    (import ../../programs/cli.nix { inherit pkgs username; })
+    (import ../../programs/cli.nix {
+      inherit pkgs;
+      inherit (vars) username;
+    })
     ../../programs/languages_and_lsp.nix
-    (import ../../programs/virtualisation.nix { inherit pkgs username; })
+    (import ../../programs/virtualisation.nix {
+      inherit pkgs;
+      inherit (vars) username;
+    })
     ../../programs/ci-cd.nix
     ../../programs/devops.nix
     ../../programs/databases.nix
     ../../programs/pdf.nix
 
     # --- User Accounts ---
-    (import ../../users/${username}/default.nix { inherit pkgs username; })
+    (import ../../users/${vars.username}/default.nix {
+      inherit pkgs;
+      inherit (vars) username;
+    })
 
     # --- Desktop Environment ---
     ../../desktops/base.nix
     ../../desktops/gnome_layer.nix
     # ./desktop/sway.nix
-    (import ../../desktops/${desktop}/default.nix { inherit pkgs username; })
+    (import ../../desktops/${vars.desktop}/default.nix {
+      inherit pkgs;
+      inherit (vars) username;
+    })
     # ./desktop/cosmic.nix
   ];
-
-  # Set the system's hostname. This value is passed from the main configuration.
-  networking.hostName = hostname;
 
   # ----------------------------------------------------------------------------
   # Nixpkgs Configuration
