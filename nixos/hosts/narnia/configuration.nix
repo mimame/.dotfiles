@@ -19,6 +19,7 @@
 }:
 let
   username = "mimame";
+  desktop = "niri";
   # Fetch the nixpkgs-unstable channel as a tarball. This allows access to
   # bleeding-edge packages without needing to manage system-wide channels
   # imperatively with `nix-channel`.
@@ -85,10 +86,10 @@ in
     (import ../../users/${username}/default.nix { inherit pkgs username; })
 
     # --- Desktop Environment ---
-    ../../desktop/base.nix
-    ../../desktop/gnome_layer.nix
+    ../../desktops/base.nix
+    ../../desktops/gnome_layer.nix
     # ./desktop/sway.nix
-    (import ../../desktop/niri.nix { inherit pkgs username; })
+    (import ../../desktops/${desktop}/default.nix { inherit pkgs username; })
     # ./desktop/cosmic.nix
   ];
 

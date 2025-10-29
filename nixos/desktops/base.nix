@@ -29,8 +29,9 @@
       # kdiff3
       # nheko
       # wl-clipboard-rs
+      anyrun
       bitwarden
-      calibre
+      # calibre
       cytoscape
       dbeaver-bin
       dropbox
@@ -44,7 +45,7 @@
         pipewireSupport = true;
       }) { })
       gimp3
-      gitbutler
+      # gitbutler
       gitg
       glxinfo
       google-chrome
@@ -58,16 +59,22 @@
       keepassxc
       klavaro
       lapce
-      logseq # removed from nixpkgs
+      logseq
+      # megasync
       neovide
+      nyxt
       obsidian
-      pcmanfm
-      pdfarranger
+      # pcmanfm
       playerctl
       qalculate-gtk
-      # qutebrowser
+      qutebrowser
       ripdrag
-      rofi-wayland
+      # rofi-calc
+      # (rofi-calc.override {
+      #   rofi-unwrapped = rofi-wayland-unwrapped;
+      # })
+      rofi
+      satty
       spicetify-cli
       spotify
       sqlitebrowser
