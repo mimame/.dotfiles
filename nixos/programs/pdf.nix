@@ -7,7 +7,7 @@
       pdfarranger
       pdfsam-basic
       pdftk
-      poppler_utils
+      poppler-utils
       tdf
       xournalpp
       zathura

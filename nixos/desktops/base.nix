@@ -30,8 +30,8 @@
       # nheko
       # wl-clipboard-rs
       anyrun
-      bitwarden
       # calibre
+      bitwarden-desktop
       cytoscape
       dbeaver-bin
       dropbox
@@ -47,7 +47,6 @@
       gimp3
       # gitbutler
       gitg
-      glxinfo
       google-chrome
       gst_all_1.gst-plugins-bad
       gst_all_1.gst-plugins-base
@@ -61,6 +60,7 @@
       lapce
       logseq
       # megasync
+      mesa-demos
       neovide
       nyxt
       obsidian

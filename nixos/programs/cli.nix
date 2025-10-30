@@ -159,7 +159,7 @@
       dool
       dos2unix
       dotter
-      du-dust
+      dust
       dua
       duf
       dura
@@ -235,7 +235,7 @@
       moar
       monolith
       navi
-      ncdu_2
+      ncdu
       neovim
       newsboat
       ninja
