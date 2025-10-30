@@ -109,9 +109,26 @@
   environment.systemPackages =
     with pkgs;
     [
+
+      # Cloud and Virtualization tools
+      distrobox # Use any Linux distribution inside your terminal.
+
+      # Container tools
+      podman-tui # A Terminal User Interface for Podman.
+
       # Cloud and Virtualization tools
       cloud-init # For bootstrapping cloud instances.
       cloud-utils # Utilities for cloud images.
+
+      # VM tools
+      quickemu # A tool for running and managing virtual machines with QEMU.
+
+      # Tools for accessing and modifying virtual machine disk images.
+      guestfs-tools # Tools for accessing and modifying virtual machine disk images.
+      libguestfs # Library and tools for accessing and modifying virtual machine disk images.
+      # qemu-utils # Utilities for QEMU, including qemu-img for disk image manipulation. Also used by LXC to create --vm.
+      # vagrant # A tool for building and managing virtual machine environments.
+      virt-viewer # A lightweight UI for connecting to the graphical display of virtual machines.
 
       # Kubernetes and Container tools
       kompose # A conversion tool to go from Docker Compose to Kubernetes.
@@ -120,19 +137,8 @@
       kubernetes-helm # The Kubernetes package manager.
       minikube # A tool that runs a single-node Kubernetes cluster locally.
 
-      # Tools for accessing and modifying virtual machine disk images.
-      guestfs-tools # Tools for accessing and modifying virtual machine disk images.
-      libguestfs # Library and tools for accessing and modifying virtual machine disk images.
-      # qemu-utils # Utilities for QEMU, including qemu-img for disk image manipulation. Also used by LXC to create --vm.
-      # vagrant # A tool for building and managing virtual machine environments.
-      virt-viewer # A lightweight UI for connecting to the graphical display of virtual machines.
     ]
     ++ (with pkgs.unstable; [
-      # Cloud and Virtualization tools
-      distrobox # Use any Linux distribution inside your terminal.
-
-      # Container tools
-      podman-tui # A Terminal User Interface for Podman.
       ptyxis # A container-based terminal.
 
     ]);
