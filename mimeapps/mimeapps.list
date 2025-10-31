@@ -1,156 +1,107 @@
-# This is a cleaned and simplified mimeapps.list.
-# The guiding principles are:
-# 1. Define one clear default application for each MIME type.
-# 2. Remove redundant entries (e.g., specific audio types when a wildcard exists).
-# 3. Remove legacy/non-standard MIME types.
-# 4. Group related associations for readability.
+# Default Mime Type Associations
+# -------------------------------
+# This file defines the default application for opening various file types (mime types).
+# The desktop environment uses this list to determine which application to launch
+# when a user opens a file.
 
+# [Added Associations]
+# This section can be used to add applications to the list of those that can
+# handle a mime type, without setting them as the default.
+[Added Associations]
+
+# [Default Applications]
+# This section sets the one default application for a mime type.
+# Format: <mime-type>=<application.desktop>;
 [Default Applications]
 
-#-------------------------------------------------------------------------------
-# Web Browsing
-#-------------------------------------------------------------------------------
+# === Text, Code, and Development ===
+# Zed is the default for most plain text, code, and configuration files.
+# Meld is used for viewing diffs and patches.
+application/json=dev.zed.Zed.desktop;
+application/jsonc=dev.zed.Zed.desktop;
+application/log=dev.zed.Zed.desktop;
+application/schema+json=dev.zed.Zed.desktop;
+application/toml=dev.zed.Zed.desktop;
+application/x-bash=dev.zed.Zed.desktop;
+application/x-desktop=dev.zed.Zed.desktop;
+application/x-fish=dev.zed.Zed.desktop;
+application/x-gnome-app-info=dev.zed.Zed.desktop;
+application/x-just=dev.zed.Zed.desktop;
+application/x-kdl=dev.zed.Zed.desktop;
+application/x-nix=dev.zed.Zed.desktop;
+application/x-nushell=dev.zed.Zed.desktop;
+application/x-rasi=dev.zed.Zed.desktop;
+application/x-sh=dev.zed.Zed.desktop;
+application/x-shellscript=dev.zed.Zed.desktop;
+application/x-yaml=dev.zed.Zed.desktop;
+application/x-zsh=dev.zed.Zed.desktop;
 application/xhtml+xml=firefox.desktop;
+text/css=dev.zed.Zed.desktop;
 text/html=firefox.desktop;
-x-scheme-handler/about=firefox.desktop;
-x-scheme-handler/chrome=firefox.desktop;
-x-scheme-handler/http=firefox.desktop;
-x-scheme-handler/https=firefox.desktop;
-x-scheme-handler/unknown=firefox.desktop;
+text/markdown=dev.zed.Zed.desktop;
+text/plain=dev.zed.Zed.desktop;
+text/x-clojure=dev.zed.Zed.desktop;
+text/x-common-lisp=dev.zed.Zed.desktop;
+text/x-crystal=dev.zed.Zed.desktop;
+text/x-diff=org.gnome.Meld.desktop;
+text/x-go=dev.zed.Zed.desktop;
+text/x-janet=dev.zed.Zed.desktop;
+text/x-jank=dev.zed.Zed.desktop;
+text/x-julia=dev.zed.Zed.desktop;
+text/x-log=dev.zed.Zed.desktop;
+text/x-lua=dev.zed.Zed.desktop;
+text/x-nim=dev.zed.Zed.desktop;
+text/x-patch=org.gnome.Meld.desktop;
+text/x-python=dev.zed.Zed.desktop;
+text/x-r=dev.zed.Zed.desktop;
+text/x-typst=dev.zed.Zed.desktop;
+text/x-zig=dev.zed.Zed.desktop;
+text/xml=dev.zed.Zed.desktop;
 
-#-------------------------------------------------------------------------------
-# Image Viewing & Editing
-#-------------------------------------------------------------------------------
-image/avif=org.gnome.Loupe.desktop;
-image/bmp=org.gnome.Loupe.desktop;
-image/gif=org.gnome.Loupe.desktop;
-image/heif=org.gnome.Loupe.desktop;
-image/jpeg=org.gnome.Loupe.desktop;
-image/jxl=org.gnome.Loupe.desktop;
-image/png=org.gnome.Loupe.desktop;
-image/svg+xml=org.inkscape.Inkscape.desktop;
-image/tiff=org.gnome.Loupe.desktop;
-image/webp=org.gnome.Loupe.desktop;
-image/x-xcf=gimp.desktop; # GIMP's native format
-image/*=org.gnome.Loupe.desktop;
-
-#-------------------------------------------------------------------------------
-# Document Viewers (PDF, Ebooks, etc.)
-#-------------------------------------------------------------------------------
+# === Documents and Office ===
+# GNOME Papers is the primary document viewer for PDFs and comic books.
+# LibreOffice (calc, writer, impress) handles spreadsheet and word processing formats.
+# Calibre is used for ebooks.
+application/csv=calc.desktop;
 application/epub+zip=calibre-ebook-viewer.desktop;
+application/excel=calc.desktop;
+application/msword=writer.desktop;
 application/oxps=org.gnome.Papers.desktop;
 application/pdf=org.gnome.Papers.desktop;
 application/postscript=org.gnome.Papers.desktop;
-application/vnd.comicbook-rar=org.gnome.Papers.desktop;
+application/rtf=writer.desktop;
 application/vnd.comicbook+zip=org.gnome.Papers.desktop;
-application/x-cbr=org.pwmt.zathura-cb.desktop;
-application/x-cbz=org.pwmt.zathura-cb.desktop;
+application/vnd.comicbook-rar=org.gnome.Papers.desktop;
+application/vnd.ms-excel=calc.desktop;
+application/vnd.ms-powerpoint=impress.desktop;
+application/vnd.ms-word=writer.desktop;
+application/vnd.oasis.opendocument.presentation=impress.desktop;
+application/vnd.oasis.opendocument.spreadsheet=calc.desktop;
+application/vnd.oasis.opendocument.text=writer.desktop;
+application/vnd.openxmlformats-officedocument.presentationml.presentation=impress.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=calc.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=writer.desktop;
+application/x-cbr=org.gnome.Papers.desktop;
+application/x-cbz=org.gnome.Papers.desktop;
 application/x-mobipocket-ebook=calibre-ebook-viewer.desktop;
 image/vnd.djvu=org.gnome.Papers.desktop;
+text/csv=calc.desktop;
 
-#-------------------------------------------------------------------------------
-# Video & Audio
-#-------------------------------------------------------------------------------
+# === Images and Graphics ===
+# Loupe is the default for most raster images.
+# Inkscape is used for vector SVG files.
+# GIMP is used for its native .xcf format.
+image/*=org.gnome.Loupe.desktop;
+image/svg+xml=org.inkscape.Inkscape.desktop;
+image/x-xcf=gimp.desktop;
+
+# === Video and Audio ===
+# VLC is the universal media player.
 audio/*=vlc.desktop;
 video/*=vlc.desktop;
 
-#-------------------------------------------------------------------------------
-# Text, Code & Development
-#-------------------------------------------------------------------------------
-# General Text & Configs
-application/log=zed.desktop;
-application/x-desktop=zed.desktop;
-application/x-gnome-app-info=zed.desktop;
-text/css=zed.desktop;
-text/plain=zed.desktop;
-text/x-log=zed.desktop;
-text/xml=zed.desktop;
-
-# Programming & Data Formats
-application/json=zed.desktop;
-application/schema+json=zed.desktop;
-application/toml=zed.desktop;
-application/x-bash=zed.desktop;
-application/x-fish=zed.desktop;
-application/x-just=zed.desktop;
-application/x-shellscript=zed.desktop;
-application/x-sh=zed.desktop;
-application/x-zsh=zed.desktop;
-
-# Source Code
-text/x-clojure=zed.desktop;
-text/x-common-lisp=zed.desktop;
-text/x-crystal=zed.desktop;
-text/x-go=zed.desktop;
-text/x-janet=zed.desktop;
-text/x-jank=zed.desktop;
-text/x-julia=zed.desktop;
-text/x-lua=zed.desktop;
-text/x-markdown=zed.desktop;
-text/x-nim=zed.desktop;
-text/x-python=zed.desktop;
-text/x-r=zed.desktop;
-text/x-typst=zed.desktop;
-text/x-zig=zed.desktop;
-
-# Dotfiles & Config Formats
-application/jsonc=zed.desktop;
-application/x-kdl=zed.desktop;
-application/x-nix=zed.desktop;
-application/x-nushell=zed.desktop;
-application/x-rasi=zed.desktop;
-application/x-yaml=zed.desktop;
-
-# Diffs & Patches
-application/x-meld-comparison=org.gnome.Meld.desktop;
-text/x-diff=org.gnome.Meld.desktop;
-text/x-patch=org.gnome.Meld.desktop;
-
-#-------------------------------------------------------------------------------
-# Developer Tools & Formats
-#-------------------------------------------------------------------------------
-# Databases
-application/geopackage+sqlite3=sqlitebrowser.desktop;
-application/vnd.sqlite3=sqlitebrowser.desktop;
-application/x-sqlite3=sqlitebrowser.desktop;
-
-# Virtualization
-application/x-virtualbox-ova=virtualbox.desktop;
-application/x-virtualbox-ovf=virtualbox.desktop;
-application/x-virtualbox-vbox-extpack=virtualbox.desktop;
-application/x-virtualbox-vbox=virtualbox.desktop;
-
-# Fonts
-application/font-woff=org.gnome.font-viewer.desktop;
-application/x-font-otf=org.gnome.font-viewer.desktop;
-application/x-font-ttf=org.gnome.font-viewer.desktop;
-
-#-------------------------------------------------------------------------------
-# Office Documents (LibreOffice)
-#-------------------------------------------------------------------------------
-# Presentations
-application/vnd.ms-powerpoint=impress.desktop;
-application/vnd.oasis.opendocument.presentation=impress.desktop;
-application/vnd.openxmlformats-officedocument.presentationml.presentation=impress.desktop;
-
-# Spreadsheets
-application/csv=calc.desktop;
-application/excel=calc.desktop;
-application/vnd.ms-excel=calc.desktop;
-application/vnd.oasis.opendocument.spreadsheet=calc.desktop;
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=calc.desktop;
-text/csv=calc.desktop;
-
-# Word Processing
-application/msword=writer.desktop;
-application/rtf=writer.desktop;
-application/vnd.ms-word=writer.desktop;
-application/vnd.oasis.opendocument.text=writer.desktop;
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=writer.desktop;
-
-#-------------------------------------------------------------------------------
-# Archives
-#-------------------------------------------------------------------------------
+# === Archives ===
+# GNOME's File Roller handles all compressed archive formats.
 application/gzip=org.gnome.FileRoller.desktop;
 application/vnd.rar=org.gnome.FileRoller.desktop;
 application/x-7z-compressed=org.gnome.FileRoller.desktop;
@@ -160,13 +111,31 @@ application/x-xz=org.gnome.FileRoller.desktop;
 application/zip=org.gnome.FileRoller.desktop;
 application/zstd=org.gnome.FileRoller.desktop;
 
-#-------------------------------------------------------------------------------
-# System & Miscellaneous
-#-------------------------------------------------------------------------------
+# === System and Specialized ===
+# Default handlers for fonts, databases, virtual machines, etc.
+application/font-woff=org.gnome.font-viewer.desktop;
+application/geopackage+sqlite3=sqlitebrowser.desktop;
+application/vnd.sqlite3=sqlitebrowser.desktop;
+application/x-font-otf=org.gnome.font-viewer.desktop;
+application/x-font-ttf=org.gnome.font-viewer.desktop;
 application/x-keepass2=org.keepassxc.KeePassXC.desktop;
+application/x-sqlite3=sqlitebrowser.desktop;
+application/x-virtualbox-ova=virtualbox.desktop;
+application/x-virtualbox-ovf=virtualbox.desktop;
+application/x-virtualbox-vbox-extpack=virtualbox.desktop;
+application/x-virtualbox-vbox=virtualbox.desktop;
 inode/directory=org.gnome.Nautilus.desktop;
-x-scheme-handler/logseq=Logseq.desktop
+
+# === URL Scheme Handlers ===
+# Defines which applications handle protocols like http://, mailto:, etc.
+x-scheme-handler/about=firefox.desktop;
+x-scheme-handler/chrome=firefox.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/logseq=Logseq.desktop;
 x-scheme-handler/mailto=thunderbird.desktop;
 x-scheme-handler/spotify=spotify.desktop;
+x-scheme-handler/terminal=com.mitchellh.ghostty.desktop;
+x-scheme-handler/unknown=firefox.desktop;
 x-scheme-handler/vscode=code-url-handler.desktop;
 x-scheme-handler/zoommtg=Zoom.desktop;
