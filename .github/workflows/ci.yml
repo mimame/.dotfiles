@@ -17,5 +17,4 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Run prek hooks
         run: |
-          # TODO: treefmt is currently skipped because it formats files in CI that are not found locally.
-          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt --run "prek run --all-files --skip treefmt"
+          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt --run "prek run"
