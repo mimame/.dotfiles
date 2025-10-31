@@ -1,12 +1,12 @@
 configuration {
-	modi: "combi,clipboard: clipman pick --tool rofi,web:~/.config/rofi/search.sh,finder:~/.config/rofi/finder.sh,window,drun,run,ssh";
+	modi: "combi,clipboard: clipman pick --tool rofi,web:~/.config/rofi/search.fish,finder:~/.config/rofi/finder.fish,window,drun,run,ssh";
 	font: "JetBrainsMonoNL Nerd Font Bold 13";
 	location: 2;
 	yoffset: 0;
 	xoffset: 0;
 	fixed-num-lines: false;
 	show-icons: true;
-	terminal: "wezterm";
+	terminal: "ghostty";
 	ssh-client: "ssh";
 	ssh-command: "{terminal} -e {ssh-client} {host}";
 	run-command: "{cmd}";
