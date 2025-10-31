@@ -17,6 +17,24 @@ jobs:
         uses: cachix/install-nix-action@v31
         with:
           nix_path: nixpkgs=channel:nixos-unstable
-      - name: Run prek hooks
+      # Run prek hooks on the changeset.
+      # We need two separate, conditional steps because the Git references for "before" and "after"
+      # are accessed differently for `pull_request` and `push` events. This ensures we always
+      # check the correct range of changed files.
+      - name: Run prek on Pull Request
+        # This step only runs for pull request events.
+        if: github.event_name == 'pull_request'
         run: |
-          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt --run "prek run"
+          # We explicitly tell prek the exact commit range to check.
+          # This is more robust than relying on automatic detection in CI.
+          # ${{ github.event.pull_request.base.sha }} is the commit on the base branch (e.g., main).
+          # ${{ github.event.pull_request.head.sha }} is the commit at the tip of the PR branch.
+          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt --run "prek run --from-ref ${{ github.event.pull_request.base.sha }} --to-ref ${{ github.event.pull_request.head.sha }}"
+      - name: Run prek on Push
+        # This step only runs for push events (e.g., merging to main).
+        if: github.event_name == 'push'
+        run: |
+          # We explicitly tell prek the exact commit range to check.
+          # ${{ github.event.before }} is the SHA of the commit before the push.
+          # ${{ github.event.after }} is the SHA of the most recent commit of the push.
+          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt --run "prek run --from-ref ${{ github.event.before }} --to-ref ${{ github.event.after }}"
