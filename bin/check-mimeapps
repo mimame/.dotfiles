@@ -1,0 +1,80 @@
+#!/usr/bin/env fish
+
+# ------------------------------------------------------------------------------
+#
+#  check-mimeapps: A script to verify XDG Mime Application consistency.
+#
+#  This script checks for inconsistencies between the default applications
+#  configured in `~/.config/mimeapps.list` and the associations reported by
+#  the `xdg-mime` utility. It is designed to be run as a pre-commit hook or
+#  manually to ensure that the system's mime type database is in sync with
+#  the configuration file.
+#
+#  How it works:
+#  1. It reads all `mime-type=application.desktop` entries from the
+#     `[Default Applications]` section of `~/.config/mimeapps.list`.
+#  2. For each mime type, it queries the system's default application using
+#     `xdg-mime query default <mime-type>`.
+#  3. It compares the application from the file with the one from the system.
+#  4. It reports any mismatches found.
+#
+#  Exit Codes:
+#    - 0: All associations are consistent.
+#    - 1: Mismatches were found or an error occurred.
+#
+# ------------------------------------------------------------------------------
+
+# Path to the user's mimeapps.list configuration file.
+set -l mimeapps_file ~/.config/mimeapps.list
+set -l exit_code 0
+
+# Check if mimeapps.list exists
+if not test -f "$mimeapps_file"
+    echo "Error: mimeapps.list not found at $mimeapps_file" >&2
+    exit 1
+end
+
+# Use awk to extract all key-value pairs under the `[Default Applications]` section.
+# This is more robust than simple grep, especially for mime types with wildcards.
+# It works by setting a flag `f=1` when `[Default Applications]` is found,
+# and unsetting it (`f=0`) at the next section `[...]`. It then prints lines
+# where the flag `f` is set, the line contains `=`, and is not a comment.
+set -l associations (awk '/^\[Default Applications\]/{f=1;next} /^\[/{f=0} f' "$mimeapps_file" | grep '=' | grep -v '^\s*#')
+
+if test -z "$associations"
+    echo "No mime type associations found in $mimeapps_file under [Default Applications] to check."
+    exit 0 # Exit 0 because there's nothing to check
+end
+
+echo "Checking mime type associations..."
+
+# Iterate over each association line.
+for association in $associations
+    # Split the line into mime type and expected application.
+    set -l mime_type (echo "$association" | cut -d'=' -f1 | string trim)
+    set -l expected_app (echo "$association" | cut -d'=' -f2 | sed 's/;//' | string trim)
+
+    # Skip empty lines or lines without a value, which can result from malformed entries.
+    if test -z "$mime_type" -o -z "$expected_app"
+        continue
+    end
+
+    # Get the actual default application from the system's mime database.
+    set -l actual_app (xdg-mime query default "$mime_type" 2>/dev/null)
+
+    # Compare the expected app from the file with the actual app from the system.
+    if test "$expected_app" != "$actual_app"
+        echo "❌ Mismatch for mime type: $mime_type"
+        echo "     Expected: $expected_app (from mimeapps.list)"
+        echo "     Actual:   $actual_app (from xdg-mime)"
+        set exit_code 1
+    else
+        echo "✅ OK: $mime_type -> $actual_app"
+    end
+end
+
+if test $exit_code -eq 0
+    echo "All checked mime type associations are consistent."
+end
+
+exit $exit_code
