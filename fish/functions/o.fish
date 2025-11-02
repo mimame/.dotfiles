@@ -1,6 +1,6 @@
 # o function and open function with handlr
 # It works better than xdg-open and also it provides a better and nicer terminal interface than their xdg-utils equivalents
-function o --description "Open files/directories with their default applications using handlr"
+function o --description "Open files/directories with their default applications using xdg-open"
     if test (count $argv) -eq 0
         y .
     else
@@ -8,8 +8,8 @@ function o --description "Open files/directories with their default applications
         for file in $argv
             # Check if file exists (or is a valid URI)
             if test -e "$file"; or string match -rq '^[a-zA-Z]+://' "$file"
-                # Run handlr with nohup in background and remove it from the jobs table
-                handlr open "$file" >/dev/null 2>&1 &
+                # Run xdg-open in the background and disown it to prevent the shell from hanging.
+                xdg-open "$file" >/dev/null 2>&1 &
                 disown
                 set opened (math $opened + 1)
             else
