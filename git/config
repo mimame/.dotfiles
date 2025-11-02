@@ -64,7 +64,8 @@
   ca  = commit --amend
   caa = commit --all --amend
   can = commit --amend --no-edit
-  cd = !fish -c git_cd
+  cd = !fish -c "git commit -m (date +%y.%m.%d).(string sub -l 2 (date +%a))"
+  cdr = !fish -c git_cd
   ce  = commit --allow-empty
   cem = commit --allow-empty --message
   cf  = commit --fixup
