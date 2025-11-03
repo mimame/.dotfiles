@@ -1,6 +1,17 @@
 { pkgs, ... }:
 {
 
+  # Set ghostty as the default terminal. This fixes the behavior of the "Open With"
+  # menu in Nautilus/Files for terminal applications like yazi or nvim, ensuring
+  # they launch in the correct terminal. It also sets the default for applications
+  # that explicitly call the `xdg-terminal-exec` script.
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [ "com.mitchellh.ghostty.desktop" ];
+    };
+  };
+
   # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
