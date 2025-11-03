@@ -25,7 +25,13 @@
 # ------------------------------------------------------------------------------
 
 # Path to the user's mimeapps.list configuration file.
-set -l mimeapps_file ~/.config/mimeapps.list
+# Dynamically determine the root of the dotfiles repository to locate mimeapps.list.
+# This ensures the script works correctly even when run as an independent binary
+# or from outside the git repository.
+set -l script_path (readlink -f (status --current-filename))
+set -l script_dir (dirname "$script_path")
+set -l dotfiles_root (dirname "$script_dir")
+set -l mimeapps_file "$dotfiles_root/mimeapps/mimeapps.list"
 set -l exit_code 0
 
 # Check if mimeapps.list exists
