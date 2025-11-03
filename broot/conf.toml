@@ -64,7 +64,7 @@ internal = ":parent"
 invocation = "edit"
 key = "enter"
 apply_to = "file"
-external = "handlr open {file}"
+external = "xdg-open {file}"
 leave_broot = false
 
 [[verbs]]
