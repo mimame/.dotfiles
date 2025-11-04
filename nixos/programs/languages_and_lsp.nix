@@ -25,8 +25,7 @@
       shellcheck
       shfmt
     ])
-    ++ (with pkgs.unstable; [
-    ])
+    ++ (with pkgs.unstable; [ ])
     ++ (with pkgs.unstable; [
       # Crystal
       ameba

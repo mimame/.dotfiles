@@ -48,7 +48,5 @@
   };
 
   # Install command-line tools for managing and debugging Bluetooth.
-  environment.systemPackages = with pkgs; [
-    bluez-tools
-  ];
+  environment.systemPackages = with pkgs; [ bluez-tools ];
 }

@@ -25,6 +25,8 @@ in
   # The `hostname` variable (defined above) is passed as an argument to
   # the imported module, making it available for use within that module.
   imports = [
-    (import ./hosts/${vars.hostname}/configuration.nix { inherit config pkgs vars; })
+    (import ./hosts/${vars.hostname}/configuration.nix {
+      inherit config pkgs vars;
+    })
   ];
 }

@@ -24,7 +24,5 @@
   # While `hardware.enableAllFirmware` is comprehensive, this ensures that the
   # `firmwareLinuxNonfree` package is available in the system's environment,
   # which can be crucial for certain drivers that load firmware at runtime.
-  environment.systemPackages = with pkgs; [
-    firmwareLinuxNonfree
-  ];
+  environment.systemPackages = with pkgs; [ firmwareLinuxNonfree ];
 }

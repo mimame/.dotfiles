@@ -133,9 +133,7 @@ in
   # Core GNOME applications and utilities.
   environment.systemPackages =
     with pkgs;
-    [
-      configure-gtk
-    ]
+    [ configure-gtk ]
     ++ (with pkgs.unstable; [
       baobab
       candy-icons

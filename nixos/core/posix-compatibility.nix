@@ -42,7 +42,5 @@ in
   # This command can be used to wrap and run pre-compiled binaries,
   # automatically setting up the necessary environment and library paths.
   # It leverages `nix-ld` and other mechanisms to achieve this.
-  environment.systemPackages = with nix-alien-pkgs; [
-    nix-alien
-  ];
+  environment.systemPackages = with nix-alien-pkgs; [ nix-alien ];
 }
