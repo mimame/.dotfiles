@@ -67,10 +67,10 @@ function c
             case zs
                 if test "$is_dir" = true
                     set ext tar.zst
-                    tar -I 'zstdmt -19' -cvf {$file}.$ext $file
+                    tar -I 'zstdmt -9' -cvf {$file}.$ext $file
                 else
                     set ext zst
-                    zstdmt -19 -kv $file
+                    zstdmt -9 -kv $file
                 end
             case '*'
                 echo "Error: Cannot compress '$file' - '$compression_format' is not a valid compression format" >&2
