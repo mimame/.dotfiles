@@ -105,6 +105,7 @@
       bind
       # (buku.override { withServer = true; })
       dosfstools
+      desktop-file-utils
       fakeroot
       lsb-release
       lsof
@@ -127,6 +128,7 @@
       time
       xdg-user-dirs
       xdg-utils
+      shared-mime-info
     ]
     ++ (with pkgs.unstable; [
 
