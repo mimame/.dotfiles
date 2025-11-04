@@ -28,7 +28,6 @@ abbr less bat
 abbr m tldr
 abbr more bat
 abbr ncdu 'ncdu --color dark'
-abbr r ranger
 abbr re massren
 abbr x 'chmod +x'
 
