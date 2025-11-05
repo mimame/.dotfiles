@@ -329,6 +329,11 @@ window-rule {
     clip-to-geometry true
 }
 
+// Open new windows maximized by default
+window-rule {
+  open-maximized true
+}
+
 // Use 'niri msg windows' to see running windows and their app IDs
 // This helps identify the correct app-id patterns for window rules
 // Examples of common patterns:
