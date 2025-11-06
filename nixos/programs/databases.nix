@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-
+  # MySQL/MariaDB service configuration.
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
@@ -10,16 +10,26 @@
   environment.systemPackages =
     with pkgs;
     [
+      # Database servers
+      postgresql # PostgreSQL database server
 
-      litecli
-      # mariadb-connector-c # For Rails but generates too much collisions
-      mycli
-      redis
-      sqlfluff
-      sqlite-interactive
-      sqlite-utils
-      usql
+      # SQL clients
+      litecli # CLI for SQLite with auto-completion and syntax highlighting
+      mycli # CLI for MySQL with auto-completion and syntax highlighting
+      usql # Universal SQL client
 
+      # Redis
+      redis # In-memory data structure store
+
+      # SQL linting and utilities
+      sqlfluff # SQL linter and auto-formatter
+      sqlite-interactive # Interactive SQLite shell
+      sqlite-utils # CLI for manipulating SQLite databases
+
+      # Database-specific tools
+      turso-cli # CLI for Turso database
+
+      # mariadb-connector-c # For Rails but generates too many collisions
     ]
     ++ (with pkgs.unstable; [
 

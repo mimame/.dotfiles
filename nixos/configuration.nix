@@ -22,8 +22,7 @@ let
 in
 {
   # Import the host-specific configuration module.
-  # The `hostname` variable (defined above) is passed as an argument to
-  # the imported module, making it available for use within that module.
+  # This module defines the system's configuration based on the hostname.
   imports = [
     (import ./hosts/${vars.hostname}/configuration.nix {
       inherit config pkgs vars;

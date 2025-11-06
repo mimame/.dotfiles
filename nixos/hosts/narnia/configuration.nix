@@ -37,11 +37,10 @@ in
   # ----------------------------------------------------------------------------
   imports = [
     # Automatically generated hardware configuration.
-    # This file is typically located at `/etc/nixos/hardware-configuration.nix`
-    # and contains hardware-specific settings detected during installation.
     ./hardware-configuration.nix
 
     # --- Core System Configuration ---
+    # Essential system-wide settings and configurations.
     ../../core/boot.nix
     ../../core/firmware.nix
     ../../core/lix.nix
@@ -49,26 +48,25 @@ in
     ../../core/posix-compatibility.nix
 
     # --- Hardware Support ---
+    # Modules for specific hardware components and peripherals.
+    ../../hardware/bluetooth.nix
     ../../hardware/cpu.nix
-    ../../hardware/time.nix
-
-    # Networking configuration, passed the hostname for host-specific settings.
+    ../../hardware/graphics.nix
     (import ../../hardware/networking.nix {
       inherit config pkgs;
       inherit (vars) hostname;
     })
-    ../../hardware/graphics.nix
-    ../../hardware/bluetooth.nix
-    ../../hardware/sound.nix
     ../../hardware/peripherals/printer.nix
     ../../hardware/peripherals/scanner.nix
+    ../../hardware/sound.nix
+    ../../hardware/time.nix
 
     # --- Device-Specific Profiles ---
-    # Example: Profile for laptop-specific settings.
+    # Profiles tailored for specific device types (e.g., laptops, desktops).
     ../../profiles/laptop.nix
 
     # --- Base System Services & Settings ---
-
+    # Fundamental system services and configurations.
     (import ../../system/base.nix {
       inherit pkgs;
       inherit (vars) username;
@@ -77,34 +75,76 @@ in
     ../../system/fonts.nix
 
     # --- Programs & Development Environments ---
-    (import ../../programs/cli.nix {
+    # Modules for various applications, development tools, and programming languages.
+
+    # Application-specific configurations
+    ../../programs/ci-cd.nix
+    ../../programs/databases.nix
+    ../../programs/devops.nix
+    ../../programs/documents/default.nix
+    ../../programs/editors/default.nix
+    ../../programs/file-management/default.nix
+    ../../programs/git/default.nix
+    ../../programs/media/default.nix
+    ../../programs/misc/default.nix
+    ../../programs/networking/default.nix
+    (import ../../programs/services/default.nix {
       inherit pkgs;
       inherit (vars) username;
     })
-    ../../programs/languages_and_lsp.nix
+    ../../programs/security/default.nix
+    ../../programs/shells/default.nix
+    ../../programs/system-tools/default.nix
+    ../../programs/terminals/default.nix
     (import ../../programs/virtualisation.nix {
       inherit pkgs;
       inherit (vars) username;
     })
-    ../../programs/ci-cd.nix
-    ../../programs/devops.nix
-    ../../programs/databases.nix
-    ../../programs/pdf.nix
+
+    # Programming Languages and Tooling
+    ../../programs/development/default.nix
+    ../../programs/languages/asciidoc.nix
+    ../../programs/languages/bash.nix
+    ../../programs/languages/crystal.nix
+    ../../programs/languages/dart.nix
+    ../../programs/languages/elixir.nix
+    ../../programs/languages/go.nix
+    ../../programs/languages/json.nix
+    ../../programs/languages/jvm.nix
+    ../../programs/languages/lisp.nix
+    ../../programs/languages/lua.nix
+    ../../programs/languages/markdown.nix
+    ../../programs/languages/misc.nix
+    ../../programs/languages/nim.nix
+    ../../programs/languages/nix.nix
+    ../../programs/languages/node.nix
+    ../../programs/languages/protobuf.nix
+    ../../programs/languages/python.nix
+    ../../programs/languages/ruby.nix
+    ../../programs/languages/rust.nix
+    ../../programs/languages/static-site.nix
+    ../../programs/languages/toml.nix
+    ../../programs/languages/typst.nix
+    ../../programs/languages/yaml.nix
 
     # --- User Accounts ---
+    # User-specific configurations and settings.
     (import ../../users/${vars.username}/default.nix {
       inherit pkgs;
       inherit (vars) username;
     })
 
     # --- Desktop Environment ---
-    ../../desktops/base.nix
+    # Configuration for the graphical desktop environment.
+    # The GNOME compatibility layer must be loaded before the specific desktop
+    # environment to ensure all GNOME-related services and settings are available.
     ../../desktops/gnome_layer.nix
-    # ./desktop/sway.nix
+    ../../desktops/base.nix
     (import ../../desktops/${vars.desktop}/default.nix {
       inherit pkgs;
       inherit (vars) username;
     })
+    # ./desktop/sway.nix
     # ./desktop/cosmic.nix
   ];
 
@@ -156,18 +196,6 @@ in
       '';
     };
   };
-
-  # ----------------------------------------------------------------------------
-  # System-wide Packages
-  #
-  # Packages installed here are available to all users.
-  # To search for packages, run: $ nix search wget
-  # ----------------------------------------------------------------------------
-  environment.systemPackages =
-    with pkgs;
-    (with pkgs.unstable; [
-      # e.g. btop
-    ]);
 
   # ----------------------------------------------------------------------------
   # State Version
