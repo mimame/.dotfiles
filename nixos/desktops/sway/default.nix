@@ -84,19 +84,14 @@ in
     };
   };
 
-  # GNOME Keyring daemon
+  # GNOME Keyring daemon - provides secure storage for passwords, keys, and certificates.
   services.gnome.gnome-keyring.enable = true;
-  # Enable GNOME settings
+  # Enable GNOME settings daemon - manages essential desktop functionality.
   services.gnome.gnome-settings-daemon.enable = true;
-  # Enable GNOME online accounts
+  # Enable GNOME online accounts - centralized account management service.
   services.gnome.gnome-online-accounts.enable = true;
 
-  # xdg-desktop-portal works by exposing a series of D-Bus interfaces
-  # known as portals under a well-known name
-  # (org.freedesktop.portal.Desktop) and object path
-  # (/org/freedesktop/portal/desktop).
-  # The portal interfaces include APIs for file access, opening URIs,
-  # printing and others.
+  # Enable D-Bus for inter-process communication.
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;
@@ -108,7 +103,7 @@ in
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  # enable sway window manager
+  # Enable Sway window manager.
   programs.sway = {
     enable = true;
     # sway unstable breaks electron apps like vivaldi, obsidian and google-chrome
@@ -127,6 +122,7 @@ in
     '';
   };
 
+  # X11/Xorg server configuration.
   services.xserver = {
     enable = true;
     displayManager.gdm = {
@@ -135,8 +131,9 @@ in
     };
   };
 
+  # Display Manager configuration for Sway.
   services.displayManager = {
-    defaultSession = "sway";
+    defaultSession = "sway"; # Set Sway as the default session.
     autoLogin = {
       enable = true;
       user = "mimame";
@@ -149,19 +146,24 @@ in
   environment.systemPackages =
     with pkgs;
     [
-
+      # GTK configuration script
       configure-gtk
+      # D-Bus environment setup for Sway
       dbus-sway-environment
-      ironbar
-      swaynotificationcenter
-      swayosd
-      swayr
-      waybar
 
+      # Status bars
+      ironbar # A Wayland bar
+      waybar # Highly customizable Wayland bar
+
+      # Notifications and OSD
+      swaynotificationcenter # Notification daemon for Sway and Wayland
+      swayosd # On-screen display for Sway and Wayland
+
+      # Sway utilities
+      swayr # An urgent-first/most-recently-used window switcher for sway & swayrbar
     ]
     ++ (with pkgs.unstable; [
-
-      i3status-rust
-
+      # Status bars
+      i3status-rust # A resource monitor for i3bar and Waybar
     ]);
 }

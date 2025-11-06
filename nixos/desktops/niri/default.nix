@@ -1,15 +1,17 @@
 { pkgs, username, ... }:
 {
+  # Niri: A scrollable-tiling Wayland compositor.
   programs.niri = {
     enable = true;
     # package = pkgs.unstable.niri;
   };
 
+  # Display Manager configuration for Niri.
   services.displayManager = {
-    defaultSession = "niri";
+    defaultSession = "niri"; # Set Niri as the default session.
     autoLogin = {
-      enable = true;
-      user = "${username}";
+      enable = true; # Enable automatic login.
+      user = "${username}"; # Specify the user for auto-login.
     };
   };
 
@@ -64,20 +66,28 @@
   # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
+  # PAM service for gtklock.
   security.pam.services.gtklock = { };
   environment.systemPackages =
     with pkgs;
     [
-      gtklock
-      xwayland-satellite
+      # Lock screen
+      gtklock # GTK-based lock screen
+
+      # XWayland utilities
+      xwayland-satellite # XWayland utility
     ]
     ++ (with pkgs.unstable; [
+      # Notifications and OSD
+      swaynotificationcenter # Notification daemon for Sway and Wayland
+      swayosd # On-screen display for Sway and Wayland
 
-      swaynotificationcenter
-      swayosd
-      swayr
-      walker
-      waybar
+      # Sway/Niri utilities
+      swayr # An urgent-first/most-recently-used window switcher for sway & swayrbar
+      niriswitcher # Niri workspace switcher
+      walker # Application launcher
 
+      # Status bars
+      waybar # Highly customizable Wayland bar
     ]);
 }

@@ -135,18 +135,21 @@ in
     with pkgs;
     [ configure-gtk ]
     ++ (with pkgs.unstable; [
-      baobab
-      candy-icons
-      capitaine-cursors
-      file-roller
-      glib # gsettings
-      gnome-control-center
-      gnome-font-viewer
-      gparted
-      gthumb
-      loupe
-      meld
-      nautilus
-      sweet
+      # GNOME Core Applications
+      baobab # Disk usage analyzer
+      file-roller # Archive manager
+      glib # Core application library
+      gnome-control-center # GNOME settings panel
+      gnome-font-viewer # Font viewer
+      gparted # Disk partition editor
+      gthumb # Image viewer and browser
+      loupe # Image viewer
+      meld # Diff and merge tool
+      nautilus # File manager
+
+      # Theming and Icons
+      candy-icons # Icon theme
+      capitaine-cursors # Cursor theme
+      sweet # GTK theme
     ]);
 }
