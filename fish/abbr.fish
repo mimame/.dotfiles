@@ -146,6 +146,7 @@ edit_config starshiprc ~/.dotfiles/starship/starship.toml
 edit_config swayrc ~/.dotfiles/sway/sway/config
 edit_config tldrrc ~/.dotfiles/tealdeer/config.toml
 edit_config topgraderc ~/.dotfiles/topgrade/topgrade.toml
+edit_config tvrc ~/.dotfiles/television/config.toml
 edit_config waybarrc ~/.dotfiles/waybar/config.jsonc
 edit_config weztermrc ~/.dotfiles/wezterm/wezterm.lua
 edit_config xplrrc ~/.dotfiles/xplr/init.lua
