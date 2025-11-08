@@ -121,10 +121,15 @@ abbr rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppab
 abbr sshfs "sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
 
 # --- Configuration File Editing ---
-function edit_config --argument abbr_alias config_path
+function edit_config --argument-names abbr_alias config_path post_edit_command
     set -l path (dirname $config_path)
     set -l filename (basename $config_path)
-    abbr $abbr_alias "pushd $path && $EDITOR $filename && popd"
+    set -l command_string "pushd $path && $EDITOR $filename"
+    if test -n "$post_edit_command"
+        set command_string "$command_string && $post_edit_command"
+    end
+    set command_string "$command_string && popd"
+    abbr $abbr_alias "$command_string"
 end
 
 edit_config brootrc ~/.dotfiles/broot/conf.toml
@@ -137,7 +142,7 @@ edit_config kittyrc ~/.dotfiles/kitty/kitty.conf
 edit_config mimerc ~/.dotfiles/mimeapps/mimeapps.list
 edit_config navirc ~/.dotfiles/navi/config.yaml
 edit_config nirirc ~/.dotfiles/niri/config.kdl
-abbr nixosrc 'pushd ~/.dotfiles/nixos/ && $EDITOR configuration.nix && sudo nixos-rebuild switch --no-reexec && popd'
+edit_config nixosrc ~/.dotfiles/nixos/configuration.nix 'sudo nixos-rebuild switch --no-reexec'
 edit_config nvimrc ~/.dotfiles/lazyvim/init.lua
 edit_config qutebrowserrc ~/.dotfiles/qutebrowser/config.py
 edit_config rofirc ~/.dotfiles/rofi/config.rasi
