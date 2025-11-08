@@ -126,6 +126,7 @@ in
     ../../programs/languages/toml.nix
     ../../programs/languages/typst.nix
     ../../programs/languages/yaml.nix
+    ../../programs/languages/zig.nix
 
     # --- User Accounts ---
     # User-specific configurations and settings.
