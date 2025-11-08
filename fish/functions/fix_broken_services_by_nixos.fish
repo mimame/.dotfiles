@@ -1,41 +1,65 @@
+# Repair systemd user services that may be broken after a NixOS update.
+#
+# NixOS manages systemd services via symbolic links. After an update, these
+# symlinks can sometimes point to non-existent paths in the Nix store,
+# effectively "breaking" the service.
+#
+# This function identifies such broken services (either broken symlinks or
+# completely missing files) and attempts to repair them by re-enabling and
+# restarting them via `systemctl`.
 function fix_broken_services_by_nixos --description "Repair systemd user services broken by NixOS updates"
-    # Retrieve all systemd user services in ~/.config/systemd/user/
+    # Define the directory where user-specific systemd services are stored.
     set -l user_services_dir ~/.config/systemd/user
-    set services (fd '.service$' $user_services_dir 2>/dev/null)
+
+    # Find all files ending in `.service` that are symbolic links (`-t l`).
+    # We specifically target symlinks because that's how NixOS manages services.
+    # This is more precise than finding any file with that extension.
+    set -l service_paths (fd -t l '.service$' $user_services_dir 2>/dev/null)
     set -l fixed_count 0
     set -l error_count 0
 
     # echo "🔍 Scanning for broken systemd user services..."
 
-    # If no services are found, use a predefined list of service names
-    if test (count $services) -eq 0
-        set -l names configure-gtk gammastep swayidle udiskie polkit-gnome-authentication-agent-1
+    # If `fd` finds no symbolic links, it might be because they are all missing.
+    # In this case, we fall back to a predefined list of common services that
+    # are expected to exist.
+    if test (count $service_paths) -eq 0
+        set -l default_service_names configure-gtk gammastep swayidle udiskie polkit-gnome-authentication-agent-1
         # echo "No services found in $user_services_dir. Using default list."
-        for name in $names
-            set services $services $user_services_dir/$name.service
+        for name in $default_service_names
+            set -a service_paths "$user_services_dir/$name.service"
         end
     end
 
-    # echo "Checking "(count $services)" service files..."
+    # echo "Checking "(count $service_paths)" service files..."
 
-    # Repair each broken service
-    for service_path in $services
+    # Iterate over each potential service path to check its status.
+    for service_path in $service_paths
+        # Extract the service name (e.g., "gammastep.service") from the full path.
+        # This is the name we'll pass to `systemctl`.
         set -l service_name (basename $service_path)
 
-        # Check if service_path is broken (missing target)
-        if not test -L $service_path
+        # Check if the service is broken.
+        # `test -e` returns false if the file does not exist. For a symbolic link,
+        # it checks if the *target* of the link exists.
+        # This condition is true for both completely missing files and for
+        # symbolic links that point to a non-existent location (broken links).
+        if not test -e "$service_path"
             set_color --bold yellow
             echo "⚠️  Found broken service: $service_name → $service_path"
             set_color normal
 
             echo -n "  Fixing... "
 
-            # Re-enable and restart service
+            # Attempt to repair the service by re-enabling it.
+            # `systemctl enable` recreates the symbolic link to point to the correct
+            # unit file in the current Nix store.
             if systemctl enable --user $service_name >/dev/null 2>&1
                 set_color green
                 echo "✓ Enabled"
                 set_color normal
 
+                # After re-enabling, restart the service to ensure it's running.
                 echo -n "  Restarting... "
                 if systemctl restart --user $service_name >/dev/null 2>&1
                     set_color green
@@ -57,7 +81,7 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
         end
     end
 
-    # Print summary
+    # Print a summary of the actions taken.
     echo ""
     if test $fixed_count -gt 0
         set_color green
@@ -78,6 +102,6 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
     #     set_color normal
     # end
 
-    # Return error code if any errors occurred
+    # Return a non-zero exit code if any errors occurred.
     test $error_count -eq 0
 end
