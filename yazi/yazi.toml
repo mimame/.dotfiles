@@ -21,13 +21,12 @@ cache_dir = ""
 image_delay = 30
 image_filter = "triangle"
 image_quality = 75
-sixel_fraction = 15
 ueberzug_scale = 1
 ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-  { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'code %*', orphan = true, desc = "code", for = "windows" },
   { run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
 ]
@@ -142,7 +141,6 @@ preloaders = [
   { mime = "application/ms-opentype", run = "font" },
 ]
 prepend_previewers = [
-  { name = "*.md", run = "glow" },
   # Archive previewer
   { mime = "application/*zip", run = "ouch" },
   { mime = "application/zip", run = "ouch" },
@@ -153,6 +151,7 @@ prepend_previewers = [
   { mime = "application/xz", run = "ouch" },
   { mime = "application/zstd", run = "ouch" },
   { mime = "application/x-zstd-compressed-tar", run = "ouch" },
+  { mime = "text/markdown", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
 ]
 previewers = [
   { name = "*/", run = "folder", sync = true },
