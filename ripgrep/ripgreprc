@@ -10,7 +10,6 @@
 --max-columns=80
 --max-columns-preview
 --colors=line:style:bold
---hyperlink-format=kitty
 
 # custom types
 --type-add
