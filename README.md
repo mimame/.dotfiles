@@ -8,7 +8,7 @@
   - [Terminals](#terminals)
   - [Shells](#shells)
   - [Editors](#editors)
-  - [Productivity & Automation](#productivity--automation)
+  - [Utilities & Automation](#utilities--automation)
   - [Windows Management](#windows-management)
   - [Files Management](#files-management)
 - [Themes](#themes)
@@ -39,7 +39,6 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 ## Terminals
 
 - [kitty](https://sw.kovidgoyal.net/kitty/): Fast, feature-rich, GPU-based terminal emulator with advanced features and theming support.
-- [wezterm](https://wezfurlong.org/wezterm/index.html): GPU-accelerated terminal emulator for a smooth, modern experience.
 - [ghostty](https://ghostty.app/): Fast, minimal, GPU-accelerated terminal emulator with modern features and configuration flexibility.
 
 ## Shells
@@ -50,22 +49,21 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 
 - [helix](https://helix-editor.com/): Powerful, modal code editor with tree-sitter support and fast navigation.
 - [lazyvim](https://www.lazyvim.org): Feature-rich Neovim configuration built for productivity and extensibility.
-- [zellij](https://zellij.dev/): Terminal multiplexer for managing multiple terminal sessions efficiently, with workspace and layout support.
 
-## Productivity & Automation
+## Utilities & Automation
 
 - [bat](https://github.com/topics/batcat): Fast, colorful alternative to cat with syntax highlighting and git integration.
 - [broot](https://dystroy.org/broot/): Tree-based file browser for easy navigation and file management.
 - [btop](https://github.com/topics/monitor-performance): Modern, interactive resource monitor for system performance.
 - [delta](https://github.com/dandavison/delta): Visually appealing alternative to git diff for better code review.
 - [fd](https://github.com/sharkdp/fd): Lightning-fast file searcher for quickly locating files.
-- [handlr](https://github.com/topics/handle): Smarter alternative to xdg-open for handling file types and URLs.
 - [lazygit](https://github.com/jesseduffield/lazygit): User-friendly terminal UI for Git, making version control more accessible.
 - [logseq](https://logseq.com/): Zettelkasten-inspired note-taking app for organizing thoughts and knowledge.
 - [ripgrep](https://github.com/BurntSushi/ripgrep): Blazing-fast tool for searching text content within your codebase or files.
 - [starship](https://starship.rs/): Modern, informative shell prompt that enhances the terminal experience and integrates with multiple shells.
 - [tealdeer](https://github.com/tealdeer-rs/tealdeer): Provides concise TL;DR explanations for popular command-line tools.
 - [topgrade](https://github.com/topgrade-rs/topgrade): Unified system upgrade tool for NixOS packages and more, keeping your system up-to-date.
+- [zellij](https://zellij.dev/): Terminal multiplexer for managing multiple terminal sessions efficiently, with workspace and layout support.
 
 ## Windows Management
 
