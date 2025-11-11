@@ -2,7 +2,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Iosevka;
+    font-family: "JetBrainsMonoNL Nerd Font";
     font-size: 11pt;
     min-height: 0;
 }
@@ -35,4 +35,25 @@ window#waybar {
 #clock {
     padding: 0 4px;
     background: @background;
+}
+
+#waybar .modules-left > *,
+#waybar .modules-center > *,
+#waybar .modules-right > * {
+    margin: 0 6px;
+}
+
+#temperature,
+#cpu,
+#load,
+#network,
+#memory,
+#clock,
+#battery,
+#backlight,
+#pulseaudio,
+#idle_inhibitor,
+#tray,
+#custom-power {
+  margin: 0 6px;
 }

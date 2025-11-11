@@ -11,33 +11,20 @@
     "niri/workspaces"
   ],
   "modules-center": [
-    "custom/separator",
     "niri/window"
   ],
   "modules-right": [
-    "custom/separator",
     "temperature",
-    "custom/separator",
     "cpu",
-    "custom/separator",
     "load",
-    "custom/separator",
     "network",
-    "custom/separator",
     "memory",
-    "custom/separator",
     "clock",
-    "custom/separator",
     "battery",
-    "custom/separator",
     "backlight",
-    "custom/separator",
     "pulseaudio",
-    "custom/separator",
     "idle_inhibitor",
-    "custom/separator",
     "tray",
-    "custom/separator",
     "custom/power"
   ],
   // Modules configuration
@@ -89,11 +76,11 @@
       "weeks-pos": "right",
       "on-scroll": 1,
       "format": {
-        "months": "<span color='#ffead3'><b>{}</b></span>",
-        "days": "<span color='#ecc6d9'><b>{}</b></span>",
-        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+        "months":   "<span font_desc='JetBrainsMonoNL Nerd Font Bold 11' color='#bd93f9'>{}</span>",
+        "weekdays": "<span font_desc='JetBrainsMonoNL Nerd Font Bold 11' color='#ffb86c'>{}</span>",
+        "weeks":    "<span font_desc='JetBrainsMonoNL Nerd Font 11' color='#8be9fd'>W{}</span>",
+        "days":     "<span font_desc='JetBrainsMonoNL Nerd Font 11' color='#f8f8f2'>{}</span>",
+        "today":    "<span font_desc='JetBrainsMonoNL Nerd Font Bold 11' color='#ff79c6' background='#44475a'>{}</span>"
       }
     },
     "actions": {
@@ -118,8 +105,8 @@
     "format": "  {usage}% {avg_frequency}Gz",
     "tooltip": true,
     "states": {
-      "warning": 30,
-      "critical": 15
+      "warning": 70,
+      "critical": 90
     }
     // "on-click": "wezterm -e btop"
   },
@@ -213,11 +200,7 @@
     "on-click": "pwvucontrol",
     "on-right-click": "swayosd-client --output-volume mute-toggle"
   },
-  "custom/separator": {
-    "format": "|",
-    "interval": "once",
-    "tooltip": false
-  },
+
   "custom/power": {
     "format": "⏻ ",
     "tooltip": false,
