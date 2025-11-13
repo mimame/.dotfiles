@@ -31,6 +31,10 @@ repos:
     rev: v1.2
     hooks:
       - id: fish_syntax
+  - repo: https://github.com/rubocop/rubocop
+    rev: v1.81.7
+    hooks:
+      - id: rubocop
   - repo: local
     hooks:
       - id: treefmt
