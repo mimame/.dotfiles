@@ -345,8 +345,6 @@ x-scheme-handler/zoommtg=Zoom.desktop
 x-scheme-handler/zoomphonecall=Zoom.desktop
 x-scheme-handler/zoomphonesms=Zoom.desktop
 x-scheme-handler/zoomus=Zoom.desktop
-
-
 [Added Associations]
 application/bzip2=org.gnome.FileRoller.desktop;org.gnome.Nautilus.desktop;
 application/clarisworks=calc.desktop;draw.desktop;writer.desktop;
