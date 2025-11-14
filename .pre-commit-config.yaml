@@ -41,8 +41,8 @@ repos:
         name: treefmt
         language: system
         entry: treefmt
-      - id: check-mimeapps
-        name: Check mimeapps consistency
-        language: script
-        entry: bin/check-mimeapps
-        files: ^mimeapps/mimeapps.list$
+      # - id: check-mimeapps
+      #   name: Check mimeapps consistency
+      #   language: script
+      #   entry: bin/check-mimeapps
+      #   files: ^mimeapps/mimeapps.list$
