@@ -111,6 +111,7 @@ in
     ../../programs/languages/go.nix
     ../../programs/languages/json.nix
     ../../programs/languages/jvm.nix
+    ../../programs/languages/julia.nix
     ../../programs/languages/lisp.nix
     ../../programs/languages/lua.nix
     ../../programs/languages/markdown.nix
