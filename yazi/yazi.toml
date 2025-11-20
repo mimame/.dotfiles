@@ -4,7 +4,7 @@
 
 [mgr]
 ratio = [1, 4, 3]
-sort_by = "alphabetical"
+sort_by = "natural"
 sort_sensitive = false
 sort_reverse = false
 sort_dir_first = false
@@ -143,7 +143,6 @@ preloaders = [
 prepend_previewers = [
   # Archive previewer
   { mime = "application/*zip", run = "ouch" },
-  { mime = "application/zip", run = "ouch" },
   { mime = "application/x-tar", run = "ouch" },
   { mime = "application/x-bzip2", run = "ouch" },
   { mime = "application/x-7z-compressed", run = "ouch" },
