@@ -7,5 +7,6 @@
 {
   environment.systemPackages = with pkgs.unstable; [
     ruby # The Ruby programming language
+    rubocop
   ];
 }

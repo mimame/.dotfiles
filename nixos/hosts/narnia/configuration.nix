@@ -121,6 +121,7 @@ in
     ../../programs/languages/node.nix
     ../../programs/languages/protobuf.nix
     ../../programs/languages/python.nix
+    ../../programs/languages/r.nix
     ../../programs/languages/ruby.nix
     ../../programs/languages/rust.nix
     ../../programs/languages/static-site.nix

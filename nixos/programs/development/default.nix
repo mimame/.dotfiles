@@ -18,6 +18,7 @@
       hyperfine # Benchmarking tool
       just # Command runner
       ninja # Build system
+      qwen-code # Qwen code model
       scc # Code counter
       tokei # Code counter
       watchexec # Execute commands when files change

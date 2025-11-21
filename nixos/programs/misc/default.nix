@@ -10,6 +10,7 @@
       parallel # Build and execute shell commands in parallel
       pv # Pipe Viewer - monitor the progress of data through a pipeline
       pwgen # Generate pronounceable passwords
+      libqalculate # Calculator library
       tailspin # Log file analyzer
       time # Measure program resource use
 
@@ -62,7 +63,6 @@
       gemini-cli # Gemini CLI
       glow # Markdown renderer
       halp # A command-line help tool
-      handlr # A better xdg-open
       newsboat # RSS/Atom feed reader
       ouch # A command-line tool for archiving and compression
       pastel # A command-line tool for colors
