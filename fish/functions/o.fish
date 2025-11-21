@@ -1,5 +1,6 @@
-# o function and open function with handlr
-# It works better than xdg-open and also it provides a better and nicer terminal interface than their xdg-utils equivalents
+# o function - A wrapper around xdg-open for opening files and directories.
+# This function provides a convenient way to open files or directories using the system's default applications via `xdg-open`.
+# It runs `xdg-open` in the background and disowns it to prevent the shell from hanging.
 function o --description "Open files/directories with their default applications using xdg-open"
     if test (count $argv) -eq 0
         y .

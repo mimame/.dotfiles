@@ -22,7 +22,6 @@ abbr du dust
 abbr duf diskus
 abbr dus diskus
 abbr f 'fd --hidden --strip-cwd-prefix'
-abbr fm vifm
 abbr free 'free -h'
 abbr less bat
 abbr m tldr
