@@ -2,7 +2,9 @@
 *.log
 .dotter/cache.toml
 .dotter/local.toml
+.gemini/
 .github/copilot-instructions.md
+.github/prompts/
 .vagrant
 AGENTS.md
 GEMINI.md
@@ -29,6 +31,7 @@ history.txt
 lazygit/state.yml
 nvchad/lazy-lock.json
 qutebrowser
+result/
 ssh
 vifm-*
 vifminfo*
