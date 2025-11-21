@@ -142,7 +142,7 @@ edit_config kittyrc ~/.dotfiles/kitty/kitty.conf
 edit_config mimerc ~/.dotfiles/mimeapps/mimeapps.list
 edit_config navirc ~/.dotfiles/navi/config.yaml
 edit_config nirirc ~/.dotfiles/niri/config.kdl
-edit_config nixosrc ~/.dotfiles/nixos/configuration.nix 'sudo nixos-rebuild switch --no-reexec'
+edit_config nixosrc ~/.dotfiles/nixos/configuration.nix 'nixos-rebuild build --show-trace --no-reexec'
 edit_config nvimrc ~/.dotfiles/lazyvim/init.lua
 edit_config qutebrowserrc ~/.dotfiles/qutebrowser/config.py
 edit_config rofirc ~/.dotfiles/rofi/config.rasi
