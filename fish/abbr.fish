@@ -128,7 +128,8 @@ function edit_config --argument-names abbr_alias config_path post_edit_command
     if test -n "$post_edit_command"
         set command_string "$command_string && $post_edit_command"
     end
-    set command_string "$command_string && popd"
+    # Use a semicolon to ensure popd always runs, even if the preceding commands fail.
+    set command_string "$command_string; popd"
     abbr $abbr_alias "$command_string"
 end
 
