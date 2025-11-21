@@ -16,7 +16,6 @@
     enable = true;
     # Enable ALSA integration, allowing PipeWire to manage ALSA clients.
     alsa.enable = true;
-    alsa.support32Bit = true;
     # Enable PulseAudio emulation, allowing PulseAudio clients to work seamlessly.
     pulse.enable = true;
     # JACK emulation can be enabled for professional audio applications.
