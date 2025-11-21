@@ -7,7 +7,7 @@
 {
   users = {
     # Set the default shell for all users.
-    defaultUserShell = pkgs.unstable.fish;
+    defaultUserShell = pkgs.fish;
     users.${username} = {
       isNormalUser = true;
       description = "${username} Account";
