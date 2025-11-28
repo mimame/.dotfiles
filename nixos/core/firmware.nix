@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+_: {
   # ----------------------------------------------------------------------------
   # Firmware Management
   #
@@ -20,9 +19,4 @@
   # patches provided by their manufacturers.
   services.fwupd.enable = true;
 
-  # Explicitly install non-free Linux firmware.
-  # While `hardware.enableAllFirmware` is comprehensive, this ensures that the
-  # `firmwareLinuxNonfree` package is available in the system's environment,
-  # which can be crucial for certain drivers that load firmware at runtime.
-  environment.systemPackages = with pkgs; [ firmwareLinuxNonfree ];
 }
