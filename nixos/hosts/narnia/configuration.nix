@@ -57,7 +57,7 @@ in
       inherit (vars) hostname;
     })
     ../../hardware/peripherals/printer.nix
-    ../../hardware/peripherals/scanner.nix
+    (import ../../hardware/peripherals/scanner.nix { inherit vars; })
     ../../hardware/sound.nix
     ../../hardware/time.nix
 
@@ -72,63 +72,12 @@ in
       inherit (vars) username;
     })
     ../../system/btrfs.nix
+
     ../../system/fonts.nix
 
     # --- Programs & Development Environments ---
-    # Modules for various applications, development tools, and programming languages.
-
-    # Application-specific configurations
-    ../../programs/ci-cd.nix
-    ../../programs/databases.nix
-    ../../programs/devops.nix
-    ../../programs/documents/default.nix
-    ../../programs/editors/default.nix
-    ../../programs/file-management/default.nix
-    ../../programs/git/default.nix
-    ../../programs/media/default.nix
-    ../../programs/misc/default.nix
-    ../../programs/networking/default.nix
-    (import ../../programs/services/default.nix {
-      inherit pkgs;
-      inherit (vars) username;
-    })
-    ../../programs/security/default.nix
-    ../../programs/shells/default.nix
-    ../../programs/system-tools/default.nix
-    ../../programs/terminals/default.nix
-    (import ../../programs/virtualisation.nix {
-      inherit pkgs;
-      inherit (vars) username;
-    })
-
-    # Programming Languages and Tooling
-    ../../programs/development/default.nix
-    ../../programs/languages/asciidoc.nix
-    ../../programs/languages/bash.nix
-    ../../programs/languages/crystal.nix
-    ../../programs/languages/dart.nix
-    ../../programs/languages/elixir.nix
-    ../../programs/languages/go.nix
-    ../../programs/languages/json.nix
-    ../../programs/languages/jvm.nix
-    ../../programs/languages/julia.nix
-    ../../programs/languages/lisp.nix
-    ../../programs/languages/lua.nix
-    ../../programs/languages/markdown.nix
-    ../../programs/languages/misc.nix
-    ../../programs/languages/nim.nix
-    ../../programs/languages/nix.nix
-    ../../programs/languages/node.nix
-    ../../programs/languages/protobuf.nix
-    ../../programs/languages/python.nix
-    ../../programs/languages/r.nix
-    ../../programs/languages/ruby.nix
-    ../../programs/languages/rust.nix
-    ../../programs/languages/static-site.nix
-    ../../programs/languages/toml.nix
-    ../../programs/languages/typst.nix
-    ../../programs/languages/yaml.nix
-    ../../programs/languages/zig.nix
+    (import ../../programs/default.nix { inherit pkgs vars; })
+    ../../programs/languages/default.nix
 
     # --- User Accounts ---
     # User-specific configurations and settings.

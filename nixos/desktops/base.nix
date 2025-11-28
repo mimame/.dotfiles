@@ -1,5 +1,43 @@
 { pkgs, ... }:
 {
+  # Documentation: Example of how GTK theme settings were previously applied via an imperative script.
+  # This approach has been replaced by declarative dconf settings using programs.dconf.profiles.
+  #
+  # let
+  #   # The configure-gtk script sets the GTK theme, icons, and other appearance-related
+  #   # settings using gsettings. This was necessary because non-GNOME window managers
+  #   # did not have a built-in way to manage these settings.
+  #   #
+  #   # The script was run as a systemd user service after the window manager started,
+  #   # ensuring that the correct theme was applied at login. It required the
+  #   # gsettings-desktop-schemas to be available in XDG_DATA_DIRS to find the
+  #   # necessary schemas for the settings it modified.
+  #   configure-gtk = pkgs.writeTextFile {
+  #     name = "configure-gtk";
+  #     destination = "/bin/configure-gtk";
+  #     executable = true;
+  #     text =
+  #       let
+  #         schema = pkgs.gsettings-desktop-schemas;
+  #         datadir = "${schema}/share/gsettings-schemas/${schema.name}";
+  #       in
+  #       ''
+  #         #!/bin/sh
+  #         export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
+  #         export GTK_THEME="Sweet-Dark"
+  #         gnome_schema=org.gnome.desktop.interface
+  #         gsettings set $gnome_schema color-scheme prefer-dark
+  #         gsettings set $gnome_schema gtk-theme "Sweet-Dark"
+  #         gsettings set org.gnome.desktop.wm.preferences theme "Sweet-Dark"
+  #         gsettings set $gnome_schema icon-theme "candy-icons"
+  #         gsettings set $gnome_schema cursor-theme "capitaine-cursors-white"
+  #         gsettings set $gnome_schema cursor-size "48"
+  #         gsettings set $gnome_schema document-font-name 'JetBrainsMonoNL 13'
+  #         gsettings set $gnome_schema font-name 'JetBrainsMonoNL 13'
+  #         gsettings set $gnome_schema monospace-font-name 'JetBrainsMonoNL 13'
+  #       '';
+  #   };
+  # in
 
   # Set ghostty as the default terminal. This fixes the behavior of the "Open With"
   # menu in Nautilus/Files for terminal applications like yazi or nvim, ensuring
@@ -25,105 +63,16 @@
   #   ];
   # };
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      # Clipboard manager
-      clipman # Clipboard manager for Wayland
-    ]
-    ++ (with pkgs.unstable; [
-      # Web browsers
-      (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {
-        ffmpegSupport = true;
-        pipewireSupport = true;
-      }) { }) # Firefox with multimedia support
-      google-chrome # Google Chrome web browser
-      nyxt # Keyboard-driven web browser
-      qutebrowser # Keyboard-driven, vim-like browser
-      (vivaldi.override {
-        proprietaryCodecs = true;
-        enableWidevine = true;
-      }) # Vivaldi web browser
-      thunderbird # Email client
-
-      # Communication
-      telegram-desktop # Telegram messaging app
-
-      # Productivity and Notes
-      joplin-desktop # Note-taking and to-do application
-      logseq # Privacy-first, open-source knowledge base
-      obsidian # Knowledge base and note-taking app
-      zed-editor # A high-performance, collaborative code editor
-      zettlr # Markdown editor for researchers and writers
-      zoom-us # Video conferencing
-      # zeal # Offline documentation browser
-
-      # Password management
-      bitwarden-desktop # Desktop password manager
-      keepassxc # Cross-platform password manager
-
-      # File synchronization and transfer
-      dropbox # Cloud storage service
-      filezilla # FTP, FTPS and SFTP client
-
-      # Graphics and image manipulation
-      (flameshot.override { enableWlrSupport = true; }) # Screenshot tool
-      gimp3 # GNU Image Manipulation Program
-      inkscape # Vector graphics editor
-
-      # Media players and codecs
-      ffmpeg-full # Complete FFmpeg suite
-      gst_all_1.gst-plugins-bad # GStreamer bad plugins
-      gst_all_1.gst-plugins-base # GStreamer base plugins
-      gst_all_1.gst-plugins-good # GStreamer good plugins
-      gst_all_1.gst-plugins-ugly # GStreamer ugly plugins
-      gst_all_1.gstreamer # GStreamer multimedia framework
-      spotify # Music streaming service
-      vlc # VLC media player
-
-      # Development tools (GUI)
-      dbeaver-bin # Universal database tool
-      gitg # Git graphical user interface
-      lapce # Lightning-fast and powerful code editor
-      neovide # Neovim GUI
-      vscode # Visual Studio Code
-
-      # Utilities
-      anyrun # Application launcher
-      calibre # E-book management
-      cytoscape # Graph visualization and analysis
-      emote # Emoji picker
-      eww # Elkowar's Wacky Widgets
-      klavaro # Touch typing tutor
-      mesa-demos # Mesa 3D graphics library demos
-      playerctl # Command-line utility for controlling media players
-      qalculate-gtk # Powerful and versatile desktop calculator
-      ripdrag # Drag and drop utility
-      rofi # Application launcher and more
-      satty # Screenshot annotation tool
-      spicetify-cli # Customize Spotify client
-      sqlitebrowser # SQLite database browser
-      tridactyl-native # Keyboard interface for Firefox
-      ulauncher # Application launcher
-      unetbootin # Create bootable Live USB drives
-      usbimager # Write compressed disk images to USB drives
-      wev # Wayland event viewer
-      wl-clipboard # Wayland clipboard utilities
-      wlrctl # Control Wayland compositors
-      wtype # Type text on Wayland
-      ydotool # Command-line tool to simulate keyboard and mouse input
-
-      # Disabled packages
-      # betterbird
-      # floorp
-      # git-cola
-      # kdiff3
-      # nheko
-      # wl-clipboard-rs
-      # rofi-calc
-      # (rofi-calc.override {
-      #   rofi-unwrapped = rofi-wayland-unwrapped;
-      # })
-      # pcmanfm
-    ]);
+  imports = [
+    ./apps/browsers.nix
+    ./apps/clipboard.nix
+    ./apps/communication.nix
+    ./apps/development.nix
+    ./apps/graphics.nix
+    ./apps/media.nix
+    ./apps/networking.nix
+    ./apps/notes.nix
+    ./apps/security.nix
+    ./apps/utilities.nix
+  ];
 }

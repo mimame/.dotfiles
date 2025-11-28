@@ -14,41 +14,6 @@
 # By enabling these services, this module ensures that both GNOME-native and
 # third-party applications integrate smoothly and function as expected.
 { pkgs, ... }:
-let
-  # The configure-gtk script sets the GTK theme, icons, and other appearance-related
-  # settings using gsettings. This is necessary because non-GNOME window managers
-  # do not have a built-in way to manage these settings.
-  #
-  # The script is run as a systemd user service after the window manager starts,
-  # ensuring that the correct theme is applied at login. It requires the
-  # gsettings-desktop-schemas to be available in XDG_DATA_DIRS to find the
-  # necessary schemas for the settings it modifies.
-  configure-gtk = pkgs.writeTextFile {
-    name = "configure-gtk";
-    destination = "/bin/configure-gtk";
-    executable = true;
-    text =
-      let
-        schema = pkgs.gsettings-desktop-schemas;
-        datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-      in
-      ''
-        #!/bin/sh
-        export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-        export GTK_THEME="Sweet-Dark"
-        gnome_schema=org.gnome.desktop.interface
-        gsettings set $gnome_schema color-scheme prefer-dark
-        gsettings set $gnome_schema gtk-theme "Sweet-Dark"
-        gsettings set org.gnome.desktop.wm.preferences theme "Sweet-Dark"
-        gsettings set $gnome_schema icon-theme "candy-icons"
-        gsettings set $gnome_schema cursor-theme "capitaine-cursors-white"
-        gsettings set $gnome_schema cursor-size "48"
-        gsettings set $gnome_schema document-font-name 'JetBrainsMonoNL 13'
-        gsettings set $gnome_schema font-name 'JetBrainsMonoNL 13'
-        gsettings set $gnome_schema monospace-font-name 'JetBrainsMonoNL 13'
-      '';
-  };
-in
 {
   # X11/Xorg and Display Manager Configuration
   # Even though we're running Wayland, services.xserver is still required because:
@@ -93,22 +58,6 @@ in
     };
   };
 
-  # Systemd user service to apply GTK settings on login.
-  systemd.user.services.configure-gtk = {
-    description = "Set GTK theme";
-    wantedBy = [ "niri.service" ];
-    wants = [ "niri.service" ];
-    after = [ "niri.service" ];
-    path = [
-      pkgs.gsettings-desktop-schemas
-      pkgs.unstable.glib # gsettings
-    ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${configure-gtk}/bin/configure-gtk";
-    };
-  };
-
   # GNOME Settings Daemon - Core GNOME desktop environment service.
   # This daemon manages essential desktop functionality including keyboard shortcuts,
   # display settings, audio/volume control, and power management.
@@ -130,10 +79,30 @@ in
   # It is essential for saving user preferences and application settings.
   programs.dconf.enable = true;
 
+  programs.dconf.profiles.user.databases = [
+    {
+      settings = {
+        "org/gnome/desktop/interface" = {
+          "color-scheme" = "prefer-dark";
+          "gtk-theme" = "Sweet-Dark";
+          "icon-theme" = "candy-icons";
+          "cursor-theme" = "capitaine-cursors-white";
+          "cursor-size" = pkgs.lib.gvariant.mkUint32 48;
+          "document-font-name" = "JetBrainsMonoNL 13";
+          "font-name" = "JetBrainsMonoNL 13";
+          "monospace-font-name" = "JetBrainsMonoNL 13";
+        };
+        "org/gnome/desktop/wm/preferences" = {
+          "theme" = "Sweet-Dark";
+        };
+      };
+    }
+  ];
+
   # Core GNOME applications and utilities.
   environment.systemPackages =
     with pkgs;
-    [ configure-gtk ]
+    []
     ++ (with pkgs.unstable; [
       # GNOME Core Applications
       baobab # Disk usage analyzer
