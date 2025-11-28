@@ -1,28 +1,23 @@
 # This file is managed by dotter and symlinked to ~/.config/borgmatic/config.yaml
-
 constants:
   user: mimame # Define the username as a constant to be used in paths.
-
 # The source directory to backup.
 # Backing up the entire /home directory.
 source_directories:
   - /home
-
 # Location of the backup repository.
 repositories:
   - path: /run/media/{user}/TOSHIBA_EXT/backups/borg-narnia-backups
-
 # --- Hooks ---
 # Commands to run before or after backup operations.
 commands:
-    # This hook runs before accessing the repository.
-    # It checks if the external backup drive is mounted. If not, it exits with
-    # code 75, which tells borgmatic to skip this repository (soft failure)
-    # instead of erroring out completely.
+  # This hook runs before accessing the repository.
+  # It checks if the external backup drive is mounted. If not, it exits with
+  # code 75, which tells borgmatic to skip this repository (soft failure)
+  # instead of erroring out completely.
   - before: repository
     run:
       - findmnt --mountpoint /run/media/{user}/TOSHIBA_EXT &> /dev/null || exit 75
-
 # Paths to exclude from the backup.
 # These patterns prevent backing up large, temporary, or unneeded files.
 # They are prefixed with '*/' to apply to any user's home directory under /home.
@@ -35,7 +30,6 @@ exclude_patterns:
   - '*/.local/share/Trash'
   - '*/.thumbnails'
   - '*/tmp'
-
   # --- Application & Service Caches ---
   - '*/.config/nixpkgs/home-manager'
   - '*/.docker/desktop'
@@ -45,7 +39,6 @@ exclude_patterns:
   - '*/.thunderbird/*/Cache*' # Thunderbird cache (keeps emails, excludes cache)
   - '*/.var/app/*/cache' # Flatpak app caches
   - '*/.vscode-server'
-
   # --- Development & Build Artifacts ---
   - '*/__pycache__'
   - '*/.cargo/registry'
@@ -58,7 +51,6 @@ exclude_patterns:
   - '*/node_modules'
   - '*/target' # Common for Rust projects
   - '*/venv'
-
   # --- Large, Re-downloadable Content ---
   - '*/Downloads'
   - '*/.flatpak'
@@ -67,16 +59,13 @@ exclude_patterns:
   - '*/snap'
   - '*/VirtualBox VMs'
   - '*/vmware'
-
   # --- User-Defined Exclusions ---
   - '*/Projects'
   - '*/.local/share/containers'
-
 # WARNING: Using a trivial, easily guessable password is not secure.
 # For better security, consider using a password file or a more complex passphrase.
 encryption_passphrase: "mimame"
 compression: zstd
-
 # Define how many backups to keep.
 keep_daily: 1
 keep_weekly: 1
