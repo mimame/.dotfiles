@@ -11,6 +11,7 @@ atuin = { target = "~/.config/atuin", type = "symbolic" }
 beets = "~/.config/beets"
 aerospace = "~/.config/aerospace"
 bin = "~/.bin"
+borgmatic = { target = "~/.config/borgmatic", type = "symbolic" }
 broot = "~/.config/broot"
 btop = "~/.config/btop"
 clifm = "~/.config/clifm"
