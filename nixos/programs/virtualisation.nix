@@ -80,30 +80,6 @@
     enableSuid = true;
   };
 
-  # --- Sudo Rules ---
-  # FIXME: sudo-rs doesn't write to /etc/sudoers file the extraConfig and extraRules
-  security.sudo = {
-    # Allow running virtualization CLIs without a password.
-    extraRules = [
-      {
-        users = [ "${username}" ];
-        commands = [
-          {
-            command = "/run/current-system/sw/bin/podman";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/lxc";
-            options = [ "NOPASSWD" ];
-          }
-          {
-            command = "/run/current-system/sw/bin/lxd";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-      }
-    ];
-  };
 
   # --- System Packages ---
   environment.systemPackages =

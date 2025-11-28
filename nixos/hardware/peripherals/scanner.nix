@@ -4,7 +4,7 @@
 # This file configures the Scanner Access Now Easy (SANE) framework for
 # using scanners, both locally and over the network.
 # ----------------------------------------------------------------------------
-_: {
+{ vars, ... }: {
   # Enable the SANE network scanning daemon (saned).
   # This allows other computers on the network to access this machine's scanner.
   services.saned.enable = true;
@@ -23,7 +23,7 @@ _: {
         # A friendly name for the scanner.
         narnia = {
           model = "MFC-L2710DW";
-          ip = "192.168.1.39";
+          ip = vars.scannerIp;
         };
       };
     };

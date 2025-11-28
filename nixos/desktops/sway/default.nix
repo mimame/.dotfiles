@@ -1,4 +1,5 @@
 { pkgs, ... }:
+{ pkgs, ... }:
 let
 
   # bash script to let dbus know about important env variables and
@@ -16,37 +17,6 @@ let
       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
       systemctl --user restart pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
     '';
-  };
-
-  # currently, there is some friction between sway and gtk:
-  # https://github.com/swaywm/sway/wiki/GTK-3-settings-on-Wayland
-  # the suggested way to set gtk settings is with gsettings
-  # for gsettings to work, we need to tell it where the schemas are
-  # using the XDG_DATA_DIR environment variable
-  # run at the end of sway config
-  configure-gtk = pkgs.writeTextFile {
-    name = "configure-gtk";
-    destination = "/bin/configure-gtk";
-    executable = true;
-    text =
-      let
-        schema = pkgs.gsettings-desktop-schemas;
-        datadir = "${schema}/share/gsettings-schemas/${schema.name}";
-      in
-      ''
-        export XDG_DATA_DIRS=${datadir}:$XDG_DATA_DIRS
-        export GTK_THEME="Sweet-Dark"
-        gnome_schema=org.gnome.desktop.interface
-        gsettings set $gnome_schema gtk-theme "Sweet-Dark"
-        gsettings set $gnome_schema theme "Sweet-Dark"
-        gsettings set $gnome_schema icon-theme "BeautyLine"
-        gsettings set $gnome_schema cursor-theme "Catppuccin-Mocha-Mauve-Cursors"
-        gsettings set $gnome_schema cursor-size 32
-        gsettings set org.gnome.desktop.wm.preferences theme "Sweet-Dark"
-        gsettings set $gnome_schema document-font-name 'JetBrainsMonoNL 13'
-        gsettings set $gnome_schema font-name 'JetBrainsMonoNL 13'
-        gsettings set $gnome_schema monospace-font-name 'JetBrainsMonoNL 13'
-      '';
   };
 in
 {
@@ -146,8 +116,6 @@ in
   environment.systemPackages =
     with pkgs;
     [
-      # GTK configuration script
-      configure-gtk
       # D-Bus environment setup for Sway
       dbus-sway-environment
 

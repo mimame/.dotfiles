@@ -1,0 +1,30 @@
+{
+  imports = [
+    ./asciidoc.nix
+    ./bash.nix
+    ./crystal.nix
+    ./dart.nix
+    ./elixir.nix
+    ./go.nix
+    ./json.nix
+    ./jvm.nix
+    ./julia.nix
+    ./lisp.nix
+    ./lua.nix
+    ./markdown.nix
+    ./misc.nix
+    ./nim.nix
+    ./nix.nix
+    ./node.nix
+    ./protobuf.nix
+    ./python.nix
+    ./r.nix
+    ./ruby.nix
+    ./rust.nix
+    ./static-site.nix
+    ./toml.nix
+    ./typst.nix
+    ./yaml.nix
+    ./zig.nix
+  ];
+}
