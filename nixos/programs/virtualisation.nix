@@ -51,15 +51,6 @@
       qemu = {
         runAsRoot = true;
         swtpm.enable = true; # Enable TPM emulation.
-        ovmf = {
-          enable = true; # Enable UEFI support for VMs.
-          packages = [
-            (pkgs.OVMFFull.override {
-              secureBoot = true;
-              tpmSupport = true;
-            }).fd
-          ];
-        };
         vhostUserPackages = [ pkgs.virtiofsd ];
       };
     };
@@ -79,7 +70,6 @@
     enableFakeroot = true;
     enableSuid = true;
   };
-
 
   # --- System Packages ---
   environment.systemPackages =

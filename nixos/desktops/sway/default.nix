@@ -56,6 +56,9 @@ in
 
   # GNOME Keyring daemon - provides secure storage for passwords, keys, and certificates.
   services.gnome.gnome-keyring.enable = true;
+  # This automatically enables the GCR (GNOME Crypto) SSH agent, which conflicts
+  # with the standard `programs.ssh.startAgent`.
+  services.gnome.gcr-ssh-agent.enable = true;
   # Enable GNOME settings daemon - manages essential desktop functionality.
   services.gnome.gnome-settings-daemon.enable = true;
   # Enable GNOME online accounts - centralized account management service.

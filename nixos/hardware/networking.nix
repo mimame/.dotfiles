@@ -221,8 +221,7 @@
     };
   };
 
-  programs.ssh.startAgent = true;
-
+  # programs.ssh.startAgent = false; # Disabled to avoid conflict with services.gnome.gcr-ssh-agent.enable
   environment.systemPackages =
     with pkgs;
     [

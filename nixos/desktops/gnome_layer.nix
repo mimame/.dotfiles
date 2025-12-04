@@ -23,15 +23,16 @@
   #    enables XWayland for applications that don't support Wayland natively.
   # 3. NixOS architecture: The services.xserver module enables essential graphics
   #    stack components that both X11 and Wayland sessions depend on.
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-  };
+  services.xserver.enable = true;
+  services.displayManager.gdm.enable = true;
 
   # GNOME Keyring daemon - provides secure storage for passwords, keys, and certificates.
   # This is essential for automatically storing and retrieving passwords for applications,
   # managing SSH keys, and storing WiFi passwords.
   services.gnome.gnome-keyring.enable = true;
+  # This automatically enables the GCR (GNOME Crypto) SSH agent, which conflicts
+  # with the standard `programs.ssh.startAgent`.
+  services.gnome.gcr-ssh-agent.enable = true;
   # This automatically unlocks the user's keyring when they log in with their password.
   security.pam.services.gdm.enableGnomeKeyring = true;
 
@@ -102,7 +103,7 @@
   # Core GNOME applications and utilities.
   environment.systemPackages =
     with pkgs;
-    []
+    [ ]
     ++ (with pkgs.unstable; [
       # GNOME Core Applications
       baobab # Disk usage analyzer

@@ -21,7 +21,7 @@
     # This offloads video playback from the CPU to the GPU, saving power.
     extraPackages = with pkgs; [
       nvidia-vaapi-driver # NVIDIA's VA-API implementation
-      vaapiVdpau # VDPAU backend for VA-API
+      libva-vdpau-driver # VDPAU backend for VA-API
       libvdpau-va-gl # VA-API/VDPAU interoperability
     ];
   };

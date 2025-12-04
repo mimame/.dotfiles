@@ -12,18 +12,19 @@
 
   # Power management: suspend after 10min idle, hibernate after 60min suspended
   services.logind = {
-    # Actions for lid close, docked, and external power: always suspend-then-hibernate
-    lidSwitch = "suspend-then-hibernate";
-    lidSwitchDocked = "suspend-then-hibernate";
-    lidSwitchExternalPower = "suspend-then-hibernate";
-    powerKey = "suspend-then-hibernate";
-    powerKeyLongPress = "poweroff";
-    # Extra logind config: suspend after 10min idle, then hibernate
     # See: https://www.freedesktop.org/software/systemd/man/latest/logind.conf.html#Options
-    extraConfig = ''
-      IdleAction=suspend-then-hibernate
-      IdleActionSec=10min
-    '';
+    settings = {
+      Login = {
+        # Suspend then hibernate on lid close, power key press, or after 10 minutes of inactivity.
+        HandleLidSwitch = "suspend-then-hibernate";
+        HandleLidSwitchDocked = "suspend-then-hibernate";
+        HandleLidSwitchExternalPower = "suspend-then-hibernate";
+        HandlePowerKey = "suspend-then-hibernate";
+        HandlePowerKeyLongPress = "poweroff";
+        IdleAction = "suspend-then-hibernate";
+        IdleActionSec = "10min";
+      };
+    };
   };
 
   # systemd-sleep: fine-tune suspend/hibernate permissions and timing

@@ -83,10 +83,6 @@
     package = pkgs.fish;
   };
 
-
-
-
-
   # Many programs look at /etc/shells to determine
   # if a user is a "normal" user and not a "system" user
   environment.shells = [ pkgs.fish ];

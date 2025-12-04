@@ -1,14 +1,6 @@
 { pkgs, ... }:
 {
   # ----------------------------------------------------------------------------
-  # NixOS System Rebuild Configuration
-  # ----------------------------------------------------------------------------
-  # Use the experimental 'ng' backend for `nixos-rebuild`.
-  # This is expected to become the default in future NixOS versions.
-  # TODO: Remove this option after NixOS 25.11, when it's likely to be the default.
-  system.rebuild.enableNg = true;
-
-  # ----------------------------------------------------------------------------
   # NixOS Helper (nh)
   #
   # `nh` is a utility for managing NixOS systems, providing a convenient
