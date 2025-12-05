@@ -29,7 +29,7 @@ jobs:
           # This is more robust than relying on automatic detection in CI.
           # ${{ github.event.pull_request.base.sha }} is the commit on the base branch (e.g., main).
           # ${{ github.event.pull_request.head.sha }} is the commit at the tip of the PR branch.
-          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt --run "prek run --from-ref ${{ github.event.pull_request.base.sha }} --to-ref ${{ github.event.pull_request.head.sha }}"
+          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt ruby gcc --run "prek run --from-ref ${{ github.event.pull_request.base.sha }} --to-ref ${{ github.event.pull_request.head.sha }}"
       - name: Run prek on Push
         # This step only runs for push events (e.g., merging to main).
         if: github.event_name == 'push'
@@ -37,4 +37,4 @@ jobs:
           # We explicitly tell prek the exact commit range to check.
           # ${{ github.event.before }} is the SHA of the commit before the push.
           # ${{ github.event.after }} is the SHA of the most recent commit of the push.
-          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt --run "prek run --from-ref ${{ github.event.before }} --to-ref ${{ github.event.after }}"
+          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt ruby gcc --run "prek run --from-ref ${{ github.event.before }} --to-ref ${{ github.event.after }}"
