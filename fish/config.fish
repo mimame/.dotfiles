@@ -91,6 +91,10 @@ end
 source ~/.config/fish/variables.fish
 source ~/.config/fish/abbr.fish
 
+if test (uname) = Darwin
+    fish_add_path /opt/homebrew/opt/ruby/bin
+end
+
 # Start pueued daemon if not running
 if not pgrep -x pueued >/dev/null
     pueued --daemonize >/dev/null
