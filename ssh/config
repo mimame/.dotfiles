@@ -1,60 +1,65 @@
-# https://linux.die.net/man/5/ssh_config
-# https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client
+# ==============================================================================
+# SSH Client Configuration
+#
+# This file configures the OpenSSH client. Settings here are applied when you
+# use the `ssh` command.
+#
+# For a full list of options, see the man page: man ssh_config
+# ==============================================================================
 
-# Don't ForwardX11 when pushing to github.com by ssh
+
+# ------------------------------------------------------------------------------
+# Global Settings (applied to all hosts unless overridden below)
+# ------------------------------------------------------------------------------
+Host *
+  # --- Connection Multiplexing ---
+  # Speeds up subsequent connections by reusing an existing TCP connection.
+  # The directory in ControlPath must exist, so create it first:
+  # mkdir -p ~/.ssh/control_sockets
+  ControlMaster auto
+  ControlPath ~/.ssh/control_sockets/%r@%h:%p
+  # Keep the master connection open for 10 minutes after the last client exits.
+  ControlPersist 1h
+
+  # --- Keep-Alive Settings ---
+  # Sends a keep-alive packet every 60 seconds to prevent connections from
+  # being dropped by NAT routers or firewalls.
+  ServerAliveInterval 60
+  # Declares the connection dead after 3 consecutive failures (3*60s = 3 mins).
+  ServerAliveCountMax 3
+
+  # --- Authentication Settings ---
+  # Specifies the private keys to use. Prefers modern ed25519 keys.
+  IdentityFile ~/.ssh/id_ed25519_passphrase
+  IdentityFile ~/.ssh/id_ed25519
+
+  # Only use the identities specified above or via the `-i` flag.
+  # Prevents the client from trying every key in ssh-agent, which avoids
+  # "Too many authentication failures" errors and is more secure.
+  IdentitiesOnly yes
+
+  # Automatically add keys to ssh-agent on first use.
+  AddKeysToAgent yes
+
+  # --- Performance & Security ---
+  # Disable compression by default. It's often unnecessary on fast networks.
+  # Enable with the `-C` flag for slow connections.
+  Compression no
+
+  # Disable X11 forwarding by default for security. It can be a risk if
+  # connecting to an untrusted server. Enable it per-host where needed.
+  ForwardX11 no
+
+
+# ------------------------------------------------------------------------------
+# Host-Specific Settings
+# ------------------------------------------------------------------------------
+
+# Override global settings for specific hosts here.
+# For example, ensure X11 forwarding is off for GitHub.
 Host github.com
   ForwardX11 no
 
-# For all hosts
-Host *
-  # Version 2 by default
-  Protocol 2
-  # Multiplexing all connections
-  ControlMaster auto
-  ControlPath ~/.ssh/control_sockets/%r@%h:%p
-  # 10 minutes to reconnect before close the connection
-  ControlPersist 10m
-  # All connection are already enough faster use -C instead if needed
-  Compression no
-  # Send a keepalive package every 60 seconds only 3 times
-  ServerAliveInterval 60
-  ServerAliveCountMax 3
-  # Enable ForwardX11 to let to share the X11 clipboard between the host and the remoted ssh sessions
-  ForwardX11 yes
-  # Remote X11 clients will have full access to the original X11 display (required to share the X11 clipboard)
-  ForwardX11Trusted yes
-  # When using ssh key first try with the key without passphrase for instant login
-  IdentityFile ~/.ssh/id_ed25519_no_passphrase
-  IdentityFile ~/.ssh/id_ed25519
-  # Only use the identity keys configured
-  # IdentitiesOnly yes
-  # Always add used ssh keys to the agent
-  AddKeysToAgent yes
-
-# My list of hosts
+# Include personal or work-specific hosts from a separate file.
+# This keeps the main config file clean and portable.
 Include ./config_hosts
-
-# Host github.com
-#   Hostname ssh.github.com
-#   Port 443
-
-# Host gitlab.com
-#   Hostname altssh.gitlab.com
-#   User git
-#   Port 443
-#   PreferredAuthentications publickey
-
-
-# example of the ./config_host
-#
-
-# Virtual Machine host
-#Host _alias_
-#  HostName localhost
-#  User _user_
-#  Port _port-number_
-
-#Host _alias_
-#  HostName _host_name_
-#  User _user_
-#  ProxyJump _host-name-proxy_
