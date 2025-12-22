@@ -40,7 +40,16 @@ if command -q direnv
 end
 
 # SSH agent managed by NixOS programs.ssh.startAgent
-keychain --eval --quiet $HOME/.ssh/id_ed25519 | source
+set -l ssh_keys
+for key in id_ed25519 id_ed25519_passphrase
+    if test -f $HOME/.ssh/$key
+        set -a ssh_keys $HOME/.ssh/$key
+    end
+end
+
+if test -n "$ssh_keys"
+    keychain --eval --quiet $ssh_keys | source
+end
 
 # Create a directory for SSH control sockets
 mkdir -p ~/.ssh/control_sockets
