@@ -50,15 +50,6 @@ function _download --argument url path
     wget2 -q -O $path $url
 end
 
-# Download wezterm terminfo if not present
-if test $TERM = wezterm -a not infocmp wezterm >/dev/null 2>&1
-    set terminfo_tempfile (mktemp)
-    _download 'https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo' $terminfo_tempfile
-    tic -x -o ~/.terminfo $terminfo_tempfile
-    sudo tic -x -o /usr/share/terminfo $terminfo_tempfile
-    rm $terminfo_tempfile
-end
-
 # Install VSCode font for broot if not present
 set vscode_font_path ~/.local/share/fonts/vscode.ttf
 if not test -f $vscode_font_path
