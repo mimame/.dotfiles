@@ -41,6 +41,7 @@ repos:
         name: treefmt
         language: system
         entry: treefmt
+        require_serial: true
       # - id: check-mimeapps
       #   name: Check mimeapps consistency
       #   language: script
