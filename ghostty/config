@@ -45,3 +45,6 @@ shell-integration-features = cursor,no-sudo,ssh-env,ssh-terminfo
 # Theme: Sets the color theme for the terminal
 # List available themes with `ghostty +list-themes`
 theme = Dracula
+
+# Hides the mouse cursor when typing in the terminal.
+mouse-hide-while-typing
