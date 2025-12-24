@@ -140,5 +140,3 @@ jj util completion fish | source
 # set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
 # carapace _carapace | source
 
-# Trigger the deferred loading functions on first prompt
-emit fish_prompt
