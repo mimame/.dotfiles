@@ -109,11 +109,14 @@ if test (uname) != Darwin
 end
 
 # Define a custom command-not-found handler
-function fish_command_not_found
-    if command -q command-not-found
-        command-not-found $argv
-    else
-        echo "command not found: $argv"
+# Only define if not already defined (e.g. by any-nix-shell on NixOS)
+if not functions -q fish_command_not_found
+    function fish_command_not_found
+        if command -q command-not-found
+            command-not-found $argv
+        else
+            __fish_default_command_not_found_handler $argv
+        end
     end
 end
 
