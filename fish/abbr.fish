@@ -1,135 +1,158 @@
 # Fish abbreviations and aliases configuration
 
+# --- Tool Sanity Checks ---
+# Check for optional but recommended tools and warn if missing
+for tool in zoxide gomi vivid eza
+    if not command -q $tool
+        set_color yellow
+        echo "⚠️  Warning: $tool is not installed. Some abbreviations or configurations will be disabled."
+        set_color normal
+    end
+end
+
 # --- Basic Shell ---
-abbr sfish source ~/.config/fish/config.fish
+abbr sfish 'source ~/.config/fish/config.fish'
 abbr !! --position anywhere --function last_history_item
 
 # --- Navigation ---
 abbr b 'cd ..'
-abbr cd z
 abbr dotdot --regex '^\.\.+$' --function multicd
-abbr md 'mkdir -pv'
-abbr mk 'mkdir -pv'
-abbr tree erd --layout inverted --human
+
+# Use zoxide for cd if available
+if command -q zoxide
+    abbr cd z
+end
 
 # --- File System Operations ---
-alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
-alias ll br
-alias ls l
-abbr T 'tail -F'
+abbr md 'mkdir -pv'
+abbr mk 'mkdir -pv'
+abbr tree 'erd --layout inverted --human'
+
+# Enhanced ls with eza
+if command -q eza
+    alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
+    alias ls l
+end
+
+# Disk usage tools
 abbr df duf
 abbr du dust
-abbr duf diskus
 abbr dus diskus
-abbr f 'fd --hidden --strip-cwd-prefix'
 abbr free 'free -h'
-abbr less bat
-abbr m tldr
-abbr more bat
 abbr ncdu 'ncdu --color dark'
-abbr re massren
-abbr x 'chmod +x'
 
-# --- Safe File Operations ---
-abbr rm gomi
+# Safe File Operations
+if command -q gomi
+    abbr rm gomi
+end
 abbr cp "cp -ri"
 abbr ln "ln -i"
 abbr mv "mv -i"
+abbr x 'chmod +x'
 
-# --- Grep and Search ---
-abbr ag 'ag --smart-case --ignore node_modules'
-abbr egrep rg
-abbr fgrep 'rg --fixed-strings'
-abbr frg 'rg --fixed-strings'
+# --- Search and Find ---
+abbr f 'fd --hidden --strip-cwd-prefix'
 abbr grep rg
 abbr rg 'rg --ignore-file ~/.config/fd/ignore'
 abbr s 'rg --ignore-file ~/.config/fd/ignore'
+abbr ag 'ag --smart-case --ignore node_modules'
 
 # --- Editors ---
-set -g -x default_nvim nvim
-set -g -x EDITOR $default_nvim
-set -g VISUAL $EDITOR
-set -g -x GIT_EDITOR $EDITOR
-abbr h hx
 abbr n $default_nvim
-abbr nano micro
-abbr nd '$default_nvim -d -c "set nofoldenable"'
 abbr nvim $default_nvim
 abbr v $default_nvim
 abbr vi $default_nvim
 abbr vim $default_nvim
+abbr h hx
+abbr nano micro
+
+# Diff with nvim
+abbr nd '$default_nvim -d -c "set nofoldenable"'
 
 # --- Development ---
-abbr adoc asciidoctor
-abbr adoc-pdf asciidoctor-pdf
-abbr cat bat
-abbr cr crystal
-abbr ff ' ff'
 abbr g git
-abbr j just
 abbr lg lazygit
-abbr loc 'scc --sort lines'
-abbr nsp 'nix-shell -p'
-abbr open o
-abbr p ptipython
+abbr j just
 abbr pc pre-commit
-abbr pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 abbr ru rustup
-abbr scc 'scc --sort lines'
-abbr tokei 'tokei --sort lines'
+
+# Language specific
+abbr cr crystal
+abbr pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+abbr nsp 'nix-shell -p'
+
+# Viewers
+abbr cat bat
+abbr less bat
+abbr more bat
+abbr m tldr
 
 # --- System and Network ---
-abbr a ansible
-abbr ap ansible-playbook
-abbr bc 'bc -l'
 abbr htop btop
-abbr inlyne inlyne --theme dark
+abbr top btop
+abbr tp btop
 abbr k 'pkill -9 -f'
-abbr pgrep 'pgrep -f'
 abbr pkill 'pkill -9 -f'
-abbr rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
+abbr pgrep 'pgrep -f'
+abbr myip "dig -4 +short myip.opendns.com @resolver1.opendns.com"
 abbr rsync 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
-# --- Systemd ---
-# System services
+abbr rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
+abbr u topgrade
+abbr wget wget2
+
+# --- Systemd Shortcuts ---
+# System
 abbr scd 'sudo systemctl disable'
 abbr sce 'sudo systemctl enable'
 abbr scr 'sudo systemctl restart'
 abbr scs 'sudo systemctl start'
 abbr sct 'sudo systemctl status'
 abbr sck 'sudo systemctl stop'
-# User services
+abbr se sudoedit
+abbr sv sudoedit
+
+# User
 abbr scud 'systemctl --user disable'
 abbr scue 'systemctl --user enable'
 abbr scur 'systemctl --user restart'
 abbr scus 'systemctl --user start'
 abbr scut 'systemctl --user status'
 abbr scuk 'systemctl --user stop'
-abbr se sudoedit
-abbr sv sudoedit
-abbr tail tspin
-abbr top btop
-abbr tp btop
-abbr u topgrade
-abbr vbm VBoxManage
-abbr wget wget2
 
-# --- Network ---
-abbr duck ddgr
-abbr myip "dig -4 +short myip.opendns.com @resolver1.opendns.com"
-abbr rsc 'rustscan --addresses 192.168.1.0/24 --ulimit 5000 --ports 22 --greppable'
-abbr sshfs "sshfs -o allow_other,default_permissions,follow_symlinks,kernel_cache,reconnect,ServerAliveInterval=60,ServerAliveCountMax=3"
+# --- Docker ---
+abbr d docker
+abbr dc 'docker compose'
+abbr dcb 'docker compose build'
+abbr dcd 'docker compose down'
+abbr dcl 'docker compose logs -f'
+abbr dcu 'docker compose up -d'
+abbr dex 'docker exec -it'
+abbr di 'docker images'
+abbr dps 'docker ps'
+abbr dpsa 'docker ps -a'
 
-# --- Configuration File Editing ---
-function edit_config --argument-names abbr_alias config_path post_edit_command
-    set -l path (dirname $config_path)
-    set -l filename (basename $config_path)
-    set -l command_string "pushd $path && $EDITOR $filename"
-    if test -n "$post_edit_command"
-        set command_string "$command_string && $post_edit_command"
+# --- Zellij ---
+abbr zj zellij
+abbr za 'zellij attach'
+abbr zl 'zellij list-sessions'
+abbr zk 'zellij kill-session'
+abbr ze 'zellij edit'
+abbr zr 'zellij run'
+
+# --- Configuration Editing ---
+# Helper function to create edit abbreviations
+function edit_config --argument-names abbr_name config_path post_cmd
+    if test -e $config_path
+        set -l dir (dirname $config_path)
+        set -l file (basename $config_path)
+        # Use pushd/popd to switch context, but ensure popd runs
+        set -l cmd "pushd $dir; and $EDITOR $file"
+        if test -n "$post_cmd"
+            set cmd "$cmd; and $post_cmd"
+        end
+        set cmd "$cmd; popd"
+        abbr $abbr_name "$cmd"
     end
-    # Use a semicolon to ensure popd always runs, even if the preceding commands fail.
-    set command_string "$command_string; popd"
-    abbr $abbr_alias "$command_string"
 end
 
 edit_config brootrc ~/.dotfiles/broot/conf.toml
@@ -159,26 +182,5 @@ edit_config yazirc ~/.dotfiles/yazi/yazi.toml
 edit_config zedrc ~/.dotfiles/zed/settings.json
 edit_config zellijrc ~/.dotfiles/zellij/config.kdl
 
-# --- Applications ---
-abbr lc 'libreoffice --calc'
-abbr news newsboat
-
-# --- Zellij ---
-abbr zj zellij
-abbr za 'zellij attach'
-abbr zl 'zellij list-sessions'
-abbr zk 'zellij kill-session'
-abbr ze 'zellij edit'
-abbr zr 'zellij run'
-
-# -- Docker ---
-abbr d docker
-abbr dc docker compose
-abbr dcb 'docker compose build'
-abbr dcd 'docker compose down'
-abbr dcl 'docker compose logs -f'
-abbr dcu 'docker compose up -d'
-abbr dex 'docker exec -it'
-abbr di 'docker images'
-abbr dps 'docker ps'
-abbr dpsa 'docker ps -a'
+# Clean up helper
+functions -e edit_config
