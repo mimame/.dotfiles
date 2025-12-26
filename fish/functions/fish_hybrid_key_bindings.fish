@@ -23,11 +23,6 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     set fzf_preview_dir_cmd eza --all --color=always --sort .name --classify --color=always --ignore-glob=node_modules
     fzf_configure_bindings --history=
 
-    # Disable Atuin's default keybindings to prevent conflicts
-    # This allows custom configuration of history search keys below
-    set -gx ATUIN_NOBIND true
-    atuin init fish | source
-
     # Configure Atuin shell history search for both modes:
     # Ctrl+R - Opens interactive history search with filtering
     # Up Arrow - Quick access to previous commands by context
@@ -38,6 +33,5 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
 
     # Enable navi command cheatsheet integration
     # Bind Ctrl+F in insert mode for context-aware command suggestions
-    navi widget fish | source
     bind -M insert \cf _navi_smart_replace
 end
