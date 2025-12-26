@@ -38,9 +38,18 @@ minimum-contrast = 3
 #   - cursor: Blinking bar cursor at the prompt.
 #   - sudo: Sudo wrapper to preserve terminfo.
 #   - title: Updates the window title via shell integration.
-#   - ssh-env: Manages environment variables for SSH sessions.
-#   - ssh-terminfo: Automatically installs Ghostty's terminfo on remote hosts.
-shell-integration-features = cursor,no-sudo,ssh-env,ssh-terminfo
+#   - ssh-env: Enable SSH environment variable compatibility. Automatically converts
+#     TERM from xterm-ghostty to xterm-256color when connecting to remote hosts and
+#     propagates COLORTERM, TERM_PROGRAM, and TERM_PROGRAM_VERSION.
+#   - ssh-terminfo: Enable automatic terminfo installation on remote hosts. Attempts
+#     to install Ghostty's terminfo entry using infocmp and tic when connecting to
+#     hosts that lack it.
+#
+# SSH features work independently and can be combined for optimal experience:
+# when both ssh-env and ssh-terminfo are enabled, Ghostty will install its
+# terminfo on remote hosts and use xterm-ghostty as TERM, falling back to
+# xterm-256color with environment variables if terminfo installation fails.
+shell-integration-features = cursor,no-sudo,title,ssh-env,ssh-terminfo
 
 # Theme: Sets the color theme for the terminal
 # List available themes with `ghostty +list-themes`
