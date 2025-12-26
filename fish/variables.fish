@@ -32,7 +32,7 @@ set -gx GIT_EDITOR $EDITOR
 # Set colors for LS and EZA using 'vivid' if available
 if command -q vivid
     set -gx LS_COLORS (vivid generate dracula)
-    set -gx EZA_COLORS (vivid generate dracula)
+    set -gx EZA_COLORS $LS_COLORS
 end
 
 # Set colors for bat pager
