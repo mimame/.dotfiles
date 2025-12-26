@@ -1,9 +1,9 @@
 name: CI
 on:
   push:
-    branches: [main]
+    branches: [main, work]
   pull_request:
-    branches: [main]
+    branches: [main, work]
 permissions:
   contents: read
 jobs:
