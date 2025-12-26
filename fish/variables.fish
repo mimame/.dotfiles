@@ -100,6 +100,13 @@ end
 # Load Homebrew environment on macOS
 if test -f /opt/homebrew/bin/brew
     /opt/homebrew/bin/brew shellenv | source
+
+    # Add paths for Homebrew-provided languages to ensure they take precedence
+    for lang in ruby python
+        if test -d /opt/homebrew/opt/$lang/bin
+            fish_add_path /opt/homebrew/opt/$lang/bin
+        end
+    end
 end
 
 # Set GPG_TTY for GPG agent
