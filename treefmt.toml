@@ -1,5 +1,14 @@
 # One CLI to format the code tree - https://git.numtide.com/numtide/treefmt
 
+# Global excludes to avoid walking into large/third-party directories
+# This significantly speeds up the initial file discovery phase.
+excludes = [
+  "lazyvim/**",
+  "wezterm/**",
+  "Manifest.toml",
+  ".git/**",
+]
+
 [formatter.nixfmt]
 command = "nixfmt"
 includes = ["**/*.nix"]
@@ -11,13 +20,11 @@ includes = ["**/*.fish"]
 
 [formatter.stylua-wezterm]
 command = "stylua"
-excludes = ["lazyvim"]
 includes = ["wezterm/**/*.lua"]
 options = ["--config-path", "wezterm/stylua.toml"]
 
 [formatter.stylua-lazyvim]
 command = "stylua"
-excludes = ["wezterm"]
 includes = ["lazyvim/**/*.lua"]
 options = ["--config-path", "lazyvim/stylua.toml"]
 
