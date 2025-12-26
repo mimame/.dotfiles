@@ -96,6 +96,7 @@ _source_transient paths '
 
     if type -q ruby
         set -a paths (ruby -e "print Gem.user_dir")/bin
+        set -a paths (ruby -e "print Gem.bindir")
     end
 
     if test -f /opt/homebrew/bin/brew
