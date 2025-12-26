@@ -30,8 +30,8 @@ set -gx GIT_EDITOR $EDITOR
 # --- Tool Configuration ---
 
 # Set colors for LS and EZA using 'vivid' if available
-if command -q vivid
-    _source_transient vivid 'echo "set -gx LS_COLORS (vivid generate dracula)"'
+if type -q vivid
+    _source_transient vivid 'echo "set -gx LS_COLORS (vivid generate dracula)"' ~/.config/fish/variables.fish
     set -gx EZA_COLORS $LS_COLORS
 end
 
@@ -83,34 +83,40 @@ set -gx PIP_USER false
 
 # --- PATH Configuration ---
 
-# Combine path additions to minimize disk checks
-set -l extra_paths \
-    "$HOME/.yarn/bin" \
-    "$HOME/.bin" \
-    "$HOME/go/bin" \
-    "$HOME/.cargo/bin" \
-    "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin" \
-    "$HOME/.local/bin" \
-    "$HOME/.local/share/coursier/bin"
+# We build and cache the path additions once.
+_source_transient paths '
+    set -l paths \
+        "$HOME/.yarn/bin" \
+        "$HOME/.bin" \
+        "$HOME/go/bin" \
+        "$HOME/.cargo/bin" \
+        "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin" \
+        "$HOME/.local/bin" \
+        "$HOME/.local/share/coursier/bin"
 
-# Add user Ruby gems path if Ruby is installed
-if command -q ruby
-    _source_transient ruby_path 'echo "set -a extra_paths (ruby -e \'print Gem.user_dir\')/bin"'
-end
+    if type -q ruby
+        set -a paths (ruby -e "print Gem.user_dir")/bin
+    end
 
-# Load Homebrew environment on macOS
-if test -f /opt/homebrew/bin/brew
-    _source_transient brew 'brew shellenv'
+    if test -f /opt/homebrew/bin/brew
+        # Brew shellenv adds its own paths
+        /opt/homebrew/bin/brew shellenv | grep "export PATH" | sed "s/export PATH=\"//;s/\";//" | tr ":" "\n" | while read -l p
+            set -a paths $p
+        end
 
-    # Add paths for Homebrew-provided languages to ensure they take precedence
-    for lang in ruby python
-        if test -d /opt/homebrew/opt/$lang/bin
-            set -a extra_paths /opt/homebrew/opt/$lang/bin
+        for lang in ruby python
+            if test -d /opt/homebrew/opt/$lang/bin
+                set -a paths /opt/homebrew/opt/$lang/bin
+            end
         end
     end
-end
 
-fish_add_path $extra_paths
+    for p in $paths
+        if test -d $p
+            echo "fish_add_path -m $p"
+        end
+    end
+' ~/.config/fish/variables.fish
 
 # Set GPG_TTY for GPG agent
 if test -z "$GPG_TTY"
