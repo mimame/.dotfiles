@@ -4,13 +4,15 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+permissions:
+  contents: read
 jobs:
   lint:
     name: Run prek checks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Install Nix
@@ -18,23 +20,27 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
       # Run prek hooks on the changeset.
-      # We need two separate, conditional steps because the Git references for "before" and "after"
-      # are accessed differently for `pull_request` and `push` events. This ensures we always
-      # check the correct range of changed files.
-      - name: Run prek on Pull Request
-        # This step only runs for pull request events.
-        if: github.event_name == 'pull_request'
+      # We need to determine the correct Git references for "before" and "after"
+      # because they are accessed differently for "pull_request" and "push" events.
+      # This ensures we always check the correct range of changed files.
+      - name: Determine Commit Range
+        id: refs
         run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            # ${{ github.event.pull_request.base.sha }} is the commit on the base branch (e.g., main).
+            # ${{ github.event.pull_request.head.sha }} is the commit at the tip of the PR branch.
+            echo "from=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
+            echo "to=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
+          else
+            # ${{ github.event.before }} is the SHA of the commit before the push.
+            # ${{ github.event.after }} is the SHA of the most recent commit of the push.
+            echo "from=${{ github.event.before }}" >> "$GITHUB_OUTPUT"
+            echo "to=${{ github.event.after }}" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Run prek
+        run: |
+          # We use the shell.nix file defined in the root directory.
+          # This ensures that the CI environment matches the local development environment.
           # We explicitly tell prek the exact commit range to check.
           # This is more robust than relying on automatic detection in CI.
-          # ${{ github.event.pull_request.base.sha }} is the commit on the base branch (e.g., main).
-          # ${{ github.event.pull_request.head.sha }} is the commit at the tip of the PR branch.
-          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt ruby gcc --run "prek run --from-ref ${{ github.event.pull_request.base.sha }} --to-ref ${{ github.event.pull_request.head.sha }}"
-      - name: Run prek on Push
-        # This step only runs for push events (e.g., merging to main).
-        if: github.event_name == 'push'
-        run: |
-          # We explicitly tell prek the exact commit range to check.
-          # ${{ github.event.before }} is the SHA of the commit before the push.
-          # ${{ github.event.after }} is the SHA of the most recent commit of the push.
-          nix-shell -p prek ripsecrets gitleaks treefmt nixfmt fish stylua taplo jaq yamlfmt jsonfmt ruby gcc --run "prek run --from-ref ${{ github.event.before }} --to-ref ${{ github.event.after }}"
+          nix-shell --run "prek run --from-ref ${{ steps.refs.outputs.from }} --to-ref ${{ steps.refs.outputs.to }}"
