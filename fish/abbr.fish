@@ -62,6 +62,7 @@ abbr nd '$default_nvim -d -c "set nofoldenable"'
 # --- Development ---
 abbr g git
 abbr lg lazygit
+abbr tf treefmt
 abbr j just
 abbr pc pre-commit
 abbr ru rustup
