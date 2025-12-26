@@ -99,6 +99,7 @@ abbr rsync 'rsync --archive --hard-links --compress --human-readable --info=prog
 abbr rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
 abbr u topgrade
 abbr wget wget2
+abbr download get
 
 # --- Systemd Shortcuts ---
 # System
