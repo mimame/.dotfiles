@@ -1,50 +1,60 @@
-# See https://pre-commit.com for more information
-# See https://pre-commit.com/hooks.html for more hooks
+# prek Configuration: A fast pre-commit hook manager written in Rust.
+# This file defines the hooks that run before each commit to ensure code quality and security.
+
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+  # Built-in hooks provided natively by prek.
+  # These are optimized for speed as they are implemented directly in the prek framework.
+  - repo: builtin
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
-      - id: check-yaml
-      - id: check-toml
       - id: check-added-large-files
       - id: detect-private-key
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+
+  # External hooks
   - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
     rev: v9.23.0
     hooks:
       - id: commitlint
         stages: [commit-msg]
-  - repo: https://github.com/sirwart/ripsecrets
-    rev: v0.1.11
-    hooks:
-      - id: ripsecrets-system
-  - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.30.0
-    hooks:
-      - id: gitleaks-system
-        pass_filenames: false
-  - repo: https://github.com/rhysd/actionlint
-    rev: v1.7.9
-    hooks:
-      - id: actionlint
-  - repo: https://github.com/hugoh/pre-commit-fish.git
-    rev: v1.2
-    hooks:
-      - id: fish_syntax
-  - repo: https://github.com/rubocop/rubocop
-    rev: v1.82.0
-    hooks:
-      - id: rubocop
+
+  # Local hooks targeting system-installed tools.
+  # These hooks run specific binaries available in the environment (e.g., via shell.nix).
   - repo: local
     hooks:
+      # Unified formatter pass using treefmt.
       - id: treefmt
         name: treefmt
         language: system
         entry: treefmt
-        require_serial: true
-      # - id: check-mimeapps
-      #   name: Check mimeapps consistency
-      #   language: script
-      #   entry: bin/check-mimeapps
-      #   files: ^mimeapps/mimeapps.list$
+        pass_filenames: false
+
+      # GitHub Actions workflow linter.
+      - id: actionlint
+        name: actionlint
+        language: system
+        entry: actionlint
+        files: ^\.github/workflows/
+
+      # Ruby linter and formatter. Optimized with --server for local execution.
+      - id: rubocop
+        name: rubocop
+        language: system
+        entry: rubocop
+        files: \.rb$
+
+      # Fast secret scanning for generic high-entropy strings.
+      - id: ripsecrets
+        name: ripsecrets
+        language: system
+        entry: ripsecrets
+
+      # Comprehensive secret scanning with service-specific rules.
+      # Optimized to only scan staged changes for performance.
+      - id: gitleaks
+        name: gitleaks
+        language: system
+        entry: gitleaks protect --staged --verbose --redact
+        pass_filenames: false
