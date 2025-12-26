@@ -1,15 +1,5 @@
 # Fish abbreviations and aliases configuration
 
-# --- Tool Sanity Checks ---
-# Check for optional but recommended tools and warn if missing
-for tool in zoxide gomi vivid eza
-    if not command -q $tool
-        set_color yellow
-        echo "⚠️  Warning: $tool is not installed. Some abbreviations or configurations will be disabled."
-        set_color normal
-    end
-end
-
 # --- Basic Shell ---
 abbr sfish 'source ~/.config/fish/config.fish'
 abbr !! --position anywhere --function last_history_item
@@ -19,7 +9,7 @@ abbr b 'cd ..'
 abbr dotdot --regex '^\.\.+$' --function multicd
 
 # Use zoxide for cd if available
-if command -q zoxide
+if type -q zoxide
     abbr cd z
 end
 
@@ -29,7 +19,7 @@ abbr mk 'mkdir -pv'
 abbr tree 'erd --layout inverted --human'
 
 # Enhanced ls with eza
-if command -q eza
+if type -q eza
     alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
     alias ls l
 end
@@ -42,7 +32,7 @@ abbr free 'free -h'
 abbr ncdu 'ncdu --color dark'
 
 # Safe File Operations
-if command -q gomi
+if type -q gomi
     abbr rm gomi
 end
 abbr cp "cp -ri"
