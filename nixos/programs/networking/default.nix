@@ -10,7 +10,6 @@
     with pkgs;
     [
       # Network utilities
-      axel # Light command line download accelerator
       bind # DNS utilities (dig, host, nslookup)
       putty # SSH and Telnet client
       rustscan # Fast port scanner
