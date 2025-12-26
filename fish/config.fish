@@ -5,17 +5,32 @@ status is-interactive; or exit
 # =============================================================================
 
 # Helper to cache transient init scripts (improves startup time)
-# Usage: _source_transient <name> <command>
-function _source_transient --argument name cmd
+# Usage: _source_transient <name> <command> [dependency_file]
+function _source_transient --argument name cmd dependency
     set -l cache_file ~/.config/fish/cache/$name.fish
+    set -l should_rebuild false
+
     if not test -f $cache_file
+        set should_rebuild true
+    else if test -n "$dependency"; and test "$dependency" -nt "$cache_file"
+        # Rebuild if the dependency file is newer than the cache
+        set should_rebuild true
+    end
+
+    if test "$should_rebuild" = true
         mkdir -p (dirname $cache_file)
-        set -l output (eval $cmd)
-        if test -n "$output"
-            echo "$output" >$cache_file
+        # Use a temporary file to check for output presence without losing newlines
+        set -l tmp_file $cache_file.tmp
+        if eval $cmd >$tmp_file
+            if test -s $tmp_file
+                mv $tmp_file $cache_file
+            else
+                rm -f $tmp_file
+                eval $cmd
+                return
+            end
         else
-            # If command failed or returned nothing, don't create an empty file
-            # but source the eval directly so the shell still works
+            rm -f $tmp_file
             eval $cmd
             return
         end
@@ -43,7 +58,7 @@ source ~/.config/fish/variables.fish
 # Initialize direnv (Environment variable manager)
 # https://direnv.net/
 if command -q direnv
-    _source_transient direnv "direnv hook fish"
+    _source_transient direnv "direnv hook fish" ~/.config/fish/config.fish
 end
 
 # =============================================================================
@@ -53,22 +68,6 @@ end
 
 if not test -f ~/.config/fish/functions/fisher.fish
     echo "⚡ Bootstrapping Fish shell environment..."
-
-    # Helper to clean up old plugin artifacts before fresh install
-    function _clean_old_plugins
-        rm -rf ~/.config/fish/functions/__abbr* \
-            ~/.config/fish/functions/_autopair* \
-            ~/.config/fish/functions/_fzf_*.fish \
-            ~/.config/fish/functions/replay.fish \
-            ~/.config/fish/functions/__bass.py \
-            ~/.config/fish/functions/bass.fish \
-            ~/.config/fish/themes/*.theme \
-            ~/.config/fish/completions \
-            ~/.config/fish/conf.d \
-            ~/.config/fish/functions/fisher.fish \
-            ~/.config/fish/functions/fzf_configure_bindings.fish \
-            ~/.config/fish/functions/fzf.fish
-    end
 
     _clean_old_plugins
 
@@ -99,21 +98,13 @@ end
 set -l resource_stamp ~/.config/fish/cache/resources_checked.stamp
 if not test -f $resource_stamp
     # VSCode Font for Broot
-    if not test -f ~/.local/share/fonts/vscode.ttf
-        echo "⬇️  Downloading resource: vscode.ttf"
-        get 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true' ~/.local/share/fonts/vscode.ttf
-        fc-cache ~/.local/share/fonts/
-    end
+    _ensure_resource 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true' ~/.local/share/fonts/vscode.ttf
 
     # BTOP Theme
-    if not test -f ~/.config/btop/themes/dracula
-        _ensure_resource 'https://raw.githubusercontent.com/dracula/bashtop/refs/heads/master/dracula.theme' ~/.config/btop/themes/dracula
-    end
+    _ensure_resource 'https://raw.githubusercontent.com/dracula/bashtop/refs/heads/master/dracula.theme' ~/.config/btop/themes/dracula
 
     # Rofi Theme
-    if not test -f ~/.config/rofi/dracula.rasi
-        _ensure_resource 'https://raw.githubusercontent.com/dracula/rofi/refs/heads/main/theme/config1.rasi' ~/.config/rofi/dracula.rasi
-    end
+    _ensure_resource 'https://raw.githubusercontent.com/dracula/rofi/refs/heads/main/theme/config1.rasi' ~/.config/rofi/dracula.rasi
 
     # Kitty Theme (Only if kitty is the terminal)
     if test "$TERM" = xterm-kitty; and not test -f ~/.config/kitty/current-theme.conf
@@ -150,13 +141,20 @@ end
 test -d ~/.ssh/control_sockets; or mkdir -p ~/.ssh/control_sockets
 
 # Starship Prompt (Cached)
-_source_transient starship "starship init fish"
+_source_transient starship "starship init fish" ~/.config/fish/config.fish
 
 # Zoxide (Cached)
-_source_transient zoxide "zoxide init fish"
+_source_transient zoxide "zoxide init fish" ~/.config/fish/config.fish
 
 # Pay-Respects (Cached)
-_source_transient pay-respects "pay-respects fish --alias fk"
+_source_transient pay-respects "pay-respects fish --alias fk" ~/.config/fish/config.fish
+
+# Atuin (History manager - Cached)
+set -gx ATUIN_NOBIND true
+_source_transient atuin "atuin init fish" ~/.config/fish/config.fish
+
+# Navi (Cheatsheet - Cached)
+_source_transient navi "navi widget fish" ~/.config/fish/config.fish
 
 # GitHub CLI Completion (Lazy Loaded)
 if command -q gh
@@ -182,7 +180,7 @@ switch (uname)
         # NixOS Detection
         if test -f /etc/NixOS-release
             # any-nix-shell: nicer shells for nix-shell/nix develop.
-            _source_transient any-nix-shell "any-nix-shell fish --info-right"
+            _source_transient any-nix-shell "any-nix-shell fish --info-right" ~/.config/fish/config.fish
 
             # Fix broken systemd user services (common NixOS issue)
             fix_broken_services_by_nixos
@@ -206,5 +204,6 @@ end
 # =============================================================================
 # Aliases & Abbreviations
 # =============================================================================
-# Loaded last to ensure all tools are in path
-source ~/.config/fish/abbr.fish
+# Loaded last to ensure all tools are in path.
+# We cache the sourcing of the abbreviations to avoid reparsing the file.
+_source_transient abbrs 'cat ~/.config/fish/abbr.fish' ~/.config/fish/abbr.fish
