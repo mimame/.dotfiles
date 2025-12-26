@@ -31,7 +31,7 @@ set -gx GIT_EDITOR $EDITOR
 
 # Set colors for LS and EZA using 'vivid' if available
 if command -q vivid
-    set -gx LS_COLORS (vivid generate dracula)
+    _source_transient vivid 'echo "set -gx LS_COLORS (vivid generate dracula)"'
     set -gx EZA_COLORS $LS_COLORS
 end
 
@@ -83,35 +83,40 @@ set -gx PIP_USER false
 
 # --- PATH Configuration ---
 
-fish_add_path \
+# Combine path additions to minimize disk checks
+set -l extra_paths \
     "$HOME/.yarn/bin" \
     "$HOME/.bin" \
     "$HOME/go/bin" \
     "$HOME/.cargo/bin" \
     "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin" \
     "$HOME/.local/bin" \
-    "$HOME/.local/share/coursier/bin" # Coursier install directory
+    "$HOME/.local/share/coursier/bin"
 
 # Add user Ruby gems path if Ruby is installed
 if command -q ruby
-    fish_add_path "$(ruby -e 'print Gem.user_dir')/bin"
+    _source_transient ruby_path 'echo "set -a extra_paths (ruby -e \'print Gem.user_dir\')/bin"'
 end
 
 # Load Homebrew environment on macOS
 if test -f /opt/homebrew/bin/brew
-    /opt/homebrew/bin/brew shellenv | source
+    _source_transient brew 'brew shellenv'
 
     # Add paths for Homebrew-provided languages to ensure they take precedence
     for lang in ruby python
         if test -d /opt/homebrew/opt/$lang/bin
-            fish_add_path /opt/homebrew/opt/$lang/bin
+            set -a extra_paths /opt/homebrew/opt/$lang/bin
         end
     end
 end
 
+fish_add_path $extra_paths
+
 # Set GPG_TTY for GPG agent
 if test -z "$GPG_TTY"
-    set -gx GPG_TTY (tty)
+    if status is-interactive
+        set -gx GPG_TTY (tty)
+    end
 end
 
 # Set input method environment variables
