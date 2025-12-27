@@ -31,7 +31,7 @@ repos:
         name: treefmt
         language: system
         entry: treefmt
-        pass_filenames: false
+        require_serial: true
 
       # GitHub Actions workflow linter.
       - id: actionlint
