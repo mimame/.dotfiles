@@ -40,12 +40,13 @@ repos:
         entry: actionlint
         files: ^\.github/workflows/
 
-      # Ruby linter and formatter. Optimized with --server for local execution.
+      # Ruby linter and formatter.
       - id: rubocop
         name: rubocop
         language: system
         entry: rubocop
         files: \.rb$
+        require_serial: true
 
       # Fast secret scanning for generic high-entropy strings.
       - id: ripsecrets
