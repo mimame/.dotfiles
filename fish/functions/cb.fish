@@ -8,41 +8,51 @@
 # - `cb | COMMAND`: Pastes the contents of the clipboard into another command.
 #
 # The function automatically detects the operating system and uses 'pbcopy' and 'pbpaste' on macOS,
-# or 'wl-copy' and 'wl-paste' on Linux with Wayland.
+# or 'wl-copy', 'xclip', or 'xsel' on Linux depending on the environment (Wayland/X11).
 function cb --description "Universal clipboard utility for macOS and Linux"
-    # Determine the appropriate copy and paste commands based on environment
-    set -l os (uname)
+    set -l copy_cmd
+    set -l paste_cmd
 
-    if test "$os" = Darwin
-        set copy_command pbcopy
-        set paste_command pbpaste
+    # Detect clipboard tools and set commands as arrays
+    if test (uname) = Darwin
+        set copy_cmd pbcopy
+        set paste_cmd pbpaste
+    else if set -q WAYLAND_DISPLAY; and command -q wl-copy
+        set copy_cmd wl-copy
+        set paste_cmd wl-paste -n
+    else if command -q xclip
+        set copy_cmd xclip -selection clipboard
+        set paste_cmd xclip -selection clipboard -o
+    else if command -q xsel
+        set copy_cmd xsel --clipboard --input
+        set paste_cmd xsel --clipboard --output
     else
-        set copy_command wl-copy
-        set paste_command "wl-paste -n" # Avoid adding newline
+        echo "Error: No clipboard tool found (pbcopy, wl-copy, xclip, or xsel)" >&2
+        return 1
     end
 
-    # If stdin is a pipe, read from stdin and copy to clipboard
-    if command test -p /dev/stdin
-        cat - | eval $copy_command
+    # Case 1: Read from stdin (pipe)
+    if not isatty stdin
+        $copy_cmd
         echo "✓ Copied from stdin to clipboard" >&2
-        # If arguments are provided, check if it's a file or a string
+
+        # Case 2: Arguments provided
     else if set -q argv[1]
-        # If the first argument is a file, copy its contents to the clipboard
-        if test -f "$argv[1]"
-            cat "$argv[1]" | eval $copy_command
+        # If it's exactly one argument and it's a file, copy its content
+        if test (count $argv) -eq 1; and test -f "$argv[1]"
+            $copy_cmd <"$argv[1]"
             echo "✓ Copied contents of '$argv[1]' to clipboard" >&2
-            # Otherwise, treat the arguments as a string and copy to the clipboard
         else
-            printf "%s" "$argv" | eval $copy_command
+            # Otherwise, copy the arguments joined by spaces
+            echo -n "$argv" | $copy_cmd
             echo "✓ Copied text to clipboard" >&2
         end
-        # If no arguments and not a pipe, paste from clipboard to stdout
+
+        # Case 3: No arguments, not a pipe -> Paste
     else
-        # Check if clipboard has content
-        if eval $paste_command >/dev/null 2>&1
-            eval $paste_command
-        else
-            echo "Error: Clipboard is empty" >&2
+        # Run paste command
+        if not $paste_cmd
+            echo "Error: Clipboard is empty or tool failed" >&2
             return 1
         end
     end
