@@ -123,18 +123,16 @@ end
 # Shell Integrations & Tools
 # =============================================================================
 
-# Start SSH Agent only if needed
-if test -z "$SSH_AUTH_SOCK"
-    set -l ssh_keys
-    for key in id_ed25519 id_ed25519_passphrase
-        if test -f $HOME/.ssh/$key
-            set -a ssh_keys $HOME/.ssh/$key
-        end
+# Start SSH Agent
+set -l ssh_keys
+for key in id_ed25519 id_ed25519_passphrase
+    if test -f $HOME/.ssh/$key
+        set -a ssh_keys $HOME/.ssh/$key
     end
+end
 
-    if test -n "$ssh_keys"
-        keychain --eval --quiet $ssh_keys | source
-    end
+if test -n "$ssh_keys"
+    keychain --eval --quiet $ssh_keys | source
 end
 
 # Create a directory for SSH control sockets if it doesn't exist
