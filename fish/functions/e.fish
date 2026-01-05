@@ -1,80 +1,106 @@
-function e --description "Extract various archive and compressed files based on their extensions"
+function e --description "Extract various archive and compressed files"
     if test (count $argv) -eq 0
-        echo "Usage: e [file1 file2 ...]"
-        echo "Extracts archives and compressed files based on their extensions."
-        echo "Supported formats:"
-        echo "  • Archives: tar, zip, 7z, rar"
-        echo "  • Compressed: gz, xz, bz2, bz3, zst"
-        echo "  • Combined: tar.gz, tar.xz, tar.bz2, tar.zst"
+        echo "Usage: e <file...>"
+        echo "Supported formats: tar, zip, 7z, rar, gz, xz, bz2, bz3, zst, and combinations (tar.gz, etc.)"
         return 1
     end
 
     for file in $argv
-        set -l filename (basename $file)
-
-        # Check if file exists
         if not test -f "$file"
-            echo "🚫 Error: '$file' does not exist or is not a regular file" >&2
+            echo "Error: '$file' not found or not a regular file" >&2
             continue
         end
 
+        set -l filename (path basename "$file")
         echo "📦 Extracting: $filename"
 
         switch $filename
-            # TAR + Compression variants
             case '*.tar.gz' '*.tgz'
-                echo "  Using: tar with pigz (gzip) decompression"
-                tar -I pigz -xvf $file
+                if command -q pigz
+                    pigz -dc "$file" | tar -xf -
+                else
+                    tar -xzf "$file"
+                end
             case '*.tar.xz' '*.txz'
-                echo "  Using: tar with pixz (xz) decompression"
-                tar -I pixz -xvf $file
+                if command -q pixz
+                    pixz -dc "$file" | tar -xf -
+                else
+                    tar -xJf "$file"
+                end
             case '*.tar.bz2' '*.tbz2'
-                echo "  Using: tar with pbzip2 decompression"
-                tar -I pbzip2 -xvf $file
+                if command -q pbzip2
+                    pbzip2 -dc "$file" | tar -xf -
+                else
+                    tar -xjf "$file"
+                end
             case '*.tar.bz3' '*.tbz3'
-                echo "  Using: tar with pbzip3 decompression"
-                tar -I bzip3 -xvf $file
+                if command -q bzip3
+                    bzip3 -dc "$file" | tar -xf -
+                else
+                    echo "Error: bzip3 not installed" >&2
+                    continue
+                end
             case '*.tar.zst' '*.tzst'
-                echo "  Using: tar with zstd decompression"
-                tar -I zstdmt -xvf $file
+                if command -q zstd
+                    zstd -dc "$file" | tar -xf -
+                else
+                    echo "Error: zstd not installed" >&2
+                    continue
+                end
             case '*.tar'
-                echo "  Using: tar extraction"
-                tar xvf $file
+                tar -xf "$file"
 
-                # Single file compression
             case '*.gz'
-                echo "  Using: pigz decompression"
-                pigz -dkv $file
+                if command -q pigz
+                    pigz -dk "$file"
+                else
+                    gzip -dk "$file"
+                end
             case '*.xz'
-                echo "  Using: pixz decompression"
-                pixz -dk $file
+                if command -q pixz
+                    pixz -dk "$file"
+                else
+                    xz -dk "$file"
+                end
             case '*.bz2'
-                echo "  Using: pbzip2 decompression"
-                pbzip2 -dkv $file
+                if command -q pbzip2
+                    pbzip2 -dk "$file"
+                else
+                    bzip2 -dk "$file"
+                end
             case '*.bz3'
-                echo "  Using: pbzip2 decompression"
-                bzip3 -dkv $file
+                if command -q bzip3
+                    bzip3 -dk "$file"
+                else
+                    echo "Error: bzip3 not installed" >&2
+                    continue
+                end
             case '*.zst'
-                echo "  Using: zstd decompression"
-                zstdmt -dkv $file
+                if command -q zstd
+                    zstd -dk "$file"
+                else
+                    echo "Error: zstd not installed" >&2
+                    continue
+                end
 
-                # Archive formats
             case '*.zip'
-                echo "  Using: unzip"
-                unzip $file
+                unzip -q "$file"
             case '*.7z'
-                echo "  Using: 7z extraction"
-                7z x $file
-            case '*.Z'
-                echo "  Using: uncompress"
-                uncompress $file
+                7z x "$file" >/dev/null
             case '*.rar'
-                echo "  Using: unrar extraction"
-                unrar x $file
+                if command -q unrar
+                    unrar x "$file" >/dev/null
+                else if command -q 7z
+                    7z x "$file" >/dev/null
+                else
+                    echo "Error: unrar or 7z required for .rar files" >&2
+                    continue
+                end
+            case '*.Z'
+                uncompress "$file"
 
-                # Unknown format
             case '*'
-                echo "❌ Error: '$filename' cannot be extracted, unknown compression format" >&2
+                echo "Error: Unknown format '$filename'" >&2
                 continue
         end
 
