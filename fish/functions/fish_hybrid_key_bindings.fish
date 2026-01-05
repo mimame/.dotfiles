@@ -18,9 +18,8 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     # Similar to Vi's visual mode but opens the full editor for complex edits
     bind -M default v edit_command_buffer
 
-    # Configure fzf file finder with custom directory preview using eza
-    # Shows colorized, classified directory listings with hidden files but excludes node_modules
-    set fzf_preview_dir_cmd eza --all --color=always --sort .name --classify --color=always --ignore-glob=node_modules
+    # Configure fzf file finder
+    # Note: fzf_preview_dir_cmd is configured in variables.fish
     fzf_configure_bindings --history=
 
     # Configure Atuin shell history search for both modes:

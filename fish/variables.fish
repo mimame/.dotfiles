@@ -45,6 +45,10 @@ set -gx FZF_CTRL_T_OPTS "--height 100% --preview 'bat --color always {}'"
 set -gx FZF_ALT_C_COMMAND 'fd --type directory --exclude node_modules'
 set -gx FZF_ALT_C_OPTS "--height 100% --preview br --preview-window wrap"
 
+# Custom directory preview command for fzf (used by fzf.fish)
+# Shows colorized, classified directory listings with hidden files but excludes node_modules
+set -gx fzf_preview_dir_cmd eza --all --color=always --sort .name --classify --color=always --ignore-glob=node_modules
+
 # Set default colors for fzf to match Dracula theme
 # Reference: https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
 set -gx FZF_DEFAULT_OPTS '
