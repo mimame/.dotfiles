@@ -12,7 +12,7 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
 
     # Use space in normal mode to accept autosuggestion and move to end of line
     # This provides a quick way to complete suggestions without entering insert mode
-    bind -M default \ end-of-line accept-autosuggestion
+    bind -M default ' ' accept-autosuggestion end-of-line
 
     # Bind 'v' in normal mode to launch editor for current command
     # Similar to Vi's visual mode but opens the full editor for complex edits
