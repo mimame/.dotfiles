@@ -6,7 +6,8 @@ abbr !! --position anywhere --function last_history_item
 
 # --- Navigation ---
 abbr b 'cd ..'
-abbr dotdot --regex '^\.\.+$' --function multicd
+abbr .. 'cd ..'
+abbr dotdot --regex '^\.\.\.+$' 'bb ..'
 
 # Use zoxide for cd if available
 if type -q zoxide
