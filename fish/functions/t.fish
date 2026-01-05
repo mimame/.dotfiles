@@ -1,8 +1,9 @@
-function t --description "Translate text to Spanish (default) and copy to clipboard"
+function t --description "Translate text and copy to clipboard"
     if test (count $argv) -eq 0
-        echo "Usage: t <text...>"
-        echo "Options:"
-        echo "  -l <lang>  Translate to a specific language (default: :es)"
+        echo "Usage: t [lang_spec] <text...>"
+        echo "Example: t hello          (Translates to Spanish by default)"
+        echo "Example: t :en hola       (Translates to English)"
+        echo "Example: t en:fr hello    (Translates English to French)"
         return 1
     end
 
@@ -11,21 +12,16 @@ function t --description "Translate text to Spanish (default) and copy to clipbo
         return 1
     end
 
-    set -l target_lang ":es"
-    set -l text_to_translate
+    set -l target_lang ":es" # Default
+    set -l text_start_index 1
 
-    # Parse arguments
-    set -l i 1
-    while test $i -le (count $argv)
-        switch $argv[$i]
-            case -l --lang
-                set i (math $i + 1)
-                set target_lang $argv[$i]
-            case '*'
-                set -a text_to_translate $argv[$i]
-        end
-        set i (math $i + 1)
+    # Check if the first argument is a language specification (e.g., :en or en:es)
+    if string match -qr '^[a-z]{0,2}:[a-z]{2}$' -- "$argv[1]"
+        set target_lang $argv[1]
+        set text_start_index 2
     end
+
+    set -l text_to_translate $argv[$text_start_index..-1]
 
     if test -z "$text_to_translate"
         echo "Error: No text provided for translation." >&2
@@ -36,8 +32,6 @@ function t --description "Translate text to Spanish (default) and copy to clipbo
     echo "🌐 Translating to $target_lang..." >&2
 
     # Perform translation
-    # -brief: simplified output
-    # -no-ansi: strip colors for easier parsing/copying
     set -l translation (command trans -brief -no-ansi "$target_lang" "$joined_text" | string collect | string trim)
 
     if test -n "$translation"
