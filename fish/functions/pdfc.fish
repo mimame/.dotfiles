@@ -1,13 +1,20 @@
-function pdfc
+function pdfc --description "Compress PDF files using Ghostscript"
     if test -z "$argv"
-        echo "Usage: pdfc file.pdf ... fileN.pdf [resolution_in_dpi]"
+        echo "Usage: pdfc <file.pdf...> [resolution_in_dpi]"
+        echo "Default resolution: 90 DPI"
+        return 1
+    end
+
+    if not command -q gs
+        echo "Error: Ghostscript (gs) is not installed." >&2
         return 1
     end
 
     set -l resolution 90
     set -l pdfs $argv
 
-    if string match --quiet --regex '^\d+$' "$argv[-1]"
+    # Check if last argument is a resolution (numeric)
+    if string match -qr '^\d+$' -- "$argv[-1]"
         set resolution $argv[-1]
         set pdfs $argv[1..-2]
     end
@@ -18,14 +25,17 @@ function pdfc
             continue
         end
 
-        set -l original_pdf (string replace -r '\.pdf$' '_original.pdf' "$pdf")
+        set -l tmp_pdf (mktemp).pdf
+        echo "📄 Compressing: $pdf (Resolution: $resolution DPI)"
 
-        mv "$pdf" "$original_pdf"
-
+        # Ghostscript settings:
+        # -dPDFSETTINGS=/screen: Predefined low-resolution (72 dpi) output
+        # -dCompatibilityLevel=1.4: Set PDF version
+        # -dColorImageResolution: Set DPI for images
         gs \
             -q -dNOPAUSE -dBATCH -dSAFER \
             -sDEVICE=pdfwrite \
-            -dCompatibilityLevel=1.3 \
+            -dCompatibilityLevel=1.4 \
             -dPDFSETTINGS=/screen \
             -dEmbedAllFonts=true \
             -dSubsetFonts=true \
@@ -36,29 +46,41 @@ function pdfc
             -dGrayImageResolution="$resolution" \
             -dMonoImageDownsampleType=/Subsample \
             -dMonoImageResolution="$resolution" \
-            -sOutputFile="$pdf" \
-            "$original_pdf"
+            -sOutputFile="$tmp_pdf" \
+            "$pdf"
 
         if test $status -eq 0
-            set -l human_pdf_size (du -h "$pdf" | cut -f1)
-            set -l human_original_pdf_size (du -h "$original_pdf" | cut -f1)
-            set -l pdf_size (stat -c '%s' "$pdf")
-            set -l original_pdf_size (stat -c '%s' "$original_pdf")
-
-            if test "$original_pdf_size" -le "$pdf_size"
-                echo "'$pdf' could not be compressed (result larger or same size)." >&2
-                mv "$original_pdf" "$pdf"
+            # Portable byte size calculation
+            set -l original_size 0
+            set -l compressed_size 0
+            if test (uname) = Darwin
+                set original_size (stat -f %z "$pdf")
+                set compressed_size (stat -f %z "$tmp_pdf")
             else
-                set -l compression_ratio (printf "%.2f" (math "$original_pdf_size / $pdf_size"))
-                echo "$pdf"
-                echo "Original size: $human_original_pdf_size"
-                echo "Compressed size: $human_pdf_size"
-                echo "Compression ratio: $compression_ratio"
-                # rm "$original_pdf" # Don't remove the original even successfully compressed.
+                set original_size (stat -c %s "$pdf")
+                set compressed_size (stat -c %s "$tmp_pdf")
+            end
+
+            if test "$compressed_size" -lt "$original_size"
+                set -l original_name (string replace -r '\.pdf$' '_original.pdf' "$pdf")
+                mv "$pdf" "$original_name"
+                mv "$tmp_pdf" "$pdf"
+
+                set -l ratio (printf "%.2f" (math "$original_size / $compressed_size"))
+
+                echo "✅ Successfully compressed: $pdf"
+                echo "   Original:   $(du -h "$original_name" | cut -f1)"
+                echo "   Compressed: $(du -h "$pdf" | cut -f1)"
+                echo "   Ratio:      $ratio"
+                echo "   Keep:       $original_name"
+            else
+                echo "⚠️  Skipped: Compression resulted in a larger file ($pdf)"
+                rm "$tmp_pdf"
             end
         else
-            echo "Error: '$pdf' could not be processed by Ghostscript." >&2
-            mv "$original_pdf" "$pdf" #restore original if gs failed.
+            echo "❌ Error: Failed to process '$pdf' with Ghostscript" >&2
+            rm -f "$tmp_pdf"
         end
+        echo ""
     end
 end
