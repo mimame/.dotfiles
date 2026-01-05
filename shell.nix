@@ -26,6 +26,7 @@ pkgs.mkShell {
     jsonfmt
     actionlint
     rubocop
+    commitlint
   ];
 
   shellHook = ''
