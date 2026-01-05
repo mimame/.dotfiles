@@ -1,6 +1,9 @@
 # prek Configuration: A fast pre-commit hook manager written in Rust.
 # This file defines the hooks that run before each commit to ensure code quality and security.
 
+# Stop execution immediately if any hook fails.
+fail_fast: true
+
 repos:
   # Built-in hooks provided natively by prek.
   # These are optimized for speed as they are implemented directly in the prek framework.
