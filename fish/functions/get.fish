@@ -1,90 +1,124 @@
-function get --description "Download file using the best available tool (aria2c, wget2, wcurl, wget, curl)" --argument url path
+function get --description "Download file using the best available tool" --argument url target
+    # Description:
+    #   Downloads a file from a URL using the best tool available on the system.
+    #   Prioritizes: aria2c > wget2 > wcurl > wget > curl.
+    #
+    # Arguments:
+    #   url: The source URL to download.
+    #   target: Optional. Local path (file or directory) or '-' for stdout.
+    #
+    # Usage:
+    #   get <url> [target_path]
+
     if test -z "$url"
-        echo "Usage: get <url> [path]"
-        echo "  path: Local file path. If omitted, downloads to current directory with remote name."
-        echo "        Use '-' for stdout."
+        echo "Usage: get <url> [target_path]"
+        echo "  target_path: Local file or directory. If omitted, downloads to CWD."
+        echo "               Use '-' for stdout."
         return 1
     end
 
-    # Handle stdout streaming explicitly.
-    if test "$path" = -
-        if command -q wget2
-            wget2 --quiet --output-document=- $url
-        else if command -q wget
-            wget --quiet --output-document=- $url
-        else if command -q wcurl
-            wcurl --curl-options="--silent --show-error" --output=- $url
-        else if command -q curl
-            curl --fail --silent --show-error --location $url
-        else
-            echo "🔴 Error: No tool found for streaming (wget2, wget, wcurl, curl)." >&2
-            return 1
+    # 1. Determine the best tool available
+    set -l tools aria2c wget2 wcurl wget curl
+    set -l tool
+    for t in $tools
+        if command -q $t
+            set tool $t
+            break
         end
-        return 0
     end
 
-    # Handle file download
-    if test -n "$path"
-        mkdir -p (dirname $path)
-    end
-
-    # Select tool
-    # Priority:
-    # 1. Accelerators (aria2c) - Fastest for large files
-    # 2. Modern Standards (wget2, wcurl) - Good defaults, HTTP/2
-    # 3. Legacy/Basic (wget, curl) - Fallbacks
-
-    if command -q aria2c
-        # aria2c is fast but needs distinct dir and filename for output
-        echo "🚀 Using aria2c..." >&2
-        set -l params --max-connection-per-server=4 --split=4 --min-split-size=1M --continue=true --max-concurrent-downloads=5 --file-allocation=none
-        if test -n "$path"
-            aria2c --dir=(dirname $path) --out=(basename $path) $params $url
-        else
-            aria2c $params $url
-        end
-    else if command -q wget2
-        echo "📥 Using wget2..." >&2
-        set -l params --continue --progress=bar --timestamping --retry-on-http-error=503
-        if test -n "$path"
-            wget2 --output-document=$path $params $url
-        else
-            wget2 $params $url
-        end
-    else if command -q wcurl
-        echo "📥 Using wcurl..." >&2
-        set -l params --curl-options="--clobber --continue-at -"
-        if test -n "$path"
-            wcurl --output=$path $params $url
-        else
-            wcurl $params $url
-        end
-    else if command -q wget
-        echo "📥 Using wget..." >&2
-        # Warn about suboptimal tool
-        set_color yellow
-        echo "💡 Tip: Install aria2c or wget2 for faster downloads."
-        set_color normal
-        set -l params --continue --progress=bar --timestamping
-        if test -n "$path"
-            wget --output-document=$path $params $url
-        else
-            wget $params $url
-        end
-    else if command -q curl
-        echo "📥 Using curl..." >&2
-        # Warn about suboptimal tool
-        set_color yellow
-        echo "💡 Tip: Install aria2c or wget2 for faster downloads."
-        set_color normal
-        set -l params --continue-at - --location --progress-bar --remote-time --retry 3 --retry-delay 5
-        if test -n "$path"
-            curl --output $path $params $url
-        else
-            curl --remote-name $params $url
-        end
-    else
-        echo "🔴 Error: No suitable download tool found (aria2c, wget2, wcurl, wget, curl)." >&2
+    if test -z "$tool"
+        echo "Error: No download tool found (tried: $tools)" >&2
         return 1
+    end
+
+    # 2. Handle stdout streaming
+    if test "$target" = -
+        switch $tool
+            case aria2c
+                # aria2c isn't optimized for stdout; fallback to others if available
+                if command -q wget2
+                    wget2 -q -O- "$url"
+                else if command -q wget
+                    wget -q -O- "$url"
+                else
+                    curl -fsSL "$url"
+                end
+            case wget2 wget
+                $tool -q -O- "$url"
+            case wcurl
+                wcurl --curl-options="-fsSL" --output=- "$url"
+            case curl
+                curl -fsSL "$url"
+        end
+        return
+    end
+
+    # 3. Process target path and directory
+    set -l out_dir "."
+    set -l out_file ""
+
+    if test -n "$target"
+        if test -d "$target"
+            set out_dir "$target"
+        else
+            set out_dir (path dirname "$target")
+            set out_file (path basename "$target")
+            mkdir -p "$out_dir"
+        end
+    end
+
+    # 4. Execute download with tool-specific optimizations
+    echo "📥 Downloading via $tool..." >&2
+
+    switch $tool
+        case aria2c
+            # Optimize for speed: 8 connections, 1M split size
+            set -l params --max-connection-per-server=8 --split=8 --min-split-size=1M \
+                --continue=true --file-allocation=none --dir="$out_dir"
+            if test -n "$out_file"
+                set -a params --out="$out_file"
+            end
+            aria2c $params "$url"
+
+        case wget2
+            # Robust downloading with retries and progress bar
+            set -l params --continue --progress=bar --timestamping --retry-on-http-error=503
+            if test -n "$out_file"
+                wget2 --output-document=(path join "$out_dir" "$out_file") $params "$url"
+            else
+                wget2 --directory-prefix="$out_dir" $params "$url"
+            end
+
+        case wcurl
+            if test -n "$out_file"
+                wcurl --output=(path join "$out_dir" "$out_file") "$url"
+            else
+                wcurl --directory-prefix="$out_dir" "$url"
+            end
+
+        case wget
+            set_color yellow
+            echo "💡 Tip: Install aria2c or wget2 for faster downloads."
+            set_color normal
+            set -l params --continue --progress=bar --timestamping
+            if test -n "$out_file"
+                wget --output-document=(path join "$out_dir" "$out_file") $params "$url"
+            else
+                wget --directory-prefix="$out_dir" $params "$url"
+            end
+
+        case curl
+            set_color yellow
+            echo "💡 Tip: Install aria2c or wget2 for faster downloads."
+            set_color normal
+            # Standard resilient curl flags
+            set -l params --continue-at - --location --progress-bar --remote-time --retry 3
+            if test -n "$out_file"
+                curl --output (path join "$out_dir" "$out_file") $params "$url"
+            else
+                # Use output-dir for modern curl, falls back to CWD behavior
+                curl --remote-name --output-dir "$out_dir" $params "$url"
+            end
     end
 end
