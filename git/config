@@ -1,80 +1,114 @@
-# https://git-scm.com/docs/git-config
+# Git Configuration
+# Documentation: https://git-scm.com/docs/git-config
+
 [alias]
-  # Remove extra git (git git ... -> git ...)
+  # --- General & Meta ---
+  # Remove extra git (e.g., 'git git status' -> 'git status')
   git = !git
-  # List with all alias
+  # List all aliases with their commands in a clean format
   als = !git config --list | grep -F 'alias.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort -k1,1
-  # add - https://git-scm.com/docs/git-add
+
+  # --- Add (a) ---
+  # https://git-scm.com/docs/git-add
   a    = add
   aa   = add --all
   af   = add --force
   ai   = add --interactive
+  # Interactive add using fzf for file selection
   aii  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git add --all ${FILES}
   ap   = add --patch
+  # Interactive patch using fzf
   api  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git add --patch ${FILES}
   au   = add --update
-  # add & commit
-  auc = !git add --update && git commit
-  # apply patch - https://git-scm.com/docs/git-apply
+  # Add updated files and commit immediately
+  auc  = !git add --update && git commit
+
+  # --- Apply (ap) ---
+  # https://git-scm.com/docs/git-apply
   apc = apply --check
   app = apply
   aps = apply --stat
-  # am patches from mailbox - https://git-scm.com/docs/git-am
+
+  # --- AM (am) ---
+  # https://git-scm.com/docs/git-am
   ama = am --abort
   amr = am --resolved
   ams = am --skip
-  # bisect - https://git-scm.com/docs/git-bisect
+
+  # --- Bisect (bs) ---
+  # https://git-scm.com/docs/git-bisect
   bs   = bisect
   bsb  = bisect bad
   bsg  = bisect good
+  # Select a 'good' commit using fzf from log
   bsgi = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' ) && git bisect good ${HASH}
   bsr  = bisect reset
   bss  = bisect start
   bsv  = bisect visualize
   bsvl = bisect log
   bsvs = bisect visualize --stat
-  # blame - https://git-scm.com/docs/git-blame
+
+  # --- Blame (bl) ---
+  # https://git-scm.com/docs/git-blame
   bl = blame
-  # branch - https://git-scm.com/docs/git-branch
+
+  # --- Branch (b) ---
+  # https://git-scm.com/docs/git-branch
   b   = branch
   ba  = branch --all
   bd  = branch --delete
-  # First sort branches by date
+  # Interactive branch checkout sorted by committer date
   bi  = !BRANCH=$(git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads | fzf) && git checkout ${BRANCH}
   br  = branch --remotes
-  # checkout - https://git-scm.com/docs/git-checkout
+
+  # --- Checkout (co) ---
+  # https://git-scm.com/docs/git-checkout
+  # Interactive checkout of an existing branch
   cbi  = !BRANCH=$(git branch | grep -v '^*' | tr -d ' ' | fzf --ansi) && git checkout ${BRANCH}
   co   = checkout
   cob  = checkout -b
+  # Interactive checkout (discard changes) for specific files
   coi  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git checkout ${FILES}
+  # Interactive checkout of a specific commit
   coci = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git checkout $(echo ${HASH} | awk '{ print $1 }')
   cop  = checkout --patch
+  # Interactive patch checkout for specific files
   copi = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git checkout --patch ${FILES}
-    # when merging
-  cour = "!f() { git checkout --ours $@ && git add $@; }; f"
-  cthe = "!f() { git checkout --theirs $@ && git add $@; }; f"
-  # cherry-pick - https://git-scm.com/docs/git-cherry-pick
+  # Merge conflict resolution helpers
+  cour = "!f() { git checkout --ours \"$@\" && git add \"$@\"; }; f"
+  cthe = "!f() { git checkout --theirs \"$@\" && git add \"$@\"; }; f"
+
+  # --- Cherry-pick (cp) ---
+  # https://git-scm.com/docs/git-cherry-pick
   cp = cherry-pick
-  # clone - https://git-scm.com/docs/git-clone
+
+  # --- Clone (cl) ---
+  # https://git-scm.com/docs/git-clone
   cl  = clone
   clb = clone --branch
   clf = clone --depth 1
-  # commit - https://git-scm.com/docs/git-commit
+
+  # --- Commit (c) ---
+  # https://git-scm.com/docs/git-commit
   c   = commit
   ca  = commit --amend
   caa = commit --all --amend
   can = commit --amend --no-edit
-  cd = !fish -c 'git commit -m (date +%y.%m.%d).(string sub -l 2 (date +%a))'
+  # Create a dated WIP commit using Fish shell
+  cd  = !fish -c 'git commit -m (date +%y.%m.%d).(string sub -l 2 (date +%a))'
   cdr = !fish -c git_cd
   ce  = commit --allow-empty
   cem = commit --allow-empty --message
   cf  = commit --fixup
-  # Automatic fixup with autosquash without editor prompt - https://stackoverflow.com/a/29094904
+  # Automatic fixup and autosquash without editor prompt - https://stackoverflow.com/a/29094904
   cfi = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git commit --fixup ${HASH} && GIT_SEQUENCE_EDITOR=: git rebase --interactive ${HASH}~
   clm = commit --all --message
   cm  = commit --message
-  # diff - https://git-scm.com/docs/git-diff
+
+  # --- Diff (d) ---
+  # https://git-scm.com/docs/git-diff
   d     = diff
+  # Interactive diff for selected files
   di    = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --color {2}' | awk '{ print $2 }') && [[ -n ${FILES} ]] && git diff ${FILES}
   ds    = diff --staged
   dst   = diff --staged --stat
@@ -85,21 +119,33 @@
   dfts  = difftool --staged
   dftsg = difftool --staged --gui
   dw    = diff --ignore-all-space
-  # fetch - https://git-scm.com/docs/git-fetch
+
+  # --- Fetch (f) ---
+  # https://git-scm.com/docs/git-fetch
   f  = fetch
   fa = fetch --all
   fo = fetch origin
   fu = fetch upstream
-  # format-patch - https://git-scm.com/docs/git-format-patch
+
+  # --- Format-patch (fp) ---
+  # https://git-scm.com/docs/git-format-patch
   fp = format-patch
-  # fsck - https://git-scm.com/docs/git-fsck
+
+  # --- Fsck (fk) ---
+  # https://git-scm.com/docs/git-fsck
   fk = fsck
-  # gc - https://git-scm.com/docs/git-gc
+
+  # --- GC (gc) ---
+  # https://git-scm.com/docs/git-gc
   gc  = gc
-  gca = gc --aggresive
-  # grep - https://git-scm.com/docs/git-grep
+  gca = gc --aggressive
+
+  # --- Grep (g) ---
+  # https://git-scm.com/docs/git-grep
   g = grep --function-context
-  # hub - https://hub.github.com/
+
+  # --- GitHub CLI (h) ---
+  # https://cli.github.com/manual/
   h    = !gh repo view --web
   hc   = !gh repo create
   hcl  = !gh repo clone
@@ -112,40 +158,54 @@
   hpc  = !gh pr create
   hpco = !gh pr checkout
   hpv  = !gh pr view
-  # init - https://git-scm.com/docs/git-init
+
+  # --- Init (i) ---
+  # https://git-scm.com/docs/git-init
   i = init
-  # .gitignore - https://git-scm.com/docs/gitignore
-  ig = "!f() { ( [ ! -e .gitignore ] && touch .gitignore ) | echo \"$1\" >> .gitignore; }; f"
-  # gitk - https://git-scm.com/docs/gitk
+
+  # --- .gitignore (ig) ---
+  # https://git-scm.com/docs/gitignore
+  # Quickly append a pattern to .gitignore
+  ig = "!f() { [ ! -f .gitignore ] && touch .gitignore; echo \"$1\" >> .gitignore; }; f"
+
+  # --- Gitk (k) ---
+  # https://git-scm.com/docs/gitk
   k = !gitk
-  # log - https://git-scm.com/docs/git-log
+
+  # --- Log (l) ---
+  # https://git-scm.com/docs/git-log
   l   = log --graph --pretty=lg
   ll  = log --all --graph --pretty=lg
   ld  = "!git l --patch"
   lt  = "!git l --numstat"
   lde = "!git -c diff.external=difft l -p --ext-diff"
-    # Use fzf to select commits and copy their hash to the clipboard
+  # Interactive log: select commits and copy hashes to clipboard
   li = "!git l --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | tr -d '\n' | fish -c 'copy_to_clipboard'"
-  # merge - https://git-scm.com/docs/git-merge
+
+  # --- Merge (m) ---
+  # https://git-scm.com/docs/git-merge
   m  = merge
   ma = merge --abort
   mc = merge --continue
   mm = merge master
   ms = merge --skip
-  # mergetool - https://git-scm.com/docs/git-mergetool
+
+  # --- Mergetool (mt) ---
+  # https://git-scm.com/docs/git-mergetool
   mt  = mergetool
   mtg = mergetool --gui
-  # prune (use git gc which calls git prune)
-  # #pr = prune -v
-  # pull - https://git-scm.com/docs/git-pull
-  # (--rebase by default below)
+
+  # --- Pull (pl) ---
+  # https://git-scm.com/docs/git-pull
   pl   = pull
   plf  = pull --force
   plo  = pull origin
   plof = pull origin --force
   plp  = pull upstream
   plpf = pull upstream --force
-  # push - https://git-scm.com/docs/git-push
+
+  # --- Push (ps) ---
+  # https://git-scm.com/docs/git-push
   ps    = push
   psao  = push --all origin
   psaof = push --all origin --force-with-lease
@@ -156,19 +216,25 @@
   psof  = push origin --force-with-lease
   psu   = push upstream
   psuf  = push upstream --force-with-lease
-  # rebase - https://git-scm.com/docs/git-rebase
+
+  # --- Rebase (rb) ---
+  # https://git-scm.com/docs/git-rebase
   rb   = rebase
   rba  = rebase --abort
   rbc  = rebase --continue
   rbi  = rebase --interactive
-  # rebase interactive with fzf from the selected commit (included)
+  # Interactive rebase starting from a commit selected via fzf
   rbii = !HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git rebase --interactive ${HASH}~
   rbm  = rebase master
   rbs  = rebase --skip
-  # reflog - https://git-scm.com/docs/git-reflog
+
+  # --- Reflog (rf) ---
+  # https://git-scm.com/docs/git-reflog
   rf  = reflog --pretty=rf
   rfi = "!git rf --color | fzf --ansi --multi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}' | fish -c 'copy_to_clipboard'"
-  # remote - https://git-scm.com/docs/git-remote
+
+  # --- Remote (re) ---
+  # https://git-scm.com/docs/git-remote
   re   = remote
   rea  = remote add
   reao = remote add origin
@@ -182,21 +248,33 @@
   reso = remote show origin
   resu = remote show upstream
   rev  = remote --verbose
-  # rerere - https://git-scm.com/docs/git-rerere
+
+  # --- Rerere (rrr) ---
+  # https://git-scm.com/docs/git-rerere
   rrr = rerere
-  # reset - https://git-scm.com/docs/git-reset
+
+  # --- Reset (r) ---
+  # https://git-scm.com/docs/git-reset
   r   = reset
   rh  = reset --hard
+  # Interactive mixed reset using fzf
   ri  = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --staged --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git reset --mixed ${FILES}
   rp  = reset --patch
+  # Interactive patch reset using fzf
   rpi = !FILES=$(git -c color.status=always status -s | fzf --ansi --multi --preview 'git diff --staged --color {2}' | awk '{ print $2 }' ) && [[ -n ${FILES} ]] && git reset --patch ${FILES}
   rs  = reset --soft
-  rsm = reset --mixed # default
-  # revert - https://git-scm.com/docs/git-revert
+  rsm = reset --mixed
+
+  # --- Revert (rv) ---
+  # https://git-scm.com/docs/git-revert
   rv = revert
-  # shortlog -- https://git-scm.com/docs/git-shortlog
+
+  # --- Shortlog (slg) ---
+  # https://git-scm.com/docs/git-shortlog
   slg = shortlog --no-merges --summary --numbered --email
-  # stash - https://git-scm.com/docs/git-stash
+
+  # --- Stash (s*) ---
+  # https://git-scm.com/docs/git-stash
   sa  = stash apply
   sc  = stash clear
   sd  = stash drop
@@ -205,50 +283,62 @@
   ss  = stash save
   st  = stash
   sw  = stash show
-  # status - https://git-scm.com/docs/git-stash
+
+  # --- Status (s) ---
+  # https://git-scm.com/docs/git-status
+  # Enhanced status with line numbering
   s = !git -c color.status=always status --branch --show-stash --short | nl -v 0 | sed 's/^\\s+0//'
-  # submodule - https://git-scm.com/docs/git-submodule
+
+  # --- Submodule (sm) ---
+  # https://git-scm.com/docs/git-submodule
   sma = submodule add
   sms = submodule status
   smi = submodule init
   smu = submodule update
   smf = submodule foreach
-  # tag - https://git-scm.com/docs/git-tag
+
+  # --- Tag (t) ---
+  # https://git-scm.com/docs/git-tag
   t  = tag
   ta = tag --annotate
-  # show - https://git-scm.com/docs/git-reset
+
+  # --- Show (w) ---
+  # https://git-scm.com/docs/git-show
   w  = show --ext-diff
+  # Interactive show: select commit via fzf and copy hash to clipboard
   wi = "!f() { HASH=$(git l --color | fzf --ansi --no-sort --preview 'git show --color {2}' | tr -d '|_*./\\\\' | awk '{print $1}') && git show ${HASH} && echo ${HASH} | tr -d '\n' | fish -c 'copy_to_clipboard'; }; f"
   ws = show --show-signature
   wt = show --stat
   wm = show -m
-  # wip - save work in progress quickly and ready to push it if necessary
+
+  # --- WIP ---
+  # Save work in progress to a new branch
   wip = "!f() { git checkout -b wip/\"$1\" && git add --update && git commit -m \"wip: $1\"; }; f"
 
 [blame]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-blamecoloring
-  # Color blamed lines by date
+  # Color blamed lines by date to highlight recent changes
   coloring = highlightRecent
 
 [branch]
   # https://git-scm.com/docs/git-config#git-config-branchautoSetupRebase
-  # Rebase always with new branches
+  # Always rebase instead of merge when pulling new branches
   autosetuprebase = always
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-branchltnamegtrebase
-  # Pass --preserve-merges along to git rebase so that locally committed merge commits will not be flattened by running git pull.
+  # Preserve merges when rebasing
   rebase = merges
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-branchsort
-  # Sort by most recently used branches instead of alphabetical
+  # Sort by most recently used branches
   sort = committerdate
 
 [checkout]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-checkoutdefaultRemote
-  # git checkout <something> with only one remote, it does git checkout origin/<something>
+  # If a branch name is ambiguous, default to 'origin'
   defaultRemote = origin
 
 [color]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-colorui
-  # Color only when the output is to a terminal
+  # Enable color output when directed to a terminal
   ui = auto
 
 [color "branch"]
@@ -287,87 +377,81 @@
 
 [commit]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-commitgpgSign
-  # Sign all commits with gpg
+  # Sign all commits with GPG/SSH key
   gpgSign = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-commitverbose
-  # Show diff at the bottom of the commit message template to help to describe the commit
+  # Show the diff in the commit message editor
   verbose = true
 
 [core]
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreeditor
-  # Default editor for commits and tags
-  # editor       = $GIT_EDITOR
-  # https://github.com/github/gitignore/tree/master/Global
-  # globally useful gitignores
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreexcludesfile
+  # Path to global gitignore
   excludesfile = ~/.config/git/gitignore_global
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corefsmonitor
-  # Speed up git by avoiding unnecessary processing of files that have not changed
-  fsmonitor  = true
+  # Use file system monitor to speed up status in large repos
+  fsmonitor    = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corepager
-  # Use delta as pager https://github.com/dandavison/delta
+  # Use delta as the default pager
   pager        = delta --dark
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corewhitespace
+  # White-space error handling
+  whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [pager]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pagerltcmdgt
+  # Enable pager for difftool output
   difftool = true
-
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corewhitespace
-  # Notify whitespace issues
-  whitespace   = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 
 [credential]
   # https://git-scm.com/docs/gitcredentials#Documentation/gitcredentials.txt-cache
-  # Cache credentials in the system's secure keyring
-  # providing better security and long periods than the git cache
-  helper = cache --timeout 86400 # cache the credetianls for the whole day
-  # FIXME: Be able to use libsecret for the credentials cache
-  # helper = libsecret # gitFull required
-  # helper = /run/current-system/sw/bin/git-credential-libsecret # gitFull required
+  # Cache credentials for 24 hours
+  helper = cache --timeout 86400
 
 [delta]
   side-by-side                 = true
   features                     = unobtrusive-line-numbers decorations
   whitespace-error-style       = 1 reverse
+
 [delta "unobtrusive-line-numbers"]
   line-numbers-left-format     = "{nm:>4}┊"
   line-numbers-right-format    = "{np:>4}│"
   line-numbers                 = true
+
 [delta "decorations"]
   commit-decoration-style      = bold yellow box ul
   file-style                   = bold yellow ul
   file-decoration-style        = none
   hunk-header-decoration-style = yellow box
 
-
 [diff]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-codehistogramcode
-  # Use histogram algorithm
+  # Use the histogram diff algorithm (usually better than default)
   algorithm       = histogram
   # https://git-scm.com/docs/git-diff#Documentation/git-diff.txt-plain
-  # Moved lines in a diff are colored differently
+  # Highlight moved lines differently
   colorMoved      = plain
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-diffguitool
   guitool         = meld
   # https://git-scm.com/docs/git-config#Documentation/Documentation/git.txt-config.txt-diffindentHeuristic
-  # Experimental heuristics that shift diff hunk boundaries to make patches easier to read
+  # Experimental: shift diff hunk boundaries for better readability
   indentHeuristic = true
   # https://git-scm.com/docs/git-config#Documentation/Documentation/git.txt-config.txt-diffmnemonicPrefix
-  # Use a prefix pair that is different from the standard "a/" and "b/" depending on what is being compared
+  # Use mnemonic prefixes (i/c/o/w) instead of a/b
   mnemonicPrefix  = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-diffsubmodule
-  # The "diff" format shows an inline diff of the changed contents of the submodule
-  submodule = log
+  # Show submodule changes as a log of commits
+  submodule       = log
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftool
+  # Use difftastic as the default structural diff tool
   tool            = difftastic
-  # https://difftastic.wilfred.me.uk/git.html
-  # external        = difft
 
 [difftool]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-difftoolprompt
-  # Don't ask to hit return to open the difftool
+  # Skip the 'hit return to open' prompt
   prompt = false
 
 [difftool "difftastic"]
+  # https://difftastic.wilfred.me.uk/git.html
   cmd = difft "$LOCAL" "$REMOTE"
 
 [difftool "nvimdiff"]
@@ -378,214 +462,179 @@
 
 [fetch]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchfsckObjects
-  # git-fetch-pack will check all fetched objects
+  # Check integrity of all fetched objects
   fsckobjects = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchprune
-  # Remove any remote-tracking references that no longer exist on the remote
-  prune = true
+  # Prune remote-tracking branches and tags that no longer exist
+  prune       = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchpruneTags
-  # Remove any remote-tag references that no longer exist on the remote
-  prunetags = true
+  prunetags   = true
 
 [gpg]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgformat
-	format = ssh
+  # Use SSH for signing (modern alternative to GPG)
+  format = ssh
 
 [grep]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-greplineNumber
-  # Always show the match with its number of line
+  # Always show line numbers
   lineNumber  = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-greppatternType
-  # Use Perl Regular Expressions
+  # Use Perl-Compatible Regular Expressions (PCRE)
   patternType = perl
 
 [help]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-helpautoCorrect
-  # Show the suggestion and prompt for confirmation to run the command
+  # Prompt for confirmation if a command is mistyped
   autocorrect = prompt
 
 [hub]
   # https://hub.github.com/hub.1.html
-  # Always use git protocol over HTTPS
+  # Use git protocol for GitHub CLI
   protocol = git
 
-# https://git-scm.com/docs/git-config#_includes
-# use separate file for username and email
 [include]
   path = .config.personal
 
-# https://git-scm.com/docs/git-config#_includes
-# use other username and mail for the specific folder structure
-# [includeIf "gitdir:~/forks/Work/"]
-#   path = .config.work
-
 [init]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-initdefaultBranch
-  # Allows overriding the default branch name when initializing a new repository
-  # or when cloning an empty repository
+  # Default branch name for new repositories
   defaultBranch = main
 
 [interactive]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-interactivediffFilter
-  # Pipe the diff through the shell command defined
+  # Filter interactive diffs through delta
   diffFilter = delta --color-only
 
 [log]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-logdate
-  # Use human format by default
-  # https://git-scm.com/docs/git-log#Documentation/git-log.txt---dateltformatgt
+  # Default to human-readable relative dates
   date = auto:human
 
 [merge]
-  # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
-  # zdiff3 is similar to diff3 but removes matching lines on the two sides from the conflict region
-  # when those matching lines appear near either the beginning or end of a conflict region.
-  conflictstyle = zdiff3
   # https://git-scm.com/docs/git-config#git-config-mergeff
-  # Always do fast-forward when merging, use instead --no-ff
+  # fast-forward merge whenever possible
   ff            = true
-  # https://git-scm.com/docs/git-mergetool#git-mergetool---gui
-  guitool       = meld
-  # https://git-scm.com/docs/git-config#git-config-mergetool
+  # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
+  # Use zdiff3 for conflict markers (better than diff3)
+  conflictstyle = zdiff3
   tool          = nvim
+  guitool       = meld
 
 [mergetool]
-  # https://git-scm.com/docs/git-mergetool#Documentation/git-mergetool.txt---toollttoolgt
-  # Use the merge resolution program specified by <tool>
-  tool = nvim
-  guitool = meld
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergetoolkeepBackup
-  # After performing a merge, don't save the original file with conflict markers with a .orig extension
-  keepBackup = false
   # https://git-scm.com/docs/git-config#git-config-mergetoolprompt
-  # Don't show the message: Hit return to start merge resolution
-  prompt =  false
+  # Skip 'hit return' prompt
+  prompt     = false
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergetoolkeepBackup
+  # Don't keep .orig backup files after resolution
+  keepBackup = false
 
 [mergetool "nvim"]
-  # User diff3 merge style like in meld
-  # For that,  replace $BASE with $MERGED and then hide it
-  cmd = "nvim -d $MERGED $LOCAL $BASE $REMOTE -c 'wincmd J | wincmd ='"
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergetoollttoolgttrustExitCode
-  # Specify whether the exit code of the merge command is used to determine whether the merge was successful
+  # Advanced 4-way merge layout for Neovim
+  cmd           = "nvim -d $MERGED $LOCAL $BASE $REMOTE -c 'wincmd J | wincmd ='"
   trustExitCode = true
 
 [mergetool "kdiff"]
-  # http://meldmerge.org/
-  # User diff3 merge style in meld
-  cmd = "kdiff3 $LOCAL $BASE $REMOTE -o $MERGED"
-  # https://git-scm.com/docs/git-mergetool#Documentation/git-mergetool.txt-mergetoolmelduseAutoMerge
-  useAutoMerge = true
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergetoollttoolgttrustExitCode
-  # Specify whether the exit code of the merge command is used to determine whether the merge was successful
+  cmd           = "kdiff3 $LOCAL $BASE $REMOTE -o $MERGED"
+  useAutoMerge  = true
   trustExitCode = true
 
 [mergetool "meld"]
-  # http://meldmerge.org/
-  # User diff3 merge style in meld
-  cmd = "meld $LOCAL $MERGED $REMOTE --output $MERGED"
-  # https://git-scm.com/docs/git-mergetool#Documentation/git-mergetool.txt-mergetoolmelduseAutoMerge
-  useAutoMerge = true
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-mergetoollttoolgttrustExitCode
-  # Specify whether the exit code of the merge command is used to determine whether the merge was successful
+  # 3-way merge layout for Meld
+  cmd           = "meld $LOCAL $MERGED $REMOTE --output $MERGED"
+  useAutoMerge  = true
   trustExitCode = true
 
 [protocol]
   version = 2
 
 [pretty]
+  # Custom log formats
   l  = * %C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset
   lg = %C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset
   rf = * %C(bold red)%h%Creset - %<(10)%C(bold)%gD %Creset- %C(auto)%d %gs %C(bold green)(%cr) %C(bold blue)<%an>%Creset
 
 [pull]
   # https://git-scm.com/docs/git-config#git-config-pullff
-  # Only allow fast forward merges when pulling
-  ff = only
+  # Only allow fast-forward pulls to avoid accidental merge commits
+  ff     = only
   # https://git-scm.com/docs/git-config#git-config-pullrebase
   # Always rebase when pulling
   rebase = true
 
 [push]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushautoSetupRemote
-  # assume --set-upstream on default push when no upstream tracking
-  autoSetupRemote = true
+  # Automatically set upstream if it doesn't exist
+  autoSetupRemote   = true
   # https://git-scm.com/docs/git-config#git-config-pushdefault
-  # http://stackoverflow.com/a/23918418/89484
-  # Push the current branch to update a branch with the same name although it doesn't exist
+  # Push current branch to a remote branch with the same name
   default           = current
   # https://git-scm.com/docs/git-config#git-config-pushfollowTags
-  # Always push local tags
+  # Automatically push tags associated with the commits
   followTags        = true
   # https://git-scm.com/docs/git-config#git-config-pushrecurseSubmodules
-  # Make sure all submodule commits used by the revisions to be pushed are available on a remote-tracking branch
-  # Push also submodules if required
+  # Ensure submodules are pushed if required
   recurseSubmodules = on-demand
 
 [rebase]
-  # git rebase --interactive will use abbreviated command names in the todo list
-  abbreviateCommands = true
+  # Use abbreviated command names in todo list (p, r, e, s, f, x, d, b)
+  abbreviateCommands  = true
   # https://git-scm.com/docs/git-config#git-config-rebaseautoSquash
-  # Squash always after the interactive rebase
-  autoSquash = true
+  # Automatically squash/fixup commits during interactive rebase
+  autoSquash          = true
   # https://git-scm.com/docs/git-config#git-config-rebaseautoStash
-  # Let run rebase on a dirty worktree running stash and restore automatically
-  autoStash  = true
+  # Automatically stash/unstash dirty worktree during rebase
+  autoStash           = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-rebasemissingCommitsCheck
-  # print a error if some commits are removed (e.g. a line was deleted), the rebase will fail
+  # Fail if commits are missing from the todo list
   missingCommitsCheck = error
   # https://git-scm.com/docs/git-config#git-config-rebasestat
-  # Show a diffstat of what changed upstream since the last rebase
-  stat       = true
+  # Show diffstat of changes
+  stat                = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-rebaseupdateRefs
-  # https://andrewlock.net/working-with-stacked-branches-in-git-is-easier-with-update-refs/
-  # easier to rebase multiple stacked branches at a time
-  updateRefs = true
+  # Update branch references when rebasing stacked branches
+  updateRefs          = true
 
 [receive]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-receivefsckObjects
-  # git-receive-pack will check all received objects
+  # Check integrity of received objects
   fsckObjects = true
 
 [rerere]
-  # https://git-scm.com/docs/git-config#git-config-rerereautoUpdate
-  # Updates the index after resolves conflicts using recorded resolution
-  autoupdate = true
   # https://git-scm.com/docs/git-config#git-config-rerereenabled
-  # Enable rerere
-  enabled = true
+  # Enable Reuse Recorded Resolution (rerere)
+  enabled    = true
+  # https://git-scm.com/docs/git-config#git-config-rerereautoUpdate
+  # Automatically update index after resolving conflicts
+  autoupdate = true
 
 [status]
   # https://git-scm.com/docs/git-config#git-config-statusshowStash
-  # Display the number of entries currently stashed
+  # Show stash count and submodule summaries in status
   showStash        = true
   # https://git-scm.com/docs/git-config#git-config-statussubmoduleSummary
-  # Summary of commits for modified submodules will be shown
   submoduleSummary = true
 
 [submodule]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-submodulerecurse
-  # Most operations, like git checkout, fetch, pull, push, etc. to automatically recurse into submodules
+  # Automatically recurse into submodules for most operations
   recurse = true
 
 [tag]
   # https://git-scm.com/docs/git-config#git-config-tagforceSignAnnotated
-  # Always sign tags with GPG
+  # Always sign tags and sort by date
   forceSignAnnotated = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-taggpgSign
-  # Use an agent to avoid typing your gpg passphrase several times.
-  gpgsign = true
+  gpgsign            = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-tagsort
-  # sort by most recently tags instead of alphabetical
-  sort = taggerdate
+  sort               = taggerdate
 
 [transfer]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-transferfsckObjects
-  # fetch or receive will abort in the case of a malformed object or a link to a nonexistent object
   fsckobjects = true
 
-# https://git-scm.com/docs/git-config#git-config-urlltbasegtinsteadOf
-# Always rewrite https:// with git:// git clone included
 [url "git@github.com:"]
+  # https://git-scm.com/docs/git-config#git-config-urlltbasegtinsteadOf
   insteadOf = https://github.com/
   insteadOf = gh:
 
@@ -599,11 +648,10 @@
 
 [web]
   # https://git-scm.com/docs/git-config#git-config-webbrowser
-  # Specify the web browser
   browser = firefox
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean    = git-lfs clean -- %f
+  smudge   = git-lfs smudge -- %f
+  process  = git-lfs filter-process
+  required = true
