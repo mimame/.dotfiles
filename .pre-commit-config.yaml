@@ -30,10 +30,14 @@ repos:
         stages: [commit-msg]
 
       # Unified formatter pass using treefmt.
+      # Fixes a 10s delay:
+      # - Conflict: Prek captures output via pipes, but TERM indicates a smart TTY.
+      # - Bug: treefmt hangs waiting for TTY initialization/response.
+      # - Fix: TERM=dumb forces basic mode, skipping the timeout-prone TTY check.
       - id: treefmt
         name: treefmt
         language: system
-        entry: treefmt
+        entry: env TERM=dumb treefmt
         require_serial: true
 
       # GitHub Actions workflow linter.
