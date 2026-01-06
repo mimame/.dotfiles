@@ -1,31 +1,40 @@
+# GitHub CLI Configuration
+# Documentation: https://cli.github.com/manual/gh_config
 # What protocol to use when performing git operations. Supported values: ssh, https
 git_protocol: ssh
-# What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
+# The editor gh should use for interactive prompts (issues, PRs, etc.).
+# If blank, it defaults to the $EDITOR or $VISUAL environment variables.
 editor: nvim
-# Aliases allow you to create nicknames for gh commands
+# Aliases allow you to create shortcuts for common gh commands.
+# Documentation: https://cli.github.com/manual/gh_alias_set
 aliases:
-  # Repository aliases
-  r: repo view --web
-  rc: repo create
-  rcl: repo clone
-  rf: repo fork
-  # Issue aliases
-  i: issue list
-  ic: issue create
-  is: issue status
-  iv: issue view
-  # Pull Request aliases
-  p: pr list
-  pc: pr create
-  pco: pr checkout
-  pv: pr view
-  pd: pr diff
-  pm: pr merge
-  pr-status: pr status
-  pr-ready: pr ready
-  pr-close: pr close
-  pr-reopen: pr reopen
-  pr-review: pr review
-  # Gist aliases
-  g: gist create
+  # --- Repository ---
+  r: repo view --web # Open current repo in browser
+  rv: repo view # View repo description in terminal
+  rc: repo create # Create a new repository
+  rcl: repo clone # Clone a repository locally
+  rf: repo fork # Create a fork of a repository
+  # --- Issue ---
+  i: issue list # List issues in the current repo
+  ic: issue create # Create a new issue
+  is: issue status # Show status of issues relevant to you
+  iv: issue view # View details of a specific issue
+  # --- Pull Request ---
+  p: pr list # List pull requests in the current repo
+  pc: pr create # Create a new pull request
+  pco: pr checkout # Check out a pull request locally
+  pv: pr view # View PR details in the terminal
+  pvb: pr view --web # View PR details in the browser
+  pd: pr diff # View the diff for a pull request
+  pm: pr merge # Merge a pull request
+  ps: pr status # Show status of your pull requests
+  pr-ready: pr ready # Mark a draft PR as ready for review
+  pr-close: pr close # Close a pull request
+  pr-reopen: pr reopen # Reopen a closed pull request
+  pr-review: pr review # Add a review to a pull request
+  # --- Gist ---
+  g: gist create # Create a new Gist
+  # --- Miscellaneous ---
+  cs: run list # Check CI/Actions status (shorthand for 'checks')
+# Configuration format version
 version: "1"
