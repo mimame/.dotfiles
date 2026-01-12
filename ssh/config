@@ -11,7 +11,7 @@ Host *
   Protocol 2
   # Multiplexing all connections
   ControlMaster auto
-  ControlPath ~/.ssh/.controlmaster/%r@%h:%p
+  ControlPath ~/.ssh/control_sockets/%r@%h:%p
   # 10 minutes to reconnect before close the connection
   ControlPersist 10m
   # All connection are already enough faster use -C instead if needed

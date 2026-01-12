@@ -42,6 +42,9 @@ end
 # SSH agent managed by NixOS programs.ssh.startAgent
 keychain --eval --quiet $HOME/.ssh/id_ed25519 | source
 
+# Create a directory for SSH control sockets
+mkdir -p ~/.ssh/control_sockets
+
 function _download --argument url path
     mkdir -p (dirname $path)
     wget2 -q -O $path $url
