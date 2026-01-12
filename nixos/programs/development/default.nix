@@ -25,6 +25,7 @@
       zlib-ng # Zlib replacement
 
       # Code analysis and linting
+      actionlint # Static checker for GitHub Actions workflow files
       ast-grep # AST-based grep
       codespell # Spell checker for code
       ltex-ls # Language server for LaTeX
