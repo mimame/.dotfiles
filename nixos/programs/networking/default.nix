@@ -26,7 +26,7 @@
       # Network analysis and diagnostics
       bluetui # Bluetooth TUI
       ddgr # DuckDuckGo from the terminal
-      dogdns # Command-line DNS client
+      doggo # Command-line DNS client
       gping # Ping, but with a graph
       grpcurl # gRPC client
       httpie # HTTP client
