@@ -24,7 +24,7 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
     # In this case, we fall back to a predefined list of common services that
     # are expected to exist.
     if test (count $service_paths) -eq 0
-        set -l default_service_names configure-gtk gammastep swayidle udiskie polkit-gnome-authentication-agent-1
+        set -l default_service_names gammastep swayidle udiskie polkit-gnome-authentication-agent-1 # espanso configure-gtk
         # echo "No services found in $user_services_dir. Using default list."
         for name in $default_service_names
             set -a service_paths "$user_services_dir/$name.service"
@@ -54,7 +54,10 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
             # Attempt to repair the service by re-enabling it.
             # `systemctl enable` recreates the symbolic link to point to the correct
             # unit file in the current Nix store.
-            if systemctl enable --user $service_name >/dev/null 2>&1
+            # We use --force to overwrite the existing broken symlink.
+            set -l enable_output (systemctl enable --force --user $service_name 2>&1)
+
+            if test $status -eq 0
                 set_color green
                 echo "✓ Enabled"
                 set_color normal
@@ -76,6 +79,10 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
                 set_color red
                 echo "✗ Failed to enable"
                 set_color normal
+
+                # Print the error message from systemctl for debugging
+                echo "    Error: $enable_output"
+
                 set error_count (math $error_count + 1)
             end
         end
