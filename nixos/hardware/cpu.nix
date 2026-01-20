@@ -19,7 +19,12 @@ _: {
   # This tool automatically adjusts CPU governor and frequency settings based on
   # system load, optimizing for performance when needed and saving power when
   # idle. It is particularly effective for improving battery life on laptops.
+  # NOTE: This conflicts with services.power-profiles-daemon.enable.
   services.auto-cpufreq.enable = true;
+
+  # Disable power-profiles-daemon to avoid conflict with auto-cpufreq.
+  # Some desktop environments or GNOME services enable this by default.
+  services.power-profiles-daemon.enable = false;
 
   # Enable irqbalance to optimize interrupt handling.
   # This daemon distributes hardware interrupts (IRQs) across multiple CPU
