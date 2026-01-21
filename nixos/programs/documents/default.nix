@@ -7,7 +7,9 @@
       pdfarranger # Rearrange PDF pages
       pdfsam-basic # Split and merge PDF files
       pdftk # PDF toolkit
+      pdfchain # GUI for pdftk
       poppler-utils # PDF utilities (e.g., pdftotext, pdfimages)
+      qpdf # Structural PDF transformation
       zathura # PDF viewer
       xournalpp # PDF annotation
 
