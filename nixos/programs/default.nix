@@ -12,20 +12,12 @@
     ./media/default.nix
     ./misc/default.nix
     ./networking/default.nix
-    (import ./services/default.nix {
-      inherit pkgs;
-      inherit (vars) username;
-    })
+    ./services/default.nix
     ./security/default.nix
     ./shells/default.nix
     ./system-tools/default.nix
     ./terminals/default.nix
-    (import ./virtualisation.nix {
-      inherit pkgs;
-      inherit (vars) username;
-    })
-    (import ./borgmatic-backup.nix {
-      inherit pkgs vars;
-    })
+    ./virtualisation.nix
+    ./borgmatic-backup.nix
   ];
 }

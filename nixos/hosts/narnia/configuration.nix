@@ -12,15 +12,14 @@
 # https://nixos.org/manual/nixos/stable/
 # ----------------------------------------------------------------------------
 {
-  config, # The aggregated configuration of all imported modules.
-  pkgs, # The default Nixpkgs package set.
-  vars, # The set of variables from variables.nix
-  ... # Catch-all for other arguments (e.g., `lib`, `modulesPath`).
+  config,
+  pkgs,
+  ...
 }:
 let
-  # Fetch the nixpkgs-unstable channel as a tarball. This allows access to
-  # bleeding-edge packages without needing to manage system-wide channels
-  # imperatively with `nix-channel`.
+  # Import variables locally to resolve imports without infinite recursion
+  vars = import ../../variables.nix;
+  # Fetch the nixpkgs-unstable channel as a tarball.
   unstableTarball = fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
 in
 {
@@ -52,12 +51,9 @@ in
     ../../hardware/bluetooth.nix
     ../../hardware/cpu.nix
     ../../hardware/graphics.nix
-    (import ../../hardware/networking.nix {
-      inherit config pkgs;
-      inherit (vars) hostname;
-    })
+    ../../hardware/networking.nix
     ../../hardware/peripherals/printer.nix
-    (import ../../hardware/peripherals/scanner.nix { inherit vars; })
+    ../../hardware/peripherals/scanner.nix
     ../../hardware/sound.nix
     ../../hardware/time.nix
 
@@ -67,24 +63,18 @@ in
 
     # --- Base System Services & Settings ---
     # Fundamental system services and configurations.
-    (import ../../system/base.nix {
-      inherit pkgs;
-      inherit (vars) username;
-    })
+    ../../system/base.nix
     ../../system/btrfs.nix
 
     ../../system/fonts.nix
 
     # --- Programs & Development Environments ---
-    (import ../../programs/default.nix { inherit pkgs vars; })
+    ../../programs/default.nix
     ../../programs/languages/default.nix
 
     # --- User Accounts ---
     # User-specific configurations and settings.
-    (import ../../users/${vars.username}/default.nix {
-      inherit pkgs;
-      inherit (vars) username;
-    })
+    ../../users/${vars.username}/default.nix
 
     # --- Desktop Environment ---
     # Configuration for the graphical desktop environment.
@@ -92,10 +82,8 @@ in
     # environment to ensure all GNOME-related services and settings are available.
     ../../desktops/gnome_layer.nix
     ../../desktops/base.nix
-    (import ../../desktops/${vars.desktop}/default.nix {
-      inherit pkgs;
-      inherit (vars) username;
-    })
+    ../../desktops/${vars.desktop}/default.nix
+    # ../../desktops/dms-shell/default.nix
     # ./desktop/sway.nix
     # ./desktop/cosmic.nix
   ];

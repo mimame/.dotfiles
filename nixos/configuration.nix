@@ -24,8 +24,26 @@ in
   # Import the host-specific configuration module.
   # This module defines the system's configuration based on the hostname.
   imports = [
-    (import ./hosts/${vars.hostname}/configuration.nix {
-      inherit config pkgs vars;
-    })
+    ./hosts/${vars.hostname}/configuration.nix
   ];
+
+  # Make variables available to all modules automatically
+  #
+  # STRATEGY: Dependency Injection
+  # We inject `vars` and common attributes (username, hostname) into the module
+  # system args. This decoupling allows modules to request these values as
+  # function arguments (e.g., `{ pkgs, username, ... }`) without needing to
+  # know the location of `variables.nix`.
+  #
+  # WHY THIS IS BEST:
+  # 1. Decoupling: Sub-modules are path-agnostic. Moving files doesn't break imports.
+  # 2. Clarity: Module dependencies are explicit in the function header.
+  # 3. Convenience: No boilerplate `let vars = import ...` in every file.
+  #
+  # NOTE: Imports are resolved BEFORE these args are available, so files performing
+  # imports (like `hosts/narnia/configuration.nix`) must still import `variables.nix` manually.
+  _module.args = {
+    inherit vars;
+    inherit (vars) username hostname desktop;
+  };
 }
