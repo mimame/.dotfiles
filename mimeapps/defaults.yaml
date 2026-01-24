@@ -86,6 +86,8 @@ Default Applications:
   x-scheme-handler/about: firefox.desktop
   x-scheme-handler/bitwarden: bitwarden.desktop
   x-scheme-handler/calibre: calibre-gui.desktop
+  x-scheme-handler/chrome: firefox.desktop
+  x-scheme-handler/ftp: firefox.desktop
   x-scheme-handler/gitg: org.gnome.gitg.desktop
   x-scheme-handler/http: firefox.desktop
   x-scheme-handler/https: firefox.desktop
@@ -97,6 +99,7 @@ Default Applications:
   x-scheme-handler/tel: Zoom.desktop
   x-scheme-handler/tg: org.telegram.desktop.desktop
   x-scheme-handler/tonsite: org.telegram.desktop.desktop
+  x-scheme-handler/unknown: firefox.desktop
   x-scheme-handler/webcal: firefox.desktop
   x-scheme-handler/zed: dev.zed.Zed.desktop
   x-scheme-handler/zoom*: Zoom.desktop
