@@ -18,6 +18,7 @@ clifm = "~/.config/clifm"
 cmus = "~/.config/cmus"
 # conda = "~/"
 # devdocs = ""
+DankMaterialShell = "~/.config/DankMaterialShell"
 direnv = "~/.config/direnv"
 espanso = { target = "~/.config/espanso", type = "symbolic" } # Files with {{}} automatically detected as templates
 fd = "~/.config/fd"
