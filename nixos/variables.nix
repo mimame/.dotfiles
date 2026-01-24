@@ -1,3 +1,15 @@
+# ----------------------------------------------------------------------------
+# Global Variables
+#
+# This file defines the "Single Source of Truth" for the system configuration.
+#
+# USAGE:
+# These variables are injected into the NixOS module system via `_module.args`
+# in `configuration.nix`.
+#
+# - In normal modules: Request `{ vars, username, ... }` as arguments.
+# - In imports blocks: Import this file manually (args are not available yet).
+# ----------------------------------------------------------------------------
 {
   hostname = "narnia";
   username = "mimame";
