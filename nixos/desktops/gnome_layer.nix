@@ -108,7 +108,6 @@
       # GNOME Core Applications
       baobab # Disk usage analyzer
       file-roller # Archive manager
-      glib # Core application library
       gnome-control-center # GNOME settings panel
       gnome-font-viewer # Font viewer
       gparted # Disk partition editor

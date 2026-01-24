@@ -23,7 +23,6 @@
     wev # Wayland event viewer
     wl-clipboard # Wayland clipboard utilities
     wlrctl # Control Wayland compositors
-    wtype # Type text on Wayland
     ydotool # Command-line tool to simulate keyboard and mouse input
   ];
 }
