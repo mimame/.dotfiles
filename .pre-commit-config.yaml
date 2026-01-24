@@ -12,8 +12,17 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: check-added-large-files
+      - id: fix-byte-order-marker
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: check-xml
+      - id: mixed-line-ending
+      - id: check-symlinks
+      - id: check-merge-conflict
       - id: detect-private-key
       - id: check-case-conflict
+      # - id: no-commit-to-branch # Disabled: Direct commits to main are standard in this dotfiles repo
       - id: check-executables-have-shebangs
 
   # Local hooks targeting system-installed tools.
