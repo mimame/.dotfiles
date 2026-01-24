@@ -91,15 +91,30 @@ in
   # ----------------------------------------------------------------------------
   # Nixpkgs Configuration
   # ----------------------------------------------------------------------------
+
+  # Overlays are the standard, modern way to extend the Nix package set.
+  #
+  # WHY THIS IS BEST:
+  # 1. Recommended: This is the official and most robust approach.
+  # 2. Composable: Multiple modules can add to `nixpkgs.overlays` without conflict.
+  # 3. Global Scope: They operate at a low level, ensuring every instance of `pkgs`
+  #    passed to modules (even deep in the tree) includes the `unstable` attribute.
+  # 4. Safe Syntax: The `(final: prev: { ... })` pattern allows referencing the
+  #    final aggregated package set, which is safer for complex overrides.
+  nixpkgs.overlays = [
+    (final: prev: {
+      unstable = import unstableTarball {
+        config = config.nixpkgs.config;
+      };
+    })
+  ];
+
   nixpkgs.config = {
     # Allow the installation of packages with non-free licenses.
     allowUnfree = true;
 
-    # Use an overlay to add the `unstable` package set, making it available
-    # as `pkgs.unstable`.
+    # Use an overlay to add custom package overrides.
     packageOverrides = pkgs: {
-      unstable = import unstableTarball { inherit (config.nixpkgs) config; };
-
       # Nullify packages with abusive telemetry or undesirable features.
       # This prevents them from being installed accidentally.
       # See:
