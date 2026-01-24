@@ -13,7 +13,6 @@
       broot # A new way to navigate and discover your filesystem
       clifm # Command line file manager
       (nnn.override { withNerdIcons = true; }) # A file browser and disk usage analyzer
-      ranger # A console file manager with VI key bindings
       vifm # VI-like file manager
       xplr # A hackable, minimal, fast TUI file explorer
       yazi # Terminal file manager
