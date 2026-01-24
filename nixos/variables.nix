@@ -15,4 +15,8 @@
   username = "mimame";
   desktop = "niri";
   scannerIp = "192.168.1.39";
+
+  # Unstable Source
+  # Used to import modules or packages from unstable.
+  unstableSrc = builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
 }
