@@ -104,7 +104,7 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       unstable = import unstableTarball {
-        config = config.nixpkgs.config;
+        inherit (config.nixpkgs) config;
       };
     })
   ];

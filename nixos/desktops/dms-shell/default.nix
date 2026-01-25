@@ -6,7 +6,7 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       # The dms-shell unstable module expects dgop to be in the main pkgs set
-      dgop = final.unstable.dgop;
+      inherit (final.unstable) dgop;
     })
   ];
 

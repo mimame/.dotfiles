@@ -3,10 +3,7 @@
 {
   environment.systemPackages =
     with pkgs;
-    [
-
-    ]
-    ++ (with pkgs.unstable; [
+    (with pkgs.unstable; [
       artem # A modern image viewer for the terminal
       chafa # Command-line tool to convert images to ANSI/Unicode character art
       imagemagick # Software suite to create, edit, and compose bitmap images

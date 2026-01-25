@@ -103,8 +103,7 @@
   # Core GNOME applications and utilities.
   environment.systemPackages =
     with pkgs;
-    [ ]
-    ++ (with pkgs.unstable; [
+    (with pkgs.unstable; [
       # GNOME Core Applications
       baobab # Disk usage analyzer
       file-roller # Archive manager
