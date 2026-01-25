@@ -14,6 +14,11 @@
       tenv # A tool for managing different versions of Terraform and OpenTofu.
       lazydocker # A terminal UI for Docker
       ansible # Automation engine
+      ansible-lint # Best practices checker for Ansible
+      dockerfile-language-server # Language server for Dockerfiles
+      hadolint # Dockerfile linter
+      terraform-ls # Language server for Terraform
+      tflint # Terraform linter
       # pulumi-bin # A tool for creating, deploying, and managing infrastructure as code.
 
       # Disabled packages
