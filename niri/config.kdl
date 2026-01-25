@@ -265,10 +265,6 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 spawn-at-startup "ghostty"
-// spawn-at-startup "nm-applet"
-spawn-at-startup "dms-shell"
-spawn-at-startup "walker" "--gapplication-service"
-spawn-at-startup "copyq"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -672,9 +668,12 @@ binds {
 }
 
 environment {
+    XDG_CURRENT_DESKTOP "niri"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
     SDL_VIDEODRIVER "wayland"
     QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "gtk3"
+    QT_QPA_PLATFORMTHEME_QT6 "gtk3"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     _JAVA_AWT_WM_NONREPARENTING "1"
     MOZ_ENABLE_WAYLAND "1"
