@@ -10,26 +10,28 @@ _: {
   # by Intel to address hardware vulnerabilities and bugs.
   hardware.cpu.intel.updateMicrocode = true;
 
-  # Enable the Thermal Daemon (thermald).
-  # This service monitors and controls CPU temperatures to prevent overheating
-  # and ensure optimal performance under load, especially for Intel CPUs.
-  services.thermald.enable = true;
+  services = {
+    # Enable the Thermal Daemon (thermald).
+    # This service monitors and controls CPU temperatures to prevent overheating
+    # and ensure optimal performance under load, especially for Intel CPUs.
+    thermald.enable = true;
 
-  # Enable auto-cpufreq for dynamic power management.
-  # This tool automatically adjusts CPU governor and frequency settings based on
-  # system load, optimizing for performance when needed and saving power when
-  # idle. It is particularly effective for improving battery life on laptops.
-  # NOTE: This conflicts with services.power-profiles-daemon.enable.
-  services.auto-cpufreq.enable = true;
+    # Enable auto-cpufreq for dynamic power management.
+    # This tool automatically adjusts CPU governor and frequency settings based on
+    # system load, optimizing for performance when needed and saving power when
+    # idle. It is particularly effective for improving battery life on laptops.
+    # NOTE: This conflicts with services.power-profiles-daemon.enable.
+    auto-cpufreq.enable = true;
 
-  # Disable power-profiles-daemon to avoid conflict with auto-cpufreq.
-  # Some desktop environments or GNOME services enable this by default.
-  services.power-profiles-daemon.enable = false;
+    # Disable power-profiles-daemon to avoid conflict with auto-cpufreq.
+    # Some desktop environments or GNOME services enable this by default.
+    power-profiles-daemon.enable = false;
 
-  # Enable irqbalance to optimize interrupt handling.
-  # This daemon distributes hardware interrupts (IRQs) across multiple CPU
-  # cores, preventing a single core from being bottlenecked by I/O tasks.
-  # This can improve overall system responsiveness and performance.
-  # See: https://wiki.archlinux.org/title/Improving_performance#irqbalance
-  services.irqbalance.enable = true;
+    # Enable irqbalance to optimize interrupt handling.
+    # This daemon distributes hardware interrupts (IRQs) across multiple CPU
+    # cores, preventing a single core from being bottlenecked by I/O tasks.
+    # This can improve overall system responsiveness and performance.
+    # See: https://wiki.archlinux.org/title/Improving_performance#irqbalance
+    irqbalance.enable = true;
+  };
 }

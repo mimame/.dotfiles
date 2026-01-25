@@ -1,10 +1,30 @@
 { pkgs, username, ... }:
 
 {
-  # Locate service
-  services.locate = {
-    enable = true;
-    package = pkgs.unstable.plocate;
+  services = {
+    # Locate service
+    locate = {
+      enable = true;
+      package = pkgs.unstable.plocate;
+    };
+
+    ollama = {
+      enable = true;
+      package = pkgs.ollama-cuda;
+      acceleration = "cuda";
+      loadModels = [ "gemma3" ];
+    };
+
+    # Ollama service for running large language models locally
+    nextjs-ollama-llm-ui.enable = true; # Next.js UI for Ollama
+
+    # Syncthing service for file synchronization
+    syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+      user = "${username}";
+      dataDir = "/home/${username}";
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -51,21 +71,4 @@
   #     };
   #   };
   # };
-
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-cuda;
-    acceleration = "cuda";
-    loadModels = [ "gemma3" ];
-  };
-  # Ollama service for running large language models locally
-  services.nextjs-ollama-llm-ui.enable = true; # Next.js UI for Ollama
-
-  # Syncthing service for file synchronization
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    user = "${username}";
-    dataDir = "/home/${username}";
-  };
 }

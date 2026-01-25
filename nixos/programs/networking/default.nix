@@ -2,9 +2,11 @@
 
 {
   # Network diagnostic tools
-  programs.mtr.enable = true; # Network diagnostic tool
-  programs.wireshark.enable = true; # Network protocol analyzer
-  programs.mosh.enable = true; # Mobile Shell
+  programs = {
+    mtr.enable = true; # Network diagnostic tool
+    wireshark.enable = true; # Network protocol analyzer
+    mosh.enable = true; # Mobile Shell
+  };
 
   environment.systemPackages =
     with pkgs;

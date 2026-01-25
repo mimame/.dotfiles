@@ -15,31 +15,82 @@
 # third-party applications integrate smoothly and function as expected.
 { pkgs, ... }:
 {
-  # X11/Xorg and Display Manager Configuration
-  # Even though we're running Wayland, services.xserver is still required because:
-  # 1. GDM (GNOME Display Manager) dependency: GDM is built on top of X11
-  #    infrastructure, even when it launches Wayland sessions.
-  # 2. Backward compatibility and fallback: Provides an X11 fallback session and
-  #    enables XWayland for applications that don't support Wayland natively.
-  # 3. NixOS architecture: The services.xserver module enables essential graphics
-  #    stack components that both X11 and Wayland sessions depend on.
-  services.xserver.enable = true;
-  services.displayManager.gdm.enable = true;
+  services = {
+    # X11/Xorg and Display Manager Configuration
+    # Even though we're running Wayland, services.xserver is still required because:
+    # 1. GDM (GNOME Display Manager) dependency: GDM is built on top of X11
+    #    infrastructure, even when it launches Wayland sessions.
+    # 2. Backward compatibility and fallback: Provides an X11 fallback session and
+    #    enables XWayland for applications that don't support Wayland natively.
+    # 3. NixOS architecture: The services.xserver module enables essential graphics
+    #    stack components that both X11 and Wayland sessions depend on.
+    xserver.enable = true;
+    displayManager.gdm.enable = true;
 
-  # GNOME Keyring daemon - provides secure storage for passwords, keys, and certificates.
-  # This is essential for automatically storing and retrieving passwords for applications,
-  # managing SSH keys, and storing WiFi passwords.
-  services.gnome.gnome-keyring.enable = true;
-  # This automatically enables the GCR (GNOME Crypto) SSH agent, which conflicts
-  # with the standard `programs.ssh.startAgent`.
-  services.gnome.gcr-ssh-agent.enable = true;
+    gnome = {
+      # GNOME Keyring daemon - provides secure storage for passwords, keys, and certificates.
+      # This is essential for automatically storing and retrieving passwords for applications,
+      # managing SSH keys, and storing WiFi passwords.
+      gnome-keyring.enable = true;
+
+      # This automatically enables the GCR (GNOME Crypto) SSH agent, which conflicts
+      # with the standard `programs.ssh.startAgent`.
+      gcr-ssh-agent.enable = true;
+
+      # GNOME Settings Daemon - Core GNOME desktop environment service.
+      # This daemon manages essential desktop functionality including keyboard shortcuts,
+      # display settings, audio/volume control, and power management.
+      gnome-settings-daemon.enable = true;
+
+      # GNOME Online Accounts - Centralized account management service.
+      # This service provides unified authentication and integration for online services
+      # like Google, Nextcloud, etc.
+      gnome-online-accounts.enable = true;
+    };
+
+    # GVFS (GNOME Virtual File System) - Virtual filesystem layer for desktop integration.
+    # This service provides seamless access to various storage backends and network
+    # protocols, including trash functionality, mounting removable media, and accessing
+    # network shares (SFTP, SMB).
+    gvfs.enable = true;
+  };
+
   # This automatically unlocks the user's keyring when they log in with their password.
   security.pam.services.gdm.enableGnomeKeyring = true;
 
-  # GNOME Seahorse - a GUI for managing passwords and keys stored in the GNOME Keyring.
-  programs.seahorse.enable = true;
-  # Configure SSH to use Seahorse's graphical password prompt.
-  programs.ssh.askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
+  programs = {
+    # GNOME Seahorse - a GUI for managing passwords and keys stored in the GNOME Keyring.
+    seahorse.enable = true;
+
+    # Configure SSH to use Seahorse's graphical password prompt.
+    ssh.askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
+
+    # DConf - GNOME configuration system backend.
+    # DConf is the low-level configuration storage system used by GNOME and GTK applications.
+    # It is essential for saving user preferences and application settings.
+    dconf = {
+      enable = true;
+      profiles.user.databases = [
+        {
+          settings = {
+            "org/gnome/desktop/interface" = {
+              "color-scheme" = "prefer-dark";
+              "gtk-theme" = "Sweet-Dark";
+              "icon-theme" = "candy-icons";
+              "cursor-theme" = "capitaine-cursors-white";
+              "cursor-size" = pkgs.lib.gvariant.mkUint32 48;
+              "document-font-name" = "JetBrainsMonoNL 13";
+              "font-name" = "JetBrainsMonoNL 13";
+              "monospace-font-name" = "JetBrainsMonoNL 13";
+            };
+            "org/gnome/desktop/wm/preferences" = {
+              "theme" = "Sweet-Dark";
+            };
+          };
+        }
+      ];
+    };
+  };
 
   # PolicyKit Authentication Agent - Essential for privilege escalation in GUI environments.
   # PolicyKit (polkit) is a system-wide authorization framework that controls access to
@@ -58,47 +109,6 @@
       TimeoutStopSec = 10;
     };
   };
-
-  # GNOME Settings Daemon - Core GNOME desktop environment service.
-  # This daemon manages essential desktop functionality including keyboard shortcuts,
-  # display settings, audio/volume control, and power management.
-  services.gnome.gnome-settings-daemon.enable = true;
-
-  # GNOME Online Accounts - Centralized account management service.
-  # This service provides unified authentication and integration for online services
-  # like Google, Nextcloud, etc.
-  services.gnome.gnome-online-accounts.enable = true;
-
-  # GVFS (GNOME Virtual File System) - Virtual filesystem layer for desktop integration.
-  # This service provides seamless access to various storage backends and network
-  # protocols, including trash functionality, mounting removable media, and accessing
-  # network shares (SFTP, SMB).
-  services.gvfs.enable = true;
-
-  # DConf - GNOME configuration system backend.
-  # DConf is the low-level configuration storage system used by GNOME and GTK applications.
-  # It is essential for saving user preferences and application settings.
-  programs.dconf.enable = true;
-
-  programs.dconf.profiles.user.databases = [
-    {
-      settings = {
-        "org/gnome/desktop/interface" = {
-          "color-scheme" = "prefer-dark";
-          "gtk-theme" = "Sweet-Dark";
-          "icon-theme" = "candy-icons";
-          "cursor-theme" = "capitaine-cursors-white";
-          "cursor-size" = pkgs.lib.gvariant.mkUint32 48;
-          "document-font-name" = "JetBrainsMonoNL 13";
-          "font-name" = "JetBrainsMonoNL 13";
-          "monospace-font-name" = "JetBrainsMonoNL 13";
-        };
-        "org/gnome/desktop/wm/preferences" = {
-          "theme" = "Sweet-Dark";
-        };
-      };
-    }
-  ];
 
   # Core GNOME applications and utilities.
   environment.systemPackages =

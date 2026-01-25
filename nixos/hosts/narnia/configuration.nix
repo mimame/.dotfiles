@@ -101,29 +101,35 @@ in
   #    passed to modules (even deep in the tree) includes the `unstable` attribute.
   # 4. Safe Syntax: The `(final: prev: { ... })` pattern allows referencing the
   #    final aggregated package set, which is safer for complex overrides.
-  nixpkgs.overlays = [
-    (final: prev: {
-      unstable = import unstableTarball {
-        inherit (config.nixpkgs) config;
+  nixpkgs = {
+    overlays = [
+      (final: prev: {
+        unstable = import unstableTarball {
+          inherit (config.nixpkgs) config;
+        };
+      })
+    ];
+
+    config = {
+      # A list of insecure packages that are explicitly allowed to be installed.
+      # This should be used with caution.
+      permittedInsecurePackages = [ ];
+
+      # Allow the installation of packages with non-free licenses.
+      allowUnfree = true;
+
+      # Use an overlay to add custom package overrides.
+      packageOverrides = pkgs: {
+        # Nullify packages with abusive telemetry or undesirable features.
+        # This prevents them from being installed accidentally.
+        # See:
+        # - https://chaos.social/@hexa/114009069746212598
+        # - https://news.ycombinator.com/item?id=43060368
+        # - https://github.com/cachix/devenv/pull/1776/files
+        devbox = null;
+        devenv = null;
+        flox = null;
       };
-    })
-  ];
-
-  nixpkgs.config = {
-    # Allow the installation of packages with non-free licenses.
-    allowUnfree = true;
-
-    # Use an overlay to add custom package overrides.
-    packageOverrides = pkgs: {
-      # Nullify packages with abusive telemetry or undesirable features.
-      # This prevents them from being installed accidentally.
-      # See:
-      # - https://chaos.social/@hexa/114009069746212598
-      # - https://news.ycombinator.com/item?id=43060368
-      # - https://github.com/cachix/devenv/pull/1776/files
-      devbox = null;
-      devenv = null;
-      flox = null;
     };
   };
 
