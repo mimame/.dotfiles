@@ -338,10 +338,7 @@ window-rule {
 // match app-id=r#"^(nm-applet|nm-connection-editor|blueman-manager)$"#
 // match app-id=r#"^(flameshot)$"#
 window-rule {
-  match app-id=r#"^(rofi)$"#
-  match app-id=r#"(copyq)"#
   match app-id=r#"^(flameshot)$"#
-  match app-id=r#"^(walker)$"#
   match app-id=r#"(firefox)"# title="^Picture-in-Picture$"
   open-floating true
 }
@@ -368,7 +365,6 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T repeat=false { spawn "ghostty"; }
-    Mod+D repeat=false { spawn "rofi" "-show" "combi"; }
 
     // Application Launchers
     Mod+Space hotkey-overlay-title="Application Launcher" {
@@ -394,8 +390,6 @@ binds {
     Mod+Alt+L hotkey-overlay-title="Lock Screen" {
         spawn "dms" "ipc" "call" "lock" "lock";
     }
-
-    Mod+Shift+C { spawn "copyq" "menu"; }
 
     Super+Alt+L { spawn "gtklock"; }
 
