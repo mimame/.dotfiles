@@ -8,5 +8,6 @@
   environment.systemPackages = with pkgs.unstable; [
     ruby # The Ruby programming language
     rubocop
+    rubyPackages.erb-formatter # ERB template formatter
   ];
 }

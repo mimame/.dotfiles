@@ -12,6 +12,7 @@
     ]
     ++ (with pkgs.unstable; [
       markdownlint-cli2 # A fast, flexible, and configurable Markdown linter
+      markdown-toc # Generate a table of contents for markdown files
       marksman # Markdown language server
       mdbook # A command line tool to create books from Markdown files
       mdl # Markdown lint tool
