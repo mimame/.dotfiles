@@ -5,13 +5,11 @@
     calibre # E-book management
     cytoscape # Graph visualization and analysis
     emote # Emoji picker
-    eww # Elkowar's Wacky Widgets
     klavaro # Touch typing tutor
     mesa-demos # Mesa 3D graphics library demos
     playerctl # Command-line utility for controlling media players
     qalculate-gtk # Powerful and versatile desktop calculator
     ripdrag # Drag and drop utility
-    rofi # Application launcher and more
     satty # Screenshot annotation tool
     spicetify-cli # Customize Spotify client
     sqlitebrowser # SQLite database browser

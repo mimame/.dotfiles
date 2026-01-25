@@ -78,15 +78,5 @@
       xwayland-satellite # XWayland utility
     ]
     ++ (with pkgs.unstable; [
-      # Notifications and OSD
-      swaynotificationcenter # Notification daemon for Sway and Wayland
-      swayosd # On-screen display for Sway and Wayland
-
-      # Sway/Niri utilities
-      swayr # An urgent-first/most-recently-used window switcher for sway & swayrbar
-      niriswitcher # Niri workspace switcher
-
-      # Status bars
-      waybar # Highly customizable Wayland bar
     ]);
 }

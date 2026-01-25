@@ -103,9 +103,6 @@ if not test -f $resource_stamp
     # BTOP Theme
     _ensure_resource 'https://raw.githubusercontent.com/dracula/bashtop/refs/heads/master/dracula.theme' ~/.config/btop/themes/dracula
 
-    # Rofi Theme
-    _ensure_resource 'https://raw.githubusercontent.com/dracula/rofi/refs/heads/main/theme/config1.rasi' ~/.config/rofi/dracula.rasi
-
     # Kitty Theme (Only if kitty is the terminal)
     if test "$TERM" = xterm-kitty; and not test -f ~/.config/kitty/current-theme.conf
         kitty +kitten themes --reload-in=all Dracula

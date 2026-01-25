@@ -84,8 +84,6 @@ in
     ../../desktops/base.nix
     ../../desktops/${vars.desktop}/default.nix
     ../../desktops/dms-shell/default.nix
-    # ./desktop/sway.nix
-    # ./desktop/cosmic.nix
   ];
 
   # ----------------------------------------------------------------------------
