@@ -59,7 +59,6 @@
       zstd # Zstandard compressor/decompressor
 
       # Miscellaneous utilities
-      copyq # Clipboard manager
       gemini-cli # Gemini CLI
       glow # Markdown renderer
       halp # A command-line help tool
