@@ -85,7 +85,6 @@
       # Sway/Niri utilities
       swayr # An urgent-first/most-recently-used window switcher for sway & swayrbar
       niriswitcher # Niri workspace switcher
-      walker # Application launcher
 
       # Status bars
       waybar # Highly customizable Wayland bar

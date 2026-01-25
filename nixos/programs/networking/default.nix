@@ -21,6 +21,7 @@
       curlie # The power of curl, the ease of use of httpie
       rclone # Rclone syncs files to and from cloud storage
       rsync # Fast, versatile, remote (and local) file-copying tool
+      wget # The non-interactive network downloader
       wget2 # Successor to Wget
 
       # Network analysis and diagnostics

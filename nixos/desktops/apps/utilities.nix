@@ -2,7 +2,6 @@
 {
   environment.systemPackages = with pkgs.unstable; [
     # Utilities
-    anyrun # Application launcher
     calibre # E-book management
     cytoscape # Graph visualization and analysis
     emote # Emoji picker
@@ -17,7 +16,6 @@
     spicetify-cli # Customize Spotify client
     sqlitebrowser # SQLite database browser
     tridactyl-native # Keyboard interface for Firefox
-    ulauncher # Application launcher
     unetbootin # Create bootable Live USB drives
     usbimager # Write compressed disk images to USB drives
     wev # Wayland event viewer
