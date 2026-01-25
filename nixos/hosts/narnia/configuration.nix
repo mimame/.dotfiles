@@ -23,10 +23,6 @@ let
   unstableTarball = fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
 in
 {
-  # A list of insecure packages that are explicitly allowed to be installed.
-  # This should be used with caution.
-  nixpkgs.config.permittedInsecurePackages = [ ];
-
   # ----------------------------------------------------------------------------
   # Modular Imports
   #
