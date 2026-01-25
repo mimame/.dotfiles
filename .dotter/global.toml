@@ -47,19 +47,14 @@ ptpython = "~/.config/ptpython"
 pueue = { target = "~/.config/pueue", type = "symbolic" }
 qutebrowser = { target = "~/.config/qutebrowser", type = "symbolic" }
 ripgrep = "~/.config/ripgrep"
-rofi = "~/.config/rofi"
 ssh = "~/.ssh"
 starship = "~/.config/"
-# sway = "~/.config/"
-swaync = "~/.config/swaync"
 tealdeer = "~/.config/tealdeer"
 television = { target = "~/.config/television", type = "symbolic" }
 topgrade = "~/.config/topgrade"
-# vifm = "~/.config/"
+vifm = "~/.config/vifm"
 vimiv = "~/.config/vimiv"
 vscode = "~/.config/Code/User/"
-waybar = "~/.config/waybar"
-wezterm = "~/.config/wezterm"
 yazi = { target = "~/.config/yazi", type = "symbolic" }
 zathura = "~/.config/zathura"
 zed = "~/.config/zed"
