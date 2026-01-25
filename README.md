@@ -23,9 +23,9 @@
 
 All configurations are managed declaratively, leveraging NixOS modules and per-tool config files. This ensures:
 - **Reproducibility:** The environment can be rebuilt or migrated easily.
-- **Modularity:** Each tool's configuration is isolated and easy to update.
+- **Modularity:** Each tool's configuration is isolated and easy to update. Host-specific and user-specific logic is decoupled.
 - **Consistency:** Theming and formatting are unified across editors, shells, and productivity tools.
-- **Automation:** Scripts and tools automate repetitive tasks and system maintenance.
+- **Automation:** Integrated `pre-commit` hooks (via `prek`) and CI workflows ensure code quality with `statix`, `treefmt`, and secret scanning.
 
 # Setup
 
@@ -38,47 +38,52 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 
 ## Terminals
 
-- [kitty](https://sw.kovidgoyal.net/kitty/): Fast, feature-rich, GPU-based terminal emulator with advanced features and theming support.
-- [ghostty](https://ghostty.app/): Fast, minimal, GPU-accelerated terminal emulator with modern features and configuration flexibility.
+- [ghostty](https://ghostty.app/): Fast, modern, and hackable GPU-accelerated terminal emulator with superior shell integration.
+- [kitty](https://sw.kovidgoyal.net/kitty/): Feature-rich, GPU-based terminal emulator used as a robust secondary option.
 
 ## Shells
 
-- [fish](https://fishshell.com/): User-friendly, smart, and interactive shell with powerful autosuggestions, syntax highlighting, and a modern scripting language.
+- [fish](https://fishshell.com/): User-friendly, smart, and interactive shell with powerful autosuggestions, syntax highlighting, and optimized startup performance.
+- [nushell](https://www.nushell.sh/): A new type of shell that treats everything as data.
 
 ## Editors
 
-- [helix](https://helix-editor.com/): Powerful, modal code editor with tree-sitter support and fast navigation.
+- [evil-helix](https://github.com/ma-m/evil-helix): A modal code editor inspired by Neovim and Kakoune, optimized for speed.
 - [lazyvim](https://www.lazyvim.org): Feature-rich Neovim configuration built for productivity and extensibility.
+- [zed](https://zed.dev/): High-performance, collaborative code editor with native Nix support.
+- [fresh-editor](https://github.com/fresh-editor/fresh): Terminal-based text editor with LSP support.
 
 ## Utilities & Automation
 
-- [bat](https://github.com/topics/batcat): Fast, colorful alternative to cat with syntax highlighting and git integration.
-- [broot](https://dystroy.org/broot/): Tree-based file browser for easy navigation and file management.
-- [btop](https://github.com/topics/monitor-performance): Modern, interactive resource monitor for system performance.
-- [delta](https://github.com/dandavison/delta): Visually appealing alternative to git diff for better code review.
-- [fd](https://github.com/sharkdp/fd): Lightning-fast file searcher for quickly locating files.
-- [lazygit](https://github.com/jesseduffield/lazygit): User-friendly terminal UI for Git, making version control more accessible.
-- [logseq](https://logseq.com/): Zettelkasten-inspired note-taking app for organizing thoughts and knowledge.
-- [ripgrep](https://github.com/BurntSushi/ripgrep): Blazing-fast tool for searching text content within your codebase or files.
-- [starship](https://starship.rs/): Modern, informative shell prompt that enhances the terminal experience and integrates with multiple shells.
-- [tealdeer](https://github.com/tealdeer-rs/tealdeer): Provides concise TL;DR explanations for popular command-line tools.
-- [topgrade](https://github.com/topgrade-rs/topgrade): Unified system upgrade tool for NixOS packages and more, keeping your system up-to-date.
-- [zellij](https://zellij.dev/): Terminal multiplexer for managing multiple terminal sessions efficiently, with workspace and layout support.
+- [atuin](https://atuin.sh/): Magical shell history that replaces your default history with a SQLite database.
+- [bat](https://github.com/sharkdp/bat): A cat clone with syntax highlighting and Git integration.
+- [borgmatic](https://torsion.org/borgmatic/): Simple, configuration-driven backup software for Borg Backup.
+- [btop](https://github.com/aristocratos/btop): Modern, interactive resource monitor showing CPU, memory, and network usage.
+- [delta](https://github.com/dandavison/delta): A syntax-highlighting pager for Git, diff, and grep output.
+- [fd](https://github.com/sharkdp/fd): A simple, fast and user-friendly alternative to 'find'.
+- [jujutsu (jj)](https://martinvonz.github.io/jj/): A Git-compatible DVCS that is simple, powerful, and safe.
+- [lazygit](https://github.com/jesseduffield/lazygit): Simple terminal UI for git commands.
+- [mise](https://mise.jdx.dev/): Polyglot tool manager, replacing `asdf` for development environment management.
+- [ripgrep (rg)](https://github.com/BurntSushi/ripgrep): Extremely fast line-oriented search tool.
+- [starship](https://starship.rs/): Minimal, blazing-fast, and infinitely customizable prompt for any shell.
+- [television](https://github.com/alexpasmantier/television): Any-input fuzzy finder for the terminal.
+- [topgrade](https://github.com/topgrade-rs/topgrade): Upgrade everything at once.
+- [zellij](https://zellij.dev/): Terminal workspace multiplexer with a focus on ergonomics and ease of use.
 
 ## Windows Management
 
-- [niri](https://github.com/YaLTeR/niri): Modern, tiling Wayland window manager focused on simplicity, ergonomics, and declarative configuration.
-- [rofi](https://www.rofi.com/): Customizable application launcher for quick access to apps and scripts.
-- [walker](https://github.com/abenz1267/walker): Minimal, fast Wayland application launcher for quickly finding and launching apps (alternative to rofi/dmenu).
+- [niri](https://github.com/YaLTeR/niri): A scrollable-tiling Wayland compositor focused on ergonomics.
+- [dms (DankMaterialShell)](https://github.com/DankMaterialShell/dms): Integrated bar, launcher, and system controls for a modern desktop experience.
 
 ## Files Management
 
-- [clifm](https://github.com/leo-arch/clifm): Shell-like, command-line terminal file manager for fast navigation.
-- [yazi](https://yazi-rs.github.io): Blazing-fast terminal file manager written in Rust, based on async I/O, with modern features.
+- [yazi](https://yazi-rs.github.io): Blazing-fast terminal file manager written in Rust, based on async I/O.
+- [clifm](https://github.com/leo-arch/clifm): The shell-like, command-line terminal file manager.
+- [broot](https://dystroy.org/broot/): A new way to navigate directory trees.
 
 # Themes
 
-- [Dracula](https://draculatheme.com): A dark theme for all the things.
+- [Dracula](https://draculatheme.com): The primary dark theme applied across all supported applications.
 
 
 # Conclusion
