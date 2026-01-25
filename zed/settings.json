@@ -1,23 +1,24 @@
 {
   "agent": {
     "default_model": {
-      "model": "claude-sonnet-4",
+      "model": "claude-3-5-sonnet",
       "provider": "zed.dev"
     },
-    "model_parameters": [],
-    "single_file_review": true
+    "favorite_models": [],
+    "model_parameters": []
   },
   "auto_install_extensions": {
-    "css": true,
+    "CSS": true,
     "csv": true,
     "docker-compose": true,
     "dockerfile": true,
     "dracula": true,
+    "elixir": true,
     "fish": true,
     "git-firefly": true,
     "html": true,
     "janet": true,
-    "json": true,
+    "json5": true,
     "just": true,
     "kdl": true,
     "log": true,
@@ -25,8 +26,8 @@
     "make": true,
     "material-icon-theme": true,
     "nix": true,
+    "proto": true,
     "ruby": true,
-    "ruff": true,
     "sql": true,
     "ssh-config": true,
     "terraform": true,
@@ -74,6 +75,10 @@
     "light": "Material Icon Theme",
     "mode": "system"
   },
+  "indent_guides": {
+    "coloring": "indent_aware",
+    "enabled": true
+  },
   "inlay_hints": {
     "edit_debounce_ms": 700,
     "enabled": true,
@@ -84,13 +89,187 @@
     "show_type_hints": true,
     "toggle_on_modifiers_press": null
   },
-  "load_direnv": "direct",
-  "lsp": {
-    "taplo": {
-      "settings": {
-        "array_auto_collapse": false
+  "languages": {
+    "CSS": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "format",
+            "--stdin-file-path",
+            "{buffer_path}"
+          ],
+          "command": "biome"
+        }
       }
     },
+    "Elixir": {
+      "language_servers": [
+        "elixir-ls"
+      ]
+    },
+    "Go": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "-"
+          ],
+          "command": "goimports"
+        }
+      },
+      "language_servers": [
+        "gopls"
+      ]
+    },
+    "HTML": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "format",
+            "--stdin-file-path",
+            "{buffer_path}"
+          ],
+          "command": "biome"
+        }
+      }
+    },
+    "JSON": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "-"
+          ],
+          "command": "jsonfmt"
+        }
+      }
+    },
+    "JavaScript": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "format",
+            "--stdin-file-path",
+            "{buffer_path}"
+          ],
+          "command": "biome"
+        }
+      },
+      "language_servers": [
+        "vtsls",
+        "!typescript-language-server"
+      ]
+    },
+    "Lua": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "-"
+          ],
+          "command": "stylua"
+        }
+      }
+    },
+    "Markdown": {
+      "soft_wrap": "editor_width"
+    },
+    "Nix": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "-"
+          ],
+          "command": "nixfmt"
+        }
+      },
+      "language_servers": [
+        "nixd",
+        "!nil"
+      ]
+    },
+    "Python": {
+      "formatter": {
+        "language_server": {
+          "name": "ruff"
+        }
+      },
+      "language_servers": [
+        "ruff",
+        "pyright"
+      ]
+    },
+    "Ruby": {
+      "language_servers": [
+        "ruby-lsp"
+      ]
+    },
+    "Rust": {
+      "format_on_save": "on",
+      "language_servers": [
+        "rust-analyzer"
+      ]
+    },
+    "TSX": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "format",
+            "--stdin-file-path",
+            "{buffer_path}"
+          ],
+          "command": "biome"
+        }
+      },
+      "language_servers": [
+        "vtsls",
+        "!typescript-language-server"
+      ]
+    },
+    "TypeScript": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "format",
+            "--stdin-file-path",
+            "{buffer_path}"
+          ],
+          "command": "biome"
+        }
+      },
+      "language_servers": [
+        "vtsls",
+        "!typescript-language-server"
+      ]
+    },
+    "Typst": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "format",
+            "-"
+          ],
+          "command": "typstyle"
+        }
+      },
+      "language_servers": [
+        "tinymist"
+      ]
+    },
+    "YAML": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "-"
+          ],
+          "command": "yamlfmt"
+        }
+      }
+    },
+    "Zig": {
+      "language_servers": [
+        "zls"
+      ]
+    }
+  },
+  "lsp": {
     "terraform-ls": {
       "initialization_options": {
         "experimentalFeatures": {
@@ -102,12 +281,19 @@
   "outline_panel": {
     "dock": "right"
   },
+  "preferred_line_length": 120,
   "project_panel": {
     "dock": "right"
   },
   "relative_line_numbers": "enabled",
   "restore_on_startup": "last_session",
+  "scroll_beyond_last_line": "one_page",
   "selection_highlight": true,
+  "show_whitespaces": "selection",
+  "soft_wrap": "preferred_line_length",
+  "tab_bar": {
+    "show_nav_history_buttons": false
+  },
   "tabs": {
     "activate_on_close": "history",
     "close_position": "right",
