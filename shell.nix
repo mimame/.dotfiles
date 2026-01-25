@@ -22,6 +22,7 @@ pkgs.mkShell {
     stylua
     taplo
     jaq
+    statix
     yamlfmt
     jsonfmt
     actionlint

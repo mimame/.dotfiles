@@ -37,6 +37,12 @@ jobs:
             echo "from=${{ github.event.before }}" >> "$GITHUB_OUTPUT"
             echo "to=${{ github.event.after }}" >> "$GITHUB_OUTPUT"
           fi
+      # Run Statix on the entire project to ensure full integrity of Nix files.
+      # While prek (below) checks changed files incrementally, this step
+      # guarantees the whole codebase remains clean.
+      - name: Run Statix
+        run: nix-shell --run "statix check"
+      # Run prek hooks on the changeset.
       - name: Run prek
         run: |
           # We use the shell.nix file defined in the root directory.

@@ -54,6 +54,14 @@ repos:
         entry: actionlint
         files: ^\.github/workflows/
 
+      # Nix linter and anti-pattern finder.
+      - id: statix
+        name: statix
+        language: system
+        entry: statix fix
+        files: \.nix$
+        pass_filenames: false
+
       # Ruby linter and formatter.
       - id: rubocop
         name: rubocop
