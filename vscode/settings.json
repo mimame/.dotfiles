@@ -1,8 +1,21 @@
 {
   "breadcrumbs.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.fontFamily": "JetBrainsMono Nerd Font Mono, 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
   "editor.formatOnSave": true,
+  "editor.guides.bracketPairs": true,
+  "editor.lineHeight": 1.5,
   "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "selection",
+  "editor.rulers": [
+    80,
+    120
+  ],
   "files.autoSave": "onFocusChange",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
   "files.watcherExclude": {
     "**/.DS_Store": true,
     "**/.cache/**": true,
@@ -33,6 +46,7 @@
   "terminal.external.linuxExec": "ghostty",
   "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
   "vim.autoSwitchInputMethod.enable": true,
   "vim.camelCaseMotion.enable": true,
   "vim.easymotion": true,
