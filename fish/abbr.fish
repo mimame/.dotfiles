@@ -55,6 +55,7 @@ abbr v $default_nvim
 abbr vi $default_nvim
 abbr vim $default_nvim
 abbr h hx
+abbr zd zeditor
 abbr nano micro
 
 # Diff with nvim
@@ -172,7 +173,7 @@ edit_config waybarrc ~/.dotfiles/waybar/config.jsonc
 edit_config weztermrc ~/.dotfiles/wezterm/wezterm.lua
 edit_config xplrrc ~/.dotfiles/xplr/init.lua
 edit_config yazirc ~/.dotfiles/yazi/yazi.toml
-edit_config zedrc ~/.dotfiles/zed/settings.json
+edit_config zdrc ~/.dotfiles/zed/settings.json
 edit_config zellijrc ~/.dotfiles/zellij/config.kdl
 
 # Clean up helper
