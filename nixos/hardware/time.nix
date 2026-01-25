@@ -36,12 +36,6 @@ _: {
 
       # Grant specific applications access to location data.
       appConfig = {
-        # Allow `gammastep` to access location data. This is used to automatically
-        # adjust screen color temperature based on sunrise and sunset times.
-        gammastep = {
-          isAllowed = true;
-          isSystem = true;
-        };
       };
     };
   };
