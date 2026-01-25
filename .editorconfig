@@ -11,11 +11,26 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
 
+[*.{bash,sh,zsh}]
+indent_size = 2
+
 [*.lua]
-indent_size = 4
+indent_size = 2
 
 [*.fish]
-indent_size = 4
+indent_size = 2
 
-[*.md]
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.nix]
+indent_size = 2
+
+[*.{md,markdown}]
 trim_trailing_whitespace = false
+
+[Makefile]
+indent_style = tab
