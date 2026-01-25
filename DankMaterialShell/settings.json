@@ -293,7 +293,8 @@
     "poweroff",
     "lock",
     "suspend",
-    "restart"
+    "restart",
+    "hibernate"
   ],
   "powerMenuDefaultAction": "logout",
   "powerMenuGridLayout": false,
