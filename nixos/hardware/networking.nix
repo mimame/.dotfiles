@@ -224,11 +224,7 @@
   # programs.ssh.startAgent = false; # Disabled to avoid conflict with services.gnome.gcr-ssh-agent.enable
   environment.systemPackages =
     with pkgs;
-    [
-      # cmst # QT connman GUI
-      networkmanagerapplet
-    ]
-    ++ (with pkgs.unstable; [
+    (with pkgs.unstable; [
 
     ]);
 }

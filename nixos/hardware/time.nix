@@ -19,8 +19,7 @@ _: {
     # Geoclue2 Location Service
     #
     # Geoclue2 provides location information to applications. It is used by
-    # `automatic-timezoned` and can also be used by other apps like `gammastep`
-    # for automatic screen temperature adjustments.
+    # `automatic-timezoned` for automatic screen temperature adjustments.
     #
     # See: https://github.com/NixOS/nixpkgs/issues/321121
     # ----------------------------------------------------------------------------

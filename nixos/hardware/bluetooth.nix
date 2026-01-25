@@ -27,9 +27,6 @@
     };
   };
 
-  # Enable Blueman, a GTK-based graphical Bluetooth manager.
-  services.blueman.enable = true;
-
   # Configure WirePlumber to enable high-quality Bluetooth audio codecs.
   # This improves the audio experience with compatible Bluetooth headphones.
   environment.etc = {

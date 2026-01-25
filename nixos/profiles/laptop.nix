@@ -53,10 +53,13 @@
     };
   };
 
-  # Essential laptop utilities
   environment.systemPackages = with pkgs; [
     brightnessctl # Control screen brightness from the terminal
     libinput # Diagnostics and configuration for input devices
     libinput-gestures # Touchpad gesture support (if used)
   ];
+
+  # Enable fprintd for fingerprint authentication support.
+  # Requested by DMS Shell for fingerprint features.
+  services.fprintd.enable = true;
 }
