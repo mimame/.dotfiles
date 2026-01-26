@@ -65,7 +65,6 @@
 
   imports = [
     ./apps/browsers.nix
-    ./apps/clipboard.nix
     ./apps/communication.nix
     ./apps/development.nix
     ./apps/graphics.nix

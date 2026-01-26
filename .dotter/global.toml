@@ -28,7 +28,7 @@ ghostty = "~/.config/ghostty"
 git = "~/.config/git"
 gomi = "~/.config/gomi"
 helix = "~/.config/helix"
-i3status-rust = "~/.config/i3status-rust"
+
 jj = "~/.config/jj"
 julia = "~/.julia/"
 kitty = { target = "~/.config/kitty", type = "symbolic" }
