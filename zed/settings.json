@@ -9,6 +9,7 @@
   },
   "auto_install_extensions": {
     "CSS": true,
+    "comment": true,
     "csv": true,
     "docker-compose": true,
     "dockerfile": true,
