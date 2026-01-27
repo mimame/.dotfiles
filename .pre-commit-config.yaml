@@ -55,10 +55,21 @@ repos:
         files: ^\.github/workflows/
 
       # Nix linter and anti-pattern finder.
-      - id: statix
-        name: statix
+      # pass_filenames: false ensures Statix scans the ENTIRE project whenever a .nix file changes.
+      # This "Security Guard" approach guarantees full project integrity and serves as the primary
+      # defense after removing redundant explicit CI steps. Statix is fast enough that the
+      # performance impact of a full scan is negligible.
+      - id: statix-check
+        name: statix check
         language: system
-        entry: statix fix
+        entry: statix check --ignore result
+        files: \.nix$
+        pass_filenames: false
+
+      - id: statix-fix
+        name: statix fix
+        language: system
+        entry: statix fix --ignore result
         files: \.nix$
         pass_filenames: false
 
