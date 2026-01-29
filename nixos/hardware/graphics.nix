@@ -82,7 +82,7 @@
   # Attempts to force NVIDIA by blacklisting the Intel driver.
   # This is generally not the recommended approach for Optimus.
   # boot.kernelParams = lib.mkDefault [ "module_blacklist=i915" ];
-  # boot.blacklistedKernelModules = lib.mkDefault [ "i91is5" ];
+  # boot.blacklistedKernelModules = lib.mkDefault [ "i915" ];
 
   # PRIME Render Offload, an alternative to the sync method.
   # offload = {
