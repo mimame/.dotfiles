@@ -19,10 +19,9 @@
       # attribute set, overriding the default Nixpkgs versions.
       inherit (final.lixPackageSets.latest)
         nixpkgs-review # A tool for reviewing Nixpkgs pull requests.
-        # nix-direnv was removed from this overlay to prevent an infinite recursion
-        # error that occurs when `programs.direnv.nix-direnv.enable = true;` is used.
-        # The standard nix-direnv package from nixpkgs works correctly with lix,
-        # as it simply uses the `nix` command available in the PATH.
+        # NOTE: nix-direnv is excluded here to prevent infinite recursion
+        # during evaluation. The standard version from nixpkgs is used in
+        # `programs/shells/default.nix` and works perfectly with Lix.
         nix-eval-jobs # A tool for evaluating Nix expressions in parallel.
         nix-fast-build # A faster Nix builder.
         colmena # A NixOS deployment tool.
