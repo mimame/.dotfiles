@@ -8,6 +8,13 @@
 # completely missing files) and attempts to repair them by re-enabling and
 # restarting them via `systemctl`.
 function fix_broken_services_by_nixos --description "Repair systemd user services broken by NixOS updates"
+    # Optimization: Only run if the system generation has changed.
+    set -l current_gen (readlink /run/current-system)
+    set -l stamp_file ~/.config/fish/cache/last_service_fix_gen
+    if test -f $stamp_file; and test (cat $stamp_file) = "$current_gen"
+        return
+    end
+
     # Define the directory where user-specific systemd services are stored.
     set -l user_services_dir ~/.config/systemd/user
 
@@ -24,7 +31,7 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
     # In this case, we fall back to a predefined list of common services that
     # are expected to exist.
     if test (count $service_paths) -eq 0
-        set -l default_service_names gammastep swayidle udiskie polkit-gnome-authentication-agent-1 # espanso configure-gtk
+        set -l default_service_names udiskie polkit-gnome-authentication-agent-1 # espanso configure-gtk
         # echo "No services found in $user_services_dir. Using default list."
         for name in $default_service_names
             set -a service_paths "$user_services_dir/$name.service"
@@ -35,7 +42,7 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
 
     # Iterate over each potential service path to check its status.
     for service_path in $service_paths
-        # Extract the service name (e.g., "gammastep.service") from the full path.
+        # Extract the service name (e.g., "udiskie.service") from the full path.
         # This is the name we'll pass to `systemctl`.
         set -l service_name (basename $service_path)
 
@@ -102,12 +109,8 @@ function fix_broken_services_by_nixos --description "Repair systemd user service
         set_color normal
     end
 
-    # Don't output if there are not broken services
-    # if test $fixed_count -eq 0 -a $error_count -eq 0
-    #     set_color green
-    #     echo "✅ No broken services found!"
-    #     set_color normal
-    # end
+    # Record completion to skip subsequent runs on this generation
+    echo "$current_gen" >$stamp_file
 
     # Return a non-zero exit code if any errors occurred.
     test $error_count -eq 0
