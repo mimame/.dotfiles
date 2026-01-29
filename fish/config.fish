@@ -19,10 +19,8 @@ if command -q direnv
     source_transient direnv "direnv hook fish" ~/.config/fish/config.fish
 end
 
-# SSH Agent (only if not already provided by desktop environment)
-if not set -q SSH_AUTH_SOCK
-    setup_ssh_agent
-end
+# SSH Agent
+setup_ssh_agent
 
 # Tools (Cached for speed)
 source_transient starship "starship init fish" ~/.config/fish/config.fish
