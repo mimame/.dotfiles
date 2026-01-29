@@ -52,7 +52,7 @@ starship = "~/.config/"
 tealdeer = "~/.config/tealdeer"
 television = { target = "~/.config/television", type = "symbolic" }
 topgrade = "~/.config/topgrade"
-vifm = "~/.config/vifm"
+vifm = { target = "~/.config/vifm", type = "symbolic" }
 vimiv = "~/.config/vimiv"
 vscode = "~/.config/Code/User/"
 yazi = { target = "~/.config/yazi", type = "symbolic" }
