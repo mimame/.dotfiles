@@ -23,7 +23,7 @@
           HandlePowerKey = "suspend-then-hibernate";
           HandlePowerKeyLongPress = "poweroff";
           IdleAction = "suspend-then-hibernate";
-          IdleActionSec = "10min";
+          IdleActionSec = "20min";
         };
       };
     };
