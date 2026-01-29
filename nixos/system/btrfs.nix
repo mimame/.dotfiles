@@ -17,13 +17,24 @@
   #
   # Note: 'zstd' is the recommended default for modern CPUs, offering a great
   # balance between compression ratio and performance. 'noatime' is used to
-  # reduce disk writes.
+  # reduce disk writes by disabling access-time updates.
+  #
+  # Optimizations for SSD/NVMe:
+  # - 'ssd': Forces SSD-optimized block allocation patterns.
+  # - 'discard=async': Offloads block discard (TRIM) to a background thread,
+  #   preventing micro-stutters during heavy file deletions.
+  # - 'space_cache=v2': A modern metadata system that speeds up free space
+  #   lookups, improving performance as the drive fills up.
+  #
   # Compression is applied only to newly written data. To recompress existing
   # files: 'sudo btrfs filesystem defrag -r -v -czstd /'
   fileSystems = {
     "/".options = [
       "compress=zstd"
       "noatime"
+      "ssd"
+      "discard=async"
+      "space_cache=v2"
     ];
   };
   environment.systemPackages = with pkgs; [
