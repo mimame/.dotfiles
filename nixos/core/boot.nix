@@ -28,11 +28,9 @@ _: {
     # Kernel Runtime Parameters (Sysctl)
     # --------------------------------------------------------------------------
     kernel.sysctl = {
-      # Lower `vm.swappiness` to reduce aggressive swapping to the disk.
-      # This improves system responsiveness, especially on systems with ample RAM,
-      # by making the kernel favor keeping data in RAM instead of swapping it out.
-      # A value of 10 is a common and balanced choice.
-      "vm.swappiness" = 10;
+      # For zram swap, a high swappiness is recommended (e.g., 100-180) to
+      # prioritize compressed RAM over disk cache eviction.
+      "vm.swappiness" = 100;
     };
 
     # --------------------------------------------------------------------------
