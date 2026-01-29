@@ -196,9 +196,7 @@ end
 #     eval (zellij setup --generate-auto-start fish | string collect)
 # end
 
-# =============================================================================
 # Aliases & Abbreviations
-# =============================================================================
 # Loaded last to ensure all tools are in path.
-# We cache the sourcing of the abbreviations to avoid reparsing the file.
-_source_transient abbrs 'cat ~/.config/fish/abbr.fish' ~/.config/fish/abbr.fish
+# We cache the RESULT of the abbreviations to avoid reparsing and retesting files.
+_source_transient abbrs 'fish -c "source ~/.config/fish/abbr.fish; abbr --show"' ~/.config/fish/abbr.fish
