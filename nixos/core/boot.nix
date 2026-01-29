@@ -73,8 +73,9 @@ _: {
     # --------------------------------------------------------------------------
     # Temporary Files Management
     # --------------------------------------------------------------------------
-    # Clears the /tmp directory on every boot.
-    # This is useful for ensuring a clean state for temporary files.
+    # Use tmpfs for /tmp to keep temporary files in RAM.
+    tmp.useTmpfs = true;
+    # Clears the /tmp directory on every boot (handled by tmpfs automatically).
     # tmp.cleanOnBoot = true;
   };
 
