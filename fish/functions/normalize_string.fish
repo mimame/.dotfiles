@@ -15,29 +15,28 @@ function normalize_string --description "Normalize a string (slugify) by removin
         return 0
     end
 
-    # 1. Convert to lowercase first to simplify replacements
+    # 1. Convert to lowercase and handle basic cleanup
     set -l output (string lower "$input_string")
 
-    # 2. Manual transliteration for common diacritics to bypass unreliable iconv behavior on some systems (macOS)
-    set output (string replace -ra '[àáâãäå]' 'a' "$output" |
-                string replace -ra '[èéêë]' 'e' |
-                string replace -ra '[ìíîï]' 'i' |
-                string replace -ra '[òóôõö]' 'o' |
-                string replace -ra '[ùúûü]' 'u' |
-                string replace -ra '[ñ]' 'n' |
-                string replace -ra '[ç]' 'c')
-
-    # 3. Transliterate remaining characters to ASCII (e.g., ł -> l)
-    # BSD iconv (macOS) often returns 1 even on success; we use the output if non-empty.
+    # 2. Transliterate to ASCII using iconv (primary method)
+    # GNU iconv (Linux) is very robust; BSD iconv (macOS) is more limited.
     set -l transliterated (printf "%s" "$output" | iconv -f UTF-8 -t ASCII//TRANSLIT 2>/dev/null)
     if test -n "$transliterated"
         set output "$transliterated"
+    else
+        # 3. Fallback: Manual transliteration for common diacritics
+        # Only used if iconv fails or returns empty, providing a safety net for self-bootstrapping.
+        set output (string replace -ra '[àáâãäå]' 'a' "$output" |
+                    string replace -ra '[èéêë]' 'e' |
+                    string replace -ra '[ìíîï]' 'i' |
+                    string replace -ra '[òóôõö]' 'o' |
+                    string replace -ra '[ùúûü]' 'u' |
+                    string replace -ra '[ñ]' 'n' |
+                    string replace -ra '[ç]' 'c')
     end
 
-    # 4. Remove common transliteration marks (' " ^ ~ `) that BSD iconv might have added
+    # 4. Remove common transliteration artifacts (' " ^ ~ `) and non-alphanumeric chars
     set output (string replace -ra "['\"^~`]" "" "$output")
-
-    # 5. Replace all remaining non-alphanumeric sequences with the replacement character
     set output (string replace -ra '[^a-z0-9]+' "$replacement_char" "$output")
 
     # 6. Trim replacement characters from the ends
