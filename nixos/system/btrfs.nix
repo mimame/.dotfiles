@@ -14,10 +14,17 @@
 
   # Enables transparent file compression using the Zstandard algorithm (zstd)
   # for the root filesystem ("/"). This reduces the amount of disk space used.
-  # Note: Compression is applied only to newly written data.
-  # Existing data won't be compressed unless rewritten. (e.g., btrfs filesystem defrag -r -v -czstd /path)
+  #
+  # Note: 'zstd' is the recommended default for modern CPUs, offering a great
+  # balance between compression ratio and performance. 'noatime' is used to
+  # reduce disk writes.
+  # Compression is applied only to newly written data. To recompress existing
+  # files: 'sudo btrfs filesystem defrag -r -v -czstd /'
   fileSystems = {
-    "/".options = [ "compress=zstd" ];
+    "/".options = [
+      "compress=zstd"
+      "noatime"
+    ];
   };
   environment.systemPackages = with pkgs; [
 
