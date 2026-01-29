@@ -11,7 +11,6 @@
     nixfmt # Nix code formatter
     nixpkgs-review # Review Nixpkgs pull requests
     statix # Linter for Nix expressions
-    nix-index # Quickly find Nix packages
     nix-tree # Interactively browse the dependency graph of Nix derivations
     nix-update # Update Nix packages
     nixos-generators # Generate NixOS configurations

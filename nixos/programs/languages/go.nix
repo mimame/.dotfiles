@@ -1,6 +1,7 @@
 # This module defines packages for Go development.
 {
   pkgs,
+  lib,
   ...
 }:
 
@@ -13,6 +14,6 @@
     impl # Generate method stubs for implementing an interface
     gomodifytags # Go tool to modify struct field tags
     gofumpt # Enforce a stricter format than gofmt
-    gotools # Additional Go tools, including goimports
+    (lib.lowPrio gotools) # Additional Go tools, including goimports
   ];
 }
