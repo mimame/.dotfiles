@@ -31,7 +31,7 @@ set -gx GIT_EDITOR $EDITOR
 
 # Set colors for LS and EZA using 'vivid' if available
 if type -q vivid
-    _source_transient vivid 'echo "set -gx LS_COLORS (vivid generate dracula)"' ~/.config/fish/variables.fish
+    source_transient vivid 'echo "set -gx LS_COLORS (vivid generate dracula)"' ~/.config/fish/variables.fish
     set -gx EZA_COLORS $LS_COLORS
 end
 
@@ -88,7 +88,7 @@ set -gx PIP_USER false
 # --- PATH Configuration ---
 
 # We build and cache the path additions once.
-_source_transient paths '
+source_transient paths '
     set -l paths \
         "$HOME/.yarn/bin" \
         "$HOME/.bin" \
