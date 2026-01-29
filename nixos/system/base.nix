@@ -16,6 +16,18 @@
     priority = 100;
   };
 
+  # Enable systemd-oomd. It monitors Pressure Stall Information (PSI) to
+  # identify and terminate processes causing extreme memory pressure
+  # (e.g., memory leaks) before the kernel locks up.
+  systemd.oomd.enable = true;
+
+  # Optimize shutdown responsiveness.
+  # Reduces the default 90s "stop job" timeout to 10s. This prevents the
+  # system from hanging for extended periods during shutdown/reboot when
+  # services (like VMs or containers) fail to terminate immediately, while
+  # still providing a safe 10s window for data flushing.
+  systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
+
   services = {
     # Enable periodic SSD TRIM to maintain SSD performance
     fstrim.enable = true;
