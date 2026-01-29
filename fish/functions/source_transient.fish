@@ -4,11 +4,26 @@ function source_transient --argument name cmd dependency
     set -l cache_file ~/.config/fish/cache/$name.fish
     set -l should_rebuild false
 
+    # 1. Check if cache exists
     if not test -f $cache_file
         set should_rebuild true
-    else if test -n "$dependency"; and test "$dependency" -nt "$cache_file"
-        # Rebuild if the dependency file is newer than the cache
-        set should_rebuild true
+    else
+        # 2. Check if the dependency file (e.g., config.fish) is newer than the cache
+        if test -n "$dependency"; and test "$dependency" -nt "$cache_file"
+            set should_rebuild true
+        end
+
+        # 3. Check if the binary itself is newer than the cache (handles tool updates)
+        if test "$should_rebuild" = false
+            # Extract the first word (binary name) from the command
+            set -l binary (string split " " $cmd)[1]
+            if command -q $binary
+                set -l bin_path (command -v $binary)
+                if test "$bin_path" -nt "$cache_file"
+                    set should_rebuild true
+                end
+            end
+        end
     end
 
     if test "$should_rebuild" = true
