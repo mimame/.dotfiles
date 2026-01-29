@@ -28,6 +28,67 @@
   # still providing a safe 10s window for data flushing.
   systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
 
+  # ----------------------------------------------------------------------------
+  # Proactive System Maintenance: Systemd User Service Self-Healing
+  # ----------------------------------------------------------------------------
+
+  # This script solves the "broken symlink" issue common in NixOS.
+  #
+  # THE PROBLEM:
+  # Systemd user services can be enabled in two ways:
+  # 1. Declarative (The NixOS Way): Defined in Nix config with 'wantedBy'.
+  #    Links are created in /etc/systemd/user/. These are ALWAYS correct and
+  #    updated automatically by NixOS.
+  # 2. Imperative (The Manual Way): Running 'systemctl --user enable'.
+  #    Links are created in ~/.config/systemd/user/. These point to a specific
+  #    Nix store path at the moment of execution.
+  #
+  # WHY IT BREAKS:
+  # Manual links (~/.config/...) "shadow" NixOS links (/etc/...). When you
+  # update and run garbage collection, the manual link becomes a "dangling"
+  # pointer to a deleted store path. Systemd sees the broken link first and
+  # fails to start the service, even if the NixOS-managed link is fine.
+  #
+  # THE SOLUTION:
+  # This activation script runs during every 'nh os switch'. It:
+  # 1. Prunes: Deletes any broken symlinks in user home directories (~/.config/systemd/user).
+  # 2. Heals: By removing the broken manual link, Systemd is forced to fall back
+  #    to the correct, declarative link provided by NixOS in /etc/systemd/user/.
+  # 3. Refreshes: Triggers 'daemon-reload' for active sessions to apply changes
+  #    without requiring a logout.
+  system.activationScripts.systemd-user-self-healing = {
+
+    deps = [
+      "users"
+      "groups"
+      "specialfs"
+    ];
+    text = ''
+      echo "🛠️  Running Systemd User Service Self-Healing..."
+
+      for home in /home/*; do
+        [ -d "$home" ] || continue
+        username=$(basename "$home")
+        user_id=$(id -u "$username" 2>/dev/null)
+        [ -n "$user_id" ] || continue
+
+        # 1. Prune broken symlinks in the user's systemd config directory.
+        if [ -d "$home/.config/systemd/user" ]; then
+          ${pkgs.findutils}/bin/find "$home/.config/systemd/user" -xtype l -delete -print | while read -r link; do
+            echo "  [ $username ] Removed broken unit link: $link"
+          done
+        fi
+
+        # 2. If the user has an active systemd manager (is logged in),
+        # trigger a daemon-reload so they pick up updated units immediately.
+        if [ -S "/run/user/$user_id/systemd/private" ]; then
+          echo "  [ $username ] Refreshing active user session..."
+          ${pkgs.systemd}/bin/systemctl --machine="$username@.host" --user daemon-reload 2>/dev/null || true
+        fi
+      done
+    '';
+  };
+
   services = {
     # Enable periodic SSD TRIM to maintain SSD performance
     fstrim.enable = true;
