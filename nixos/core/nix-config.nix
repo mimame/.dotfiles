@@ -17,6 +17,9 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
   };
 
+  # Enable nix-index for finding which package contains a specific file
+  programs.nix-index.enable = true;
+
   # ----------------------------------------------------------------------------
   # Nix Package Manager Configuration
   # ----------------------------------------------------------------------------
