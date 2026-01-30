@@ -26,6 +26,11 @@
       noto-fonts
       noto-fonts-color-emoji
       roboto
+      # Source Sans:
+      # - Adobe's "Source Sans Pro" was renamed to "Source Sans 3" (https://github.com/adobe-fonts/source-sans/issues/192).
+      # - Nixpkgs subsequently renamed `source-sans-pro` to `source-sans`.
+      # - We include both to maintain compatibility during the transition.
+      source-sans
       source-sans-pro
     ];
     fontconfig = {
