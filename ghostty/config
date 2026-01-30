@@ -1,59 +1,61 @@
-# Ghostty Configuration File
-
-# This file configures the behavior and appearance of Ghostty
-# For a comprehensive list of options and their descriptions,
-# refer to the official documentation:
+# Ghostty Configuration File - Accessibility Optimized
 # https://ghostty.org/docs/config/reference
 
-# Copy on Select: Enables copying selected text to the clipboard by hovering the mouse over the selection
-# Options:
-#   - "clipboard": Copies the selected text to the clipboard and system clipboard
-copy-on-select = clipboard
+# --- Accessibility & Visibility ---
+# Fully opaque background for maximum focus
+background-opacity = 1.0
+background-blur = false
+# WCAG AA standard contrast (4.5) ensures text is always readable
+minimum-contrast = 4.5
+# Prevents text edge darkening/artifacts on Linux
+alpha-blending = linear-corrected
 
-# Disable specific app-notifications
-app-notifications = no-clipboard-copy
-
-# Font Family: Specifies the font used in the terminal
-# List available fonts with `ghostty +list-fonts`
-# Multiple fonts can be specified as a fallback in case the first font is not available
+# --- Typography ---
 font-family = "JetBrainsMonoNL Nerd Font Mono"
-
-# Font Size: Sets the font size in points
 font-size = 18.0
+# Makes bold text use high-intensity "bright" colors
+bold-color = bright
+# Disable all programming and standard ligatures
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+# Uses modern Unicode standards for character widths
+grapheme-width-method = unicode
 
-# Minimum Contrast: Defines the minimum contrast ratio between foreground and background colors
-# This setting helps ensure readability and accessibility, adhering to WCAG 2.0 guidelines
-# Range: 1 (no contrast, e.g., black on black) to 21 (maximum contrast, e.g., black on white)
-# Recommended values:
-#   - 1.1: Prevents invisible text (text color identical to the background)
-#   - 3.0 or higher: Ensures readable text.  This is a good starting point
-#   - Higher values: Increase the likelihood of text becoming pure black or white to meet the contrast requirement,
-#                    which might not be aesthetically pleasing
-minimum-contrast = 3
-
-# Enables Ghostty's shell integration features.
-# To disable a feature, use the "no-" prefix.
-#
-# Available features:
-#   - cursor: Blinking bar cursor at the prompt.
-#   - sudo: Sudo wrapper to preserve terminfo.
-#   - title: Updates the window title via shell integration.
-#   - ssh-env: Enable SSH environment variable compatibility. Automatically converts
-#     TERM from xterm-ghostty to xterm-256color when connecting to remote hosts and
-#     propagates COLORTERM, TERM_PROGRAM, and TERM_PROGRAM_VERSION.
-#   - ssh-terminfo: Enable automatic terminfo installation on remote hosts. Attempts
-#     to install Ghostty's terminfo entry using infocmp and tic when connecting to
-#     hosts that lack it.
-#
-# SSH features work independently and can be combined for optimal experience:
-# when both ssh-env and ssh-terminfo are enabled, Ghostty will install its
-# terminfo on remote hosts and use xterm-ghostty as TERM, falling back to
-# xterm-256color with environment variables if terminfo installation fails.
-shell-integration-features = cursor,no-sudo,title,ssh-env,ssh-terminfo
-
-# Theme: Sets the color theme for the terminal
-# List available themes with `ghostty +list-themes`
+# --- Theme & Colors ---
 theme = Dracula
+# Ensure the cursor is a solid, easy-to-find block
+cursor-style = block
+cursor-style-blink = false
 
-# Hides the mouse cursor when typing in the terminal.
-mouse-hide-while-typing
+# --- Window & UI ---
+# Add padding so text doesn't hug the screen edges
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+# Use wide tabs for easier clicking/viewing
+gtk-wide-tabs = true
+
+# --- Productivity & Interaction ---
+# Allow moving the cursor via Alt+Click (requires shell integration)
+cursor-click-to-move = true
+mouse-hide-while-typing = true
+# Consistent scrolling speed
+mouse-scroll-multiplier = 3
+
+# --- Selection & Clipboard ---
+copy-on-select = clipboard
+selection-clear-on-typing = true
+# Security: Protect against "copy/paste" attacks
+clipboard-paste-protection = true
+# Clean up copied text automatically
+clipboard-trim-trailing-spaces = true
+
+# --- Shell & System ---
+# Enables prompt marking, window titles, and SSH terminfo management
+shell-integration-features = cursor,no-sudo,title,ssh-env,ssh-terminfo
+# Resource isolation for better system stability
+linux-cgroup = single-instance
+
+# --- Notifications ---
+app-notifications = no-clipboard-copy
