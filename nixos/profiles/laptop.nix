@@ -4,14 +4,14 @@
   #
   # This module configures power management, input devices, and essential utilities for laptops.
   #
-  # - Automatically suspends after 10 minutes of inactivity, then hibernates after 60 minutes in suspend.
+  # - Automatically suspends after 10 minutes of inactivity, then hibernates after 120 minutes in suspend.
   # - Handles lid, dock, and power key events for consistent suspend/hibernate behavior.
   # - Integrates with systemd-logind and systemd-sleep for robust power management.
   # - Touchpad settings are provided, but may be overridden by your tiling window manager (e.g., Sway/niri).
   # - Installs laptop-specific utilities for brightness and gesture control.
 
   services = {
-    # Power management: suspend after 10min idle, hibernate after 60min suspended
+    # Power management: suspend after 10min idle, hibernate after 120min suspended
     logind = {
       # See: https://www.freedesktop.org/software/systemd/man/latest/logind.conf.html#Options
       settings = {
@@ -23,7 +23,7 @@
           HandlePowerKey = "suspend-then-hibernate";
           HandlePowerKeyLongPress = "poweroff";
           IdleAction = "suspend-then-hibernate";
-          IdleActionSec = "20min";
+          IdleActionSec = "10min";
         };
       };
     };
@@ -56,7 +56,7 @@
     AllowHibernation=yes
     AllowSuspendThenHibernate=yes
     SuspendMode=suspend-then-hibernate
-    HibernateDelaySec=60min
+    HibernateDelaySec=120min
   '';
 
   environment.systemPackages = with pkgs; [
