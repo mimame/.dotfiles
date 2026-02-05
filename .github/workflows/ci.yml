@@ -27,14 +27,23 @@ jobs:
         id: refs
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
-            # ${{ github.event.pull_request.base.sha }} is the commit on the base branch (e.g., main).
-            # ${{ github.event.pull_request.head.sha }} is the commit at the tip of the PR branch.
+            # For PRs, compare the base branch (target) to the tip of the PR branch.
             echo "from=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
             echo "to=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
           else
-            # ${{ github.event.before }} is the SHA of the commit before the push.
-            # ${{ github.event.after }} is the SHA of the most recent commit of the push.
-            echo "from=${{ github.event.before }}" >> "$GITHUB_OUTPUT"
+            # For Pushes, validate the 'before' SHA.
+            FROM_REF="${{ github.event.before }}"
+
+            # 1. '000...0' occurs when a new branch is created.
+            # 2. 'git rev-parse' fails if a force-push orphaned the 'before' SHA,
+            #    making it unreachable in the current checkout.
+            if [[ "$FROM_REF" == "0000000000000000000000000000000000000000" ]] || ! git rev-parse --verify "$FROM_REF" >/dev/null 2>&1; then
+              # Fallback: Compare against the parent of the current HEAD.
+              # If HEAD is the first commit, fallback to HEAD itself.
+              FROM_REF=$(git rev-parse HEAD~1 2>/dev/null || echo "HEAD")
+            fi
+
+            echo "from=$FROM_REF" >> "$GITHUB_OUTPUT"
             echo "to=${{ github.event.after }}" >> "$GITHUB_OUTPUT"
           fi
       # Run prek hooks on the changeset.
