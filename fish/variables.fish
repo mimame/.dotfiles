@@ -19,15 +19,24 @@ source_transient paths '
         set -a paths (ruby -e "print Gem.bindir")
     end
 
+    # Detect Homebrew location
+    set -l brew_bin
     if test -f /opt/homebrew/bin/brew
+        set brew_bin /opt/homebrew/bin/brew
+    else if test -f /usr/local/bin/brew
+        set brew_bin /usr/local/bin/brew
+    end
+
+    if test -n "$brew_bin"
         # Brew shellenv adds its own paths
-        /opt/homebrew/bin/brew shellenv | grep "export PATH" | sed "s/export PATH=\"//;s/\";//" | tr ":" "\n" | while read -l p
+        $brew_bin shellenv | grep "export PATH" | sed "s/export PATH=\"//;s/\";//" | tr ":" "\n" | while read -l p
             set -a paths $p
         end
 
+        set -l brew_prefix ($brew_bin --prefix)
         for lang in ruby python
-            if test -d /opt/homebrew/opt/$lang/bin
-                set -a paths /opt/homebrew/opt/$lang/bin
+            if test -d $brew_prefix/opt/$lang/bin
+                set -a paths $brew_prefix/opt/$lang/bin
             end
         end
     end
@@ -37,7 +46,7 @@ source_transient paths '
             echo "fish_add_path -m $p"
         end
     end
-' ~/.config/fish/variables.fish
+' $__fish_config_dir/variables.fish
 
 # --- Core Fish Configuration ---
 
@@ -70,7 +79,7 @@ set -gx GIT_EDITOR $EDITOR
 
 # Set colors for LS and EZA using 'vivid' if available
 if type -q vivid
-    source_transient vivid 'echo "set -gx LS_COLORS (vivid generate dracula)"' ~/.config/fish/variables.fish
+    source_transient vivid 'echo "set -gx LS_COLORS (vivid generate dracula)"' $__fish_config_dir/variables.fish
     set -gx EZA_COLORS $LS_COLORS
 end
 

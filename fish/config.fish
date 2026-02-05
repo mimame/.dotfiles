@@ -16,18 +16,18 @@ end
 
 # 3. SHELL INTEGRATIONS
 if command -q direnv
-    source_transient direnv "direnv hook fish" ~/.config/fish/config.fish
+    source_transient direnv "direnv hook fish" $__fish_config_dir/config.fish
 end
 
 # SSH Agent
 setup_ssh_agent
 
 # Tools (Cached for speed)
-source_transient starship "starship init fish" ~/.config/fish/config.fish
-source_transient zoxide "zoxide init fish" ~/.config/fish/config.fish
-source_transient pay-respects "pay-respects fish --alias fk" ~/.config/fish/config.fish
-source_transient atuin "atuin init fish" ~/.config/fish/config.fish
-source_transient navi "navi widget fish" ~/.config/fish/config.fish
+source_transient starship "starship init fish" $__fish_config_dir/config.fish
+source_transient zoxide "zoxide init fish" $__fish_config_dir/config.fish
+source_transient pay-respects "pay-respects fish --alias fk" $__fish_config_dir/config.fish
+source_transient atuin "atuin init fish" $__fish_config_dir/config.fish
+source_transient navi "navi widget fish" $__fish_config_dir/config.fish
 
 # Completions (Generated lazily if missing)
 if command -q gh
@@ -41,7 +41,7 @@ end
 switch (uname)
     case Linux
         if test -f /etc/NixOS-release
-            source_transient any-nix-shell "any-nix-shell fish --info-right" ~/.config/fish/config.fish
+            source_transient any-nix-shell "any-nix-shell fish --info-right" $__fish_config_dir/config.fish
         end
 end
 
@@ -52,4 +52,6 @@ end
 
 # 6. ALIASES & ABBREVIATIONS
 # Cached to avoid re-parsing abbr.fish on every new shell
-source_transient abbrs 'fish -c "source ~/.config/fish/abbr.fish; abbr --show"' ~/.config/fish/abbr.fish
+# We source variables.fish in the subshell to ensure $default_nvim and PATH are available.
+# We also capture both abbreviations and aliases.
+source_transient abbrs "fish -c 'source $__fish_config_dir/variables.fish; source $__fish_config_dir/abbr.fish; abbr --show; alias'" $__fish_config_dir/abbr.fish
