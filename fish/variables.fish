@@ -1,5 +1,44 @@
 # Fish shell variables configuration
 
+# --- PATH Configuration ---
+# Must be defined first to ensure Homebrew (on macOS) and local binaries
+# are available for the rest of the configuration checks.
+# We build and cache the path additions once.
+source_transient paths '
+    set -l paths \
+        "$HOME/.yarn/bin" \
+        "$HOME/.bin" \
+        "$HOME/go/bin" \
+        "$HOME/.cargo/bin" \
+        "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin" \
+        "$HOME/.local/bin" \
+        "$HOME/.local/share/coursier/bin"
+
+    if type -q ruby
+        set -a paths (ruby -e "print Gem.user_dir")/bin
+        set -a paths (ruby -e "print Gem.bindir")
+    end
+
+    if test -f /opt/homebrew/bin/brew
+        # Brew shellenv adds its own paths
+        /opt/homebrew/bin/brew shellenv | grep "export PATH" | sed "s/export PATH=\"//;s/\";//" | tr ":" "\n" | while read -l p
+            set -a paths $p
+        end
+
+        for lang in ruby python
+            if test -d /opt/homebrew/opt/$lang/bin
+                set -a paths /opt/homebrew/opt/$lang/bin
+            end
+        end
+    end
+
+    for p in $paths
+        if test -d $p
+            echo "fish_add_path -m $p"
+        end
+    end
+' ~/.config/fish/variables.fish
+
 # --- Core Fish Configuration ---
 
 # Remove Fish default greeting
@@ -84,44 +123,6 @@ end
 
 # Disable user Python pip by default to avoid conflicts with pre-commit
 set -gx PIP_USER false
-
-# --- PATH Configuration ---
-
-# We build and cache the path additions once.
-source_transient paths '
-    set -l paths \
-        "$HOME/.yarn/bin" \
-        "$HOME/.bin" \
-        "$HOME/go/bin" \
-        "$HOME/.cargo/bin" \
-        "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin" \
-        "$HOME/.local/bin" \
-        "$HOME/.local/share/coursier/bin"
-
-    if type -q ruby
-        set -a paths (ruby -e "print Gem.user_dir")/bin
-        set -a paths (ruby -e "print Gem.bindir")
-    end
-
-    if test -f /opt/homebrew/bin/brew
-        # Brew shellenv adds its own paths
-        /opt/homebrew/bin/brew shellenv | grep "export PATH" | sed "s/export PATH=\"//;s/\";//" | tr ":" "\n" | while read -l p
-            set -a paths $p
-        end
-
-        for lang in ruby python
-            if test -d /opt/homebrew/opt/$lang/bin
-                set -a paths /opt/homebrew/opt/$lang/bin
-            end
-        end
-    end
-
-    for p in $paths
-        if test -d $p
-            echo "fish_add_path -m $p"
-        end
-    end
-' ~/.config/fish/variables.fish
 
 # Set GPG_TTY for GPG agent
 if test -z "$GPG_TTY"
