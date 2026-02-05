@@ -23,6 +23,8 @@ abbr tree 'erd --layout inverted --human'
 if type -q eza
     alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
     alias ls l
+else
+    alias l 'ls -lah'
 end
 
 # Disk usage tools

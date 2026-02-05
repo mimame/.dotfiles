@@ -20,7 +20,7 @@ function source_transient --argument name cmd dependency
             # Handles multi-line strings, leading/trailing whitespace, and quoted commands.
             # Example: '  starship init fish' -> 'starship'
             set -l binary (string trim $cmd | string split -f1 " " | string trim -c "'\"")
-            if command -q $binary
+            if command -q $binary; and not builtin -q $binary
                 set -l bin_path (command -v $binary)
                 # Compare binary modification time. If the tool was upgraded (e.g., via brew or nix),
                 # we must rebuild the cache as the init script might have changed.

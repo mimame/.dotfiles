@@ -83,16 +83,20 @@ function get --description "Download file using the best available tool" --argum
 
         case wget2
             # Robust downloading with retries and progress bar
-            set -l params --continue --progress=bar --timestamping --retry-on-http-error=503
+            set -l params --progress=bar --retry-on-http-error=503
             if test -n "$out_file"
-                wget2 --output-document=(path join "$out_dir" "$out_file") $params "$url"
+                # Note: --timestamping does nothing with -O, so we use --continue instead.
+                # This avoids the "timestamping does nothing in combination with -O" warning.
+                wget2 --output-document="$out_dir/$out_file" --continue $params "$url"
             else
-                wget2 --directory-prefix="$out_dir" $params "$url"
+                # For directory-based downloads, --timestamping is safer as it avoids 416 errors
+                # if the file is already fully retrieved.
+                wget2 --directory-prefix="$out_dir" --timestamping $params "$url"
             end
 
         case wcurl
             if test -n "$out_file"
-                wcurl --output=(path join "$out_dir" "$out_file") "$url"
+                wcurl --output="$out_dir/$out_file" "$url"
             else
                 wcurl --directory-prefix="$out_dir" "$url"
             end
@@ -101,11 +105,12 @@ function get --description "Download file using the best available tool" --argum
             set_color yellow
             echo "💡 Tip: Install aria2c or wget2 for faster downloads."
             set_color normal
-            set -l params --continue --progress=bar --timestamping
+            set -l params --progress=bar
             if test -n "$out_file"
-                wget --output-document=(path join "$out_dir" "$out_file") $params "$url"
+                # Remove --timestamping to avoid warning with -O
+                wget --output-document="$out_dir/$out_file" --continue $params "$url"
             else
-                wget --directory-prefix="$out_dir" $params "$url"
+                wget --directory-prefix="$out_dir" --timestamping --continue $params "$url"
             end
 
         case curl
@@ -115,7 +120,7 @@ function get --description "Download file using the best available tool" --argum
             # Standard resilient curl flags
             set -l params --continue-at - --location --progress-bar --remote-time --retry 3
             if test -n "$out_file"
-                curl --output (path join "$out_dir" "$out_file") $params "$url"
+                curl --output "$out_dir/$out_file" $params "$url"
             else
                 # Use output-dir for modern curl, falls back to CWD behavior
                 curl --remote-name --output-dir "$out_dir" $params "$url"

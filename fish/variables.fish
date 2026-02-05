@@ -28,12 +28,11 @@ source_transient paths '
     end
 
     if test -n "$brew_bin"
-        # Brew shellenv adds its own paths
-        $brew_bin shellenv | grep "export PATH" | sed "s/export PATH=\"//;s/\";//" | tr ":" "\n" | while read -l p
-            set -a paths $p
-        end
-
         set -l brew_prefix ($brew_bin --prefix)
+        # Add primary Homebrew paths
+        set -a paths $brew_prefix/bin $brew_prefix/sbin
+
+        # Add language-specific Homebrew paths if they exist
         for lang in ruby python
             if test -d $brew_prefix/opt/$lang/bin
                 set -a paths $brew_prefix/opt/$lang/bin

@@ -52,6 +52,6 @@ end
 
 # 6. ALIASES & ABBREVIATIONS
 # Cached to avoid re-parsing abbr.fish on every new shell
-# We source variables.fish in the subshell to ensure $default_nvim and PATH are available.
-# We also capture both abbreviations and aliases.
-source_transient abbrs "fish -c 'source $__fish_config_dir/variables.fish; source $__fish_config_dir/abbr.fish; abbr --show; alias'" $__fish_config_dir/abbr.fish
+# We use --no-config to isolate cache generation from plugins that might fail
+# in non-interactive shells (e.g., fish-abbreviation-tips).
+source_transient abbrs "fish --no-config -c 'set -p fish_function_path $__fish_config_dir/functions; source $__fish_config_dir/variables.fish; source $__fish_config_dir/abbr.fish; abbr --show; alias'" $__fish_config_dir/abbr.fish
