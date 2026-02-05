@@ -7,6 +7,10 @@
 # For a full list of options, see the man page: man ssh_config
 # ==============================================================================
 
+# Include personal or work-specific hosts from a separate file.
+# This keeps the main config file clean and portable.
+# Placed at the top so specific host settings override global defaults (Host *).
+Include config_hosts
 
 # ------------------------------------------------------------------------------
 # Global Settings (applied to all hosts unless overridden below)
@@ -59,7 +63,3 @@ Host *
 # For example, ensure X11 forwarding is off for GitHub.
 Host github.com
   ForwardX11 no
-
-# Include personal or work-specific hosts from a separate file.
-# This keeps the main config file clean and portable.
-Include ./config_hosts
