@@ -5,7 +5,7 @@ function bootstrap_fisher
 
     # Install Fisher
     if functions -q get
-        get 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source
+        get 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' - | source
     else
         curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
     end
