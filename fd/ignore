@@ -1,75 +1,141 @@
-.3T
-.android
-.anydesk
-.BOINC*
-_build
-build
-build-temp-*
-.bundle
-.cache
-.cargo
-.choosenim
-*conda*/*
+# ==============================================================================
+# Whitelist (Allow searching inside these directories)
+# ==============================================================================
 !.config
 !.config/**/.*
 !.config/.*
+!.dotfiles
+!.dotfiles/**/.*
+!.dotfiles/.*
+
+# ==============================================================================
+# Editors & IDEs
+# ==============================================================================
 '.config/Code - OSS'
+.config/zed/copilot
+.emacs.d
+.idea
+.spacemacs
+.vscode/extensions
+.vscode-oss
+.history
+*.swp
+*.swo
+
+# ==============================================================================
+# Languages & Package Managers
+# ==============================================================================
+# C/C++ / General Build
+_build
+build
+build-temp-*
+tags
+
+# Go
+.gomi
+go/pkg/mod
+
+# Haskell
+.cabal
+dist-newstyle
+
+# Java
+.jd
+
+# JavaScript / Node
+.node
+.npm
+.yarn
+node
+node_modules
+
+# Julia
+.julia
+
+# Lua
+luvit-meta
+
+# Nim
+.choosenim
+.nimble
+
+# OCaml
+.cpam
+.opam
+
+# Perl
+perl5
+
+# Python
+*conda*/*
+*mamba*/*
+.ipynb_checkpoints
+.jupyter
+.local/lib
+.local/pipx
+.poetry
+.pylint.d
+.pytest_cache
+.ropeproject
+.ruff_cache
+.rye
+.snakemake
+.venv
+.virtualenvs
+__pycache__
+
+# Ruby
+.bundle
+.gem
+
+# Rust
+.cargo
+.rustup
+
+# Web
+.sass-cache
+
+# ==============================================================================
+# System & Application Data
+# ==============================================================================
+.3T
+.android
+.anydesk
+.aws
+.azure
+.BOINC*
+.cache
 .config/google-chrome
 .config/Microsoft
 .config/microsoft-edge*
 .config/slack
 .config/vivaldi
-.config/zed/copilot
-.cpam
 .direnv
-!.dotfiles
-!.dotfiles/**/.*
-!.dotfiles/.*
-.emacs.d
+.docker
 .floop
-.gem
-.git
-.gomi
-go/pkg/mod
-.hg
-.jd
-.julia
+.gnupg
 .kube
-.local/lib
-.local/pipx
 .local/share
 .local/state
-luvit-meta
-*mamba*/*
-mason
+.mason
 .mozilla
-.nimble
-.node
-node
-node_modules
-.npm
 .obsidian
-.opam
-perl5
-.poetry
-.rustup
-.rye
-.sass-cache
-.snakemake
-.spacemacs
-.svn
-tags
+.ssh
+.terraform
 .thumbnails
 .thunderbird
-.thunderbird
+.vagrant.d
+.wine
+.zotero
+mason
 tmp
 .trash
 .Trash
-.vagrant.d
-.venv
-.vscode/extensions
-.vscode-oss
-.wine
 x86_64-pc-linux-gnu-library
-.yarn
-.zotero
+
+# ==============================================================================
+# Version Control
+# ==============================================================================
+.git
+.hg
+.svn
