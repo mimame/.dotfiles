@@ -44,7 +44,7 @@
     }
   },
   "base_keymap": "VSCode",
-  "buffer_font_family": "JetBrainsMono Nerd Font Mono",
+  "buffer_font_family": "Maple Mono NL NF",
   "buffer_font_features": {
     "calt": false
   },
@@ -308,7 +308,7 @@
   "terminal": {
     "blinking": "off",
     "copy_on_select": true,
-    "font_family": "JetBrainsMono Nerd Font Mono"
+    "font_family": "Maple Mono NL NF"
   },
   "theme": {
     "dark": "Dracula",
