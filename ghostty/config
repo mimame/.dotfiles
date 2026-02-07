@@ -11,6 +11,7 @@ minimum-contrast = 4.5
 alpha-blending = linear-corrected
 
 # --- Typography ---
+font-family = "Maple Mono NL NF"
 font-family = "JetBrainsMonoNL Nerd Font Mono"
 font-size = 18.0
 # Makes bold text use high-intensity "bright" colors
