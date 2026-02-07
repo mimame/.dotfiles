@@ -1,7 +1,7 @@
 {
   "breadcrumbs.enabled": false,
   "editor.bracketPairColorization.enabled": true,
-  "editor.fontFamily": "JetBrainsMono Nerd Font Mono, 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontFamily": "Maple Mono NL NF, 'JetBrainsMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
   "editor.formatOnSave": true,
@@ -46,7 +46,7 @@
   "terminal.external.linuxExec": "ghostty",
   "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
+  "terminal.integrated.fontFamily": "Maple Mono NL NF, 'JetBrainsMono Nerd Font Mono'",
   "vim.autoSwitchInputMethod.enable": true,
   "vim.camelCaseMotion.enable": true,
   "vim.easymotion": true,
