@@ -32,10 +32,10 @@
   #         gsettings set $gnome_schema icon-theme "candy-icons"
   #         gsettings set $gnome_schema cursor-theme "capitaine-cursors-white"
   #         gsettings set $gnome_schema cursor-size "48"
-  #         gsettings set $gnome_schema document-font-name 'JetBrainsMonoNL 13'
-  #         gsettings set $gnome_schema font-name 'JetBrainsMonoNL 13'
-  #         gsettings set $gnome_schema monospace-font-name 'JetBrainsMonoNL 13'
-  #       '';
+  #         gsettings set $gnome_schema document-font-name 'Maple Mono NL NF 13'
+  #         gsettings set $gnome_schema font-name 'Maple Mono NL NF 13'
+  #         gsettings set $gnome_schema monospace-font-name 'Maple Mono NL NF 13'
+  #         '';
   #   };
   # in
 
