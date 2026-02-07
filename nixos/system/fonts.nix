@@ -1,55 +1,64 @@
 { pkgs, ... }:
 {
 
-  # Primary font paths
+  # Primary font configuration
   fonts = {
-    fontDir.enable = true;
     enableDefaultPackages = true;
     packages = with pkgs.unstable; [
-      # Comparing JetBrainsMono (No Ligatures) and Hack:
-      # - Hack is a monospaced font, but has visual inconsistencies with characters of variable width
-      #   (e.g., parenthesis, brackets, and characters with different styles, like ||).
-      # - JetBrains Mono focuses on consistent spacing and legibility, making it a preferred choice for coding.
-      # Referenced issue for context: https://github.com/freeCodeCamp/freeCodeCamp/issues/49174
+      # Maple Mono (No Ligatures, Nerd Font):
+      # - Soft, rounded, and aesthetic design that reduces visual fatigue during long sessions.
+      # - The unique character shapes help combat terminal monotony and maintain focus.
+      # - JetBrains Mono remains as a high-legibility secondary fallback.
+      maple-mono.NL-NF
+      nerd-fonts.jetbrains-mono
 
       # Merriweather:
       # - A serif font that is more contemporary and warm compared to Noto Serif.
       # - Optimized for screen readability, making it suitable for both body text and headlines.
+      merriweather
 
       # Roboto:
       # - A modern, geometric sans-serif font known for its high readability.
       # - Preferred over Noto Sans for its clean and versatile design.
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.hack
-      font-awesome
-      merriweather
-      noto-fonts
-      noto-fonts-color-emoji
       roboto
+
       # Source Sans:
       # - Adobe's "Source Sans Pro" was renamed to "Source Sans 3" (https://github.com/adobe-fonts/source-sans/issues/192).
       # - Nixpkgs subsequently renamed `source-sans-pro` to `source-sans`.
-      # - We include both to maintain compatibility during the transition.
       source-sans
-      source-sans-pro
+
+      # Icons & Symbols
+      font-awesome
+      noto-fonts
+      noto-fonts-color-emoji
     ];
+
     fontconfig = {
+      enable = true;
+      antialias = true;
+      hinting = {
+        enable = true;
+        style = "slight"; # Best balance for modern high-DPI screens
+      };
+      subpixel = {
+        rgba = "rgb";
+        lcdfilter = "default";
+      };
+
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
         serif = [
           "Merriweather"
-          # "Noto Serif"
           "Noto Color Emoji"
         ];
         sansSerif = [
           "Roboto"
-          # "Noto Sans"
           "Noto Color Emoji"
         ];
         monospace = [
+          "Maple Mono NL NF"
           "JetBrainsMonoNL Nerd Font Mono"
           "Noto Color Emoji"
-          # "Hack"
         ];
       };
     };
