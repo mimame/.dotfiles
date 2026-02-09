@@ -34,7 +34,7 @@ Host *
 
   # --- Authentication Settings ---
   # Specifies the private keys to use. Prefers modern ed25519 keys.
-  IdentityFile ~/.ssh/id_ed25519_passphrase
+  IdentityFile ~/.ssh/id_ed25519_no_passphrase
   IdentityFile ~/.ssh/id_ed25519
 
   # Only use the identities specified above or via the `-i` flag.
@@ -46,6 +46,15 @@ Host *
   AddKeysToAgent yes
 
   # --- Performance & Security ---
+  # ConnectTimeout: Stop trying to connect after 5 seconds.
+  # This prevents the terminal from hanging for a long time if the host is down.
+  ConnectTimeout 5
+
+  # IPQoS: Set Quality of Service to 'throughput'.
+  # This prioritizes bulk data transfer (like scp/sftp) over low latency
+  # (interactive typing), which is generally better for modern high-bandwidth connections.
+  IPQoS throughput
+
   # Disable compression by default. It's often unnecessary on fast networks.
   # Enable with the `-C` flag for slow connections.
   Compression no
