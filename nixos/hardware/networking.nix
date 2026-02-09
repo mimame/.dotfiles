@@ -213,12 +213,39 @@
   #   };
   # };
 
-  # OpenSSH daemon
+  # OpenSSH daemon configuration
   services.openssh = {
-    enable = false;
+    enable = true;
     settings = {
-      X11Forwarding = true;
+      # --- Security Hardening ---
+      # Disable password-based login to enforce key-based authentication.
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      # Prevent root login to minimize attack surface.
+      PermitRootLogin = "no";
+      # Disable X11 forwarding as it is not needed for Wayland and reduces risk.
+      X11Forwarding = false;
+
+      # --- Performance Optimizations ---
+      # Disable DNS lookups (performing a reverse DNS lookup and then a forward
+      # DNS lookup to see if the IP matches the hostname) to speed up connection time.
+      UseDns = false;
+      # Enable TCP KeepAlive to detect dead connections and prevent timeouts.
+      TCPKeepAlive = true;
     };
+
+    # --- Cryptographic Policy ---
+    # Explicitly configure modern, high-performance, and secure algorithms.
+    # - KexAlgorithms: Prioritize Curve25519 for fast and secure key exchange.
+    # - Ciphers: Prioritize ChaCha20-Poly1305 (fast without AES-NI) and AES-GCM.
+    # - MACs: Use EtM (Encrypt-then-MAC) modes for superior integrity protection.
+    extraConfig = ''
+      KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+      Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+      MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com
+    '';
+    # Automatically open ports in the firewall for SSH
+    openFirewall = true;
   };
 
   # programs.ssh.startAgent = false; # Disabled to avoid conflict with services.gnome.gcr-ssh-agent.enable
