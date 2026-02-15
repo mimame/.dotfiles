@@ -38,13 +38,9 @@
   # Whether to run XDG autostart files for sessions without a desktop manager (with only a window manager), these sessions usually don’t handle XDG autostart files by default.
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
-  environment.systemPackages =
-    with pkgs;
-    [
+  environment.systemPackages = with pkgs; [
 
-      # XWayland utilities
-      xwayland-satellite # XWayland utility
-    ]
-    ++ (with pkgs.unstable; [
-    ]);
+    # XWayland utilities
+    xwayland-satellite # XWayland utility
+  ];
 }

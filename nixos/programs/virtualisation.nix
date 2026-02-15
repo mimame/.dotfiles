@@ -1,4 +1,4 @@
-{ pkgs, username, ... }:
+{ pkgs, ... }:
 {
   # Required kernel module for running virtual machines with LXC/LXD (incus).
   boot.kernelModules = [ "vhost_vsock" ];

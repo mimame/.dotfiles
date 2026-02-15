@@ -11,11 +11,7 @@
 # For a deep dive into NixOS configuration, refer to the official manual:
 # https://nixos.org/manual/nixos/stable/
 # ----------------------------------------------------------------------------
-{
-  config, # The aggregated configuration of all imported modules.
-  pkgs, # The default Nixpkgs package set.
-  ... # Catch-all for other arguments (e.g., `lib`, `modulesPath`).
-}:
+_:
 let
   # Import the shared variables
   vars = import ./variables.nix;

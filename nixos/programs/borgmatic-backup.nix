@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+_: {
   # To use this backup service, the borg repository must be initialized first.
   # This is a one-time setup step for a new backup drive/location.
   #

@@ -24,11 +24,6 @@
         "video" # Video devices and hardware acceleration
         "wheel" # Sudo access
       ];
-      # User-specific packages can be installed here.
-      packages = with pkgs; [
-        #  firefox
-        #  thunderbird
-      ];
     };
   };
 }

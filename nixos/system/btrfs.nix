@@ -1,7 +1,7 @@
 # This module configures Btrfs-specific settings for the NixOS system.
 # It enables periodic scrubbing to maintain data integrity and sets up
 # transparent file compression to save disk space.
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Btrfs auto-scrubbing helps ensure data integrity by checking for and

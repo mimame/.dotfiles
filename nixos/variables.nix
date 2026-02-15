@@ -18,5 +18,5 @@
 
   # Unstable Source
   # Used to import modules or packages from unstable.
-  unstableSrc = builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
+  unstableSrc = fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
 }

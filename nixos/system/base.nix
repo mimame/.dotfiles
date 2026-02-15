@@ -232,17 +232,12 @@
   # Enable apropos(1) and the -k option of man(1)
   documentation.man.generateCaches = true;
 
-  environment.systemPackages =
-    with pkgs;
-    [
+  environment.systemPackages = with pkgs; [
 
-      exfatprogs # exfat format support
-      interception-tools
-      libevdev # mouse-dpi-tool
-      libnotify
+    exfatprogs # exfat format support
+    interception-tools
+    libevdev # mouse-dpi-tool
+    libnotify
 
-    ]
-    ++ (with pkgs.unstable; [
-
-    ]);
+  ];
 }

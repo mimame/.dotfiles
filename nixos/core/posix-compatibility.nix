@@ -13,7 +13,7 @@ let
   # `nix-alien` is a tool that helps run unmodified binaries on NixOS.
   # Using `master` provides the newest features at the cost of potential instability.
   nix-alien-pkgs =
-    import (builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master")
+    import (fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master")
       { };
 in
 {

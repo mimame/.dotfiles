@@ -1,4 +1,4 @@
-{ pkgs, vars, ... }:
+{ ... }:
 {
   imports = [
     ./ci-cd.nix

@@ -5,7 +5,6 @@
 # involving both Intel and NVIDIA GPUs (NVIDIA Optimus).
 # ----------------------------------------------------------------------------
 {
-  config,
   lib,
   pkgs,
   ...

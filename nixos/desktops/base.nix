@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # Documentation: Example of how GTK theme settings were previously applied via an imperative script.
   # This approach has been replaced by declarative dconf settings using programs.dconf.profiles.
