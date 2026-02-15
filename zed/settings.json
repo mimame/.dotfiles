@@ -7,6 +7,11 @@
     "favorite_models": [],
     "model_parameters": []
   },
+  "agent_servers": {
+    "github-copilot": {
+      "type": "registry"
+    }
+  },
   "auto_install_extensions": {
     "CSS": true,
     "comment": true,
@@ -17,6 +22,7 @@
     "elixir": true,
     "fish": true,
     "git-firefly": true,
+    "github-copilot": true,
     "html": true,
     "janet": true,
     "json5": true,
