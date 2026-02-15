@@ -1,0 +1,80 @@
+# --- General Settings ---
+
+# Auto load feeds at startup
+auto-reload yes
+
+# Load feeds in 8 different threads
+reload-threads 8
+
+# Time elapsed between each auto-reload (minutes)
+reload-time 15
+
+# Notify unread feeds
+notify-always no
+
+# Browser script
+browser "firefox --private-window %u"
+
+# Copy URL to clipboard (Wayland/wl-copy)
+# Usage: Press ',y' (comma then y)
+macro y set browser "wl-copy %u" ; open-in-browser ; set browser "firefox --private-window %u"
+
+# UI Settings
+feed-sort-order title
+show-read-feeds no
+show-read-articles no
+confirm-mark-feed-read no
+confirm-mark-all-feeds-read no
+display-article-progress yes
+
+# --- Keybindings (Vim-style) ---
+
+# Navigation
+unbind-key j
+bind-key j down
+unbind-key k
+bind-key k up
+unbind-key h
+bind-key h quit
+unbind-key l
+bind-key l open
+
+# Scrolling/Movement
+unbind-key g
+bind-key g home
+unbind-key G
+bind-key G end
+
+# Reloading (Lowercase preferred)
+unbind-key r
+bind-key r reload-all
+unbind-key R
+bind-key R reload
+
+# Marking as read
+unbind-key A
+bind-key a mark-all-feeds-read
+unbind-key C
+bind-key c mark-feed-read
+
+# Sorting
+bind-key S sort
+
+# --- Dracula Theme ---
+# Based on https://draculatheme.com/newsboat
+
+color background          default   default
+color listnormal          default   default
+color listnormal_unread   color62   default bold
+color listfocus           color231  color62  bold
+color listfocus_unread    color231  color62  bold
+color info                color62   color236
+color article             default   default
+
+# Highlights
+highlight article "^(Feed|Link):.*$" color215 default
+highlight article "^(Title|Date|Author):.*$" color141 default bold
+highlight article "https?://[^ ]+" color117 default underline
+highlight article "\\[[0-9]+\\]" color201 default bold
+highlight article "\\[image\\ [0-9]+\\]" color201 default bold
+highlight feedlist "^─.*$" color62 color236 bold

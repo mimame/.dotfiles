@@ -38,7 +38,7 @@ lazygit = "~/.config/lazygit"
 lazyvim = "~/.config/nvim/"
 mimeapps = "~/.config/"
 navi = "~/.config/navi"
-# newsboat = "~/.config/"
+newsboat = "~/.newsboat/"
 nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
 niri = "~/.config/niri"
 nushell = { target = "~/.config/nushell", type = "symbolic" }
