@@ -5,6 +5,10 @@
       "provider": "zed.dev"
     },
     "favorite_models": [],
+    "inline_assistant_model": {
+      "model": "claude-sonnet-4.5",
+      "provider": "copilot_chat"
+    },
     "model_parameters": []
   },
   "agent_servers": {
