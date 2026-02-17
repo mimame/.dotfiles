@@ -18,8 +18,13 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys via k
     end
 
     if test -n "$ssh_keys"; and command -q keychain
-        # keychain --eval ensures the SSH_AUTH_SOCK and SSH_AGENT_PID environment
-        # variables are correctly set and exported for the current shell.
+        # Use the standard NixOS system-wide SSH agent socket.
+        # This ensures all shells and child processes point to the same agent.
+        set -gx SSH_AUTH_SOCK /run/user/1000/ssh-agent
+
+        # keychain handles key management for this system agent.
+        # --eval outputs shell code to set variables, but we source it to
+        # refresh key identities without creating new agent processes.
         keychain --eval --quiet $ssh_keys | source
     end
 

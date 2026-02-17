@@ -248,7 +248,8 @@
     openFirewall = true;
   };
 
-  # Enable the standard NixOS SSH agent.
+  # --- SSH Agent Configuration ---
+  #
   # This provides a robust, system-wide agent that keychain can manage,
   # avoiding conflicts with the GNOME GCR agent and fixing repeated passphrase prompts.
   programs.ssh.startAgent = true;
