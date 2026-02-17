@@ -1,21 +1,29 @@
 function setup_ssh_agent --description "Initialize SSH agent and load keys via keychain"
     # Proactively load specific keys using keychain.
     #
-    # WHY: System agents (like GNOME's GCR) often fail to prompt for passphrases
-    # for ed25519 keys or specific identities. Running keychain unconditionally
-    # ensures these keys are unlocked and available for Git operations.
+    # ARCHITECTURE:
+    # 1. NixOS provides a single, system-wide 'ssh-agent' (via programs.ssh.startAgent).
+    # 2. GNOME's 'gcr-ssh-agent' is disabled to prevent it from intercepting requests
+    #    for modern ed25519 keys, which it often fails to handle correctly.
+    # 3. 'keychain' manages the system agent, ensuring keys are unlocked only
+    #    once per reboot and shared across all terminal sessions.
     set -l ssh_keys
+    # id_ed25519: Primary personal/GitHub key.
+    # id_ed25519_passphrase: Any additional key with a passphrase.
     for key in id_ed25519 id_ed25519_passphrase
-        if test -f $HOME/.ssh/$key
-            set -a ssh_keys $HOME/.ssh/$key
+        set -l key_path $HOME/.ssh/$key
+        if test -f $key_path
+            set -a ssh_keys $key_path
         end
     end
 
     if test -n "$ssh_keys"; and command -q keychain
+        # keychain --eval ensures the SSH_AUTH_SOCK and SSH_AGENT_PID environment
+        # variables are correctly set and exported for the current shell.
         keychain --eval --quiet $ssh_keys | source
     end
 
-    # Ensure control sockets directory exists
+    # Ensure control sockets directory exists for multiplexing (see ~/.ssh/config).
     if not test -d ~/.ssh/control_sockets
         mkdir -p ~/.ssh/control_sockets
     end

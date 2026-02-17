@@ -33,9 +33,10 @@
       # managing SSH keys, and storing WiFi passwords.
       gnome-keyring.enable = true;
 
-      # This automatically enables the GCR (GNOME Crypto) SSH agent, which conflicts
-      # with the standard `programs.ssh.startAgent`.
-      gcr-ssh-agent.enable = true;
+      # Disable the GCR (GNOME Crypto) SSH agent.
+      # WHY: It often fails to handle ed25519 keys correctly, leading to repeated
+      # passphrase prompts. We use the standard NixOS ssh-agent + keychain instead.
+      gcr-ssh-agent.enable = false;
 
       # GNOME Settings Daemon - Core GNOME desktop environment service.
       # This daemon manages essential desktop functionality including keyboard shortcuts,
