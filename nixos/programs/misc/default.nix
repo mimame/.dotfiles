@@ -44,6 +44,7 @@
       xan # A command-line XML viewer
 
       # Archiving and compression
+      _7zz # 7-Zip (modern version)
       brotli # Brotli compressor/decompressor
       bzip2 # Bzip2 compressor/decompressor
       bzip3 # Bzip3 compressor/decompressor

@@ -77,6 +77,8 @@ abbr pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1 
 abbr nsp 'nix-shell -p'
 
 # Viewers
+# Use alias instead of abbr so 7z is available to other functions (e.g., e.fish, c.fish)
+alias 7z 7zz
 abbr cat bat
 abbr less bat
 abbr more bat
