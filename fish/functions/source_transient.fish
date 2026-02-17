@@ -22,7 +22,7 @@ function source_transient --argument name cmd dependency
             set -l binary (string trim $cmd | string split -f1 " " | string trim -c "'\"")
             if command -q $binary; and not builtin -q $binary
                 set -l bin_path (command -v $binary)
-                set -l real_bin_path (realpath $bin_path)
+                set -l real_bin_path (path resolve $bin_path)
 
                 # Store and compare the binary's real path. This is crucial for Nix,
                 # where store paths change on update but mtimes are often pinned to 1970.
@@ -49,7 +49,7 @@ function source_transient --argument name cmd dependency
                 # Record the binary path for future invalidation checks (Nix support).
                 set -l binary (string trim $cmd | string split -f1 " " | string trim -c "'\"")
                 if command -q $binary; and not builtin -q $binary
-                    realpath (command -v $binary) >$cache_file.path
+                    path resolve (command -v $binary) >$cache_file.path
                 end
             else
                 # If command succeeded but produced no output, don't create an empty cache.
