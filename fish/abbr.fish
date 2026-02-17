@@ -81,6 +81,7 @@ abbr cat bat
 abbr less bat
 abbr more bat
 abbr m tldr
+abbr news newsboat
 
 # --- System and Network ---
 abbr htop btop
@@ -160,6 +161,7 @@ edit_config hxrc ~/.dotfiles/helix/config.toml
 edit_config kittyrc ~/.dotfiles/kitty/kitty.conf
 edit_config mimerc ~/.dotfiles/mimeapps/mimeapps.list
 edit_config navirc ~/.dotfiles/navi/config.yaml
+edit_config newsrc ~/.dotfiles/newsboat/config
 edit_config nirirc ~/.dotfiles/niri/config.kdl
 edit_config nixosrc ~/.dotfiles/nixos/configuration.nix 'nixos-rebuild build --show-trace --no-reexec'
 edit_config nvimrc ~/.dotfiles/lazyvim/init.lua
