@@ -22,9 +22,15 @@ function source_transient --argument name cmd dependency
             set -l binary (string trim $cmd | string split -f1 " " | string trim -c "'\"")
             if command -q $binary; and not builtin -q $binary
                 set -l bin_path (command -v $binary)
-                # Compare binary modification time. If the tool was upgraded (e.g., via brew or nix),
-                # we must rebuild the cache as the init script might have changed.
-                if test -f "$bin_path"; and test "$bin_path" -nt "$cache_file"
+                set -l real_bin_path (realpath $bin_path)
+
+                # Store and compare the binary's real path. This is crucial for Nix,
+                # where store paths change on update but mtimes are often pinned to 1970.
+                set -l path_file $cache_file.path
+                if not test -f $path_file; or test (cat $path_file) != "$real_bin_path"
+                    set should_rebuild true
+                    # Traditional mtime check as a fallback for non-Nix/non-path-changing updates.
+                else if test -f "$bin_path"; and test "$bin_path" -nt "$cache_file"
                     set should_rebuild true
                 end
             end
@@ -39,6 +45,12 @@ function source_transient --argument name cmd dependency
         if eval $cmd >$tmp_file
             if test -s $tmp_file
                 mv $tmp_file $cache_file
+
+                # Record the binary path for future invalidation checks (Nix support).
+                set -l binary (string trim $cmd | string split -f1 " " | string trim -c "'\"")
+                if command -q $binary; and not builtin -q $binary
+                    realpath (command -v $binary) >$cache_file.path
+                end
             else
                 # If command succeeded but produced no output, don't create an empty cache.
                 # Source the output directly to ensure the environment is initialized.
