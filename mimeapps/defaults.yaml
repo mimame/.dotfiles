@@ -69,7 +69,7 @@ Default Applications:
   text/csv: calc.desktop
   text/fb2+xml: calibre-ebook-viewer.desktop
   text/html: firefox.desktop
-  text/markdown: Zettlr.desktop
+  text/markdown: dev.zed.Zed.desktop
   text/mathml: math.desktop
   text/spreadsheet: calc.desktop
   text/tab-separated-values: calc.desktop
