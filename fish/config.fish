@@ -40,7 +40,7 @@ end
 # 4. PLATFORM SPECIFIC
 switch (uname)
     case Linux
-        if test -f /etc/NixOS-release
+        if grep -q '^ID=nixos' /etc/os-release 2>/dev/null
             source_transient any-nix-shell "any-nix-shell fish --info-right" $__fish_config_dir/config.fish
         end
 end

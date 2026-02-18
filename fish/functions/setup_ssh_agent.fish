@@ -1,15 +1,14 @@
-function setup_ssh_agent --description "Initialize SSH agent and load keys via keychain"
-    # Proactively load specific keys using keychain.
+function setup_ssh_agent --description "Initialize SSH agent and load keys (NixOS-native or keychain fallback)"
+    # Proactively load specific keys.
     #
     # ARCHITECTURE:
-    # 1. NixOS provides a single, system-wide 'ssh-agent' (via programs.ssh.startAgent).
-    # 2. GNOME's 'gcr-ssh-agent' is disabled to prevent it from intercepting requests
-    #    for modern ed25519 keys, which it often fails to handle correctly.
-    # 3. 'keychain' manages the system agent, ensuring keys are unlocked only
-    #    once per reboot and shared across all terminal sessions.
+    # 1. NixOS: Uses the system-wide 'ssh-agent' (via programs.ssh.startAgent).
+    #    This is the most robust approach as it's managed by systemd.
+    # 2. Fallback (macOS/Other Linux): Uses 'keychain' to manage a shared agent.
+    # 3. Environment: We ALWAYS export SSH_AUTH_SOCK as a global variable to ensure
+    #    inheritance for child processes (Git, etc.), avoiding 'Universal Variable' scope issues.
+
     set -l ssh_keys
-    # id_ed25519: Primary personal/GitHub key.
-    # id_ed25519_passphrase: Any additional key with a passphrase.
     for key in id_ed25519 id_ed25519_passphrase
         set -l key_path $HOME/.ssh/$key
         if test -f $key_path
@@ -17,15 +16,33 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys via k
         end
     end
 
-    if test -n "$ssh_keys"; and command -q keychain
-        # Use the standard NixOS system-wide SSH agent socket.
-        # This ensures all shells and child processes point to the same agent.
-        set -gx SSH_AUTH_SOCK /run/user/1000/ssh-agent
+    if test -n "$ssh_keys"
+        if grep -q '^ID=nixos' /etc/os-release 2>/dev/null
+            # --- NixOS Strategy ---
+            # 1. Use the standard NixOS system-wide SSH agent socket.
+            set -gx SSH_AUTH_SOCK /run/user/(id -u)/ssh-agent
 
-        # keychain handles key management for this system agent.
-        # --eval outputs shell code to set variables, but we source it to
-        # refresh key identities without creating new agent processes.
-        keychain --eval --quiet $ssh_keys | source
+            # 2. Cleanup rogue agents that might conflict with the system one.
+            set -l system_agent_pids (pgrep -u $USER -f "/run/user/(id -u)/ssh-agent")
+            for pid in (pgrep -u $USER ssh-agent)
+                if not contains $pid $system_agent_pids
+                    kill -9 $pid >/dev/null 2>&1
+                end
+            end
+
+            # 3. Load keys if the agent is empty.
+            if not ssh-add -l >/dev/null 2>&1
+                ssh-add $ssh_keys
+            end
+        else if command -q keychain
+            # --- Fallback Strategy (macOS/Other Linux) ---
+            # We use keychain but explicitly export the variables to avoid
+            # Fish universal variable scope issues.
+            keychain --eval --quiet --noinherit $ssh_keys | source
+            # Ensure the socket is exported to the global environment for child processes.
+            set -gx SSH_AUTH_SOCK $SSH_AUTH_SOCK
+            set -gx SSH_AGENT_PID $SSH_AGENT_PID
+        end
     end
 
     # Ensure control sockets directory exists for multiplexing (see ~/.ssh/config).
