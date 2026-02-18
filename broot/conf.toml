@@ -64,7 +64,8 @@ internal = ":parent"
 invocation = "edit"
 key = "enter"
 apply_to = "file"
-external = "xdg-open {file}"
+# 'gio open' is prioritized over 'xdg-open' for better performance and Wayland portal reliability.
+external = "gio open {file}"
 leave_broot = false
 
 [[verbs]]

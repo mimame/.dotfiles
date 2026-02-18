@@ -3,10 +3,14 @@ function o --description "Open files or directories with the default system appl
 
     if $IS_DARWIN
         set opener open
+    else if command -q gio
+        # 'gio open' is preferred over 'xdg-open' on Linux/Wayland because it is a
+        # compiled binary (faster) and has better integration with XDG portals.
+        set opener gio open
     else if command -q xdg-open
         set opener xdg-open
     else
-        echo "Error: No system opener (open or xdg-open) found." >&2
+        echo "Error: No system opener (gio, open, or xdg-open) found." >&2
         return 1
     end
 

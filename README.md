@@ -81,6 +81,14 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 - [clifm](https://github.com/leo-arch/clifm): The shell-like, command-line terminal file manager.
 - [broot](https://dystroy.org/broot/): A new way to navigate directory trees.
 
+## MIME Management
+
+This repository employs a sophisticated, declarative system for managing XDG MIME associations:
+- **Source of Truth:** `mimeapps/defaults.yaml` defines preferred handlers, including wildcard support (e.g., `text/*`).
+- **Generator:** `bin/update-mimeapps.rb` (Ruby) scans the Nix store and standard XDG paths to generate a deterministic `~/.config/mimeapps.list`.
+- **Verifier:** `bin/check-mimeapps` (Fish) uses native parallelism and `gio mime` to verify associations in under 3 seconds.
+- **Preferred Opener:** `gio open` is prioritized over `xdg-open` across all tools (`o` function, yazi, broot, clifm) for its superior performance and reliable Wayland portal integration.
+
 # Themes
 
 - [Dracula](https://draculatheme.com): The primary dark theme applied across all supported applications.
