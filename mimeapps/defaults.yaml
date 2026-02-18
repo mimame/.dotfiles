@@ -71,11 +71,13 @@ Default Applications:
   text/html: firefox.desktop
   text/markdown: dev.zed.Zed.desktop
   text/mathml: math.desktop
+  text/rtf: writer.desktop
   text/spreadsheet: calc.desktop
   text/tab-separated-values: calc.desktop
   text/x-comma-separated-values: calc.desktop
   text/x-csv: calc.desktop
   text/x-spreadsheet: calc.desktop
+  text/x-sql: dbeaver.desktop
   text/x-vcard: thunderbird.desktop
   text/xml: firefox.desktop
   video/*: vlc.desktop

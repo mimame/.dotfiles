@@ -1,108 +1,107 @@
 #!/usr/bin/env fish
 
-# ------------------------------------------------------------------------------
-#
-#  check-mimeapps: A script to verify XDG Mime Application consistency.
-#
-#  This script checks for inconsistencies between the default applications
-#  configured in `~/.config/mimeapps.list` and the associations reported by
-#  the `xdg-mime` utility. It is designed to be run as a pre-commit hook or
-#  manually to ensure that the system's mime type database is in sync with
-#  the configuration file.
-#
-#  How it works:
-#  1. It reads all `mime-type=application.desktop` entries from the
-#     `[Default Applications]` section of `~/.config/mimeapps.list`.
-#  2. For each mime type, it queries the system's default application using
-#     `xdg-mime query default <mime-type>`.
-#  3. It compares the application from the file with the one from the system.
-#  4. It reports any mismatches found.
-#
-#  Exit Codes:
-#    - 0: All associations are consistent.
-#    - 1: Mismatches were found or an error occurred.
-#
-# ------------------------------------------------------------------------------
+# check-mimeapps: A high-performance script to verify XDG Mime Application consistency.
+# Optimized for speed using 'gio mime' and native Fish background jobs.
 
-# Path to the user's mimeapps.list configuration file.
-set -l script_path (readlink -f (status --current-filename))
-set -l script_dir (dirname "$script_path")
-set -l dotfiles_root (dirname "$script_dir")
-set -l mimeapps_file "$dotfiles_root/mimeapps/mimeapps.list"
-set -l exit_code 0
+# 1. Platform Detection & Tool Verification
+if not set -q IS_LINUX
+    set -gx IS_LINUX false
+    if test (uname -s) = Linux; set -gx IS_LINUX true; end
+end
 
-# 1. Early exits for platform and missing tools
 if not $IS_LINUX
     echo "Check skipped: This script is only intended for Linux systems."
     exit 0
 end
 
-if not command -q xdg-mime
-    echo "Error: xdg-mime not found. Please install it to check associations." >&2
+set -l tool
+if command -q gio
+    set tool gio
+else if command -q xdg-mime
+    set tool xdg-mime
+else
+    echo "Error: Neither 'gio' nor 'xdg-mime' found. Please install xdg-utils or glib2." >&2
     exit 1
 end
+
+# 2. Path Setup
+set -l script_path (readlink -f (status --current-filename))
+set -l dotfiles_root (dirname (dirname "$script_path"))
+set -l mimeapps_file "$dotfiles_root/mimeapps/mimeapps.list"
 
 if not test -f "$mimeapps_file"
     echo "Error: mimeapps.list not found at $mimeapps_file" >&2
     exit 1
 end
 
-# 2. Extract associations using robust awk parsing
-set -l associations (awk '/^\[Default Applications\]/{f=1;next} /^\[/{f=0} f' "$mimeapps_file" | grep '=' | grep -v '^\s*#')
+# 3. Extract associations
+set -l associations (awk '/^\[Default Applications\]/{f=1;next} /^\[/{f=0} f && /=/ && !/^\s*#/' "$mimeapps_file")
+set -l total (count $associations)
 
-if test -z "$associations"
-    echo "No mime type associations found in $mimeapps_file under [Default Applications] to check."
+if test $total -eq 0
+    echo "No associations found in $mimeapps_file."
     exit 0
 end
 
-echo "🔍 Checking mime type associations..."
+echo "🔍 Checking $total mime associations in parallel (using $tool)..."
 
-set -l total (count $associations)
-set -l count 0
-set -l mismatches 0
+# 4. Execute parallel checks using Fish internal backgrounding
+# This is much faster than xargs -P because it avoids spawning 341 shell processes.
+set -l tmpdir (mktemp -d)
 
-# 3. Iterate over each association line with colorized output
 for association in $associations
-    set count (math $count + 1)
-    # Split the line into mime type and expected application.
-    set -l mime_type (echo "$association" | cut -d'=' -f1 | string trim)
-    set -l expected_app (echo "$association" | cut -d'=' -f2 | sed 's/;//' | string trim)
+    begin
+        # Parse association (no forks)
+        set -l parts (string split -m 1 "=" -- $association)
+        set -l mime (string trim $parts[1])
+        set -l expected (string replace -r ';$' '' $parts[2] | string trim)
 
-    if test -z "$mime_type" -o -z "$expected_app"
-        continue
-    end
+        set -l actual
+        if test "$tool" = gio
+            set actual (gio mime "$mime" 2>/dev/null | awk '/Default application/ {print $NF}')
+        else
+            set actual (xdg-mime query default "$mime" 2>/dev/null)
+        end
 
-    # Get the actual default application from the system's mime database.
-    set -l actual_app (xdg-mime query default "$mime_type" 2>/dev/null)
-
-    # Compare the expected app from the file with the actual app from the system.
-    if test "$expected_app" != "$actual_app"
-        set mismatches (math $mismatches + 1)
-        set_color red
-        echo "  Mismatch ($count/$total): $mime_type"
-        set_color normal
-        echo "    Expected: $expected_app"
-        echo "    Actual:   $actual_app"
-        set exit_code 1
-    else if status is-interactive
-        # Only show OK status in interactive shells to keep CI logs cleaner
-        set_color green
-        echo -n "  ✔ "
-        set_color normal
-        echo "$mime_type -> $actual_app"
-    end
+        if test -n "$actual"; and test "$expected" != "$actual"
+            set -l mime_file (string replace -a "/" "_" -- $mime)
+            echo "$expected|$actual" > "$tmpdir/$mime_file"
+        end
+    end &
 end
 
-# 4. Final summary report
-if test $exit_code -eq 0
+# Wait for all background jobs to finish
+wait
+
+set -l failure_files (ls -1 $tmpdir 2>/dev/null)
+set -l mismatches (count $failure_files)
+
+# 5. Report Results
+if test $mismatches -eq 0
     set_color -o green
-    echo "✅ Success: All $total checked associations are consistent."
+    echo "✅ Success: All $total associations are consistent."
     set_color normal
+    set -l exit_code 0
 else
+    echo ""
     set_color -o red
     echo "❌ Failure: Found $mismatches mismatches out of $total associations."
     set_color normal
-    echo "Tip: Run 'update-mimeapps.rb' to regenerate the associations file."
+
+    # Detailed report for failures (sorted by mime type)
+    for f in (printf "%s\n" $failure_files | sort)
+        set -l mime (string replace -a "_" "/" -- $f)
+        set -l res (cat "$tmpdir/$f")
+        set -l res_parts (string split "|" -- $res)
+        echo "  - $mime:"
+        echo "      Expected: $res_parts[1]"
+        echo "      Actual:   $res_parts[2]"
+    end
+
+    echo ""
+    echo "Tip: Run 'update-mimeapps.rb' to regenerate associations."
+    set -l exit_code 1
 end
 
+rm -rf "$tmpdir"
 exit $exit_code
