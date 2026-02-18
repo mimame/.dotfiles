@@ -20,12 +20,7 @@ source_transient paths '
     end
 
     # Detect Homebrew location
-    set -l brew_bin
-    if test -f /opt/homebrew/bin/brew
-        set brew_bin /opt/homebrew/bin/brew
-    else if test -f /usr/local/bin/brew
-        set brew_bin /usr/local/bin/brew
-    end
+    set -l brew_bin (path filter -f /opt/homebrew/bin/brew /usr/local/bin/brew | head -n1)
 
     if test -n "$brew_bin"
         set -l brew_prefix ($brew_bin --prefix)

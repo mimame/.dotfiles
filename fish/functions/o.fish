@@ -24,7 +24,7 @@ function o --description "Open files or directories with the default system appl
     set -l opened 0
     for target in $argv
         # Check if it's an existing path or a valid URI
-        if test -e "$target" -o (string match -rq '^[a-zA-Z][a-zA-Z0-9+.-]*://' -- "$target"; echo $status) -eq 0
+        if test -e "$target"; or string match -rq '^[a-zA-Z][a-zA-Z0-9+.-]*://' -- "$target"
             if $IS_DARWIN
                 $opener "$target"
             else

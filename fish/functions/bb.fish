@@ -37,7 +37,7 @@ function bb --description "Interactively navigate up the directory tree"
     end
 
     # Use fzf to select a directory
-    set -l final_dir (printf "%s\n" $dirs | fzf \
+    set -l final_dir (string join \n -- $dirs | fzf \
         --reverse \
         --prompt="Navigate up: " \
         --header="Select a parent directory" \
