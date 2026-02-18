@@ -25,42 +25,49 @@
 # ------------------------------------------------------------------------------
 
 # Path to the user's mimeapps.list configuration file.
-# Dynamically determine the root of the dotfiles repository to locate mimeapps.list.
-# This ensures the script works correctly even when run as an independent binary
-# or from outside the git repository.
 set -l script_path (readlink -f (status --current-filename))
 set -l script_dir (dirname "$script_path")
 set -l dotfiles_root (dirname "$script_dir")
 set -l mimeapps_file "$dotfiles_root/mimeapps/mimeapps.list"
 set -l exit_code 0
 
-# Check if mimeapps.list exists
+# 1. Early exits for platform and missing tools
+if not $IS_LINUX
+    echo "Check skipped: This script is only intended for Linux systems."
+    exit 0
+end
+
+if not command -q xdg-mime
+    echo "Error: xdg-mime not found. Please install it to check associations." >&2
+    exit 1
+end
+
 if not test -f "$mimeapps_file"
     echo "Error: mimeapps.list not found at $mimeapps_file" >&2
     exit 1
 end
 
-# Use awk to extract all key-value pairs under the `[Default Applications]` section.
-# This is more robust than simple grep, especially for mime types with wildcards.
-# It works by setting a flag `f=1` when `[Default Applications]` is found,
-# and unsetting it (`f=0`) at the next section `[...]`. It then prints lines
-# where the flag `f` is set, the line contains `=`, and is not a comment.
+# 2. Extract associations using robust awk parsing
 set -l associations (awk '/^\[Default Applications\]/{f=1;next} /^\[/{f=0} f' "$mimeapps_file" | grep '=' | grep -v '^\s*#')
 
 if test -z "$associations"
     echo "No mime type associations found in $mimeapps_file under [Default Applications] to check."
-    exit 0 # Exit 0 because there's nothing to check
+    exit 0
 end
 
-echo "Checking mime type associations..."
+echo "🔍 Checking mime type associations..."
 
-# Iterate over each association line.
+set -l total (count $associations)
+set -l count 0
+set -l mismatches 0
+
+# 3. Iterate over each association line with colorized output
 for association in $associations
+    set count (math $count + 1)
     # Split the line into mime type and expected application.
     set -l mime_type (echo "$association" | cut -d'=' -f1 | string trim)
     set -l expected_app (echo "$association" | cut -d'=' -f2 | sed 's/;//' | string trim)
 
-    # Skip empty lines or lines without a value, which can result from malformed entries.
     if test -z "$mime_type" -o -z "$expected_app"
         continue
     end
@@ -70,17 +77,32 @@ for association in $associations
 
     # Compare the expected app from the file with the actual app from the system.
     if test "$expected_app" != "$actual_app"
-        echo "❌ Mismatch for mime type: $mime_type"
-        echo "     Expected: $expected_app (from mimeapps.list)"
-        echo "     Actual:   $actual_app (from xdg-mime)"
+        set mismatches (math $mismatches + 1)
+        set_color red
+        echo "  Mismatch ($count/$total): $mime_type"
+        set_color normal
+        echo "    Expected: $expected_app"
+        echo "    Actual:   $actual_app"
         set exit_code 1
-    else
-        echo "✅ OK: $mime_type -> $actual_app"
+    else if status is-interactive
+        # Only show OK status in interactive shells to keep CI logs cleaner
+        set_color green
+        echo -n "  ✔ "
+        set_color normal
+        echo "$mime_type -> $actual_app"
     end
 end
 
+# 4. Final summary report
 if test $exit_code -eq 0
-    echo "All checked mime type associations are consistent."
+    set_color -o green
+    echo "✅ Success: All $total checked associations are consistent."
+    set_color normal
+else
+    set_color -o red
+    echo "❌ Failure: Found $mismatches mismatches out of $total associations."
+    set_color normal
+    echo "Tip: Run 'update-mimeapps.rb' to regenerate the associations file."
 end
 
 exit $exit_code

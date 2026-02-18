@@ -30,9 +30,13 @@ DEFAULTS_PATH = File.expand_path('../mimeapps/defaults.yaml', __dir__)
 # The final output file that desktop environments will use.
 MIMEAPPS_OUTPUT_PATH = File.expand_path('~/.config/mimeapps.list')
 
-# We only search the Nix store to ensure all applications are declaratively managed.
+# Optimized search paths: we prioritize Nix profiles and standard XDG locations
+# to avoid scanning the entire /nix/store, which is extremely slow.
 SEARCH_PATHS = [
-  '/nix/store'
+  File.expand_path('~/.nix-profile/share/applications'),
+  '/run/current-system/sw/share/applications',
+  '/usr/share/applications',
+  File.expand_path('~/.local/share/applications')
 ].freeze
 
 # This module provides helper methods for formatting the output of the mimeapps.list file.
@@ -59,7 +63,8 @@ module MimeappsOutputFormatter
   def _generate_added_associations_section(mimetype_to_apps)
     section = []
     section << '[Added Associations]'
-    mimetype_to_apps.sort.to_h.each do |mime, apps|
+    # Sort by mimetype and join application names alphabetically
+    mimetype_to_apps.sort.each do |mime, apps|
       section << "#{mime}=#{apps.to_a.sort.join(';')};"
     end
     section.join("\n")
