@@ -23,10 +23,14 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys (NixO
             set -gx SSH_AUTH_SOCK /run/user/(id -u)/ssh-agent
 
             # 2. Cleanup rogue agents that might conflict with the system one.
-            set -l system_agent_pids (pgrep -u $USER -f "/run/user/(id -u)/ssh-agent")
-            for pid in (pgrep -u $USER ssh-agent)
-                if not contains $pid $system_agent_pids
-                    kill -9 $pid >/dev/null 2>&1
+            set -l agent_path /run/user/(id -u)/ssh-agent
+            set -l system_agent_pids (pgrep -u $USER -f $agent_path)
+
+            if test -n "$system_agent_pids"
+                for pid in (pgrep -u $USER ssh-agent)
+                    if not contains $pid $system_agent_pids
+                        kill -9 $pid >/dev/null 2>&1
+                    end
                 end
             end
 
