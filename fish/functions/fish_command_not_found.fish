@@ -17,7 +17,7 @@ function fish_command_not_found --description "Handler for when a command is not
     # Suggest 'fk' (pay-respects) for typos first
     if functions -q fk
         echo "💡 Tip: Type 'fk' to fix the typo with pay-respects" >&2
-    else if test (uname) = Darwin; and command -q brew
+    else if $IS_DARWIN; and command -q brew
         # Fallback to brew search on macOS if pay-respects isn't available
         echo "💡 Tip: Search for it with 'brew search $cmd'" >&2
     end

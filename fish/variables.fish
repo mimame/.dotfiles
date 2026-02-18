@@ -47,6 +47,21 @@ source_transient paths '
     end
 ' $__fish_config_dir/variables.fish
 
+# --- Platform Identification ---
+
+set -gx IS_DARWIN false
+set -gx IS_LINUX false
+set -gx IS_NIXOS false
+
+if test (uname -s) = Darwin
+    set -gx IS_DARWIN true
+else if test -e /etc/os-release
+    set -gx IS_LINUX true
+    if grep -q '^ID=nixos' /etc/os-release
+        set -gx IS_NIXOS true
+    end
+end
+
 # --- Core Fish Configuration ---
 
 # Remove Fish default greeting

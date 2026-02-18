@@ -15,7 +15,7 @@ function ff --description "Open private Firefox window with search or URL"
     end
 
     # Cross-platform execution
-    if test (uname) = Darwin
+    if $IS_DARWIN
         if command -q firefox
             firefox --private-window "$url" &>/dev/null & disown
         else

@@ -38,11 +38,8 @@ if command -q jj
 end
 
 # 4. PLATFORM SPECIFIC
-switch (uname)
-    case Linux
-        if grep -q '^ID=nixos' /etc/os-release 2>/dev/null
-            source_transient any-nix-shell "any-nix-shell fish --info-right" $__fish_config_dir/config.fish
-        end
+if $IS_NIXOS
+    source_transient any-nix-shell "any-nix-shell fish --info-right" $__fish_config_dir/config.fish
 end
 
 # 5. BACKGROUND SERVICES (Login shells only)

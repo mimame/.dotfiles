@@ -8,7 +8,6 @@ function iso --description "Burn image files to USB drives safely (Cross-platfor
 
     set -l img "$argv[1]"
     set -l dev "$argv[2]"
-    set -l os (uname -s)
 
     # 1. Basic validation
     if not test -f "$img"
@@ -25,7 +24,7 @@ function iso --description "Burn image files to USB drives safely (Cross-platfor
     echo "⚠️  WARNING: This will ERASE ALL DATA on $dev"
     echo "Image:  $img ($(du -h "$img" | cut -f1))"
 
-    if test "$os" = Darwin
+    if $IS_DARWIN
         if not command -q diskutil
             echo "Error: diskutil not found." >&2
             return 1
@@ -46,7 +45,7 @@ function iso --description "Burn image files to USB drives safely (Cross-platfor
     end
 
     # 3. Platform-specific prep and unmount
-    if test "$os" = Darwin
+    if $IS_DARWIN
         # On macOS, using /dev/rdisk is significantly faster than /dev/disk
         set dev (string replace "/dev/disk" "/dev/rdisk" "$dev")
         echo "Unmounting $dev..."
@@ -69,7 +68,7 @@ function iso --description "Burn image files to USB drives safely (Cross-platfor
     echo "Writing image to $dev... (This may take a while)"
 
     set -l dd_cmd sudo dd if="$img" of="$dev" bs=4m
-    if test "$os" = Linux
+    if $IS_LINUX
         # GNU dd supports progress and fdatasync
         set dd_cmd $dd_cmd status=progress conv=fdatasync
     end
@@ -83,7 +82,7 @@ function iso --description "Burn image files to USB drives safely (Cross-platfor
     echo "Syncing..."
     sync
 
-    if test "$os" = Darwin
+    if $IS_DARWIN
         sudo diskutil eject "$dev" 2>/dev/null
     end
 

@@ -1,8 +1,7 @@
 function o --description "Open files or directories with the default system application"
-    set -l os (uname)
     set -l opener
 
-    if test "$os" = Darwin
+    if $IS_DARWIN
         set opener open
     else if command -q xdg-open
         set opener xdg-open
@@ -26,7 +25,7 @@ function o --description "Open files or directories with the default system appl
     for target in $argv
         # Check if it's an existing path or a valid URI
         if test -e "$target" -o (string match -rq '^[a-zA-Z][a-zA-Z0-9+.-]*://' -- "$target"; echo $status) -eq 0
-            if test "$os" = Darwin
+            if $IS_DARWIN
                 $opener "$target"
             else
                 $opener "$target" >/dev/null 2>&1 &

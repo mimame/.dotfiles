@@ -53,7 +53,7 @@ function pdfc --description "Compress PDF files using Ghostscript"
             # Portable byte size calculation
             set -l original_size 0
             set -l compressed_size 0
-            if test (uname) = Darwin
+            if $IS_DARWIN
                 set original_size (stat -f %z "$pdf")
                 set compressed_size (stat -f %z "$tmp_pdf")
             else

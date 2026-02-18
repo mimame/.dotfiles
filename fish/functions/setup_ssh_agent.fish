@@ -17,7 +17,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys (NixO
     end
 
     if test -n "$ssh_keys"
-        if grep -q '^ID=nixos' /etc/os-release 2>/dev/null
+        if $IS_NIXOS
             # --- NixOS Strategy ---
             # 1. Use the standard NixOS system-wide SSH agent socket.
             set -gx SSH_AUTH_SOCK /run/user/(id -u)/ssh-agent

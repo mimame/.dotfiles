@@ -14,7 +14,7 @@ function cb --description "Universal clipboard utility for macOS and Linux"
     set -l paste_cmd
 
     # Detect clipboard tools and set commands as arrays
-    if test (uname) = Darwin
+    if $IS_DARWIN
         set copy_cmd pbcopy
         set paste_cmd pbpaste
     else if set -q WAYLAND_DISPLAY; and command -q wl-copy
