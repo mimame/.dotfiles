@@ -19,10 +19,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys (NixO
     if test -n "$ssh_keys"
         if $IS_NIXOS
             # --- NixOS Strategy ---
-            # 1. Use the standard NixOS system-wide SSH agent socket.
-            set -gx SSH_AUTH_SOCK /run/user/(id -u)/ssh-agent
-
-            # 2. Cleanup rogue agents that might conflict with the system one.
+            # 1. Cleanup rogue agents that might conflict with the system one.
             set -l agent_path /run/user/(id -u)/ssh-agent
             set -l system_agent_pids (pgrep -u $USER -f $agent_path)
 
@@ -34,7 +31,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys (NixO
                 end
             end
 
-            # 3. Load keys if the agent is empty.
+            # 2. Load keys if the agent is empty.
             if not ssh-add -l >/dev/null 2>&1
                 ssh-add $ssh_keys
             end

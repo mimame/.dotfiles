@@ -1,8 +1,10 @@
+# 1. CORE VARIABLES & ENVIRONMENT
+# Sourced first to ensure environment variables are available to both
+# interactive and non-interactive shells.
+source ~/.config/fish/variables.fish
+
 # Interactive sessions only
 status is-interactive; or exit
-
-# 1. CORE VARIABLES & ENVIRONMENT
-source ~/.config/fish/variables.fish
 
 # 2. BOOTSTRAP & RESOURCES (Lazy Loaded)
 if not test -f ~/.config/fish/functions/fisher.fish

@@ -254,5 +254,12 @@
   # avoiding conflicts with the GNOME GCR agent and fixing repeated passphrase prompts.
   programs.ssh.startAgent = true;
 
+  # Global Environment Variables
+  # Setting SSH_AUTH_SOCK here ensures all system processes (including
+  # those not started from a shell) can reach the systemd SSH agent.
+  environment.variables = {
+    SSH_AUTH_SOCK = "/run/user/1000/ssh-agent";
+  };
+
   environment.systemPackages = [ ];
 }
