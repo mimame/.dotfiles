@@ -23,9 +23,11 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
                         # Check if the key's fingerprint is already in the agent.
                         set -l finger (ssh-keygen -lf "$pub_key" | awk '{print $2}')
                         if not ssh-add -l | grep -q "$finger"
-                            # If not in agent, load it. This will prompt for a passphrase ONCE
-                            # per desktop session (the first time any shell starts).
-                            ssh-add "$key"
+                            # If not in agent, load it. We ONLY prompt if the shell
+                            # is interactive to avoid blocking non-interactive tools.
+                            if status is-interactive
+                                ssh-add "$key"
+                            end
                         end
                     end
                 end

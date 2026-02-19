@@ -56,7 +56,8 @@ else if test -e /etc/os-release
         set -gx IS_NIXOS true
         # On NixOS, use the standard systemd-managed SSH agent socket.
         # Exporting this globally ensures all sub-processes (Git, etc.) find the agent.
-        set -gx SSH_AUTH_SOCK /run/user/(id -u)/ssh-agent
+        set -l uid (id -u $USER)
+        set -gx SSH_AUTH_SOCK "/run/user/$uid/ssh-agent"
     end
 end
 

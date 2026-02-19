@@ -3,6 +3,12 @@
 # interactive and non-interactive shells.
 source ~/.config/fish/variables.fish
 
+# SSH Agent
+# Initialized early to ensure keys are available for both interactive
+# (e.g., manual git commands) and non-interactive (e.g., pre-commit hooks,
+# automated tasks) shells.
+setup_ssh_agent
+
 # Interactive sessions only
 status is-interactive; or exit
 
@@ -20,9 +26,6 @@ end
 if command -q direnv
     source_transient direnv "direnv hook fish" $__fish_config_dir/config.fish
 end
-
-# SSH Agent
-setup_ssh_agent
 
 # Tools (Cached for speed)
 source_transient starship "starship init fish" $__fish_config_dir/config.fish
