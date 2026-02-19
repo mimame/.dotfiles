@@ -1,48 +1,58 @@
 # Set font
 set font "Maple Mono NL NF 13"
+
 # Enable copy to clipboard
 set selection-clipboard clipboard
-# Tokyo Night theme
-set default-fg 			    "#c0caf5"
-set default-bg 			    "#24283b"
 
-set completion-bg		    "#24283b"
-set completion-fg		    "#c0caf5"
-set completion-highlight-bg	"#414868"
-set completion-highlight-fg	"#c0caf5"
-set completion-group-bg		"#24283b"
-set completion-group-fg		"#7aa2f7"
+# Scrolling behavior
+set scroll-step 100
+set scroll-full-overlap 0.01
 
-set statusbar-fg		    "#a9b1d6"
-set statusbar-bg		    "#414868"
-set statusbar-h-padding		10
-set statusbar-v-padding		10
+# UI settings
+set statusbar-h-padding 10
+set statusbar-v-padding 10
+set guioptions ""
+set adjust-open "width"
 
-set notification-bg		    "#414868"
-set notification-fg		    "#a9b1d6"
-set notification-error-bg	"#f7768e"
-set notification-error-fg	"#24283b"
-set notification-warning-bg	"#e0af68"
-set notification-warning-fg	"#24283b"
-set selection-notification	"true"
+# Dracula theme
+# Based on: https://draculatheme.com/zathura
 
-set inputbar-fg			    "#c0caf5"
-set inputbar-bg 		    "#24283b"
+set default-bg                  "#282a36"
+set default-fg                  "#f8f8f2"
 
-set recolor			        "true"
-set recolor-lightcolor		"#24283b"
-set recolor-darkcolor		"#c0caf5"
+set completion-bg               "#282a36"
+set completion-fg               "#f8f8f2"
+set completion-highlight-bg     "#44475a"
+set completion-highlight-fg     "#f8f8f2"
+set completion-group-bg         "#282a36"
+set completion-group-fg         "#bd93f9"
 
-set index-fg			    "#c0caf5"
-set index-bg			    "#24283b"
-set index-active-fg		    "#c0caf5"
-set index-active-bg		    "#414868"
+set statusbar-bg                "#44475a"
+set statusbar-fg                "#f8f8f2"
 
-set render-loading-bg		"#24283b"
-set render-loading-fg		"#c0caf5"
+set notification-bg             "#44475a"
+set notification-fg             "#f8f8f2"
+set notification-error-bg       "#ff5555"
+set notification-error-fg       "#282a36"
+set notification-warning-bg     "#ffb86c"
+set notification-warning-fg     "#282a36"
+set selection-notification      "true"
 
-set highlight-color		    "#7aa2f7"
-set highlight-active-color	"#bb9af7"
-set highlight-fg			"#ff0000"
+set inputbar-bg                 "#282a36"
+set inputbar-fg                 "#f8f8f2"
 
-set adjust-open			    "width"
+set recolor                     "true"
+set recolor-lightcolor          "#282a36"
+set recolor-darkcolor           "#f8f8f2"
+
+set index-bg                    "#282a36"
+set index-fg                    "#f8f8f2"
+set index-active-bg             "#44475a"
+set index-active-fg             "#f8f8f2"
+
+set render-loading-bg           "#282a36"
+set render-loading-fg           "#f8f8f2"
+
+set highlight-color             "#8be9fd"
+set highlight-active-color      "#ff79c6"
+set highlight-fg                "#44475a"
