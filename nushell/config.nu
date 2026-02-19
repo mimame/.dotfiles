@@ -1,109 +1,92 @@
 # Nushell Config File
 #
-# version = "0.87.0"
+# version = "0.110.0"
 
-# For more information on defining custom themes, see
-# https://www.nushell.sh/book/coloring_and_theming.html
-# And here is the theme collection
-# https://github.com/nushell/nu_scripts/tree/main/themes
-let tokyo_night = {
-
-  separator: "#a9b1d6"
+# --- Dracula Theme ---
+let dracula = {
+    separator: "#6272a4"
     leading_trailing_space_bg: { attr: "n" }
-    header: { fg: "#9ece6a" attr: "b" }
-    empty: "#7aa2f7"
-    bool: {|| if $in { "#7dcfff" } else { "light_gray" } }
-    int: "#a9b1d6"
+    header: { fg: "#50fa7b" attr: "b" }
+    empty: "#8be9fd"
+    bool: {|| if $in { "#50fa7b" } else { "#ff5555" } }
+    int: "#bd93f9"
     filesize: {|e|
         if $e == 0b {
-            "#a9b1d6"
+            "#6272a4"
         } else if $e < 1mb {
-            "#7dcfff"
-        } else {{ fg: "#7aa2f7" }}
+            "#50fa7b"
+        } else {{ fg: "#8be9fd" }}
     }
-    duration: "#a9b1d6"
+    duration: "#f1fa8c"
     date: {|| (date now) - $in |
         if $in < 1hr {
-            { fg: "#f7768e" attr: "b" }
+            { fg: "#ff5555" attr: "b" }
         } else if $in < 6hr {
-            "#f7768e"
+            "#ff5555"
         } else if $in < 1day {
-            "#e0af68"
+            "#ffb86c"
         } else if $in < 3day {
-            "#9ece6a"
+            "#50fa7b"
         } else if $in < 1wk {
-            { fg: "#9ece6a" attr: "b" }
+            { fg: "#50fa7b" attr: "b" }
         } else if $in < 6wk {
-            "#7dcfff"
+            "#8be9fd"
         } else if $in < 52wk {
-            "#7aa2f7"
-        } else { "dark_gray" }
+            "#bd93f9"
+        } else { "#6272a4" }
     }
-    range: "#a9b1d6"
-    float: "#a9b1d6"
-    string: "#a9b1d6"
-    nothing: "#a9b1d6"
-    binary: "#a9b1d6"
-    cellpath: "#a9b1d6"
-    row_index: { fg: "#9ece6a" attr: "b" }
-    record: "#a9b1d6"
-    list: "#a9b1d6"
-    block: "#a9b1d6"
-    hints: "dark_gray"
-    search_result: { fg: "#f7768e" bg: "#a9b1d6" }
+    range: "#bd93f9"
+    float: "#bd93f9"
+    string: "#f1fa8c"
+    nothing: "#6272a4"
+    binary: "#bd93f9"
+    cellpath: "#f8f8f2"
+    row_index: { fg: "#50fa7b" attr: "b" }
+    record: "#f8f8f2"
+    list: "#f8f8f2"
+    block: "#f8f8f2"
+    hints: "#6272a4"
+    search_result: { fg: "#ff5555" bg: "#f8f8f2" }
 
-    shape_and: { fg: "#bb9af7" attr: "b" }
-    shape_binary: { fg: "#bb9af7" attr: "b" }
-    shape_block: { fg: "#7aa2f7" attr: "b" }
-    shape_bool: "#7dcfff"
-    shape_custom: "#9ece6a"
-    shape_datetime: { fg: "#7dcfff" attr: "b" }
-    shape_directory: "#7dcfff"
-    shape_external: "#7dcfff"
-    shape_externalarg: { fg: "#9ece6a" attr: "b" }
-    shape_filepath: "#7dcfff"
-    shape_flag: { fg: "#7aa2f7" attr: "b" }
-    shape_float: { fg: "#bb9af7" attr: "b" }
+    shape_and: { fg: "#ff79c6" attr: "b" }
+    shape_binary: { fg: "#ff79c6" attr: "b" }
+    shape_block: { fg: "#bd93f9" attr: "b" }
+    shape_bool: "#50fa7b"
+    shape_custom: "#50fa7b"
+    shape_datetime: { fg: "#8be9fd" attr: "b" }
+    shape_directory: "#8be9fd"
+    shape_external: "#8be9fd"
+    shape_externalarg: { fg: "#50fa7b" attr: "b" }
+    shape_filepath: "#8be9fd"
+    shape_flag: { fg: "#bd93f9" attr: "b" }
+    shape_float: { fg: "#ff79c6" attr: "b" }
     shape_garbage: { fg: "#FFFFFF" bg: "#FF0000" attr: "b" }
-    shape_globpattern: { fg: "#7dcfff" attr: "b" }
-    shape_int: { fg: "#bb9af7" attr: "b" }
-    shape_internalcall: { fg: "#7dcfff" attr: "b" }
-    shape_list: { fg: "#7dcfff" attr: "b" }
-    shape_literal: "#7aa2f7"
-    shape_match_pattern: "#9ece6a"
+    shape_globpattern: { fg: "#8be9fd" attr: "b" }
+    shape_int: { fg: "#ff79c6" attr: "b" }
+    shape_internalcall: { fg: "#8be9fd" attr: "b" }
+    shape_list: { fg: "#8be9fd" attr: "b" }
+    shape_literal: "#bd93f9"
+    shape_match_pattern: "#50fa7b"
     shape_matching_brackets: { attr: "u" }
-    shape_nothing: "#7dcfff"
-    shape_operator: "#e0af68"
-    shape_or: { fg: "#bb9af7" attr: "b" }
-    shape_pipe: { fg: "#bb9af7" attr: "b" }
-    shape_range: { fg: "#e0af68" attr: "b" }
-    shape_record: { fg: "#7dcfff" attr: "b" }
-    shape_redirection: { fg: "#bb9af7" attr: "b" }
-    shape_signature: { fg: "#9ece6a" attr: "b" }
-    shape_string: "#9ece6a"
-    shape_string_interpolation: { fg: "#7dcfff" attr: "b" }
-    shape_table: { fg: "#7aa2f7" attr: "b" }
-    shape_variable: "#bb9af7"
+    shape_nothing: "#8be9fd"
+    shape_operator: "#ffb86c"
+    shape_or: { fg: "#ff79c6" attr: "b" }
+    shape_pipe: { fg: "#ff79c6" attr: "b" }
+    shape_range: { fg: "#ffb86c" attr: "b" }
+    shape_record: { fg: "#8be9fd" attr: "b" }
+    shape_redirection: { fg: "#ff79c6" attr: "b" }
+    shape_signature: { fg: "#50fa7b" attr: "b" }
+    shape_string: "#f1fa8c"
+    shape_string_interpolation: { fg: "#8be9fd" attr: "b" }
+    shape_table: { fg: "#bd93f9" attr: "b" }
+    shape_variable: "#ff79c6"
 
-    background: "#1a1b26"
-    foreground: "#c0caf5"
-    cursor: "#c0caf5"
+    background: "#282a36"
+    foreground: "#f8f8f2"
+    cursor: "#f8f8f2"
 }
 
-# External completers
-
-# if the current command is an alias, get it's expansion
-let expanded_alias = (scope aliases | where name == $spans.0 | get -i 0 | get -i expansion)
-
-# overwrite
-let spans = (if $expanded_alias != null  {
-    # put the first word of the expanded alias first in the span
-    $spans | skip 1 | prepend ($expanded_alias | split row " " | take 1)
-} else { $spans })
-let carapace_completer = {|spans|
-    carapace $spans.0 nushell ...$spans | from json
-}
-
+# --- Completers ---
 let fish_completer = {|spans|
     fish --command $'complete "--do-complete=($spans | str join " ")"'
     | $"value(char tab)description(char newline)" + $in
@@ -114,201 +97,83 @@ let zoxide_completer = {|spans|
     $spans | skip 1 | zoxide query -l ...$in | lines | where {|x| $x != $env.PWD}
 }
 
-# This completer will use carapace by default
 let external_completer = {|spans|
-    let expanded_alias = scope aliases
-    | where name == $spans.0
-    | get -i 0.expansion
-
-    let spans = if $expanded_alias != null {
-        $spans
-        | skip 1
-        | prepend ($expanded_alias | split row ' ' | take 1)
-    } else {
-        $spans
-    }
-
     match $spans.0 {
-        # carapace completions are incorrect for nu
-        nu => $fish_completer
-        # fish completes commits and branch names in a nicer way
-        git => $fish_completer
-        # carapace doesn't have completions for asdf
-        asdf => $fish_completer
-        # use zoxide completions for zoxide commands
         __zoxide_z | __zoxide_zi => $zoxide_completer
-        _ => $carapace_completer
+        _ => $fish_completer
     } | do $in $spans
 }
 
-# The default config record. This is where much of your global configuration is setup.
+# --- Global Config ---
 $env.config = {
-    show_banner: false # true or false to enable or disable the welcome banner at startup
+    show_banner: false
 
     ls: {
-        use_ls_colors: true # use the LS_COLORS environment variable to colorize output
-        clickable_links: true # enable or disable clickable links. Your terminal has to support links.
+        use_ls_colors: true
+        clickable_links: true
     }
 
     rm: {
-        always_trash: true # always act as if -t was given. Can be overridden with -p
+        always_trash: true
     }
 
     table: {
         mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
-        index_mode: always # "always" show indexes, "never" show indexes, "auto" = show indexes when a table has "index" column
-        show_empty: true # show 'empty list' and 'empty record' placeholders for command output
-        padding: { left: 1, right: 1 } # a left right padding of each column in a table
+        index_mode: always
+        show_empty: true
+        padding: { left: 1, right: 1 }
         trim: {
-            methodology: wrapping # wrapping or truncating
-            wrapping_try_keep_words: true # A strategy used by the 'wrapping' methodology
-            truncating_suffix: "..." # A suffix used by the 'truncating' methodology
+            methodology: wrapping
+            wrapping_try_keep_words: true
         }
-        header_on_separator: false # show header text on separator/border line
-    }
-
-    error_style: "fancy" # "fancy" or "plain" for screen reader-friendly error messages
-
-    # datetime_format determines what a datetime rendered in the shell would look like.
-    # Behavior without this configuration point will be to "humanize" the datetime display,
-    # showing something like "a day ago."
-    datetime_format: {
-        # normal: '%a, %d %b %Y %H:%M:%S %z'    # shows up in displays of variables or other datetime's outside of tables
-        # table: '%m/%d/%y %I:%M:%S%p'          # generally shows up in tabular outputs such as ls. commenting this out will change it to the default human readable datetime format
-    }
-
-    explore: {
-        try: {
-            border_color: {fg: "white"}
-        },
-        status_bar_background: {fg: "#1D1F21", bg: "#C4C9C6"},
-        command_bar_text: {fg: "#C4C9C6"},
-        highlight: {fg: "black", bg: "yellow"},
-        status: {
-            error: {fg: "white", bg: "red"},
-            warn: {}
-            info: {}
-        },
-        table: {
-            split_line: {fg: "#404040"},
-            selected_cell: {},
-            selected_row: {},
-            selected_column: {},
-            show_cursor: true,
-            line_head_top: true,
-            line_head_bottom: true,
-            line_shift: true,
-            line_index: true,
-        },
-        config: {
-            border_color: {fg: "white"}
-            cursor_color: {fg: "black", bg: "light_yellow"}
-        },
     }
 
     history: {
-        max_size: 100_000 # Session has to be reloaded for this to take effect
-        sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
-        file_format: "plaintext" # "sqlite" or "plaintext"
-        isolation: false # only available with sqlite file_format. true enables history isolation, false disables it. true will allow the history to be isolated to the current session using up/down arrows. false will allow the history to be shared across all sessions.
+        max_size: 100_000
+        sync_on_enter: true
+        file_format: "sqlite"
+        isolation: false
     }
 
     completions: {
-        case_sensitive: false # set to true to enable case-sensitive completions
-        quick: true    # set this to false to prevent auto-selecting completions when only one remains
-        partial: true    # set this to false to prevent partial filling of the prompt
-        algorithm: "fuzzy"    # prefix or fuzzy
+        case_sensitive: false
+        quick: true
+        partial: true
+        algorithm: "fuzzy"
         external: {
-            enable: true # set to false to prevent nushell looking into $env.PATH to find more suggestions, `false` recommended for WSL users as this look up may be very slow
-            max_results: 100 # setting it lower can improve completion performance at the cost of omitting some options
+            enable: true
+            max_results: 100
             completer: $external_completer
         }
     }
 
-    filesize: {
-        metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
-        format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
-    }
-
     cursor_shape: {
-        emacs: line # block, underscore, line, blink_block, blink_underscore, blink_line (line is the default)
-        vi_insert: underscore # block, underscore, line , blink_block, blink_underscore, blink_line (block is the default)
-        vi_normal: block # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
+        emacs: line
+        vi_insert: line
+        vi_normal: block
     }
 
-    color_config: $tokyo_night # if you want a more interesting theme, you can replace the empty record with `$dark_theme`, `$light_theme` or another custom record
-    use_grid_icons: true
-    footer_mode: "25" # always, never, number_of_rows, auto
-    float_precision: 2 # the precision for displaying floats in tables
-    buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
-    use_ansi_coloring: true
-    bracketed_paste: true # enable bracketed paste, currently useless on windows
-    edit_mode: vi # emacs, vi
-    shell_integration: false # enables terminal shell integration. Off by default, as some terminals have issues with this.
-    render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
+    color_config: $dracula
+    footer_mode: 25
+    float_precision: 2
+    edit_mode: vi
+    shell_integration: {
+        osc2: true
+        osc7: true
+        osc8: true
+        osc9_9: false
+        osc133: true
+        osc633: true
+        reset_application_mode: true
+    }
 
     hooks: {
-        pre_prompt: [{ null }] # run before the prompt is shown
-        pre_execution: [{ null }] # run before the repl input is run
-        env_change: {
-            PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
-        }
-        display_output: "if (term size).columns >= 100 { table -e } else { table }" # run to display the output of a pipeline
-        command_not_found: { null } # return an error message when a command is not found
+        pre_prompt: [{ ||
+            if (which direnv | is-not-empty) {
+                direnv export json | from json | default {} | load-env
+            }
+        }]
     }
-
-    menus: [
-        # Configuration for default nushell menus
-        # Note the lack of source parameter
-        {
-            name: completion_menu
-            only_buffer_difference: false
-            marker: "| "
-            type: {
-                layout: columnar
-                columns: 4
-                col_width: 20     # Optional value. If missing all the screen width is used to calculate column width
-                col_padding: 2
-            }
-            style: {
-                text: green
-                selected_text: green_reverse
-                description_text: yellow
-            }
-        }
-        {
-            name: history_menu
-            only_buffer_difference: true
-            marker: "? "
-            type: {
-                layout: list
-                page_size: 10
-            }
-            style: {
-                text: green
-                selected_text: green_reverse
-                description_text: yellow
-            }
-        }
-        {
-            name: help_menu
-            only_buffer_difference: true
-            marker: "? "
-            type: {
-                layout: description
-                columns: 4
-                col_width: 20     # Optional value. If missing all the screen width is used to calculate column width
-                col_padding: 2
-                selection_rows: 4
-                description_rows: 10
-            }
-            style: {
-                text: green
-                selected_text: green_reverse
-                description_text: yellow
-            }
-        }
-    ]
 
     keybindings: [
         {
@@ -329,81 +194,6 @@ $env.config = {
             keycode: char_r
             mode: [emacs, vi_insert, vi_normal]
             event: { send: menu name: history_menu }
-        }
-        {
-            name: help_menu
-            modifier: none
-            keycode: f1
-            mode: [emacs, vi_insert, vi_normal]
-            event: { send: menu name: help_menu }
-        }
-        {
-            name: completion_previous_menu
-            modifier: shift
-            keycode: backtab
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: menuprevious }
-        }
-        {
-            name: next_page_menu
-            modifier: control
-            keycode: char_x
-            mode: emacs
-            event: { send: menupagenext }
-        }
-        {
-            name: undo_or_previous_page_menu
-            modifier: control
-            keycode: char_z
-            mode: emacs
-            event: {
-                until: [
-                    { send: menupageprevious }
-                    { edit: undo }
-                ]
-            }
-        }
-        {
-            name: escape
-            modifier: none
-            keycode: escape
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: esc }    # NOTE: does not appear to work
-        }
-        {
-            name: cancel_command
-            modifier: control
-            keycode: char_c
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: ctrlc }
-        }
-        {
-            name: quit_shell
-            modifier: control
-            keycode: char_d
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: ctrld }
-        }
-        {
-            name: clear_screen
-            modifier: control
-            keycode: char_l
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: clearscreen }
-        }
-        {
-            name: search_history
-            modifier: control
-            keycode: char_q
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: searchhistory }
-        }
-        {
-            name: open_command_editor
-            modifier: control
-            keycode: char_o
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: openeditor }
         }
         {
             name: move_up
@@ -455,49 +245,11 @@ $env.config = {
             }
         }
         {
-            name: move_one_word_left
-            modifier: control
-            keycode: left
-            mode: [emacs, vi_normal, vi_insert]
-            event: {edit: movewordleft}
-        }
-        {
-            name: move_one_word_right_or_take_history_hint
-            modifier: control
-            keycode: right
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
-                until: [
-                    {send: historyhintwordcomplete}
-                    {edit: movewordright}
-                ]
-            }
-        }
-        {
-            name: move_to_line_start
-            modifier: none
-            keycode: home
-            mode: [emacs, vi_normal, vi_insert]
-            event: {edit: movetolinestart}
-        }
-        {
             name: move_to_line_start
             modifier: control
             keycode: char_a
             mode: [emacs, vi_normal, vi_insert]
             event: {edit: movetolinestart}
-        }
-        {
-            name: move_to_line_end_or_take_history_hint
-            modifier: none
-            keycode: end
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
-                until: [
-                    {send: historyhintcomplete}
-                    {edit: movetolineend}
-                ]
-            }
         }
         {
             name: move_to_line_end_or_take_history_hint
@@ -512,261 +264,6 @@ $env.config = {
             }
         }
         {
-            name: move_to_line_start
-            modifier: control
-            keycode: home
-            mode: [emacs, vi_normal, vi_insert]
-            event: {edit: movetolinestart}
-        }
-        {
-            name: move_to_line_end
-            modifier: control
-            keycode: end
-            mode: [emacs, vi_normal, vi_insert]
-            event: {edit: movetolineend}
-        }
-        {
-            name: move_up
-            modifier: control
-            keycode: char_p
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
-                until: [
-                    {send: menuup}
-                    {send: up}
-                ]
-            }
-        }
-        {
-            name: move_down
-            modifier: control
-            keycode: char_t
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
-                until: [
-                    {send: menudown}
-                    {send: down}
-                ]
-            }
-        }
-        {
-            name: delete_one_character_backward
-            modifier: none
-            keycode: backspace
-            mode: [emacs, vi_insert]
-            event: {edit: backspace}
-        }
-        {
-            name: delete_one_word_backward
-            modifier: control
-            keycode: backspace
-            mode: [emacs, vi_insert]
-            event: {edit: backspaceword}
-        }
-        {
-            name: delete_one_character_forward
-            modifier: none
-            keycode: delete
-            mode: [emacs, vi_insert]
-            event: {edit: delete}
-        }
-        {
-            name: delete_one_character_forward
-            modifier: control
-            keycode: delete
-            mode: [emacs, vi_insert]
-            event: {edit: delete}
-        }
-        {
-            name: delete_one_character_forward
-            modifier: control
-            keycode: char_h
-            mode: [emacs, vi_insert]
-            event: {edit: backspace}
-        }
-        {
-            name: delete_one_word_backward
-            modifier: control
-            keycode: char_w
-            mode: [emacs, vi_insert]
-            event: {edit: backspaceword}
-        }
-        {
-            name: move_left
-            modifier: none
-            keycode: backspace
-            mode: vi_normal
-            event: {edit: moveleft}
-        }
-        {
-            name: newline_or_run_command
-            modifier: none
-            keycode: enter
-            mode: emacs
-            event: {send: enter}
-        }
-        {
-            name: move_left
-            modifier: control
-            keycode: char_b
-            mode: emacs
-            event: {
-                until: [
-                    {send: menuleft}
-                    {send: left}
-                ]
-            }
-        }
-        {
-            name: move_right_or_take_history_hint
-            modifier: control
-            keycode: char_f
-            mode: emacs
-            event: {
-                until: [
-                    {send: historyhintcomplete}
-                    {send: menuright}
-                    {send: right}
-                ]
-            }
-        }
-        {
-            name: redo_change
-            modifier: control
-            keycode: char_g
-            mode: emacs
-            event: {edit: redo}
-        }
-        {
-            name: undo_change
-            modifier: control
-            keycode: char_z
-            mode: emacs
-            event: {edit: undo}
-        }
-        {
-            name: paste_before
-            modifier: control
-            keycode: char_y
-            mode: emacs
-            event: {edit: pastecutbufferbefore}
-        }
-        {
-            name: cut_word_left
-            modifier: control
-            keycode: char_w
-            mode: emacs
-            event: {edit: cutwordleft}
-        }
-        {
-            name: cut_line_to_end
-            modifier: control
-            keycode: char_k
-            mode: emacs
-            event: {edit: cuttoend}
-        }
-        {
-            name: cut_line_from_start
-            modifier: control
-            keycode: char_u
-            mode: emacs
-            event: {edit: cutfromstart}
-        }
-        {
-            name: swap_graphemes
-            modifier: control
-            keycode: char_t
-            mode: emacs
-            event: {edit: swapgraphemes}
-        }
-        {
-            name: move_one_word_left
-            modifier: alt
-            keycode: left
-            mode: emacs
-            event: {edit: movewordleft}
-        }
-        {
-            name: move_one_word_right_or_take_history_hint
-            modifier: alt
-            keycode: right
-            mode: emacs
-            event: {
-                until: [
-                    {send: historyhintwordcomplete}
-                    {edit: movewordright}
-                ]
-            }
-        }
-        {
-            name: move_one_word_left
-            modifier: alt
-            keycode: char_b
-            mode: emacs
-            event: {edit: movewordleft}
-        }
-        {
-            name: move_one_word_right_or_take_history_hint
-            modifier: alt
-            keycode: char_f
-            mode: emacs
-            event: {
-                until: [
-                    {send: historyhintwordcomplete}
-                    {edit: movewordright}
-                ]
-            }
-        }
-        {
-            name: delete_one_word_forward
-            modifier: alt
-            keycode: delete
-            mode: emacs
-            event: {edit: deleteword}
-        }
-        {
-            name: delete_one_word_backward
-            modifier: alt
-            keycode: backspace
-            mode: emacs
-            event: {edit: backspaceword}
-        }
-        {
-            name: delete_one_word_backward
-            modifier: alt
-            keycode: char_m
-            mode: emacs
-            event: {edit: backspaceword}
-        }
-        {
-            name: cut_word_to_right
-            modifier: alt
-            keycode: char_d
-            mode: emacs
-            event: {edit: cutwordright}
-        }
-        {
-            name: upper_case_word
-            modifier: alt
-            keycode: char_u
-            mode: emacs
-            event: {edit: uppercaseword}
-        }
-        {
-            name: lower_case_word
-            modifier: alt
-            keycode: char_l
-            mode: emacs
-            event: {edit: lowercaseword}
-        }
-        {
-            name: capitalize_char
-            modifier: alt
-            keycode: char_c
-            mode: emacs
-            event: {edit: capitalizechar}
-        }
-        {
             name: fzf_search_directory
             modifier: control_alt
             keycode: char_d
@@ -774,7 +271,7 @@ $env.config = {
             event: [
                      { edit: Clear }
                      { edit: InsertString,
-                       value: "z (fd --type directory --color=always | fzf --ansi | decode utf-8 | str trim)"
+                       value: "cd (fd --type directory --color=always | fzf --ansi | str trim)"
 
                      }
                      { send: Enter }
@@ -787,53 +284,181 @@ $env.config = {
             mode: [ emacs, vi_normal, vi_insert ]
             event: [
                      { edit: InsertString,
-                       value: "(fd --type file --color=always | fzf --ansi | decode utf-8 | str trim)"
+                       value: "(fd --type file --color=always | fzf --ansi | str trim)"
                      }
-                     {send: Enter}
                    ]
         }
     ]
 }
 
-# Load plugins
-use ~/.cache/nushell/starship/init.nu
-source ~/.cache/nushell/zoxide/init.nu
-source ~/.cache/carapace/init.nu
-
-# Load functions
+# --- Load Functions ---
 source ~/.config/nushell/functions/cb.nu
 source ~/.config/nushell/functions/t.nu
 source ~/.config/nushell/functions/o.nu
 source ~/.config/nushell/functions/paths.nu
+source ~/.config/nushell/functions/mc.nu
+source ~/.config/nushell/functions/y.nu
+source ~/.config/nushell/functions/bb.nu
 
-alias l = eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink
-alias ll = l --tree
+# --- Load Plugins/Scripts ---
+use ~/.cache/nushell/starship/init.nu
+source ~/.cache/nushell/zoxide/init.nu
+source ~/.cache/nushell/atuin/init.nu
+source ~/.cache/nushell/navi/init.nu
+source ~/.cache/nushell/pay-respects/init.nu
+
+# --- Native Structured Commands ---
+
+# Improved 'l' to return a sorted table of current files
+def l [path: path = "."] {
+    ls -a $path | sort-by type name
+}
+
+# Improved 'll' for a detailed tree-like view if desired, or standard sorted view
+def ll [path: path = "."] {
+    ls -a $path | sort-by type name | table -e
+}
+
+# --- Aliases ---
+
+# Navigation
+alias b = cd ..
+alias .. = cd ..
+alias ... = cd ../..
+alias .... = cd ../../..
+
+# File System
+alias md = mkdir -v
+alias mk = mkdir -v
+alias tree = erd --layout inverted --human
+
 alias ls = l
 
-alias b = cd ..
-alias cd = z
+alias df = duf
+alias du = dust
+alias dus = diskus
+alias free = free -h
+alias ncdu = ncdu --color dark
+
+alias rm = gomi
+alias cp = cp -ri
+alias ln = ln -i
+alias mv = mv -i
+alias x = chmod +x
+
+# Search
+alias f = fd --hidden --strip-cwd-prefix
+alias grep = rg
+alias rg = rg --ignore-file ~/.config/fd/ignore
+alias s = rg --ignore-file ~/.config/fd/ignore
+alias ag = ag --smart-case --ignore node_modules
+
+# Editors
+alias n = nvim
+alias v = nvim
+alias vi = nvim
+alias vim = nvim
+alias h = hx
+alias zd = zeditor
+alias nano = micro
+alias nd = nvim -d -c "set nofoldenable"
+
+# Development
 alias g = git
-alias ju = juliaup
-alias k = pkill -9 -f
 alias lg = lazygit
-alias md = mkdir -v
-alias mkdir = mkdir -v
-alias nvim = lvim
-# alias open = o
+alias tf = treefmt
+alias j = just
 alias pc = pre-commit
 alias ru = rustup
-alias u = topgrade
-alias vi = lvim
-alias vim = lvim
-alias v = lvim
-alias x = chmod +x
-alias h = hx
-alias j = just
-alias re = massren
-alias T = tail -F
-alias nano = micro
+alias cr = crystal
+alias nsp = nix-shell -p
+
+# Viewers
+alias 7z = 7zz
+alias cat = bat
 alias less = bat
 alias more = bat
-alias m = man
-alias sv = sudoedit
+alias m = tldr
+alias news = newsboat
+
+# System
+alias htop = btop
+alias top = btop
+alias tp = btop
+alias k = pkill -9 -f
+alias pkill = pkill -9 -f
+alias pgrep = pgrep -f
+alias u = topgrade
+alias wget = wget2
+alias download = get
+
+# Systemd
+alias scd = sudo systemctl disable
+alias sce = sudo systemctl enable
+alias scr = sudo systemctl restart
+alias scs = sudo systemctl start
+alias sct = sudo systemctl status
+alias sck = sudo systemctl stop
 alias se = sudoedit
+alias sv = sudoedit
+
+# User Systemd
+alias scud = systemctl --user disable
+alias scue = systemctl --user enable
+alias scur = systemctl --user restart
+alias scus = systemctl --user start
+alias scut = systemctl --user status
+alias scuk = systemctl --user stop
+
+# Docker
+alias d = docker
+alias dc = docker compose
+alias dcb = docker compose build
+alias dcd = docker compose down
+alias dcl = docker compose logs -f
+alias dcu = docker compose up -d
+alias dex = docker exec -it
+alias di = docker images
+alias dps = docker ps
+alias dpsa = docker ps -a
+
+# Zellij
+alias zj = zellij
+alias za = zellij attach
+alias zl = zellij list-sessions
+alias zk = zellij kill-session
+alias ze = zellij edit
+alias zr = zellij run
+
+# --- Configuration Editing ---
+def edit-config [path: path] {
+    if not ($path | path exists) { return }
+    let dir = ($path | path dirname)
+    let file = ($path | path basename)
+    cd $dir
+    run-external nvim $file
+}
+
+alias brootrc = edit-config ~/.dotfiles/broot/conf.toml
+alias clifmrc = edit-config ~/.dotfiles/clifm/profiles/default/clifmrc
+alias fishrc = edit-config ~/.dotfiles/fish/config.fish
+alias ghosttyrc = edit-config ~/.dotfiles/ghostty/config
+alias gitrc = edit-config ~/.dotfiles/git/config
+alias hxrc = edit-config ~/.dotfiles/helix/config.toml
+alias kittyrc = edit-config ~/.dotfiles/kitty/kitty.conf
+alias mimerc = edit-config ~/.dotfiles/mimeapps/mimeapps.list
+alias navirc = edit-config ~/.dotfiles/navi/config.yaml
+alias newsrc = edit-config ~/.dotfiles/newsboat/config
+alias nirirc = edit-config ~/.dotfiles/niri/config.kdl
+alias nixosrc = edit-config ~/.dotfiles/nixos/configuration.nix
+alias nvimrc = edit-config ~/.dotfiles/lazyvim/init.lua
+alias qutebrowserrc = edit-config ~/.dotfiles/qutebrowser/config.py
+alias sshrc = edit-config ~/.dotfiles/ssh/config
+alias starshiprc = edit-config ~/.dotfiles/starship/starship.toml
+alias tldrrc = edit-config ~/.dotfiles/tealdeer/config.toml
+alias topgraderc = edit-config ~/.dotfiles/topgrade/topgrade.toml
+alias tvrc = edit-config ~/.dotfiles/television/config.toml
+alias xplrrc = edit-config ~/.dotfiles/xplr/init.lua
+alias yazirc = edit-config ~/.dotfiles/yazi/yazi.toml
+alias zdrc = edit-config ~/.dotfiles/zed/settings.json
+alias zellijrc = edit-config ~/.dotfiles/zellij/config.kdl

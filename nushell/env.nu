@@ -1,62 +1,158 @@
 # Nushell Environment Config File
 #
-# version = "0.87.0"
+# version = "0.110.0"
 
-def create_left_prompt [] {
-    mut home = ""
-    try {
-        if $nu.os-info.name == "windows" {
-            $home = $env.USERPROFILE
-        } else {
-            $home = $env.HOME
+# --- Platform Identification ---
+$env.IS_DARWIN = ($nu.os-info.name == "macos")
+$env.IS_LINUX = ($nu.os-info.name == "linux")
+$env.IS_NIXOS = ($env.IS_LINUX and ("/etc/os-release" | path exists) and (open /etc/os-release | str contains "ID=nixos"))
+
+# --- Core Variables ---
+$env.default_nvim = "nvim"
+$env.EDITOR = "nvim"
+$env.VISUAL = $env.EDITOR
+$env.GIT_EDITOR = $env.EDITOR
+$env.BROWSER = "firefox"
+$env.JULIA_NUM_THREADS = 8
+$env.TMPDIR = "/tmp"
+$env.RIPGREP_CONFIG_PATH = ($env.HOME | path join ".config" "ripgrep" "ripgreprc")
+$env.PAGER = "bat --wrap auto"
+$env.MANPAGER = "bat --strip-ansi=auto -l man -p"
+$env.XDG_CONFIG_HOME = ($env.HOME | path join ".config")
+$env.PIP_USER = false
+$env.VAGRANT_DEFAULT_PROVIDER = "libvirt"
+$env.TZ_LIST = "CET,Central European Time;UTC,Coordinated Universal Time;US/Eastern,Eastern Standard Time;US/Pacific,Pacific Standard Time;Asia/Singapore, Singapore;Mexico/General"
+
+# Input method
+$env.GTK_IM_MODULE = "ibus"
+$env.QT_IM_MODULE = "ibus"
+$env.XMODIFIERS = "@im=ibus"
+
+# --- Path Configuration ---
+def get-path [] {
+    mut paths = [
+        ($env.HOME | path join ".yarn" "bin")
+        ($env.HOME | path join ".bin")
+        ($env.HOME | path join "go" "bin")
+        ($env.HOME | path join ".cargo" "bin")
+        ($env.HOME | path join ".rustup" "toolchains" "stable-x86_64-unknown-linux-gnu" "bin")
+        ($env.HOME | path join ".local" "bin")
+        ($env.HOME | path join ".local" "share" "coursier" "bin")
+    ]
+
+    # Homebrew (macOS/Linux)
+    let brew_bin = ([ "/opt/homebrew/bin/brew" "/usr/local/bin/brew" ] | where {|p| $p | path exists} | first | default null)
+    if $brew_bin != null {
+        let brew_prefix = (run-external $brew_bin "--prefix" | str trim)
+        $paths = ($paths | append [
+            ($brew_prefix | path join "bin")
+            ($brew_prefix | path join "sbin")
+        ])
+
+        # Language-specific Homebrew paths
+        for lang in [ "ruby" "python" ] {
+            let lang_path = ($brew_prefix | path join "opt" $lang "bin")
+            if ($lang_path | path exists) {
+                $paths = ($paths | append $lang_path)
+            }
         }
     }
 
-    let dir = ([
-        ($env.PWD | str substring 0..($home | str length) | str replace $home "~"),
-        ($env.PWD | str substring ($home | str length)..)
-    ] | str join)
+    # Ruby Gem paths (if ruby exists)
+    if (which ruby | is-not-empty) {
+        let user_dir = (run-external ruby "-e" "print Gem.user_dir" | str trim | path join "bin")
+        let bindir = (run-external ruby "-e" "print Gem.bindir" | str trim)
+        $paths = ($paths | append [ $user_dir $bindir ])
+    }
 
-    let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
-    let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
-    let path_segment = $"($path_color)($dir)"
-
-    $path_segment | str replace --all (char path_sep) $"($separator_color)/($path_color)"
+    $paths | where {|p| $p | path exists}
 }
 
-def create_right_prompt [] {
-    # create a right prompt in magenta with green separators and am/pm underlined
-    let time_segment = ([
-        (ansi reset)
-        (ansi magenta)
-        (date now | format date '%Y/%m/%d %r')
-    ] | str join | str replace --regex --all "([/:])" $"(ansi green)${1}(ansi magenta)" |
-        str replace --regex --all "([AP]M)" $"(ansi magenta_underline)${1}")
+$env.PATH = ($env.PATH | split row (char esep) | prepend (get-path) | uniq)
 
-    let last_exit_code = if ($env.LAST_EXIT_CODE != 0) {([
-        (ansi rb)
-        ($env.LAST_EXIT_CODE)
-    ] | str join)
-    } else { "" }
-
-    ([$last_exit_code, (char space), $time_segment] | str join)
+# --- Tool Themes (Dracula) ---
+$env.BAT_THEME = "Dracula"
+if (which vivid | is-not-empty) {
+    $env.LS_COLORS = (vivid generate dracula | str trim)
+    $env.EZA_COLORS = $env.LS_COLORS
 }
 
-# Use nushell functions to define your right and left prompt
-$env.PROMPT_COMMAND = {|| create_left_prompt }
-# $env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
+# FZF (Dracula)
+$env.FZF_DEFAULT_COMMAND = 'fd --type file --exclude node_modules'
+$env.FZF_CTRL_T_COMMAND = $env.FZF_DEFAULT_COMMAND
+$env.FZF_CTRL_T_OPTS = "--height 100% --preview 'bat --color always {}'"
+$env.FZF_ALT_C_COMMAND = 'fd --type directory --exclude node_modules'
+$env.FZF_ALT_C_OPTS = "--height 100% --preview br --preview-window wrap"
+$env.FZF_DEFAULT_OPTS = "
+--reverse
+--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
+--color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
+--color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
+--color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
+--bind 'tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($env.EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort'
+"
 
-# The prompt indicators are environmental variables that represent
-# the state of the prompt
+# GPG TTY
+if ($nu.is-interactive) {
+    $env.GPG_TTY = (tty | str trim)
+}
+
+# --- Shell Integrations ---
+
+# Ensure cache directories exist
+let cache_dir = ($env.HOME | path join ".cache" "nushell")
+if not ($cache_dir | path exists) { mkdir $cache_dir }
+
+# Starship
+let starship_cache = ($cache_dir | path join "starship" "init.nu")
+if not ($starship_cache | path exists) {
+    mkdir ($starship_cache | path dirname)
+    starship init nu | save -f $starship_cache
+}
+
+# Zoxide
+let zoxide_cache = ($cache_dir | path join "zoxide" "init.nu")
+if not ($zoxide_cache | path exists) {
+    mkdir ($zoxide_cache | path dirname)
+    zoxide init nushell | save -f $zoxide_cache
+}
+
+# Atuin
+let atuin_cache = ($cache_dir | path join "atuin" "init.nu")
+if not ($atuin_cache | path exists) {
+    mkdir ($atuin_cache | path dirname)
+    atuin init nu | save -f $atuin_cache
+}
+
+# Navi
+let navi_cache = ($cache_dir | path join "navi" "init.nu")
+if not ($navi_cache | path exists) {
+    mkdir ($navi_cache | path dirname)
+    if (which navi | is-not-empty) {
+        navi widget nushell | save -f $navi_cache
+    } else {
+        touch $navi_cache
+    }
+}
+
+# Pay-respects (fk)
+let fk_cache = ($cache_dir | path join "pay-respects" "init.nu")
+if not ($fk_cache | path exists) {
+    mkdir ($fk_cache | path dirname)
+    if (which pay-respects | is-not-empty) {
+        pay-respects nushell --alias fk | save -f $fk_cache
+    } else {
+        touch $fk_cache
+    }
+}
+
+# --- Prompt Indicators ---
 $env.PROMPT_INDICATOR = {|| "> " }
 $env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
 $env.PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
 $env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
 
-# Specifies how environment variables are:
-# - converted from a string to a value on Nushell startup (from_string)
-# - converted from a value back to a string when running external commands (to_string)
-# Note: The conversions happen *after* config.nu is loaded
+# Environment conversions
 $env.ENV_CONVERSIONS = {
     "PATH": {
         from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
@@ -67,85 +163,3 @@ $env.ENV_CONVERSIONS = {
         to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
     }
 }
-
-# Directories to search for scripts when calling source or use
-$env.NU_LIB_DIRS = [
-    # ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
-]
-
-# Directories to search for plugin binaries when calling register
-$env.NU_PLUGIN_DIRS = [
-    # ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
-]
-
-# To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-# $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
-$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.yarn/bin")
-$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.bin")
-$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/go/bin")
-$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.cargo/bin")
-$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin")
-$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.local/coursier/bin")
-$env.PATH = ($env.PATH | split row (char esep) | prepend "$HOME/.local/bin")
-
-$env.GTK_IM_MODULE = ibus
-$env.QT_IM_MODULE = ibus
-$env.XMODIFIERS = @im=ibus
-
-$env.THEFUCK_EXCLUDE_RULES = fix_file # Fix https://github.com/nvbn/thefuck/issues/1153
-
-$env.LS_COLORS = (vivid generate ~/.config/vivid/tokyonight_moon.yml)
-$env.EZA_COLORS = (vivid generate ~/.config/vivid/tokyonight_moon.yml)
-
-# Setting fd as the default source for fzf
-$env.FZF_DEFAULT_COMMAND = 'fd --type file --exclude node_modules'
-# To apply the command to CTRL-T as well
-$env.FZF_CTRL_T_COMMAND = "$FZF_DEFAULT_COMMAND"
-$env.FZF_CTRL_T_OPTS = "--height 100% --preview 'bat --color always {}'"
-# To apply the command to ALT_C
-$env.FZF_ALT_C_COMMAND = 'fd --type directory --exclude node_modules'
-$env.FZF_ALT_C_OPTS = "--height 100% --preview br --preview-window wrap"
-# Tokyonight colors by default
-# https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
-$env.FZF_DEFAULT_OPTS = '
---reverse
---color=fg:#c5cdd9,bg:#1e2030,hl:#6cb6eb
---color=fg+:#c5cdd9,bg+:#1e2030,hl+:#5dbbc1
---color=info:#88909f,prompt:#ec7279,pointer:#d38aea
---color=marker:#a0c980,spinner:#ec7279,header:#5dbbc1
---bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
-'
-
-$env.BAT_THEME = "Enki-Tokyo-Night"
-$env.MOAR = '--statusbar=bold --no-linenumbers'
-$env.MANPAGER = "sh -c 'col -bx | bat -l man -p'"
-$env.BROWSER = floorp
-$env.JULIA_NUM_THREADS = 8
-$env.TMPDIR = /tmp
-$env.TERMINAL = wezterm
-
-$env.PAGER = 'moar --wrap'
-$env.EDITOR = lvim
-$env.VISUAL = $env.EDITOR
-
-$env.TZ_LIST = "CET,Central European Time;UTC,Coordinated Universal Time;US/Eastern,Eastern Standard Time;US/Pacific,Pacific Standard Time;Asia/Singapore, Singapore;Mexico/General"
-
-
-# Never use user Python pip by default
-# pre-commit is broken with this
-$env.PIP_USER = false
-
-# SSH agent managed by NixOS programs.ssh.startAgent
-
-# Generate starship prompt
-mkdir ~/.cache/nushell/starship
-starship init nu | save -f ~/.cache/nushell/starship/init.nu
-
-# Generate zoxide source
-mkdir ~/.cache/nushell/zoxide
-zoxide init nushell | save -f ~/.cache/nushell/zoxide/init.nu
-
-# Generate carapace source
-$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
