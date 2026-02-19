@@ -2,3 +2,12 @@
 # If set to true, also look for and load .env files on top of the .envrc files.
 # If both .envrc and .env files exist, the .envrc will always be chosen first.
 load_dotenv = true
+
+# If set to true, any error during the .envrc execution will stop the process
+# and the old environment will be restored.
+strict_env = true
+
+[bash]
+# The path to the bash executable. It's used by direnv to execute the .envrc
+# and .env files.
+bin = "/bin/bash"
