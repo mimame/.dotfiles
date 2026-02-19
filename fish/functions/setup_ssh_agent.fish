@@ -1,8 +1,8 @@
 function setup_ssh_agent --description "Initialize SSH agent and load keys"
     # ARCHITECTURE:
-    # 1. NixOS: We use the systemd-managed 'ssh-agent' (via programs.ssh.startAgent).
-    #    This is global across the desktop session.
-    # 2. Fallback (macOS/Other Linux): We use 'keychain' as a shared agent manager.
+    # We use 'keychain' as our primary agent manager. It provides a robust
+    # mechanism to share a single agent across all shells and sessions,
+    # correctly handling environment variable propagation.
 
     set -l ssh_keys
     for key in id_ed25519 id_ed25519_no_passphrase
@@ -13,32 +13,15 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
     end
 
     if test -n "$ssh_keys"
-        if $IS_NIXOS
-            # NixOS Strategy: Use the systemd agent path.
-            # Variables.fish already exports SSH_AUTH_SOCK, so we just use it.
-            if test -S "$SSH_AUTH_SOCK"
-                for key in $ssh_keys
-                    set -l pub_key $key.pub
-                    if test -f "$pub_key"
-                        # Check if the key's fingerprint is already in the agent.
-                        set -l finger (ssh-keygen -lf "$pub_key" | awk '{print $2}')
-                        if not ssh-add -l | grep -q "$finger"
-                            # If not in agent, load it. We ONLY prompt if the shell
-                            # is interactive to avoid blocking non-interactive tools.
-                            if status is-interactive
-                                ssh-add "$key"
-                            end
-                        end
-                    end
-                end
-            end
-        else if command -q keychain
-            # Fallback Strategy (macOS/Other Linux)
-            # Keychain manages its own agent or inherits one.
-            keychain --eval --quiet --noinherit $ssh_keys | source
-            # Explicitly export as global to child processes.
-            set -gx SSH_AUTH_SOCK $SSH_AUTH_SOCK
-            set -gx SSH_AGENT_PID $SSH_AGENT_PID
+        # On NixOS, we already have a systemd-managed agent.
+        # Keychain will find it via SSH_AUTH_SOCK or we can let it manage its own.
+        # The key is that keychain creates a file (~/.keychain/$HOSTNAME-fish)
+        # that we can source in every shell to get the correct environment.
+        if command -q keychain
+            # --eval: Generate shell commands to set variables.
+            # $ssh_keys: The keys we want keychain to manage/add.
+            # We don't use --noinherit so keychain can reuse the NixOS systemd agent.
+            keychain --eval --quiet $ssh_keys | source
         else
             # Minimal fallback if keychain is missing.
             if not ssh-add -l >/dev/null 2>&1

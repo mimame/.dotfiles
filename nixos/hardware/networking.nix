@@ -250,16 +250,10 @@
 
   # --- SSH Agent Configuration ---
   #
-  # This provides a robust, system-wide agent that keychain can manage,
-  # avoiding conflicts with the GNOME GCR agent and fixing repeated passphrase prompts.
-  programs.ssh.startAgent = true;
-
-  # Global Environment Variables
-  # Setting SSH_AUTH_SOCK here ensures all system processes (including
-  # those not started from a shell) can reach the systemd SSH agent.
-  environment.variables = {
-    SSH_AUTH_SOCK = "/run/user/1000/ssh-agent";
-  };
+  # We disable the system-wide NixOS agent to avoid conflicts with 'keychain'.
+  # Keychain will manage its own agent and environment propagation consistently
+  # across all shell sessions (interactive and non-interactive).
+  programs.ssh.startAgent = false;
 
   environment.systemPackages = [ ];
 }
