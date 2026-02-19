@@ -87,6 +87,49 @@ set -gx EDITOR $default_nvim
 set -gx VISUAL $EDITOR
 set -gx GIT_EDITOR $EDITOR
 
+# --- Theme Configuration (Dracula Official) ---
+
+# Syntax Highlighting Colors
+set -g fish_color_autosuggestion 6272a4
+set -g fish_color_cancel ff5555 --reverse
+set -g fish_color_command 8be9fd
+set -g fish_color_comment 6272a4
+set -g fish_color_cwd 50fa7b
+set -g fish_color_cwd_root red
+set -g fish_color_end ffb86c
+set -g fish_color_error ff5555
+set -g fish_color_escape ff79c6
+set -g fish_color_history_current --bold
+set -g fish_color_host bd93f9
+set -g fish_color_host_remote bd93f9
+set -g fish_color_keyword ff79c6
+set -g fish_color_normal f8f8f2
+set -g fish_color_operator 50fa7b
+set -g fish_color_option ffb86c
+set -g fish_color_param bd93f9
+set -g fish_color_quote f1fa8c
+set -g fish_color_redirection f8f8f2
+set -g fish_color_search_match --background=44475a
+set -g fish_color_selection --background=44475a
+set -g fish_color_status ff5555
+set -g fish_color_user 8be9fd
+set -g fish_color_valid_path --underline
+
+# Pager Colors
+set -g fish_pager_color_background
+set -g fish_pager_color_completion f8f8f2
+set -g fish_pager_color_description 6272a4
+set -g fish_pager_color_prefix 8be9fd
+set -g fish_pager_color_progress 6272a4
+set -g fish_pager_color_secondary_background
+set -g fish_pager_color_secondary_completion f8f8f2
+set -g fish_pager_color_secondary_description 6272a4
+set -g fish_pager_color_secondary_prefix 8be9fd
+set -g fish_pager_color_selected_background --background=44475a
+set -g fish_pager_color_selected_completion f8f8f2
+set -g fish_pager_color_selected_description 6272a4
+set -g fish_pager_color_selected_prefix 8be9fd
+
 # --- Tool Configuration ---
 
 # Set colors for LS and EZA using 'vivid' if available

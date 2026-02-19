@@ -28,15 +28,9 @@ function bootstrap_fisher
         jorgebucaran/autopair.fish \
         jorgebucaran/replay.fish \
         edc/bass \
-        dracula/fish \
         PatrickF1/fzf.fish 2>/dev/null
 
-    # 3. Set Theme
-    echo "🎨 Configuring theme..."
-    yes | fish_config theme choose 'Dracula Official' 2>/dev/null
-    yes | fish_config theme save 'Dracula Official' 2>/dev/null
-
-    # 4. Finalize
+    # 3. Finalize
     # We clear the functions and re-source everything to ensure a clean state.
     echo "🔄 Refreshing environment..."
     set -p fish_function_path ~/.config/fish/functions
