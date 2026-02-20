@@ -38,6 +38,7 @@
       oha # HTTP load testing tool
       speedtest-go # Command-line speed test
       urlscan # Scan URLs for malicious activity
+      wsdd # Web Service Discovery (WSD) host daemon for SMB/Samba
       xh # Friendly and fast tool for sending HTTP requests
 
       # Remote access and tunneling

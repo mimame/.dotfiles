@@ -186,6 +186,8 @@
   # if a user is a "normal" user and not a "system" user
   environment.shells = [ pkgs.unstable.fish ];
 
+  users.groups.keyd = { };
+
   security = {
     # Policy that allows unprivileged processes to speak to privileged processes
     polkit.enable = true;
