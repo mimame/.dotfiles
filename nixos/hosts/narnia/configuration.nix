@@ -128,6 +128,17 @@ in
   };
 
   # ----------------------------------------------------------------------------
+  # Bootloader & Kernel
+  # ----------------------------------------------------------------------------
+  boot = {
+    # Enable hibernation support.
+    # The resume device must be a physical swap partition (not zram).
+    # UUID matches nvme0n1p3 from hardware-configuration.nix.
+    resumeDevice = "/dev/disk/by-uuid/0e66a448-d2b1-41f0-aa72-eb82fde5e705";
+    kernelParams = [ "resume=UUID=0e66a448-d2b1-41f0-aa72-eb82fde5e705" ];
+  };
+
+  # ----------------------------------------------------------------------------
   # System-wide Settings
   # ----------------------------------------------------------------------------
   system = {
