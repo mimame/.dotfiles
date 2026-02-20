@@ -117,6 +117,13 @@
     # 1. Dual-function Caps Lock: Acts as Control when held, and Escape when tapped.
     # 2. Oneshot Modifiers: Ctrl, Alt, Meta, and Shift can be tapped once to modify
     #    the next key press, reducing the need to hold them down for shortcuts.
+    #
+    # NOTE ON GROUPS: Do NOT create a 'keyd' group in NixOS for this service.
+    # While the daemon logs a warning about a missing 'keyd' group, creating it
+    # causes the service to CRASH with 'setgid: Operation not permitted'.
+    # This is because the NixOS keyd module enables security hardening
+    # (NoNewPrivileges=true and RestrictSUIDSGID=true) which blocks the
+    # daemon from changing its group ID even if the group exists.
     keyd = {
       enable = true;
       keyboards = {
@@ -185,8 +192,6 @@
   # Many programs look at /etc/shells to determine
   # if a user is a "normal" user and not a "system" user
   environment.shells = [ pkgs.unstable.fish ];
-
-  users.groups.keyd = { };
 
   security = {
     # Policy that allows unprivileged processes to speak to privileged processes
