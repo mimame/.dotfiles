@@ -16,14 +16,16 @@
       # See: https://www.freedesktop.org/software/systemd/man/latest/logind.conf.html#Options
       settings = {
         Login = {
-          # Suspend then hibernate on lid close, power key press, or after 10 minutes of inactivity.
+          # Suspend then hibernate on lid close (on battery).
           HandleLidSwitch = "suspend-then-hibernate";
-          HandleLidSwitchDocked = "suspend-then-hibernate";
-          HandleLidSwitchExternalPower = "suspend-then-hibernate";
-          HandlePowerKey = "suspend-then-hibernate";
+          # Use faster suspend when plugged in or docked.
+          HandleLidSwitchDocked = "ignore";
+          HandleLidSwitchExternalPower = "suspend";
+          HandlePowerKey = "suspend";
           HandlePowerKeyLongPress = "poweroff";
-          IdleAction = "suspend-then-hibernate";
-          IdleActionSec = "10min";
+          # Disable logind's blunt idle timer; let the Desktop Environment handle it.
+          IdleAction = "ignore";
+          LidSwitchIgnoreInhibited = "yes";
         };
       };
     };
@@ -35,7 +37,7 @@
       enable = true;
       touchpad = {
         # See: https://wayland.freedesktop.org/libinput/doc/latest/clickpad-softbuttons.html#clickpad-softbuttons
-        clickMethod = "buttonareas";
+        clickMethod = "clickfinger";
         disableWhileTyping = true;
         middleEmulation = false;
         naturalScrolling = true;
@@ -55,8 +57,7 @@
     AllowSuspend=yes
     AllowHibernation=yes
     AllowSuspendThenHibernate=yes
-    SuspendMode=suspend-then-hibernate
-    HibernateDelaySec=120min
+    HibernateDelaySec=2h
   '';
 
   environment.systemPackages = with pkgs; [
