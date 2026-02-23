@@ -3,6 +3,17 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
     # We use 'keychain' as our primary agent manager. It provides a robust
     # mechanism to share a single agent across all shells and sessions,
     # correctly handling environment variable propagation.
+    #
+    # On NixOS, we use the system-wide 'ssh-agent' (programs.ssh.startAgent = true)
+    # which sets a stable socket at /run/user/$UID/ssh-agent.
+    # Keychain is used to manage the *keys* in that agent and generate the
+    # environment files for shell sourcing.
+
+    # 1. Favor the system-wide NixOS agent socket if available.
+    set -l nixos_agent_sock /run/user/(id -u)/ssh-agent
+    if test -S "$nixos_agent_sock"
+        set -gx SSH_AUTH_SOCK "$nixos_agent_sock"
+    end
 
     set -l ssh_keys
     for key in id_ed25519 id_ed25519_no_passphrase
@@ -13,15 +24,12 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
     end
 
     if test -n "$ssh_keys"
-        # On NixOS, we already have a systemd-managed agent.
-        # Keychain will find it via SSH_AUTH_SOCK or we can let it manage its own.
-        # The key is that keychain creates a file (~/.keychain/$HOSTNAME-fish)
-        # that we can source in every shell to get the correct environment.
         if command -q keychain
             # --eval: Generate shell commands to set variables.
             # $ssh_keys: The keys we want keychain to manage/add.
-            # We don't use --noinherit so keychain can reuse the NixOS systemd agent.
-            keychain --eval --quiet $ssh_keys | source
+            # --noinherit: Ensures keychain identifies the correct agent via our
+            # explicitly set SSH_AUTH_SOCK instead of relying on inherited state.
+            keychain --eval --quiet --noinherit $ssh_keys | source
         else
             # Minimal fallback if keychain is missing.
             if not ssh-add -l >/dev/null 2>&1

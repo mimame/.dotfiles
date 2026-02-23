@@ -250,10 +250,11 @@
 
   # --- SSH Agent Configuration ---
   #
-  # We disable the system-wide NixOS agent to avoid conflicts with 'keychain'.
-  # Keychain will manage its own agent and environment propagation consistently
-  # across all shell sessions (interactive and non-interactive).
-  programs.ssh.startAgent = false;
+  # Enable the standard NixOS ssh-agent service.
+  # This provides a consistent SSH_AUTH_SOCK across all sessions (including
+  # systemd services and non-interactive shells), allowing 'keychain' to
+  # manage keys without needing to start its own private agent.
+  programs.ssh.startAgent = true;
 
   environment.systemPackages = [ ];
 }
