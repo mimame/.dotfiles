@@ -40,6 +40,7 @@
       nvme-cli # NVM Express command line interface
       pciutils # PCI utilities
       smartmontools # S.M.A.R.T. hard disk monitoring utilities
+      usbutils # USB utilities
 
       # Disk and filesystem utilities
       testdisk # Data recovery tool
