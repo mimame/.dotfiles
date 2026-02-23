@@ -8,7 +8,17 @@ _: {
   services = {
     # Enable Chrony for Network Time Protocol (NTP) synchronization.
     # This keeps the system clock accurate by syncing with a network of time servers.
-    chrony.enable = true;
+    chrony = {
+      enable = true;
+
+      # Allow jumping (stepping) the clock if the drift is more than 1 second.
+      # This ensures the time is corrected immediately after a long sleep/resume cycle,
+      # instead of gradually adjusting it over many hours or days.
+      # Syntax: makestep <threshold_seconds> <max_steps> (-1 = unlimited)
+      extraConfig = ''
+        makestep 1.0 -1
+      '';
+    };
 
     # Enable automatic timezone detection and setting.
     # This service uses a location provider to determine the system's geographical
