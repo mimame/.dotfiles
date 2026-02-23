@@ -110,6 +110,13 @@ output "eDP-1" {
     position x=0 y=0
 }
 
+output "HDMI-A-1" {
+    mode "3840x2160@59.997"
+    scale 1.25
+    transform "normal"
+    position x=-3072 y=0
+}
+
 // Settings that influence how windows are positioned and sized.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
