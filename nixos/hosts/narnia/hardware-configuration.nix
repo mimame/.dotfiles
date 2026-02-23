@@ -20,6 +20,9 @@
         "usb_storage"
         "sd_mod"
         "rtsx_usb_sdmmc"
+        "ucsi_acpi"
+        "typec"
+        "typec_nvidia"
       ];
       kernelModules = [ ];
     };
