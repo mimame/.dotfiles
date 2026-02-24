@@ -59,10 +59,10 @@
     # servers like Wayland and provides a smoother boot experience.
     modesetting.enable = true;
 
-    # Power management features. Can be unstable.
-    # Enable this if you experience graphical corruption after waking from sleep.
-    # It works by saving the entire VRAM to system RAM during suspend.
-    powerManagement.enable = false;
+    # Power management features. Required for stable resume from suspend/hibernate.
+    # It works by saving the entire VRAM to system RAM during suspend,
+    # preventing "Failed to apply atomic modeset" errors on wake.
+    powerManagement.enable = true;
 
     # Use the proprietary kernel module. Set to `true` to use the open-source module.
     open = false;
