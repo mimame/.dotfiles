@@ -47,6 +47,7 @@ in
     ../../hardware/bluetooth.nix
     ../../hardware/cpu.nix
     ../../hardware/graphics.nix
+    ../../hardware/nvidia.nix
     ../../hardware/networking.nix
     ../../hardware/peripherals/printer.nix
     ../../hardware/peripherals/scanner.nix
