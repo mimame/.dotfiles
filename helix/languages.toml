@@ -12,6 +12,16 @@ name = "rust"
 language-servers = ["rust-analyzer"]
 auto-format = true
 
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
 [[language]]
 name = "toml"
 language-servers = ["taplo"]
@@ -142,6 +152,7 @@ command = "nixd"
 
 [language-server.nixd.settings]
 nixpkgs = { expr = "import <nixpkgs> { }" }
+options = { nixos = { expr = "import ~/.dotfiles/nixos/configuration.nix { }" } }
 formatting = { command = ["nixfmt"] }
 
 [language-server.ruff]

@@ -22,6 +22,8 @@ completion-replace = false
 auto-save = true
 # Enable automatic pop up of auto-completion
 auto-format = true
+# Enable auto-pairs globally
+auto-pairs = true
 # Renders a line at the top of the editor displaying open buffers
 bufferline = "always"
 # Enable true color support
@@ -86,7 +88,7 @@ hidden = false
 
 [editor.whitespace]
 # Whether to render whitespace
-render = "none"
+render = "selection"
 
 [editor.whitespace.characters]
 space = "·"
@@ -102,11 +104,16 @@ character = "╎"
 
 [editor.soft-wrap]
 enable = true
+wrap-indicator = "↪ "
 
 [keys.normal]
 # Quick iteration on config changes
 C-o = ":config-open"
 C-r = ":config-reload"
+
+# Buffer navigation (matches your logic of H/L for navigation)
+H = ":bp"
+L = ":bn"
 
 # Helix selection shortcuts
 C-h = "select_prev_sibling"
@@ -118,6 +125,10 @@ C-l = "select_next_sibling"
 y = ["yank_main_selection_to_clipboard", "collapse_selection"]
 p = ["replace_selections_with_clipboard", "collapse_selection"]
 P = ["paste_clipboard_before", "collapse_selection"]
+
+# Search centering
+n = ["search_next", "align_view_center"]
+N = ["search_prev", "align_view_center"]
 
 # Search for word under cursor (native-like but slightly faster)
 "*" = [
@@ -140,6 +151,10 @@ P = ["paste_clipboard_before", "collapse_selection"]
 esc = ["collapse_selection", "normal_mode"]
 
 [keys.select]
+# Buffer navigation in select mode
+H = ":bp"
+L = ":bn"
+
 # Clipboards in select mode
 y = ["yank_main_selection_to_clipboard", "normal_mode", "collapse_selection"]
 p = "replace_selections_with_clipboard"
