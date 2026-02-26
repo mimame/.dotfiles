@@ -28,14 +28,14 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
 
     # Television Bindings
     # Ctrl+Alt+f: Find files
-    bind \e\cf tv_find_file
-    bind -M insert \e\cf tv_find_file
-    bind -M default \e\cf tv_find_file
+    bind \e\cf tv_search_files
+    bind -M insert \e\cf tv_search_files
+    bind -M default \e\cf tv_search_files
 
-    # Ctrl+Alt+d: Find directories
-    bind \e\cd tv_cd_dir
-    bind -M insert \e\cd tv_cd_dir
-    bind -M default \e\cd tv_cd_dir
+    # Alt+g: Find directories (Go)
+    bind \eg tv_search_dirs
+    bind -M insert \eg tv_search_dirs
+    bind -M default \eg tv_search_dirs
 
     # Enable navi command cheatsheet integration
     # Bind Ctrl+F in insert mode for context-aware command suggestions
