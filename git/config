@@ -523,7 +523,7 @@
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
   # Use zdiff3 for conflict markers (better than diff3)
   conflictstyle = zdiff3
-  tool          = nvim
+  tool          = hx
   guitool       = meld
 
 [mergetool]
