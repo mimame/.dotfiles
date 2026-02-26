@@ -475,6 +475,11 @@
   # Use SSH for signing (modern alternative to GPG)
   format = ssh
 
+[gpg "ssh"]
+  # Wrapper that ensures SSH_AUTH_SOCK is set to NixOS systemd ssh-agent socket
+  # Needed for Node.js apps that spawn git in isolated processes
+  program = ~/.bin/ssh-signing-wrapper
+
 [grep]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-greplineNumber
   # Always show line numbers

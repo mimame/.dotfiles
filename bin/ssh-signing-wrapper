@@ -1,0 +1,37 @@
+#!/usr/bin/env fish
+# ssh-keygen wrapper for git commit signing that explicitly sets SSH_AUTH_SOCK
+# This ensures git can find the ssh-agent even when spawned from Node.js apps
+# or other contexts where environment variables might not be inherited.
+
+# Platform detection (matching fish/variables.fish logic)
+set -l IS_DARWIN false
+if test (uname -s) = Darwin
+    set IS_DARWIN true
+end
+
+# Set SSH_AUTH_SOCK if not already set, platform-specific default
+if test -z "$SSH_AUTH_SOCK"
+    if test $IS_DARWIN = true
+        # macOS uses launchd for ssh-agent
+        set -gx SSH_AUTH_SOCK "$HOME/.ssh/agent.sock"
+    else
+        # NixOS/Linux uses systemd ssh-agent socket
+        set -gx SSH_AUTH_SOCK "/run/user/"(id -u)"/ssh-agent"
+    end
+end
+
+# Execute ssh-keygen with platform-specific path resolution
+# Why explicit paths matter:
+# - macOS: Uses standard /usr/bin paths, ssh-keygen is always in PATH
+# - NixOS: No /usr/bin; system binaries live in /run/current-system/sw/bin/
+#   Git invoked from non-Nix contexts (Node.js, editors) may lack proper PATH
+# - Other Linux: Standard /usr/bin/ssh-keygen, always in PATH
+if test $IS_DARWIN = true
+    exec ssh-keygen $argv
+else if test -f /run/current-system/sw/bin/ssh-keygen
+    # NixOS: use explicit path to ensure availability in all contexts
+    exec /run/current-system/sw/bin/ssh-keygen $argv
+else
+    # Other Linux distros: fall back to PATH resolution
+    exec ssh-keygen $argv
+end
