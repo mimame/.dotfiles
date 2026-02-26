@@ -40,4 +40,8 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     # Enable navi command cheatsheet integration
     # Bind Ctrl+F in insert mode for context-aware command suggestions
     bind -M insert \cf _navi_smart_replace
+
+    # Open the current command line in Helix (or $EDITOR)
+    bind \ee edit_command_buffer
+    bind -M insert \ee edit_command_buffer
 end
