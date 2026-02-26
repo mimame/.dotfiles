@@ -88,7 +88,7 @@ hidden = false
 
 [editor.whitespace]
 # Whether to render whitespace
-render = "selection"
+render = "none"
 
 [editor.whitespace.characters]
 space = "·"
