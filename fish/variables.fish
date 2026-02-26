@@ -146,28 +146,6 @@ end
 # Set colors for bat pager
 set -gx BAT_THEME Dracula
 
-# Set fd as the default source for fzf
-set -gx FZF_DEFAULT_COMMAND 'fd --type file --exclude node_modules'
-set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
-set -gx FZF_CTRL_T_OPTS "--height 100% --preview 'bat --color always {}'"
-set -gx FZF_ALT_C_COMMAND 'fd --type directory --exclude node_modules'
-set -gx FZF_ALT_C_OPTS "--height 100% --preview br --preview-window wrap"
-
-# Custom directory preview command for fzf (used by fzf.fish)
-# Shows colorized, classified directory listings with hidden files but excludes node_modules
-set -gx fzf_preview_dir_cmd eza --all --color=always --sort .name --classify --color=always --ignore-glob=node_modules
-
-# Set default colors for fzf to match Dracula theme
-# Reference: https://github.com/junegunn/fzf/issues/1593#issuecomment-498007983
-set -gx FZF_DEFAULT_OPTS '
---reverse
---color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
---color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
---color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
---color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
---bind "tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort"
-'
-
 # Set default web browser to Firefox if available
 if command -q firefox
     set -gx BROWSER firefox

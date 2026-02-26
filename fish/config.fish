@@ -33,6 +33,7 @@ source_transient zoxide "zoxide init fish" $__fish_config_dir/config.fish
 source_transient pay-respects "pay-respects fish --alias fk" $__fish_config_dir/config.fish
 source_transient atuin "atuin init fish" $__fish_config_dir/config.fish
 source_transient navi "navi widget fish" $__fish_config_dir/config.fish
+source_transient television "tv init fish" $__fish_config_dir/config.fish
 
 # Completions (Generated lazily if missing)
 if command -q gh

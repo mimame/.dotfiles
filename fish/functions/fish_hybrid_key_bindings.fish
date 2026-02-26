@@ -18,10 +18,6 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     # Similar to Vi's visual mode but opens the full editor for complex edits
     bind -M default v edit_command_buffer
 
-    # Configure fzf file finder
-    # Note: fzf_preview_dir_cmd is configured in variables.fish
-    fzf_configure_bindings --history=
-
     # Configure Atuin shell history search for both modes:
     # Ctrl+R - Opens interactive history search with filtering
     # Up Arrow - Quick access to previous commands by context
@@ -29,6 +25,17 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     bind -M insert \cr _atuin_search
     bind \e\[A _atuin_bind_up
     bind -M insert \e\[A _atuin_bind_up
+
+    # Television Bindings
+    # Ctrl+Alt+f: Find files
+    bind \e\cf tv_find_file
+    bind -M insert \e\cf tv_find_file
+    bind -M default \e\cf tv_find_file
+
+    # Alt-c: Find directories
+    bind \ec tv_cd_dir
+    bind -M insert \ec tv_cd_dir
+    bind -M default \ec tv_cd_dir
 
     # Enable navi command cheatsheet integration
     # Bind Ctrl+F in insert mode for context-aware command suggestions

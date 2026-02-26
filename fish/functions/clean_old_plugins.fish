@@ -8,7 +8,11 @@ function clean_old_plugins
     # Clear the transient cache to prevent sourcing corrupted/error-filled caches
     rm -rf ~/.config/fish/cache
 
-    # Also clean up any lingering Fisher-managed configurations that might be broken
+    # Explicitly remove fzf leftovers if they exist
+    find ~/.config/fish -name "*fzf*" -delete
+
+    # Also clean up any lingering Fisher-managed configurations
+    that might be broken
     # but keep the user's own configurations.
     if test -d ~/.config/fish/conf.d
         find ~/.config/fish/conf.d -name "*.fish" -exec grep -l "managed by fisher" {} + | xargs rm -f

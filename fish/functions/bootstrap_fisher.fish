@@ -27,8 +27,7 @@ function bootstrap_fisher
         gazorby/fish-abbreviation-tips \
         jorgebucaran/autopair.fish \
         jorgebucaran/replay.fish \
-        edc/bass \
-        PatrickF1/fzf.fish 2>/dev/null
+        edc/bass 2>/dev/null
 
     # 3. Finalize
     # We clear the functions and re-source everything to ensure a clean state.
