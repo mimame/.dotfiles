@@ -265,27 +265,23 @@ $env.config = {
         }
         {
             name: tv_search_directory
-            modifier: control_alt
-            keycode: char_d
+            modifier: alt
+            keycode: char_g
             mode: [ emacs, vi_normal, vi_insert ]
-            event: [
-                     { edit: Clear }
-                     { edit: InsertString,
-                       value: "tv-cd"
-                     }
-                     { send: Enter }
-                   ]
+            event: {
+                send: executehostcommand
+                cmd: "tv_search_dirs"
+            }
         }
         {
             name: tv_search_file
             modifier: control_alt
             keycode: char_f
             mode: [ emacs, vi_normal, vi_insert ]
-            event: [
-                     { edit: InsertString,
-                       value: "(tv-find)"
-                     }
-                   ]
+            event: {
+                send: executehostcommand
+                cmd: "tv_search_files"
+            }
         }
         {
             name: edit_in_helix
