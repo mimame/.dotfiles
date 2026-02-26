@@ -33,7 +33,8 @@ function bb --description "Interactively navigate up the directory tree"
     end
 
     # Use television to select a directory
-    set -l final_dir (string join \n -- $dirs | tv --preview-command $preview_cmd)
+    # We use variable capture for cleaner logic; television writes UI to stderr
+    set -l final_dir (string join \n -- $dirs | tv --preview-command "$preview_cmd {}")
 
     # Change to the selected directory
     if test -n "$final_dir" -a -d "$final_dir"
