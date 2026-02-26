@@ -1,7 +1,7 @@
 # Interactive navigate up the directory tree
 def bb [start_path: path = "."] {
-    if (which fzf | is-empty) {
-        print "Error: fzf is not installed."
+    if (which tv | is-empty) {
+        print "Error: television is not installed."
         return
     }
 
@@ -17,8 +17,7 @@ def bb [start_path: path = "."] {
     }
 
     let preview_cmd = "eza --all --color=always --sort .name --classify --git --icons {}"
-    let final_dir = ($dirs | str join "
-" | fzf --reverse --prompt="Navigate up: " --header="Select a parent directory" --preview=$preview_cmd --preview-window="right:50%:wrap" | str trim)
+    let final_dir = ($dirs | str join "\n" | tv --preview-command $preview_cmd | str trim)
 
     if ($final_dir | is-not-empty) and ($final_dir | path exists) {
         cd $final_dir

@@ -9,7 +9,8 @@ $env.IS_NIXOS = ($env.IS_LINUX and ("/etc/os-release" | path exists) and (open /
 
 # --- Core Variables ---
 $env.default_nvim = "nvim"
-$env.EDITOR = "nvim"
+$env.default_hx = "hx"
+$env.EDITOR = $env.default_hx
 $env.VISUAL = $env.EDITOR
 $env.GIT_EDITOR = $env.EDITOR
 $env.BROWSER = "firefox"
@@ -76,21 +77,6 @@ if (which vivid | is-not-empty) {
     $env.LS_COLORS = (vivid generate dracula | str trim)
     $env.EZA_COLORS = $env.LS_COLORS
 }
-
-# FZF (Dracula)
-$env.FZF_DEFAULT_COMMAND = 'fd --type file --exclude node_modules'
-$env.FZF_CTRL_T_COMMAND = $env.FZF_DEFAULT_COMMAND
-$env.FZF_CTRL_T_OPTS = "--height 100% --preview 'bat --color always {}'"
-$env.FZF_ALT_C_COMMAND = 'fd --type directory --exclude node_modules'
-$env.FZF_ALT_C_OPTS = "--height 100% --preview br --preview-window wrap"
-$env.FZF_DEFAULT_OPTS = "
---reverse
---color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9
---color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9
---color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6
---color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4
---bind 'tab:down,shift-tab:up,change:top,ctrl-j:toggle+down,ctrl-k:toggle+up,ctrl-a:select-all,ctrl-d:deselect-all,ctrl-t:top,ctrl-o:execute($env.EDITOR {} < /dev/tty > /dev/tty 2>&1)+abort'
-"
 
 # GPG TTY
 if ($nu.is-interactive) {

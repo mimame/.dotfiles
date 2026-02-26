@@ -264,29 +264,35 @@ $env.config = {
             }
         }
         {
-            name: fzf_search_directory
+            name: tv_search_directory
             modifier: control_alt
             keycode: char_d
             mode: [ emacs, vi_normal, vi_insert ]
             event: [
                      { edit: Clear }
                      { edit: InsertString,
-                       value: "cd (fd --type directory --color=always | fzf --ansi | str trim)"
-
+                       value: "tv-cd"
                      }
                      { send: Enter }
                    ]
         }
         {
-            name: fzf_search_file
+            name: tv_search_file
             modifier: control_alt
             keycode: char_f
             mode: [ emacs, vi_normal, vi_insert ]
             event: [
                      { edit: InsertString,
-                       value: "(fd --type file --color=always | fzf --ansi | str trim)"
+                       value: "(tv-find)"
                      }
                    ]
+        }
+        {
+            name: edit_in_helix
+            modifier: alt
+            keycode: char_e
+            mode: [ emacs, vi_normal, vi_insert ]
+            event: { send: OpenEditor }
         }
     ]
 }
@@ -299,6 +305,7 @@ source ~/.config/nushell/functions/paths.nu
 source ~/.config/nushell/functions/mc.nu
 source ~/.config/nushell/functions/y.nu
 source ~/.config/nushell/functions/bb.nu
+source ~/.config/nushell/functions/tv.nu
 
 # --- Load Plugins/Scripts ---
 use ~/.cache/nushell/starship/init.nu
@@ -436,7 +443,7 @@ def edit-config [path: path] {
     let dir = ($path | path dirname)
     let file = ($path | path basename)
     cd $dir
-    run-external nvim $file
+    run-external hx $file
 }
 
 alias brootrc = edit-config ~/.dotfiles/broot/conf.toml
