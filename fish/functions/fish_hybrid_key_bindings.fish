@@ -32,10 +32,10 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     bind -M insert \e\cf tv_find_file
     bind -M default \e\cf tv_find_file
 
-    # Alt-c: Find directories
-    bind \ec tv_cd_dir
-    bind -M insert \ec tv_cd_dir
-    bind -M default \ec tv_cd_dir
+    # Ctrl+Alt+d: Find directories
+    bind \e\cd tv_cd_dir
+    bind -M insert \e\cd tv_cd_dir
+    bind -M default \e\cd tv_cd_dir
 
     # Enable navi command cheatsheet integration
     # Bind Ctrl+F in insert mode for context-aware command suggestions
