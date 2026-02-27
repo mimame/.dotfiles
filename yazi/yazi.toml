@@ -21,8 +21,6 @@ cache_dir = ""
 image_delay = 30
 image_filter = "triangle"
 image_quality = 75
-ueberzug_scale = 1
-ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
@@ -45,7 +43,7 @@ reveal = [
   { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
-  { run = 'ya pub extract --list "$@"', desc = "Extract here", for = "unix" },
+  { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
   { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
 ]
 play = [
@@ -112,87 +110,24 @@ image_bound = [0, 0]
 suppress_preload = false
 
 [plugin]
-fetchers = [
-  # Mimetype
-  { id = "mime", name = "*", run = "mime", prio = "high" },
+prepend_fetchers = [
+  { id = "git", name = "*", run = "git" },
+  { id = "git", name = "*/", run = "git" },
 ]
-spotters = [
-  { name = "*/", run = "folder" },
-  # Code
-  { mime = "text/*", run = "code" },
-  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
-  # Image
-  { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
-  { mime = "image/*", run = "image" },
-  # Video
-  { mime = "video/*", run = "video" },
-  # Fallback
-  { name = "*", run = "file" },
-]
-preloaders = [
-  # Image
-  { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
-  { mime = "image/*", run = "image" },
-  # Video
-  { mime = "video/*", run = "video" },
-  # PDF
-  { mime = "application/pdf", run = "pdf" },
-  # Font
-  { mime = "font/*", run = "font" },
-  { mime = "application/ms-opentype", run = "font" },
-]
+
 prepend_previewers = [
-  # Archive previewer
-  { mime = "application/*zip", run = "ouch" },
-  { mime = "application/x-tar", run = "ouch" },
-  { mime = "application/x-bzip2", run = "ouch" },
-  { mime = "application/x-7z-compressed", run = "ouch" },
-  { mime = "application/x-rar", run = "ouch" },
-  { mime = "application/xz", run = "ouch" },
-  { mime = "application/zstd", run = "ouch" },
-  { mime = "application/x-zstd-compressed-tar", run = "ouch" },
+  # Archive previewer via ouch
+  { mime = "application/*zip", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  { mime = "application/x-tar", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  { mime = "application/x-bzip2", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  { mime = "application/x-7z-compressed", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  { mime = "application/x-rar", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  { mime = "application/xz", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  { mime = "application/zstd", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  { mime = "application/x-zstd-compressed-tar", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  # Markdown previewer via glow
   { mime = "text/markdown", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
 ]
-previewers = [
-  { name = "*/", run = "folder", sync = true },
-  # Code
-  { mime = "text/*", run = "code" },
-  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
-  # JSON
-  { mime = "application/{json,ndjson}", run = "json" },
-  # Image
-  { mime = "image/{avif,hei?,jxl,svg+xml}", run = "magick" },
-  { mime = "image/*", run = "image" },
-  # Video
-  { mime = "video/*", run = "video" },
-  # PDF
-  { mime = "application/pdf", run = "pdf" },
-  # Archive
-  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
-  { mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}", run = "archive" },
-  { name = "*.{AppImage,appimage}", run = "archive" },
-  # Virtual Disk / Disk Image
-  { mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}", run = "archive" },
-  { mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
-  { name = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
-  # Font
-  { mime = "font/*", run = "font" },
-  { mime = "application/ms-opentype", run = "font" },
-  # Empty file
-  { mime = "inode/empty", run = "empty" },
-  # Fallback
-  { name = "*", run = "file" },
-]
-
-[[plugin.prepend_fetchers]]
-id = "git"
-name = "*"
-run = "git"
-
-[[plugin.prepend_fetchers]]
-id = "git"
-name = "*/"
-run = "git"
 
 [input]
 cursor_blink = false
