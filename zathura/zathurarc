@@ -5,6 +5,7 @@ set font "Maple Mono NL NF 13"
 set selection-clipboard clipboard
 
 # Scrolling behavior
+map ge feedkeys G
 set scroll-step 100
 set scroll-full-overlap 0.01
 
