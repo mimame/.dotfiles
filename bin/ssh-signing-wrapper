@@ -3,15 +3,13 @@
 # This ensures git can find the ssh-agent even when spawned from Node.js apps
 # or other contexts where environment variables might not be inherited.
 
-# Platform detection (matching fish/variables.fish logic)
-set -l IS_DARWIN false
-if test (uname -s) = Darwin
-    set IS_DARWIN true
-end
+# Load platform identification and environment variables
+# This defines IS_DARWIN, IS_NIXOS, and handles keychain sourcing
+source ~/.config/fish/variables.fish
 
-# Set SSH_AUTH_SOCK if not already set, platform-specific default
+# Set SSH_AUTH_SOCK if not already set (e.g. by keychain in variables.fish)
 if test -z "$SSH_AUTH_SOCK"
-    if test $IS_DARWIN = true
+    if $IS_DARWIN
         # macOS uses launchd for ssh-agent
         set -gx SSH_AUTH_SOCK "$HOME/.ssh/agent.sock"
     else
@@ -26,9 +24,9 @@ end
 # - NixOS: No /usr/bin; system binaries live in /run/current-system/sw/bin/
 #   Git invoked from non-Nix contexts (Node.js, editors) may lack proper PATH
 # - Other Linux: Standard /usr/bin/ssh-keygen, always in PATH
-if test $IS_DARWIN = true
+if $IS_DARWIN
     exec ssh-keygen $argv
-else if test -f /run/current-system/sw/bin/ssh-keygen
+else if $IS_NIXOS
     # NixOS: use explicit path to ensure availability in all contexts
     exec /run/current-system/sw/bin/ssh-keygen $argv
 else
