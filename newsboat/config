@@ -44,6 +44,8 @@ unbind-key g
 bind-key g home
 unbind-key G
 bind-key G end
+bind-key gg home
+bind-key ge end
 
 # Reloading (Lowercase preferred)
 unbind-key r
