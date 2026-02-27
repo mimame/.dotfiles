@@ -49,6 +49,26 @@ default = "none none"
 # shortcuts for built-in verbs:
 
 [[verbs]]
+invocation = "gh"
+cmd = ":focus ~"
+
+[[verbs]]
+invocation = "gc"
+cmd = ":focus ~/.config"
+
+[[verbs]]
+invocation = "gd"
+cmd = ":focus ~/Downloads"
+
+[[verbs]]
+invocation = "ge"
+internal = ":focus_bottom"
+
+[[verbs]]
+invocation = "gg"
+internal = ":focus_top"
+
+[[verbs]]
 invocation = "p"
 internal = ":parent"
 
