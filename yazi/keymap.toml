@@ -30,34 +30,13 @@ keymap = [
   { on = "<PageDown>", run = "arrow 100%", desc = "Move cursor down one page" },
 
   # Goto (Helix style)
-  { on = [
-    "g",
-    "g",
-  ], run = "arrow top", desc = "Go to top" },
-  { on = [
-    "g",
-    "e",
-  ], run = "arrow bot", desc = "Go to bottom" },
-  { on = [
-    "g",
-    "h",
-  ], run = "cd ~", desc = "Go home" },
-  { on = [
-    "g",
-    "c",
-  ], run = "cd ~/.config", desc = "Goto ~/.config" },
-  { on = [
-    "g",
-    "d",
-  ], run = "cd ~/Downloads", desc = "Goto ~/Downloads" },
-  { on = [
-    "g",
-    "t",
-  ], run = "cd /tmp", desc = "Goto /tmp" },
-  { on = [
-    "g",
-    "a",
-  ], run = "cd --interactive", desc = "Go to (interactive)" },
+  { on = [ "g", "g" ], run = "arrow top", desc = "Go to top" },
+  { on = [ "g", "e" ], run = "arrow bot", desc = "Go to bottom" },
+  { on = [ "g", "h" ], run = "cd ~", desc = "Go home" },
+  { on = [ "g", "c" ], run = "cd ~/.config", desc = "Goto ~/.config" },
+  { on = [ "g", "d" ], run = "cd ~/Downloads", desc = "Goto ~/Downloads" },
+  { on = [ "g", "t" ], run = "cd /tmp", desc = "Goto /tmp" },
+  { on = [ "g", "a" ], run = "cd --interactive", desc = "Go to (interactive)" },
 
   # Navigation
   { on = "h", run = "leave", desc = "Go back to the parent directory" },
@@ -70,14 +49,8 @@ keymap = [
   { on = "L", run = "forward", desc = "Go forward to the next directory" },
 
   # Selection (Helix style)
-  { on = "x", run = [
-    "toggle",
-    "arrow 1",
-  ], desc = "Toggle selection (down)" },
-  { on = "X", run = [
-    "toggle",
-    "arrow -1",
-  ], desc = "Toggle selection (up)" },
+  { on = "x", run = [ "toggle", "arrow 1" ], desc = "Toggle selection (down)" },
+  { on = "X", run = [ "toggle", "arrow -1" ], desc = "Toggle selection (up)" },
   { on = "%", run = "toggle_all --state=on", desc = "Select all files" },
   { on = "<A-x>", run = "toggle_all", desc = "Invert selection of all files" },
   { on = "<C-a>", run = "toggle_all --state=on", desc = "Select all files" },
@@ -86,54 +59,18 @@ keymap = [
   { on = "V", run = "visual_mode --unset", desc = "Enter visual mode (unset)" },
 
   # Leader (Helix style)
-  { on = [
-    "<Space>",
-    "y",
-  ], run = "copy path", desc = "Copy path" },
-  { on = [
-    "<Space>",
-    "f",
-  ], run = "filter --smart", desc = "Filter files" },
-  { on = [
-    "<Space>",
-    "s",
-  ], run = "search --via=fd", desc = "Search files" },
-  { on = [
-    "<Space>",
-    "c",
-  ], run = "plugin ouch", desc = "Compress with ouch" },
-  { on = [
-    "<Space>",
-    "x",
-  ], run = "open --launcher=extract", desc = "Extract here (ouch)" },
-  { on = [
-    "<Space>",
-    "e",
-  ], run = 'shell "${EDITOR:-hx} \"$@\"" --block', desc = "Edit with $EDITOR" },
-  { on = [
-    "<Space>",
-    "u",
-  ], run = "unyank", desc = "Cancel yank (unyank)" },
-  { on = [
-    "<Space>",
-    "D",
-  ], run = "remove --permanently", desc = "Permanently delete" },
-  { on = [
-    "<Space>",
-    ".",
-  ], run = "hidden toggle", desc = "Toggle hidden files" },
-  { on = [
-    "<Space>",
-    "w",
-  ], run = "tasks_show", desc = "Show task manager" },
-  { on = [
-    "<Space>",
-    "k",
-  ], run = "help", desc = "Open help" },
-  { on = [
-    "<Space>",
-    "q",
-  ], run = "quit", desc = "Quit the process" },
+  { on = [ "<Space>", "y" ], run = "copy path", desc = "Copy path" },
+  { on = [ "<Space>", "f" ], run = "filter --smart", desc = "Filter files" },
+  { on = [ "<Space>", "s" ], run = "search --via=fd", desc = "Search files" },
+  { on = [ "<Space>", "c" ], run = "plugin ouch", desc = "Compress with ouch" },
+  { on = [ "<Space>", "x" ], run = "open --launcher=extract", desc = "Extract here (ouch)" },
+  { on = [ "<Space>", "e" ], run = 'shell "${EDITOR:-hx} \"$@\"" --block', desc = "Edit with $EDITOR" },
+  { on = [ "<Space>", "u" ], run = "unyank", desc = "Cancel yank (unyank)" },
+  { on = [ "<Space>", "D" ], run = "remove --permanently", desc = "Permanently delete" },
+  { on = [ "<Space>", "." ], run = "hidden toggle", desc = "Toggle hidden files" },
+  { on = [ "<Space>", "w" ], run = "tasks_show", desc = "Show task manager" },
+  { on = [ "<Space>", "k" ], run = "help", desc = "Open help" },
+  { on = [ "<Space>", "q" ], run = "quit", desc = "Quit the process" },
 
   # Filter / Search
   { on = "f", run = "filter --smart", desc = "Filter files" },
@@ -166,102 +103,27 @@ keymap = [
   { on = ".", run = "hidden toggle", desc = "Toggle hidden files" },
 
   # Sorting
-  { on = [
-    ",",
-    "m",
-  ], run = [
-    "sort mtime --reverse=no",
-    "linemode mtime",
-  ], desc = "Sort by mtime" },
-  { on = [
-    ",",
-    "M",
-  ], run = [
-    "sort mtime --reverse",
-    "linemode mtime",
-  ], desc = "Sort by mtime (rev)" },
-  { on = [
-    ",",
-    "b",
-  ], run = [
-    "sort btime --reverse=no",
-    "linemode btime",
-  ], desc = "Sort by btime" },
-  { on = [
-    ",",
-    "B",
-  ], run = [
-    "sort btime --reverse",
-    "linemode btime",
-  ], desc = "Sort by btime (rev)" },
-  { on = [
-    ",",
-    "e",
-  ], run = "sort extension --reverse=no", desc = "Sort by extension" },
-  { on = [
-    ",",
-    "E",
-  ], run = "sort extension --reverse", desc = "Sort by extension (rev)" },
-  { on = [
-    ",",
-    "a",
-  ], run = "sort alphabetical --reverse=no", desc = "Sort alphabetically" },
-  { on = [
-    ",",
-    "A",
-  ], run = "sort alphabetical --reverse", desc = "Sort alphabetically (rev)" },
-  { on = [
-    ",",
-    "n",
-  ], run = "sort natural --reverse=no", desc = "Sort naturally" },
-  { on = [
-    ",",
-    "N",
-  ], run = "sort natural --reverse", desc = "Sort naturally (rev)" },
-  { on = [
-    ",",
-    "s",
-  ], run = [
-    "sort size --reverse=no",
-    "linemode size",
-  ], desc = "Sort by size" },
-  { on = [
-    ",",
-    "S",
-  ], run = [
-    "sort size --reverse",
-    "linemode size",
-  ], desc = "Sort by size (rev)" },
+  { on = [ ",", "m" ], run = [ "sort mtime --reverse=no", "linemode mtime" ], desc = "Sort by mtime" },
+  { on = [ ",", "M" ], run = [ "sort mtime --reverse", "linemode mtime" ], desc = "Sort by mtime (rev)" },
+  { on = [ ",", "b" ], run = [ "sort btime --reverse=no", "linemode btime" ], desc = "Sort by btime" },
+  { on = [ ",", "B" ], run = [ "sort btime --reverse", "linemode btime" ], desc = "Sort by btime (rev)" },
+  { on = [ ",", "e" ], run = "sort extension --reverse=no", desc = "Sort by extension" },
+  { on = [ ",", "E" ], run = "sort extension --reverse", desc = "Sort by extension (rev)" },
+  { on = [ ",", "a" ], run = "sort alphabetical --reverse=no", desc = "Sort alphabetically" },
+  { on = [ ",", "A" ], run = "sort alphabetical --reverse", desc = "Sort alphabetically (rev)" },
+  { on = [ ",", "n" ], run = "sort natural --reverse=no", desc = "Sort naturally" },
+  { on = [ ",", "N" ], run = "sort natural --reverse", desc = "Sort naturally (rev)" },
+  { on = [ ",", "s" ], run = [ "sort size --reverse=no", "linemode size" ], desc = "Sort by size" },
+  { on = [ ",", "S" ], run = [ "sort size --reverse", "linemode size" ], desc = "Sort by size (rev)" },
 
   # Window / Tab Management (Helix style)
-  { on = [
-    "<C-w>",
-    "n",
-  ], run = "tab_create --current", desc = "New tab" },
-  { on = [
-    "<C-w>",
-    "q",
-  ], run = "close", desc = "Close tab" },
-  { on = [
-    "<C-w>",
-    "k",
-  ], run = "tab_switch -1 --relative", desc = "Prev tab" },
-  { on = [
-    "<C-w>",
-    "j",
-  ], run = "tab_switch 1 --relative", desc = "Next tab" },
-  { on = [
-    "<C-w>",
-    "h",
-  ], run = "tab_switch -1 --relative", desc = "Prev tab" },
-  { on = [
-    "<C-w>",
-    "l",
-  ], run = "tab_switch 1 --relative", desc = "Next tab" },
-  { on = [
-    "<C-w>",
-    "w",
-  ], run = "tab_switch 1 --relative", desc = "Next tab" },
+  { on = [ "<C-w>", "n" ], run = "tab_create --current", desc = "New tab" },
+  { on = [ "<C-w>", "q" ], run = "close", desc = "Close tab" },
+  { on = [ "<C-w>", "k" ], run = "tab_switch -1 --relative", desc = "Prev tab" },
+  { on = [ "<C-w>", "j" ], run = "tab_switch 1 --relative", desc = "Next tab" },
+  { on = [ "<C-w>", "h" ], run = "tab_switch -1 --relative", desc = "Prev tab" },
+  { on = [ "<C-w>", "l" ], run = "tab_switch 1 --relative", desc = "Next tab" },
+  { on = [ "<C-w>", "w" ], run = "tab_switch 1 --relative", desc = "Next tab" },
 
   # Tabs (Direct access)
   { on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
@@ -427,52 +289,52 @@ keymap = [
 ]
 
 [[mgr.prepend_keymap]]
-on = ["1"]
+on = [ "1" ]
 run = "plugin relative-motions 1"
 desc = "Move in relative steps"
 
 [[mgr.prepend_keymap]]
-on = ["2"]
+on = [ "2" ]
 run = "plugin relative-motions 2"
 desc = "Move in relative steps"
 
 [[mgr.prepend_keymap]]
-on = ["3"]
+on = [ "3" ]
 run = "plugin relative-motions 3"
 desc = "Move in relative steps"
 
 [[mgr.prepend_keymap]]
-on = ["4"]
+on = [ "4" ]
 run = "plugin relative-motions 4"
 desc = "Move in relative steps"
 
 [[mgr.prepend_keymap]]
-on = ["5"]
+on = [ "5" ]
 run = "plugin relative-motions 5"
 desc = "Move in relative steps"
 
 [[mgr.prepend_keymap]]
-on = ["6"]
+on = [ "6" ]
 run = "plugin relative-motions 6"
 desc = "Move in relative steps"
 
 [[mgr.prepend_keymap]]
-on = ["7"]
+on = [ "7" ]
 run = "plugin relative-motions 7"
 desc = "Move in relative steps"
 
 [[mgr.prepend_keymap]]
-on = ["8"]
+on = [ "8" ]
 run = "plugin relative-motions 8"
 desc = "Move in relative steps"
 
 [[mgr.prepend_keymap]]
-on = ["9"]
+on = [ "9" ]
 run = "plugin relative-motions 9"
 desc = "Move in relative steps"
 
 [[mgr.prepend_keymap]]
-on = ["m"]
+on = [ "m" ]
 run = "plugin relative-motions"
 desc = "Trigger a new relative motion"
 
