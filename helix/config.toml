@@ -2,8 +2,8 @@ theme = "dracula"
 
 [editor]
 # Shell to use when running external commands
-shell = ["fish", "-c"]
-# Disable middle-click paste
+shell = [ "fish", "-c" ]
+# Disable middle-click paste for safety and cross-platform consistency
 middle-click-paste = false
 # Completion trigger length
 completion-trigger-len = 2
@@ -29,7 +29,9 @@ bufferline = "always"
 # Enable true color support
 true-color = true
 # Gutter configuration
-gutters = ["diagnostics", "line-numbers", "spacer", "diff"]
+gutters = [ "diagnostics", "line-numbers", "spacer", "diff" ]
+# Use the system clipboard for all yank and paste operations by default
+default-yank-register = "+"
 
 # Character set to use for jump labels
 jump-label-alphabet = "asdfghjklqwertyuiopzxcvbnm"
@@ -121,14 +123,14 @@ C-j = "shrink_selection"
 C-k = "expand_selection"
 C-l = "select_next_sibling"
 
-# Clipboards over registers (keep as it is often preferred even in native Helix)
-y = ["yank_main_selection_to_clipboard", "collapse_selection"]
-p = ["replace_selections_with_clipboard", "collapse_selection"]
-P = ["paste_clipboard_before", "collapse_selection"]
+# Explicit system clipboard bindings (bypass internal registers)
+y = "yank_main_selection_to_clipboard"
+p = "paste_clipboard_after"
+P = "paste_clipboard_before"
 
 # Search centering
-n = ["search_next", "align_view_center"]
-N = ["search_prev", "align_view_center"]
+n = [ "search_next", "align_view_center" ]
+N = [ "search_prev", "align_view_center" ]
 
 # Search for word under cursor (native-like but slightly faster)
 "*" = [
@@ -148,18 +150,18 @@ N = ["search_prev", "align_view_center"]
 
 [keys.insert]
 # Simple escape
-esc = ["collapse_selection", "normal_mode"]
+esc = [ "collapse_selection", "normal_mode" ]
 
 [keys.select]
 # Buffer navigation in select mode
 H = ":bp"
 L = ":bn"
 
-# Clipboards in select mode
-y = ["yank_main_selection_to_clipboard", "normal_mode", "collapse_selection"]
+# Explicit system clipboard bindings in select mode
+y = [ "yank_main_selection_to_clipboard", "normal_mode" ]
 p = "replace_selections_with_clipboard"
 P = "paste_clipboard_before"
 
 # Maintain sensible movement in select mode
-k = ["extend_line_up", "extend_to_line_bounds"]
-j = ["extend_line_down", "extend_to_line_bounds"]
+k = [ "extend_line_up", "extend_to_line_bounds" ]
+j = [ "extend_line_down", "extend_to_line_bounds" ]
