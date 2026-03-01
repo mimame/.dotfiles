@@ -81,6 +81,7 @@
   "git_panel": {
     "dock": "right"
   },
+  "helix_mode": true,
   "icon_theme": {
     "dark": "Material Icon Theme",
     "light": "Material Icon Theme",
@@ -326,5 +327,5 @@
     "mode": "system"
   },
   "ui_font_size": 16,
-  "vim_mode": true
+  "vim_mode": false
 }
