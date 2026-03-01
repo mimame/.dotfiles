@@ -1,0 +1,100 @@
+#!/usr/bin/env fish
+
+# ouch wrapper for enhanced Yazi previews and cleaner archive listings.
+#
+# PURPOSE:
+#   1. Automatically filters out common development/sensitive directories (.git, node_modules, etc.)
+#      when listing archive contents, providing a noise-free preview in Yazi.
+#   2. Gracefully handles Yazi-specific plugin flags (--archive-icon, --show-file-icons, --list-view)
+#      which are not supported by the core 'ouch' binary, preventing execution errors.
+#   3. Ensures clean stdout by avoiding prefixes (like ripgrep's '<stdin>:') that break
+#      Yazi's icon rendering and path detection.
+#   4. Removes redundant root folder entries and strips their prefixes from paths
+#      (e.g., '.dotfiles/.dotter/global.toml' becomes '.dotter/global.toml') for a cleaner view.
+#
+# USAGE:
+#   Place this script in your PATH before the real 'ouch' binary.
+#   It will transparently forward all compression/decompression commands as-is.
+
+# --- 1. Locate the real 'ouch' binary ---
+set -l real_ouch ""
+for bin in (command -v -a ouch)
+    set -l abs_bin (path resolve $bin)
+    if not string match -q "*/.dotfiles/bin/ouch" "$abs_bin"
+        set real_ouch $bin
+        break
+    end
+end
+
+if test -z "$real_ouch"
+    set real_ouch /run/current-system/sw/bin/ouch
+end
+
+# --- 2. Parse arguments and strip Yazi-specific flags ---
+set -l is_list false
+set -l filtered_args
+set -l archive_path ""
+set -l skip_next false
+
+for i in (seq (count $argv))
+    if test "$skip_next" = true
+        set skip_next false
+        continue
+    end
+
+    set -l arg $argv[$i]
+    switch $arg
+        case l ls list
+            set is_list true
+            set -a filtered_args $arg
+
+        case --archive-icon
+            set skip_next true
+            continue
+
+        case "--archive-icon=*" --show-file-icons --list-view
+            continue
+
+        case "*"
+            set -a filtered_args $arg
+            # Try to identify the archive path for root-stripping heuristic
+            if test -f "$arg"; and test -z "$archive_path"
+                set archive_path $arg
+            end
+    end
+end
+
+# --- 3. Execute with filtering and prefix stripping ---
+if test "$is_list" = true
+    set -l output ($real_ouch $filtered_args)
+    if test -z "$output"
+        return
+    end
+
+    # Heuristic to strip redundant root folder prefix
+    if test -n "$archive_path"
+        set -l archive_base (basename $archive_path)
+        set -l root_name (string replace -r '\.(tar\.[^.]+|zip|7z|rar|gz|bz2|xz|zst|tar)$' '' $archive_base)
+        set -l escaped_root (string replace -a '.' '\.' $root_name)
+
+        # PROCESSING PIPELINE:
+        # 1. printf: Ensures line-by-line processing.
+        # 2. rg: Filters out header, empty lines, and development noise.
+        # 3. sed (1st): Deduplicates slashes (// -> /).
+        # 4. sed (2nd): Deletes the line representing the root folder itself.
+        # 5. sed (3rd): Strips the archive-name-based root prefix.
+        # 6. sed (4th): Strips any remaining leading slash (e.g. " /" -> " ").
+        # 7. sed (5th): Deletes lines that consist ONLY of an icon and whitespace (orphaned lines).
+        #    We escape the '$' to prevent fish from interpreting it as a variable.
+        printf "%s\n" $output \
+            | rg -vNI --block-buffered 'Archive:|^\s*$|(\.git|node_modules|\.venv|target|__pycache__|branches|hooks|info|logs|refs)(/| |$)' \
+            | sed -E "s|//+|/|g; /^([^ ]+ )?$escaped_root\/?\$/d; s|^([^ ]+ )?$escaped_root/|\1|; s|^([^ ]+ )?/|\1|; /^[^ ]+ +\$/d"
+    else
+        printf "%s\n" $output \
+            | rg -vNI --block-buffered 'Archive:|^\s*$|(\.git|node_modules|\.venv|target|__pycache__|branches|hooks|info|logs|refs)(/| |$)' \
+            | sed -E "s|//+|/|g; s|^([^ ]+ )?/|\1|; /^[^ ]+ +\$/d"
+    end
+else
+    # Forward everything else as-is
+    exec $real_ouch $filtered_args
+end

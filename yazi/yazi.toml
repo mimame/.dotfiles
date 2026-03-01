@@ -23,45 +23,59 @@ image_filter = "triangle"
 image_quality = 75
 
 [opener]
+# edit: Modify the file using a text editor (Helix/Zed). Usually blocks Yazi.
 edit = [
-  { run = '${EDITOR:-nvim} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-  { run = 'code %*', orphan = true, desc = "code", for = "windows" },
-  { run = 'code -w %*', block = true, desc = "code (block)", for = "windows" },
+  { run = '${EDITOR:-hx} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = 'zeditor "$@"', desc = "Zed", orphan = true, for = "linux" },
+  { run = 'zed "$@"', desc = "Zed", orphan = true, for = "macos" },
 ]
+# open: View or run the file using system default application handlers.
 open = [
   # 'gio open' is preferred over 'xdg-open' for better performance and Wayland portal reliability.
-  { run = 'gio open "$1"', desc = "Open", for = "linux" },
+  { run = 'gio open "$@"', desc = "Open", orphan = true, for = "linux" },
   { run = 'open "$@"', desc = "Open", for = "macos" },
-  { run = 'start "" "%1"', orphan = true, desc = "Open", for = "windows" },
-  { run = 'termux-open "$1"', desc = "Open", for = "android" },
 ]
+# reveal: Locate the file in the system's graphical file manager.
 reveal = [
-  { run = 'gio open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+  { run = 'gio open "$(dirname "$1")"', desc = "Reveal", orphan = true, for = "linux" },
   { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
-  { run = 'explorer /select,"%1"', orphan = true, desc = "Reveal", for = "windows" },
-  { run = 'termux-open "$(dirname "$1")"', desc = "Reveal", for = "android" },
-  { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
 extract = [
   { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
-  { run = 'ya pub extract --list %*', desc = "Extract here", for = "windows" },
 ]
 play = [
   { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
-  { run = 'mpv --force-window %*', orphan = true, for = "windows" },
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
 ]
 
 [open]
 rules = [
   # Folder
-  { name = "*/", use = [
-    "edit",
+  { mime = "inode/directory", use = [
     "open",
     "reveal",
   ] },
   # Text
   { mime = "text/*", use = [
+    "open",
+    "edit",
+    "reveal",
+  ] },
+  # Code / Config fallback
+  { name = [
+    "*.txt",
+    "*.md",
+    "*.json",
+    "*.toml",
+    "*.yaml",
+    "*.yml",
+    "*.fish",
+    "*.nu",
+    "*.sh",
+    ".gitignore",
+    ".env",
+  ], use = [
+    "open",
     "edit",
     "reveal",
   ] },
@@ -82,15 +96,18 @@ rules = [
   ] },
   # JSON
   { mime = "application/{json,ndjson}", use = [
+    "open",
     "edit",
     "reveal",
   ] },
   { mime = "*/javascript", use = [
+    "open",
     "edit",
     "reveal",
   ] },
   # Empty file
   { mime = "inode/empty", use = [
+    "open",
     "edit",
     "reveal",
   ] },
@@ -110,23 +127,16 @@ image_bound = [0, 0]
 suppress_preload = false
 
 [plugin]
+prepend_previewers = [
+  # Archive previewer via ouch
+  { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  # Markdown previewer via glow
+  { mime = "text/markdown", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+]
+
 prepend_fetchers = [
   { id = "git", name = "*", run = "git" },
   { id = "git", name = "*/", run = "git" },
-]
-
-prepend_previewers = [
-  # Archive previewer via ouch
-  { mime = "application/*zip", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-  { mime = "application/x-tar", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-  { mime = "application/x-bzip2", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-  { mime = "application/x-7z-compressed", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-  { mime = "application/x-rar", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-  { mime = "application/xz", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-  { mime = "application/zstd", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-  { mime = "application/x-zstd-compressed-tar", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-  # Markdown previewer via glow
-  { mime = "text/markdown", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
 ]
 
 [input]

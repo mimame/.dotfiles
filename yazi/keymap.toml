@@ -61,7 +61,7 @@ keymap = [
 
   # Navigation
   { on = "h", run = "leave", desc = "Go back to the parent directory" },
-  { on = "l", run = "enter", desc = "Enter the child directory" },
+  { on = "l", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
 
   { on = "<Left>", run = "leave", desc = "Go back to the parent directory" },
   { on = "<Right>", run = "enter", desc = "Enter the child directory" },
@@ -104,8 +104,12 @@ keymap = [
   ], run = "plugin ouch", desc = "Compress with ouch" },
   { on = [
     "<Space>",
+    "x",
+  ], run = "open --launcher=extract", desc = "Extract here (ouch)" },
+  { on = [
+    "<Space>",
     "e",
-  ], run = 'shell "ouch d -y \"$@\"" --confirm', desc = "Extract with ouch" },
+  ], run = 'shell "${EDITOR:-hx} \"$@\"" --block', desc = "Edit with $EDITOR" },
   { on = [
     "<Space>",
     "u",
@@ -144,9 +148,9 @@ keymap = [
   { on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 
   # Operation (Helix/Vim Hybrid)
-  { on = "o", run = "open", desc = "Open selected files" },
-  { on = "O", run = "open --interactive", desc = "Open interactively" },
-  { on = "<Enter>", run = "open", desc = "Open selected files" },
+  { on = "o", run = "open", desc = "Open with system default" },
+  { on = "O", run = 'shell "gio open ." --orphan', desc = "Open current directory in file manager" },
+  { on = "<Enter>", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
   { on = "y", run = "yank", desc = "Yank (copy)" },
   { on = "d", run = "yank --cut", desc = "Yank (cut/delete)" },
   { on = "D", run = "remove", desc = "Trash selected files" },
@@ -361,9 +365,15 @@ keymap = [
   { on = "<Left>", run = "move -1", desc = "Move back a character" },
   { on = "<Right>", run = "move 1", desc = "Move forward a character" },
   { on = "b", run = "backward", desc = "Move back to word start" },
-  { on = "B", run = "backward --far", desc = "Move back to WORD start" },
+  { on = "B", run = [
+    "move bol",
+    "backward",
+  ], desc = "Move to start of line" },
   { on = "w", run = "forward", desc = "Move forward to word start" },
-  { on = "W", run = "forward --far", desc = "Move forward to WORD start" },
+  { on = "W", run = [
+    "move eol",
+    "forward",
+  ], desc = "Move to end of line" },
   { on = "e", run = "forward --end-of-word", desc = "Move forward to word end" },
   { on = "E", run = "forward --far --end-of-word", desc = "Move forward to WORD end" },
   { on = "0", run = "move bol", desc = "Move to BOL" },
