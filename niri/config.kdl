@@ -111,10 +111,10 @@ output "eDP-1" {
 }
 
 output "DP-2" {
-    mode "3840x2160@59.997"
-    scale 1.25
+    mode "3840x2160@60.000"
+    scale 1.5
     transform "normal"
-    position x=-3072 y=0
+    position x=-2560 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
