@@ -14,43 +14,42 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
+          # Full history is required to accurately calculate changesets between arbitrary commits.
           fetch-depth: 0
       - name: Install Nix
         uses: cachix/install-nix-action@v31
         with:
+          # Pin to unstable to align with local development and shell.nix definitions.
           nix_path: nixpkgs=channel:nixos-unstable
-      # Run prek hooks on the changeset.
-      # We need to determine the correct Git references for "before" and "after"
-      # because they are accessed differently for "pull_request" and "push" events.
+      # Determine the correct Git references for "before" and "after" because they
+      # are accessed differently for "pull_request" and "push" events.
       # This ensures we always check the correct range of changed files.
       - name: Determine Commit Range
         id: refs
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ]; then
-            # For PRs, compare the base branch (target) to the tip of the PR branch.
+            # PRs compare the feature branch against the target base (e.g., main).
             echo "from=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_OUTPUT"
             echo "to=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_OUTPUT"
           else
-            # For Pushes, validate the 'before' SHA.
+            # Pushes use the 'before' SHA to check only the new commits.
             FROM_REF="${{ github.event.before }}"
 
-            # 1. '000...0' occurs when a new branch is created.
-            # 2. 'git rev-parse' fails if a force-push orphaned the 'before' SHA,
-            #    making it unreachable in the current checkout.
+            # Fallback logic for edge cases:
+            # 1. New branches (before is 000...0).
+            # 2. Force-pushes (before SHA might be orphaned/unreachable).
+            # 3. First commit in repo (HEAD^ fails).
             if [[ "$FROM_REF" == "0000000000000000000000000000000000000000" ]] || ! git rev-parse --verify "$FROM_REF" >/dev/null 2>&1; then
-              # Fallback: Compare against the parent of the current HEAD.
-              # If HEAD is the first commit, fallback to HEAD itself.
-              FROM_REF=$(git rev-parse HEAD~1 2>/dev/null || echo "HEAD")
+              FROM_REF=$(git rev-parse HEAD^ 2>/dev/null || echo "HEAD")
             fi
 
             echo "from=$FROM_REF" >> "$GITHUB_OUTPUT"
             echo "to=${{ github.event.after }}" >> "$GITHUB_OUTPUT"
           fi
       # Run prek hooks on the changeset.
+      # We use the shell.nix file defined in the root directory to ensure the CI
+      # environment perfectly replicates the local development environment.
       - name: Run prek
         run: |
-          # We use the shell.nix file defined in the root directory.
-          # This ensures that the CI environment matches the local development environment.
-          # We explicitly tell prek the exact commit range to check.
-          # This is more robust than relying on automatic detection in CI.
+          # Explicit refs prevent prek from checking files outside the current push/PR scope.
           nix-shell --run "prek run --from-ref ${{ steps.refs.outputs.from }} --to-ref ${{ steps.refs.outputs.to }}"
