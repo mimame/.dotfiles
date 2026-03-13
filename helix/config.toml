@@ -1,43 +1,42 @@
 theme = "dracula"
 
+# --- Editor General Settings ---
 [editor]
-# Shell to use when running external commands
+# Shell to use when running external commands (Fish for consistency with system)
 shell = [ "fish", "-c" ]
 # Disable middle-click paste for safety and cross-platform consistency
 middle-click-paste = false
-# Completion trigger length
+# Completion trigger length (Short for snappiness)
 completion-trigger-len = 2
-# Distance from the current line
-# When unfocused or in insert mode, relative will still show absolute line number
+# Relative line numbers for easier jump distance calculation
 line-number = "relative"
-# Highlight all lines with a cursor
+# Highlight all lines with a cursor for better focus
 cursorline = true
-# Whether to color the mode indicator with different colors depending on the mode itself
+# Visual feedback for current mode via background color
 color-modes = true
-# Enable automatic pop up of auto-completion
+# Modern IDE features: automatic popups and saving
 auto-completion = true
-# Set to true to make completions always replace the entire word and not just the part before the cursor
 completion-replace = false
-# Enable automatic saving on focus moving away
 auto-save = true
-# Enable automatic pop up of auto-completion
 auto-format = true
-# Enable auto-pairs globally
 auto-pairs = true
-# Renders a line at the top of the editor displaying open buffers
+# Persistent bufferline for better context
 bufferline = "always"
-# Enable true color support
 true-color = true
-# Gutter configuration
+# Gutter setup with clear visual indicators
 gutters = [ "diagnostics", "line-numbers", "spacer", "diff" ]
-# Use the system clipboard for all yank and paste operations by default
+# Use the system clipboard for seamless cross-app integration
 default-yank-register = "+"
+# Snappier UI - Near-instant hovers/diagnostics feedback
+idle-timeout = 50
 
 # Character set to use for jump labels
 jump-label-alphabet = "asdfghjklqwertyuiopzxcvbnm"
 
+# --- Statusline Configuration ---
+# Logic: High-signal/Critical info (Mode, Branch, Filename) on the Left.
+#        Contextual/Meta info (Line/Col, Selections, Encoding) on the Right.
 [editor.statusline]
-# A list of elements aligned to the left of the statusline
 left = [
   "mode",
   "spinner",
@@ -46,7 +45,6 @@ left = [
   "file-modification-indicator",
   "separator",
 ]
-# A list of elements aligned to the right of the statusline
 right = [
   "diagnostics",
   "workspace-diagnostics",
@@ -61,7 +59,6 @@ right = [
   "file-line-ending",
   "file-type",
 ]
-# The character used to separate elements in the statusline
 separator = "│"
 
 [editor.search]
@@ -108,31 +105,38 @@ character = "╎"
 enable = true
 wrap-indicator = "↪ "
 
+# --- Normal Mode Keybindings ---
 [keys.normal]
-# Quick iteration on config changes
+# Faster configuration feedback loop
 C-o = ":config-open"
 C-r = ":config-reload"
 
-# Buffer navigation (matches your logic of H/L for navigation)
+# Ergonomic Buffer navigation: Consistent with H/L as directional "jump" keys
 H = ":bp"
 L = ":bn"
 
-# Helix selection shortcuts
+# Helix-native structural selection (Parent/Child/Sibling)
 C-h = "select_prev_sibling"
 C-j = "shrink_selection"
 C-k = "expand_selection"
 C-l = "select_next_sibling"
 
-# Explicit system clipboard bindings (bypass internal registers)
+# Persistent Clipboard access: Bypass internal registers for global interoperability
 y = "yank_main_selection_to_clipboard"
 p = "paste_clipboard_after"
 P = "paste_clipboard_before"
 
-# Search centering
+# Maintain visual context: Auto-center on every search result/jump
 n = [ "search_next", "align_view_center" ]
 N = [ "search_prev", "align_view_center" ]
+C-d = [ "half_page_down", "align_view_center" ]
+C-u = [ "half_page_up", "align_view_center" ]
 
-# Search for word under cursor (native-like but slightly faster)
+# Selection-aware movement: Rapidly swap lines or entire blocks
+A-j = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
+A-k = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
+
+# Improved pattern search: Faster word-under-cursor discovery
 "*" = [
   "move_char_right",
   "move_prev_word_start",
@@ -148,20 +152,47 @@ N = [ "search_prev", "align_view_center" ]
   "search_prev",
 ]
 
+# Symmetric selection Logic: Directional growth (x=down, X=up)
+# This removes redundancy and makes block selection more intuitive.
+x = "extend_line_below"
+X = "extend_line_above"
+
+# Hard Reset: Single tap clears all complex selections and multiple cursors
+# Crucial for returning to a clean state after complex operations.
+esc = [ "collapse_selection", "keep_primary_selection" ]
+
+# --- Ergonomic Leader (Space) Mode ---
+# Centralizes project/buffer management into a unified "Command Center".
+[keys.normal.space]
+# Double-space for the most frequent action: opening a file
+space = "file_picker"
+# Rapid save
+w = ":w"
+# Exit (Auto-save handles the 'write' part)
+q = ":q"
+# Force Exit (Discard changes)
+Q = ":q!"
+# Instant buffer picker for non-linear context switching
+p = "buffer_picker"
+# Clean up workspace by closing the current buffer
+k = ":bc"
+
+# --- Insert Mode Keybindings ---
 [keys.insert]
-# Simple escape
+# Single tap escape to clear selections and return to normal mode
 esc = [ "collapse_selection", "normal_mode" ]
 
+# --- Select Mode Keybindings ---
 [keys.select]
-# Buffer navigation in select mode
+# Buffer navigation parity with normal mode
 H = ":bp"
 L = ":bn"
 
-# Explicit system clipboard bindings in select mode
+# Consistent Clipboard access in select mode
 y = [ "yank_main_selection_to_clipboard", "normal_mode" ]
 p = "replace_selections_with_clipboard"
 P = "paste_clipboard_before"
 
-# Maintain sensible movement in select mode
+# Line-wise selection improvements: Ensure sensible directional movement
 k = [ "extend_line_up", "extend_to_line_bounds" ]
 j = [ "extend_line_down", "extend_to_line_bounds" ]
