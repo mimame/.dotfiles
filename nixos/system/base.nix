@@ -197,15 +197,18 @@
     # Policy that allows unprivileged processes to speak to privileged processes
     polkit.enable = true;
 
-    # Security
+    # Security: sudo configuration
+    #
+    # We prioritize a balance between security and convenience by:
+    # 1. Using `sudo-rs`, a memory-safe implementation of sudo in Rust.
+    # 2. Enabling `!tty_tickets` to share the authentication timestamp across all
+    #    terminals, so the password is only typed once per logged session.
+    # 3. Setting a 2-hour timeout (`timestamp_timeout=120`) to minimize prompts.
+    # 4. Allowing specific frequent commands to run without a password.
     sudo-rs = {
-      # Only ask sudo password one time for all tty
-      # Ask sudo password each 2h instead 5 minutes
+      enable = true;
       package = pkgs.unstable.sudo-rs;
-    };
-
-    # FIXME: sudo-rs doesn't write to /etc/sudoers file the extraConfig and extraRules
-    sudo = {
+      # Consolidate all extra configuration here, as sudo-rs is enabled.
       extraConfig = ''
         Defaults !tty_tickets
         Defaults timestamp_timeout=120
