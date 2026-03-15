@@ -200,15 +200,14 @@
     # Security: sudo configuration
     #
     # We prioritize a balance between security and convenience by:
-    # 1. Using `sudo-rs`, a memory-safe implementation of sudo in Rust.
+    # 1. Using standard `sudo` (sudo-rs does not support shared timestamps).
     # 2. Enabling `!tty_tickets` to share the authentication timestamp across all
     #    terminals, so the password is only typed once per logged session.
     # 3. Setting a 2-hour timeout (`timestamp_timeout=120`) to minimize prompts.
     # 4. Allowing specific frequent commands to run without a password.
-    sudo-rs = {
+    # 5. Preserving SSH_AUTH_SOCK for added convenience with SSH-based tools.
+    sudo = {
       enable = true;
-      package = pkgs.unstable.sudo-rs;
-      # Consolidate all extra configuration here, as sudo-rs is enabled.
       extraConfig = ''
         Defaults !tty_tickets
         Defaults timestamp_timeout=120
