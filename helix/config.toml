@@ -14,15 +14,11 @@ line-number = "relative"
 cursorline = true
 # Visual feedback for current mode via background color
 color-modes = true
-# Modern IDE features: automatic popups and saving
-auto-completion = true
+# Modern IDE features: automatic saving
 completion-replace = false
 auto-save = true
-auto-format = true
-auto-pairs = true
 # Persistent bufferline for better context
 bufferline = "always"
-true-color = true
 # Gutter setup with clear visual indicators
 gutters = [ "diagnostics", "line-numbers", "spacer", "diff" ]
 # Use the system clipboard for seamless cross-app integration
@@ -61,10 +57,6 @@ right = [
 ]
 separator = "│"
 
-[editor.search]
-smart-case = true
-wrap-around = true
-
 [editor.cursor-shape]
 # Cursor shape in insert mode
 insert = "bar"
@@ -74,8 +66,6 @@ normal = "block"
 select = "underline"
 
 [editor.lsp]
-# Display LSP progress messages below statusline
-display-messages = true
 # Display inlay hints
 display-inlay-hints = true
 # Enable LSP snippets
@@ -114,17 +104,6 @@ C-r = ":config-reload"
 # Ergonomic Buffer navigation: Consistent with H/L as directional "jump" keys
 H = ":bp"
 L = ":bn"
-
-# Helix-native structural selection (Parent/Child/Sibling)
-C-h = "select_prev_sibling"
-C-j = "shrink_selection"
-C-k = "expand_selection"
-C-l = "select_next_sibling"
-
-# Persistent Clipboard access: Bypass internal registers for global interoperability
-y = "yank_main_selection_to_clipboard"
-p = "paste_clipboard_after"
-P = "paste_clipboard_before"
 
 # Maintain visual context: Auto-center on every search result/jump
 n = [ "search_next", "align_view_center" ]
@@ -187,11 +166,6 @@ esc = [ "collapse_selection", "normal_mode" ]
 # Buffer navigation parity with normal mode
 H = ":bp"
 L = ":bn"
-
-# Consistent Clipboard access in select mode
-y = [ "yank_main_selection_to_clipboard", "normal_mode" ]
-p = "replace_selections_with_clipboard"
-P = "paste_clipboard_before"
 
 # Line-wise selection improvements: Ensure sensible directional movement
 k = [ "extend_line_up", "extend_to_line_bounds" ]
