@@ -19,8 +19,6 @@
 let
   # Import variables locally to resolve imports without infinite recursion
   vars = import ../../variables.nix;
-  # Fetch the nixpkgs-unstable channel as a tarball.
-  unstableTarball = fetchTarball "https://github.com/nixos/nixpkgs/tarball/nixos-unstable";
 in
 {
   # ----------------------------------------------------------------------------
@@ -99,7 +97,7 @@ in
   nixpkgs = {
     overlays = [
       (final: prev: {
-        unstable = import unstableTarball {
+        unstable = import vars.unstableSrc {
           inherit (config.nixpkgs) config;
         };
       })
