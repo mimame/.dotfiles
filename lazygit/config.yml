@@ -1,25 +1,27 @@
 gui:
+  # Lazygit Configuration - Dracula Theme
+  # https://github.com/dracula/lazygit
   useHunkModeInStagingView: false
   nerdFontsVersion: "3"
   theme:
     activeBorderColor:
-      - '#cba6f7'
+      - '#bd93f9'
       - bold
     inactiveBorderColor:
-      - '#a6adc8'
+      - '#6272a4'
     optionsTextColor:
-      - '#89b4fa'
+      - '#8be9fd'
     selectedLineBgColor:
-      - '#313244'
+      - '#44475a'
     cherryPickedCommitBgColor:
-      - '#45475a'
+      - '#44475a'
     cherryPickedCommitFgColor:
-      - '#cba6f7'
+      - '#50fa7b'
     unstagedChangesColor:
-      - '#f38ba8'
+      - '#ff5555'
     defaultFgColor:
-      - '#cdd6f4'
+      - '#f8f8f2'
     searchingActiveBorderColor:
-      - '#f9e2af'
+      - '#f1fa8c'
   authorColors:
-    '*': '#b4befe'
+    '*': '#bd93f9'
