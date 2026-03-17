@@ -36,6 +36,7 @@
       massren # Mass rename utility
       ripgrep # A line-oriented search tool that recursively searches the current directory for a regex pattern
       rnr # A command-line tool for renaming files and directories
+      scooter # Interactive find and replace in the terminal
       trash-cli # Command line trashcan
       tre-command # A tree command with git awareness
       tree # List contents of directories in a tree-like format
