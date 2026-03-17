@@ -4,7 +4,6 @@
 # This significantly speeds up the initial file discovery phase.
 excludes = [
   "lazyvim/**",
-  "wezterm/**",
   "Manifest.toml",
   ".git/**",
 ]
@@ -17,11 +16,6 @@ includes = ["**/*.nix"]
 command = "fish_indent"
 options = ["-w"]
 includes = ["**/*.fish"]
-
-[formatter.stylua-wezterm]
-command = "stylua"
-includes = ["wezterm/**/*.lua"]
-options = ["--config-path", "wezterm/stylua.toml"]
 
 [formatter.stylua-lazyvim]
 command = "stylua"
