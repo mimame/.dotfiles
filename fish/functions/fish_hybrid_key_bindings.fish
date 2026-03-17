@@ -44,4 +44,8 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     # Open the current command line in Helix (or $EDITOR)
     bind \ee edit_command_buffer
     bind -M insert \ee edit_command_buffer
+
+    # Toggle backgrounded process (e.g., Helix) with Ctrl+Z
+    bind \cz 'fg 2>/dev/null; commandline -f repaint'
+    bind -M insert \cz 'fg 2>/dev/null; commandline -f repaint'
 end
