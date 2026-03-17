@@ -22,7 +22,6 @@
     extraPackages = with pkgs; [
       nvidia-vaapi-driver # NVIDIA's VA-API implementation
       libva-vdpau-driver # VDPAU backend for VA-API
-      libvdpau-va-gl # VA-API/VDPAU interoperability
     ];
   };
 

@@ -12,7 +12,6 @@
     ./lisp.nix
     ./lua.nix
     ./markdown.nix
-    ./misc.nix
     ./nim.nix
     ./nix.nix
     ./node.nix
