@@ -48,10 +48,8 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 
 ## Editors
 
-- [evil-helix](https://github.com/ma-m/evil-helix): A modal code editor inspired by Neovim and Kakoune, optimized for speed.
-- [lazyvim](https://www.lazyvim.org): Feature-rich Neovim configuration built for productivity and extensibility.
+- [helix](https://helix-editor.com/): A post-modern modal text editor.
 - [zed](https://zed.dev/): High-performance, collaborative code editor with native Nix support.
-- [fresh-editor](https://github.com/fresh-editor/fresh): Terminal-based text editor with LSP support.
 
 ## Utilities & Automation
 
