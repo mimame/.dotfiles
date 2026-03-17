@@ -140,14 +140,23 @@ X = "extend_line_above"
 # Crucial for returning to a clean state after complex operations.
 esc = [ "collapse_selection", "keep_primary_selection" ]
 
+# Lazygit integration: Comprehensive TUI workflow
+C-g = [
+  ":write-all",
+  ":new",
+  ":insert-output lazygit",
+  ":buffer-close!",
+  ":redraw",
+  ":reload-all",
+]
+
 # --- Ergonomic Leader (Space) Mode ---
 # Centralizes project/buffer management into a unified "Command Center".
 [keys.normal.space]
 # Double-space for the most frequent action: opening a file
 space = "file_picker"
-# Rapid save
+# Rapid save and quit
 w = ":w"
-# Exit (Auto-save handles the 'write' part)
 q = ":q"
 # Force Exit (Discard changes)
 Q = ":q!"
