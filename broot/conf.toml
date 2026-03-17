@@ -44,7 +44,6 @@ default = "none none"
 "node_modules" = "no-enter"
 ".git" = "no-enter"
 
-
 ###############################
 # shortcuts for built-in verbs:
 

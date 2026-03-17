@@ -4,12 +4,12 @@
 # You can use it to add commands that run after login to macOS user session.
 # 'start-at-login' needs to be 'true' for 'after-login-command' to work
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
+after-login-command = [  ]
 
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = [  ]
 
 # Start AeroSpace at login
 start-at-login = true
@@ -36,7 +36,7 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focused-monitor-changed = [ 'move-mouse monitor-lazy-center' ]
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -223,26 +223,25 @@ alt-shift-semicolon = 'mode service'
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
+esc = [ 'reload-config', 'mode main' ]
+r = [ 'flatten-workspace-tree', 'mode main' ] # reset layout
 f = [
   'layout floating tiling',
   'mode main',
 ] # Toggle between floating and tiling layout
-backspace = ['close-all-windows-but-current', 'mode main']
+backspace = [ 'close-all-windows-but-current', 'mode main' ]
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
 
-alt-shift-h = ['join-with left', 'mode main']
-alt-shift-j = ['join-with down', 'mode main']
-alt-shift-k = ['join-with up', 'mode main']
-alt-shift-l = ['join-with right', 'mode main']
+alt-shift-h = [ 'join-with left', 'mode main' ]
+alt-shift-j = [ 'join-with down', 'mode main' ]
+alt-shift-k = [ 'join-with up', 'mode main' ]
+alt-shift-l = [ 'join-with right', 'mode main' ]
 
 down = 'volume down'
 up = 'volume up'
-shift-down = ['volume set 0', 'mode main']
-
+shift-down = [ 'volume set 0', 'mode main' ]
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'

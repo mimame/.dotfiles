@@ -124,7 +124,6 @@ store_failed = true
 ## 5. Stripe live/test keys
 # secrets_filter = true
 
-
 ## use ctrl instead of alt as the shortcut modifier key for numerical UI shortcuts
 ## alt-0 .. alt-9
 ctrl_n_shortcuts = false

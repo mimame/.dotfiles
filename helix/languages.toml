@@ -3,13 +3,13 @@
 
 [[language]]
 name = "nix"
-language-servers = ["nixd"]
+language-servers = [ "nixd" ]
 formatter = { command = "nixfmt" }
 auto-format = true
 
 [[language]]
 name = "rust"
-language-servers = ["rust-analyzer"]
+language-servers = [ "rust-analyzer" ]
 auto-format = true
 
 [language.auto-pairs]
@@ -24,18 +24,18 @@ command = "clippy"
 
 [[language]]
 name = "toml"
-language-servers = ["taplo"]
-formatter = { command = "taplo", arguments = ["format", "-"] }
+language-servers = [ "taplo" ]
+formatter = { command = "taplo", arguments = [ "format", "-" ] }
 auto-format = true
 
 [[language]]
 name = "python"
-language-servers = ["ruff", "pyright"]
+language-servers = [ "ruff", "pyright" ]
 auto-format = true
 
 [[language]]
 name = "lua"
-language-servers = ["lua-language-server"]
+language-servers = [ "lua-language-server" ]
 formatter = { command = "stylua", arguments = [
   "--indent-width",
   "2",
@@ -47,59 +47,59 @@ auto-format = true
 
 [[language]]
 name = "bash"
-language-servers = ["bash-language-server"]
-formatter = { command = "shfmt", arguments = ["-i", "2"] }
+language-servers = [ "bash-language-server" ]
+formatter = { command = "shfmt", arguments = [ "-i", "2" ] }
 auto-format = true
 
 [[language]]
 name = "go"
-language-servers = ["gopls"]
+language-servers = [ "gopls" ]
 formatter = { command = "goimports" }
 auto-format = true
 
 [[language]]
 name = "sql"
-language-servers = ["sqlfluff"]
-formatter = { command = "sqlfluff", arguments = ["format", "-"] }
+language-servers = [ "sqlfluff" ]
+formatter = { command = "sqlfluff", arguments = [ "format", "-" ] }
 auto-format = true
 
 [[language]]
 name = "markdown"
-language-servers = ["marksman"]
+language-servers = [ "marksman" ]
 formatter = { command = "markdownlint-cli2" }
 auto-format = true
 
 [[language]]
 name = "yaml"
-language-servers = ["yaml-language-server"]
+language-servers = [ "yaml-language-server" ]
 formatter = { command = "yamlfmt" }
 auto-format = true
 
 [[language]]
 name = "json"
-language-servers = ["vscode-json-language-server"]
+language-servers = [ "vscode-json-language-server" ]
 formatter = { command = "jsonfmt" }
 auto-format = true
 
 [[language]]
 name = "zig"
-language-servers = ["zls"]
+language-servers = [ "zls" ]
 auto-format = true
 
 [[language]]
 name = "elixir"
-language-servers = ["elixir-ls"]
+language-servers = [ "elixir-ls" ]
 auto-format = true
 
 [[language]]
 name = "typst"
-language-servers = ["tinymist"]
-formatter = { command = "typstyle", arguments = ["format", "-"] }
+language-servers = [ "tinymist" ]
+formatter = { command = "typstyle", arguments = [ "format", "-" ] }
 auto-format = true
 
 [[language]]
 name = "typescript"
-language-servers = ["typescript-language-server"]
+language-servers = [ "typescript-language-server" ]
 formatter = { command = "biome", arguments = [
   "format",
   "--stdin-file-path",
@@ -109,7 +109,7 @@ auto-format = true
 
 [[language]]
 name = "javascript"
-language-servers = ["typescript-language-server"]
+language-servers = [ "typescript-language-server" ]
 formatter = { command = "biome", arguments = [
   "format",
   "--stdin-file-path",
@@ -119,7 +119,7 @@ auto-format = true
 
 [[language]]
 name = "html"
-language-servers = ["vscode-html-language-server"]
+language-servers = [ "vscode-html-language-server" ]
 formatter = { command = "biome", arguments = [
   "format",
   "--stdin-file-path",
@@ -129,7 +129,7 @@ auto-format = true
 
 [[language]]
 name = "css"
-language-servers = ["vscode-css-language-server"]
+language-servers = [ "vscode-css-language-server" ]
 formatter = { command = "biome", arguments = [
   "format",
   "--stdin-file-path",
@@ -139,7 +139,7 @@ auto-format = true
 
 [[language]]
 name = "ruby"
-language-servers = ["ruby-lsp"]
+language-servers = [ "ruby-lsp" ]
 formatter = { command = "rubocop", arguments = [
   "--auto-correct",
   "--stdin",
@@ -153,16 +153,16 @@ command = "nixd"
 [language-server.nixd.settings]
 nixpkgs = { expr = "import <nixpkgs> { }" }
 options = { nixos = { expr = "import ~/.dotfiles/nixos/configuration.nix { }" } }
-formatting = { command = ["nixfmt"] }
+formatting = { command = [ "nixfmt" ] }
 
 [language-server.ruff]
 command = "ruff"
-args = ["server"]
+args = [ "server" ]
 
 [language-server.pyright]
 command = "pyright-langserver"
-args = ["--stdio"]
+args = [ "--stdio" ]
 
 [language-server.sqlfluff]
 command = "sqlfluff"
-args = ["serve"]
+args = [ "serve" ]
