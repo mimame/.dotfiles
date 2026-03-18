@@ -1,52 +1,115 @@
+# https://dystroy.org/broot/
 
-# This configuration file lets you define new commands
-# or change the shortcut of built-in verbs.
-# You can change the colors of broot too.
-#
-# Configuration documentation is available at https://dystroy.org/broot
-#
-
-# --hidden --sizes --permissions --dates --show-git-info
-default_flags = "hspdg"
-
-# escape key to quit broot when there's nothing to cancel
+# --- General Settings ---
+# Show metadata upfront: hidden files, permissions, dates, git status
+# Size (s) omitted: triggers recursive directory walks, use :toggle_sizes on demand
+default_flags = "hpdg"
 quit_on_last_cancel = true
-
-# get a cleaner display with just file names
+# Path match highlights add visual noise without helping navigation
 show_matching_characters_on_path_searches = false
-
-# Themes come from syntect
-syntax_theme = "base16-eighties.dark"
-
-# Display icons
-icon_theme = "vscode"
-
-# selected lines marked with triangles
+# Vim-like modal editing: start in input mode for immediate search/invocations
+modal = true
+initial_mode = "input"
 show_selection_mark = true
+terminal_title = "[broot] {git-name}"
+content_search_max_file_size = "10MB"
+# Kitty keyboard protocol: disabled due to broot compatibility issues in modal mode.
+# The protocol encodes modifier keys differently (e.g., : is sent as shift-;),
+# which breaks broot's built-in mode_input trigger keys (space, :, /) and causes
+# single-letter key bindings (h, i, etc.) to misfire or require double presses.
+# Ghostty supports it, but broot's modal mode handling doesn't fully account for
+# the protocol's key encoding yet. Re-enable when upstream fixes land.
+enable_kitty_keyboard = false
+# Bare minimum context to orient within filtered preview matches
+lines_before_match_in_preview = 1
+lines_after_match_in_preview = 1
 
-# The name should be kept at end as it's the only one with a variable size
+# --- Appearance & Theme ---
+syntax_theme = "base16-mocha.dark"
+icon_theme = "vscode"
+# Metadata columns first (fixed-width), variable-length name always last
+# size/count omitted: they trigger recursive directory walks, use :toggle_sizes on demand
 cols_order = [
   "permission",
   "date",
-  "size",
-  "count",
   "mark",
   "branch",
   "git",
   "name",
 ]
 
-# Keep black background
+# Dracula skin with transparent background to inherit terminal colors
 [skin]
-default = "none none"
+default = "gray(23) None / gray(20) None"
+tree = "gray(7) None / gray(5) None"
+file = "gray(18) None / gray(15) None"
+directory = "#8be9fd None Bold / #8be9fd None"
+exe = "#50fa7b None"
+link = "#ff79c6 None"
+pruning = "gray(12) None Italic"
+perm__ = "gray(7) None"
+perm_r = "#f1fa8c None"
+perm_w = "#ff5555 None"
+perm_x = "#50fa7b None"
+owner = "#ffb86c None"
+group = "#ffb86c None"
+dates = "#6272a4 None"
+sparse = "#ff5555 None"
+git_status_current = "gray(23) None"
+git_status_modified = "#ffb86c None"
+git_status_new = "#50fa7b None"
+git_status_ignored = "gray(12) None"
+git_status_conflict = "#ff5555 None"
+git_status_other = "#ff5555 None"
+selected_line = "None #44475a / None #3a3c4e"
+char_match = "#50fa7b None Bold"
+file_error = "#ff5555 None"
+flag_label = "gray(15) None"
+flag_value = "#bd93f9 None Bold"
+input = "#f8f8f2 None / gray(15) gray(2)"
+status_error = "#f8f8f2 #ff5555"
+status_job = "#f1fa8c #44475a"
+status_normal = "#f8f8f2 None / gray(20) gray(1)"
+status_italic = "#bd93f9 None / gray(20) gray(1)"
+status_bold = "#bd93f9 None Bold / gray(20) gray(1)"
+status_code = "#50fa7b None / gray(20) gray(1)"
+status_ellipsis = "#f8f8f2 None / gray(20) gray(1)"
+purpose_normal = "None gray(2)"
+purpose_italic = "#bd93f9 gray(2) Italic"
+purpose_bold = "#bd93f9 gray(2) Bold"
+purpose_ellipsis = "None gray(2)"
+scrollbar_track = "gray(7) None / gray(4) None"
+scrollbar_thumb = "gray(22) None / gray(14) None"
+help_paragraph = "#f8f8f2 None"
+help_bold = "#bd93f9 None Bold"
+help_italic = "#ff79c6 None Italic"
+help_code = "#8be9fd gray(3)"
+help_headers = "#ffb86c None Bold"
+help_table_border = "gray(7) None"
 
+# --- Behavior & Paths ---
+# Avoid descending into large internal directories during search/size computation
 [special-paths]
 "node_modules" = "no-enter"
 ".git" = "no-enter"
 
-###############################
-# shortcuts for built-in verbs:
+# --- Preview Transformers ---
+# Pretty-print JSON in preview pane via jaq (Rust jq clone, already in PATH)
+[[preview_transformers]]
+input_extensions = [ "json" ]
+output_extension = "json"
+mode = "text"
+command = [ "jaq" ]
 
+# List archive contents instead of showing binary garbage
+[[preview_transformers]]
+input_extensions = [ "zip", "tar", "gz", "bz2", "xz", "zst", "7z", "rar", "tgz" ]
+output_extension = "txt"
+mode = "text"
+command = [ "ouch", "list", "{input-path}" ]
+
+# --- Navigation Verbs ---
+# g-prefixed jumps to frequent directories (consistent across Helix/Yazi/broot)
 [[verbs]]
 invocation = "gh"
 cmd = ":focus ~"
@@ -60,46 +123,195 @@ invocation = "gd"
 cmd = ":focus ~/Downloads"
 
 [[verbs]]
-invocation = "ge"
-internal = ":focus_bottom"
+invocation = "gf"
+cmd = ":focus ~/.dotfiles"
 
+[[verbs]]
+invocation = "gt"
+cmd = ":focus /tmp"
+
+# Vim gg/G equivalents for modal mode
 [[verbs]]
 invocation = "gg"
-internal = ":focus_top"
+internal = ":select_first"
 
 [[verbs]]
-invocation = "p"
+invocation = "ge"
+internal = ":select_last"
+
+# Vim ctrl-d/u half-page scrolling
+[[verbs]]
+key = "ctrl-d"
+internal = ":page_down"
+
+[[verbs]]
+key = "ctrl-u"
+internal = ":page_up"
+
+# hjkl navigation in command mode (unbound letters would type into input)
+[[verbs]]
+key = "j"
+internal = ":line_down"
+
+[[verbs]]
+key = "k"
+internal = ":line_up"
+
+[[verbs]]
+key = "h"
 internal = ":parent"
 
-#####################
-# user defined verbs:
-
-# If $EDITOR isn't set on your computer, you should either set it
-#  or just replace it with your editor of choice in the 'execution'
-#  pattern.
-# Example:
-#  execution = "/usr/bin/nvim {file}"
 [[verbs]]
-invocation = "edit"
+key = "l"
+cmd = ":open_stay;:input_clear"
+
+[[verbs]]
+key = "ctrl-h"
+internal = ":back"
+
+[[verbs]]
+key = "ctrl-l"
+internal = ":next_match"
+
+# Vim-style i to enter input/search mode with a clean slate
+[[verbs]]
+key = "i"
+cmd = ":input_clear;:mode_input"
+
+# Quick quit from command mode (Esc is reserved and can't be rebound)
+[[verbs]]
+key = "q"
+internal = ":quit"
+
+# Staging area: broot's multi-select (x/X matches Helix's extend_line pattern)
+[[verbs]]
+key = "x"
+internal = ":toggle_stage"
+
+[[verbs]]
+key = "X"
+internal = ":toggle_staging_area"
+
+# Toggle preview panel (Tab like Yazi's spot)
+# Preview workflow:
+#   Tab → toggle preview panel
+#   alt-pagedown / alt-pageup → scroll preview from tree
+#   ctrl-→ → focus preview, then j/k scroll naturally, ctrl-← back
+# Without Kitty protocol, J/K (shift) can't be distinguished from j/k.
+# Re-enable enable_kitty_keyboard when upstream fixes modal compatibility.
+[[verbs]]
+key = "tab"
+internal = ":toggle_preview"
+
+# --- Custom Verbs ---
+# Enter: focus directories, open files with system handler
+# Edit: ctrl-e / :e for $EDITOR (separate from Enter)
+# Order matters: broot uses the first matching verb
+
+# Enter on directory → navigate into it and clear the search filter
+[[verbs]]
+key = "enter"
+apply_to = "directory"
+cmd = ":focus;:input_clear"
+
+# Enter on any file → open with system handler (gio)
+[[verbs]]
 key = "enter"
 apply_to = "file"
-# 'gio open' is prioritized over 'xdg-open' for better performance and Wayland portal reliability.
 external = "gio open {file}"
 leave_broot = false
 
+# Edit text files with $EDITOR, {line} jumps to match from content search
 [[verbs]]
-invocation = "go"
-key = "enter"
-apply_to = "directory"
-cmd = ":cd"
-leave_broot = true
-
-[[verbs]]
-name = "view"
-invocation = "view"
-external = "bat {file}"
+invocation = "edit"
+shortcut = "e"
+key = "ctrl-e"
+apply_to = "text_file"
+external = "$EDITOR +{line} {file:space-separated}"
 leave_broot = false
 
+# cd to directory and exit broot (invocation-only: type ":go" or ":cd")
+[[verbs]]
+invocation = "go"
+cmd = ":cd"
+
+# Spawn Ghostty at the selected directory without leaving broot
+[[verbs]]
+invocation = "terminal"
+key = "ctrl-t"
+apply_to = "directory"
+external = "ghostty --working-directory {directory}"
+leave_broot = false
+
+# Open current root in graphical file manager (matches Yazi's O)
+[[verbs]]
+invocation = "open_fm"
+external = "gio open {root}"
+leave_broot = false
+
+# Drop into shell at the current root (matches Yazi's ;)
+[[verbs]]
+invocation = "shell"
+key = "ctrl-x"
+external = "$SHELL"
+set_working_dir = true
+leave_broot = false
+
+# No key binding: invocation-only to avoid overriding ctrl-s (search_again since v1.41)
+[[verbs]]
+invocation = "stage"
+external = "git add {file}"
+leave_broot = false
+refresh_after = false
+
+# gomi for consistent trash behavior across shell and broot (D like Yazi/Helix)
+[[verbs]]
+invocation = "trash"
+key = "D"
+external = "gomi {file}"
+leave_broot = false
+refresh_after = false
+
+# Create + navigate in one step
 [[verbs]]
 invocation = "mc {subpath}"
 cmd = ":mkdir {directory}/{subpath};:focus {directory}/{subpath}"
+
+[[verbs]]
+invocation = "toggle_view"
+key = "ctrl-r"
+internal = ":toggle_tree"
+
+# --- Upstream Verbs ---
+
+# Compress staged files via ouch (supports zip, tar.gz, tar.zst, 7z, etc.)
+# Type :compress tar.zst → produces filename.tar.zst at tree root
+[[verbs]]
+invocation = "compress {ext}"
+external = [ "ouch", "compress", "{file:space-separated}", "{root}/{file-stem}.{ext}" ]
+leave_broot = false
+working_dir = "{root}"
+
+[[verbs]]
+invocation = "create {subpath}"
+external = "$EDITOR {directory}/{subpath}"
+leave_broot = false
+
+# auto_exec = false: shows the command for review before running
+[[verbs]]
+invocation = "backup {version}"
+key = "ctrl-b"
+leave_broot = false
+auto_exec = false
+external = "cp -r {file} {parent}/{file-stem}-{version}{file-dot-extension}"
+
+# Scroll the preview panel without switching focus
+[[verbs]]
+key = "alt-pagedown"
+internal = ":page_down"
+impacted_panel = "right"
+
+[[verbs]]
+key = "alt-pageup"
+internal = ":page_up"
+impacted_panel = "right"
