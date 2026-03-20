@@ -61,7 +61,6 @@
 
       # Miscellaneous utilities
       gemini-cli # Gemini CLI
-      glow # Markdown renderer
       halp # A command-line help tool
       newsboat # RSS/Atom feed reader
       ouch # A command-line tool for archiving and compression

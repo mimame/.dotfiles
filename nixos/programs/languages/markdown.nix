@@ -16,5 +16,6 @@
       marksman # Markdown language server
       mdbook # A command line tool to create books from Markdown files
       mdl # Markdown lint tool
+      rumdl # Markdown linter and formatter
     ]);
 }

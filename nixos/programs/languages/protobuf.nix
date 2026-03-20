@@ -8,5 +8,6 @@
   environment.systemPackages = with pkgs.unstable; [
     buf # A new way of working with Protocol Buffers
     protobuf # Protocol Buffers compiler and libraries
+    protols # Protocol Buffers language server written in Rust
   ];
 }

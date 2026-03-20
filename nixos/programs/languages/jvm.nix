@@ -14,6 +14,7 @@
   environment.systemPackages = with pkgs.unstable; [
     # Clojure development tools
     clojure # Clojure CLI tools
+    clojure-lsp # Language Server Protocol for Clojure
     leiningen # Automation tool for Clojure projects
   ];
 }
