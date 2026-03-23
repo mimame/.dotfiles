@@ -3,19 +3,18 @@
 #
 # This configuration aims to improve compatibility with binaries and scripts
 # that are not packaged for NixOS. It sets up an environment that mimics the
-# standard Filesystem Hierarchy Standard (FHS) expected by most Linux software,
-# allowing for the execution of pre-compiled binaries and scripts with
-# hardcoded paths (e.g., `/usr/bin/env`).
+# standard Filesystem Hierarchy Standard (FHS) expected by most Linux software.
+#
+# DESIGN CHOICE:
+# `nix-alien` was previously used but has been removed to improve build
+# stability and evaluation speed. It is a heavy dependency that fetches large
+# databases during evaluation.
+#
+# The configuration now relies on the lightweight, passive compatibility layers:
+# 1. `envfs`: Fixes hardcoded paths like `/usr/bin/env` in scripts.
+# 2. `nix-ld`: Allows non-NixOS binaries to find standard libraries.
 # ----------------------------------------------------------------------------
 { pkgs, ... }:
-let
-  # Fetch the `nix-alien` package set directly from the latest `master` branch.
-  # `nix-alien` is a tool that helps run unmodified binaries on NixOS.
-  # Using `master` provides the newest features at the cost of potential instability.
-  nix-alien-pkgs =
-    import (fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master")
-      { };
-in
 {
   # Enable Envfs to create a virtual FHS-compliant filesystem.
   # This service creates symbolic links for common paths like `/bin`, `/usr/bin`,
@@ -37,10 +36,4 @@ in
       zlib
     ];
   };
-
-  # Install the `nix-alien` utility into the system environment.
-  # This command can be used to wrap and run pre-compiled binaries,
-  # automatically setting up the necessary environment and library paths.
-  # It leverages `nix-ld` and other mechanisms to achieve this.
-  environment.systemPackages = with nix-alien-pkgs; [ nix-alien ];
 }
