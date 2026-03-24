@@ -1,33 +1,28 @@
 Default Applications:
-  application/csv: calc.desktop
+  application/csv: onlyoffice-desktopeditors.desktop
   application/epub+zip: calibre-ebook-viewer.desktop
+  application/msword*: onlyoffice-desktopeditors.desktop
   application/pdf: org.gnome.Papers.desktop
   application/pgp-keys: org.gnome.seahorse.Application.desktop
   application/pkcs*: org.gnome.seahorse.Application.desktop
   application/postscript: org.gnome.Papers.desktop
   application/rss+xml: firefox.desktop
-  application/rtf: writer.desktop
+  application/rtf: onlyoffice-desktopeditors.desktop
   application/sql: dbeaver.desktop
-  application/vnd.apple.keynote: impress.desktop
-  application/vnd.apple.numbers: calc.desktop
-  application/vnd.apple.pages: writer.desktop
+  application/vnd.apple.keynote: onlyoffice-desktopeditors.desktop
+  application/vnd.apple.numbers: onlyoffice-desktopeditors.desktop
+  application/vnd.apple.pages: onlyoffice-desktopeditors.desktop
   application/vnd.comicbook+zip: org.gnome.Papers.desktop
   application/vnd.comicbook-rar: org.gnome.Papers.desktop
-  application/vnd.corel-draw: draw.desktop
-  application/vnd.ms-excel*: calc.desktop
-  application/vnd.ms-powerpoint*: impress.desktop
-  application/vnd.ms-publisher: draw.desktop
-  application/vnd.ms-word*: writer.desktop
-  application/vnd.oasis.opendocument.base: base.desktop
-  application/vnd.oasis.opendocument.formula*: math.desktop
-  application/vnd.oasis.opendocument.graphics*: draw.desktop
-  application/vnd.oasis.opendocument.presentation*: impress.desktop
-  application/vnd.oasis.opendocument.spreadsheet*: calc.desktop
-  application/vnd.oasis.opendocument.text*: writer.desktop
-  application/vnd.openofficeorg.extension: startcenter.desktop
-  application/vnd.openxmlformats-officedocument.presentationml*: impress.desktop
-  application/vnd.openxmlformats-officedocument.spreadsheetml*: calc.desktop
-  application/vnd.openxmlformats-officedocument.wordprocessingml*: writer.desktop
+  application/vnd.ms-excel*: onlyoffice-desktopeditors.desktop
+  application/vnd.ms-powerpoint*: onlyoffice-desktopeditors.desktop
+  application/vnd.ms-word*: onlyoffice-desktopeditors.desktop
+  application/vnd.oasis.opendocument.presentation*: onlyoffice-desktopeditors.desktop
+  application/vnd.oasis.opendocument.spreadsheet*: onlyoffice-desktopeditors.desktop
+  application/vnd.oasis.opendocument.text*: onlyoffice-desktopeditors.desktop
+  application/vnd.openxmlformats-officedocument.presentationml*: onlyoffice-desktopeditors.desktop
+  application/vnd.openxmlformats-officedocument.spreadsheetml*: onlyoffice-desktopeditors.desktop
+  application/vnd.openxmlformats-officedocument.wordprocessingml*: onlyoffice-desktopeditors.desktop
   application/vnd.visio: org.inkscape.Inkscape.desktop
   application/x-*-compressed: org.gnome.FileRoller.desktop
   application/x-7z-compressed: org.gnome.FileRoller.desktop
@@ -65,18 +60,17 @@ Default Applications:
   inode/directory: org.gnome.Nautilus.desktop
   text/*: dev.zed.Zed.desktop
   text/calendar: thunderbird.desktop
-  text/comma-separated-values: calc.desktop
-  text/csv: calc.desktop
+  text/comma-separated-values: onlyoffice-desktopeditors.desktop
+  text/csv: onlyoffice-desktopeditors.desktop
   text/fb2+xml: calibre-ebook-viewer.desktop
   text/html: firefox.desktop
   text/markdown: dev.zed.Zed.desktop
-  text/mathml: math.desktop
-  text/rtf: writer.desktop
-  text/spreadsheet: calc.desktop
-  text/tab-separated-values: calc.desktop
-  text/x-comma-separated-values: calc.desktop
-  text/x-csv: calc.desktop
-  text/x-spreadsheet: calc.desktop
+  text/rtf: onlyoffice-desktopeditors.desktop
+  text/spreadsheet: onlyoffice-desktopeditors.desktop
+  text/tab-separated-values: onlyoffice-desktopeditors.desktop
+  text/x-comma-separated-values: onlyoffice-desktopeditors.desktop
+  text/x-csv: onlyoffice-desktopeditors.desktop
+  text/x-spreadsheet: onlyoffice-desktopeditors.desktop
   text/x-sql: dbeaver.desktop
   text/x-vcard: thunderbird.desktop
   text/xml: firefox.desktop
