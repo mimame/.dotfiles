@@ -14,7 +14,10 @@
       xournalpp # PDF annotation
 
       # Office suites and document processing
-      libreoffice # Full office suite
+      # NOTE: ONLYOFFICE is used instead of LibreOffice due to its superior
+      # compatibility with Microsoft XML formats (.docx, .xlsx, .pptx).
+      # This addresses the primary issue with document fidelity on Linux.
+      onlyoffice-desktopeditors # Office suite that combines text, spreadsheet and presentation editors
       papers # Academic paper management
       pandoc # Universal document converter
       tdf # The Document Foundation tools
