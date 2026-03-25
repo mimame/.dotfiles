@@ -1,63 +1,80 @@
 [helpers]
 
+# Usage instructions for local.toml:
+# To customize your deployment per machine, create a .dotter/local.toml file.
+# Select the desired package(s) based on your platform.
+#
+# Example .dotter/local.toml:
+#
+#   includes = []
+#   packages = ["nixos"]
+#
+#   [files]
+#
+#   [variables]
+#
+# Available packages:
+# - "default" (required, included automatically by depends)
+# - "macos"   (for macOS-specific configurations)
+# - "nixos"   (for Linux/NixOS-specific configurations)
+
 [default]
 depends = [  ]
 
 [default.files]
-# LICENSE = ""
-# "README.md" = ""
-# barrier = "~/.config/"
 atuin = { target = "~/.config/atuin", type = "symbolic" }
-beets = "~/.config/beets"
-aerospace = "~/.config/aerospace"
 bin = "~/.bin"
-borgmatic = { target = "~/.config/borgmatic", type = "symbolic" }
 broot = "~/.config/broot"
 btop = "~/.config/btop"
 clifm = "~/.config/clifm"
 cmus = "~/.config/cmus"
-# conda = "~/"
-# devdocs = ""
-DankMaterialShell = "~/.config/DankMaterialShell"
-danksearch = "~/.config/danksearch"
 direnv = "~/.config/direnv"
-espanso = { target = "~/.config/espanso", type = "symbolic" } # Files with {{}} automatically detected as templates
+espanso = { target = "~/.config/espanso", type = "symbolic" }       # Files with {{}} automatically detected as templates
 fd = "~/.config/fd"
-fish = "~/.config/fish"                                       # Use `dotter --force` to avoid issues with existing plugin files
+fish = "~/.config/fish"                                             # Use `dotter --force` to avoid issues with existing plugin files
 gh = "~/.config/gh"
-ghostty = "~/.config/ghostty"
 git = "~/.config/git"
 gomi = "~/.config/gomi"
 helix = "~/.config/helix"
-
-jj = "~/.config/jj"
 julia = "~/.julia/"
 kitty = { target = "~/.config/kitty", type = "symbolic" }
-# latex = "~/"
 lazygit = "~/.config/lazygit"
 lazyvim = "~/.config/nvim/"
-mimeapps = "~/.config/"
 navi = "~/.config/navi"
-newsboat = "~/.newsboat/"
-nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
-niri = "~/.config/niri"
 nushell = { target = "~/.config/nushell", type = "symbolic" }
-# parallel = "~/.config/"
 ptpython = "~/.config/ptpython"
 pueue = { target = "~/.config/pueue", type = "symbolic" }
-qutebrowser = { target = "~/.config/qutebrowser", type = "symbolic" }
 ripgrep = "~/.config/ripgrep"
 ssh = "~/.ssh"
 starship = "~/.config/"
 tealdeer = "~/.config/tealdeer"
 television = { target = "~/.config/television", type = "symbolic" }
 topgrade = "~/.config/topgrade"
-vifm = { target = "~/.config/vifm", type = "symbolic" }
-vimiv = "~/.config/vimiv"
 vscode = "~/.config/Code/User/"
 yazi = { target = "~/.config/yazi", type = "symbolic" }
-zathura = "~/.config/zathura"
 zed = "~/.config/zed"
 zellij = "~/.config/zellij"
 
 [default.variables]
+
+[macos]
+depends = [ "default" ]
+
+[macos.files]
+aerospace = "~/.config/aerospace"
+ghostty = { target = "~/Library/Application Support/com.mitchellh.ghostty", type = "symbolic" }
+
+[nixos]
+depends = [ "default" ]
+
+[nixos.files]
+borgmatic = "~/.config/borgmatic"
+danksearch = "~/.config/danksearch"
+DankMaterialShell = "~/.config/DankMaterialShell"
+ghostty = "~/.config/ghostty"
+mimeapps = "~/.config/mimeapps"
+newsboat = "~/.config/newsboat"
+niri = "~/.config/niri"
+nixos = { target = "/etc/nixos", type = "symbolic", owner = "root" }
+vimiv = "~/.config/vimiv"
+zathura = "~/.config/zathura"
