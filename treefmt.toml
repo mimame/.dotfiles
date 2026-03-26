@@ -25,6 +25,9 @@ options = ["--config-path", "lazyvim/stylua.toml"]
 [formatter.jsonfmt]
 command = "jsonfmt"
 includes = ["**/*.json"]
+# Exclude DMS shell settings to prevent formatting conflicts with
+# the application's native, auto-managed configuration updates.
+excludes = ["DankMaterialShell/settings.json"]
 options = ["-w"]
 
 [formatter.yamlfmt]
