@@ -38,13 +38,6 @@ in
     # Use the unstable package from the global overlay
     package = pkgs.unstable.dms-shell;
 
-    # These options are now available via the imported module
-    enableSystemMonitoring = true;
-    # enableVPN = true;
-    # enableDynamicTheming = true;
-    # enableAudioWavelength = true;
-    # enableCalendarEvents = true;
-
     # QuickShell package customization if needed
     quickshell.package = pkgs.unstable.quickshell;
   };
