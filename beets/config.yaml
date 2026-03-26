@@ -14,8 +14,6 @@ paths:
   albumtype:soundtrack: Soundtracks/$album/$track $title
 # A space-separated list of plugin module names to load
 plugins:
-  # Fetch various AcousticBrainz metadata
-  - acousticbrainz
   # Check audio file integrity
   - badfiles
   # Use acoustic fingerprinting to identify audio files with missing or incorrect metadata.
