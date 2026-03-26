@@ -16,7 +16,7 @@ function edit_config --argument-names abbr_name config_path post_cmd
 end
 
 # --- Basic Shell ---
-abbr sfish 'source ~/.config/fish/config.fish'
+abbr sfish "source $__fish_config_dir/config.fish"
 abbr !! --position anywhere --function last_history_item
 
 # --- Navigation ---
@@ -61,8 +61,8 @@ abbr x 'chmod +x'
 # --- Search and Find ---
 abbr f 'fd --hidden --strip-cwd-prefix'
 abbr grep rg
-abbr rg 'rg --ignore-file ~/.config/fd/ignore'
-abbr s 'rg --ignore-file ~/.config/fd/ignore'
+abbr rg "rg --ignore-file $__fish_config_dir/../../fd/ignore"
+abbr s "rg --ignore-file $__fish_config_dir/../../fd/ignore"
 abbr ag 'ag --smart-case --ignore node_modules'
 
 # --- Editors ---
