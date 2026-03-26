@@ -99,25 +99,6 @@ abbr u topgrade
 abbr wget wget2
 abbr download get
 
-# --- Systemd Shortcuts ---
-# System
-abbr scd 'sudo systemctl disable'
-abbr sce 'sudo systemctl enable'
-abbr scr 'sudo systemctl restart'
-abbr scs 'sudo systemctl start'
-abbr sct 'sudo systemctl status'
-abbr sck 'sudo systemctl stop'
-abbr se sudoedit
-abbr sv sudoedit
-
-# User
-abbr scud 'systemctl --user disable'
-abbr scue 'systemctl --user enable'
-abbr scur 'systemctl --user restart'
-abbr scus 'systemctl --user start'
-abbr scut 'systemctl --user status'
-abbr scuk 'systemctl --user stop'
-
 # --- Docker ---
 abbr d docker
 abbr dc 'docker compose'

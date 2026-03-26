@@ -44,9 +44,7 @@ if command -q jj
 end
 
 # 4. PLATFORM SPECIFIC
-if $IS_NIXOS
-    source_transient any-nix-shell "any-nix-shell fish --info-right" $__fish_config_dir/config.fish
-end
+source $__fish_config_dir/platform.fish
 
 # 5. BACKGROUND SERVICES (Login shells only)
 if status is-login; and command -q pueued; and not pgrep -x pueued >/dev/null
