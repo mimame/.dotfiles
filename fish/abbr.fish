@@ -1,5 +1,20 @@
 # Fish abbreviations and aliases configuration
 
+# Helper function to create edit abbreviations
+function edit_config --argument-names abbr_name config_path post_cmd
+    if test -e $config_path
+        set -l dir (dirname $config_path)
+        set -l file (basename $config_path)
+        # Use pushd/popd to switch context, but ensure popd runs
+        set -l cmd "pushd $dir; and $EDITOR $file"
+        if test -n "$post_cmd"
+            set cmd "$cmd; and $post_cmd"
+        end
+        set cmd "$cmd; popd"
+        abbr $abbr_name "$cmd"
+    end
+end
+
 # --- Basic Shell ---
 abbr sfish 'source ~/.config/fish/config.fish'
 abbr !! --position anywhere --function last_history_item
@@ -120,44 +135,26 @@ abbr ze 'zellij edit'
 abbr zr 'zellij run'
 
 # --- Configuration Editing ---
-# Helper function to create edit abbreviations
-function edit_config --argument-names abbr_name config_path post_cmd
-    if test -e $config_path
-        set -l dir (dirname $config_path)
-        set -l file (basename $config_path)
-        # Use pushd/popd to switch context, but ensure popd runs
-        set -l cmd "pushd $dir; and $EDITOR $file"
-        if test -n "$post_cmd"
-            set cmd "$cmd; and $post_cmd"
-        end
-        set cmd "$cmd; popd"
-        abbr $abbr_name "$cmd"
-    end
-end
 
-edit_config brootrc ~/.dotfiles/broot/conf.toml
-edit_config clifmrc ~/.dotfiles/clifm/profiles/default/clifmrc
-edit_config fishrc ~/.dotfiles/fish/config.fish
-edit_config ghosttyrc ~/.dotfiles/ghostty/config
-edit_config gitrc ~/.dotfiles/git/config
-edit_config hxrc ~/.dotfiles/helix/config.toml
-edit_config kittyrc ~/.dotfiles/kitty/kitty.conf
-edit_config mimerc ~/.dotfiles/mimeapps/mimeapps.list
-edit_config navirc ~/.dotfiles/navi/config.yaml
-edit_config newsrc ~/.dotfiles/newsboat/config
-edit_config nirirc ~/.dotfiles/niri/config.kdl
-edit_config nixosrc ~/.dotfiles/nixos/configuration.nix 'sudo nixos-rebuild switch --show-trace --no-reexec'
-edit_config nvimrc ~/.dotfiles/lazyvim/init.lua
-edit_config qutebrowserrc ~/.dotfiles/qutebrowser/config.py
-edit_config sshrc ~/.dotfiles/ssh/config
-edit_config starshiprc ~/.dotfiles/starship/starship.toml
-edit_config tldrrc ~/.dotfiles/tealdeer/config.toml
-edit_config topgraderc ~/.dotfiles/topgrade/topgrade.toml
-edit_config tvrc ~/.dotfiles/television/config.toml
-edit_config xplrrc ~/.dotfiles/xplr/init.lua
-edit_config yazirc ~/.dotfiles/yazi/yazi.toml
-edit_config zdrc ~/.dotfiles/zed/settings.json
-edit_config zellijrc ~/.dotfiles/zellij/config.kdl
-
-# Clean up helper
-functions -e edit_config
+edit_config brootrc $__fish_config_dir/../../broot/conf.toml
+edit_config clifmrc $__fish_config_dir/../../clifm/profiles/default/clifmrc
+edit_config fishrc $__fish_config_dir/config.fish
+edit_config ghosttyrc $__fish_config_dir/../../ghostty/config
+edit_config gitrc $__fish_config_dir/../../git/config
+edit_config hxrc $__fish_config_dir/../../helix/config.toml
+edit_config kittyrc $__fish_config_dir/../../kitty/kitty.conf
+edit_config mimerc $__fish_config_dir/../../mimeapps/mimeapps.list
+edit_config navirc $__fish_config_dir/../../navi/config.yaml
+edit_config newsrc $__fish_config_dir/../../newsboat/config
+edit_config nirirc $__fish_config_dir/../../niri/config.kdl
+edit_config nixosrc $__fish_config_dir/../../nixos/configuration.nix 'sudo nixos-rebuild switch --show-trace --no-reexec'
+edit_config nvimrc $__fish_config_dir/../../lazyvim/init.lua
+edit_config qutebrowserrc $__fish_config_dir/../../qutebrowser/config.py
+edit_config sshrc $__fish_config_dir/../../ssh/config
+edit_config starshiprc $__fish_config_dir/../../starship/starship.toml
+edit_config tldrrc $__fish_config_dir/../../tealdeer/config.toml
+edit_config topgraderc $__fish_config_dir/../../topgrade/topgrade.toml
+edit_config tvrc $__fish_config_dir/../../television/config.toml
+edit_config yazirc $__fish_config_dir/../../yazi/yazi.toml
+edit_config zdrc $__fish_config_dir/../../zed/settings.json
+edit_config zellijrc $__fish_config_dir/../../zellij/config.kdl
