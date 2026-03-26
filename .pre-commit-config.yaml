@@ -10,7 +10,10 @@ repos:
   - repo: builtin
     hooks:
       - id: trailing-whitespace
+      # Exclude DMS shell settings to prevent formatting conflicts with
+      # the application's native, auto-managed configuration updates.
       - id: end-of-file-fixer
+        exclude: DankMaterialShell/settings.json
       - id: check-added-large-files
       - id: fix-byte-order-marker
       - id: check-json
