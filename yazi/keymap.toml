@@ -341,3 +341,8 @@ desc = "Trigger a new relative motion"
 [[mgr.prepend_keymap]]
 on = "M"
 run = "plugin mount"
+
+[[mgr.prepend_keymap]]
+on = [ "<Space>", "d" ]
+run = 'shell --block -- ripdrag -a -x "$@"'
+desc = "Drag and drop via ripdrag"
