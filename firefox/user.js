@@ -17,7 +17,7 @@
 /****************************************************************************
  * SECTION: FASTFOX                                                         *
 ****************************************************************************/
-user_pref("gfx.webrender.layer-compositor", true);
+user_pref("gfx.webrender.layer-compositor", false);
 user_pref("gfx.canvas.accelerated.cache-items", 32768); // items; default=2048
 user_pref("gfx.canvas.accelerated.cache-size", 4096); // MB; default=256
 user_pref("webgl.max-size", 16384); // MB; default=4096
