@@ -1,4 +1,4 @@
-**/git/.config.*
+**/git/.gitconfig.*
 *.log
 .dotter/cache.toml
 .dotter/local.toml

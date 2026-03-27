@@ -499,7 +499,12 @@
   protocol = git
 
 [include]
-  path = .config.personal
+  # Default to professional identity for all repos (Local only, not tracked)
+  path = .gitconfig.professional
+
+[includeIf "gitdir:~/personal/"]
+  # Override with personal identity ONLY when in ~/personal/ (Local only, not tracked)
+  path = .gitconfig.personal
 
 [init]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-initdefaultBranch
