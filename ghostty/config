@@ -57,8 +57,9 @@ split-inherit-working-directory = true
 # --- Selection & Clipboard ---
 copy-on-select = clipboard
 selection-clear-on-typing = true
-# Security: Protect against "copy/paste" attacks
-clipboard-paste-protection = true
+# Security: Disabled to prevent confirmation friction. Veteran Linux usage
+# assumes manual buffer verification before pasting.
+clipboard-paste-protection = false
 # Clean up copied text automatically
 clipboard-trim-trailing-spaces = true
 
