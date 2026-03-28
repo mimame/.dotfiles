@@ -294,14 +294,14 @@ $env.config = {
 }
 
 # --- Load Functions ---
-source ~/.config/nushell/functions/cb.nu
-source ~/.config/nushell/functions/t.nu
-source ~/.config/nushell/functions/o.nu
-source ~/.config/nushell/functions/paths.nu
-source ~/.config/nushell/functions/mc.nu
-source ~/.config/nushell/functions/y.nu
-source ~/.config/nushell/functions/bb.nu
-source ~/.config/nushell/functions/tv.nu
+source ($nu.default-config-dir | path join "functions" "cb.nu")
+source ($nu.default-config-dir | path join "functions" "t.nu")
+source ($nu.default-config-dir | path join "functions" "o.nu")
+source ($nu.default-config-dir | path join "functions" "paths.nu")
+source ($nu.default-config-dir | path join "functions" "mc.nu")
+source ($nu.default-config-dir | path join "functions" "y.nu")
+source ($nu.default-config-dir | path join "functions" "bb.nu")
+source ($nu.default-config-dir | path join "functions" "tv.nu")
 
 # --- Load Plugins/Scripts ---
 use ~/.cache/nushell/starship/init.nu
@@ -352,8 +352,8 @@ alias x = chmod +x
 # Search
 alias f = fd --hidden --strip-cwd-prefix
 alias grep = rg
-alias rg = rg --ignore-file ~/.config/fd/ignore
-alias s = rg --ignore-file ~/.config/fd/ignore
+alias rg = rg --ignore-file ($nu.default-config-dir | path join ".." "fd" "ignore")
+alias s = rg --ignore-file ($nu.default-config-dir | path join ".." "fd" "ignore")
 alias ag = ag --smart-case --ignore node_modules
 
 # Editors
@@ -442,26 +442,25 @@ def edit-config [path: path] {
     run-external hx $file
 }
 
-alias brootrc = edit-config ~/.dotfiles/broot/conf.toml
-alias clifmrc = edit-config ~/.dotfiles/clifm/profiles/default/clifmrc
-alias fishrc = edit-config ~/.dotfiles/fish/config.fish
-alias ghosttyrc = edit-config ~/.dotfiles/ghostty/config
-alias gitrc = edit-config ~/.dotfiles/git/config
-alias hxrc = edit-config ~/.dotfiles/helix/config.toml
-alias kittyrc = edit-config ~/.dotfiles/kitty/kitty.conf
-alias mimerc = edit-config ~/.dotfiles/mimeapps/mimeapps.list
-alias navirc = edit-config ~/.dotfiles/navi/config.yaml
-alias newsrc = edit-config ~/.dotfiles/newsboat/config
-alias nirirc = edit-config ~/.dotfiles/niri/config.kdl
-alias nixosrc = edit-config ~/.dotfiles/nixos/configuration.nix
-alias nvimrc = edit-config ~/.dotfiles/lazyvim/init.lua
-alias qutebrowserrc = edit-config ~/.dotfiles/qutebrowser/config.py
-alias sshrc = edit-config ~/.dotfiles/ssh/config
-alias starshiprc = edit-config ~/.dotfiles/starship/starship.toml
-alias tldrrc = edit-config ~/.dotfiles/tealdeer/config.toml
-alias topgraderc = edit-config ~/.dotfiles/topgrade/topgrade.toml
-alias tvrc = edit-config ~/.dotfiles/television/config.toml
-alias xplrrc = edit-config ~/.dotfiles/xplr/init.lua
-alias yazirc = edit-config ~/.dotfiles/yazi/yazi.toml
-alias zdrc = edit-config ~/.dotfiles/zed/settings.json
-alias zellijrc = edit-config ~/.dotfiles/zellij/config.kdl
+alias brootrc = edit-config ($nu.default-config-dir | path join ".." "broot" "conf.toml")
+alias clifmrc = edit-config ($nu.default-config-dir | path join ".." "clifm" "profiles" "default" "clifmrc")
+alias fishrc = edit-config ($nu.default-config-dir | path join ".." "fish" "config.fish")
+alias ghosttyrc = edit-config ($nu.default-config-dir | path join ".." "ghostty" "config")
+alias gitrc = edit-config ($nu.default-config-dir | path join ".." "git" "config")
+alias hxrc = edit-config ($nu.default-config-dir | path join ".." "helix" "config.toml")
+alias kittyrc = edit-config ($nu.default-config-dir | path join ".." "kitty" "kitty.conf")
+alias mimerc = edit-config ($nu.default-config-dir | path join ".." "mimeapps" "mimeapps.list")
+alias navirc = edit-config ($nu.default-config-dir | path join ".." "navi" "config.yaml")
+alias newsrc = edit-config ($nu.default-config-dir | path join ".." "newsboat" "config")
+alias nirirc = edit-config ($nu.default-config-dir | path join ".." "niri" "config.kdl")
+alias nixosrc = edit-config ($nu.default-config-dir | path join ".." "nixos" "configuration.nix")
+alias nvimrc = edit-config ($nu.default-config-dir | path join ".." "lazyvim" "init.lua")
+alias qutebrowserrc = edit-config ($nu.default-config-dir | path join ".." "qutebrowser" "config.py")
+alias sshrc = edit-config ($nu.default-config-dir | path join ".." "ssh" "config")
+alias starshiprc = edit-config ($nu.default-config-dir | path join ".." "starship" "starship.toml")
+alias tldrrc = edit-config ($nu.default-config-dir | path join ".." "tealdeer" "config.toml")
+alias topgraderc = edit-config ($nu.default-config-dir | path join ".." "topgrade" "topgrade.toml")
+alias tvrc = edit-config ($nu.default-config-dir | path join ".." "television" "config.toml")
+alias yazirc = edit-config ($nu.default-config-dir | path join ".." "yazi" "yazi.toml")
+alias zdrc = edit-config ($nu.default-config-dir | path join ".." "zed" "settings.json")
+alias zellijrc = edit-config ($nu.default-config-dir | path join ".." "zellij" "config.kdl")

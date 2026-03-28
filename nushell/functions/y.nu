@@ -6,13 +6,13 @@ def --env y [...args] {
 
     # Ensure all plugins/flavors from package.toml are installed
     if (which ya | is-not-empty) {
-        let pkg_toml = ($env.HOME | path join ".config" "yazi" "package.toml")
+        let pkg_toml = ($nu.default-config-dir | path join ".." "yazi" "package.toml")
         if ($pkg_toml | path exists) {
             let req = (open --raw $pkg_toml | lines | where $it =~ '^\s*use\s*=' | length)
 
             # Count actual installed package directories
-            let plugins_dir = ($env.HOME | path join ".config" "yazi" "plugins")
-            let flavors_dir = ($env.HOME | path join ".config" "yazi" "flavors")
+            let plugins_dir = ($nu.default-config-dir | path join ".." "yazi" "plugins")
+            let flavors_dir = ($nu.default-config-dir | path join ".." "yazi" "flavors")
 
             let installed_plugins = if ($plugins_dir | path exists) {
                 (ls $plugins_dir | where type == dir | where name =~ '\.yazi$' | length)

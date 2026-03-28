@@ -16,10 +16,10 @@ $env.GIT_EDITOR = $env.EDITOR
 $env.BROWSER = "firefox"
 $env.JULIA_NUM_THREADS = 8
 $env.TMPDIR = "/tmp"
-$env.RIPGREP_CONFIG_PATH = ($env.HOME | path join ".config" "ripgrep" "ripgreprc")
+$env.RIPGREP_CONFIG_PATH = ($nu.default-config-dir | path join ".." "ripgrep" "ripgreprc")
 $env.PAGER = "bat --wrap auto"
 $env.MANPAGER = "bat --strip-ansi=auto -l man -p"
-$env.XDG_CONFIG_HOME = ($env.HOME | path join ".config")
+$env.XDG_CONFIG_HOME = ($nu.default-config-dir | path join "..")
 $env.PIP_USER = false
 $env.VAGRANT_DEFAULT_PROVIDER = "libvirt"
 $env.TZ_LIST = "CET,Central European Time;UTC,Coordinated Universal Time;US/Eastern,Eastern Standard Time;US/Pacific,Pacific Standard Time;Asia/Singapore, Singapore;Mexico/General"
