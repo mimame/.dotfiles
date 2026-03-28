@@ -60,14 +60,21 @@ module MimeappsOutputFormatter
     section.join("\n")
   end
 
-  def _generate_added_associations_section(mimetype_to_apps)
+  def _generate_added_associations_section(mimetype_to_apps, final_defaults)
     section = []
     section << '[Added Associations]'
-    # Sort by mimetype and join application names alphabetically
     mimetype_to_apps.sort.each do |mime, apps|
-      section << "#{mime}=#{apps.to_a.sort.join(';')};"
+      app_list = _prioritize_apps(apps.to_a.sort, final_defaults[mime])
+      section << "#{mime}=#{app_list.join(';')};"
     end
     section.join("\n")
+  end
+
+  def _prioritize_apps(app_list, default_app)
+    return app_list unless default_app
+
+    app_list.delete(default_app)
+    app_list.unshift(default_app)
   end
 end
 
@@ -126,7 +133,7 @@ class MimeappsGenerator
     @available_apps.add(app_name)
 
     mimetypes.each do |mime|
-      @mimetype_to_apps[mime].add(app_name)
+      @mimetype_to_apps[mime.downcase].add(app_name)
     end
   end
 
@@ -176,10 +183,16 @@ class MimeappsGenerator
 
   def resolve_defaults
     puts '🧠 Resolving final default applications...'
-    # 1. Apply wildcard defaults first
+
+    # 1. Expand wildcards from defaults.yaml
+    # For every system-known mimetype, we check if it matches any wildcard
+    # patterns defined by the user. We use case-insensitive matching to ensure
+    # that mimetypes with inconsistent casing (e.g., macroEnabled vs macroenabled)
+    # are correctly handled. This prevents "association bleeding" where secondary
+    # apps might take over specific sub-types.
     @mimetype_to_apps.each_key do |mime|
       @wildcard_defaults.each do |pattern, app|
-        @final_defaults[mime] = app if File.fnmatch(pattern, mime)
+        @final_defaults[mime] = app if File.fnmatch(pattern.downcase, mime.downcase)
       end
     end
 
@@ -192,7 +205,7 @@ class MimeappsGenerator
     output = []
     output << _generate_header
     output << _generate_default_applications_section(@final_defaults)
-    output << _generate_added_associations_section(@mimetype_to_apps)
+    output << _generate_added_associations_section(@mimetype_to_apps, @final_defaults)
 
     File.write(MIMEAPPS_OUTPUT_PATH, "#{output.join("\n")}\n")
   end
