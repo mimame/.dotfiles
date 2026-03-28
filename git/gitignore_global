@@ -2,6 +2,13 @@
 # Ignore all files starting with .. (Help to avoid missing files when pushing)
 ..*
 
+# --- Common Patterns ---
+*.log
+*.tmp
+*.bak
+.env
+.direnv/
+
 # --- Operating Systems ---
 # macOS
 .DS_Store
