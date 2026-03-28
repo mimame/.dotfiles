@@ -73,6 +73,14 @@ module MimeappsOutputFormatter
   def _prioritize_apps(app_list, default_app)
     return app_list unless default_app
 
+    # Ensure the preferred default application is always the first entry in
+    # the associations list. This provides layered redundancy:
+    # 1. Spec Compliance: While [Default Applications] is the primary source, many
+    #    tools fallback to the first entry in [Added Associations].
+    # 2. UI Determinism: File managers (Nautilus, Yazi) typically use this order
+    #    for the "Open With" menu, ensuring the intended default is always first.
+    # 3. Conflict Resolution: Resolves "association hijacking" where secondary apps
+    #    (like Calibre) might be erroneously prioritized by the system.
     app_list.delete(default_app)
     app_list.unshift(default_app)
   end
