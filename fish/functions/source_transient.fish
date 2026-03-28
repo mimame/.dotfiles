@@ -1,7 +1,7 @@
 # Helper to cache transient init scripts (improves startup time)
 # Usage: source_transient <name> <command> [dependency_file]
 function source_transient --argument name cmd dependency
-    set -l cache_file ~/.config/fish/cache/$name.fish
+    set -l cache_file $__fish_config_dir/cache/$name.fish
     set -l should_rebuild false
 
     # 1. Check if cache exists

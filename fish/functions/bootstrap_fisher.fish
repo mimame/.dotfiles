@@ -5,7 +5,7 @@ function bootstrap_fisher
 
     # 1. Install Fisher
     set -l fisher_url 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish'
-    set -l fisher_path ~/.config/fish/functions/fisher.fish
+    set -l fisher_path $__fish_config_dir/functions/fisher.fish
     mkdir -p (dirname $fisher_path)
 
     if functions -q get
@@ -32,8 +32,8 @@ function bootstrap_fisher
     # 3. Finalize
     # We clear the functions and re-source everything to ensure a clean state.
     echo "🔄 Refreshing environment..."
-    set -p fish_function_path ~/.config/fish/functions
-    source ~/.config/fish/config.fish
+    set -p fish_function_path $__fish_config_dir/functions
+    source $__fish_config_dir/config.fish
 
     echo "✅ Bootstrapping complete!"
 end

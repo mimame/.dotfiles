@@ -16,10 +16,10 @@ function download_shell_assets --argument stamp_file
     __check_and_download 'https://github.com/Canop/broot/blob/master/resources/icons/vscode/vscode.ttf?raw=true' ~/.local/share/fonts/vscode.ttf
 
     # 2. BTOP Theme
-    __check_and_download 'https://raw.githubusercontent.com/dracula/bashtop/refs/heads/master/dracula.theme' ~/.config/btop/themes/dracula
+    __check_and_download 'https://raw.githubusercontent.com/dracula/bashtop/refs/heads/master/dracula.theme' $__fish_config_dir/../btop/themes/dracula
 
     # 3. Kitty Theme (Only if kitty is the terminal)
-    if test "$TERM" = xterm-kitty; and not test -f ~/.config/kitty/current-theme.conf
+    if test "$TERM" = xterm-kitty; and not test -f $__fish_config_dir/../kitty/current-theme.conf
         if command -q kitty
             kitty +kitten themes --reload-in=all Dracula
         end

@@ -1,7 +1,7 @@
 # 1. CORE VARIABLES & ENVIRONMENT
 # Sourced first to ensure environment variables are available to both
 # interactive and non-interactive shells.
-source ~/.config/fish/variables.fish
+source $__fish_config_dir/variables.fish
 
 # SSH Agent
 # Initialized early to ensure keys are available for both interactive
@@ -13,11 +13,11 @@ setup_ssh_agent
 status is-interactive; or exit
 
 # 2. BOOTSTRAP & RESOURCES (Lazy Loaded)
-if not test -f ~/.config/fish/functions/fisher.fish
+if not test -f $__fish_config_dir/functions/fisher.fish
     bootstrap_fisher
 end
 
-set -l resource_stamp ~/.config/fish/cache/resources_checked.stamp
+set -l resource_stamp $__fish_config_dir/cache/resources_checked.stamp
 if not test -f $resource_stamp
     download_shell_assets $resource_stamp
 end

@@ -6,14 +6,14 @@ function y --description "Launch Yazi and sync CWD on exit"
 
     # Ensure all plugins/flavors from package.toml are installed
     if command -q ya
-        set -l pkg_toml ~/.config/yazi/package.toml
+        set -l pkg_toml $__fish_config_dir/../yazi/package.toml
         if test -f $pkg_toml
             set -l req (grep -cE '^\s*use\s*=' $pkg_toml)
 
             # Count actual installed package directories
             set -l inst 0
-            if test -d ~/.config/yazi/plugins; or test -d ~/.config/yazi/flavors
-                set inst (find ~/.config/yazi/plugins ~/.config/yazi/flavors -maxdepth 1 -type d 2>/dev/null | grep -cE '.yazi$')
+            if test -d $__fish_config_dir/../yazi/plugins; or test -d $__fish_config_dir/../yazi/flavors
+                set inst (find $__fish_config_dir/../yazi/plugins $__fish_config_dir/../yazi/flavors -maxdepth 1 -type d 2>/dev/null | grep -cE '.yazi$')
             end
 
             if test "$req" -ne "$inst"

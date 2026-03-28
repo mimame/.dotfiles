@@ -156,7 +156,7 @@ end
 set -gx JULIA_NUM_THREADS 8
 set -gx TMPDIR /tmp
 
-set -gx RIPGREP_CONFIG_PATH ~/.config/ripgrep/ripgreprc
+set -gx RIPGREP_CONFIG_PATH $__fish_config_dir/../ripgrep/ripgreprc
 
 # bat as the default replacement for cat, less & more commands
 set -gx PAGER "bat --wrap auto"

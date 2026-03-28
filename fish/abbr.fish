@@ -61,8 +61,8 @@ abbr x 'chmod +x'
 # --- Search and Find ---
 abbr f 'fd --hidden --strip-cwd-prefix'
 abbr grep rg
-abbr rg "rg --ignore-file $__fish_config_dir/../../fd/ignore"
-abbr s "rg --ignore-file $__fish_config_dir/../../fd/ignore"
+abbr rg "rg --ignore-file $__fish_config_dir/../fd/ignore"
+abbr s "rg --ignore-file $__fish_config_dir/../fd/ignore"
 abbr ag 'ag --smart-case --ignore node_modules'
 
 # --- Editors ---
@@ -136,25 +136,25 @@ abbr zr 'zellij run'
 
 # --- Configuration Editing ---
 
-edit_config brootrc $__fish_config_dir/../../broot/conf.toml
-edit_config clifmrc $__fish_config_dir/../../clifm/profiles/default/clifmrc
+edit_config brootrc $__fish_config_dir/../broot/conf.toml
+edit_config clifmrc $__fish_config_dir/../clifm/profiles/default/clifmrc
 edit_config fishrc $__fish_config_dir/config.fish
-edit_config ghosttyrc $__fish_config_dir/../../ghostty/config
-edit_config gitrc $__fish_config_dir/../../git/config
-edit_config hxrc $__fish_config_dir/../../helix/config.toml
-edit_config kittyrc $__fish_config_dir/../../kitty/kitty.conf
-edit_config mimerc $__fish_config_dir/../../mimeapps/mimeapps.list
-edit_config navirc $__fish_config_dir/../../navi/config.yaml
-edit_config newsrc $__fish_config_dir/../../newsboat/config
-edit_config nirirc $__fish_config_dir/../../niri/config.kdl
-edit_config nixosrc $__fish_config_dir/../../nixos/configuration.nix 'sudo nixos-rebuild switch --show-trace --no-reexec'
-edit_config nvimrc $__fish_config_dir/../../lazyvim/init.lua
-edit_config qutebrowserrc $__fish_config_dir/../../qutebrowser/config.py
-edit_config sshrc $__fish_config_dir/../../ssh/config
-edit_config starshiprc $__fish_config_dir/../../starship/starship.toml
-edit_config tldrrc $__fish_config_dir/../../tealdeer/config.toml
-edit_config topgraderc $__fish_config_dir/../../topgrade/topgrade.toml
-edit_config tvrc $__fish_config_dir/../../television/config.toml
-edit_config yazirc $__fish_config_dir/../../yazi/yazi.toml
-edit_config zdrc $__fish_config_dir/../../zed/settings.json
-edit_config zellijrc $__fish_config_dir/../../zellij/config.kdl
+edit_config ghosttyrc $__fish_config_dir/../ghostty/config
+edit_config gitrc $__fish_config_dir/../git/config
+edit_config hxrc $__fish_config_dir/../helix/config.toml
+edit_config kittyrc $__fish_config_dir/../kitty/kitty.conf
+edit_config mimerc $__fish_config_dir/../mimeapps/mimeapps.list
+edit_config navirc $__fish_config_dir/../navi/config.yaml
+edit_config newsrc $__fish_config_dir/../newsboat/config
+edit_config nirirc $__fish_config_dir/../niri/config.kdl
+edit_config nixosrc $__fish_config_dir/../nixos/configuration.nix 'sudo nixos-rebuild switch --show-trace --no-reexec'
+edit_config nvimrc $__fish_config_dir/../lazyvim/init.lua
+edit_config qutebrowserrc $__fish_config_dir/../qutebrowser/config.py
+edit_config sshrc $__fish_config_dir/../ssh/config
+edit_config starshiprc $__fish_config_dir/../starship/starship.toml
+edit_config tldrrc $__fish_config_dir/../tealdeer/config.toml
+edit_config topgraderc $__fish_config_dir/../topgrade/topgrade.toml
+edit_config tvrc $__fish_config_dir/../television/config.toml
+edit_config yazirc $__fish_config_dir/../yazi/yazi.toml
+edit_config zdrc $__fish_config_dir/../zed/settings.json
+edit_config zellijrc $__fish_config_dir/../zellij/config.kdl
