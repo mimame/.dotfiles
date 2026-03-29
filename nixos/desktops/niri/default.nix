@@ -6,6 +6,27 @@
     # package = pkgs.unstable.niri;
   };
 
+  # ----------------------------------------------------------------------------
+  # Explicit Portal Configuration
+  #
+  # WHY THIS IS NEW: The default NixOS Niri module enables portals but does not
+  # define the "routing" (config.niri).
+  #
+  # WHAT WAS MISSING: Without this, applications often don't know which portal
+  # backend (GNOME or GTK) to talk to for specific tasks like screen sharing or
+  # choosing a file, which can lead to slow startup or app "hangs".
+  #
+  # WHAT THIS DOES: This explicitly tells the system to prioritize the GNOME
+  # portal (required for Niri screencasting) and fallback to GTK, ensuring
+  # deterministic and reliable behavior across all Wayland apps.
+  # ----------------------------------------------------------------------------
+  xdg.portal.config.niri = {
+    default = [
+      "gnome"
+      "gtk"
+    ];
+  };
+
   # Display Manager configuration for Niri.
   services.displayManager = {
     defaultSession = "niri"; # Set Niri as the default session.
