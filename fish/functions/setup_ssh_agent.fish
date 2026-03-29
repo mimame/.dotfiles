@@ -24,7 +24,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
     # - Systemd manages ssh-agent as a user service
     # - Socket location: /run/user/$UID/ssh-agent (stable across sessions)
     # - Agent lifetime: From login to logout/reboot
-    # - We directly use SSH_AUTH_SOCK and add keys with ssh-add
+    # - Directly use SSH_AUTH_SOCK and add keys with ssh-add
     # - No need for keychain: systemd provides equivalent functionality
     #
     # ** Darwin/macOS **
@@ -33,7 +33,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
     # - Keychain provides agent lifecycle management similar to systemd
     # - Keychain creates ~/.keychain/ with environment variables for reuse
     # - macOS Keychain Integration: Native ssh-add can use macOS keychain,
-    #   but we use keychain(1) for consistency with Linux workflows
+    #   but use keychain(1) for consistency with Linux workflows
     #
     # --- WHY NOT USE KEYCHAIN ON NIXOS? ---
     # - Redundant: NixOS systemd agent already provides persistence
@@ -56,7 +56,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
     # even if the user cancels the passphrase prompt.
     #
     # --- FINGERPRINT CHECKING ---
-    # Before adding a key, we check if its fingerprint is already in the agent.
+    # Before adding a key, check if its fingerprint is already in the agent.
     # This prevents:
     # - Redundant passphrase prompts in new shells (keys already loaded)
     # - Agent clutter (duplicate key entries)
@@ -91,7 +91,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
             set -gx SSH_AUTH_SOCK "$nixos_agent_sock"
         else
             # Socket missing: systemd service might not be running
-            # This shouldn't happen, but we handle it gracefully
+            # This shouldn't happen, but is handled gracefully
             echo "Warning: NixOS ssh-agent socket not found at $nixos_agent_sock" >&2
             return 1
         end
@@ -118,11 +118,11 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
         # --- Darwin/macOS: Use keychain for agent persistence ---
         if command -q keychain
             # Keychain manages the agent lifecycle and creates environment files
-            # at ~/.keychain/$HOSTNAME-fish that we source to get SSH_AUTH_SOCK.
+            # at ~/.keychain/$HOSTNAME-fish which is sourced to get SSH_AUTH_SOCK.
             #
             # Options explained:
             # --eval: Output shell commands (set -x SSH_AUTH_SOCK ...) to stdout
-            #         We pipe this to 'source' to apply them to the current shell
+            #         Pipe this to 'source' to apply them to the current shell
             # --quiet: Suppress informational messages like "Found existing ssh-agent"
             # --quick: Skip checking if keys are still valid (faster startup)
             #          Keys are checked on actual use anyway, so this is safe
@@ -135,7 +135,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
 
         else
             # Fallback if keychain is not installed (shouldn't happen on Darwin
-            # as it's in brew/Brewfile, but we handle it defensively)
+            # as it's in brew/Brewfile, but is handled defensively)
             echo "Warning: keychain not found, starting ssh-agent manually" >&2
 
             # Start agent if not already running

@@ -152,7 +152,7 @@
     # (e.g., 8.8.8.8 from a Wi-Fi network) can cause resolution failures,
     # requiring a manual restart of the `systemd-resolved` service.
     #
-    # To avoid this, we rely on the default `FallbackDNS` servers built into
+    # To avoid this, rely on the default `FallbackDNS` servers built into
     # `systemd-resolved`. This provides a reliable "just works" experience.
     # When `dnsovertls` is enabled, `systemd-resolved` automatically attempts
     # to use DNS-over-TLS with these fallback servers. It gracefully manages

@@ -85,7 +85,7 @@ function get --description "Download file using the best available tool" --argum
             # Robust downloading with retries and progress bar
             set -l params --progress=bar --retry-on-http-error=503
             if test -n "$out_file"
-                # Note: --timestamping does nothing with -O, so we use --continue instead.
+                # Note: --timestamping does nothing with -O, so use --continue instead.
                 # This avoids the "timestamping does nothing in combination with -O" warning.
                 wget2 --output-document="$out_dir/$out_file" --continue $params "$url"
             else

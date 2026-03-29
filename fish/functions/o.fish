@@ -41,7 +41,7 @@ function o --description "Open files or directories with the default system appl
         end
     end
 
-    # Provide summary if multiple items were opened and we are in an interactive shell
+    # Provide summary if multiple items were opened in an interactive shell
     if test $opened -gt 1; and status is-interactive
         echo "✓ Opened $opened items"
     end

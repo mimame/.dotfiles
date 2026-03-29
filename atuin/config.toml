@@ -116,7 +116,7 @@ invert = true
 ## (those with non-zero exist status or not)
 store_failed = true
 
-## Defaults to true. This matches history against a set of default regex, and will not save it if we get a match. Defaults include
+## Defaults to true. Matches history against a set of default regex, and will not save it if a match occurs. Defaults include
 ## 1. AWS key id
 ## 2. Github pat (old and new)
 ## 3. Slack oauth tokens (bot, user)
@@ -165,7 +165,7 @@ keymap_cursor = { emacs = "blink-block", vim_insert = "blink-bar", vim_normal = 
 # scroll_context_lines = 1
 
 [stats]
-## Set commands where we should consider the subcommand for statistics. Eg, kubectl get vs just kubectl
+## Set commands where the subcommand should be considered for statistics. Eg, kubectl get vs just kubectl
 # common_subcommands = [
 #   "apt",
 #   "cargo",

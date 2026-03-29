@@ -199,7 +199,7 @@
 
     # Security: sudo configuration
     #
-    # We prioritize a balance between security and convenience by:
+    # Prioritize a balance between security and convenience by:
     # 1. Using standard `sudo` (sudo-rs does not support shared timestamps).
     # 2. Enabling `!tty_tickets` to share the authentication timestamp across all
     #    terminals, so the password is only typed once per logged session.

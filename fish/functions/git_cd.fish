@@ -1,12 +1,12 @@
 function git_cd --description "Commit with a journal-style date stamp"
-    # Ensure we are in a git repository
+    # Ensure execution within a git repository
     if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
         echo "Error: Not a git repository" >&2
         return 1
     end
 
     # Generate today's stamp: YY.MM.DD.dd (e.g., 26.01.05.Mo)
-    # We use LC_ALL=C to ensure stable day abbreviations regardless of system locale
+    # Use LC_ALL=C to ensure stable day abbreviations regardless of system locale
     set -l today_date_ymd (date +%y.%m.%d)
     set -l day_abbr (LC_ALL=C date +%a | string sub -l 2)
     set -l today_stamp "$today_date_ymd.$day_abbr"

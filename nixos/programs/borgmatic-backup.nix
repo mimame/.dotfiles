@@ -15,7 +15,7 @@
   #    Using "repokey-blake2" is recommended for good performance and security.
   #    BORG_PASSPHRASE=mimame borgmatic repo-create --encryption=repokey-blake2 /run/media/${config.vars.username}/TOSHIBA_EXT/backups/borg-narnia-backups
 
-  # We disable the system-wide service to use a user-level one.
+  # Disable the system-wide service to use a user-level one.
   # This allows borgmatic to find the config in ~/.config/borgmatic/config.yaml.
   services.borgmatic.enable = lib.mkForce false;
 

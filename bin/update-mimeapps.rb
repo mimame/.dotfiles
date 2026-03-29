@@ -30,7 +30,7 @@ DEFAULTS_PATH = File.expand_path('../mimeapps/defaults.yaml', __dir__)
 # The final output file that desktop environments will use.
 MIMEAPPS_OUTPUT_PATH = File.expand_path('~/.config/mimeapps.list')
 
-# Optimized search paths: we prioritize Nix profiles and standard XDG locations
+# Optimized search paths: prioritize Nix profiles and standard XDG locations
 # to avoid scanning the entire /nix/store, which is extremely slow.
 SEARCH_PATHS = [
   File.expand_path('~/.nix-profile/share/applications'),
@@ -193,8 +193,8 @@ class MimeappsGenerator
     puts '🧠 Resolving final default applications...'
 
     # 1. Expand wildcards from defaults.yaml
-    # For every system-known mimetype, we check if it matches any wildcard
-    # patterns defined by the user. We use case-insensitive matching to ensure
+    # For every system-known mimetype, check if it matches any wildcard
+    # patterns defined by the user. Case-insensitive matching is used to ensure
     # that mimetypes with inconsistent casing (e.g., macroEnabled vs macroenabled)
     # are correctly handled. This prevents "association bleeding" where secondary
     # apps might take over specific sub-types.

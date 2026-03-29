@@ -53,6 +53,6 @@ end
 
 # 6. ALIASES & ABBREVIATIONS
 # Cached to avoid re-parsing abbr.fish on every new shell
-# We use --no-config to isolate cache generation from plugins that might fail
+# Use --no-config to isolate cache generation from plugins that might fail
 # in non-interactive shells (e.g., fish-abbreviation-tips).
 source_transient abbrs "fish --no-config -c 'set -p fish_function_path $__fish_config_dir/functions; source $__fish_config_dir/variables.fish; source $__fish_config_dir/abbr.fish; abbr --show; alias'" $__fish_config_dir/abbr.fish

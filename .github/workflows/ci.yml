@@ -23,7 +23,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       # Determine the correct Git references for "before" and "after" because they
       # are accessed differently for "pull_request" and "push" events.
-      # This ensures we always check the correct range of changed files.
+      # Ensures correct range of changed files.
       - name: Determine Commit Range
         id: refs
         run: |
@@ -47,7 +47,7 @@ jobs:
             echo "to=${{ github.event.after }}" >> "$GITHUB_OUTPUT"
           fi
       # Run prek hooks on the changeset.
-      # We use the shell.nix file defined in the root directory to ensure the CI
+      # Use the shell.nix file defined in the root directory to ensure the CI
       # environment perfectly replicates the local development environment.
       - name: Run prek
         run: |

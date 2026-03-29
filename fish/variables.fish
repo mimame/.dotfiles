@@ -3,7 +3,7 @@
 # --- PATH Configuration ---
 # Must be defined first to ensure Homebrew (on macOS) and local binaries
 # are available for the rest of the configuration checks.
-# We build and cache the path additions once.
+# Build and cache path additions once.
 source_transient paths '
     set -l paths \
         "$HOME/.yarn/bin" \
@@ -57,7 +57,7 @@ else if test -e /etc/os-release
     end
 
     # SSH Agent Environment (Managed by keychain)
-    # We source the keychain-generated environment file to ensure all shells
+    # Source the keychain-generated environment file to ensure all shells
     # have access to the same agent.
     set -l keychain_env "$HOME/.keychain/(hostname)-fish"
     if test -f "$keychain_env"

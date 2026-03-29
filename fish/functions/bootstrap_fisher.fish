@@ -18,7 +18,7 @@ function bootstrap_fisher
     source $fisher_path
 
     # 2. Install Plugins
-    # We suppress stderr during installation to avoid "Command not found"
+    # Suppress stderr during installation to avoid "Command not found"
     # transient errors while plugins are being partially loaded.
     echo "📥 Installing plugins via Fisher..."
     fisher install \
@@ -30,7 +30,7 @@ function bootstrap_fisher
         edc/bass 2>/dev/null
 
     # 3. Finalize
-    # We clear the functions and re-source everything to ensure a clean state.
+    # Clear functions and re-source everything to ensure a clean state.
     echo "🔄 Refreshing environment..."
     set -p fish_function_path $__fish_config_dir/functions
     source $__fish_config_dir/config.fish

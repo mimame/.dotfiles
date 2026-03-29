@@ -17,7 +17,7 @@
 {
   services = {
     # X11/Xorg and Display Manager Configuration
-    # Even though we're running Wayland, services.xserver is still required because:
+    # Even though Wayland is running, services.xserver is still required because:
     # 1. GDM (GNOME Display Manager) dependency: GDM is built on top of X11
     #    infrastructure, even when it launches Wayland sessions.
     # 2. Backward compatibility and fallback: Provides an X11 fallback session and
@@ -35,7 +35,7 @@
 
       # Disable the GCR (GNOME Crypto) SSH agent.
       # WHY: It often fails to handle ed25519 keys correctly, leading to repeated
-      # passphrase prompts. We use the standard NixOS ssh-agent + keychain instead.
+      # passphrase prompts. Uses the standard NixOS ssh-agent + keychain instead.
       gcr-ssh-agent.enable = false;
 
       # GNOME Settings Daemon - Core GNOME desktop environment service.

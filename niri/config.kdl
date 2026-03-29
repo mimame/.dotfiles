@@ -537,7 +537,7 @@ binds {
     // Touchpad scrolling is continuous, so for these binds it is split into
     // discrete intervals.
     // These binds are also affected by touchpad's natural-scroll, so these
-    // example binds are "inverted", since we have natural-scroll enabled for
+    // example binds are "inverted", since natural-scroll is enabled for
     // touchpads by default.
     // Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
     // Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }

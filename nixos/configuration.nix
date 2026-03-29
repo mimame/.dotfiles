@@ -26,7 +26,7 @@ in
   # Make variables available to all modules automatically
   #
   # STRATEGY: Dependency Injection
-  # We inject `vars` and common attributes (username, hostname) into the module
+  # Inject `vars` and common attributes (username, hostname) into the module
   # system args. This decoupling allows modules to request these values as
   # function arguments (e.g., `{ pkgs, username, ... }`) without needing to
   # know the location of `variables.nix`.
