@@ -111,6 +111,23 @@
     };
   };
 
+  # XDG Desktop Portal Configuration
+  # This is essential for applications running in non-GNOME Wayland compositors
+  # (like Niri) to show standard file pickers, "Open With" dialogs, and handle
+  # screen sharing.
+  # The `config.common.default = [ "gnome" ]` setting is particularly important
+  # for compositors like Niri, ensuring deterministic portal backend selection
+  # and resolving potential issues with application integration.
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+    # Specify the default portal backend.
+    config.common.default = [ "gnome" ];
+  };
+
   # Core GNOME applications and utilities.
   environment.systemPackages =
     with pkgs;
