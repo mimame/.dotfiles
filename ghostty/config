@@ -68,6 +68,9 @@ clipboard-trim-trailing-spaces = true
 shell-integration-features = cursor,no-sudo,title,ssh-env,ssh-terminfo
 # Resource isolation for better system stability
 linux-cgroup = single-instance
+# Disable built-in auto-update (macOS Sparkle) to maintain deterministic
+# management via system package managers (Nix on NixOS, Homebrew on macOS).
+auto-update = false
 
 # --- Notifications ---
 app-notifications = no-clipboard-copy
