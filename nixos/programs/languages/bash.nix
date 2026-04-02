@@ -6,7 +6,7 @@
 
 {
   environment.systemPackages = with pkgs.unstable; [
-    nodePackages.bash-language-server # Language server for Bash
+    bash-language-server # Language server for Bash
     shellcheck # A static analysis tool for shell scripts
     shfmt # A shell parser, formatter, and interpreter
   ];
