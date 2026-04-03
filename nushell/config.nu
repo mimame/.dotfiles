@@ -294,16 +294,28 @@ $env.config = {
 }
 
 # --- Load Functions ---
-source ($nu.default-config-dir | path join "functions" "cb.nu")
-source ($nu.default-config-dir | path join "functions" "t.nu")
-source ($nu.default-config-dir | path join "functions" "o.nu")
-source ($nu.default-config-dir | path join "functions" "paths.nu")
-source ($nu.default-config-dir | path join "functions" "mc.nu")
-source ($nu.default-config-dir | path join "functions" "y.nu")
-source ($nu.default-config-dir | path join "functions" "bb.nu")
-source ($nu.default-config-dir | path join "functions" "tv.nu")
+# NOTE: Nushell evaluates 'source' and 'use' at parse-time. This means variables
+# (like $env.XDG_CONFIG_HOME) are NOT available here. We must use literal paths
+# to ensure these files are found correctly during shell startup.
+source ~/.config/nushell/functions/cb.nu
+source ~/.config/nushell/functions/t.nu
+source ~/.config/nushell/functions/o.nu
+source ~/.config/nushell/functions/paths.nu
+source ~/.config/nushell/functions/mc.nu
+source ~/.config/nushell/functions/y.nu
+source ~/.config/nushell/functions/bb.nu
+source ~/.config/nushell/functions/tv.nu
+source ~/.config/nushell/functions/download_assets.nu
+
+# --- Initialize Assets ---
+# Ensure themes, fonts, and platform-specific links are set up on first start.
+let resource_stamp = ($env.XDG_CACHE_HOME | path join "nushell" "resources_checked.stamp")
+if not ($resource_stamp | path exists) {
+    download_shell_assets
+}
 
 # --- Load Plugins/Scripts ---
+# Literal paths are required here as well due to parse-time evaluation constraints.
 use ~/.cache/nushell/starship/init.nu
 source ~/.cache/nushell/zoxide/init.nu
 source ~/.cache/nushell/atuin/init.nu
