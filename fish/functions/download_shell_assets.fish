@@ -32,6 +32,19 @@ function download_shell_assets --argument stamp_file
         end
     end
 
+    # 5. Ghostty macOS Link
+    # Ghostty on macOS expects its config in Library/Application Support.
+    # Link it to $XDG_CONFIG_HOME/ghostty to maintain a unified XDG-style setup.
+    if test (uname -s) = Darwin
+        set -l ghostty_mac "$HOME/Library/Application Support/com.mitchellh.ghostty"
+        set -l ghostty_xdg "$XDG_CONFIG_HOME/ghostty"
+        if test -d "$ghostty_xdg"
+            mkdir -p (dirname "$ghostty_mac")
+            ln -sf "$ghostty_xdg" "$ghostty_mac"
+            echo "🔗 Linked Ghostty config to Library/Application Support"
+        end
+    end
+
     # Create stamp to avoid re-checking every time
     if test -n "$stamp_file"
         mkdir -p (dirname $stamp_file)

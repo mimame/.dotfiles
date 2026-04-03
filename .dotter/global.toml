@@ -35,6 +35,7 @@ fish = "~/.config/fish"                                             # Use `dotte
 gh = "~/.config/gh"
 git = "~/.config/git"
 gomi = "~/.config/gomi"
+ghostty = "~/.config/ghostty"
 helix = "~/.config/helix"
 julia = "~/.julia/"
 kitty = { target = "~/.config/kitty", type = "symbolic" }
@@ -62,7 +63,6 @@ depends = [ "default" ]
 
 [macos.files]
 aerospace = "~/.config/aerospace"
-ghostty = { target = "~/Library/Application Support/com.mitchellh.ghostty", type = "symbolic" }
 
 [nixos]
 depends = [ "default" ]
@@ -71,7 +71,6 @@ depends = [ "default" ]
 borgmatic = "~/.config/borgmatic"
 danksearch = "~/.config/danksearch"
 DankMaterialShell = "~/.config/DankMaterialShell"
-ghostty = "~/.config/ghostty"
 mimeapps = "~/.config/mimeapps"
 newsboat = "~/.config/newsboat"
 niri = "~/.config/niri"
