@@ -156,18 +156,12 @@ end
 set -gx JULIA_NUM_THREADS 8
 set -gx TMPDIR /tmp
 
-set -gx RIPGREP_CONFIG_PATH $__fish_config_dir/../ripgrep/ripgreprc
+# Ensure XDG variables are set and exported (standard for NixOS and professional macOS setups)
+set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"
+set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "$HOME/.local/share"
+set -q XDG_STATE_HOME; or set -gx XDG_STATE_HOME "$HOME/.local/state"
 
-# bat as the default replacement for cat, less & more commands
-set -gx PAGER "bat --wrap auto"
-
-# Use bat as default man pager to avoid rendering ascii issues
-set -gx MANPAGER "bat --strip-ansi=auto -l man -p"
-
-# Ensure XDG_CONFIG_HOME is set
-if test -z "$XDG_CONFIG_HOME"
-    set -gx XDG_CONFIG_HOME "$HOME/.config"
-end
+set -gx RIPGREP_CONFIG_PATH "$XDG_CONFIG_HOME/ripgrep/ripgreprc"
 
 # Disable user Python pip by default to avoid conflicts with pre-commit
 set -gx PIP_USER false

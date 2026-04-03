@@ -2,10 +2,10 @@
 
 # Helper function to create edit abbreviations
 function edit_config --argument-names abbr_name config_path post_cmd
-    # If the path is not absolute, resolve it relative to the config directory base (~/.config)
+    # If the path is not absolute, resolve it relative to XDG_CONFIG_HOME (~/.config)
     set -l full_path $config_path
     if not string match -q "/*" -- $config_path
-        set full_path "$__fish_config_dir/../$config_path"
+        set full_path "$XDG_CONFIG_HOME/$config_path"
     end
 
     if test -e $full_path
@@ -67,8 +67,8 @@ abbr x 'chmod +x'
 # --- Search and Find ---
 abbr f 'fd --hidden --strip-cwd-prefix'
 abbr grep rg
-abbr rg "rg --ignore-file $__fish_config_dir/../fd/ignore"
-abbr s "rg --ignore-file $__fish_config_dir/../fd/ignore"
+abbr rg "rg --ignore-file $XDG_CONFIG_HOME/fd/ignore"
+abbr s "rg --ignore-file $XDG_CONFIG_HOME/fd/ignore"
 abbr ag 'ag --smart-case --ignore node_modules'
 
 # --- Editors ---
