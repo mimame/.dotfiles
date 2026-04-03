@@ -7,6 +7,12 @@ $env.IS_DARWIN = ($nu.os-info.name == "macos")
 $env.IS_LINUX = ($nu.os-info.name == "linux")
 $env.IS_NIXOS = ($env.IS_LINUX and ("/etc/os-release" | path exists) and (open /etc/os-release | str contains "ID=nixos"))
 
+# --- XDG Standard Directories ---
+$env.XDG_CONFIG_HOME = ($env.HOME | path join ".config")
+$env.XDG_DATA_HOME = ($env.HOME | path join ".local" "share")
+$env.XDG_STATE_HOME = ($env.HOME | path join ".local" "state")
+$env.XDG_CACHE_HOME = ($env.HOME | path join ".cache")
+
 # --- Core Variables ---
 $env.default_nvim = "nvim"
 $env.default_hx = "hx"
@@ -16,10 +22,9 @@ $env.GIT_EDITOR = $env.EDITOR
 $env.BROWSER = "firefox"
 $env.JULIA_NUM_THREADS = 8
 $env.TMPDIR = "/tmp"
-$env.RIPGREP_CONFIG_PATH = ($nu.default-config-dir | path join ".." "ripgrep" "ripgreprc")
+$env.RIPGREP_CONFIG_PATH = ($env.XDG_CONFIG_HOME | path join "ripgrep" "ripgreprc")
 $env.PAGER = "bat --wrap auto"
 $env.MANPAGER = "bat --strip-ansi=auto -l man -p"
-$env.XDG_CONFIG_HOME = ($nu.default-config-dir | path join "..")
 $env.PIP_USER = false
 $env.VAGRANT_DEFAULT_PROVIDER = "libvirt"
 $env.TZ_LIST = "CET,Central European Time;UTC,Coordinated Universal Time;US/Eastern,Eastern Standard Time;US/Pacific,Pacific Standard Time;Asia/Singapore, Singapore;Mexico/General"
@@ -37,8 +42,8 @@ def get-path [] {
         ($env.HOME | path join "go" "bin")
         ($env.HOME | path join ".cargo" "bin")
         ($env.HOME | path join ".rustup" "toolchains" "stable-x86_64-unknown-linux-gnu" "bin")
-        ($env.HOME | path join ".local" "bin")
-        ($env.HOME | path join ".local" "share" "coursier" "bin")
+        ($env.XDG_DATA_HOME | path join ".." "bin")
+        ($env.XDG_DATA_HOME | path join "coursier" "bin")
     ]
 
     # Homebrew (macOS/Linux)
@@ -86,7 +91,7 @@ if ($nu.is-interactive) {
 # --- Shell Integrations ---
 
 # Ensure cache directories exist
-let cache_dir = ($env.HOME | path join ".cache" "nushell")
+let cache_dir = ($env.XDG_CACHE_HOME | path join "nushell")
 if not ($cache_dir | path exists) { mkdir $cache_dir }
 
 # Starship
