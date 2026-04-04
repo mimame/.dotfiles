@@ -9,6 +9,5 @@
     gst_all_1.gst-plugins-ugly # GStreamer ugly plugins
     gst_all_1.gstreamer # GStreamer multimedia framework
     spotify # Music streaming service
-    vlc # VLC media player
   ];
 }
