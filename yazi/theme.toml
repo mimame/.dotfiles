@@ -1,4 +1,10 @@
+# ----------------------------------------------------------------------------
+# Yazi Theme Configuration
+#
+# WHY Dracula: Consistent theming with Helix, terminal, and other tools.
+# ----------------------------------------------------------------------------
+
 # https://github.com/yazi-rs/flavors/tree/main/dracula.yazi
-# ya pkg add yazi-rs/flavors:dracula
+# Install: ya pkg add yazi-rs/flavors:dracula
 [flavor]
 dark = "dracula"

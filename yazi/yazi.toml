@@ -1,48 +1,72 @@
+# ----------------------------------------------------------------------------
+# Yazi File Manager Configuration
+#
+# WHY Yazi: Terminal file manager with image preview, fast performance (Rust),
+# and Vim/Helix-style keybindings. Replaces ranger/lf with better UX.
+# ----------------------------------------------------------------------------
+
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
+# WHY ratio [1,4,3]: Parent dir (narrow) | Current dir (wide) | Preview (medium)
 ratio = [ 1, 4, 3 ]
+# WHY natural: Human-friendly sorting (file10 after file2, not file1)
 sort_by = "natural"
 sort_sensitive = false
 sort_reverse = false
+# WHY false: Files and directories intermixed (more compact view)
 sort_dir_first = false
+# WHY none: Clean interface without extra metadata columns
 linemode = "none"
+# WHY true: Always show hidden files (can toggle with .)
 show_hidden = true
+# WHY true: Show symlink targets
 show_symlink = true
 
 [preview]
+# WHY yes: Wrap long lines in preview pane for readability
 wrap = "yes"
 tab_size = 2
 max_width = 600
 max_height = 900
 cache_dir = ""
+# WHY 30ms: Balance between responsiveness and CPU usage for image preview
 image_delay = 30
+# WHY triangle: Good quality/performance balance for image scaling
 image_filter = "triangle"
-image_quality = 75
+# WHY 85: Higher quality with modern GPU (GTX 1060), minimal performance cost
+image_quality = 85
 
 [opener]
 # edit: Modify the file using a text editor (Helix/Zed). Usually blocks Yazi.
+# WHY $EDITOR: Respect user's editor preference, fallback to helix
 edit = [
   { run = '${EDITOR:-hx} "$@"', desc = "$EDITOR", block = true, for = "unix" },
   { run = 'zeditor "$@"', desc = "Zed", orphan = true, for = "linux" },
   { run = 'zed "$@"', desc = "Zed", orphan = true, for = "macos" },
 ]
+
 # open: View or run the file using system default application handlers.
+# WHY gio: Better performance and Wayland portal reliability vs xdg-open
 open = [
-  # 'gio open' is preferred over 'xdg-open' for better performance and Wayland portal reliability.
   { run = 'gio open "$@"', desc = "Open", orphan = true, for = "linux" },
   { run = 'open "$@"', desc = "Open", for = "macos" },
 ]
+
 # reveal: Locate the file in the system's graphical file manager.
 reveal = [
   { run = 'gio open "$(dirname "$1")"', desc = "Reveal", orphan = true, for = "linux" },
   { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
 ]
+
+# WHY ouch: Universal archive tool (auto-detects format, better than tar/unzip)
 extract = [
   { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
 ]
+
+# WHY mpv: Best video player, --force-window for audio files shows metadata
 play = [
   { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
   { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
@@ -61,7 +85,7 @@ rules = [
     "edit",
     "reveal",
   ] },
-  # Code / Config fallback
+  # Code / Config fallback (plain text MIME sometimes misses these)
   { name = [
     "*.txt",
     "*.md",
@@ -119,27 +143,34 @@ rules = [
 ]
 
 [tasks]
-micro_workers = 10
-macro_workers = 25
+# WHY 20/50: Optimize for i7-8750H (6-core/12-thread CPU)
+micro_workers = 20 # Small tasks (stat, read dir) - doubled from 10
+macro_workers = 50 # Large tasks (copy, move) - doubled from 25
+# WHY 5: Retry failed operations (network issues, busy files)
 bizarre_retry = 5
-image_alloc = 536870912  # 512MB
+# WHY 2GB: Better thumbnail caching with 32GB RAM (quadrupled from 512MB)
+image_alloc = 2147483648
 image_bound = [ 0, 0 ]
 suppress_preload = false
 
 [plugin]
+# Archive previewer via ouch
+# WHY: Shows archive contents without extracting
 prepend_previewers = [
-  # Archive previewer via ouch
   { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
   # Markdown previewer via glow
+  # WHY glow: Beautiful markdown rendering in terminal
   { mime = "text/markdown", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
 ]
 
+# WHY git plugin: Show git status indicators in file list
 prepend_fetchers = [
   { id = "git", name = "*", run = "git" },
   { id = "git", name = "*/", run = "git" },
 ]
 
 [input]
+# WHY false: Static cursor is less distracting
 cursor_blink = false
 
 # cd
