@@ -35,6 +35,9 @@ in
     # --- Host-Specific Hardware ---
     # Hardware configurations specific to this Tongfang laptop.
     ./cpu.nix
+    ./nvidia.nix
+    ./nvidia-wrappers.nix
+
     # --- Core System Configuration ---
     # Essential system-wide settings and configurations.
     ../../core/boot.nix
@@ -49,6 +52,7 @@ in
     ../../hardware/cpu.nix
     ../../hardware/graphics.nix
     ../../hardware/nvidia.nix
+    ../../hardware/nvidia-wrappers.nix
     ../../hardware/networking.nix
     ../../hardware/peripherals/printer.nix
     ../../hardware/peripherals/scanner.nix
