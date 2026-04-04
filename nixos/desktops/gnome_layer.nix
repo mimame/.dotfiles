@@ -1,102 +1,57 @@
-# This module provides a GNOME compatibility layer for non-GNOME window managers
-# like Niri or Sway. It enables essential GNOME services and features that are
-# often required for a complete and functional desktop experience, even when not
-# running the full GNOME Shell.
+# ----------------------------------------------------------------------------
+# GNOME Compatibility Layer
 #
-# This includes:
-# - GDM (GNOME Display Manager) for login management.
-# - GNOME Keyring for secure credential storage.
-# - PolicyKit for graphical privilege escalation.
-# - GVFS for virtual file system access (e.g., trash, network shares).
-# - DConf for application settings and theming.
-# - Core GNOME applications and utilities.
-#
-# By enabling these services, this module ensures that both GNOME-native and
-# third-party applications integrate smoothly and function as expected.
+# Provides essential GNOME services for non-GNOME window managers (Niri, Sway).
+# Enables GDM, GNOME Keyring, PolicyKit, GVFS, DConf, and core GNOME apps.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
   services = {
-    # X11/Xorg and Display Manager Configuration
-    # Even though Wayland is running, services.xserver is still required because:
-    # 1. GDM (GNOME Display Manager) dependency: GDM is built on top of X11
-    #    infrastructure, even when it launches Wayland sessions.
-    # 2. Backward compatibility and fallback: Provides an X11 fallback session and
-    #    enables XWayland for applications that don't support Wayland natively.
-    # 3. NixOS architecture: The services.xserver module enables essential graphics
-    #    stack components that both X11 and Wayland sessions depend on.
+    # X11/Xorg required for GDM and XWayland fallback
     xserver.enable = true;
     displayManager.gdm.enable = true;
 
     gnome = {
-      # GNOME Keyring daemon - provides secure storage for passwords, keys, and certificates.
-      # This is essential for automatically storing and retrieving passwords for applications,
-      # managing SSH keys, and storing WiFi passwords.
-      gnome-keyring.enable = true;
-
-      # Disable the GCR (GNOME Crypto) SSH agent.
-      # WHY: It often fails to handle ed25519 keys correctly, leading to repeated
-      # passphrase prompts. Uses the standard NixOS ssh-agent + keychain instead.
-      gcr-ssh-agent.enable = false;
-
-      # GNOME Settings Daemon - Core GNOME desktop environment service.
-      # This daemon manages essential desktop functionality including keyboard shortcuts,
-      # display settings, audio/volume control, and power management.
-      gnome-settings-daemon.enable = true;
-
-      # GNOME Online Accounts - Centralized account management service.
-      # This service provides unified authentication and integration for online services
-      # like Google, Nextcloud, etc.
-      gnome-online-accounts.enable = true;
+      gnome-keyring.enable = true; # Secure password/key storage
+      gcr-ssh-agent.enable = false; # Disabled (fails with ed25519 keys)
+      gnome-settings-daemon.enable = true; # Desktop functionality (keyboard, display, audio)
+      gnome-online-accounts.enable = true; # Unified online account management
     };
 
-    # GVFS (GNOME Virtual File System) - Virtual filesystem layer for desktop integration.
-    # This service provides seamless access to various storage backends and network
-    # protocols, including trash functionality, mounting removable media, and accessing
-    # network shares (SFTP, SMB).
-    gvfs.enable = true;
+    gvfs.enable = true; # Virtual filesystem (trash, network shares, removable media)
   };
 
-  # This automatically unlocks the user's keyring when they log in with their password.
+  # Auto-unlock keyring on GDM login
   security.pam.services.gdm.enableGnomeKeyring = true;
 
   programs = {
-    # GNOME Seahorse - a GUI for managing passwords and keys stored in the GNOME Keyring.
-    seahorse.enable = true;
-
-    # Configure SSH to use Seahorse's graphical password prompt.
+    seahorse.enable = true; # GUI for keyring management
     ssh.askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
 
-    # DConf - GNOME configuration system backend.
-    # DConf is the low-level configuration storage system used by GNOME and GTK applications.
-    # It is essential for saving user preferences and application settings.
+    # DConf for application settings and theming
     dconf = {
       enable = true;
       profiles.user.databases = [
         {
           settings = {
             "org/gnome/desktop/interface" = {
-              "color-scheme" = "prefer-dark";
-              "gtk-theme" = "Sweet-Dark";
-              "icon-theme" = "candy-icons";
-              "cursor-theme" = "capitaine-cursors-white";
-              "cursor-size" = pkgs.lib.gvariant.mkUint32 48;
-              "document-font-name" = "Maple Mono NL NF 13";
-              "font-name" = "Maple Mono NL NF 13";
-              "monospace-font-name" = "Maple Mono NL NF 13";
+              color-scheme = "prefer-dark";
+              gtk-theme = "Sweet-Dark";
+              icon-theme = "candy-icons";
+              cursor-theme = "capitaine-cursors-white";
+              cursor-size = pkgs.lib.gvariant.mkUint32 48;
+              document-font-name = "Maple Mono NL NF 13";
+              font-name = "Maple Mono NL NF 13";
+              monospace-font-name = "Maple Mono NL NF 13";
             };
-            "org/gnome/desktop/wm/preferences" = {
-              "theme" = "Sweet-Dark";
-            };
+            "org/gnome/desktop/wm/preferences".theme = "Sweet-Dark";
           };
         }
       ];
     };
   };
 
-  # PolicyKit Authentication Agent - Essential for privilege escalation in GUI environments.
-  # PolicyKit (polkit) is a system-wide authorization framework that controls access to
-  # privileged operations like mounting drives or installing software. This service
-  # provides the graphical authentication dialog.
+  # PolicyKit authentication agent for GUI privilege escalation
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
@@ -111,41 +66,34 @@
     };
   };
 
-  # XDG Desktop Portal Configuration
-  # This is essential for applications running in non-GNOME Wayland compositors
-  # (like Niri) to show standard file pickers, "Open With" dialogs, and handle
-  # screen sharing.
-  # The `config.common.default = [ "gnome" ]` setting is particularly important
-  # for compositors like Niri, ensuring deterministic portal backend selection
-  # and resolving potential issues with application integration.
+  # XDG Desktop Portal for file pickers, screen sharing in Wayland
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
-    # Specify the default portal backend.
-    config.common.default = [ "gnome" ];
+    config.common.default = [ "gnome" ]; # Critical for Niri/non-GNOME compositors
   };
 
-  # Core GNOME applications and utilities.
+  # Core GNOME applications and theming
   environment.systemPackages =
     with pkgs;
     (with pkgs.unstable; [
-      # GNOME Core Applications
-      baobab # Disk usage analyzer
-      file-roller # Archive manager
-      gnome-control-center # GNOME settings panel
-      gnome-font-viewer # Font viewer
-      gparted # Disk partition editor
-      gthumb # Image viewer and browser
-      loupe # Image viewer
-      meld # Diff and merge tool
-      nautilus # File manager
+      # Core Applications
+      baobab
+      file-roller
+      gnome-control-center
+      gnome-font-viewer
+      gparted
+      gthumb
+      loupe
+      meld
+      nautilus
 
-      # Theming and Icons
-      candy-icons # Icon theme
-      capitaine-cursors # Cursor theme
-      sweet # GTK theme
+      # Theming
+      candy-icons
+      capitaine-cursors
+      sweet
     ]);
 }
