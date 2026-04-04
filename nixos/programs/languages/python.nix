@@ -11,6 +11,7 @@
     uv # A fast Python package installer and resolver
     ruff # An extremely fast Python linter
     pyright # Static type checker for Python
+    ty # Fast Python type checker (alternative to pyright)
     python3Packages.debugpy # An implementation of the Debug Adapter Protocol for Python
   ];
 }
