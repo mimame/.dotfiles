@@ -1,6 +1,11 @@
 # ----------------------------------------------------------------------------
 # Host-Specific NixOS Configuration: narnia
 #
+# Hardware: Tongfang GK5CN6Z (sold as PCSpecialist Recoil II, 2018)
+# - CPU: Intel Core i7-8750H (Coffee Lake, 6-core)
+# - GPU: NVIDIA GTX 1060 Mobile (6GB) + Intel UHD 630
+# - Chassis: Tongfang OEM (also used by Avell, Schenker XMG, TUXEDO)
+#
 # This file defines the NixOS configuration specific to the host named "narnia".
 # It is imported by the main `configuration.nix` and combines common modules
 # with host-specific settings.
@@ -34,6 +39,7 @@ in
 
     # --- Host-Specific Hardware ---
     # Hardware configurations specific to this Tongfang laptop.
+    ./boot.nix
     ./cpu.nix
     ./nvidia.nix
     ./nvidia-wrappers.nix
@@ -141,7 +147,14 @@ in
     # The resume device must be a physical swap partition (not zram).
     # UUID matches nvme0n1p3 from hardware-configuration.nix.
     resumeDevice = "/dev/disk/by-uuid/0e66a448-d2b1-41f0-aa72-eb82fde5e705";
-    kernelParams = [ "resume=UUID=0e66a448-d2b1-41f0-aa72-eb82fde5e705" ];
+    kernelParams = [
+      "resume=UUID=0e66a448-d2b1-41f0-aa72-eb82fde5e705"
+      # Tongfang GK5CN6Z (Recoil II) Keyboard Fixes
+      # Many early BIOS versions for this chassis have buggy Plug-and-Play (PnP)
+      # implementations for the i8042 controller.
+      "i8042.nopnp" # Bypass BIOS PnP detection
+      "i8042.reset" # Reset controller on boot to clear stuck states
+    ];
   };
 
   # ----------------------------------------------------------------------------

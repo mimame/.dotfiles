@@ -1,64 +1,46 @@
+# ----------------------------------------------------------------------------
+# Nix Package Manager Configuration
+#
+# Settings for Nix/Lix package manager including garbage collection, store
+# optimization, and experimental features.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
-  # ----------------------------------------------------------------------------
-  # NixOS Helper (nh)
-  #
-  # `nh` is a utility for managing NixOS systems, providing a convenient
-  # wrapper around common commands like `nixos-rebuild` and `nix-collect-garbage`.
-  # ----------------------------------------------------------------------------
+  # NixOS Helper (nh) - convenient wrapper for nixos-rebuild and garbage collection
   programs.nh = {
     enable = true;
-    # Use the latest version of `nh` from the unstable channel for new features.
     package = pkgs.unstable.nh;
-    # Configure `nh` to automatically clean old system generations.
-    clean.enable = true;
-    # Keep generations from the last 4 days, but always maintain at least 3 generations.
-    # This prevents accidental deletion of recent, potentially good, configurations.
-    clean.extraArgs = "--keep-since 4d --keep 3";
-  };
-
-  # Enable nix-index for finding which package contains a specific file
-  programs.nix-index.enable = true;
-
-  # ----------------------------------------------------------------------------
-  # Nix Package Manager Configuration
-  # ----------------------------------------------------------------------------
-  nix = {
-    # The primary Nix package is set to Lix in `core/lix.nix`.
-    # package = pkgs.nixVersions.latest;
-
-    # Automatic garbage collection is disabled.
-    # Instead, `nh clean` or manual `nix-collect-garbage` is preferred for more
-    # control over when old generations are deleted.
-    # gc = {
-    #   automatic = true;
-    #   persistent = true;
-    #   dates = "weekly";
-    #   options = "--delete-old";
-    # };
-
-    settings = {
-      # Optimize the Nix store by replacing identical files with hard links.
-      # This significantly reduces disk space usage over time.
-      auto-optimise-store = true;
-
-      # Enable experimental features for modern Nix workflows.
-      # - `nix-command`: Provides the unified `nix` CLI (e.g., `nix build`, `nix run`).
-      # - `flakes`: Enables a reproducible, composable way to manage Nix projects.
-      # See: https://nixos.org/manual/nix/stable/command-ref/experimental-commands.html
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-
-      # Allow users in the 'wheel' group (typically administrators) to use
-      # restricted Nix features without being root. This is necessary for
-      # tasks like building flakes from local paths or using impure features.
-      trusted-users = [
-        "root"
-        "@wheel"
-      ];
+    clean = {
+      enable = true;
+      # Keep last 4 days of generations, minimum 3 generations
+      extraArgs = "--keep-since 4d --keep 3";
     };
   };
 
+  # Enable nix-index for finding which package provides a file
+  programs.nix-index.enable = true;
+
+  nix.settings = {
+    # Optimize store by hard-linking identical files
+    auto-optimise-store = true;
+
+    # Enable modern Nix features
+    experimental-features = [
+      "nix-command" # New nix CLI (nix build, nix run, etc.)
+      "flakes" # Reproducible, composable project management
+    ];
+
+    # Allow wheel group to use restricted features without root
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
+  };
+
+  # Automatic garbage collection disabled - use `nh clean` for control
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-old";
+  # };
 }
