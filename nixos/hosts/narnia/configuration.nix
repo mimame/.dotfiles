@@ -32,6 +32,9 @@ in
     # Automatically generated hardware configuration.
     ./hardware-configuration.nix
 
+    # --- Host-Specific Hardware ---
+    # Hardware configurations specific to this Tongfang laptop.
+    ./cpu.nix
     # --- Core System Configuration ---
     # Essential system-wide settings and configurations.
     ../../core/boot.nix
