@@ -1,12 +1,25 @@
+# ----------------------------------------------------------------------------
 # Helix Language Configuration
-# This file ensures Helix uses the tools provided by NixOS, matching your LazyVim setup.
+#
+# LSP servers, formatters, and auto-format settings for all supported languages.
+# ----------------------------------------------------------------------------
 
+# --- Nix ---
 [[language]]
 name = "nix"
 language-servers = [ "nixd" ]
 formatter = { command = "nixfmt" }
 auto-format = true
 
+[language-server.nixd]
+command = "nixd"
+
+[language-server.nixd.settings]
+nixpkgs = { expr = "import <nixpkgs> { }" }
+options = { nixos = { expr = "import ~/.dotfiles/nixos/configuration.nix { }" } }
+formatting = { command = [ "nixfmt" ] }
+
+# --- Rust ---
 [[language]]
 name = "rust"
 language-servers = [ "rust-analyzer" ]
@@ -20,23 +33,36 @@ auto-format = true
 '`' = '`'
 
 [language-server.rust-analyzer.config.check]
+# WHY clippy: More comprehensive linting than rustc
 command = "clippy"
 
+# --- TOML ---
 [[language]]
 name = "toml"
 language-servers = [ "taplo" ]
-formatter = { command = "taplo", arguments = [ "format", "-" ] }
+formatter = { command = "taplo", args = [ "format", "-" ] }
 auto-format = true
 
+# --- Python ---
 [[language]]
 name = "python"
-language-servers = [ "ruff", "pyright" ]
+# WHY: ruff for fast linting/formatting, ty for type checking (faster than pyright)
+language-servers = [ "ruff", "ty" ]
 auto-format = true
 
+[language-server.ruff]
+command = "ruff"
+args = [ "server" ]
+
+[language-server.ty]
+command = "ty"
+args = [ "lsp" ]
+
+# --- Lua ---
 [[language]]
 name = "lua"
 language-servers = [ "lua-language-server" ]
-formatter = { command = "stylua", arguments = [
+formatter = { command = "stylua", args = [
   "--indent-width",
   "2",
   "--indent-type",
@@ -45,124 +71,123 @@ formatter = { command = "stylua", arguments = [
 ] }
 auto-format = true
 
+# --- Bash/Shell ---
 [[language]]
 name = "bash"
 language-servers = [ "bash-language-server" ]
-formatter = { command = "shfmt", arguments = [ "-i", "2" ] }
+formatter = { command = "shfmt", args = [ "-i", "2" ] }
 auto-format = true
 
+# --- Go ---
 [[language]]
 name = "go"
 language-servers = [ "gopls" ]
 formatter = { command = "goimports" }
 auto-format = true
 
+# --- SQL ---
 [[language]]
 name = "sql"
 language-servers = [ "sqlfluff" ]
-formatter = { command = "sqlfluff", arguments = [ "format", "-" ] }
+formatter = { command = "sqlfluff", args = [ "format", "-" ] }
 auto-format = true
 
+[language-server.sqlfluff]
+command = "sqlfluff"
+args = [ "serve" ]
+
+# --- Markdown ---
 [[language]]
 name = "markdown"
 language-servers = [ "marksman" ]
-formatter = { command = "markdownlint-cli2" }
+# WHY: rumdl is faster and more opinionated than markdownlint-cli2
+formatter = { command = "rumdl", args = [ "--fix", "-" ] }
 auto-format = true
 
+# --- YAML ---
 [[language]]
 name = "yaml"
 language-servers = [ "yaml-language-server" ]
 formatter = { command = "yamlfmt" }
 auto-format = true
 
+# --- JSON ---
 [[language]]
 name = "json"
 language-servers = [ "vscode-json-language-server" ]
 formatter = { command = "jsonfmt" }
 auto-format = true
 
+# --- Zig ---
 [[language]]
 name = "zig"
 language-servers = [ "zls" ]
 auto-format = true
 
+# --- Elixir ---
 [[language]]
 name = "elixir"
 language-servers = [ "elixir-ls" ]
 auto-format = true
 
+# --- Typst ---
 [[language]]
 name = "typst"
 language-servers = [ "tinymist" ]
-formatter = { command = "typstyle", arguments = [ "format", "-" ] }
+formatter = { command = "typstyle", args = [ "format", "-" ] }
 auto-format = true
 
+# --- TypeScript ---
 [[language]]
 name = "typescript"
 language-servers = [ "typescript-language-server" ]
-formatter = { command = "biome", arguments = [
+formatter = { command = "biome", args = [
   "format",
   "--stdin-file-path",
   "file.ts",
 ] }
 auto-format = true
 
+# --- JavaScript ---
 [[language]]
 name = "javascript"
 language-servers = [ "typescript-language-server" ]
-formatter = { command = "biome", arguments = [
+formatter = { command = "biome", args = [
   "format",
   "--stdin-file-path",
   "file.js",
 ] }
 auto-format = true
 
+# --- HTML ---
 [[language]]
 name = "html"
 language-servers = [ "vscode-html-language-server" ]
-formatter = { command = "biome", arguments = [
+formatter = { command = "biome", args = [
   "format",
   "--stdin-file-path",
   "file.html",
 ] }
 auto-format = true
 
+# --- CSS ---
 [[language]]
 name = "css"
 language-servers = [ "vscode-css-language-server" ]
-formatter = { command = "biome", arguments = [
+formatter = { command = "biome", args = [
   "format",
   "--stdin-file-path",
   "file.css",
 ] }
 auto-format = true
 
+# --- Ruby ---
 [[language]]
 name = "ruby"
 language-servers = [ "ruby-lsp" ]
-formatter = { command = "rubocop", arguments = [
-  "--auto-correct",
+formatter = { command = "rubocop", args = [
+  "--autocorrect",
   "--stdin",
   "filename",
 ] }
 auto-format = true
-
-[language-server.nixd]
-command = "nixd"
-
-[language-server.nixd.settings]
-nixpkgs = { expr = "import <nixpkgs> { }" }
-options = { nixos = { expr = "import ~/.dotfiles/nixos/configuration.nix { }" } }
-formatting = { command = [ "nixfmt" ] }
-
-[language-server.ruff]
-command = "ruff"
-args = [ "server" ]
-
-[language-server.pyright]
-command = "pyright-langserver"
-args = [ "--stdio" ]
-
-[language-server.sqlfluff]
-command = "sqlfluff"
-args = [ "serve" ]

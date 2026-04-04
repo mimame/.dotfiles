@@ -1,38 +1,46 @@
+# ----------------------------------------------------------------------------
+# Helix Editor Configuration
+#
+# Modal editor with LSP, modern keybindings, and IDE features.
+# WHY Helix: Native LSP, no plugins needed, Kakoune-style selection-first editing.
+# ----------------------------------------------------------------------------
+
 theme = "catppuccin_mocha"
 
-# --- Editor General Settings ---
 [editor]
-# Shell to use when running external commands (Fish for consistency with system)
+# WHY fish: Consistency with system shell
 shell = [ "fish", "-c" ]
-# Disable middle-click paste for safety and cross-platform consistency
+# WHY false: Prevent accidental pastes, improve cross-platform consistency
 middle-click-paste = false
-# Completion trigger length (Short for snappiness)
+# WHY 2: Fast completion without being intrusive
 completion-trigger-len = 2
-# Relative line numbers for easier jump distance calculation
+# WHY relative: Easier jump distance calculation (5j, 10k)
 line-number = "relative"
-# Highlight all lines with a cursor for better focus
+# WHY true: Visual focus on current line
 cursorline = true
-# Visual feedback for current mode via background color
+# WHY true: Mode awareness via background color
 color-modes = true
-# Modern IDE features: automatic saving
+# WHY false: Avoid replacing text accidentally
 completion-replace = false
+# WHY true: Modern IDE behavior
 auto-save = true
-# Persistent bufferline for better context
+# WHY always: Persistent context across buffers
 bufferline = "always"
-# Gutter setup with clear visual indicators
+# Gutter: diagnostics → line numbers → spacing → git diff
 gutters = [ "diagnostics", "line-numbers", "spacer", "diff" ]
-# Use the system clipboard for seamless cross-app integration
-default-yank-register = "+"
-# Snappier UI - Near-instant hovers/diagnostics feedback
+# WHY +: System clipboard for cross-app integration
+auto-pairs = true
+auto-format = true
+true-color = true
+# WHY 50ms: Near-instant hover/diagnostic feedback
 idle-timeout = 50
-
-# Character set to use for jump labels
+# Jump labels prioritized by home row
 jump-label-alphabet = "asdfghjklqwertyuiopzxcvbnm"
+# WHY true: Underline errors with squiggly lines
+undercurl = true
 
-# --- Statusline Configuration ---
-# Logic: High-signal/Critical info (Mode, Branch, Filename) on the Left.
-#        Contextual/Meta info (Line/Col, Selections, Encoding) on the Right.
 [editor.statusline]
+# High-signal info on left, contextual info on right
 left = [
   "mode",
   "spinner",
@@ -58,64 +66,87 @@ right = [
 separator = "│"
 
 [editor.cursor-shape]
-# Cursor shape in insert mode
 insert = "bar"
-# Cursor shape in normal mode
 normal = "block"
-# Cursor shape in select mode
 select = "underline"
 
 [editor.lsp]
-# Display inlay hints
+# WHY true: Type hints, parameter names improve code readability
 display-inlay-hints = true
-# Enable LSP snippets
+# WHY true: Show function signature docs in popup
+display-signature-help-docs = true
+# WHY true: Auto-show signature help when typing
+auto-signature-help = true
+# WHY true: Jump to definition includes declaration
+goto-reference-include-declaration = true
 snippets = true
 
 [editor.file-picker]
-# Enables ignoring hidden files
+# WHY false: Don't clutter picker with hidden files
 hidden = false
+# WHY true: Follow gitignore rules
+git-ignore = true
+# WHY true: Respect global git excludes
+git-global = true
+
+[editor.search]
+# WHY true: Smart case-sensitive search
+smart-case = true
+# WHY true: Wrap search around file edges
+wrap-around = true
 
 [editor.whitespace]
-# Whether to render whitespace
+# WHY none: Clean visual appearance (enable when debugging spacing)
 render = "none"
 
 [editor.whitespace.characters]
 space = "·"
 nbsp = "⍽"
+nnbsp = "␣"
 tab = "→"
 newline = "⏎"
+tabpad = "·"
 
 [editor.indent-guides]
-# Whether to render indent guides
 render = true
-# Literal character to use for rendering the indent guide
 character = "╎"
+skip-levels = 0
 
 [editor.soft-wrap]
 enable = true
+max-wrap = 25
+max-indent-retain = 0
 wrap-indicator = "↪ "
 
-# --- Normal Mode Keybindings ---
+[editor.smart-tab]
+# WHY true: Tab completes if in middle of word, otherwise inserts indent
+enable = true
+supersede-menu = false
+
+# ----------------------------------------------------------------------------
+# Keybindings: Normal Mode
+# Only custom bindings that improve workflow, not overriding defaults
+# ----------------------------------------------------------------------------
 [keys.normal]
-# Faster configuration feedback loop
+# Fast config reload (development workflow)
 C-o = ":config-open"
 C-r = ":config-reload"
 
-# Ergonomic Buffer navigation: Consistent with H/L as directional "jump" keys
+# Buffer navigation: H/L as directional "jump" keys
 H = ":bp"
 L = ":bn"
 
-# Maintain visual context: Auto-center on every search result/jump
+# Auto-center on search/navigation (maintain visual context)
 n = [ "search_next", "align_view_center" ]
 N = [ "search_prev", "align_view_center" ]
 C-d = [ "half_page_down", "align_view_center" ]
 C-u = [ "half_page_up", "align_view_center" ]
 
-# Selection-aware movement: Rapidly swap lines or entire blocks
+# Move lines: Alt-j (down), Alt-k (up)
 A-j = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
 A-k = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
 
-# Improved pattern search: Faster word-under-cursor discovery
+# Search word under cursor (like Vim's *)
 "*" = [
   "move_char_right",
   "move_prev_word_start",
@@ -131,16 +162,14 @@ A-k = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_befo
   "search_prev",
 ]
 
-# Symmetric selection Logic: Directional growth (x=down, X=up)
-# This removes redundancy and makes block selection more intuitive.
+# Line selection: x (extend down), X (extend up)
 x = "extend_line_below"
 X = "extend_line_above"
 
-# Hard Reset: Single tap clears all complex selections and multiple cursors
-# Crucial for returning to a clean state after complex operations.
+# WHY: Clear multi-cursor/complex selections with single escape
 esc = [ "collapse_selection", "keep_primary_selection" ]
 
-# Lazygit integration: Comprehensive TUI workflow
+# Lazygit integration: full TUI workflow
 C-g = [
   ":write-all",
   ":new",
@@ -150,8 +179,9 @@ C-g = [
   ":reload-all",
 ]
 
-# --- Ergonomic Leader (Space) Mode ---
-# Centralizes project/buffer management into a unified "Command Center".
+# ----------------------------------------------------------------------------
+# Leader Mode (Space): Additional custom bindings
+# ----------------------------------------------------------------------------
 [keys.normal.space]
 # Double-space for the most frequent action: opening a file
 space = "file_picker"
@@ -165,12 +195,16 @@ p = "buffer_picker"
 # Clean up workspace by closing the current buffer
 k = ":bc"
 
-# --- Insert Mode Keybindings ---
+# ----------------------------------------------------------------------------
+# Insert Mode Keybindings
+# ----------------------------------------------------------------------------
 [keys.insert]
 # Single tap escape to clear selections and return to normal mode
 esc = [ "collapse_selection", "normal_mode" ]
 
-# --- Select Mode Keybindings ---
+# ----------------------------------------------------------------------------
+# Select Mode Keybindings
+# ----------------------------------------------------------------------------
 [keys.select]
 # Buffer navigation parity with normal mode
 H = ":bp"
