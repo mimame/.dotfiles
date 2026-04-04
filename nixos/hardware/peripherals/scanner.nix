@@ -1,31 +1,21 @@
 # ----------------------------------------------------------------------------
 # Scanning Services (SANE)
 #
-# This file configures the Scanner Access Now Easy (SANE) framework for
-# using scanners, both locally and over the network.
+# SANE framework with Brother MFC-L2710DW network scanner.
 # ----------------------------------------------------------------------------
 { vars, ... }:
 {
-  # Enable the SANE network scanning daemon (saned).
-  # This allows other computers on the network to access this machine's scanner.
-  services.saned.enable = true;
+  services.saned.enable = true; # Network scanning daemon
 
-  # Configure the core SANE framework.
   hardware.sane = {
     enable = true;
-    # Open the firewall to allow network scanning.
     openFirewall = true;
-
-    # Configure the proprietary Brother `brscan5` driver for a network scanner.
+    # Brother brscan5 driver
     brscan5 = {
       enable = true;
-      # Define the network device.
-      netDevices = {
-        # A friendly name for the scanner.
-        narnia = {
-          model = "MFC-L2710DW";
-          ip = vars.scannerIp;
-        };
+      netDevices.narnia = {
+        model = "MFC-L2710DW";
+        ip = vars.scannerIp;
       };
     };
   };
