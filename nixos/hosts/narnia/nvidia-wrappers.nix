@@ -5,15 +5,19 @@
 # This approach allows selective GPU usage while keeping most of the system
 # on the Intel iGPU for better battery life.
 #
-# Applications wrapped here benefit significantly from GPU acceleration:
-# - Code editors: GPU-accelerated rendering and scrolling
-# - Browsers: Hardware video decode, WebGL, smooth scrolling
-# - Media players: Hardware-accelerated video playback
+# WHY wrap these apps:
+# - Code editors: GPU-accelerated rendering provides smoother scrolling
+# - Browsers: Hardware video decode, WebGL performance, smooth scrolling
+# - Media players: Hardware-accelerated video playback reduces CPU usage
+#
+# TRADE-OFF: Always-plugged-in laptop, so battery impact is acceptable
+# for the performance benefits.
 # ----------------------------------------------------------------------------
 { pkgs, ... }:
 let
-  # Wrap a package to run with NVIDIA GPU via PRIME Offload environment variables.
-  # This sets the environment variables that force rendering on the discrete GPU.
+  # Wrap a package to run with NVIDIA GPU via PRIME Offload environment variables
+  # This sets the environment variables that force rendering on the discrete GPU
+  # instead of the integrated Intel GPU.
   wrapNvidia =
     pkg: binary:
     pkgs.symlinkJoin {
@@ -31,22 +35,29 @@ let
 in
 {
   environment.systemPackages = [
-    # Development tools - GPU acceleration improves editor responsiveness.
+    # Development tools
+    # WHY: GPU acceleration improves editor responsiveness, especially for
+    # large files and syntax highlighting
     (wrapNvidia pkgs.unstable.vscode "code")
     (wrapNvidia pkgs.unstable.zed-editor "zeditor")
 
-    # Media player - hardware video decode reduces CPU usage.
+    # Media player
+    # WHY: Hardware video decode reduces CPU usage and heat during playback
     (wrapNvidia pkgs.unstable.vlc "vlc")
 
-    # Web browsers - GPU acceleration for rendering, video, and WebGL.
+    # Web browsers
+    # WHY: GPU acceleration provides:
+    # - Hardware video decode (lower CPU, better battery despite GPU use)
+    # - Faster WebGL rendering for web apps
+    # - Smoother scrolling on complex pages
     (wrapNvidia (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {
-      ffmpegSupport = true;
-      pipewireSupport = true;
+      ffmpegSupport = true; # Enable FFmpeg for video codec support
+      pipewireSupport = true; # Enable screen sharing via PipeWire
     }) { }) "firefox")
     (wrapNvidia pkgs.unstable.google-chrome "google-chrome-stable")
     (wrapNvidia (pkgs.unstable.vivaldi.override {
-      proprietaryCodecs = true;
-      enableWidevine = true;
+      proprietaryCodecs = true; # H.264, AAC support
+      enableWidevine = true; # DRM for Netflix, Spotify, etc.
     }) "vivaldi")
   ];
 }

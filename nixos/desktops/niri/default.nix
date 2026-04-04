@@ -11,7 +11,11 @@
   };
 
   # Explicit portal configuration for Niri
-  # Ensures deterministic backend selection for screen sharing and file pickers
+  # WHY: The default NixOS Niri module enables portals but doesn't define
+  # routing (config.niri). Without this, applications don't know which portal
+  # backend to use for screen sharing/file pickers, causing slow startup or hangs.
+  # This explicitly prioritizes GNOME portal (required for Niri screencasting)
+  # with GTK fallback, ensuring deterministic and reliable behavior.
   xdg.portal.config.niri = {
     default = [
       "gnome" # Required for Niri screencasting
@@ -28,7 +32,7 @@
     };
   };
 
-  # Systemd services
+  # Systemd service for automatic disk mounting
   systemd.user.services.udiskie = {
     enable = true;
     description = "Udiskie automounter";
@@ -45,6 +49,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    xwayland-satellite # XWayland utility for X11 app compatibility
+    xwayland-satellite # XWayland utility for X11 app compatibility on Wayland
   ];
 }

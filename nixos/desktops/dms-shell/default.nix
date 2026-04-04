@@ -9,7 +9,10 @@ let
 in
 {
   # Inject unstable packages into global scope for dms-shell module
-  # TODO: Remove once NixOS 26.05 is released (packages in stable)
+  # WHY: The dms-shell module expects dgop and dsearch in the main pkgs set,
+  # but they're currently only in unstable. This overlay makes them available
+  # so the module's internal services can find them.
+  # TODO: Remove this overlay once NixOS 26.05 is released (packages in stable)
   nixpkgs.overlays = [
     (final: prev: {
       inherit (final.unstable) dgop dsearch;
@@ -26,7 +29,10 @@ in
   };
 
   # Self-healing configuration for DMS-Shell
-  # Automatically restarts on crashes or during NixOS switches
+  # WHY: DMS-Shell can crash or be terminated during:
+  # - NixOS switches (service restarts)
+  # - Input device changes (evdev errors)
+  # Systemd automatically restarts it with a 3s delay for D-Bus/Portals to settle
   systemd.user.services.dms = {
     serviceConfig = {
       Restart = "always";
