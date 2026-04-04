@@ -1,45 +1,39 @@
-# This module configures Btrfs-specific settings for the NixOS system.
-# It enables periodic scrubbing to maintain data integrity and sets up
-# transparent file compression to save disk space.
+# ----------------------------------------------------------------------------
+# Btrfs Filesystem Configuration
+#
+# Optimizes Btrfs performance with SSD settings, automatic scrubbing, and
+# compression for space savings.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
-
 {
-  # Btrfs auto-scrubbing helps ensure data integrity by checking for and
-  # repairing silent data corruption. It's scheduled to run monthly.
+  # Btrfs scrub: Monthly data integrity check
+  # WHY: Detects and repairs bit rot/corruption before data loss
+  # See: https://btrfs.readthedocs.io/en/latest/btrfs-scrub.html
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
     fileSystems = [ "/" ];
   };
 
-  # Enables transparent file compression using the Zstandard algorithm (zstd)
-  # for the root filesystem ("/"). This reduces the amount of disk space used.
-  #
-  # Note: 'zstd' is the recommended default for modern CPUs, offering a great
-  # balance between compression ratio and performance. 'noatime' is used to
-  # reduce disk writes by disabling access-time updates.
-  #
-  # Optimizations for SSD/NVMe:
-  # - 'ssd': Forces SSD-optimized block allocation patterns.
-  # - 'discard=async': Offloads block discard (TRIM) to a background thread,
-  #   preventing micro-stutters during heavy file deletions.
-  # - 'space_cache=v2': A modern metadata system that speeds up free space
-  #   lookups, improving performance as the drive fills up.
-  #
-  # Compression is applied only to newly written data. To recompress existing
-  # files: 'sudo btrfs filesystem defrag -r -v -czstd /'
-  fileSystems = {
-    "/".options = [
-      "compress=zstd"
-      "noatime"
-      "ssd"
-      "discard=async"
-      "space_cache=v2"
-    ];
-  };
+  # Btrfs mount options: SSD-optimized with compression
+  # WHY:
+  # - compress=zstd: Transparent compression saves space (~30-40% on typical data)
+  # - noatime: Reduces write amplification by not updating access timestamps
+  # - ssd: Forces SSD-optimized block allocation
+  # - discard=async: Background TRIM prevents micro-stutters during deletes
+  # - space_cache=v2: Modern metadata for fast free-space lookups
+  # See: https://btrfs.readthedocs.io/en/latest/Administration.html#mount-options
+  fileSystems."/".options = [
+    "compress=zstd"
+    "noatime"
+    "ssd"
+    "discard=async"
+    "space_cache=v2"
+  ];
+
+  # compsize: Measure compression ratios
+  # WHY: Useful to see actual space savings from compression
   environment.systemPackages = with pkgs; [
-
     compsize
-
   ];
 }
