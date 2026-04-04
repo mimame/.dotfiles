@@ -1,46 +1,48 @@
+# ----------------------------------------------------------------------------
+# File Management Tools
+#
+# File explorers, disk usage analyzers, search tools, and file manipulation utilities.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
-
 {
   environment.systemPackages =
     with pkgs;
     [
-      # File transfer and remote access
-      avfs # A virtual file system that mounts archives and remote filesystems
-      termscp # Terminal file transfer and explorer
+      # --- File Transfer & Remote Access ---
+      avfs # Virtual filesystem for archives/remote
+      termscp # Terminal file transfer client
     ]
     ++ (with pkgs.unstable; [
-      # File explorers and managers
-      broot # A new way to navigate and discover your filesystem
-      clifm # Command line file manager
-      (nnn.override { withNerdIcons = true; }) # A file browser and disk usage analyzer
+      # --- File Explorers & Managers ---
+      broot # Navigate and discover filesystem
+      clifm # Command-line file manager
+      (nnn.override { withNerdIcons = true; }) # File browser with disk usage
       vifm # VI-like file manager
-      xplr # A hackable, minimal, fast TUI file explorer
+      xplr # Hackable, minimal TUI file explorer
       yazi # Terminal file manager
 
-      # Disk usage and analysis
-      diskus # A free space analyzer
-      dust # A more intuitive version of du
+      # --- Disk Usage Analysis ---
+      diskus # Fast disk space analyzer
+      dust # Intuitive du alternative
       dua # Disk usage analyzer
-      duf # Disk Usage Free utility
-      dysk # A rust alternative to du -sh
-      erdtree # A multi-threaded file tree visualizer and disk usage analyzer
-      gdu # Disk usage analyzer
-      ncdu # Disk usage analyzer
+      duf # Disk Usage/Free utility
+      dysk # Rust du -sh alternative
+      erdtree # File tree visualizer with disk usage
+      gdu # Fast disk usage analyzer
+      ncdu # NCurses disk usage analyzer
 
-      # File search and manipulation
-      eza # A modern, more feature-rich ls replacement
-      fd # A simple, fast and user-friendly alternative to find
-      fzf # A command-line fuzzy finder
-      gomi # A trash can for your terminal
-      lsd # A ls command with a lot of pretty colors and some other stuff
-      massren # Mass rename utility
-      ripgrep # A line-oriented search tool that recursively searches the current directory for a regex pattern
-      rnr # A command-line tool for renaming files and directories
-      scooter # Interactive find and replace in the terminal
-      trash-cli # Command line trashcan
-      tre-command # A tree command with git awareness
-      tree # List contents of directories in a tree-like format
-
-      # superfile
+      # --- File Search & Manipulation ---
+      eza # Modern ls replacement (colors, icons, git)
+      fd # Fast, user-friendly find alternative
+      fzf # Fuzzy finder
+      gomi # Trash can for terminal
+      lsd # ls with colors and icons
+      massren # Mass file renaming
+      ripgrep # Fast recursive grep (regex)
+      rnr # Rename files and directories
+      scooter # Interactive find and replace
+      trash-cli # Command-line trashcan
+      tre-command # tree with git awareness
+      tree # Directory tree visualizer
     ]);
 }

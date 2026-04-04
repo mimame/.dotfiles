@@ -1,32 +1,31 @@
+# ----------------------------------------------------------------------------
+# DevOps & Infrastructure Tools
+#
+# Cloud platforms, Infrastructure as Code (IaC), container tools, and monitoring.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
-  # Disabled services
-  # services.prometheus.enable = true;
-  # services.grafana.enable = true;
+  environment.systemPackages = with pkgs.unstable; [
+    # --- Cloud Platform CLIs ---
+    fly # Fly.io deployment platform
 
-  environment.systemPackages =
-    with pkgs;
-    (with pkgs.unstable; [
-      # Cloud and Infrastructure as Code tools
-      # awscli # v1 for awslocal localstack compatibility
-      fly # Fly.io CLI for Fly.io platform
-      packer # A tool for creating identical machine images for multiple platforms.
-      tenv # A tool for managing different versions of Terraform and OpenTofu.
-      lazydocker # A terminal UI for Docker
-      ansible # Automation engine
-      ansible-lint # Best practices checker for Ansible
-      dockerfile-language-server # Language server for Dockerfiles
-      hadolint # Dockerfile linter
-      terraform-ls # Language server for Terraform
-      tflint # Terraform linter
-      # pulumi-bin # A tool for creating, deploying, and managing infrastructure as code.
+    # --- Infrastructure as Code (IaC) ---
+    packer # Multi-platform machine image builder
+    tenv # Version manager for Terraform/OpenTofu
+    terraform-ls # Language server for Terraform
+    tflint # Terraform linter
 
-      # Disabled packages
-      # grafana
-      # grafana-loki
-      # localstack
-      # nodePackages.serverless
-      # prometheus
-      # python3Packages.localstack
-    ]);
+    # --- Automation & Config Management ---
+    ansible # IT automation engine
+    ansible-lint # Best practices checker for Ansible
+
+    # --- Container/Docker Tools ---
+    lazydocker # Terminal UI for Docker
+    dockerfile-language-server # Language server for Dockerfiles
+    hadolint # Dockerfile linter (best practices)
+  ];
+
+  # WHY disabled: Monitoring/observability stack not currently needed
+  # services.prometheus.enable = false;
+  # services.grafana.enable = false;
 }

@@ -1,42 +1,44 @@
+# ----------------------------------------------------------------------------
+# Document Tools
+#
+# PDF tools, office suites, diagramming, spell/grammar checking, and OCR.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
-  environment.systemPackages =
-    with pkgs;
-    (with pkgs.unstable; [
-      # PDF tools
-      pdfarranger # Rearrange PDF pages
-      pdfsam-basic # Split and merge PDF files
-      pdftk # PDF toolkit
-      pdfchain # GUI for pdftk
-      poppler-utils # PDF utilities (e.g., pdftotext, pdfimages)
-      qpdf # Structural PDF transformation
-      zathura # PDF viewer
-      xournalpp # PDF annotation
+  environment.systemPackages = with pkgs.unstable; [
+    # --- PDF Tools ---
+    pdfarranger # Rearrange PDF pages (GUI)
+    pdfsam-basic # Split and merge PDFs
+    pdftk # PDF toolkit (CLI)
+    pdfchain # GUI frontend for pdftk
+    poppler-utils # PDF utilities (pdftotext, pdfimages)
+    qpdf # Structural PDF transformation
+    zathura # Minimal PDF viewer
+    xournalpp # PDF annotation tool
 
-      # Office suites and document processing
-      # NOTE: ONLYOFFICE is used instead of LibreOffice due to its superior
-      # compatibility with Microsoft XML formats (.docx, .xlsx, .pptx).
-      # This addresses the primary issue with document fidelity on Linux.
-      onlyoffice-desktopeditors # Office suite that combines text, spreadsheet and presentation editors
-      papers # Academic paper management
-      pandoc # Universal document converter
-      tdf # The Document Foundation tools
+    # --- Office Suites ---
+    # WHY ONLYOFFICE: Superior Microsoft Office format compatibility (.docx, .xlsx, .pptx)
+    # compared to LibreOffice. Critical for professional document exchange.
+    onlyoffice-desktopeditors # Office suite (text, spreadsheet, presentation)
+    papers # Academic paper management
+    pandoc # Universal document converter
+    tdf # The Document Foundation tools
 
-      # Diagramming and visualization
-      graphviz # Graph visualization software
-      mermaid-cli # Diagramming tool
-      plantuml # UML diagramming tool
+    # --- Diagramming ---
+    graphviz # Graph visualization
+    mermaid-cli # Diagram generation from text
+    plantuml # UML diagramming
 
-      # Spell and grammar checking
-      hunspell # Spell checker
-      hunspellDicts.en-us-large # English dictionary
-      hunspellDicts.es-es # Spanish dictionary
-      hunspellDicts.fr-moderne # French dictionary
-      hyphen # Hyphenation engine
-      languagetool # Grammar and style checker
+    # --- Spell & Grammar Checking ---
+    hunspell # Spell checker
+    hunspellDicts.en-us-large # English dictionary
+    hunspellDicts.es-es # Spanish dictionary
+    hunspellDicts.fr-moderne # French dictionary
+    hyphen # Hyphenation engine
+    languagetool # Grammar and style checker
 
-      # Other document utilities
-      ghostscript # PostScript and PDF interpreter
-      tesseract5 # OCR engine
-    ]);
+    # --- Document Utilities ---
+    ghostscript # PostScript and PDF interpreter
+    tesseract5 # OCR engine
+  ];
 }

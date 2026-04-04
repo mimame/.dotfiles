@@ -1,6 +1,11 @@
+# ----------------------------------------------------------------------------
+# CI/CD Tools
+#
+# Continuous Integration and Continuous Delivery services and tools.
+# ----------------------------------------------------------------------------
 _: {
-  # --- CI/CD ---
-  # Jenkins: A continuous integration and continuous delivery server.
+  # Jenkins: CI/CD automation server
+  # WHY disabled: Resource-heavy, prefer GitHub Actions for most workflows
   services.jenkins = {
     enable = false;
     withCLI = true;

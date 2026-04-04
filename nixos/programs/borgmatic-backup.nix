@@ -1,3 +1,9 @@
+# ----------------------------------------------------------------------------
+# Borgmatic Backup Service
+#
+# Automated encrypted backups with borgbackup + borgmatic.
+# Runs as user service (not system-wide) to access ~/.config/borgmatic/config.yaml
+# ----------------------------------------------------------------------------
 {
   pkgs,
   config,
@@ -5,34 +11,26 @@
   ...
 }:
 {
-  # To use this backup service, the borg repository must be initialized first.
-  # This is a one-time setup step for a new backup drive/location.
-  #
-  # 1. Make sure the backup drive is mounted at:
-  #    /run/media/${config.vars.username}/TOSHIBA_EXT
-  #
-  # 2. Run the following command to initialize the repository.
-  #    Using "repokey-blake2" is recommended for good performance and security.
-  #    BORG_PASSPHRASE=mimame borgmatic repo-create --encryption=repokey-blake2 /run/media/${config.vars.username}/TOSHIBA_EXT/backups/borg-narnia-backups
-
-  # Disable the system-wide service to use a user-level one.
-  # This allows borgmatic to find the config in ~/.config/borgmatic/config.yaml.
+  # Disable system-wide service to use user-level one
+  # WHY: User service can access ~/.config/borgmatic/config.yaml
   services.borgmatic.enable = lib.mkForce false;
 
   environment.systemPackages = [ pkgs.unstable.borgmatic ];
 
+  # User-level systemd service
   systemd.user.services.borgmatic = {
     description = "borgmatic backup";
     wantedBy = [ "timers.target" ];
     after = [ "network-online.target" ];
     serviceConfig = {
       Type = "oneshot";
-      # Lower CPU and I/O priority.
-      Nice = 19;
-      CPUSchedulingPolicy = "batch";
-      IOSchedulingClass = "best-effort";
+      # Low priority to avoid impacting system performance
+      Nice = 19; # Lowest CPU priority
+      CPUSchedulingPolicy = "batch"; # Batch scheduling
+      IOSchedulingClass = "best-effort"; # Lowest I/O priority
       IOSchedulingPriority = 7;
-      # ExecStart uses systemd-inhibit to prevent sleep/shutdown during backup.
+      # systemd-inhibit prevents sleep/shutdown during backup
+      # WHY: Prevents data corruption from interrupted backups
       ExecStart = ''
         ${pkgs.systemd}/bin/systemd-inhibit \
           --who="borgmatic" \
@@ -43,13 +41,26 @@
     };
   };
 
+  # Daily backup timer with randomized delay
+  # WHY RandomizedDelaySec: Avoids backup storms if multiple machines sync to same schedule
   systemd.user.timers.borgmatic = {
     description = "Run borgmatic backup";
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnCalendar = "daily";
-      Persistent = true;
-      RandomizedDelaySec = "3h";
+      Persistent = true; # Run missed backups on boot
+      RandomizedDelaySec = "3h"; # Random 0-3h delay
     };
   };
+
+  # --- First-Time Setup ---
+  # 1. Mount backup drive at:
+  #    /run/media/${config.vars.username}/TOSHIBA_EXT
+  #
+  # 2. Initialize the repository (one-time):
+  #    BORG_PASSPHRASE=mimame borgmatic repo-create \
+  #      --encryption=repokey-blake2 \
+  #      /run/media/${config.vars.username}/TOSHIBA_EXT/backups/borg-narnia-backups
+  #
+  # 3. Configure ~/.config/borgmatic/config.yaml with backup paths
 }

@@ -1,32 +1,33 @@
+# ----------------------------------------------------------------------------
+# Database Tools & Servers
+#
+# SQL/NoSQL databases, CLI clients, and database utilities.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
-  # MySQL/MariaDB service configuration.
+  # MySQL/MariaDB service
+  # WHY MariaDB: Drop-in MySQL replacement with better performance and licensing
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
   };
-  # users.mysql.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # Database servers
-    postgresql # PostgreSQL database server
-
-    # SQL clients
-    litecli # CLI for SQLite with auto-completion and syntax highlighting
-    mycli # CLI for MySQL with auto-completion and syntax highlighting
-    usql # Universal SQL client
-
-    # Redis
+    # --- Database Servers ---
+    postgresql # PostgreSQL RDBMS
     redis # In-memory data structure store
 
-    # SQL linting and utilities
+    # --- SQL Clients (with auto-completion) ---
+    litecli # SQLite client with syntax highlighting
+    mycli # MySQL/MariaDB client with syntax highlighting
+    usql # Universal SQL client (supports multiple DBs)
+
+    # --- SQL Utilities ---
     sqlfluff # SQL linter and auto-formatter
     sqlite-interactive # Interactive SQLite shell
     sqlite-utils # CLI for manipulating SQLite databases
 
-    # Database-specific tools
-    turso-cli # CLI for Turso database
-
-    # mariadb-connector-c # For Rails but generates too many collisions
+    # --- Cloud Database Tools ---
+    turso-cli # CLI for Turso (edge database)
   ];
 }

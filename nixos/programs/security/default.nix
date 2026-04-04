@@ -1,20 +1,28 @@
+# ----------------------------------------------------------------------------
+# Security Tools
+#
+# Encryption, password management, secret scanning, and security auditing.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
-
 {
   environment.systemPackages =
     with pkgs;
     [
-      age # Modern encryption tool
-      sops # SOPS: Secrets OPerationS
+      # --- Encryption ---
+      age # Modern encryption tool (simpler than GPG)
+      sops # Secrets OPerationS (encrypted config)
     ]
     ++ (with pkgs.unstable; [
-      bitwarden-cli # Command-line interface for Bitwarden
-      gopass # The standard unix password manager for teams
-      gpg-tui # Terminal user interface for GnuPG
-      keychain # A manager for ssh-agent and gpg-agent
-      libsecret # Library for storing and retrieving passwords and other secrets
-      sequoia-sq # Command-line frontend for Sequoia PGP
-      vulnix # Vulnerability scanner for Nix expressions and closures
+      # --- Password Management ---
+      bitwarden-cli # Bitwarden CLI
+      gopass # Team password manager (pass-compatible)
+      gpg-tui # Terminal UI for GnuPG
+      keychain # SSH/GPG agent manager
+      libsecret # Password storage library
+      sequoia-sq # Command-line for Sequoia PGP
+
+      # --- Security Scanning ---
+      vulnix # Nix vulnerability scanner
       gitleaks # Scan git repos for secrets
       ripsecrets # Find secrets in source code
     ]);

@@ -1,17 +1,19 @@
 # ----------------------------------------------------------------------------
-# User-Specific Configuration: mimame
+# User Configuration: mimame
 #
-# This file defines the configuration for the user "mimame".
+# Defines the main user account and group memberships.
 # ----------------------------------------------------------------------------
 { pkgs, username, ... }:
 {
   users = {
-    # Set the default shell for all users.
+    # Default shell for all users
     defaultUserShell = pkgs.unstable.fish;
+
     users.${username} = {
       isNormalUser = true;
       description = "${username} Account";
-      # Add user to essential groups for hardware access and system management.
+
+      # Group memberships for hardware access and system management
       extraGroups = [
         "audio" # Audio devices
         "incus-admin" # Incus/LXD container management

@@ -1,13 +1,15 @@
+# ----------------------------------------------------------------------------
+# Media Tools
+#
+# Image viewers and converters for terminal display.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
-
 {
-  environment.systemPackages =
-    with pkgs;
-    (with pkgs.unstable; [
-      artem # A modern image viewer for the terminal
-      chafa # Command-line tool to convert images to ANSI/Unicode character art
-      imagemagick # Software suite to create, edit, and compose bitmap images
-      jp2a # Convert JPEG images to ASCII
-      ueberzugpp # A command-line image viewer that uses Kitty graphics protocol
-    ]);
+  environment.systemPackages = with pkgs.unstable; [
+    artem # Modern terminal image viewer
+    chafa # Convert images to ANSI/Unicode art
+    imagemagick # Image creation, editing, composition
+    jp2a # Convert JPEG to ASCII
+    ueberzugpp # Image viewer using Kitty graphics protocol
+  ];
 }

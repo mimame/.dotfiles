@@ -1,111 +1,98 @@
+# ----------------------------------------------------------------------------
+# Virtualization & Containerization
+#
+# Container runtimes (Podman), VMs (libvirt, VirtualBox), and orchestration (Kubernetes).
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
-  # Required kernel module for running virtual machines with LXC/LXD (incus).
+  # vhost_vsock: Required for LXC/Incus VMs
   boot.kernelModules = [ "vhost_vsock" ];
 
-  # --- Virtualisation and Containerization ---
   virtualisation = {
-    # Podman: A daemonless container engine for developing, managing, and running OCI Containers.
+    # Podman: Daemonless container engine (Docker alternative)
+    # WHY Podman: No daemon, rootless by default, Docker-compatible
     podman = {
       enable = true;
-      autoPrune.enable = true; # Automatically prune unused resources.
-      dockerSocket.enable = true; # Provide a Docker-compatible socket.
-      dockerCompat = true; # Enable Docker compatibility.
-      # Allow containers to resolve hostnames.
-      defaultNetwork.settings = {
-        dns_enabled = true;
-      };
+      autoPrune.enable = true; # Clean up unused resources weekly
+      dockerSocket.enable = true; # Docker-compatible socket
+      dockerCompat = true; # `docker` command alias
+      defaultNetwork.settings.dns_enabled = true; # Container DNS resolution
     };
 
-    # LXC: A lightweight container and virtual machine manager.
+    # LXC/Incus: System containers and VMs
+    # WHY Incus: Modern fork of LXD with better security and features
     lxc = {
       enable = true;
-      lxcfs.enable = true; # Filesystem for LXC containers.
+      lxcfs.enable = true; # Filesystem for container /proc, /sys
     };
-
-    # Incus: A modern, secure and powerful system container and virtual machine manager (a fork of LXD).
     incus = {
       enable = true;
-      ui.enable = true; # Enable the web UI.
+      ui.enable = true; # Web UI for management
     };
 
-    # VirtualBox: Host configuration for VirtualBox.
-    virtualbox = {
-      host = {
-        enable = true;
-        enableExtensionPack = false; # Avoids compilation from source.
-      };
-      guest.enable = false;
+    # VirtualBox: Desktop VM hypervisor
+    # WHY no extension pack: Avoids compiling from source (slow)
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = false;
     };
 
-    # Libvirt: A toolkit to manage virtualization platforms.
-    # https://nixos.wiki/wiki/Libvirt
+    # Libvirt/QEMU: High-performance VMs with KVM
+    # See: https://nixos.wiki/wiki/Libvirt
     libvirtd = {
       enable = true;
-      # Enable libvirt to integrate with NSS (Name Service Switch) for resolving hostnames of virtual machines.
-      # This allows guests to be resolved by their hostname on the host system.
+      # NSS integration: Resolve VM hostnames on host
       nss = {
         enable = true;
         enableGuest = true;
       };
       qemu = {
         runAsRoot = true;
-        swtpm.enable = true; # Enable TPM emulation.
-        vhostUserPackages = [ pkgs.virtiofsd ];
+        swtpm.enable = true; # TPM emulation for Windows 11
+        vhostUserPackages = [ pkgs.virtiofsd ]; # Shared filesystem driver
       };
     };
 
-    # Enable SPICE USB redirection for VMs.
+    # SPICE: USB redirection for VMs (webcam, flash drives)
     spiceUSBRedirection.enable = true;
   };
 
-  # virt-manager: A graphical user interface for managing virtual machines through libvirt.
-  programs.virt-manager = {
-    enable = true;
-  };
+  # VM management GUI
+  programs.virt-manager.enable = true;
 
-  # Apptainer (formerly Singularity): A container platform for HPC and enterprise.
+  # Apptainer (Singularity): HPC container runtime
+  # WHY: Required for scientific computing workflows
   programs.singularity = {
     enable = true;
-    enableFakeroot = true;
-    enableSuid = true;
+    enableFakeroot = true; # Unprivileged user namespaces
+    enableSuid = true; # SUID for older kernels
   };
 
-  # --- System Packages ---
   environment.systemPackages =
     with pkgs;
     [
+      # --- Container Tools ---
+      distrobox # Run any Linux distro in a container
+      podman-tui # Terminal UI for Podman
 
-      # Cloud and Virtualization tools
-      distrobox # Use any Linux distribution inside your terminal.
+      # --- VM Tools ---
+      quickemu # Quick QEMU VM launcher
+      virt-viewer # VNC/SPICE viewer for VMs
+      guestfs-tools # Disk image manipulation (mount, resize)
+      libguestfs # Library for accessing VM disk images
 
-      # Container tools
-      podman-tui # A Terminal User Interface for Podman.
+      # --- Cloud/VM Utilities ---
+      cloud-init # Cloud instance bootstrapping
+      cloud-utils # Cloud image utilities
 
-      # Cloud and Virtualization tools
-      cloud-init # For bootstrapping cloud instances.
-      cloud-utils # Utilities for cloud images.
-
-      # VM tools
-      quickemu # A tool for running and managing virtual machines with QEMU.
-
-      # Tools for accessing and modifying virtual machine disk images.
-      guestfs-tools # Tools for accessing and modifying virtual machine disk images.
-      libguestfs # Library and tools for accessing and modifying virtual machine disk images.
-      # qemu-utils # Utilities for QEMU, including qemu-img for disk image manipulation. Also used by LXC to create --vm.
-      # vagrant # A tool for building and managing virtual machine environments.
-      virt-viewer # A lightweight UI for connecting to the graphical display of virtual machines.
-
-      # Kubernetes and Container tools
-      kompose # A conversion tool to go from Docker Compose to Kubernetes.
-      kubectl # The Kubernetes command-line tool.
-      kubernetes # The Kubernetes container orchestration system.
-      kubernetes-helm # The Kubernetes package manager.
-      minikube # A tool that runs a single-node Kubernetes cluster locally.
-
+      # --- Kubernetes ---
+      kompose # Docker Compose → Kubernetes converter
+      kubectl # Kubernetes CLI
+      kubernetes # Kubernetes control plane
+      kubernetes-helm # Kubernetes package manager
+      minikube # Local Kubernetes cluster
     ]
     ++ (with pkgs.unstable; [
-      ptyxis # A container-based terminal.
-
+      ptyxis # Container-based terminal emulator
     ]);
 }

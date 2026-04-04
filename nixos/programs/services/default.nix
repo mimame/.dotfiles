@@ -1,74 +1,59 @@
+# ----------------------------------------------------------------------------
+# System Services
+#
+# Background services: file indexing (locate), LLMs (Ollama), file sync (Syncthing), GPG.
+# ----------------------------------------------------------------------------
 { pkgs, username, ... }:
-
 {
   services = {
-    # Locate service
+    # plocate: Fast file indexing and search
+    # WHY plocate: Faster than mlocate, lower I/O overhead
     locate = {
       enable = true;
       package = pkgs.unstable.plocate;
     };
 
+    # Ollama: Local LLM inference with CUDA acceleration
+    # WHY CUDA: GTX 1060 GPU accelerates model inference significantly
     ollama = {
       enable = true;
-      package = pkgs.ollama-cuda;
+      package = pkgs.unstable.ollama-cuda;
       acceleration = "cuda";
-      loadModels = [ "gemma3" ];
+      loadModels = [ "gemma4" ]; # Pre-load gemma4 on service start
+
+      environmentVariables = {
+        # WHY OLLAMA_ORIGINS: Allow localhost connections from web UIs
+        OLLAMA_ORIGINS = "http://localhost:*,http://127.0.0.1:*";
+        # WHY OLLAMA_LLM_LIBRARY: Force CUDA backend (avoid CPU fallback)
+        OLLAMA_LLM_LIBRARY = "cuda";
+        # WHY OLLAMA_HOST: Explicit localhost binding for security
+        OLLAMA_HOST = "127.0.0.1:11434";
+      };
     };
 
-    # Ollama service for running large language models locally
-    nextjs-ollama-llm-ui.enable = true; # Next.js UI for Ollama
+    # Ollama Web UI
+    nextjs-ollama-llm-ui.enable = true;
 
-    # Syncthing service for file synchronization
+    # Syncthing: Continuous file synchronization
     syncthing = {
       enable = true;
-      openDefaultPorts = true;
+      openDefaultPorts = true; # 22000 (sync), 21027 (discovery)
       user = "${username}";
       dataDir = "/home/${username}";
     };
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+  # GnuPG agent for encryption/signing
+  # WHY enableSSHSupport=false: Prevents empty passphrase SSH keys (security)
   programs.gnupg.agent = {
     enable = true;
-    enableSSHSupport = false; # Don't allow to use empty passphrases
+    enableSSHSupport = false;
   };
 
-  # Enable Espanso
+  # Espanso: Text expander (DISABLED - waiting for Wayland fix)
   # FIXME: Enable after https://github.com/NixOS/nixpkgs/pull/316519 is merged
   # services.espanso = {
   #   enable = true;
   #   package = pkgs.unstable.espanso-wayland;
-  # };
-  # security.wrappers.espanso = {
-  #   capabilities = "cap_dac_override+p";
-  #   source = "${pkgs.unstable.espanso-wayland.out}/bin/espanso";
-  #   owner = "root";
-  #   group = "input";
-  # };
-
-  # Maybe not needed
-  # services.udev.packages = [ pkgs.espanso-wayland ];
-  # services.udev.extraRules = ''
-  #   KERNEL=="uinput", GROUP="input", OPTIONS+="static_node=uinput", MODE=0660
-  # '';
-  # systemd unit for espanso not working using sway instead
-  # systemd = {
-  #   user.services = {
-  #     espanso-wayland = {
-  #       enable = true;
-  #       description = "espanso-wayland";
-  #       wants = [ "default.target" ];
-  #       wantedBy = [ "default.target" ];
-  #       after = [ "default.target" ];
-  #       serviceConfig = {
-  #         Type = "simple";
-  #         ExecStart = "${pkgs.espanso-wayland}/bin/espanso worker";
-  #         Restart = "on-failure";
-  #         RestartSec = 3;
-  #         TimeoutStopSec = 10;
-  #       };
-  #     };
-  #   };
   # };
 }

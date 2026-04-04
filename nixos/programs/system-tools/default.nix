@@ -1,58 +1,63 @@
+# ----------------------------------------------------------------------------
+# System Tools
+#
+# System monitoring, hardware utilities, disk tools, and configuration management.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
-
 {
-  # Allow non-root users to use FUSE filesystems.
+  # Allow non-root users to mount FUSE filesystems
   programs.fuse.userAllowOther = true;
 
   environment.systemPackages =
     with pkgs;
     [
-      # Disk and filesystem utilities
-      dosfstools # Tools for creating and checking DOS FAT filesystems
+      # --- Disk & Filesystem ---
+      dosfstools # FAT filesystem tools
       ntfs3g # NTFS filesystem driver
       parted # Disk partition manipulator
 
-      # System information and diagnostics
-      lsb-release # Print Linux Standard Base information
+      # --- System Information ---
+      lsb-release # Linux Standard Base info
       lsof # List open files
-      stress # Tool to generate CPU/memory/disk/IO load
-      systeroid # A more powerful alternative to sysctl
-      xdg-user-dirs # Manage user directories like Desktop, Downloads, etc.
-      xdg-utils # Command line tools for integrating applications with the desktop environment
+      stress # CPU/memory/disk/IO load generator
+      systeroid # Powerful sysctl alternative
+      xdg-user-dirs # Manage user directories (Desktop, Downloads)
+      xdg-utils # Desktop environment integration
       shared-mime-info # Shared MIME database
 
-      # Miscellaneous system tools
-      desktop-file-utils # Command line utilities for working with .desktop files
+      # --- Miscellaneous ---
+      desktop-file-utils # .desktop file utilities
     ]
     ++ (with pkgs.unstable; [
-      # System monitoring and performance
-      btop # A monitor of resources
-      ctop # Top-like interface for container metrics
+      # --- System Monitoring ---
+      btop # Resource monitor (CPU, memory, disk, network)
+      ctop # Container metrics (top-like)
       dool # System activity reporter
-      fastfetch # Neofetch-like system information tool
-      inxi # A full featured CLI system information tool
+      fastfetch # System info tool (neofetch-like)
+      inxi # Full-featured CLI system info
       lshw # List hardware
-      oxker # A modern top-like tool for containers
-      procs # A modern replacement for ps
-      zenith # A modern, interactive process viewer
+      oxker # Modern top for containers
+      procs # Modern ps replacement
+      zenith # Interactive process viewer
 
-      # Hardware utilities
-      nvme-cli # NVM Express command line interface
-      pciutils # PCI utilities
-      smartmontools # S.M.A.R.T. hard disk monitoring utilities
-      usbutils # USB utilities
+      # --- Hardware Utilities ---
+      nvme-cli # NVMe command-line interface
+      pciutils # PCI utilities (lspci)
+      smartmontools # S.M.A.R.T. disk monitoring
+      usbutils # USB utilities (lsusb)
 
-      # Disk and filesystem utilities
+      # --- Disk & Filesystem ---
       testdisk # Data recovery tool
       udiskie # Automount removable media
-      util-linux # Collection of various system utilities
-      (lib.hiPrio uutils-coreutils-noprefix) # Coreutils written in Rust
+      util-linux # System utilities collection
+      # WHY hiPrio: Prefer Rust coreutils over GNU coreutils
+      (lib.hiPrio uutils-coreutils-noprefix)
 
-      # Configuration management
-      stow # Manage dotfiles
-      dotter # A dotfile manager
+      # --- Configuration Management ---
+      stow # Symlink farm manager (dotfiles)
+      dotter # Dotfile manager
 
-      # System updates and maintenance
-      topgrade # Upgrade all the things
+      # --- System Updates ---
+      topgrade # Upgrade all package managers at once
     ]);
 }

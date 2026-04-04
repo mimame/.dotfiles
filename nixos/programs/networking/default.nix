@@ -1,51 +1,53 @@
+# ----------------------------------------------------------------------------
+# Networking Tools
+#
+# Network diagnostics, download utilities, HTTP clients, and remote access tools.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
-
 {
-  # Network diagnostic tools
+  # Network diagnostic programs
   programs = {
-    mtr.enable = true; # Network diagnostic tool
+    mtr.enable = true; # Network diagnostic (traceroute + ping)
     wireshark.enable = true; # Network protocol analyzer
-    mosh.enable = true; # Mobile Shell
+    mosh.enable = true; # Mobile Shell (SSH for unreliable networks)
   };
 
   environment.systemPackages =
     with pkgs;
     [
-      # Network utilities
+      # --- Core Network Utilities ---
       bind # DNS utilities (dig, host, nslookup)
       putty # SSH and Telnet client
       rustscan # Fast port scanner
     ]
     ++ (with pkgs.unstable; [
-      # Download and transfer tools
-      aria2 # Lightweight multi-protocol & multi-source download utility
-      curl # Command line tool for transferring data with URL syntax
-      curlie # The power of curl, the ease of use of httpie
-      rclone # Rclone syncs files to and from cloud storage
-      rsync # Fast, versatile, remote (and local) file-copying tool
-      wget # The non-interactive network downloader
-      wget2 # Successor to Wget
+      # --- Download & Transfer ---
+      aria2 # Multi-protocol download utility
+      curl # URL data transfer tool
+      curlie # curl + httpie UX
+      rclone # Cloud storage sync
+      rsync # Fast file-copying tool
+      wget # Non-interactive downloader
+      wget2 # Wget successor
 
-      # Network analysis and diagnostics
+      # --- Network Analysis & Diagnostics ---
       bluetui # Bluetooth TUI
-      ddgr # DuckDuckGo from the terminal
+      ddgr # DuckDuckGo from terminal
       doggo # Command-line DNS client
-      gping # Ping, but with a graph
+      gping # Ping with graph
       grpcurl # gRPC client
-      httpie # HTTP client
-      is-fast # Check if a website is fast
-      # lychee # Link checker
-      oha # HTTP load testing tool
-      speedtest-go # Command-line speed test
+      httpie # User-friendly HTTP client
+      is-fast # Website speed tester
+      oha # HTTP load testing
+      speedtest-go # Speed test CLI
       urlscan # Scan URLs for malicious activity
-      wsdd # Web Service Discovery (WSD) host daemon for SMB/Samba
-      xh # Friendly and fast tool for sending HTTP requests
+      wsdd # Web Service Discovery for SMB/Samba
+      xh # Fast, friendly HTTP client
 
-      # Remote access and tunneling
-      lazyssh # SSH client
-      miniserve # A CLI tool to serve files and folders over HTTP
-      monolith # Save web pages as a single HTML file
-      sshfs # Mount remote filesystems over SSH
-      # trurl # URL parsing and manipulation
+      # --- Remote Access & Tunneling ---
+      lazyssh # SSH client TUI
+      miniserve # Serve files over HTTP
+      monolith # Save web pages as single HTML
+      sshfs # Mount filesystems over SSH
     ]);
 }

@@ -1,9 +1,13 @@
+# ----------------------------------------------------------------------------
+# Terminal Emulators
+#
+# GPU-accelerated terminal emulators and terminal multiplexers.
+# ----------------------------------------------------------------------------
 { pkgs, ... }:
-
 {
   environment.systemPackages = with pkgs.unstable; [
-    ghostty # A fast, modern, and hackable terminal emulator
-    kitty # A GPU-accelerated terminal emulator
-    zellij # A terminal workspace multiplexer and session manager
+    ghostty # Fast, modern, hackable terminal
+    kitty # GPU-accelerated terminal
+    zellij # Terminal workspace multiplexer
   ];
 }
