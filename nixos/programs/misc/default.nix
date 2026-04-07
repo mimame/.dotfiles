@@ -61,7 +61,6 @@
       zstd # Zstandard compression
 
       # --- Miscellaneous ---
-      gemini-cli # Gemini protocol client
       halp # Command-line help tool
       newsboat # RSS/Atom feed reader
       ouch # Archive tool (auto-detects format)

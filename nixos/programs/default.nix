@@ -19,5 +19,6 @@
     ./terminals/default.nix
     ./virtualisation.nix
     ./borgmatic-backup.nix
+    ./ai.nix
   ];
 }

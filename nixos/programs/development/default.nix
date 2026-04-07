@@ -24,8 +24,6 @@
       just # Command runner (Make alternative)
       mise # Polyglot version manager (asdf alternative)
       ninja # Fast build system
-      opencode # AI coding agent for terminal
-      qwen-code # Qwen code model
       scc # Fast code counter
       tokei # Code statistics
       watchexec # Execute commands on file changes
