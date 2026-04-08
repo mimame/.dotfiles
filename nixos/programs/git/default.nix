@@ -11,6 +11,7 @@
     github-cli # GitHub CLI (gh)
     gitoxide # Rust Git implementation (faster for some operations)
     jujutsu # Git-compatible DVCS with better UX
+    gg-jj # GUI for the version control system Jujutsu
 
     # --- Git Extensions ---
     bfg-repo-cleaner # Remove large/sensitive data from repos
