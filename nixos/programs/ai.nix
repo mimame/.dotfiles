@@ -30,6 +30,7 @@
 
   environment.systemPackages = with pkgs.unstable; [
     # --- AI Coding Assistants ---
+    claude-code # Agentic coding tool for the terminal
     opencode # AI coding agent for terminal
 
     # --- AI Protocols & Clients ---
