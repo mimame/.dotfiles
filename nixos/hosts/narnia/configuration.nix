@@ -112,6 +112,7 @@ in
       (final: prev: {
         unstable = import vars.unstableSrc {
           inherit (config.nixpkgs) config;
+          inherit (prev.stdenv.hostPlatform) system;
         };
       })
     ];
