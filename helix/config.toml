@@ -26,9 +26,10 @@ completion-replace = false
 auto-save = true
 # WHY always: Persistent context across buffers
 bufferline = "always"
+# WHY +: System clipboard for cross-app integration
+default-yank-register = "+"
 # Gutter: diagnostics → line numbers → spacing → git diff
 gutters = [ "diagnostics", "line-numbers", "spacer", "diff" ]
-# WHY +: System clipboard for cross-app integration
 auto-pairs = true
 auto-format = true
 true-color = true
@@ -144,7 +145,12 @@ C-u = [ "half_page_up", "align_view_center" ]
 
 # Move lines: Alt-j (down), Alt-k (up)
 A-j = [ "extend_to_line_bounds", "delete_selection", "paste_after" ]
-A-k = [ "extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before" ]
+A-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
 
 # Search word under cursor (like Vim's *)
 "*" = [

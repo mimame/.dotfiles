@@ -9,7 +9,7 @@
 name = "nix"
 language-servers = [ "nixd" ]
 formatter = { command = "nixfmt" }
-auto-format = true
+auto-format = false
 
 [language-server.nixd]
 command = "nixd"
@@ -41,7 +41,7 @@ command = "clippy"
 name = "toml"
 language-servers = [ "taplo" ]
 formatter = { command = "taplo", args = [ "format", "-" ] }
-auto-format = true
+auto-format = false
 
 # --- Python ---
 [[language]]
@@ -69,14 +69,14 @@ formatter = { command = "stylua", args = [
   "Spaces",
   "-",
 ] }
-auto-format = true
+auto-format = false
 
 # --- Bash/Shell ---
 [[language]]
 name = "bash"
 language-servers = [ "bash-language-server" ]
 formatter = { command = "shfmt", args = [ "-i", "2" ] }
-auto-format = true
+auto-format = false
 
 # --- Go ---
 [[language]]
@@ -90,7 +90,7 @@ auto-format = true
 name = "sql"
 language-servers = [ "sqlfluff" ]
 formatter = { command = "sqlfluff", args = [ "format", "-" ] }
-auto-format = true
+auto-format = false
 
 [language-server.sqlfluff]
 command = "sqlfluff"
@@ -102,21 +102,21 @@ name = "markdown"
 language-servers = [ "marksman" ]
 # WHY: rumdl is faster and more opinionated than markdownlint-cli2
 formatter = { command = "rumdl", args = [ "--fix", "-" ] }
-auto-format = true
+auto-format = false
 
 # --- YAML ---
 [[language]]
 name = "yaml"
 language-servers = [ "yaml-language-server" ]
-formatter = { command = "yamlfmt" }
-auto-format = true
+formatter = { command = "yamlfmt", args = [ "-" ] }
+auto-format = false
 
 # --- JSON ---
 [[language]]
 name = "json"
 language-servers = [ "vscode-json-language-server" ]
 formatter = { command = "jsonfmt" }
-auto-format = true
+auto-format = false
 
 # --- Zig ---
 [[language]]
@@ -128,7 +128,7 @@ auto-format = true
 [[language]]
 name = "elixir"
 language-servers = [ "elixir-ls" ]
-auto-format = true
+auto-format = false
 
 # --- Typst ---
 [[language]]
@@ -190,4 +190,4 @@ formatter = { command = "rubocop", args = [
   "--stdin",
   "filename",
 ] }
-auto-format = true
+auto-format = false
