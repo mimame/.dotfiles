@@ -11,7 +11,7 @@
 # This module configures the NVIDIA GPU with PRIME Offload for optimal
 # battery life and performance when needed.
 # ----------------------------------------------------------------------------
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   # Accept NVIDIA proprietary driver license
   nixpkgs.config.nvidia.acceptLicense = true;
@@ -72,4 +72,6 @@
       nvidiaBusId = "PCI:01:00:0";
     };
   };
+
+  environment.systemPackages = [ pkgs.unstable.nvtopPackages.nvidia ];
 }
