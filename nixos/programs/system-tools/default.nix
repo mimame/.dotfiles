@@ -38,6 +38,7 @@
       lshw # List hardware
       oxker # Modern top for containers
       procs # Modern ps replacement
+      bottom # Cross-platform graphical process/system monitor
       zenith # Interactive process viewer
 
       # --- Hardware Utilities ---
