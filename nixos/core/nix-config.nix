@@ -20,21 +20,32 @@
   # Enable nix-index for finding which package provides a file
   programs.nix-index.enable = true;
 
-  nix.settings = {
-    # Optimize store by hard-linking identical files
-    auto-optimise-store = true;
+  nix = {
+    # Build Priority and Resource Limits
+    # Slower builds, but reliable and allows comfortable use in the background
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedClass = "idle";
 
-    # Enable modern Nix features
-    experimental-features = [
-      "nix-command" # New nix CLI (nix build, nix run, etc.)
-      "flakes" # Reproducible, composable project management
-    ];
+    settings = {
+      # Optimize store by hard-linking identical files
+      auto-optimise-store = true;
 
-    # Allow wheel group to use restricted features without root
-    trusted-users = [
-      "root"
-      "@wheel"
-    ];
+      # Limit builds to prevent OOM on heavy tasks like CUDA
+      max-jobs = 2;
+      cores = 0; # Use all cores per job, but only 2 jobs at a time
+
+      # Enable modern Nix features
+      experimental-features = [
+        "nix-command" # New nix CLI (nix build, nix run, etc.)
+        "flakes" # Reproducible, composable project management
+      ];
+
+      # Allow wheel group to use restricted features without root
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
+    };
   };
 
   # Automatic garbage collection disabled - use `nh clean` for control
