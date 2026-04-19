@@ -632,9 +632,9 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
-    // Screenshot bindings using flameshot for GUI capture and niri built-ins for screen/window capture
-    // Print { screenshot; }  // Default niri screenshot (commented out in favor of flameshot)
-    Print hotkey-overlay-title="Flameshot" repeat=false { spawn "flameshot" "gui"; }  // Interactive screenshot with flameshot GUI
+    // Screenshot bindings using the native grim/slurp/swappy pipeline for reliable screen capture
+    // Print { screenshot; }  // Default niri screenshot
+    Print hotkey-overlay-title="Screenshot & Annotate" repeat=false { spawn "sh" "-c" "grim -g \"$(slurp)\" - | swappy -f -"; }
     Ctrl+Print { screenshot-screen; }   // Capture entire screen using niri's built-in tool
     Alt+Print { screenshot-window; }    // Capture focused window using niri's built-in tool
 
