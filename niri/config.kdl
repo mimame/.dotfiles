@@ -302,12 +302,17 @@ animations {
 // Window rules let you adjust behavior for individual windows.
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+//
+// MATCHING STRATEGY:
+// - Use 'app-id' whenever possible; it is a stable, unique identifier.
+// - Use 'title' only when 'app-id' is empty/unreliable or for granular control
+//   (e.g., target specific windows or tabs within an app).
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match title=r#"^KeePassXC$"#
+    match title=r#"^Secrets$"#
 
     block-out-from "screen-capture"
 
@@ -327,16 +332,10 @@ window-rule {
   open-maximized true
 }
 
-// Use 'niri msg windows' to see running windows and their app IDs
-// This helps identify the correct app-id patterns for window rules
-// Examples of common patterns:
-// match app-id=r#"^(rofi)$"#
-// match app-id=r#"^(org\.pulseaudio\.pavucontrol)$"#
-// match app-id=r#"^(nm-applet|nm-connection-editor|blueman-manager)$"#
-// match app-id=r#"^(flameshot)$"#
+// Use 'niri msg windows' to identify the correct identifiers for rules
 window-rule {
-  match app-id=r#"^(flameshot)$"#
-  match app-id=r#"(firefox)"# title="^Picture-in-Picture$"
+  match app-id=r#"^com\.saivert\.pwvucontrol$"#
+  match title=r#"^Picture-in-Picture$"#
   open-floating true
 }
 
