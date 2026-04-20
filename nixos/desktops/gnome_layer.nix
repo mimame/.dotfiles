@@ -126,4 +126,26 @@
       capitaine-cursors # Cursor theme
       sweet # GTK theme (Sweet-Dark)
     ]);
+
+  # Global GTK settings to ensure consistency across applications.
+  # WHY:
+  # - GTK 3/4: We explicitly define settings.ini in /etc/ to provide a reliable
+  #   system-wide fallback for non-GNOME-aware applications.
+  # - GTK 2: Omitted as it is officially deprecated. Modern applications (GTK 3/4)
+  #   do not require GTK 2 configurations, and providing them often causes
+  #   conflicts or reverts to legacy Noto fonts. DConf handles modern styling.
+  environment.etc = {
+    "gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-theme-name=Sweet-Dark
+      gtk-icon-theme-name=candy-icons
+      gtk-font-name=Inter 13
+    '';
+    "gtk-4.0/settings.ini".text = ''
+      [Settings]
+      gtk-theme-name=Sweet-Dark
+      gtk-icon-theme-name=candy-icons
+      gtk-font-name=Inter 13
+    '';
+  };
 }
