@@ -332,9 +332,11 @@ window-rule {
   open-maximized true
 }
 
-// Use 'niri msg windows' to identify the correct identifiers for rules
+// Use 'niri msg windows' to identify the correct identifiers for rules.
+// Add apps here that should float instead of tile (e.g., password managers, small utilities).
 window-rule {
   match app-id=r#"^com\.saivert\.pwvucontrol$"#
+  match app-id=r#"^it\.mijorus\.smile$"#
   match title=r#"^Picture-in-Picture$"#
   open-floating true
 }
@@ -377,6 +379,9 @@ binds {
     }
     Mod+N hotkey-overlay-title="Notification Center" {
         spawn "dms" "ipc" "call" "notifications" "toggle";
+    }
+    Mod+E hotkey-overlay-title="Emoji Picker" {
+        spawn "smile";
     }
     Mod+Y hotkey-overlay-title="Browse Wallpapers" {
         spawn "dms" "ipc" "call" "dankdash" "wallpaper";

@@ -4,7 +4,7 @@
     # Utilities
     calibre # E-book management
     cytoscape # Graph visualization and analysis
-    emote # Emoji picker
+    smile # Emoji picker
     klavaro # Touch typing tutor
     mesa-demos # Mesa 3D graphics library demos
     playerctl # Command-line utility for controlling media players
