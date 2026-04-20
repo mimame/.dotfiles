@@ -11,8 +11,14 @@
     # Font packages: Nerd Fonts + emoji + sans/serif
     packages = with pkgs.unstable; [
       # Maple Mono (No Ligatures, Nerd Font):
-      # WHY: Soft, rounded design reduces visual fatigue during long coding sessions.
-      # The unique character shapes help combat terminal monotony and maintain focus.
+      # WHY:
+      # - Terminal: The soft, rounded design and clear glyphs reduce visual
+      #   fatigue, while its distinct character shapes maintain high legibility.
+      # - UI Avoidance: While excellent for code, monospaced fonts (like Maple Mono)
+      #   are less efficient for dense UI text (like system menus/dialogs) because
+      #   the fixed character width makes proportional text look "gapped" and
+      #   disrupts reading flow. We use a proportional font like Inter for the UI
+      #   to ensure natural spacing and superior reading ergonomics.
       maple-mono.NL-NF
       nerd-fonts.jetbrains-mono # Fallback for better legibility
 
@@ -20,9 +26,9 @@
       # WHY: More contemporary and warm than Noto Serif, optimized for screen readability
       merriweather
 
-      # Sans-Serif: Roboto
-      # WHY: Modern geometric sans-serif with excellent readability
-      roboto
+      # Sans-Serif: Inter
+      # WHY: Industry standard for UI, optimized for readability
+      inter
 
       # Source Sans 3 (formerly Source Sans Pro)
       # WHY: Adobe's versatile UI font
@@ -57,7 +63,7 @@
           "Noto Color Emoji"
         ];
         sansSerif = [
-          "Roboto"
+          "Inter"
           "Noto Color Emoji"
         ];
         monospace = [

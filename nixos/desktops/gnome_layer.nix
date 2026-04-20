@@ -63,8 +63,8 @@
               icon-theme = "candy-icons";
               cursor-theme = "capitaine-cursors-white";
               cursor-size = pkgs.lib.gvariant.mkUint32 48;
-              document-font-name = "Maple Mono NL NF 13";
-              font-name = "Maple Mono NL NF 13";
+              document-font-name = "Inter 13";
+              font-name = "Inter 13";
               monospace-font-name = "Maple Mono NL NF 13";
             };
             "org/gnome/desktop/wm/preferences".theme = "Sweet-Dark";
