@@ -30,6 +30,7 @@ clifm = "~/.config/clifm"
 cmus = "~/.config/cmus"
 direnv = "~/.config/direnv"
 espanso = { target = "~/.config/espanso", type = "symbolic" }       # Files with {{}} automatically detected as templates
+fastfetch = "~/.config/fastfetch"
 fd = "~/.config/fd"
 fish = "~/.config/fish"                                             # Use `dotter --force` to avoid issues with existing plugin files
 gh = "~/.config/gh"

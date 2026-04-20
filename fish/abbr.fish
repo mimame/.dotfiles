@@ -101,6 +101,7 @@ abbr nsp 'nix-shell -p'
 # Use alias instead of abbr so 7z is available to other functions (e.g., e.fish, c.fish)
 alias 7z 7zz
 abbr cat bat
+abbr jq jaq
 abbr less bat
 abbr more bat
 abbr m tldr
@@ -162,5 +163,6 @@ edit_config tldrrc tealdeer/config.toml
 edit_config topgraderc topgrade/topgrade.toml
 edit_config tvrc television/config.toml
 edit_config yazirc yazi/yazi.toml
+edit_config fastrc fastfetch/config.jsonc
 edit_config zdrc zed/settings.json
 edit_config zellijrc zellij/config.kdl
