@@ -1,0 +1,10 @@
+[Default]
+save_dir=$HOME/Pictures/Screenshots
+save_filename_format=%y-%m-%d_%H-%M-%S.png
+show_panel=true
+line_size=5
+text_size=20
+text_font=Inter 13
+paint_mode=brush
+early_exit=true
+save_command=notify-send "Screenshot Saved" "File saved to $HOME/Pictures/Screenshots/%y-%m-%d_%H-%M-%S.png"

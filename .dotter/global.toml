@@ -49,6 +49,7 @@ pueue = { target = "~/.config/pueue", type = "symbolic" }
 ripgrep = "~/.config/ripgrep"
 ssh = "~/.ssh"
 starship = "~/.config/"
+swappy = "~/.config/swappy"
 tealdeer = "~/.config/tealdeer"
 television = { target = "~/.config/television", type = "symbolic" }
 topgrade = "~/.config/topgrade"
