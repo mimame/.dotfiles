@@ -639,7 +639,9 @@ binds {
 
     // Screenshot bindings using the native grim/slurp/swappy pipeline for reliable screen capture
     // Print { screenshot; }  // Default niri screenshot
-    Print hotkey-overlay-title="Screenshot & Annotate" repeat=false { spawn "sh" "-c" "grim -g \"$(slurp)\" - | swappy -f -"; }
+    Print hotkey-overlay-title="Screenshot & Annotate" repeat=false {
+        spawn "bash" "-c" "file=$(mktemp /tmp/screenshot-XXXXXX.png) && grim -g \"$(slurp)\" $file && swappy -f $file && notify-send 'Screenshot' 'Screenshot saved to Pictures/Screenshots' && rm $file";
+    }
     Ctrl+Print { screenshot-screen; }   // Capture entire screen using niri's built-in tool
     Alt+Print { screenshot-window; }    // Capture focused window using niri's built-in tool
 
