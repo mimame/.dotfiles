@@ -63,8 +63,6 @@
 
   # --- Checkout (co) ---
   # https://git-scm.com/docs/git-checkout
-  # Interactive checkout of an existing branch
-  cbi  = !BRANCH=$(tv git-branch) && git checkout ${BRANCH}
   co   = checkout
   cob  = checkout -b
   # Interactive checkout (discard changes) for specific files
@@ -137,7 +135,6 @@
 
   # --- GC (gc) ---
   # https://git-scm.com/docs/git-gc
-  gc  = gc
   gca = gc --aggressive
 
   # --- Grep (g) ---
@@ -168,9 +165,9 @@
   # Quickly append a pattern to .gitignore
   ig = "!f() { [ ! -f .gitignore ] && touch .gitignore; echo \"$1\" >> .gitignore; }; f"
 
-  # --- Gitk (k) ---
-  # https://git-scm.com/docs/gitk
-  k = !gitk
+  # --- TUI (tui) ---
+  # https://github.com/jesseduffield/lazygit
+  tui = !lazygit
 
   # --- Log (l) ---
   # https://git-scm.com/docs/git-log
@@ -180,14 +177,14 @@
   lt  = "!git l --numstat"
   lde = "!git -c diff.external=difft l -p --ext-diff"
   # Interactive log: select commits and copy hashes to clipboard
-  li = "!tv --ansi --no-sort --source-command 'git l --color' --preview-command 'git show --color {strip_ansi|regex_extract:[0-9a-f]{7,}}' --source-output '{strip_ansi|regex_extract:[0-9a-f]{7,}}' | tr -d '\n' | fish -c 'cb'"
+  li = "!tv --ansi --no-sort --source-command 'git l --color' --preview-command 'git show --color {strip_ansi|regex_extract:[0-9a-f]{7,}}' --source-output '{strip_ansi|regex_extract:[0-9a-f]{7,}}' | paste -sd ' ' | fish -c 'cb'"
 
   # --- Merge (m) ---
   # https://git-scm.com/docs/git-merge
   m  = merge
   ma = merge --abort
   mc = merge --continue
-  mm = merge master
+  mm = merge main
   ms = merge --skip
 
   # --- Mergetool (mt) ---
@@ -225,7 +222,7 @@
   rbi  = rebase --interactive
   # Interactive rebase starting from a commit selected via tv
   rbii = !HASH=$(tv --ansi --no-sort --source-command 'git l --color' --preview-command 'git show --color {strip_ansi|regex_extract:[0-9a-f]{7,}}' --source-output '{strip_ansi|regex_extract:[0-9a-f]{7,}}') && git rebase --interactive ${HASH}~
-  rbm  = rebase master
+  rbm  = rebase main
   rbs  = rebase --skip
 
   # --- Reflog (rf) ---
@@ -279,8 +276,8 @@
   sc  = stash clear
   sd  = stash drop
   sl  = stash list
-  sp  = stash pop
-  ss  = stash save
+  sp  = stash push
+  spo = stash pop
   st  = stash
   sw  = stash show
 
@@ -493,17 +490,16 @@
   # Prompt for confirmation if a command is mistyped
   autocorrect = prompt
 
-[hub]
-  # https://hub.github.com/hub.1.html
-  # Use git protocol for GitHub CLI
-  protocol = git
-
 [include]
   # Default to professional identity for all repos (Local only, not tracked)
   path = .gitconfig.professional
 
 [includeIf "gitdir:~/personal/"]
   # Override with personal identity ONLY when in ~/personal/ (Local only, not tracked)
+  path = .gitconfig.personal
+
+[includeIf "gitdir:~/Personal/"]
+  # Same as above — explicit capital-P for case-sensitive filesystem compatibility
   path = .gitconfig.personal
 
 [init]
@@ -528,8 +524,8 @@
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
   # Use zdiff3 for conflict markers (better than diff3)
   conflictstyle = zdiff3
-  tool          = hx
-  guitool       = meld
+  tool          = lazygit
+  guitool       = zed
 
 [mergetool]
   # https://git-scm.com/docs/git-config#git-config-mergetoolprompt
@@ -539,10 +535,13 @@
   # Don't keep .orig backup files after resolution
   keepBackup = false
 
-[mergetool "nvim"]
-  # Advanced 4-way merge layout for Neovim
-  cmd           = "nvim -d $MERGED $LOCAL $BASE $REMOTE -c 'wincmd J | wincmd ='"
-  trustExitCode = true
+[mergetool "lazygit"]
+  cmd           = lazygit
+  trustExitCode = false
+
+[mergetool "zed"]
+  cmd           = "zed --wait '$MERGED'"
+  trustExitCode = false
 
 [mergetool "kdiff"]
   cmd           = "kdiff3 $LOCAL $BASE $REMOTE -o $MERGED"
@@ -560,7 +559,6 @@
 
 [pretty]
   # Custom log formats
-  l  = * %C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset
   lg = %C(bold red)%h%Creset -%C(auto)%d%Creset %s %C(bold green)(%cr) %C(bold blue)<%an>%Creset
   rf = * %C(bold red)%h%Creset - %<(10)%C(bold)%gD %Creset- %C(auto)%d %gs %C(bold green)(%cr) %C(bold blue)<%an>%Creset
 
