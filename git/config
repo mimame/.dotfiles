@@ -6,7 +6,7 @@
   # Remove extra git (e.g., 'git git status' -> 'git status')
   git = !git
   # List all aliases with their commands in a clean format
-  als = !git config --list | grep -F 'alias.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort -k1,1
+  als = !git config --list | sed -En 's/^alias\\.([^=]+)=(.*)/\\1\t=> \\2/p' | sort -k1,1
 
   # --- Add (a) ---
   # https://git-scm.com/docs/git-add
@@ -32,7 +32,7 @@
   # --- AM (am) ---
   # https://git-scm.com/docs/git-am
   ama = am --abort
-  amr = am --resolved
+  amc = am --continue
   ams = am --skip
 
   # --- Bisect (bs) ---
@@ -195,11 +195,8 @@
   # --- Pull (pl) ---
   # https://git-scm.com/docs/git-pull
   pl   = pull
-  plf  = pull --force
   plo  = pull origin
-  plof = pull origin --force
   plp  = pull upstream
-  plpf = pull upstream --force
 
   # --- Push (ps) ---
   # https://git-scm.com/docs/git-push
@@ -284,7 +281,7 @@
   # --- Status (s) ---
   # https://git-scm.com/docs/git-status
   # Enhanced status with line numbering
-  s = !git -c color.status=always status --branch --show-stash --short | nl -v 0 | sed 's/^\\s+0//'
+  s = !git -c color.status=always status --branch --show-stash --short | nl -v 0 | sed -E 's/^[[:space:]]+0[[:space:]]//'
 
   # --- Submodule (sm) ---
   # https://git-scm.com/docs/git-submodule
@@ -303,7 +300,7 @@
   # https://git-scm.com/docs/git-show
   w  = show --ext-diff
   # Interactive show: select commit via tv and copy hash to clipboard
-  wi = "!f() { HASH=$(tv --ansi --no-sort --source-command 'git l --color' --preview-command 'git show --color {strip_ansi|regex_extract:[0-9a-f]{7,}}' --source-output '{strip_ansi|regex_extract:[0-9a-f]{7,}}') && git show ${HASH} && echo ${HASH} | tr -d '\n' | fish -c 'cb'; }; f"
+  wi = "!f() { HASH=$(tv --ansi --no-sort --source-command 'git l --color' --preview-command 'git show --color {strip_ansi|regex_extract:[0-9a-f]{7,}}' --source-output '{strip_ansi|regex_extract:[0-9a-f]{7,}}') && git show ${HASH} && printf '%s' ${HASH} | fish -c 'cb'; }; f"
   ws = show --show-signature
   wt = show --stat
   wm = show -m
@@ -321,9 +318,6 @@
   # https://git-scm.com/docs/git-config#git-config-branchautoSetupRebase
   # Always rebase instead of merge when pulling new branches
   autosetuprebase = always
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-branchltnamegtrebase
-  # Preserve merges when rebasing
-  rebase = merges
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-branchsort
   # Sort by most recently used branches
   sort = committerdate
@@ -332,11 +326,6 @@
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-checkoutdefaultRemote
   # If a branch name is ambiguous, default to 'origin'
   defaultRemote = origin
-
-[color]
-  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-colorui
-  # Enable color output when directed to a terminal
-  ui = auto
 
 [color "branch"]
   current  = magenta bold
@@ -386,7 +375,10 @@
   excludesfile = ~/.config/git/gitignore_global
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corefsmonitor
   # Use file system monitor to speed up status in large repos
-  fsmonitor    = true
+  fsmonitor      = true
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreuntrackedCache
+  # Speed up status by caching untracked files (works well with fsmonitor)
+  untrackedCache = true
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corepager
   # Use delta as the default pager
   pager        = delta --dark
@@ -428,10 +420,7 @@
   # Highlight moved lines differently
   colorMoved      = plain
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-diffguitool
-  guitool         = meld
-  # https://git-scm.com/docs/git-config#Documentation/Documentation/git.txt-config.txt-diffindentHeuristic
-  # Experimental: shift diff hunk boundaries for better readability
-  indentHeuristic = true
+  guitool         = zed
   # https://git-scm.com/docs/git-config#Documentation/Documentation/git.txt-config.txt-diffmnemonicPrefix
   # Use mnemonic prefixes (i/c/o/w) instead of a/b
   mnemonicPrefix  = true
@@ -451,11 +440,12 @@
   # https://difftastic.wilfred.me.uk/git.html
   cmd = difft "$LOCAL" "$REMOTE"
 
-[difftool "nvimdiff"]
-  cmd = nvim -d "$LOCAL" "$REMOTE"
-
 [difftool "meld"]
   cmd = meld "$LOCAL" "$REMOTE"
+
+[difftool "zed"]
+  # https://github.com/zed-industries/zed/issues/32988
+  cmd = zed --wait --diff "$LOCAL" "$REMOTE"
 
 [fetch]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-fetchfsckObjects
@@ -515,12 +505,12 @@
 [log]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-logdate
   # Default to human-readable relative dates
-  date = auto:human
+  date   = auto:human
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-logfollow
+  # Follow file renames in git log
+  follow = true
 
 [merge]
-  # https://git-scm.com/docs/git-config#git-config-mergeff
-  # fast-forward merge whenever possible
-  ff            = true
   # https://git-scm.com/docs/git-config#git-config-mergeconflictStyle
   # Use zdiff3 for conflict markers (better than diff3)
   conflictstyle = zdiff3
@@ -540,7 +530,7 @@
   trustExitCode = false
 
 [mergetool "zed"]
-  cmd           = "zed --wait '$MERGED'"
+  cmd           = zed --wait "$MERGED"
   trustExitCode = false
 
 [mergetool "kdiff"]
@@ -553,9 +543,6 @@
   cmd           = "meld $LOCAL $MERGED $REMOTE --output $MERGED"
   useAutoMerge  = true
   trustExitCode = true
-
-[protocol]
-  version = 2
 
 [pretty]
   # Custom log formats
@@ -582,9 +569,13 @@
   followTags        = true
   # https://git-scm.com/docs/git-config#git-config-pushrecurseSubmodules
   # Ensure submodules are pushed if required
-  recurseSubmodules = on-demand
+  recurseSubmodules  = on-demand
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-pushuseForceIfIncludes
+  # Ensure force-push only succeeds if remote ref is included in local history
+  useForceIfIncludes = true
 
 [rebase]
+  # https://git-scm.com/docs/git-config#git-config-rebaseabbreviateCommands
   # Use abbreviated command names in todo list (p, r, e, s, f, x, d, b)
   abbreviateCommands  = true
   # https://git-scm.com/docs/git-config#git-config-rebaseautoSquash
