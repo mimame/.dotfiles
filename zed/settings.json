@@ -4,6 +4,7 @@
       "model": "claude-3-5-sonnet",
       "provider": "zed.dev"
     },
+    "dock": "right",
     "favorite_models": [],
     "inline_assistant_model": {
       "model": "claude-sonnet-4.5",
@@ -13,6 +14,9 @@
   },
   "agent_servers": {
     "github-copilot": {
+      "type": "registry"
+    },
+    "github-copilot-cli": {
       "type": "registry"
     }
   },
@@ -69,7 +73,10 @@
     }
   },
   "edit_predictions": {
-    "provider": "zed"
+    "provider": "copilot"
+  },
+  "experimental.theme_overrides": {
+    "background.appearance": "opaque"
   },
   "format_on_save": "on",
   "git": {
