@@ -4,7 +4,7 @@
 # Settings for Nix/Lix package manager including garbage collection, store
 # optimization, and experimental features.
 # ----------------------------------------------------------------------------
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   # NixOS Helper (nh) - convenient wrapper for nixos-rebuild and garbage collection
   programs.nh = {
@@ -30,9 +30,9 @@
       # Optimize store by hard-linking identical files
       auto-optimise-store = true;
 
-      # Limit builds to prevent OOM on heavy tasks like CUDA
-      max-jobs = 2;
-      cores = 0; # Use all cores per job, but only 2 jobs at a time
+      # Official NixOS defaults (can be overridden by host-specific configs)
+      max-jobs = lib.mkDefault "auto";
+      cores = lib.mkDefault 0;
 
       # Enable modern Nix features
       experimental-features = [
