@@ -11,12 +11,9 @@
 { pkgs, ... }:
 {
   services = {
-    # X11/Xorg required even on Wayland because:
-    # 1. GDM is built on X11 infrastructure (even when launching Wayland sessions)
-    # 2. Provides XWayland fallback for apps that don't support Wayland
-    # 3. NixOS architecture: services.xserver enables essential graphics stack
-    #    components that both X11 and Wayland depend on
-    xserver.enable = true;
+    # GDM (GNOME Display Manager) is the preferred manager for this setup
+    # because it integrates seamlessly with GNOME services (Keyring, Settings Management)
+    # and handles auto-unlocking. It runs natively on Wayland.
     displayManager.gdm.enable = true;
 
     gnome = {
@@ -29,13 +26,14 @@
       # Uses standard NixOS ssh-agent + keychain instead
       gcr-ssh-agent.enable = false;
 
-      # GNOME Settings Daemon: Core desktop functionality
-      # Manages keyboard shortcuts, display settings, audio/volume, power management
+      # GNOME Settings Daemon: The backbone of GNOME's services.
+      # Essential for managing UI state, keyboard shortcuts, display settings,
+      # and hardware integration in Wayland sessions.
       gnome-settings-daemon.enable = true;
 
-      # GNOME Online Accounts: Centralized account management
-      # Provides unified authentication for Google, Nextcloud, etc.
-      gnome-online-accounts.enable = true;
+      # Centralized account management (Google, Nextcloud, etc.)
+      # Disabled by default to reduce background overhead as it's rarely used.
+      gnome-online-accounts.enable = false;
     };
 
     # GVFS (GNOME Virtual File System): Virtual filesystem layer
