@@ -11,9 +11,6 @@
     settings.default = [ "com.mitchellh.ghostty.desktop" ];
   };
 
-  # Enable XDG autostart for window managers without a desktop manager
-  services.xserver.desktopManager.runXdgAutostartIfNone = true;
-
   # Input method for text completion and emojis (disabled by default)
   # i18n.inputMethod = {
   #   enable = true;
