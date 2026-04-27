@@ -8,7 +8,7 @@ function y --description "Launch Yazi and sync CWD on exit"
     if command -q ya
         set -l pkg_toml $__fish_config_dir/../yazi/package.toml
         if test -f $pkg_toml
-            set -l req (rg --count '^\s*use\s*=' $pkg_toml 2>/dev/null; or echo 0)
+            set -l req (rg --count -I '^\s*use\s*=' $pkg_toml 2>/dev/null; or echo 0)
 
             # Count actual installed package directories
             set -l inst 0
