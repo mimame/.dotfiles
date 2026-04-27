@@ -6,7 +6,7 @@
   # Remove extra git (e.g., 'git git status' -> 'git status')
   git = !git
   # List all aliases with their commands in a clean format
-  als = !git config --list | sed -En 's/^alias\\.([^=]+)=(.*)/\\1\t=> \\2/p' | sort -k1,1
+  als = !git config --list | rg -IN --no-column '^alias\\.([^=]+)=(.+)' --replace '$1 => $2' | sort
 
   # --- Add (a) ---
   # https://git-scm.com/docs/git-add
@@ -93,7 +93,7 @@
   caa = commit --all --amend
   can = commit --amend --no-edit
   # Create a dated WIP commit using Fish shell
-  cd  = !fish -c 'git commit -m (date +%y.%m.%d).(string sub -l 2 (date +%a))'
+  cd  = !fish -c 'git commit -m (date +%y.%m.%d).(string sub -l 2 (env LC_ALL=C date +%a))'
   cdr = !fish -c git_cd
   ce  = commit --allow-empty
   cem = commit --allow-empty --message
