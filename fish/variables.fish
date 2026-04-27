@@ -52,7 +52,7 @@ if test (uname -s) = Darwin
     set -gx IS_DARWIN true
 else if test -e /etc/os-release
     set -gx IS_LINUX true
-    if grep -q '^ID=nixos' /etc/os-release
+    if rg -q '^ID=nixos' /etc/os-release
         set -gx IS_NIXOS true
     end
 

@@ -27,7 +27,7 @@ function source_transient --argument name cmd dependency
                 # Store and compare the binary's real path. This is crucial for Nix,
                 # where store paths change on update but mtimes are often pinned to 1970.
                 set -l path_file $cache_file.path
-                if not test -f $path_file; or test (cat $path_file) != "$real_bin_path"
+                if not test -f $path_file; or test (string collect < $path_file) != "$real_bin_path"
                     set should_rebuild true
                     # Traditional mtime check as a fallback for non-Nix/non-path-changing updates.
                 else if test -f "$bin_path"; and test "$bin_path" -nt "$cache_file"

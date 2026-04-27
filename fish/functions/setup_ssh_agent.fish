@@ -99,7 +99,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
         # Add keys only if not already loaded (prevents duplicate prompts)
         for key in $ssh_keys
             # Extract SHA256 fingerprint from private key
-            set -l key_fingerprint (ssh-keygen -lf $key 2>/dev/null | awk '{print $2}')
+            set -l key_fingerprint (string split ' ' -- (ssh-keygen -lf $key 2>/dev/null))[2]
 
             if test -z "$key_fingerprint"
                 echo "Warning: Could not get fingerprint for $key" >&2
@@ -107,7 +107,7 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
             end
 
             # Check if this specific key is already in the agent
-            if not ssh-add -l 2>/dev/null | grep -q "$key_fingerprint"
+            if not string match -q -- "*$key_fingerprint*" (ssh-add -l 2>/dev/null)
                 # Key not loaded, add it (will prompt for passphrase if needed)
                 # Redirect stderr to /dev/null to suppress "Identity added" messages
                 ssh-add $key 2>/dev/null
@@ -145,9 +145,9 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
 
             # Add keys with fingerprint checking (same logic as NixOS)
             for key in $ssh_keys
-                set -l key_fingerprint (ssh-keygen -lf $key 2>/dev/null | awk '{print $2}')
+                set -l key_fingerprint (string split ' ' -- (ssh-keygen -lf $key 2>/dev/null))[2]
                 if test -n "$key_fingerprint"
-                    if not ssh-add -l 2>/dev/null | grep -q "$key_fingerprint"
+                    if not string match -q -- "*$key_fingerprint*" (ssh-add -l 2>/dev/null)
                         ssh-add $key 2>/dev/null
                     end
                 end

@@ -1,20 +1,27 @@
-function clean_old_plugins
-    # Remove old plugin directories and state to ensure a truly fresh install
-    # This prevents conflicts from previous failed or partial installations.
-    rm -rf $__fish_config_dir/functions/fisher.fish
-    rm -rf $__fish_config_dir/conf.d/fisher.fish
-    rm -rf $__fish_config_dir/fish_plugins
+function clean_old_plugins --description "Clean up old Fisher plugin artifacts"
+    # Remove specific plugin function files
+    rm -rf \
+        $__fish_config_dir/functions/__abbr* \
+        $__fish_config_dir/functions/_autopair* \
+        $__fish_config_dir/functions/_fzf_*.fish \
+        $__fish_config_dir/functions/replay.fish \
+        $__fish_config_dir/functions/__bass.py \
+        $__fish_config_dir/functions/bass.fish \
+        $__fish_config_dir/functions/fisher.fish \
+        $__fish_config_dir/functions/fzf_configure_bindings.fish \
+        $__fish_config_dir/functions/fzf.fish \
+        $__fish_config_dir/themes/*.theme \
+        $__fish_config_dir/conf.d/fisher.fish \
+        $__fish_config_dir/fish_plugins
 
-    # Clear the transient cache to prevent sourcing corrupted/error-filled caches
+    # Clear transient cache to prevent sourcing stale or error-filled caches
     rm -rf $__fish_config_dir/cache
 
-    # Explicitly remove fzf leftovers if they exist
-    find $__fish_config_dir -name "*fzf*" -delete
+    # Remove fzf leftovers
+    fd --type f --glob '*fzf*' "$__fish_config_dir" | xargs rm -f
 
-    # Also clean up any lingering Fisher-managed configurations
-    that might be broken
-    # but keep the user's own configurations.
+    # Remove Fisher-managed conf.d files, preserving user configs
     if test -d $__fish_config_dir/conf.d
-        find $__fish_config_dir/conf.d -name "*.fish" -exec grep -l "managed by fisher" {} + | xargs rm -f
+        fd --type f --extension fish "$__fish_config_dir/conf.d" | rg -l "managed by fisher" | xargs rm -f
     end
 end

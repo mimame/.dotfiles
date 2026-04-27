@@ -31,7 +31,7 @@ abbr .. 'cd ..'
 abbr dotdot --regex '^\.\.\.+$' 'bb ..'
 
 # Use zoxide for cd if available
-if type -q zoxide
+if command -q zoxide
     abbr cd z
 end
 
@@ -41,7 +41,7 @@ abbr mk 'mkdir -pv'
 abbr tree 'erd --layout inverted --human'
 
 # Enhanced ls with eza
-if type -q eza
+if command -q eza
     alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
     alias ls l
 else
@@ -56,7 +56,7 @@ abbr free 'free -h'
 abbr ncdu 'ncdu --color dark'
 
 # Safe File Operations
-if type -q gomi
+if command -q gomi
     abbr rm gomi
 end
 abbr cp "cp -ri"

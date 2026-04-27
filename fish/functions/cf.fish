@@ -57,17 +57,16 @@ function cf
             set -l total_original_size 0
             for f in $files
                 if test -e "$f"
-                    set total_original_size (math "$total_original_size + (du -sb "$f" | cut -f1)")
+                    set total_original_size (math "$total_original_size + (du -sk "$f" | cut -f1) * 1024")
                 end
             end
 
-            set -l compressed_size (du -b "$output_archive" | cut -f1)
+            set -l compressed_size (math "(du -sk "$output_archive" | cut -f1) * 1024")
             set -l compression_ratio (printf "%.2f" (math "$total_original_size / $compressed_size"))
 
             echo "Compressed archive: $output_archive"
             echo "Compression ratio: $compression_ratio"
-            echo "Initial total size: $(numfmt --to=iec-i --suffix=B $total_original_size)"
-            echo "Final size: $(command du -h $output_archive | cut -f1)"
+            echo "Final size: $(du -sh $output_archive | cut -f1)"
         else
             echo "Error: Output archive '$output_archive' was not created." >&2
             return 1
