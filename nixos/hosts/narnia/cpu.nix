@@ -18,6 +18,14 @@ _: {
     "intel_pstate=active"
   ];
 
+  nix.settings = {
+    # Limit builds to prevent extreme fan noise on this 6-core/12-thread laptop.
+    # By using 1 job and 4 cores, we keep 8 threads free for system responsiveness
+    # and significantly reduce heat generation during large compilations.
+    max-jobs = 1;
+    cores = 4;
+  };
+
   services = {
     # Fix Intel CPU power limit throttling issues on Tongfang chassis.
     # Prevents premature thermal throttling during sustained workloads.
