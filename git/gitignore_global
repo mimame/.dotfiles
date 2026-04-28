@@ -107,6 +107,23 @@ pip-delete-this-directory.txt
 target/
 **/*.rs.bk
 
+# Crystal
+.shards/
+
+# Zig
+zig-cache/
+zig-out/
+
+# Dart / Flutter
+.dart_tool/
+
+# Nim
+nimcache/
+nimblecache/
+
+# Nix
+result
+
 # Ruby
 .bundle/
 vendor/bundle/
