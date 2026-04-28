@@ -100,13 +100,13 @@
     # while keeping compatibility to the D-Bus reference implementation
     dbus.implementation = "broker";
 
-    # Configure X11 keymap with US layout and AltGr international variant
-    xserver = {
-      xkb = {
-        layout = "us";
-        variant = "altgr-intl";
-      };
-      exportConfiguration = true;
+    # Keyboard Layout & XKB Configuration
+    # These settings define the system-wide keyboard mapping. While XServer
+    # is not explicitly enabled, these XKB parameters are used as the baseline
+    # by Wayland compositors (like Niri) and the Linux console.
+    xserver.xkb = {
+      layout = "us";
+      variant = "altgr-intl";
     };
 
     # Enable UDisks2 for storage device management
@@ -170,8 +170,8 @@
     };
   };
 
-  # Configure console keymap to US layout
-  console.keyMap = "us";
+  # Configure console keymap to match the XKB layout
+  console.useXkbConfig = true;
 
   # Enable uinput support for user-level input handling
   hardware.uinput.enable = true;
