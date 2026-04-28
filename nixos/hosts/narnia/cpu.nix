@@ -31,7 +31,13 @@ _: {
     # Desktop power profile management via D-Bus API.
     # Provides user-controlled Performance/Balanced/Power Saver modes.
     # Preferred over auto-cpufreq for desktop environments with explicit control.
-    power-profiles-daemon.enable = true;
+    power-profiles-daemon = {
+      enable = true;
+      # Set to balanced to prevent "scary" fan noise during heavy builds.
+      # WHY: The i7-8750H in this chassis can hit 88°C+ during CUDA decompression
+      # if allowed to boost aggressively in 'performance' mode.
+      defaultProfile = "balanced";
+    };
 
     # Conflicts with power-profiles-daemon - explicitly disabled.
     auto-cpufreq.enable = false;
