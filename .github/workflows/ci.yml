@@ -21,6 +21,21 @@ jobs:
         with:
           # Pin to unstable to align with local development and shell.nix definitions.
           nix_path: nixpkgs=channel:nixos-unstable
+      # Cache the Nix store between runs using GitHub Actions cache as backend.
+      # Without this, every run re-downloads all packages in shell.nix from scratch
+      # (fish, rubocop, treefmt, actionlint, gitleaks, etc.) — typically 2-4 minutes.
+      #
+      # How it works:
+      #   - First run: packages are fetched normally, then pushed to the cache keyed
+      #     by their Nix store path hashes.
+      #   - Subsequent runs: cached paths are restored before nix-shell resolves them,
+      #     so only changed or new packages are downloaded.
+      #   - Cache invalidation is automatic: when nixpkgs-unstable updates, only the
+      #     affected store paths miss the cache; unchanged packages are still served.
+      #
+      # Must be placed after install-nix-action and before any nix-shell/nix build call.
+      - name: Cache Nix store
+        uses: DeterminateSystems/magic-nix-cache-action@v13
       # Determine the correct Git references for "before" and "after" because they
       # are accessed differently for "pull_request" and "push" events.
       # Ensures correct range of changed files.
