@@ -37,11 +37,13 @@
       inxi # Full-featured CLI system info
       lshw # List hardware
       oxker # Modern top for containers
+      psmisc # Process management tools (pstree, fuser, killall)
       procs # Modern ps replacement
       bottom # Cross-platform graphical process/system monitor
       zenith # Interactive process viewer
 
       # --- Hardware Utilities ---
+      lm_sensors # Hardware monitoring (sensors)
       nvme-cli # NVMe command-line interface
       pciutils # PCI utilities (lspci)
       smartmontools # S.M.A.R.T. disk monitoring
