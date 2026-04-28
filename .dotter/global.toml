@@ -47,6 +47,7 @@ nushell = { target = "~/.config/nushell", type = "symbolic" }
 ptpython = "~/.config/ptpython"
 pueue = { target = "~/.config/pueue", type = "symbolic" }
 ripgrep = "~/.config/ripgrep"
+rsync = "~/.config/rsync"
 ssh = "~/.ssh"
 starship = "~/.config/"
 swappy = "~/.config/swappy"

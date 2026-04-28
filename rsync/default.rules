@@ -1,0 +1,130 @@
+# rsync exclude rules — applied via --filter='merge ~/.config/rsync/default.rules'
+# or --exclude-from=~/.config/rsync/default.rules
+
+# --- Version Control ---
+- .git/
+- .hg/
+- .svn/
+
+# --- OS Noise ---
+- .DS_Store
+- Thumbs.db
+- .directory
+- *~
+- .fuse_hidden*
+- .Trash/
+- .Trash-*/
+
+# --- Editor & IDE ---
+- .idea/
+- .vscode/extensions/
+- .zed/
+- .history/
+- *.swp
+- *.swo
+
+# --- Python ---
+- .venv/
+- venv/
+- __pycache__/
+- *.egg-info/
+- .pytest_cache/
+- .mypy_cache/
+- .ruff_cache/
+- .ty_cache/
+- .ipynb_checkpoints/
+- .tox/
+- .nox/
+- *.pyc
+- *.pyo
+
+# --- Node.js / JavaScript ---
+- node_modules/
+- .npm/
+- .yarn/cache/
+- .next/
+- .nuxt/
+- .parcel-cache/
+
+# --- Rust ---
+- target/
+- .cargo/registry/
+- .cargo/git/
+- .rustup/toolchains/
+
+# --- Go ---
+- vendor/
+- pkg/
+
+# --- Java / JVM ---
+- .m2/
+- .gradle/
+- out/
+
+# --- Elixir ---
+- _build/
+- deps/
+
+# --- Crystal ---
+- .shards/
+
+# --- Zig ---
+- zig-cache/
+- zig-out/
+
+# --- Dart / Flutter ---
+- .dart_tool/
+
+# --- Julia ---
+- .julia/packages/
+- .julia/artifacts/
+- .julia/compiled/
+
+# --- Lua ---
+- lua_modules/
+
+# --- Haskell ---
+- .cabal/store/
+- dist-newstyle/
+
+# --- OCaml ---
+- _opam/
+- .opam/
+
+# --- Nim ---
+- nimcache/
+- nimblecache/
+
+# --- R ---
+- .Rhistory
+
+# --- Ruby ---
+- .bundle/
+- .gem/
+
+# --- Lisp / Scheme ---
+- .cache/common-lisp/
+- .racket/
+
+# --- Build Artifacts (cross-language) ---
+- dist/
+- build/
+- result/
+
+# --- Caches & Envs ---
+- .cache/
+- .direnv/
+- .mise/
+- .poetry/
+- *conda*/
+- *mamba*/
+
+# --- Infrastructure / DevOps ---
+- .terraform/
+- .vagrant/
+- .vagrant.d/
+
+# --- Application Data & State ---
+- .local/share/
+- .local/state/
+- .local/lib/

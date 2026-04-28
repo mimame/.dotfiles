@@ -115,8 +115,8 @@ abbr k 'pkill -9 -f'
 abbr pkill 'pkill -9 -f'
 abbr pgrep 'pgrep -f'
 abbr myip "dig -4 +short myip.opendns.com @resolver1.opendns.com"
-abbr rsync 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
-abbr rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update'
+abbr rsync 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update --exclude-from=$XDG_CONFIG_HOME/rsync/default.rules'
+abbr rs 'rsync --archive --hard-links --compress --human-readable --info=progress2 --update --exclude-from=$XDG_CONFIG_HOME/rsync/default.rules'
 abbr u topgrade
 abbr wget wget2
 abbr download get
