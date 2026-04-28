@@ -69,6 +69,7 @@ in
     # Profiles tailored for specific device types (e.g., laptops, desktops).
     ../../profiles/laptop.nix
     ../../profiles/power-management.nix
+    ../../profiles/throttled.nix
 
     # --- Base System Services & Settings ---
     # Fundamental system services and configurations.
