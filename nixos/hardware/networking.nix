@@ -36,6 +36,19 @@
     dns = "systemd-resolved";
   };
 
+  # ----------------------------------------------------------------------------
+  # Kernel Networking Tweaks
+  # ----------------------------------------------------------------------------
+  boot.kernel.sysctl = {
+    # Disable kernel-level IPv6 Router Advertisement (RA) acceptance.
+    # WHY: NetworkManager handles RAs in userspace. When the kernel also tries
+    # to process them, it often fails to add redundant default routes, leading
+    # to "ICMPv6: RA: ndisc_router_discovery failed to add default route" spam
+    # in journalctl.
+    "net.ipv6.conf.all.accept_ra" = 0;
+    "net.ipv6.conf.default.accept_ra" = 0;
+  };
+
   # DNS-over-TLS (DoT) with systemd-resolved
   services.resolved = {
     enable = true;
