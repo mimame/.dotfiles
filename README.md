@@ -48,8 +48,9 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 
 ## Editors
 
-- [helix](https://helix-editor.com/): A post-modern modal text editor.
-- [zed](https://zed.dev/): High-performance, collaborative code editor with native Nix support.
+- [VSCode](https://code.visualstudio.com/): Work IDE — extensions ecosystem, remote dev, team tooling, and debuggers.
+- [Zed](https://zed.dev/): General-purpose editor — fast, Claude-native, modal editing via Helix mode.
+- [Helix](https://helix-editor.com/): Terminal editor — SSH sessions, minimal environments, no plugins needed.
 
 ## Utilities & Automation
 
@@ -89,7 +90,9 @@ This repository employs a sophisticated, declarative system for managing XDG MIM
 
 # Themes
 
-- [Dracula](https://draculatheme.com): The primary dark theme applied across all supported applications.
+- [Dracula](https://draculatheme.com): The primary dark theme applied across all supported applications, always in dark mode.
+
+Dracula was chosen for contrast and breadth of support. Its background (`#282a36`) paired with its foreground (`#f8f8f2`) produces a contrast ratio of ~12:1, well above the WCAG AAA threshold of 7:1. Catppuccin Mocha has a *darker* background (`#1e1e2e`) but a muted, desaturated foreground (`#cdd6f4`) — intentional in its design — which is why it *feels* lower contrast despite the darker BG. Dracula also has official ports for 300+ applications, making consistent theming across the entire environment practical.
 
 
 # Conclusion
