@@ -85,6 +85,10 @@ disable = [ "git_repos", "spicetify", "rye", "poetry", "flutter", "helm", "uv" ]
 [commands]
 # "Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
 # "Custom command using interactive shell (unix)" = "-i vim_upgrade"
+# WHY ya pkg upgrade: topgrade doesn't know about yazi plugins natively.
+# Omitting --discard intentionally — aborts on locally modified packages rather than silently
+# wiping them. If it fails here, run `ya pkg upgrade --discard <pkg>` manually.
+"Yazi plugins" = "ya pkg upgrade"
 
 [python]
 # enable_pip_review = true                         ###disabled by default
