@@ -39,6 +39,14 @@
     wantedBy = [ "niri.service" ];
     wants = [ "niri.service" ];
     after = [ "niri.service" ];
+
+    # Fix: Failed to execute child process "notify-send"
+    # WHY: udiskie uses notify-send for event hooks. Since systemd user services
+    # run in a restricted PATH, we must explicitly provide libnotify.
+    # WHY pkgs (Stable): libnotify is a mature tool; stable ensures reliability
+    # for core desktop notifications without the churn of the unstable channel.
+    path = [ pkgs.libnotify ];
+
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.unstable.udiskie}/bin/udiskie --notify --smart-tray --event-hook notify-send";

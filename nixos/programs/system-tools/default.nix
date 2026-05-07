@@ -27,6 +27,9 @@
 
       # --- Miscellaneous ---
       desktop-file-utils # .desktop file utilities
+      # WHY pkgs (Stable): libnotify (notify-send) is a foundational tool;
+      # stable ensures consistent notification behavior across the system.
+      libnotify
     ]
     ++ (with pkgs.unstable; [
       # --- System Monitoring ---
