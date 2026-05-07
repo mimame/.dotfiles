@@ -151,8 +151,22 @@ in
       # implementations for the i8042 controller.
       "i8042.nopnp" # Bypass BIOS PnP detection
       "i8042.reset" # Reset controller on boot to clear stuck states
+
+      # USB Stability Fixes
+      # Resolves "device descriptor read/64, error -71" and enumeration failures
+      # on internal ports (e.g., keyboard controller) and external docks.
+      "usbcore.autosuspend=-1"
     ];
   };
+
+  # ----------------------------------------------------------------------------
+  # Networking
+  # ----------------------------------------------------------------------------
+  # Handled exclusively by NetworkManager.
+  # WHY: Setting this to false prevents conflicts with other DHCP clients
+  # (like dhcpcd or systemd-networkd) that NixOS might start by default,
+  # ensuring NetworkManager has sole authority over IP addressing.
+  networking.useDHCP = false;
 
   # ----------------------------------------------------------------------------
   # System-wide Settings
