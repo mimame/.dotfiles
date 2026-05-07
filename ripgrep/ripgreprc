@@ -12,6 +12,11 @@
 --line-number
 --no-heading
 --with-filename
+# WHY sort=path: Consistent, alphabetically ordered results across runs.
+# Trade-off: forces sequential file processing (disables parallelism).
+# For dotfiles/small repos this is imperceptible. On large monorepos,
+# override per-invocation with: rg --no-sort <pattern>
+--sort=path
 
 # --- Search Behavior ---
 --smart-case
@@ -29,11 +34,18 @@
 --glob=!.git/*
 
 # --- Custom Types ---
---type-add
-frontend:*.{html,css,js,jsx,ts,tsx,scss,sass,vue,svelte}*
+# Use with: rg --type <name> or rg -t <name>
+# List all types (built-in + custom): rg --type-list
+# Note: fish and typst are already built-in rg types — no need to add them here
 
 --type-add
 nix:*.nix
 
 --type-add
+nushell:*.nu
+
+--type-add
 config:*.{yaml,yml,toml,json,ini,conf}*
+
+--type-add
+frontend:*.{html,css,js,jsx,ts,tsx,scss,sass,vue,svelte}*
