@@ -7,7 +7,7 @@
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
 [mgr]
 # WHY ratio [1,4,3]: Parent dir (narrow) | Current dir (wide) | Preview (medium)
@@ -18,12 +18,20 @@ sort_sensitive = false
 sort_reverse = false
 # WHY false: Files and directories intermixed (more compact view)
 sort_dir_first = false
+# WHY false: Don't transliterate Unicode chars (ä→a) for sorting; sort by actual code points
+sort_translit = false
+# WHY alphabetical: When natural sort ties (e.g. no numeric suffix), fall back to alphabetical
+sort_fallback = "alphabetical"
 # WHY none: Clean interface without extra metadata columns
 linemode = "none"
 # WHY true: Always show hidden files (can toggle with .)
 show_hidden = true
 # WHY true: Show symlink targets
 show_symlink = true
+# WHY 5: Keep 5 lines visible above/below cursor when scrolling (editor-style look-ahead)
+scrolloff = 5
+# WHY all three: Enable full mouse support — click to select, scroll to navigate, drag to multi-select
+mouse_events = [ "click", "scroll", "drag" ]
 
 [preview]
 # WHY yes: Wrap long lines in preview pane for readability
@@ -38,67 +46,73 @@ image_delay = 30
 image_filter = "triangle"
 # WHY 85: Higher quality with modern GPU (GTX 1060), minimal performance cost
 image_quality = 85
+# WHY defaults: Ueberzug++ image rendering is not used (Ghostty uses Kitty protocol natively);
+# these are required by the schema and kept at defaults to avoid config validation errors
+ueberzug_scale = 1
+ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
+# WHY %s not "$@": Yazi now uses its own template placeholders instead of shell positional
+# parameters. Yazi expands them before invoking the shell, handling quoting and path escaping
+# correctly across all platforms and edge cases (spaces, special chars, multiple selections).
+#
+#   %s   — all selected paths, space-separated (replaces "$@")
+#   %s1  — first selected path only (replaces "$1")
+#   %d1  — parent directory of first selected path (replaces "$(dirname "$1")")
+#   %S   — selected URLs, for virtual/remote file system entries
+#
 # edit: Modify the file using a text editor (Helix/Zed). Usually blocks Yazi.
 # WHY $EDITOR: Respect user's editor preference, fallback to helix
 edit = [
-  { run = '${EDITOR:-hx} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-  { run = 'zeditor "$@"', desc = "Zed", orphan = true, for = "linux" },
-  { run = 'zed "$@"', desc = "Zed", orphan = true, for = "macos" },
+  { run = '${EDITOR:-hx} %s', desc = "$EDITOR", block = true, for = "unix" },
+  { run = 'zeditor %s', desc = "Zed", orphan = true, for = "linux" },
+  { run = 'zed %s', desc = "Zed", orphan = true, for = "macos" },
 ]
 
 # open: View or run the file using system default application handlers.
 # WHY gio: Better performance and Wayland portal reliability vs xdg-open
 open = [
-  { run = 'gio open "$@"', desc = "Open", orphan = true, for = "linux" },
-  { run = 'open "$@"', desc = "Open", for = "macos" },
+  { run = 'gio open %s', desc = "Open", orphan = true, for = "linux" },
+  { run = 'open %s', desc = "Open", for = "macos" },
 ]
 
 # reveal: Locate the file in the system's graphical file manager.
 reveal = [
-  { run = 'gio open "$(dirname "$1")"', desc = "Reveal", orphan = true, for = "linux" },
-  { run = 'open -R "$1"', desc = "Reveal", for = "macos" },
+  { run = 'gio open %d1', desc = "Reveal", orphan = true, for = "linux" },
+  { run = 'open -R %s1', desc = "Reveal", for = "macos" },
 ]
 
 # WHY ouch: Universal archive tool (auto-detects format, better than tar/unzip)
 extract = [
-  { run = 'ouch d -y "$@"', desc = "Extract here with ouch", for = "unix" },
+  { run = 'ouch d -y %s', desc = "Extract here with ouch", for = "unix" },
+]
+
+# download: Fetch remote/virtual filesystem entries before opening.
+# WHY ya emit: Routes through Yazi's IPC so the downloaded file lands in the current session;
+# used automatically by the vfs/{absent,stale} open rule for remote or missing-on-disk entries
+download = [
+  { run = "ya emit download --open %S", desc = "Download and open" },
+  { run = "ya emit download %S", desc = "Download" },
 ]
 
 # WHY mpv: Best video player, --force-window for audio files shows metadata
 play = [
-  { run = 'mpv --force-window "$@"', orphan = true, for = "unix" },
-  { run = '''mediainfo "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show media info", for = "unix" },
+  { run = 'mpv --force-window %s', orphan = true, for = "unix" },
+  { run = 'mediainfo %s1; echo "Press enter to exit"; read _', block = true, desc = "Show media info", for = "unix" },
 ]
 
 [open]
+# WHY url = "*/" not mime = "inode/directory": New yazi URL-pattern matching is more reliable
+# than MIME detection for directories (MIME can be unreliable across filesystems).
+# Same reason for the fallback: url = "*" replaces the old name = "*" glob.
 rules = [
   # Folder
-  { mime = "inode/directory", use = [
+  { url = "*/", use = [
     "open",
     "reveal",
   ] },
   # Text
   { mime = "text/*", use = [
-    "open",
-    "edit",
-    "reveal",
-  ] },
-  # Code / Config fallback (plain text MIME sometimes misses these)
-  { name = [
-    "*.txt",
-    "*.md",
-    "*.json",
-    "*.toml",
-    "*.yaml",
-    "*.yml",
-    "*.fish",
-    "*.nu",
-    "*.sh",
-    ".gitignore",
-    ".env",
-  ], use = [
     "open",
     "edit",
     "reveal",
@@ -118,8 +132,9 @@ rules = [
     "extract",
     "reveal",
   ] },
-  # JSON
-  { mime = "application/{json,ndjson}", use = [
+  # JSON / TOML / YAML — application/* subtypes that text/* doesn't catch
+  # WHY toml/x-yaml: some systems report these as application/*, not text/*
+  { mime = "application/{json,ndjson,toml,x-yaml}", use = [
     "open",
     "edit",
     "reveal",
@@ -135,38 +150,125 @@ rules = [
     "edit",
     "reveal",
   ] },
+  # Virtual file system — WHY: handles remote/cloud entries not yet on disk; triggers download opener
+  { mime = "vfs/{absent,stale}", use = "download" },
   # Fallback
-  { name = "*", use = [
+  { url = "*", use = [
     "open",
     "reveal",
   ] },
 ]
 
 [tasks]
-# WHY 20/50: Optimize for i7-8750H (6-core/12-thread CPU)
-micro_workers = 20 # Small tasks (stat, read dir) - doubled from 10
-macro_workers = 50 # Large tasks (copy, move) - doubled from 25
+# WHY new worker fields: yazi replaced the old micro_workers/macro_workers pair with
+# per-task-type workers so each pipeline stage can be tuned independently.
+# Kept at defaults — the bottleneck here is I/O, not CPU, so higher values don't help.
+file_workers = 3    # stat/read-dir operations
+plugin_workers = 5  # plugin execution
+fetch_workers = 5   # MIME detection and fetcher plugins
+preload_workers = 2 # background thumbnail/preview preloading
+process_workers = 5 # shell command execution
 # WHY 5: Retry failed operations (network issues, busy files)
 bizarre_retry = 5
 # WHY 2GB: Better thumbnail caching with 32GB RAM (quadrupled from 512MB)
 image_alloc = 2147483648
-image_bound = [ 0, 0 ]
+# WHY 10000×10000: Cap image dimensions fed to the renderer; prevents OOM on pathological
+# inputs (e.g. 100k×100k generated images). Old [0,0] was unlimited.
+image_bound = [ 10000, 10000 ]
 suppress_preload = false
 
 [plugin]
-# Archive previewer via ouch
-# WHY: Shows archive contents without extracting
-prepend_previewers = [
-  { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
-  # Markdown previewer via glow
-  # WHY glow: Beautiful markdown rendering in terminal
-  { mime = "text/markdown", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+# WHY explicit sections: yazi replaced the implicit built-in pipeline with explicit config.
+# prepend_fetchers / prepend_previewers are replaced by fetchers / previewers — you now own
+# the full list. spotters (async quick-look while loading) and preloaders (background cache
+# warming) are new pipeline stages that did not exist in the old config format.
+fetchers = [
+  # MIME-type
+  { url = "*/", run = "mime.dir", prio = "high", group = "mime" },
+  { url = "local://*", run = "mime.local", prio = "high", group = "mime" },
+  { url = "remote://*", run = "mime.remote", prio = "high", group = "mime" },
+  # WHY git plugin: Show git status indicators in file list
+  { url = "*", run = "git", group = "git" },
+  { url = "*/", run = "git", group = "git" },
 ]
-
-# WHY git plugin: Show git status indicators in file list
-prepend_fetchers = [
-  { id = "git", name = "*", run = "git" },
-  { id = "git", name = "*/", run = "git" },
+# spotters: fast async preview rendered immediately on hover (non-blocking).
+# WHY separate from previewers: spotters run before full preview loads, giving instant feedback
+spotters = [
+  # Multi-file
+  { mime = "multi/*", run = "multi" },
+  # Folder
+  { url = "*/", run = "folder" },
+  # Code
+  { mime = "text/*", run = "code" },
+  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
+  # Image
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
+  { mime = "image/*", run = "image" },
+  # Video
+  { mime = "video/*", run = "video" },
+  # Virtual file system
+  { mime = "vfs/*", run = "vfs" },
+  # Error
+  { mime = "null/*", run = "null" },
+  # Fallback
+  { url = "*", run = "file" },
+]
+# preloaders: background cache warming for adjacent files.
+# WHY: Makes preview switching instant by decoding images/videos before you navigate to them
+preloaders = [
+  # Image
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
+  { mime = "image/*", run = "image" },
+  # Video
+  { mime = "video/*", run = "video" },
+  # PDF
+  { mime = "application/pdf", run = "pdf" },
+  # Font
+  { mime = "font/*", run = "font" },
+  { mime = "application/ms-opentype", run = "font" },
+]
+previewers = [
+  { url = "*/", run = "folder" },
+  # Archive previewer via ouch (before default archive handler)
+  # WHY: Shows archive contents without extracting
+  { mime = "application/{*zip,tar,bzip2,7z*,rar,xz,zstd,java-archive}", run = "ouch --archive-icon='🗄️ ' --show-file-icons --list-view" },
+  # Markdown previewer via glow (before generic text/code handler)
+  # WHY glow: Beautiful markdown rendering in terminal
+  { mime = "text/markdown", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark %s1' },
+  # Code
+  { mime = "text/*", run = "code" },
+  { mime = "application/{mbox,javascript,wine-extension-ini}", run = "code" },
+  # JSON
+  { mime = "application/{json,ndjson}", run = "json" },
+  # Image
+  { mime = "image/{avif,hei?,jxl}", run = "magick" },
+  { mime = "image/svg+xml", run = "svg" },
+  { mime = "image/*", run = "image" },
+  # Video
+  { mime = "video/*", run = "video" },
+  # PDF
+  { mime = "application/pdf", run = "pdf" },
+  # Archive (default handler for formats not covered by ouch above)
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", run = "archive" },
+  { mime = "application/{debian*-package,redhat-package-manager,rpm,android.package-archive}", run = "archive" },
+  { url = "*.{AppImage,appimage}", run = "archive" },
+  # Virtual Disk / Disk Image
+  { mime = "application/{iso9660-image,qemu-disk,ms-wim,apple-diskimage}", run = "archive" },
+  { mime = "application/virtualbox-{vhd,vhdx}", run = "archive" },
+  { url = "*.{img,fat,ext,ext2,ext3,ext4,squashfs,ntfs,hfs,hfsx}", run = "archive" },
+  # Font
+  { mime = "font/*", run = "font" },
+  { mime = "application/ms-opentype", run = "font" },
+  # Empty file
+  { mime = "inode/empty", run = "empty" },
+  # Virtual file system
+  { mime = "vfs/*", run = "vfs" },
+  # Error
+  { mime = "null/*", run = "null" },
+  # Fallback
+  { url = "*", run = "file" },
 ]
 
 [input]
@@ -221,13 +323,13 @@ delete_offset = [ 0, 0, 70, 20 ]
 
 # overwrite
 overwrite_title = "Overwrite file?"
-overwrite_content = "Will overwrite the following file:"
+overwrite_body = "Will overwrite the following file:"
 overwrite_origin = "center"
 overwrite_offset = [ 0, 0, 50, 15 ]
 
 # quit
 quit_title = "Quit?"
-quit_content = "The following tasks are still running, are you sure you want to quit?"
+quit_body = "There are unfinished tasks, quit anyway?\n(Open task manager with default key 'w')"
 quit_origin = "center"
 quit_offset = [ 0, 0, 50, 15 ]
 

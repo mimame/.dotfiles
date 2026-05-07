@@ -7,7 +7,7 @@
 
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+#:schema https://yazi-rs.github.io/schemas/keymap.json
 
 [mgr]
 keymap = [
@@ -76,14 +76,14 @@ keymap = [
   { on = [ "<Space>", "s" ], run = "search --via=fd", desc = "Search files" },
   { on = [ "<Space>", "c" ], run = "plugin ouch", desc = "Compress with ouch" },
   { on = [ "<Space>", "x" ], run = "open --launcher=extract", desc = "Extract here (ouch)" },
-  { on = [ "<Space>", "e" ], run = 'shell "${EDITOR:-hx} \"$@\"" --block', desc = "Edit with $EDITOR" },
+  { on = [ "<Space>", "e" ], run = 'shell "${EDITOR:-hx} %s" --block', desc = "Edit with $EDITOR" },
   { on = [ "<Space>", "u" ], run = "unyank", desc = "Cancel yank (unyank)" },
   { on = [ "<Space>", "D" ], run = "remove --permanently", desc = "Permanently delete" },
   { on = [ "<Space>", "." ], run = "hidden toggle", desc = "Toggle hidden files" },
   { on = [ "<Space>", "w" ], run = "tasks_show", desc = "Show task manager" },
   { on = [ "<Space>", "k" ], run = "help", desc = "Open help" },
   { on = [ "<Space>", "q" ], run = "quit", desc = "Quit the process" },
-  { on = [ "<Space>", "d" ], run = 'shell --block -- ripdrag -a -x "$@"', desc = "Drag and drop via ripdrag" },
+  { on = [ "<Space>", "d" ], run = 'shell --block -- ripdrag -a -x %s', desc = "Drag and drop via ripdrag" },
 
   # --- Filter / Search ---
   # WHY f/: Vim-style filter/search
