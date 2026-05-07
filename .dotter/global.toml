@@ -41,7 +41,6 @@ helix = "~/.config/helix"
 julia = "~/.julia/"
 kitty = { target = "~/.config/kitty", type = "symbolic" }
 lazygit = "~/.config/lazygit"
-lazyvim = "~/.config/nvim/"
 navi = "~/.config/navi"
 nushell = { target = "~/.config/nushell", type = "symbolic" }
 ptpython = "~/.config/ptpython"
