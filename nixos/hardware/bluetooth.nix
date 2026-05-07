@@ -14,6 +14,12 @@
       Experimental = true;
       KernelExperimental = true;
 
+      # Disable BAP (Basic Audio Profile / LE Audio)
+      # WHY: Frequently logs "Unable to find bap session" errors on device
+      # detachment. Disabling it resolves the log spam until LE Audio support
+      # matures in BlueZ.
+      Disable = "bap";
+
       # Prioritize connection speed over energy efficiency
       FastConnectable = true;
 
