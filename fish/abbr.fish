@@ -121,6 +121,25 @@ abbr u topgrade
 abbr wget wget2
 abbr download get
 
+# --- Logs ---
+# Unified prefix: klog* = kernel (dmesg), jlog* = journal (journalctl)
+# Consistent suffixes: no suffix = recent, f = follow, e = errors, b = boot, u = unit
+# For cross-source search: lrg <pattern>  (searches dmesg + journal simultaneously)
+
+# dmesg: kernel ring buffer (available on all platforms)
+abbr klog 'sudo dmesg -H' # human-readable timestamps + colors
+abbr klogf 'sudo dmesg -w' # follow (live stream, like tail -f)
+abbr kloge 'sudo dmesg -H --level=err,crit,alert,emerg' # errors only
+
+# journalctl: systemd journal (NixOS/Linux only — skipped silently on macOS)
+if command -q journalctl
+    abbr jlog 'journalctl -xe' # recent logs with explanations (common debug entry point)
+    abbr jlogf 'journalctl -f' # follow live
+    abbr jlogb 'journalctl -b' # current boot
+    abbr jloge 'journalctl -b -p err..emerg' # errors this boot only
+    abbr jlogu 'journalctl -u' # unit logs — append unit name: jlogu sshd
+end
+
 # --- Docker ---
 abbr d docker
 abbr dc 'docker compose'
