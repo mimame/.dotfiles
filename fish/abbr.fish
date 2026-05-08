@@ -72,17 +72,9 @@ abbr s "rg --ignore-file $XDG_CONFIG_HOME/fd/ignore"
 abbr ag 'ag --smart-case --ignore node_modules'
 
 # --- Editors ---
-abbr n $default_nvim
-abbr nvim $default_nvim
-abbr v $default_nvim
-abbr vi $default_nvim
-abbr vim $default_nvim
 abbr h hx
 abbr zd zeditor
 abbr nano micro
-
-# Diff with nvim
-abbr nd '$default_nvim -d -c "set nofoldenable"'
 
 # --- Development ---
 abbr g git
@@ -174,7 +166,6 @@ edit_config navirc navi/config.yaml
 edit_config newsrc newsboat/config
 edit_config nirirc niri/config.kdl
 edit_config nixosrc /etc/nixos/configuration.nix 'sudo nixos-rebuild switch --show-trace --no-reexec'
-edit_config nvimrc nvim/init.lua
 edit_config qutebrowserrc qutebrowser/config.py
 edit_config sshrc ssh/config
 edit_config starshiprc starship/starship.toml
