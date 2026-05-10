@@ -189,7 +189,13 @@ in
       supportsDryActivation = true;
       text = ''
         # Compare the new system derivation ($systemConfig) with the current one.
-        ${pkgs.unstable.dix}/bin/dix /run/current-system "$systemConfig"
+        #
+        # WHY THE CHECK: During early boot (Stage 2), /run/current-system doesn't
+        # exist yet, which causes dix to fail with "no such file or directory".
+        # This check ensures the diff only runs when a previous system is active.
+        if [ -L /run/current-system ]; then
+          ${pkgs.unstable.dix}/bin/dix /run/current-system "$systemConfig"
+        fi
       '';
     };
   };
