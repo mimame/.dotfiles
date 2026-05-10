@@ -47,6 +47,14 @@
     # in journalctl.
     "net.ipv6.conf.all.accept_ra" = 0;
     "net.ipv6.conf.default.accept_ra" = 0;
+
+    # Disable kernel-level IPv6 autoconfiguration.
+    # WHY: Prevents the kernel from trying to configure addresses automatically
+    # when RAs are received. This is particularly important when forwarding is
+    # enabled (for containers/VMs), as the kernel's RA handling can conflict
+    # with NetworkManager's userspace management.
+    "net.ipv6.conf.all.autoconf" = 0;
+    "net.ipv6.conf.default.autoconf" = 0;
   };
 
   # DNS-over-TLS (DoT) with systemd-resolved
