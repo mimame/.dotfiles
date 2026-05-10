@@ -14,10 +14,13 @@
     # Power management with systemd-logind
     # See: https://www.freedesktop.org/software/systemd/man/latest/logind.conf.html#Options
     logind.settings.Login = {
-      # Lid behavior: suspend-then-hibernate on battery for maximum battery life
+      # Lid behavior: suspend-then-hibernate regardless of power source.
+      # WHY: Ensures that even if the laptop is left plugged in and then
+      # loses power (e.g. power outage), it safely hibernates after 2 hours
+      # instead of draining the battery to zero.
       HandleLidSwitch = "suspend-then-hibernate";
-      HandleLidSwitchDocked = "ignore"; # Faster suspend when docked
-      HandleLidSwitchExternalPower = "suspend"; # Faster suspend when plugged in
+      HandleLidSwitchDocked = "ignore"; # Stay awake when docked
+      HandleLidSwitchExternalPower = "suspend-then-hibernate";
       HandlePowerKey = "suspend";
       HandlePowerKeyLongPress = "poweroff";
       # Disable logind's idle timer; let DE handle it
