@@ -19,6 +19,40 @@
   # Use NVIDIA as the primary X.org video driver
   services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
 
+  # NVIDIA-specific kernel parameters
+  boot.kernelParams = [
+    # WHY: Provides a stable path for saving/restoring video memory during suspend.
+    # On some hardware, the default /tmp (often tmpfs) can cause I/O errors (-5)
+    # during the late stages of suspend-then-hibernate.
+    "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+  ];
+
+  # Hook NVIDIA auxiliary services into the sleep cycle.
+  # WHY: By default, these services may only target suspend.target or hibernate.target.
+  # Explicitly adding them to the correct targets ensures they run correctly
+  # regardless of the sleep method (including suspend-then-hibernate).
+  #
+  # NOTE: We avoid using sleep.target for both to prevent them from running
+  # simultaneously, which causes a race condition where both try to capture
+  # and restore the VT, leading to a black screen on resume.
+  systemd.services = {
+    nvidia-suspend = {
+      before = [
+        "systemd-suspend.service"
+        "systemd-suspend-then-hibernate.service"
+      ];
+      wantedBy = [
+        "suspend.target"
+        "suspend-then-hibernate.target"
+      ];
+    };
+    nvidia-hibernate = {
+      before = [ "systemd-hibernate.service" ];
+      wantedBy = [ "hibernate.target" ];
+    };
+    nvidia-resume.wantedBy = [ "sleep.target" ];
+  };
+
   hardware.nvidia = {
     # Use proprietary kernel module (better performance than nouveau/open)
     # WHY: The open-source nvidia-open driver doesn't support Pascal (GTX 1060)
