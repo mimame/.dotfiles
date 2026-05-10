@@ -46,6 +46,7 @@ in
 
     # --- Core System Configuration ---
     # Essential system-wide settings and configurations.
+    ../../core/nixpkgs.nix
     ../../core/boot.nix
     ../../core/firmware.nix
     ../../core/lix.nix
@@ -95,46 +96,6 @@ in
     ../../desktops/${vars.desktop}/default.nix
     ../../desktops/dms-shell/default.nix
   ];
-
-  # ----------------------------------------------------------------------------
-  # Nixpkgs Configuration
-  # ----------------------------------------------------------------------------
-
-  # Overlays are the standard, modern way to extend the Nix package set.
-  #
-  # WHY THIS IS BEST:
-  # 1. Recommended: This is the official and most robust approach.
-  # 2. Composable: Multiple modules can add to `nixpkgs.overlays` without conflict.
-  # 3. Global Scope: They operate at a low level, ensuring every instance of `pkgs`
-  #    passed to modules (even deep in the tree) includes the `unstable` attribute.
-  # 4. Safe Syntax: The `(final: prev: { ... })` pattern allows referencing the
-  #    final aggregated package set, which is safer for complex overrides.
-  nixpkgs = {
-    overlays = [
-      (final: prev: {
-        unstable = import vars.unstableSrc {
-          inherit (config.nixpkgs) config;
-          inherit (prev.stdenv.hostPlatform) system;
-        };
-        # Nullify packages with abusive telemetry or undesirable features.
-        # This prevents them from being installed accidentally.
-        # See:
-        # - https://chaos.social/@hexa/114009069746212598
-        # - https://news.ycombinator.com/item?id=43060368
-        devbox = null;
-        devenv = null;
-        flox = null;
-      })
-    ];
-
-    config = {
-      # A list of insecure packages that are explicitly allowed to be installed.
-      permittedInsecurePackages = [ ];
-
-      # Allow the installation of packages with non-free licenses.
-      allowUnfree = true;
-    };
-  };
 
   # ----------------------------------------------------------------------------
   # Bootloader & Kernel
