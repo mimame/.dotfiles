@@ -42,16 +42,36 @@ func expandHome(path string) string {
 // resolveDefaultsPath finds defaults.yaml relative to the binary (compiled use)
 // or relative to the working directory (go run use).
 func resolveDefaultsPath() string {
+	if path := os.Getenv("MIMEAPPS_CONFIG_PATH"); path != "" {
+		return path
+	}
 	if exe, err := os.Executable(); err == nil {
 		if real, err := filepath.EvalSymlinks(exe); err == nil {
 			candidate := filepath.Clean(filepath.Join(filepath.Dir(real), "..", "mimeapps", "defaults.yaml"))
 			if _, err := os.Stat(candidate); err == nil {
 				return candidate
 			}
+			// When run via 'go run', the executable is in a temp dir.
+			// Try looking up two levels if the above fails.
+			candidate = filepath.Clean(filepath.Join(filepath.Dir(real), "..", "..", "mimeapps", "defaults.yaml"))
+			if _, err := os.Stat(candidate); err == nil {
+				return candidate
+			}
 		}
 	}
 	cwd, _ := os.Getwd()
-	return filepath.Join(cwd, "mimeapps", "defaults.yaml")
+	// Try root-relative
+	candidate := filepath.Join(cwd, "mimeapps", "defaults.yaml")
+	if _, err := os.Stat(candidate); err == nil {
+		return candidate
+	}
+	// Try relative to bin/
+	candidate = filepath.Join(cwd, "..", "mimeapps", "defaults.yaml")
+	if _, err := os.Stat(candidate); err == nil {
+		return candidate
+	}
+
+	return filepath.Join(cwd, "mimeapps", "defaults.yaml") // Default fallback
 }
 
 type appConfig struct {

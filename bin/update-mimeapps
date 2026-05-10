@@ -1,4 +1,10 @@
 #!/usr/bin/env fish
 set -l bin_dir (path dirname (path resolve (status filename)))
-cd (path dirname $bin_dir)
-exec go run bin/upgrade-mimeapps/ $argv
+set -l root_dir (path dirname $bin_dir)
+
+# Set the config path explicitly for the Go tool
+set -gx MIMEAPPS_CONFIG_PATH $root_dir/mimeapps/defaults.yaml
+
+# Run from the module directory to ensure go.mod is found
+cd $bin_dir/upgrade-mimeapps
+exec go run . $argv
