@@ -39,18 +39,31 @@
     nvidia-suspend = {
       before = [
         "systemd-suspend.service"
+        "systemd-hibernate.service"
         "systemd-suspend-then-hibernate.service"
       ];
       wantedBy = [
-        "suspend.target"
-        "suspend-then-hibernate.target"
+        "systemd-suspend.service"
+        "systemd-hibernate.service"
+        "systemd-suspend-then-hibernate.service"
       ];
     };
     nvidia-hibernate = {
       before = [ "systemd-hibernate.service" ];
-      wantedBy = [ "hibernate.target" ];
+      wantedBy = [ "systemd-hibernate.service" ];
     };
-    nvidia-resume.wantedBy = [ "sleep.target" ];
+    nvidia-resume = {
+      after = [
+        "systemd-suspend.service"
+        "systemd-hibernate.service"
+        "systemd-suspend-then-hibernate.service"
+      ];
+      wantedBy = [
+        "systemd-suspend.service"
+        "systemd-hibernate.service"
+        "systemd-suspend-then-hibernate.service"
+      ];
+    };
   };
 
   hardware.nvidia = {
