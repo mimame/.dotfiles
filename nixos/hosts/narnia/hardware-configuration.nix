@@ -40,6 +40,9 @@
   fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/B0FD-5603";
     fsType = "vfat";
+    # WHY: Resolves "world accessible" security warning for the random seed
+    # file and boot files by enforcing restricted permissions (0700).
+    options = [ "umask=0077" ];
   };
 
   swapDevices = [ { device = "/dev/disk/by-uuid/0e66a448-d2b1-41f0-aa72-eb82fde5e705"; } ];

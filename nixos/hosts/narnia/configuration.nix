@@ -155,6 +155,7 @@ in
       # USB Stability Fixes
       # Resolves "device descriptor read/64, error -71" and enumeration failures
       # on internal ports (e.g., keyboard controller) and external docks.
+      # NOTE: Port 1-6 (internal) remains problematic; likely hardware fault.
       "usbcore.autosuspend=-1"
     ];
   };
