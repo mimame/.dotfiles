@@ -50,8 +50,10 @@ _: {
     # Conflicts with power-profiles-daemon - explicitly disabled.
     auto-cpufreq.enable = false;
 
-    # Distribute hardware interrupts across CPU cores for better responsiveness.
-    # Prevents I/O bottlenecks on single cores during high interrupt loads.
-    irqbalance.enable = true;
+    # Distribute hardware interrupts across CPU cores.
+    # DISABLED: Causing excessive "Permission denied" errors in logs on recent
+    # kernels/drivers, and the kernel's built-in balancer is sufficient for
+    # this 6-core processor.
+    irqbalance.enable = false;
   };
 }
