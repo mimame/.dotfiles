@@ -26,7 +26,8 @@ pkgs.mkShell {
     yamlfmt
     jsonfmt
     actionlint
-    rubocop
+    go
+    golangci-lint
     commitlint
   ];
 
@@ -38,6 +39,6 @@ pkgs.mkShell {
     mkdir -p $GEM_HOME
 
     echo "❄️  Nix environment (unstable) loaded for .dotfiles development"
-    echo "Available tools: prek, treefmt, gitleaks, ripsecrets, rubocop, etc."
+    echo "Available tools: prek, treefmt, gitleaks, ripsecrets, golangci-lint, etc."
   '';
 }

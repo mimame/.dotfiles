@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+set -l bin_dir (path dirname (path resolve (status filename)))
+cd (path dirname $bin_dir)
+exec go run bin/upgrade-mimeapps/ $argv

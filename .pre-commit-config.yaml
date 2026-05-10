@@ -76,13 +76,23 @@ repos:
         files: \.nix$
         pass_filenames: false
 
-      # Ruby linter and formatter.
-      - id: rubocop
-        name: rubocop
+      # Go static analysis.
+      # Must cd into the module directory: go resolves go.mod from the working
+      # directory, not from the package path argument.
+      - id: go-vet
+        name: go vet
         language: system
-        entry: rubocop
-        files: \.rb$
-        require_serial: true
+        entry: bash -c 'cd bin/upgrade-mimeapps && go vet ./...'
+        files: \.go$
+        pass_filenames: false
+
+      # Go comprehensive linter.
+      - id: golangci-lint
+        name: golangci-lint
+        language: system
+        entry: bash -c 'cd bin/upgrade-mimeapps && golangci-lint run ./...'
+        files: \.go$
+        pass_filenames: false
 
       # Fast secret scanning for generic high-entropy strings.
       - id: ripsecrets

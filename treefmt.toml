@@ -40,6 +40,11 @@ options = ["format"]
 includes = ["**/*.toml"]
 excludes = ["Manifest.toml"]
 
+[formatter.gofmt]
+command = "gofmt"
+options = ["-w"]
+includes = ["**/*.go"]
+
 [formatter.sort-editors-json-settings]
 command = "jaq"
 options = ["--in-place", "--sort-keys", "."]
