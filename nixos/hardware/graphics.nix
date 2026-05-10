@@ -17,13 +17,11 @@
 
   boot.kernelParams = [
     # Enable GuC/HuC firmware loading for Intel Gen 9+ (Skylake and newer)
-    # Mode 3 enables both GuC and HuC:
-    # - GuC (Graphics microController): Offloads GPU scheduling and command
-    #   submission from CPU, reducing overhead and improving window animation
-    #   smoothness. Critical for high-refresh or Wayland/Niri compositors.
-    # - HuC (HEVC/H.264 microController): Handles firmware-based video
-    #   authentication and enables hardware-accelerated decoding/encoding.
-    # Combined effect: Smoother UI and lower CPU usage during media playback.
-    "i915.enable_guc=3"
+    # Mode 2 enables HuC (HEVC/H.264 microController):
+    # - HuC handles firmware-based video authentication and enables hardware-
+    #   accelerated decoding/encoding.
+    # - Mode 3 (GuC + HuC) is disabled here because GuC submission is often
+    #   unsupported or unstable on Coffee Lake, causing log errors.
+    "i915.enable_guc=2"
   ];
 }
