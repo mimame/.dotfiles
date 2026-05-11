@@ -41,6 +41,7 @@ in
     # Hardware configurations specific to this Tongfang laptop.
     ./boot.nix
     ./cpu.nix
+    ./hardware.nix
     ./nvidia.nix
     ./nvidia-wrappers.nix
 

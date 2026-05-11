@@ -147,16 +147,6 @@
       };
     };
 
-    # 3200-2000-1200-800DPI
-    # ls -l /dev/input/by-id/*
-    # mouse-dpi-tool /dev/input/event27
-    # mouse:usb:v1bcfp0053:name:USB Optical Mouse  Mouse:
-    #  MOUSE_DPI=2000@145
-    udev.extraHwdb = ''
-      mouse:usb:*
-       MOUSE_DPI=3200@145
-    '';
-
     kmscon = {
       enable = true;
       extraConfig = ''
