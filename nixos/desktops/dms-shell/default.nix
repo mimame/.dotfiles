@@ -37,10 +37,12 @@ in
     serviceConfig = {
       Restart = "always";
       RestartSec = "3s"; # Allow D-Bus/Portals time to settle
+    };
+    unitConfig = {
+      PartOf = [ "graphical-session.target" ];
       StartLimitIntervalSec = "60s";
       StartLimitBurst = 5;
     };
-    unitConfig.PartOf = [ "graphical-session.target" ];
   };
 
   environment.systemPackages = with pkgs; [ dsearch ];
