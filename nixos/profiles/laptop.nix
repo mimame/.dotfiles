@@ -6,7 +6,7 @@
 # Power Strategy:
 # - Autosuspend handles idle detection with real activity awareness:
 #     - Blocks suspend while download/backup/transfer processes are running
-#       (rsync, borg, borgmatic, wget, curl, wget2, aria2c, scp, rclone, dd, nix)
+#       (rsync, borg, borgmatic, wget, curl, wget2, aria2c, scp, rclone, dd, nix, ffmpeg, mosh-server)
 #     - Blocks suspend while network bandwidth exceeds 1 KB/s
 #     - Blocks suspend while system load is above 0.5 (covers any unlisted
 #       CPU/IO-intensive work: compilation, ffmpeg, nix build, etc.)
@@ -63,22 +63,22 @@
     # See: https://autosuspend.readthedocs.io
     autosuspend = {
       enable = true;
-      settings = {
-        global = {
-          interval = 30; # Check activity every 30s
-          # Grace period after all checks clear. LogindSessionsIdle provides
-          # the main 10-min window; this just avoids a race on check boundaries.
-          idle_time = 30;
-          suspend_cmd = "systemctl suspend-then-hibernate";
-          wakeup_cmd = "";
-        };
 
+      # Maps to the [general] INI section. All checks are enabled by default.
+      settings = {
+        interval = 30; # Check activity every 30s
+        # Grace period after all checks clear. LogindSessionsIdle provides
+        # the main 10-min window; this just avoids a race on check boundaries.
+        idle_time = 30;
+        suspend_cmd = "systemctl suspend-then-hibernate";
+      };
+
+      # Each entry maps to a [check.<name>] INI section.
+      # enabled = true is the module default; only set it to disable a check.
+      checks = {
         # Block suspend if the user has been active recently (Wayland-compatible).
         # idle_time here is the logind session inactivity threshold.
-        "check.LogindSessionsIdle" = {
-          enabled = true;
-          idle_time = 600; # 10 min without keyboard/mouse input
-        };
+        LogindSessionsIdle.idle_time = 600; # 10 min without keyboard/mouse input
 
         # Block suspend while any of these processes are running.
         # - borg: the binary borgmatic actually invokes for backup I/O
@@ -90,16 +90,12 @@
         #   ActiveConnection on port 22 misses active mosh sessions
         # cp omitted: brief system copies aren't worth blocking; large ones
         # raise load above the Load threshold below.
-        "check.Processes" = {
-          enabled = true;
-          processes = "rsync borgmatic borg wget curl wget2 aria2c scp rclone dd nix ffmpeg mosh-server";
-        };
+        Processes.processes = "rsync borgmatic borg wget curl wget2 aria2c scp rclone dd nix ffmpeg mosh-server";
 
         # Block suspend while the network is actively transferring data.
         # 1 KB/s avoids false positives from keepalives, NTP, and DNS traffic
         # while still catching any meaningful download or upload.
-        "check.NetworkBandwidth" = {
-          enabled = true;
+        NetworkBandwidth = {
           threshold_send = 1024; # bytes/s
           threshold_receive = 1024; # bytes/s
         };
@@ -108,17 +104,11 @@
         # Catches anything CPU/IO-intensive not in the process list:
         # compilation, ffmpeg, nix build, scientific computing, large copies, etc.
         # Threshold is the raw 5-min load average (not normalized per core).
-        "check.Load" = {
-          enabled = true;
-          threshold = 0.5;
-        };
+        Load.threshold = 0.5;
 
         # Block suspend while SSH connections are active.
         # Prevents cutting off remote sessions mid-work.
-        "check.ActiveConnection" = {
-          enabled = true;
-          ports = 22;
-        };
+        ActiveConnection.ports = 22;
       };
     };
   };
