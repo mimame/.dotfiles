@@ -95,6 +95,8 @@
         # Block suspend while the network is actively transferring data.
         # 1 KB/s avoids false positives from keepalives, NTP, and DNS traffic
         # while still catching any meaningful download or upload.
+        # NOTE: each host must also set NetworkBandwidth.interfaces (comma-separated
+        # list of interface names); autosuspend 9.0 requires it with no default.
         NetworkBandwidth = {
           threshold_send = 1024; # bytes/s
           threshold_receive = 1024; # bytes/s
