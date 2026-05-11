@@ -25,6 +25,10 @@
 
   # Display manager configuration
   services.displayManager = {
+    # WHY: GDM was crashing with "no session desktop files installed" because the
+    # niri.desktop file wasn't being correctly linked into the system path.
+    # Explicitly adding the package here ensures GDM can find the session.
+    sessionPackages = [ pkgs.unstable.niri ];
     defaultSession = "niri";
     autoLogin = {
       enable = true;
