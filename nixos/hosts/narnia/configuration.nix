@@ -42,6 +42,7 @@ in
     ./boot.nix
     ./cpu.nix
     ./hardware.nix
+    ./networking.nix
     ./nvidia.nix
     ./nvidia-wrappers.nix
 
