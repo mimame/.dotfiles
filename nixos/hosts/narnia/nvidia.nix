@@ -25,6 +25,11 @@
     # On some hardware, the default /tmp (often tmpfs) can cause I/O errors (-5)
     # during the late stages of suspend-then-hibernate.
     "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+
+    # WHY: Preserves VRAM allocations across sleep/hibernate cycles.
+    # This prevents the Input/output error (-EIO) seen in nvidia-sleep.sh and
+    # ensures that applications (like VSCode/Chrome) don't crash on resume.
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
   # Hook NVIDIA auxiliary services into the sleep cycle.
