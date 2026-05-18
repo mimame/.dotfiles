@@ -57,7 +57,7 @@ abbr ncdu 'ncdu --color dark'
 
 # Safe File Operations
 if command -q gomi
-    abbr rm gomi
+    abbr rm 'gomi -i'
 end
 abbr cp "cp -ri"
 abbr ln "ln -i"
