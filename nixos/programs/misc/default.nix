@@ -27,7 +27,8 @@
       file # Determine file type
       fx # Command-line JSON viewer
       gawk # GNU Awk
-      glow # Markdown renderer
+      glow # Markdown renderer (paging, reader mode)
+      mdcat # Markdown renderer (inline, no paging)
       grex # Generate regex from test cases
       gron # Make JSON greppable
       hexyl # Command-line hex viewer
