@@ -90,13 +90,9 @@ in
     ../../users/${vars.username}/default.nix
 
     # --- Desktop Environment ---
-    # Configuration for the graphical desktop environment.
-    # The GNOME compatibility layer must be loaded before the specific desktop
-    # environment to ensure all GNOME-related services and settings are available.
-    ../../desktops/gnome_layer.nix
-    ../../desktops/base.nix
-    ../../desktops/${vars.desktop}/default.nix
-    ../../desktops/dms-shell/default.nix
+    # Dispatcher selects imports based on vars.desktop ("niri" | "gnome" | "cosmic").
+    # To switch, change one line in variables.nix and rebuild.
+    ../../desktops/default.nix
   ];
 
   # ----------------------------------------------------------------------------

@@ -1,0 +1,28 @@
+# Desktop Environments
+
+Controlled by `desktop` in `variables.nix`. Valid values:
+
+- `"niri"`   — Niri (scrollable-tiling Wayland compositor) + dms-shell bar + GNOME layer
+- `"gnome"`  — Full GNOME Shell session (GDM + GNOME Shell + GNOME layer)
+- `"cosmic"` — COSMIC DE (System76, long-term exploration)
+
+## Switching
+
+Change one line in `variables.nix`:
+
+    desktop = "gnome";
+
+Then rebuild:
+
+    sudo nixos-rebuild switch
+
+## Structure
+
+| Path             | Purpose                                                         | Loaded by       |
+| ---------------- | --------------------------------------------------------------- | --------------- |
+| `base.nix`       | Common desktop apps (browsers, comms, dev tools, etc.)          | always          |
+| `gnome_layer.nix`| GNOME services: GDM, keyring, portals, GTK theming, core apps   | niri, gnome     |
+| `niri/`          | Niri compositor config                                          | niri            |
+| `dms-shell/`     | DankMaterialShell bar/launcher                                  | niri            |
+| `gnome/`         | GNOME Shell (imports gnome_layer.nix + enables gnome.enable)    | gnome           |
+| `cosmic/`        | COSMIC DE                                                       | cosmic          |
