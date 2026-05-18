@@ -467,7 +467,6 @@ alias newsrc = edit-config ($nu.default-config-dir | path join ".." "newsboat" "
 alias nirirc = edit-config ($nu.default-config-dir | path join ".." "niri" "config.kdl")
 alias nixosrc = edit-config ($nu.default-config-dir | path join ".." "nixos" "configuration.nix")
 alias nvimrc = edit-config ($nu.default-config-dir | path join ".." "lazyvim" "init.lua")
-alias qutebrowserrc = edit-config ($nu.default-config-dir | path join ".." "qutebrowser" "config.py")
 alias sshrc = edit-config ($nu.default-config-dir | path join ".." "ssh" "config")
 alias starshiprc = edit-config ($nu.default-config-dir | path join ".." "starship" "starship.toml")
 alias tldrrc = edit-config ($nu.default-config-dir | path join ".." "tealdeer" "config.toml")

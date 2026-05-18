@@ -166,7 +166,6 @@ edit_config navirc navi/config.yaml
 edit_config newsrc newsboat/config
 edit_config nirirc niri/config.kdl
 edit_config nixosrc /etc/nixos/configuration.nix 'sudo nixos-rebuild switch --show-trace --no-reexec'
-edit_config qutebrowserrc qutebrowser/config.py
 edit_config sshrc ssh/config
 edit_config starshiprc starship/starship.toml
 edit_config tldrrc tealdeer/config.toml
