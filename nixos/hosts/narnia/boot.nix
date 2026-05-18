@@ -33,5 +33,12 @@ _: {
     "mds=off"
     "tsx=on"
     "tsx_async_abort=off"
+
+    # Stability Fixes for Tongfang GK5CN6Z
+    #
+    # WHY: Disabling PCIe Active State Power Management (ASPM) prevents system
+    # stutters and "NOHZ tick-stop" errors caused by aggressive power state
+    # transitions on the PCIe bus. This is a common requirement for this chassis.
+    "pcie_aspm=off"
   ];
 }
