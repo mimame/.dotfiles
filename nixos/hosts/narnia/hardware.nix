@@ -6,6 +6,17 @@
 { pkgs, ... }:
 {
   # ----------------------------------------------------------------------------
+  # USB & Connectivity
+  # ----------------------------------------------------------------------------
+  services.udev.extraRules = ''
+    # Disable problematic USB port 1-6
+    # WHY: This internal port experiences persistent hardware-level enumeration
+    # failures (error -71). The kernel's constant reset loops cause significant
+    # I/O wait and system stutters. Disabling the port stops the reset cycle.
+    ACTION=="add", SUBSYSTEM=="usb", KERNEL=="1-6", ATTR{authorized}="0"
+  '';
+
+  # ----------------------------------------------------------------------------
   # Mouse & Input
   # ----------------------------------------------------------------------------
   services.udev.extraHwdb = ''
