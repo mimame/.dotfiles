@@ -64,18 +64,27 @@ function setup_ssh_agent --description "Initialize SSH agent and load keys"
     #
     # ============================================================================
 
-    # 1. Collect SSH keys to load
-    # NOTE: Order matters! No-passphrase keys first for immediate availability.
-    set -l ssh_keys
-    for key in id_ed25519_no_passphrase id_ed25519
-        set -l key_path $HOME/.ssh/$key
-        if test -f $key_path
-            set -a ssh_keys $key_path
+    # 1. Collect SSH keys to load — auto-discover all private keys in ~/.ssh/
+    # A file is considered a private key if a matching .pub companion exists.
+    # No-passphrase keys are loaded first: probe with an empty passphrase via
+    # ssh-keygen -y; success means no passphrase required.
+    set -l keys_no_pass
+    set -l keys_with_pass
+    for key in $HOME/.ssh/id_*
+        # Skip .pub files and anything without a .pub companion
+        string match -q '*.pub' $key; and continue
+        test -f "$key.pub"; or continue
+
+        if ssh-keygen -y -P '' -f $key &>/dev/null
+            set -a keys_no_pass $key
+        else
+            set -a keys_with_pass $key
         end
     end
 
-    if test -z "$ssh_keys"
-        # No keys found, nothing to do
+    set -l ssh_keys $keys_no_pass $keys_with_pass
+
+    if test (count $ssh_keys) -eq 0
         return
     end
 
