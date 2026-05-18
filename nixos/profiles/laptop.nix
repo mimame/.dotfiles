@@ -106,7 +106,10 @@
         # Catches anything CPU/IO-intensive not in the process list:
         # compilation, ffmpeg, nix build, scientific computing, large copies, etc.
         # Threshold is the raw 5-min load average (not normalized per core).
-        Load.threshold = 0.5;
+        # WHY: 0.5 is too aggressive for a 12-core CPU with background agents
+        # like ollama or syncthing. 2.0 allows minor background tasks while
+        # still catching real work.
+        Load.threshold = 2.0;
 
         # Block suspend while SSH connections are active.
         # Prevents cutting off remote sessions mid-work.
