@@ -33,16 +33,12 @@ Host *
   ServerAliveCountMax 3
 
   # --- Authentication Settings ---
-  # Specifies the private keys to use. Prefers modern ed25519 keys.
-  IdentityFile ~/.ssh/id_ed25519_no_passphrase
-  IdentityFile ~/.ssh/id_ed25519
+  # No IdentityFile entries — all keys are loaded into ssh-agent by
+  # setup_ssh_agent (which auto-discovers ~/.ssh/id_* at shell startup).
+  # SSH offers agent keys automatically; no hardcoded names needed here.
 
-  # Only use the identities specified above or via the `-i` flag.
-  # Prevents the client from trying every key in ssh-agent, which avoids
-  # "Too many authentication failures" errors and is more secure.
-  IdentitiesOnly yes
-
-  # Automatically add keys to ssh-agent on first use.
+  # Automatically add keys to ssh-agent on first use (covers any key used
+  # via -i flag that wasn't pre-loaded by setup_ssh_agent).
   AddKeysToAgent yes
 
   # --- Performance & Security ---
