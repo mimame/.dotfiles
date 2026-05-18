@@ -151,9 +151,11 @@
       enable = true;
       extraConfig = ''
         font-name=Maple Mono NL NF
-        font-size=16
+        font-size=18
         xkb-layout=us
         xkb-variant=altgr-intl
+        xkb-repeat-delay=200
+        xkb-repeat-rate=40
       '';
       extraOptions = "--term xterm-ghostty";
       hwRender = true;
