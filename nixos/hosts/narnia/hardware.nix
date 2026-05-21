@@ -17,25 +17,6 @@
   '';
 
   # ----------------------------------------------------------------------------
-  # Mouse & Input
-  # ----------------------------------------------------------------------------
-  services.udev.extraHwdb = ''
-    # Mouse DPI optimization for Sunplus Innovation Technology Inc. USB Optical Mouse
-    #
-    # Available DPI range: 3200, 2000, 1200, 800
-    #
-    # How to find the device and verify DPI:
-    # 1. Identify input device: ls -l /dev/input/by-id/*
-    # 2. Run diagnostic: mouse-dpi-tool /dev/input/eventX
-    #
-    # Historical reference:
-    # - mouse:usb:v1bcfp0053:name:USB Optical Mouse  Mouse:
-    # - MOUSE_DPI=2000@145
-    mouse:usb:*
-     MOUSE_DPI=3200@145
-  '';
-
-  # ----------------------------------------------------------------------------
   # Graphics (Intel iGPU)
   # ----------------------------------------------------------------------------
   boot.kernelParams = [
