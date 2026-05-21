@@ -32,45 +32,6 @@
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
-  # Hook NVIDIA auxiliary services into the sleep cycle.
-  # WHY: By default, these services may only target suspend.target or hibernate.target.
-  # Explicitly adding them to the correct targets ensures they run correctly
-  # regardless of the sleep method (including suspend-then-hibernate).
-  #
-  # NOTE: We avoid using sleep.target for both to prevent them from running
-  # simultaneously, which causes a race condition where both try to capture
-  # and restore the VT, leading to a black screen on resume.
-  systemd.services = {
-    nvidia-suspend = {
-      before = [
-        "systemd-suspend.service"
-        "systemd-hibernate.service"
-        "systemd-suspend-then-hibernate.service"
-      ];
-      wantedBy = [
-        "systemd-suspend.service"
-        "systemd-hibernate.service"
-        "systemd-suspend-then-hibernate.service"
-      ];
-    };
-    nvidia-hibernate = {
-      before = [ "systemd-hibernate.service" ];
-      wantedBy = [ "systemd-hibernate.service" ];
-    };
-    nvidia-resume = {
-      after = [
-        "systemd-suspend.service"
-        "systemd-hibernate.service"
-        "systemd-suspend-then-hibernate.service"
-      ];
-      wantedBy = [
-        "systemd-suspend.service"
-        "systemd-hibernate.service"
-        "systemd-suspend-then-hibernate.service"
-      ];
-    };
-  };
-
   hardware.nvidia = {
     # Use proprietary kernel module (better performance than nouveau/open)
     # WHY: The open-source nvidia-open driver doesn't support Pascal (GTX 1060)
