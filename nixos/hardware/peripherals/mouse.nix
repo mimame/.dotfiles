@@ -3,23 +3,40 @@
 #
 # Customizes mouse behavior and enables remapping utilities.
 # ----------------------------------------------------------------------------
-{ pkgs, ... }:
-{
-  # input-remapper: Easy to use tool to change the mapping of input device buttons.
-  # This service is required for applying presets on boot and during the session.
-  services.input-remapper = {
-    enable = true;
-    # Use unstable for latest Wayland fixes and compatibility.
-    # Setting this here prevents collisions with the stable package.
-    package = pkgs.unstable.input-remapper;
+_: {
+  # ----------------------------------------------------------------------------
+  # Mouse Remapping (via keyd)
+  # ----------------------------------------------------------------------------
+  #
+  # WHY KEYD OVER INPUT-REMAPPER:
+  # 1. Performance: keyd is a lightweight C daemon with minimal overhead.
+  # 2. Consistency: Manages both keyboard (Caps Lock) and mouse remapping in one place.
+  # 3. Reliability: Handles the hybrid nature of this mouse (1bcf:0053) which
+  #    identifies as both a 'Mouse' and a 'Keyboard'.
+  #
+  # DEVICE-SPECIFIC NOTES:
+  # The Sunplus Innovation Mouse (1bcf:0053) reports side-button events as 'mouse1'
+  # and 'mouse2'. To capture these, we must explicitly include the device ID in
+  # the 'ids' list, as keyd ignores mice by default to avoid interfering with
+  # pointer movement.
+  #
+  # HOW TO DISCOVER NEW BUTTONS:
+  # 1. Run: sudo keyd monitor
+  # 2. Click the buttons.
+  # 3. Look for the name in the output (e.g., "mouse1 down").
+  services.keyd.keyboards.mouse-remap = {
+    ids = [ "1bcf:0053" ];
+    settings = {
+      main = {
+        # Map side buttons to PageUp/PageDown for reliable scrolling
+        mouse1 = "pageup";
+        mouse2 = "pagedown";
+        # Fallback aliases
+        back = "pageup";
+        forward = "pagedown";
+      };
+    };
   };
-
-  environment.systemPackages = [
-    # xmodmap is an X11 utility, but input-remapper-gtk tries to call it to read keymaps.
-    # We include it here to suppress the "failed to call xmodmap" errors in the logs,
-    # even though we are on Wayland/Niri.
-    pkgs.xmodmap
-  ];
 
   # ----------------------------------------------------------------------------
   # Mouse DPI Optimization
