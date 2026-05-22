@@ -65,6 +65,7 @@ in
     ../../hardware/networking.nix
     ../../hardware/peripherals/printer.nix
     ../../hardware/peripherals/scanner.nix
+    ../../hardware/peripherals/keyboard.nix
     ../../hardware/peripherals/mouse.nix
     ../../hardware/sound.nix
     ../../hardware/time.nix
