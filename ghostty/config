@@ -40,6 +40,9 @@ gtk-wide-tabs = true
 scrollbar = system
 
 # --- Productivity & Interaction ---
+# Tab navigation via PageUp/PageDown (aligns with browser and mouse remapping)
+keybind = ctrl+page_up=previous_tab
+keybind = ctrl+page_down=next_tab
 # Allow moving the cursor via Alt+Click (requires shell integration)
 cursor-click-to-move = true
 mouse-hide-while-typing = true
