@@ -13,7 +13,7 @@
 # - connman: Less intuitive, inconsistent with tethering
 # - unbound: Too strict for captive portals, causes resolution failures
 # ----------------------------------------------------------------------------
-{ hostname, ... }:
+{ lib, hostname, ... }:
 {
   networking = {
     hostName = hostname;
@@ -45,16 +45,16 @@
     # to process them, it often fails to add redundant default routes, leading
     # to "ICMPv6: RA: ndisc_router_discovery failed to add default route" spam
     # in journalctl.
-    "net.ipv6.conf.all.accept_ra" = 0;
-    "net.ipv6.conf.default.accept_ra" = 0;
+    "net.ipv6.conf.all.accept_ra" = lib.mkDefault 0;
+    "net.ipv6.conf.default.accept_ra" = lib.mkDefault 0;
 
     # Disable kernel-level IPv6 autoconfiguration.
     # WHY: Prevents the kernel from trying to configure addresses automatically
     # when RAs are received. This is particularly important when forwarding is
     # enabled (for containers/VMs), as the kernel's RA handling can conflict
     # with NetworkManager's userspace management.
-    "net.ipv6.conf.all.autoconf" = 0;
-    "net.ipv6.conf.default.autoconf" = 0;
+    "net.ipv6.conf.all.autoconf" = lib.mkDefault 0;
+    "net.ipv6.conf.default.autoconf" = lib.mkDefault 0;
   };
 
   # DNS-over-TLS (DoT) with systemd-resolved
