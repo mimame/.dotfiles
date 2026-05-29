@@ -45,6 +45,7 @@ in
     ./networking.nix
     ./nvidia.nix
     ./nvidia-wrappers.nix
+    ./programs/ai.nix
 
     # --- Core System Configuration ---
     # Essential system-wide settings and configurations.
