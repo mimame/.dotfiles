@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------------------
 # System Services
 #
-# Background services: file indexing (locate), LLMs (Ollama), file sync (Syncthing), GPG.
+# Background services: file indexing (locate), LLMs (llama.cpp), file sync (Syncthing), GPG.
 # ----------------------------------------------------------------------------
 { pkgs, username, ... }:
 {
