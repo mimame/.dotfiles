@@ -674,7 +674,4 @@ environment {
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     MOZ_ENABLE_WAYLAND "1"
     GTK_USE_PORTAL "1"
-    QT_IM_MODULE "ibus"
-    XMODIFIERS "@im ibus"
-    GTK_IM_MODULE "ibus"
 }
