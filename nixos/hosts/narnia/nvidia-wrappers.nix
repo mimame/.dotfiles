@@ -25,11 +25,18 @@ let
       paths = [ pkg ];
       nativeBuildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
+        # Force Native Wayland for wrapped apps
+        # WHY: Prevents the unreliable XWayland-to-Wayland clipboard bridge.
+        # Forcing native backends ensures seamless clipboard synchronization
+        # and avoids 'stuck' selections common in hybrid GPU setups.
         wrapProgram $out/bin/${binary} \
           --set __NV_PRIME_RENDER_OFFLOAD 1 \
           --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER NVIDIA-G0 \
           --set __GLX_VENDOR_LIBRARY_NAME nvidia \
-          --set __VK_LAYER_NV_optimus NVIDIA_only
+          --set __VK_LAYER_NV_optimus NVIDIA_only \
+          --set MOZ_ENABLE_WAYLAND 1 \
+          --set NIXOS_OZONE_WL 1 \
+          --set ELECTRON_OZONE_PLATFORM_HINT auto
       '';
     };
 in
