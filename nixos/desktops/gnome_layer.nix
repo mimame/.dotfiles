@@ -41,8 +41,13 @@
     gvfs.enable = true;
   };
 
-  # Auto-unlock keyring on GDM login (seamless password management)
+  # Auto-unlock keyring on GDM and TTY login (seamless password management)
+  # - gdm: Handles unlocking for GUI logins via the display manager.
+  # - login: Handles unlocking for TTY logins or when the GDM session doesn't
+  #   automatically propagate login credentials to the keyring agent.
+  # Enabling both ensures passwordless auth for apps regardless of how the user logs in.
   security.pam.services.gdm.enableGnomeKeyring = true;
+  security.pam.services.login.enableGnomeKeyring = true;
 
   programs = {
     seahorse.enable = true; # GUI for keyring management
