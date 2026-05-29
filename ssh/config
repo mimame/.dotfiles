@@ -67,4 +67,5 @@ Host *
 # Override global settings for specific hosts here.
 # For example, ensure X11 forwarding is off for GitHub.
 Host github.com
+  ControlMaster no
   ForwardX11 no
