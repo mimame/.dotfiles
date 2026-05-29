@@ -56,6 +56,17 @@
     # Fingerprint authentication support (for DMS Shell)
     fprintd.enable = true;
 
+    # Clight: Adaptive brightness and gamma (Night Light)
+    # Uses ambient light sensor (ALS) or webcam fallback to adjust display.
+    clight = {
+      enable = true;
+      settings = {
+        backlight.enabled = true;
+        gamma.enabled = true;
+        webcam.enabled = true; # Fallback if hardware ALS is missing
+      };
+    };
+
     # Activity-aware idle suspension.
     # Unlike logind's dumb timer, autosuspend checks for real background work
     # before suspending. All checks must clear simultaneously for idle_time
@@ -117,6 +128,9 @@
       };
     };
   };
+
+  # Enable iio-sensor-proxy for hardware ambient light sensor support
+  hardware.sensor.iio.enable = true;
 
   # systemd-sleep: hibernate after 2h in suspend.
   # Applies to all suspend paths (autosuspend idle, lid close, power key).
