@@ -60,6 +60,8 @@ in
   # Create the model directory with correct permissions for the service
   systemd.tmpfiles.rules = [
     "d ${modelDir} 0755 llama-swap llama-swap -"
+    "d /home/${username}/ai 0755 ${username} users -"
+    "d /home/${username}/ai/open-webui 0700 ${username} users -"
   ];
 
   services = {
@@ -80,7 +82,8 @@ in
       enable = true;
       port = 8080;
       # Store database and history in user's home for easy backups
-      stateDir = "/home/${username}/ai/history";
+      # WHY: Using a dedicated subdirectory to avoid cluttering the 'ai' folder.
+      stateDir = "/home/${username}/ai/open-webui";
       environment = {
         # Connect to llama-swap proxy (assumed running on 11434)
         # WHY: llama-swap mimics the Ollama API, allowing Open WebUI to use
@@ -91,6 +94,19 @@ in
         ENABLE_OLLAMA = "True";
       };
     };
+  };
+
+  # Fix permissions for Open WebUI when using a home-resident stateDir
+  # WHY: The NixOS module defaults to DynamicUser=true and User=open-webui,
+  # which cannot access /home/mimame due to standard security permissions (700).
+  # We also disable sandboxing that prevents access to /home.
+  systemd.services.open-webui.serviceConfig = {
+    User = lib.mkForce username;
+    Group = lib.mkForce "users";
+    DynamicUser = lib.mkForce false;
+    ProtectHome = lib.mkForce false;
+    ProtectSystem = lib.mkForce "full";
+    ReadWritePaths = [ "/home/${username}/ai/open-webui" ];
   };
 
   # Custom environment for AI tools
@@ -112,7 +128,7 @@ in
 
     # --- AI Protocols & Clients ---
     gemini-cli # Gemini protocol client
-    huggingface-hub # CLI for downloading models from HuggingFace (huggingface-cli)
+    python3Packages.huggingface-hub # CLI for downloading models from HuggingFace (huggingface-cli)
     llama-cpp-pkg # Local inference tools (llama-cli, llama-server)
 
     # --- Hardware Capability Tools ---
