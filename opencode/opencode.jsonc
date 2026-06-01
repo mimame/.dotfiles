@@ -1,0 +1,48 @@
+{
+  // opencode.jsonc: Configuration for the OpenCode AI agent.
+  // This file defines where opencode sends inference requests.
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    // Custom provider for the local llama-swap proxy.
+    // This allows opencode to use any model loaded by llama-server (llama.cpp).
+    "llama-swap": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama-swap (local)",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      },
+      "models": {
+        // Model IDs here must match the keys in services.llama-swap.settings.models
+        // defined in your NixOS configuration (nixos/hosts/narnia/programs/ai.nix).
+        "gemma-9b": {
+          "name": "Gemma 2 9B (local)",
+          "limit": {
+            "context": 8192,
+            "output": 4096
+          }
+        },
+        "mistral-7b": {
+          "name": "Mistral 7B (local)",
+          "limit": {
+            "context": 8192,
+            "output": 4096
+          }
+        },
+        "mistral-24b": {
+          "name": "Mistral Small 24B (local)",
+          "limit": {
+            "context": 8192,
+            "output": 4096
+          }
+        },
+        "gpt-oss-20b": {
+          "name": "GPT-OSS 20B (local)",
+          "limit": {
+            "context": 8192,
+            "output": 4096
+          }
+        }
+      }
+    }
+  }
+}
