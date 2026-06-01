@@ -6,18 +6,21 @@
 # --- MODEL SETUP WORKFLOW ---
 # 1. DISCOVER: Run 'llmfit' (included below) to find models suited for your
 #    hardware. It estimates VRAM/RAM usage for different quantization levels.
-# 2. DOWNLOAD: Get GGUF files from HuggingFace (Bartowski or ggml-org repos):
-#    - CLI: 'huggingface-cli download Bartowski/gemma-2-9b-it-GGUF gemma-2-9b-it-Q4_K_M.gguf --local-dir .'
-#    - Web: https://huggingface.co/models?search=gguf
-#    - Core Recommendations:
-#      - Mistral 7B:  Mistral-7B-Instruct-v0.3-Q4_K_M.gguf
-#      - Gemma 9B:    gemma-2-9b-it-Q4_K_M.gguf
-#      - Mistral 24B: Mistral-Small-24B-Instruct-2501-Q4_K_M.gguf
-#      - GPT-OSS 20B: gpt-oss-20b-mxfp4.gguf
-# 3. DEPLOY:
+# 2. DOWNLOAD: Use your home directory for downloading to avoid sudo issues:
+#    - Create temp dir: mkdir -p ~/ai/downloads && cd ~/ai/downloads
+#    - CLI: 'hf download Bartowski/gemma-2-9b-it-GGUF gemma-2-9b-it-Q4_K_M.gguf --local-dir .'
+# 3. DEPLOY: Move models to the system-wide service directory.
 #    - Create dir: sudo mkdir -p /var/lib/llama-cpp/models
 #    - Move files: sudo mv *.gguf /var/lib/llama-cpp/models/
 #    - Permissions: sudo chown -R llama-swap:llama-swap /var/lib/llama-cpp/models/
+#
+# --- WHY /var/lib/llama-cpp/models INSTEAD OF ~/ai/models? ---
+# 1. SECURITY: System services (llama-swap) run as restricted users. Granting
+#    them access to your home directory (even for one folder) weakens the
+#    system's security posture and the isolation of your personal data.
+# 2. BACKUPS: Models are large binaries (5GB-20GB+). Keeping them in /var/lib
+#    prevents them from being accidentally included in standard home-directory
+#    backups, saving storage and bandwidth while keeping configs portable.
 #
 # --- TROUBLESHOOTING ---
 # - Logs: journalctl -u llama-swap -f
@@ -26,6 +29,15 @@
 #
 # NOTE: The host-specific model list must be defined in:
 # hosts/<hostname>/programs/ai.nix
+#
+# --- ARCHITECTURE ---
+# 1. llama-swap (Proxy): Acts as the primary entry point (port 11434). It handles
+#    model swapping logic and VRAM management. It is lightweight and "always on".
+# 2. llama-server (Backend): Spawned by llama-swap on-demand. Each model has its
+#    own tuned startup command. llama-swap kills the backend after inactivity
+#    to free up your GPU for the desktop environment.
+# 3. Clients (opencode, open-webui): Connect to llama-swap via the OpenAI-
+#    compatible API. They don't need to know which model is currently loaded.
 # ----------------------------------------------------------------------------
 {
   pkgs,
@@ -57,12 +69,39 @@ in
     inherit llama-cpp-pkg modelDir;
   };
 
-  # Create the model directory with correct permissions for the service
-  systemd.tmpfiles.rules = [
-    "d ${modelDir} 0755 llama-swap llama-swap -"
-    "d /home/${username}/ai 0755 ${username} users -"
-    "d /home/${username}/ai/open-webui 0700 ${username} users -"
-  ];
+  systemd = {
+    # Create the model directory with correct permissions for the service
+    tmpfiles.rules = [
+      "d ${modelDir} 0755 llama-swap llama-swap -"
+      "d /home/${username}/ai 0755 ${username} users -"
+      "d /home/${username}/ai/open-webui 0700 ${username} users -"
+    ];
+
+    # Fix llama-swap access to /proc/meminfo for memory management
+    # WHY: The service needs to monitor system RAM/VRAM usage to decide when to
+    # swap models. Default NixOS hardening (ProtectProc/ProcSubset) blocks this.
+    # We also add nvidia-smi to the path so it can monitor VRAM.
+    services.llama-swap = {
+      path = [ config.boot.kernelPackages.nvidia_x11 ];
+      serviceConfig = {
+        ProtectProc = lib.mkForce "default";
+        ProcSubset = lib.mkForce "all";
+      };
+    };
+
+    # Fix permissions for Open WebUI when using a home-resident stateDir
+    # WHY: The NixOS module defaults to DynamicUser=true and User=open-webui,
+    # which cannot access /home/mimame due to standard security permissions (700).
+    # We also disable sandboxing that prevents access to /home.
+    services.open-webui.serviceConfig = {
+      User = lib.mkForce username;
+      Group = lib.mkForce "users";
+      DynamicUser = lib.mkForce false;
+      ProtectHome = lib.mkForce false;
+      ProtectSystem = lib.mkForce "full";
+      ReadWritePaths = [ "/home/${username}/ai/open-webui" ];
+    };
+  };
 
   services = {
     # Llama-swap: Transparent OpenAI-compatible proxy for llama.cpp
@@ -96,28 +135,15 @@ in
     };
   };
 
-  # Fix permissions for Open WebUI when using a home-resident stateDir
-  # WHY: The NixOS module defaults to DynamicUser=true and User=open-webui,
-  # which cannot access /home/mimame due to standard security permissions (700).
-  # We also disable sandboxing that prevents access to /home.
-  systemd.services.open-webui.serviceConfig = {
-    User = lib.mkForce username;
-    Group = lib.mkForce "users";
-    DynamicUser = lib.mkForce false;
-    ProtectHome = lib.mkForce false;
-    ProtectSystem = lib.mkForce "full";
-    ReadWritePaths = [ "/home/${username}/ai/open-webui" ];
-  };
-
   # Custom environment for AI tools
   environment.variables = {
     # Configure opencode to use local llama-swap proxy for inference
     # This keeps your programming tasks 100% local.
     # TIP: Override via shell if speed is needed:
-    #   OPENCODE_MODEL=mistral-7b opencode  (Fast)
-    #   OPENCODE_MODEL=gemma-9b opencode    (Balanced)
+    #   OPENCODE_MODEL=llama-swap/mistral-7b opencode
+    #   OPENCODE_MODEL=llama-swap/gemma-9b opencode
     OPENCODE_API_BASE_URL = "http://127.0.0.1:11434/v1";
-    OPENCODE_MODEL = "mistral-24b"; # Default to the high-intelligence logic model
+    OPENCODE_MODEL = "llama-swap/gemma-9b"; # Use provider/model format for real identification
   };
 
   environment.systemPackages = with pkgs.unstable; [
@@ -128,7 +154,7 @@ in
 
     # --- AI Protocols & Clients ---
     gemini-cli # Gemini protocol client
-    python3Packages.huggingface-hub # CLI for downloading models from HuggingFace (huggingface-cli)
+    python3Packages.huggingface-hub # CLI for downloading models from HuggingFace (hf)
     llama-cpp-pkg # Local inference tools (llama-cli, llama-server)
 
     # --- Hardware Capability Tools ---
