@@ -24,7 +24,3 @@ if set -q IS_NIXOS; and test "$IS_NIXOS" = true
     abbr scut 'systemctl --user status'
     abbr scuk 'systemctl --user stop'
 end
-
-if set -q IS_DARWIN; and test "$IS_DARWIN" = true
-    # macOS specific shell integrations
-end

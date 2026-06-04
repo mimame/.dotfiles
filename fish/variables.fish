@@ -87,7 +87,6 @@ set -g fish_cursor_visual block # Visual mode cursor
 
 # --- Editor Configuration ---
 
-set -gx default_nvim nvim
 set -gx default_hx hx
 set -gx EDITOR $default_hx
 set -gx VISUAL $EDITOR
