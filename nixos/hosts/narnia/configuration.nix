@@ -169,13 +169,20 @@ in
   # ----------------------------------------------------------------------------
   # State Version
   #
-  # This value determines the NixOS release from which the default
-  # settings for stateful data were taken. It‘s crucial to read the
-  # NixOS manual before changing this value.
+  # Set ONCE at installation time and NEVER changed afterwards — even when
+  # upgrading NixOS channels (e.g. 25.05 → 26.05).
+  #
+  # This is NOT the running NixOS version. It is the version at which this
+  # system was first installed, and it pins the initial defaults for stateful
+  # services. For example, PostgreSQL uses it to determine which major version
+  # to initialise the data directory with on first run — changing it after the
+  # fact would cause a format mismatch and break the database.
+  #
+  # Rule: the value below is forever "24.11". Do not touch it.
   # ----------------------------------------------------------------------------
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "24.11";
 
-  # --- Manual Upgrade Notes ---
+  # --- Manual Channel Upgrade (run when switching to a new NixOS release) ---
   # sudo nix-channel --add https://nixos.org/channels/nixos-25.05 nixos
   # sudo nix-channel --update
   # sudo nix-channel --list
