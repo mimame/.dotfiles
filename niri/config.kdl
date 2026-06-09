@@ -14,7 +14,7 @@ input {
 
             // For example:
             // layout "us,ru"
-             layout "us"
+            layout "us"
             // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
             variant "altgr-intl"
         }
@@ -327,9 +327,15 @@ animations {
     clip-to-geometry true
 }
 
-// Open new windows maximized by default
+// Open new windows maximized by default; floating windows override this below
 window-rule {
-  open-maximized true
+    open-maximized true
+}
+
+// Floating windows: cap height for windows manually toggled to floating via Mod+Shift+V
+window-rule {
+    match is-floating=true
+    max-height 900
 }
 
 // Use 'niri msg windows' to identify the correct identifiers for rules.
@@ -343,6 +349,7 @@ window-rule {
     match app-id=r#"^blueman-manager$"#
     open-floating true
     open-centered true
+    max-height 900
 }
 
 // Emoji picker: always floating, no centering (it anchors near cursor)
@@ -355,6 +362,39 @@ window-rule {
 window-rule {
     match title=r#"^Picture-in-Picture$"#
     open-floating true
+}
+
+// Zed dialogs: matched by both app-id AND title to avoid false positives
+window-rule {
+    match app-id=r#"^dev\.zed\.Zed$"# title=r#"^About Zed$"#
+    open-floating true
+    open-centered true
+    max-height 900
+}
+
+// Firefox dialogs: matched by both app-id AND title to avoid false positives
+window-rule {
+    match app-id=r#"^firefox$"# title=r#"^About Mozilla Firefox$"#
+    open-floating true
+    open-centered true
+    max-height 900
+}
+
+// Nautilus file picker portals: float only picker dialogs, not the file manager itself
+window-rule {
+    match app-id=r#"^org\.gnome\.Nautilus$"# title=r#"^(Open|Save|Select) (File|Files|Folder|Workspace)"#
+    match app-id=r#"^org\.gnome\.Nautilus$"# title=r#"^File (Upload|Download)"#
+    open-floating true
+    open-centered true
+    max-height 900
+}
+
+// Polkit authentication prompts: must float to stay visible above other windows
+window-rule {
+    match app-id=r#"^polkit-gnome-authentication-agent-1$"#
+    open-floating true
+    open-centered true
+    max-height 900
 }
 
 // Don't show the hotkey help at niri startup
@@ -408,8 +448,6 @@ binds {
         spawn "dms" "ipc" "call" "lock" "lock";
     }
 
-    Super+Alt+L { spawn "gtklock"; }
-
     // You can also use a shell:
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec ghostty"; }
 
@@ -446,8 +484,6 @@ binds {
     XF86Tools { spawn "spotify"; }
     XF86Calculator { spawn "qalculate-gtk"; }
     XF86Search { spawn "firefox"; }
-    Scroll_Lock { spawn "gtklock"; }
-    // Pause
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
@@ -686,7 +722,6 @@ environment {
     SDL_VIDEODRIVER "wayland"
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "gtk3"
-    QT_QPA_PLATFORMTHEME_QT6 "gtk3"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     MOZ_ENABLE_WAYLAND "1"
     GTK_USE_PORTAL "1"
