@@ -334,11 +334,27 @@ window-rule {
 
 // Use 'niri msg windows' to identify the correct identifiers for rules.
 // Add apps here that should float instead of tile (e.g., password managers, small utilities).
+
+// System utilities: small tools that don't benefit from tiling
 window-rule {
-  match app-id=r#"^com\.saivert\.pwvucontrol$"#
-  match app-id=r#"^it\.mijorus\.smile$"#
-  match title=r#"^Picture-in-Picture$"#
-  open-floating true
+    match app-id=r#"^com\.saivert\.pwvucontrol$"#
+    match app-id=r#"^io\.github\.Qalculate\.qalculate-gtk$"#
+    match app-id=r#"^nm-connection-editor$"#
+    match app-id=r#"^blueman-manager$"#
+    open-floating true
+    open-centered true
+}
+
+// Emoji picker: always floating, no centering (it anchors near cursor)
+window-rule {
+    match app-id=r#"^it\.mijorus\.smile$"#
+    open-floating true
+}
+
+// Picture-in-Picture: keep it floating wherever the browser places it
+window-rule {
+    match title=r#"^Picture-in-Picture$"#
+    open-floating true
 }
 
 // Don't show the hotkey help at niri startup
