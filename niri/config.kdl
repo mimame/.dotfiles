@@ -348,7 +348,6 @@ window-rule {
     match app-id=r#"^nm-connection-editor$"#
     match app-id=r#"^blueman-manager$"#
     open-floating true
-    open-centered true
     max-height 900
 }
 
@@ -364,19 +363,17 @@ window-rule {
     open-floating true
 }
 
-// Zed dialogs: matched by both app-id AND title to avoid false positives
+// Zed dialogs: matched by both app-id AND title to avoid false positives on window title searches
 window-rule {
     match app-id=r#"^dev\.zed\.Zed$"# title=r#"^About Zed$"#
     open-floating true
-    open-centered true
     max-height 900
 }
 
-// Firefox dialogs: matched by both app-id AND title to avoid false positives
+// Firefox dialogs: matched by both app-id AND title to avoid false positives on window title searches
 window-rule {
     match app-id=r#"^firefox$"# title=r#"^About Mozilla Firefox$"#
     open-floating true
-    open-centered true
     max-height 900
 }
 
@@ -385,7 +382,6 @@ window-rule {
     match app-id=r#"^org\.gnome\.Nautilus$"# title=r#"^(Open|Save|Select) (File|Files|Folder|Workspace)"#
     match app-id=r#"^org\.gnome\.Nautilus$"# title=r#"^File (Upload|Download)"#
     open-floating true
-    open-centered true
     max-height 900
 }
 
@@ -393,7 +389,6 @@ window-rule {
 window-rule {
     match app-id=r#"^polkit-gnome-authentication-agent-1$"#
     open-floating true
-    open-centered true
     max-height 900
 }
 
