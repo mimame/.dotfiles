@@ -5,14 +5,13 @@
 # ----------------------------------------------------------------------------
 _: {
   boot.kernel.sysctl = {
-    # Ensure RAs are disabled for existing interfaces to silence immediate log spam.
+    # Per-interface IPv6 RA suppression for Narnia's physical interfaces.
     #
-    # WHY: On Narnia, the kernel frequently attempts to process IPv6 Router
-    # Advertisements (RAs) before NetworkManager (which handles them in userspace)
-    # can take control. This leads to "ndisc_router_discovery failed to add
-    # default route" spam. Explicitly disabling it per-interface silences this.
-    "net.ipv6.conf.all.accept_ra" = 0;
-    "net.ipv6.conf.default.accept_ra" = 0;
+    # WHY: The kernel attempts to process RAs before NetworkManager takes
+    # control, causing "ndisc_router_discovery failed to add default route"
+    # log spam. hardware/networking.nix already sets all/default with mkDefault;
+    # these per-interface keys are the host-specific addition that silences the
+    # noise on the actual interfaces present on this machine.
     "net.ipv6.conf.enp4s0.accept_ra" = 0; # Ethernet
     "net.ipv6.conf.wlp5s0.accept_ra" = 0; # Wi-Fi
   };
