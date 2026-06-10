@@ -58,8 +58,9 @@
 
     # Clight: Adaptive brightness and gamma (Night Light)
     # Uses ambient light sensor (ALS) or webcam fallback to adjust display.
+    # Disabled: too invasive in practice; config kept for easy re-enable.
     clight = {
-      enable = true;
+      enable = false;
       settings = {
         backlight.enabled = true;
         gamma.enabled = true;
