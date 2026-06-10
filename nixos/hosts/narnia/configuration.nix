@@ -183,7 +183,7 @@ in
   system.stateVersion = "24.11";
 
   # --- Manual Channel Upgrade (run when switching to a new NixOS release) ---
-  # sudo nix-channel --add https://nixos.org/channels/nixos-25.05 nixos
+  # sudo nix-channel --add https://nixos.org/channels/nixos-26.05 nixos
   # sudo nix-channel --update
   # sudo nix-channel --list
   # sudo nixos-rebuild switch --upgrade
