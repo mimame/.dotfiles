@@ -96,10 +96,6 @@
     # Enable power management support via UPower
     upower.enable = true;
 
-    # Aims to provide high performance and reliability,
-    # while keeping compatibility to the D-Bus reference implementation
-    dbus.implementation = "broker";
-
     # Enable UDisks2 for storage device management
     udisks2.enable = true;
 
