@@ -21,18 +21,13 @@ _: {
     #
     # Only appropriate for pre-10th gen Intel where mitigations are expensive.
     # Newer CPUs (10th gen+) have hardware fixes with minimal performance cost.
+    #
+    # NOTE: mitigations=off covers all individual spectre/meltdown flags
+    # (noibpb, noibrs, nopti, nospectre_v*, l1tf=off, mds=off, etc.) — no need
+    # to list them separately. tsx=on is kept explicit: some kernels disable TSX
+    # by default regardless of mitigations, so this ensures it stays enabled.
     "mitigations=off"
-    "noibpb"
-    "noibrs"
-    "nopti"
-    "nospectre_v1"
-    "nospectre_v2"
-    "nospec_store_bypass_disable"
-    "no_stf_barrier"
-    "l1tf=off"
-    "mds=off"
     "tsx=on"
-    "tsx_async_abort=off"
 
     # Stability Fixes for Tongfang GK5CN6Z
     #
