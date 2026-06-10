@@ -6,19 +6,24 @@
 # ----------------------------------------------------------------------------
 { pkgs, lib, ... }:
 {
-  # NixOS Helper (nh) - convenient wrapper for nixos-rebuild and garbage collection
-  programs.nh = {
-    enable = true;
-    package = pkgs.unstable.nh;
-    clean = {
+  programs = {
+    # NixOS Helper (nh) - convenient wrapper for nixos-rebuild and garbage collection
+    nh = {
       enable = true;
-      # Keep last 4 days of generations, minimum 3 generations
-      extraArgs = "--keep-since 4d --keep 3";
+      package = pkgs.unstable.nh;
+      clean = {
+        enable = true;
+        # Keep last 4 days of generations, minimum 3 generations
+        extraArgs = "--keep-since 4d --keep 3";
+      };
     };
-  };
 
-  # Enable nix-index for finding which package provides a file
-  programs.nix-index.enable = true;
+    # nix-index replaces command-not-found: uses a live-built index of the
+    # current nixpkgs tree instead of a stale static database. The two
+    # cannot coexist because they both register the command-not-found handler.
+    command-not-found.enable = false;
+    nix-index.enable = true;
+  };
 
   nix = {
     # Build Priority and Resource Limits
