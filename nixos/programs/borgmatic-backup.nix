@@ -15,7 +15,7 @@
   # WHY: User service can access ~/.config/borgmatic/config.yaml
   services.borgmatic.enable = lib.mkForce false;
 
-  environment.systemPackages = [ pkgs.unstable.borgmatic ];
+  environment.systemPackages = [ pkgs.borgmatic ];
 
   # User-level systemd service
   systemd.user.services.borgmatic = {
@@ -36,7 +36,7 @@
           --who="borgmatic" \
           --what="sleep:shutdown" \
           --why="Prevent interrupting scheduled backup" \
-          ${pkgs.unstable.borgmatic}/bin/borgmatic --verbosity -1 --syslog-verbosity 1
+          ${pkgs.borgmatic}/bin/borgmatic --verbosity -1 --syslog-verbosity 1
       '';
     };
   };

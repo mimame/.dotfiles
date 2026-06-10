@@ -8,7 +8,7 @@
   # Java Development Kit (JDK) configuration.
   programs.java = {
     enable = true;
-    package = pkgs.unstable.jdk21;
+    package = pkgs.jdk25;
   };
 
   environment.systemPackages = with pkgs.unstable; [
