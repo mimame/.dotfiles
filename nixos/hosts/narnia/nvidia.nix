@@ -19,6 +19,18 @@
   # Use NVIDIA as the primary X.org video driver
   services.xserver.videoDrivers = lib.mkDefault [ "nvidia" ];
 
+  boot.kernelParams = [
+    # WHY: Provides a stable path for saving/restoring video memory during suspend.
+    # On some hardware, the default /tmp (often tmpfs) can cause I/O errors (-5)
+    # during the late stages of suspend-then-hibernate.
+    "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+
+    # WHY: Preserves VRAM allocations across sleep/hibernate cycles.
+    # This prevents the Input/output error (-EIO) seen in nvidia-sleep.sh and
+    # ensures that applications (like VSCode/Chrome) don't crash on resume.
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+  ];
+
   hardware.nvidia = {
     # Use proprietary kernel module (better performance than nouveau/open)
     # WHY: The open-source nvidia-open driver doesn't support Pascal (GTX 1060)
@@ -26,15 +38,6 @@
     open = false;
 
     branch = "stable";
-
-    moduleParams = {
-      # Stable path prevents I/O errors (-5) during suspend-then-hibernate when
-      # /tmp is tmpfs and too small for VRAM save/restore.
-      NVreg_TemporaryFilePath = "/var/tmp";
-      # Preserve VRAM across sleep/hibernate; prevents -EIO in nvidia-sleep.sh
-      # and app crashes (VSCode/Chrome) on resume.
-      NVreg_PreserveVideoMemoryAllocations = "1";
-    };
 
     # Disable persistence daemon to save power when GPU is idle
     # WHY: On Optimus laptops, the daemon keeps the driver loaded even when
