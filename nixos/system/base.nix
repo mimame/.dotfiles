@@ -177,7 +177,7 @@
   };
 
   # Enable apropos(1) and the -k option of man(1)
-  documentation.man.generateCaches = true;
+  documentation.man.cache.enable = true;
 
   environment.systemPackages = with pkgs; [
 

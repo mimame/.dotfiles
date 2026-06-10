@@ -61,20 +61,21 @@
   services.resolved = {
     enable = true;
 
-    # Opportunistic DoT: Attempts encryption but falls back to unencrypted DNS
-    # if the server doesn't support it or if blocked by network. This mode
-    # protects against passive eavesdropping but NOT active downgrade attacks.
-    # Chosen for reliability over strict security (works on all networks).
-    dnsovertls = "true";
-
     # DNSSEC disabled: Many DNS servers are misconfigured and fail validation,
     # breaking domain resolution. Prioritizing reliability over validation.
     # Options: "false" (off), "true" (strict), "allow-downgrade" (pragmatic)
     # dnssec = "true";
 
-    # Cloudflare and Google DNS with DoT authentication
-    # Format: IP#ServerName where ServerName verifies TLS certificate
-    settings.Resolve.DNS = "1.1.1.1#cloudflare-dns.com 8.8.8.8#dns.google 1.0.0.1#cloudflare-dns.com 8.8.4.4#dns.google 2606:4700:4700::1111#cloudflare-dns.com 2001:4860:4860::8888#dns.google 2606:4700:4700::1001#cloudflare-dns.com 2001:4860:4860::8844#dns.google";
+    settings.Resolve = {
+      # Opportunistic DoT: tries encryption, falls back to plaintext if unavailable.
+      # Protects against passive eavesdropping but NOT active downgrade attacks.
+      # Chosen for reliability over strict security (works on all networks).
+      DNSOverTLS = "opportunistic";
+
+      # Cloudflare and Google DNS with DoT authentication
+      # Format: IP#ServerName where ServerName verifies TLS certificate
+      DNS = "1.1.1.1#cloudflare-dns.com 8.8.8.8#dns.google 1.0.0.1#cloudflare-dns.com 8.8.4.4#dns.google 2606:4700:4700::1111#cloudflare-dns.com 2001:4860:4860::8888#dns.google 2606:4700:4700::1001#cloudflare-dns.com 2001:4860:4860::8844#dns.google";
+    };
   };
 
   # OpenSSH daemon
