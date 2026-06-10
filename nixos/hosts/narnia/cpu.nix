@@ -31,14 +31,15 @@ _: {
     # Prevents premature thermal throttling during sustained workloads.
     throttled.enable = true;
 
-    # Thermal management daemon for Intel CPUs.
-    # Monitors temperatures and adjusts cooling policy to prevent overheating.
-    # Complements power-profiles-daemon by handling hardware safety.
-    thermald.enable = true;
-
     # Desktop power profile management via D-Bus API.
     # Provides user-controlled Performance/Balanced/Power Saver modes.
-    # Preferred over auto-cpufreq for desktop environments with explicit control.
+    #
+    # WHY NOT thermald: three layers already cover hardware thermal safety without it:
+    #   1. CPU hardware — i7-8750H self-throttles at TJ Max (~100°C), no daemon needed.
+    #   2. throttled — fixes the Tongfang BIOS PL1 cap (15W → 45W TDP); owns RAPL.
+    #   3. PPD (this) — single declarative authority over governor + power limits.
+    # thermald was removed because it fights throttled and PPD over the same RAPL
+    # registers, producing a tug-of-war that undermines the balanced profile baseline.
     power-profiles-daemon = {
       enable = true;
       # Set to balanced to prevent "scary" fan noise during heavy builds.
