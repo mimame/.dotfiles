@@ -1,14 +1,16 @@
 # This module defines packages for JVM-based languages, including Java and Clojure.
 {
   pkgs,
+  lib,
   ...
 }:
 
 {
-  # Java Development Kit (JDK) configuration.
+  # Use jdk25 (latest LTS) unless nixpkgs default has already moved past it.
+  # WHY: Prevents silently downgrading if the nixpkgs default JDK ever exceeds 25.
   programs.java = {
     enable = true;
-    package = pkgs.jdk25;
+    package = if lib.versionAtLeast pkgs.jdk.version "25" then pkgs.jdk else pkgs.jdk25;
   };
 
   environment.systemPackages = with pkgs.unstable; [
