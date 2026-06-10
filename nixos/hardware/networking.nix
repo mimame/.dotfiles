@@ -94,15 +94,6 @@
       TCPKeepAlive = true; # Detect dead connections, prevent timeouts
     };
 
-    # Modern cryptography prioritizing performance and security:
-    # - KexAlgorithms: Curve25519 for fast, secure key exchange
-    # - Ciphers: ChaCha20-Poly1305 (fast without AES-NI), AES-GCM (AEAD)
-    # - MACs: EtM (Encrypt-then-MAC) for superior integrity protection
-    extraConfig = ''
-      KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
-      Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
-      MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com
-    '';
     openFirewall = true;
   };
 
