@@ -15,42 +15,46 @@
 # ----------------------------------------------------------------------------
 { pkgs, ... }:
 let
-  # Wrap a package to run with NVIDIA GPU via PRIME Offload environment variables
-  # This sets the environment variables that force rendering on the discrete GPU
-  # instead of the integrated Intel GPU.
+  # Wrap a package to run with NVIDIA GPU via PRIME Offload environment variables.
+  # Forces rendering on the discrete GPU instead of the integrated Intel GPU.
+  #
+  # extraEnv: additional wrapProgram flags for app-specific Wayland backends.
+  # WHY split: MOZ_ENABLE_WAYLAND is Mozilla-only; NIXOS_OZONE_WL/ELECTRON_*
+  # are Electron/Chromium-only. Applying all vars to all apps is semantically
+  # wrong and can confuse runtime backend detection.
   wrapNvidia =
-    pkg: binary:
+    pkg: binary: extraEnv:
     pkgs.symlinkJoin {
       name = "${pkg.name}-nvidia";
       paths = [ pkg ];
       nativeBuildInputs = [ pkgs.makeWrapper ];
       postBuild = ''
-        # Force Native Wayland for wrapped apps
-        # WHY: Prevents the unreliable XWayland-to-Wayland clipboard bridge.
-        # Forcing native backends ensures seamless clipboard synchronization
-        # and avoids 'stuck' selections common in hybrid GPU setups.
         wrapProgram $out/bin/${binary} \
           --set __NV_PRIME_RENDER_OFFLOAD 1 \
           --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER NVIDIA-G0 \
           --set __GLX_VENDOR_LIBRARY_NAME nvidia \
           --set __VK_LAYER_NV_optimus NVIDIA_only \
-          --set MOZ_ENABLE_WAYLAND 1 \
-          --set NIXOS_OZONE_WL 1 \
-          --set ELECTRON_OZONE_PLATFORM_HINT auto
+          ${extraEnv}
       '';
     };
+
+  # Wayland backend flags per runtime type.
+  # WHY: Prevents the unreliable XWayland-to-Wayland clipboard bridge and
+  # avoids 'stuck' selections common in hybrid GPU setups.
+  mozWayland = "--set MOZ_ENABLE_WAYLAND 1";
+  electronWayland = "--set NIXOS_OZONE_WL 1 --set ELECTRON_OZONE_PLATFORM_HINT auto";
 in
 {
   environment.systemPackages = [
-    # Development tools
+    # Development tools — Electron-based, use Ozone Wayland backend
     # WHY: GPU acceleration improves editor responsiveness, especially for
     # large files and syntax highlighting
-    (wrapNvidia pkgs.unstable.vscode "code")
-    (wrapNvidia pkgs.unstable.zed-editor "zeditor")
+    (wrapNvidia pkgs.unstable.vscode "code" electronWayland)
+    (wrapNvidia pkgs.unstable.zed-editor "zeditor" electronWayland)
 
-    # Media player
+    # Media player — native Wayland support, no extra env needed
     # WHY: Hardware video decode reduces CPU usage and heat during playback
-    (wrapNvidia pkgs.unstable.vlc "vlc")
+    (wrapNvidia pkgs.unstable.vlc "vlc" "")
 
     # Web browsers
     # WHY: GPU acceleration provides:
@@ -60,11 +64,11 @@ in
     (wrapNvidia (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {
       ffmpegSupport = true; # Enable FFmpeg for video codec support
       pipewireSupport = true; # Enable screen sharing via PipeWire
-    }) { }) "firefox")
-    (wrapNvidia pkgs.unstable.google-chrome "google-chrome-stable")
+    }) { }) "firefox" mozWayland)
+    (wrapNvidia pkgs.unstable.google-chrome "google-chrome-stable" electronWayland)
     (wrapNvidia (pkgs.unstable.vivaldi.override {
       proprietaryCodecs = true; # H.264, AAC support
       enableWidevine = true; # DRM for Netflix, Spotify, etc.
-    }) "vivaldi")
+    }) "vivaldi" electronWayland)
   ];
 }
