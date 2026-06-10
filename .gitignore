@@ -26,6 +26,7 @@ fish/functions/z.fish
 fish/themes/
 gh/hosts.yml
 history.txt
+TODO.md
 lazygit/state.yml
 nvchad/lazy-lock.json
 result/
