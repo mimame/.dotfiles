@@ -136,12 +136,12 @@
   # systemd-sleep: hibernate after 2h in suspend.
   # Applies to all suspend paths (autosuspend idle, lid close, power key).
   # See: https://www.freedesktop.org/software/systemd/man/latest/sleep.conf.d.html
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=yes
-    AllowHibernation=yes
-    AllowSuspendThenHibernate=yes
-    HibernateDelaySec=2h
-  '';
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "yes";
+    AllowHibernation = "yes";
+    AllowSuspendThenHibernate = "yes";
+    HibernateDelaySec = "2h";
+  };
 
   environment.systemPackages = with pkgs; [
     brightnessctl # Screen brightness control
