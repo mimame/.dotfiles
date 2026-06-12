@@ -88,7 +88,12 @@
       # Each entry maps to a [check.<name>] INI section.
       # enabled = true is the module default; only set it to disable a check.
       checks = {
-        # Block suspend if the user has been active recently (Wayland-compatible).
+        # Block suspend if the user has been active recently.
+        # WHY WAYLAND COMPATIBILITY: Under Wayland compositors (like Niri), logind
+        # does not receive user input events directly and its IdleHint remains
+        # permanently active. This check requires a helper daemon (like swayidle,
+        # configured in the compositor's module) to bridge compositor idle events
+        # to logind via 'loginctl idle-hint'.
         # idle_time here is the logind session inactivity threshold.
         LogindSessionsIdle.idle_time = 600; # 10 min without keyboard/mouse input
 
