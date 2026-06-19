@@ -99,10 +99,13 @@ args = [ "serve" ]
 # --- Markdown ---
 [[language]]
 name = "markdown"
-language-servers = [ "marksman" ]
-# WHY: rumdl is faster and more opinionated than markdownlint-cli2
-formatter = { command = "rumdl", args = [ "--fix", "-" ] }
+language-servers = [ "marksman", "rumdl" ]
+formatter = { command = "dprint", args = [ "fmt", "--stdin", "file.md" ] }
 auto-format = false
+
+[language-server.rumdl]
+command = "rumdl"
+args = [ "server" ]
 
 # --- YAML ---
 [[language]]
