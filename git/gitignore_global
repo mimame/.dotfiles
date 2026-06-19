@@ -170,3 +170,5 @@ secring.*
 
 # LibreOffice
 .~lock.*#
+
+**/.claude/settings.local.json
