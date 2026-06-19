@@ -46,7 +46,8 @@ set -l RSYNC_COMMAND rsync \
     --exclude=".config/google-chrome/" \
     --exclude=".cargo/" \
     --exclude=".thunderbird/" \
-    --exclude=".ollama/" \
+    --exclude="ai/models/" \
+    --exclude=".open-webui/" \
     --exclude=".vscode/" \
     --exclude=".minikube/" \
     --exclude=".rustup/" \
