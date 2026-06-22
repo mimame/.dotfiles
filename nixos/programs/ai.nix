@@ -72,7 +72,7 @@ in
   systemd = {
     # Create the model directory with correct permissions for the service
     tmpfiles.rules = [
-      "d ${modelDir} 0755 llama-swap llama-swap -"
+      "d ${modelDir} 0755 - - -"
       "d /home/${username}/ai 0755 ${username} users -"
       "d /home/${username}/ai/open-webui 0700 ${username} users -"
     ];
