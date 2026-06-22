@@ -45,6 +45,14 @@
       }
     }
   },
+  // MCP servers for tool-augmented workflows.
+  "mcp": {
+    "nixos": {
+      "type": "local",
+      "command": ["nix", "run", "github:utensils/mcp-nixos", "--"],
+      "enabled": true
+    }
+  },
   // Compaction controls how opencode frees context window when it fills up.
   // These values are tuned for big-pickle (large remote model with abundant
   // context). For small local models (8K–16K) you'd want more aggressive
