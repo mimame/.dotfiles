@@ -10,21 +10,21 @@
 # ┌─────────────────────────┬───────────────────┬───────────────────────────────────────────────────┐
 # │ Task                    │ Recommended Model │ Rationale                                         │
 # ├─────────────────────────┼───────────────────┼───────────────────────────────────────────────────┤
-# │ Obsidian / Creative     │ gemma-9b          │ Best reasoning and prose for knowledge synthesis. │
-# │ Coding (opencode)       │ mistral-24b       │ Highest logic ceiling for complex architecture.   │
-# │ Fast Chat / Boilerplate │ mistral-7b        │ Instant responses for trivial tasks.              │
-# │ Complex Reasoning       │ gpt-oss-20b       │ Deep reasoning MOE alternative.                   │
+# │ Coding (Instant/Fluid)  │ qwen-coder-3b     │ Elite 3B code model. 100% GPU (~62 tok/s), Q8_0.  │
+# │ Fast Chat / Boilerplate │ llama-3b          │ Ultra-fast responses for daily tasks, Q8_0.       │
+# │ Obsidian / Creative     │ gemma-9b          │ High-quality prose/synthesis. Hybrid GPU/CPU.    │
+# │ Complex Logic (Slow)    │ mistral-24b       │ Maximum reasoning ceiling. Mostly CPU execution.  │
 # └─────────────────────────┴───────────────────┴───────────────────────────────────────────────────┘
 #
 # --- DOWNLOAD REFERENCE ---
-# 1. Mistral 7B v0.3:
-#    hf download bartowski/Mistral-7B-Instruct-v0.3-GGUF --include "Mistral-7B-Instruct-v0.3-Q4_K_M.gguf" --local-dir .
-# 2. Gemma 2 9B:
+# 1. Qwen 2.5 Coder 3B Instruct:
+#    hf download bartowski/Qwen2.5-Coder-3B-Instruct-GGUF --include "Qwen2.5-Coder-3B-Instruct-Q8_0.gguf" --local-dir .
+# 2. Llama 3.2 3B Instruct:
+#    hf download bartowski/Llama-3.2-3B-Instruct-GGUF --include "Llama-3.2-3B-Instruct-Q8_0.gguf" --local-dir .
+# 3. Gemma 2 9B:
 #    hf download bartowski/gemma-2-9b-it-GGUF --include "gemma-2-9b-it-Q4_K_M.gguf" --local-dir .
-# 3. Mistral Small 24B (2501):
+# 4. Mistral Small 24B (2501):
 #    hf download bartowski/Mistral-Small-24B-Instruct-2501-GGUF --include "Mistral-Small-24B-Instruct-2501-Q4_K_M.gguf" --local-dir .
-# 4. GPT-OSS 20B:
-#    hf download ggml-org/gpt-oss-20b-GGUF --include "gpt-oss-20b-mxfp4.gguf" --local-dir .
 # ----------------------------------------------------------------------------
 {
   lib,
@@ -43,15 +43,32 @@ let
 in
 {
   services.llama-swap.settings.models = {
-    # "Cohete" (Speed): Mistral 7B v0.3
-    # WHY: Tiny and efficient. Perfect for simple chat or fast boilerplate.
+    # "Cohete Código" (Speed/Context): Qwen 2.5 Coder 3B
+    # WHY: Blazing fast coding assistant that fits entirely in 6GB VRAM at high quantization.
     # --- PARAMETERS ---
-    # -ngl 12: Reduced to 12 for quiet operation and safe VRAM headroom (~4GB total).
-    # -c 8192: Context size. 8k is enough for most code files and long chats.
-    # -np 1: Only 1 slot. Saves VRAM by preventing parallel request overhead.
-    "mistral-7b" = {
-      cmd = "${narnia-llama-cpp}/bin/llama-server --port ${"$"}{PORT} -m ${modelDir}/Mistral-7B-Instruct-v0.3-Q4_K_M.gguf -ngl 12 -c 8192 -np 1";
-      aliases = [ "mistral" ];
+    # -ngl 99: Force all layers into GPU for maximum performance.
+    # -c 16384: Generous 16k context window for managing mid-sized code files.
+    # -np 1: Single user slot to avoid memory overhead.
+    "qwen-coder-3b" = {
+      cmd = "${narnia-llama-cpp}/bin/llama-server --port ${"$"}{PORT} -m ${modelDir}/Qwen2.5-Coder-3B-Instruct-Q8_0.gguf -ngl 99 -c 16384 -np 1";
+      aliases = [
+        "coder"
+        "code-fast"
+      ];
+    };
+
+    # "Cohete Chat" (Speed/General): Llama 3.2 3B
+    # WHY: Lightweight general assistant from llmfit specs. Perfect for instant terminal interactions.
+    # --- PARAMETERS ---
+    # -ngl 99: 100% GPU offloading.
+    # -c 8192: Standard 8k context window.
+    # -np 1: Single user slot.
+    "llama-3b" = {
+      cmd = "${narnia-llama-cpp}/bin/llama-server --port ${"$"}{PORT} -m ${modelDir}/Llama-3.2-3B-Instruct-Q8_0.gguf -ngl 99 -c 8192 -np 1";
+      aliases = [
+        "llama"
+        "chat-fast"
+      ];
     };
 
     # Balanced: Gemma 2 9B
@@ -74,17 +91,6 @@ in
     "mistral-24b" = {
       cmd = "${narnia-llama-cpp}/bin/llama-server --port ${"$"}{PORT} -m ${modelDir}/Mistral-Small-24B-Instruct-2501-Q4_K_M.gguf -ngl 4 -c 8192 -np 1";
       aliases = [ "mistral-small" ];
-    };
-
-    # Reasoning Nativo: GPT-OSS 20B
-    # WHY: Specialized MOE model. Uses optimized mxfp4 for efficiency.
-    # --- PARAMETERS ---
-    # -ngl 8: Conservative offloading for a 20B model to ensure stability.
-    # -c 8192: Standard high-productivity context size.
-    # -np 1: Single user slot.
-    "gpt-oss-20b" = {
-      cmd = "${narnia-llama-cpp}/bin/llama-server --port ${"$"}{PORT} -m ${modelDir}/gpt-oss-20b-mxfp4.gguf -ngl 8 -c 8192 -np 1";
-      aliases = [ "gpt-oss" ];
     };
   };
 }
