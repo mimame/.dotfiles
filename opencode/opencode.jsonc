@@ -44,5 +44,26 @@
         }
       }
     }
+  },
+  // Compaction controls how opencode frees context window when it fills up.
+  // These values are tuned for big-pickle (large remote model with abundant
+  // context). For small local models (8K–16K) you'd want more aggressive
+  // settings: prune: true, lower tail_turns, lower reserved.
+  "compaction": {
+    // auto: automatically compact when the context window approaches full.
+    // Always enabled — even big contexts eventually fill during long sessions.
+    "auto": true,
+    // tail_turns: number of recent user+assistant exchanges kept verbatim
+    // during compaction. Default is 2, which is very aggressive and drops
+    // most of the conversation. With big-pickle's large context we keep 15
+    // turns, giving the model much more working memory after compaction.
+    "tail_turns": 15,
+    // reserved: token headroom reserved during compaction to prevent
+    // overflow while the compaction pass itself runs. 2048 tokens is a safe
+    // pad for any model size; too low risks a failed compaction cycle.
+    "reserved": 2048
+    // prune is not set (defaults to false). Pruning discards old tool
+    // outputs. Big context means those outputs remain useful reference;
+    // no need to throw them away.
   }
 }
