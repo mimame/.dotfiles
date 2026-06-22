@@ -14,6 +14,20 @@
       "models": {
         // Model IDs here must match the keys in services.llama-swap.settings.models
         // defined in your NixOS configuration (nixos/hosts/narnia/programs/ai.nix).
+        "qwen-coder-3b": {
+          "name": "Qwen 2.5 Coder 3B (local - Hyper-Fast)",
+          "limit": {
+            "context": 16384,
+            "output": 4096
+          }
+        },
+        "llama-3b": {
+          "name": "Llama 3.2 3B (local - Fast)",
+          "limit": {
+            "context": 8192,
+            "output": 4096
+          }
+        },
         "gemma-9b": {
           "name": "Gemma 2 9B (local)",
           "limit": {
@@ -21,22 +35,8 @@
             "output": 4096
           }
         },
-        "mistral-7b": {
-          "name": "Mistral 7B (local)",
-          "limit": {
-            "context": 8192,
-            "output": 4096
-          }
-        },
         "mistral-24b": {
           "name": "Mistral Small 24B (local)",
-          "limit": {
-            "context": 8192,
-            "output": 4096
-          }
-        },
-        "gpt-oss-20b": {
-          "name": "GPT-OSS 20B (local)",
           "limit": {
             "context": 8192,
             "output": 4096
