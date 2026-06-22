@@ -99,13 +99,15 @@
     # Enable UDisks2 for storage device management
     udisks2.enable = true;
 
+    # TODO(26.11): Add Dracula palette (palette=custom) once kmscon ≥ 10.0.0 lands
+    # in stable nixpkgs. Starship prompt expects consistent ANSI colors across
+    # all terminals; the fish OSC-escape fallback is a partial workaround.
+
     kmscon = {
       enable = true;
       extraConfig = ''
         font-name=Maple Mono NL NF
-        font-size=18
-        xkb-layout=us
-        xkb-variant=altgr-intl
+        font-size=16
         xkb-repeat-delay=200
         xkb-repeat-rate=40
       '';
