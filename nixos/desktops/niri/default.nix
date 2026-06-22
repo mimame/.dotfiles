@@ -80,7 +80,7 @@
       after = [ "niri.service" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.systemd}/bin/loginctl idle-hint yes' resume '${pkgs.systemd}/bin/loginctl idle-hint no'";
+        ExecStart = "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.systemd}/bin/loginctl lock-sessions'";
         Restart = "on-failure";
         RestartSec = 1;
       };
