@@ -11,7 +11,12 @@
 # This module configures the NVIDIA GPU with PRIME Offload for optimal
 # battery life and performance when needed.
 # ----------------------------------------------------------------------------
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   # Accept NVIDIA proprietary driver license
   nixpkgs.config.nvidia.acceptLicense = true;
@@ -37,7 +42,9 @@
     # Only Turing (GTX 16xx) and newer are supported by nvidia-open
     open = false;
 
-    branch = "stable";
+    # The 595+ stable branch dropped Pascal (GTX 1060) support.
+    # We must pin to the 580 legacy driver series.
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
     # Disable persistence daemon to save power when GPU is idle
     # WHY: On Optimus laptops, the daemon keeps the driver loaded even when
