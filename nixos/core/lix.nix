@@ -9,7 +9,10 @@
   # Override Nix-related tools with Lix versions for compatibility
   nixpkgs.overlays = [
     (final: prev: {
-      inherit (final.lixPackageSets.latest)
+      # WHY prev over final: lixPackageSets is part of nixpkgs (present in both
+      # final and prev), but using final creates an implicit dependency on
+      # overlay evaluation ordering. prev is safer and more idiomatic.
+      inherit (prev.lixPackageSets.latest)
         nixpkgs-review
         nix-eval-jobs
         nix-fast-build
