@@ -50,7 +50,9 @@
     "nixos": {
       "type": "local",
       "command": ["nix", "run", "github:utensils/mcp-nixos", "--"],
-      "enabled": true
+      "enabled": true,
+      // nix run needs extra time for flake evaluation and Python startup.
+      "timeout": 30000
     }
   },
   // Compaction controls how opencode frees context window when it fills up.
