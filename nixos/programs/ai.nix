@@ -153,7 +153,7 @@ in
     opencode # AI coding agent for terminal. Configured via OPENCODE_* env vars.
 
     # --- AI Protocols & Clients ---
-    gemini-cli # Gemini protocol client
+    antigravity-cli # Antigravity protocol client
     python3Packages.huggingface-hub # CLI for downloading models from HuggingFace (hf)
     llama-cpp-pkg # Local inference tools (llama-cli, llama-server)
 
