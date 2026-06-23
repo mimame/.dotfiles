@@ -99,9 +99,13 @@
     # Enable UDisks2 for storage device management
     udisks2.enable = true;
 
-    # TODO(26.11): Add Dracula palette (palette=custom) once kmscon ≥ 10.0.0 lands
-    # in stable nixpkgs. Starship prompt expects consistent ANSI colors across
-    # all terminals; the fish OSC-escape fallback is a partial workaround.
+    # TODO(26.11 / kmscon-10): Add Dracula palette (palette=custom) once kmscon
+    # ≥ 10.0.0 lands in nixpkgs and initial libseat bugs are resolved.
+    # 26.11 is the earliest stable release window to re-evaluate.
+    # Blockers: https://github.com/kmscon/kmscon/issues/404 (libseat race)
+    #           https://github.com/kmscon/kmscon/issues/403 (missing env vars)
+    # Starship prompt expects consistent ANSI colors across all terminals; the
+    # fish OSC-escape fallback is a partial workaround.
 
     kmscon = {
       enable = true;
