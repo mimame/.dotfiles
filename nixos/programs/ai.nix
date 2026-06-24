@@ -80,9 +80,11 @@ in
     # Fix llama-swap access to /proc/meminfo for memory management
     # WHY: The service needs to monitor system RAM/VRAM usage to decide when to
     # swap models. Default NixOS hardening (ProtectProc/ProcSubset) blocks this.
-    # We also add nvidia-smi to the path so it can monitor VRAM.
+    # NOTE: path for nvidia-smi is intentionally omitted — adding the full
+    # nvidia_x11 package puts a stale version in PATH that mismatches the
+    # kernel module, causing "NVRM: API mismatch" errors. VRAM monitoring
+    # works via /proc/driver/nvidia/* directly.
     services.llama-swap = {
-      path = [ config.boot.kernelPackages.nvidia_x11 ];
       serviceConfig = {
         ProtectProc = lib.mkForce "default";
         ProcSubset = lib.mkForce "all";
