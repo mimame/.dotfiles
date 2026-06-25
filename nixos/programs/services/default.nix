@@ -6,10 +6,9 @@
 { pkgs, username, ... }:
 {
   services = {
-    # plocate: Fast file indexing and search
-    # WHY plocate: Faster than mlocate, lower I/O overhead
+    # plocate: Fast file indexing and search (disabled — use fd/rg instead)
     locate = {
-      enable = true;
+      enable = false;
       package = pkgs.unstable.plocate;
     };
 
