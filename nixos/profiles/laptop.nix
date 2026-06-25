@@ -11,7 +11,7 @@
 #   nvidia-resume/nvidia-hibernate services between the S3→S4 transitions
 #   in systemd's monolithic suspend-then-hibernate unit.
 # ----------------------------------------------------------------------------
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   services = {
     # systemd-logind: lid and power key behavior only.
@@ -51,7 +51,7 @@
     };
 
     # Fingerprint authentication
-    fprintd.enable = true;
+    fprintd.enable = lib.mkDefault true;
 
     # Clight: Adaptive brightness and gamma (Night Light)
     # Uses ambient light sensor (ALS) or webcam fallback to adjust display.
