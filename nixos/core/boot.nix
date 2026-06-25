@@ -75,15 +75,7 @@ _: {
       # Performance-critical apps (databases, compilers) can request 2MB pages
       # instead of 4KB, reducing translation overhead without bloating memory
       "transparent_hugepage=madvise"
-      # Disable USB runtime autosuspend
-      # WHY: A USB Billboard device (1-1.5, USB-C alt-mode indicator, no driver)
-      # fails to resume from runtime suspend. When the system tries to enter S3,
-      # the kernel must wake every device first, and this one returns EIO — which
-      # aborts the entire suspend. Disabling autosuspend keeps the device active
-      # during runtime so the S3 transition doesn't trip over it.
-      "usbcore.autosuspend=-1"
     ];
-
     # Use tmpfs for /tmp (RAM-based temporary storage)
     # Faster than disk and automatically cleared on reboot
     tmp.useTmpfs = true;
