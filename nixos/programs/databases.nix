@@ -8,7 +8,7 @@
   # MySQL/MariaDB service
   # WHY MariaDB: Drop-in MySQL replacement with better performance and licensing
   services.mysql = {
-    enable = true;
+    enable = false;
     package = pkgs.mariadb;
   };
 
