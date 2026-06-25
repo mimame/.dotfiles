@@ -131,10 +131,6 @@ in
   # ensuring NetworkManager has sole authority over IP addressing.
   networking.useDHCP = false;
 
-  # autosuspend: supply the host-specific interface list required by NetworkBandwidth.
-  # autosuspend 9.0 mandates an explicit comma-separated list with no default.
-  services.autosuspend.checks.NetworkBandwidth.interfaces = "enp4s0,wlp5s0";
-
   # ----------------------------------------------------------------------------
   # System-wide Settings
   # ----------------------------------------------------------------------------
