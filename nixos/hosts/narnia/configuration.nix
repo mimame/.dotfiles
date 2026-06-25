@@ -131,6 +131,9 @@ in
   # ensuring NetworkManager has sole authority over IP addressing.
   networking.useDHCP = false;
 
+  # narnia has no fingerprint reader
+  services.fprintd.enable = false;
+
   # ----------------------------------------------------------------------------
   # System-wide Settings
   # ----------------------------------------------------------------------------

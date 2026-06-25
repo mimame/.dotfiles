@@ -50,7 +50,7 @@
       };
     };
 
-    # Fingerprint authentication support (for DMS Shell)
+    # Fingerprint authentication
     fprintd.enable = true;
 
     # Clight: Adaptive brightness and gamma (Night Light)
