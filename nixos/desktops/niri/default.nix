@@ -34,6 +34,7 @@
       enable = true;
       user = "${username}";
     };
+
   };
 
   # Systemd service for automatic disk mounting
@@ -61,34 +62,12 @@
       };
     };
 
-    # Swayidle service to bridge Wayland inactivity events to logind.
-    # WHY THIS IS NEEDED ALONGSIDE NIRI AND DMS (DankMaterialShell):
-    # 1. DMS has a built-in idle manager (acSuspendTimeout) but it triggers suspend
-    #    blindly, without checking active transfers, compile jobs, or SSH sessions.
-    # 2. To use the advanced 'autosuspend' daemon instead, DMS's own suspend timeout
-    #    must be disabled (set to 0 in settings.json).
-    # 3. Under Wayland and Niri, logind does not receive input events directly and
-    #    relies on a helper daemon to update the session's IdleHint.
-    # 4. Swayidle serves solely as this bridge, updating logind's IdleHint (via loginctl)
-    #    after 10 minutes of inactivity so that autosuspend knows when it is safe to
-    #    evaluate system load, network bandwidth, and process states before suspending.
-    swayidle = {
-      enable = true;
-      description = "Swayidle daemon to update logind idle state";
-      wantedBy = [ "niri.service" ];
-      wants = [ "niri.service" ];
-      after = [ "niri.service" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.swayidle}/bin/swayidle -w timeout 600 '${pkgs.systemd}/bin/loginctl lock-sessions'";
-        Restart = "on-failure";
-        RestartSec = 1;
-      };
-    };
+    # No swayidle / idle-triggered suspend.
+    # Suspend is manual — `systemctl suspend` or lid close / power key (logind).
+    # DMS timeouts are set to 0 in settings.json.
   };
 
   environment.systemPackages = with pkgs; [
     xwayland-satellite # XWayland utility for X11 app compatibility on Wayland
-    swayidle # Idle management daemon
   ];
 }
