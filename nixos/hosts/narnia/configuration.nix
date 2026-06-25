@@ -136,6 +136,9 @@ in
   # narnia has no fingerprint reader
   services.fprintd.enable = false;
 
+  # narnia is a 2018 laptop — firmware updates are rare, run fwupdmgr manually
+  services.fwupd.enable = false;
+
   # ----------------------------------------------------------------------------
   # System-wide Settings
   # ----------------------------------------------------------------------------
