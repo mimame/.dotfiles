@@ -12,12 +12,4 @@
       mfcl2720dwcupswrapper
     ];
   };
-
-  # Avahi for network printer/scanner discovery (.local domains)
-  services.avahi = {
-    enable = true;
-    openFirewall = true;
-    nssmdns4 = true; # Required for .local hostname resolution
-    nssmdns6 = true;
-  };
 }

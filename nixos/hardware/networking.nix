@@ -57,43 +57,53 @@
     "net.ipv6.conf.default.autoconf" = lib.mkDefault 0;
   };
 
-  # DNS-over-TLS (DoT) with systemd-resolved
-  services.resolved = {
-    enable = true;
-
-    # DNSSEC disabled: Many DNS servers are misconfigured and fail validation,
-    # breaking domain resolution. Prioritizing reliability over validation.
-    # Options: "false" (off), "true" (strict), "allow-downgrade" (pragmatic)
-    # dnssec = "true";
-
-    settings.Resolve = {
-      # Opportunistic DoT: tries encryption, falls back to plaintext if unavailable.
-      # Protects against passive eavesdropping but NOT active downgrade attacks.
-      # Chosen for reliability over strict security (works on all networks).
-      DNSOverTLS = "opportunistic";
-
-      # Cloudflare and Google DNS with DoT authentication
-      # Format: IP#ServerName where ServerName verifies TLS certificate
-      DNS = "1.1.1.1#cloudflare-dns.com 8.8.8.8#dns.google 1.0.0.1#cloudflare-dns.com 8.8.4.4#dns.google 2606:4700:4700::1111#cloudflare-dns.com 2001:4860:4860::8888#dns.google 2606:4700:4700::1001#cloudflare-dns.com 2001:4860:4860::8844#dns.google";
-    };
-  };
-
+  # DNS-over-TLS (DoT) with systemd-resolved,
+  # Avahi: mDNS/.local hostname resolution (SSH to hostname.local),
   # OpenSSH daemon
-  services.openssh = {
-    enable = true;
-    settings = {
-      # Security hardening
-      PasswordAuthentication = false; # Enforce key-based authentication
-      KbdInteractiveAuthentication = false;
-      PermitRootLogin = "no"; # Minimize attack surface
-      X11Forwarding = false; # Not needed for Wayland, reduces risk
+  services = {
+    resolved = {
+      enable = true;
 
-      # Performance optimizations
-      UseDns = false; # Skip reverse DNS lookup, faster connections
-      TCPKeepAlive = true; # Detect dead connections, prevent timeouts
+      # DNSSEC disabled: Many DNS servers are misconfigured and fail validation,
+      # breaking domain resolution. Prioritizing reliability over validation.
+      # Options: "false" (off), "true" (strict), "allow-downgrade" (pragmatic)
+      # dnssec = "true";
+
+      settings.Resolve = {
+        # Opportunistic DoT: tries encryption, falls back to plaintext if unavailable.
+        # Protects against passive eavesdropping but NOT active downgrade attacks.
+        # Chosen for reliability over strict security (works on all networks).
+        DNSOverTLS = "opportunistic";
+
+        # Cloudflare and Google DNS with DoT authentication
+        # Format: IP#ServerName where ServerName verifies TLS certificate
+        DNS = "1.1.1.1#cloudflare-dns.com 8.8.8.8#dns.google 1.0.0.1#cloudflare-dns.com 8.8.4.4#dns.google 2606:4700:4700::1111#cloudflare-dns.com 2001:4860:4860::8888#dns.google 2606:4700:4700::1001#cloudflare-dns.com 2001:4860:4860::8844#dns.google";
+      };
     };
 
-    openFirewall = true;
+    avahi = {
+      enable = true;
+      openFirewall = true;
+      nssmdns4 = true;
+      nssmdns6 = true;
+    };
+
+    openssh = {
+      enable = true;
+      settings = {
+        # Security hardening
+        PasswordAuthentication = false; # Enforce key-based authentication
+        KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no"; # Minimize attack surface
+        X11Forwarding = false; # Not needed for Wayland, reduces risk
+
+        # Performance optimizations
+        UseDns = false; # Skip reverse DNS lookup, faster connections
+        TCPKeepAlive = true; # Detect dead connections, prevent timeouts
+      };
+
+      openFirewall = true;
+    };
   };
 
   # Standard NixOS ssh-agent
