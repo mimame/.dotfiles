@@ -18,6 +18,9 @@
     },
     "github-copilot-cli": {
       "type": "registry"
+    },
+    "opencode": {
+      "type": "registry"
     }
   },
   "auto_install_extensions": {
