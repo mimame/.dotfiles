@@ -6,7 +6,7 @@
 
 {
   environment.systemPackages = with pkgs.unstable; [
-    elixir # The Elixir programming language
-    elixir-ls # Elixir Language Server
+    beamPackages.elixir # The Elixir programming language
+    beamPackages.elixir-ls # Elixir Language Server
   ];
 }
