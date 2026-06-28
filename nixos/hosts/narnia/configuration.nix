@@ -139,6 +139,9 @@ in
   # narnia is a 2018 laptop — firmware updates are rare, run fwupdmgr manually
   services.fwupd.enable = false;
 
+  # Incus: on-demand daemon start — no point running it at boot on a laptop
+  virtualisation.incus.socketActivation = true;
+
   # ----------------------------------------------------------------------------
   # System-wide Settings
   # ----------------------------------------------------------------------------

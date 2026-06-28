@@ -19,15 +19,57 @@
       defaultNetwork.settings.dns_enabled = true; # Container DNS resolution
     };
 
-    # LXC/Incus: System containers and VMs
+    # Incus: System containers and VMs
     # WHY Incus: Modern fork of LXD with better security and features
-    lxc = {
-      enable = true;
-      lxcfs.enable = true; # Filesystem for container /proc, /sys
-    };
+    # NOTE: The separate LXC service is NOT enabled — Incus manages its own
+    #       LXC backend internally. Enabling both would cause conflicts.
     incus = {
       enable = true;
+      agent.enable = true; # Host-guest integration for VMs (exec, file push)
       ui.enable = true; # Web UI for management
+      # Preseed: Fully declarative Incus bootstrap, no manual `incus admin init`.
+      # All three sections (storage_pools + networks + profiles) must be declared
+      # together — preseed replaces the entire init. Omitting networks skips the
+      # default bridge, and omitting profiles leaves the default profile without
+      # a root disk or nic, making `incus launch` fail on first use.
+      # WHY btrfs: Root fs is already btrfs — instant snapshots/clones,
+      #            space-efficient container copies via subvolumes.
+      #            Modest quota overhead is worth it for the perf gain.
+      preseed = {
+        storage_pools = [
+          {
+            name = "default";
+            driver = "btrfs";
+          }
+        ];
+        networks = [
+          {
+            name = "incusbr0";
+            type = "bridge";
+            config = {
+              "ipv4.address" = "10.10.10.1/24";
+              "ipv4.nat" = "true";
+            };
+          }
+        ];
+        profiles = [
+          {
+            name = "default";
+            devices = {
+              eth0 = {
+                name = "eth0";
+                network = "incusbr0";
+                type = "nic";
+              };
+              root = {
+                path = "/";
+                pool = "default";
+                type = "disk";
+              };
+            };
+          }
+        ];
+      };
     };
 
     # VirtualBox: Desktop VM hypervisor
@@ -72,6 +114,7 @@
     with pkgs;
     [
       # --- Container Tools ---
+      distrobuilder # LXC/Incus system container image builder
       distrobox # Run any Linux distro in a container
       podman-tui # Terminal UI for Podman
 
