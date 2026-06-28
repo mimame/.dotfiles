@@ -122,7 +122,6 @@
       quickemu # Quick QEMU VM launcher
       virt-viewer # VNC/SPICE viewer for VMs
       guestfs-tools # Disk image manipulation (mount, resize)
-      libguestfs # Library for accessing VM disk images
 
       # --- Cloud/VM Utilities ---
       cloud-init # Cloud instance bootstrapping
