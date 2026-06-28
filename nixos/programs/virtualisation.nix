@@ -131,9 +131,8 @@
       # --- Kubernetes ---
       kompose # Docker Compose → Kubernetes converter
       kubectl # Kubernetes CLI
-      kubernetes # Kubernetes control plane
       kubernetes-helm # Kubernetes package manager
-      minikube # Local Kubernetes cluster
+      k3s # Lightweight K8s — run `k3s server` for a local cluster
     ]
     ++ (with pkgs.unstable; [
       ptyxis # Container-based terminal emulator
