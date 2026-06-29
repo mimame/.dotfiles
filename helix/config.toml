@@ -82,9 +82,17 @@ auto-signature-help = true
 goto-reference-include-declaration = true
 snippets = true
 
+[editor.inline-diagnostics]
+# WHY "error": Show inline error annotations on the current line
+cursor-line = "error"
+# WHY "disabled": Keep other lines clean
+other-lines = "disable"
+
 [editor.file-picker]
 # WHY false: Don't clutter picker with hidden files
 hidden = false
+# WHY true: Allow navigating up to parent directories
+parents = true
 # WHY true: Follow gitignore rules
 git-ignore = true
 # WHY true: Respect global git excludes
@@ -129,10 +137,6 @@ supersede-menu = false
 # Only custom bindings that improve workflow, not overriding defaults
 # ----------------------------------------------------------------------------
 [keys.normal]
-# Fast config reload (development workflow)
-C-o = ":config-open"
-C-r = ":config-reload"
-
 # Buffer navigation: H/L as directional "jump" keys
 H = ":bp"
 L = ":bn"
@@ -153,6 +157,8 @@ A-k = [
 ]
 
 # Search word under cursor (like Vim's *)
+# WHY: Three-move sequence selects the full word regardless of cursor position,
+#      avoiding the single-character selection that search_selection alone gives.
 "*" = [
   "move_char_right",
   "move_prev_word_start",
@@ -176,14 +182,9 @@ X = "extend_line_above"
 esc = [ "collapse_selection", "keep_primary_selection" ]
 
 # Lazygit integration: full TUI workflow
-C-g = [
-  ":write-all",
-  ":new",
-  ":insert-output lazygit",
-  ":buffer-close!",
-  ":redraw",
-  ":reload-all",
-]
+# WHY: Saves all files, opens lazygit in a scratch buffer, reloads files on exit.
+#      No forced close — if lazygit fails, the error output is visible in the buffer.
+C-g = [ ":write-all", ":new", ":insert-output lazygit", ":redraw", ":reload-all" ]
 
 # ----------------------------------------------------------------------------
 # Leader Mode (Space): Additional custom bindings
