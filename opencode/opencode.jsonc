@@ -47,6 +47,16 @@
   },
   // MCP servers for tool-augmented workflows.
   "mcp": {
+    // macOS-only: brew(1) provides its own MCP server since Homebrew 4.x.
+    // Fails gracefully on Linux (brew not installed).
+    "brew": {
+      "type": "local",
+      "command": ["brew", "mcp-server"],
+      "enabled": true,
+      "timeout": 30000
+    },
+    // NixOS-only: requires the nix binary. Shows as disconnected on macOS,
+    // which is harmless — no functional impact.
     "nixos": {
       "type": "local",
       "command": ["nix", "run", "github:utensils/mcp-nixos", "--"],
