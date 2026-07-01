@@ -81,7 +81,14 @@
     // reserved: token headroom reserved during compaction to prevent
     // overflow while the compaction pass itself runs. 2048 tokens is a safe
     // pad for any model size; too low risks a failed compaction cycle.
-    "reserved": 2048
+    "reserved": 2048,
+    // preserve_recent_tokens: Token-bounded cap on verbatim recent turns
+    // during compaction. tail_turns alone keeps N exchanges regardless of
+    // their size — if one turn contains a massive tool output it can consume
+    // the whole compaction budget. preserve_recent_tokens adds a token-space
+    // safety floor alongside it. Whichever limit is hit first applies.
+    // 48000 ≈ matches 15 turns at average output size.
+    "preserve_recent_tokens": 48000
     // prune is not set (defaults to false). Pruning discards old tool
     // outputs. Big context means those outputs remain useful reference;
     // no need to throw them away.
