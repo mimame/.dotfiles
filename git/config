@@ -466,6 +466,9 @@
   # Wrapper that ensures SSH_AUTH_SOCK is set to NixOS systemd ssh-agent socket
   # Needed for Node.js apps that spawn git in isolated processes
   program = ~/.bin/ssh-signing-wrapper
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-gpgsshallowedSignersFile
+  # Enables verification of SSH-signed commits and tags
+  allowedSignersFile = ~/.ssh/allowed_signers
 
 [grep]
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-greplineNumber
