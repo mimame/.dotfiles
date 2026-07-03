@@ -130,12 +130,20 @@
   # Autoload fish functions provided by other packages
   programs.fish = {
     enable = true;
-    package = pkgs.unstable.fish;
+    # WHY stable (pkgs.fish) over unstable (pkgs.unstable.fish):
+    # fish 4.8.0 (from unstable) stopped shipping create_manpage_completions.py
+    # as a standalone file — it's now embedded in the binary. The nixpkgs fish
+    # module (programs.fish) hasn't been updated to handle this on the 26.05
+    # stable branch, so the completion generator fails at build time.
+    # The 4.8.0 regressions fixed (escape-garbage during command execution,
+    # vi-mode c/W, x, tab-completion) are polish bugs, not critical.
+    # Staying on stable avoids the build failure with no meaningful loss.
+    package = pkgs.fish;
   };
 
   # Many programs look at /etc/shells to determine
   # if a user is a "normal" user and not a "system" user
-  environment.shells = [ pkgs.unstable.fish ];
+  environment.shells = [ pkgs.fish ];
 
   security = {
     # Policy that allows unprivileged processes to speak to privileged processes

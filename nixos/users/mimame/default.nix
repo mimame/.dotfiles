@@ -7,7 +7,9 @@
 {
   users = {
     # Default shell for all users
-    defaultUserShell = pkgs.unstable.fish;
+    # WHY stable: see nixos/system/base.nix — fish 4.8.0 completion generator
+    # breaks with the 26.05 NixOS module.
+    defaultUserShell = pkgs.fish;
 
     users.${username} = {
       isNormalUser = true;
