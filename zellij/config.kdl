@@ -114,6 +114,13 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
+        bind "l" {
+            LaunchOrFocusPlugin "zellij:layout-manager" {
+                floating true
+                move_to_focused_tab true
+            }
+            SwitchToMode "normal"
+        }
         bind "Ctrl o" { SwitchToMode "normal"; }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
@@ -122,6 +129,7 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
+        bind "Ctrl s" { SwitchToMode "scroll"; }
         bind "s" {
             LaunchOrFocusPlugin "zellij:share" {
                 floating true
@@ -277,6 +285,7 @@ plugins {
 // eg. "file:/path/to/my-plugin.wasm"
 // eg. "https://example.com/my-plugin.wasm"
 load_plugins {
+    "zellij:link"
 }
 web_client {
     font "monospace"
@@ -427,13 +436,13 @@ copy_on_select true
 //   - true
 //   - false (default)
 //
-// serialize_pane_viewport false
+serialize_pane_viewport true
 
 // Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will
 // also default to the scrollback size. This does nothing if `serialize_pane_viewport` is not true.
 //
-// scrollback_lines_to_serialize 10000
+scrollback_lines_to_serialize 10000
 
 // Enable or disable the rendering of styled and colored underlines (undercurl).
 // May need to be disabled for certain unsupported terminals
@@ -451,7 +460,7 @@ copy_on_select true
 // (Requires restart)
 // Default: false
 //
-// disable_session_metadata false
+// disable_session_metadata true
 
 // Enable or disable support for the enhanced Kitty Keyboard Protocol (the host terminal must also support it)
 // (Requires restart)
@@ -524,6 +533,16 @@ show_startup_tips false
 // default is true
 // advanced_mouse_actions false
 
+// Whether to enable mouse hover visual effects (frame highlight and help text)
+// Default: true
+//
+// mouse_hover_effects false
+
+// Whether to output OSC8 hyperlink sequences
+// Default: true
+//
+// osc8_hyperlinks false
+
 // The ip address the web server should listen on when it starts
 // Default: "127.0.0.1"
 // (Requires restart)
@@ -540,3 +559,10 @@ show_startup_tips false
 // can be useful for removing wrappers around commands
 // Note: be sure to escape backslashes and similar characters properly
 // post_command_discovery_hook "echo $RESURRECT_COMMAND | sed <your_regex_here>"
+
+// Number of async worker tasks to spawn per active client.
+//
+// Allocating few tasks may result in resource contention and lags. Small values (around 4) should
+// typically work best. Set to 0 to use the number of (physical) CPU cores.
+// NOTE: This only applies to web clients at the moment.
+// client_async_worker_tasks 4
