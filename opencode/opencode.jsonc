@@ -2,6 +2,8 @@
   // opencode.jsonc: Configuration for the OpenCode AI agent.
   // This file defines where opencode sends inference requests.
   "$schema": "https://opencode.ai/config.json",
+  // Default model. Override at runtime with -m or OPENCODE_MODEL.
+  "model": "opencode/big-pickle",
   "provider": {
     // Custom provider for the local llama-swap proxy.
     // This allows opencode to use any model loaded by llama-server (llama.cpp).
