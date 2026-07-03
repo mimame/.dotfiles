@@ -21,8 +21,8 @@ Then rebuild:
 | Path             | Purpose                                                         | Loaded by       |
 | ---------------- | --------------------------------------------------------------- | --------------- |
 | `base.nix`       | Common desktop apps (browsers, comms, dev tools, etc.)          | always          |
-| `gnome_layer.nix`| GNOME services: GDM, keyring, portals, GTK theming, core apps   | niri, gnome     |
+| `gnome-services.nix`| GNOME services: GDM, keyring, portals, GTK theming, core apps   | niri, gnome     |
 | `niri/`          | Niri compositor config                                          | niri            |
 | `dms-shell/`     | DankMaterialShell bar/launcher                                  | niri            |
-| `gnome/`         | GNOME Shell (imports gnome_layer.nix + enables gnome.enable)    | gnome           |
+| `gnome/`         | GNOME Shell (imports gnome-services.nix + enables gnome.enable)    | gnome           |
 | `cosmic/`        | COSMIC DE                                                       | cosmic          |

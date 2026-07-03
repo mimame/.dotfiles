@@ -4,6 +4,8 @@
   "$schema": "https://opencode.ai/config.json",
   // Default model. Override at runtime with -m or OPENCODE_MODEL.
   "model": "opencode/big-pickle",
+  // ponytail: always-on laziness ladder (YAGNI → stdlib → native → one line).
+  "plugin": ["@dietrichgebert/ponytail"],
   "provider": {
     // Custom provider for the local llama-swap proxy.
     // This allows opencode to use any model loaded by llama-server (llama.cpp).

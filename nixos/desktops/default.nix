@@ -12,7 +12,7 @@ let
     niri = [
       ./niri
       ./dms-shell
-      ./gnome_layer.nix
+      ./gnome-services.nix
     ];
     gnome = [ ./gnome ];
     cosmic = [ ./cosmic ];
