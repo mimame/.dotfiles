@@ -138,16 +138,9 @@ in
   };
 
   # Custom environment for AI tools
-  environment.variables = {
-    # Configure opencode to use local llama-swap proxy for inference
-    # This keeps your programming tasks 100% local.
-    # TIP: Override via shell if speed is needed:
-    #   OPENCODE_MODEL=llama-swap/mistral-7b opencode
-    #   OPENCODE_MODEL=llama-swap/gemma-9b opencode
-    OPENCODE_API_BASE_URL = "http://127.0.0.1:11434/v1";
-    OPENCODE_MODEL = "llama-swap/gemma-9b"; # Use provider/model format for real identification
-  };
-
+  # OPENCODE env vars intentionally omitted — opencode.jsonc defines the
+  # llama-swap provider and model list. Keeping env vars and config in sync
+  # is error-prone; config is the single source of truth.
   environment.systemPackages = with pkgs.unstable; [
     # --- AI Coding Assistants ---
     claude-code # Agentic coding tool for the terminal
