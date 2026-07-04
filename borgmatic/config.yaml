@@ -26,42 +26,94 @@ exclude_patterns:
   - '*~' # Editor backup files
   - '*.bak' # Backup files
   - '*.swp' # Vim swap files
-  - '*/.cache'
-  - '*/.local/share/Trash'
-  - '*/.thumbnails'
-  - '*/tmp'
+  - '*/.cache' # General application cache (regenerated on use)
+  - '*/.git' # Git object databases (re-cloneable)
+  - '*/.jj' # Jujutsu object databases (re-cloneable)
+  - '*/.lesshst' # Less history (trivial, no value)
+  - '*/.local/share/Trash' # Trash directory (ephemeral)
+  - '*/.python_history' # Python REPL history (trivial)
+  - '*/.thumbnails' # File manager thumbnails (re-generated)
+  - '*/.wget-hsts' # Wget HSTS cache (trivial)
+  - '*/tmp' # Temporary files
   # --- Application & Service Caches ---
-  - '*/.config/nixpkgs/home-manager'
-  - '*/.docker/desktop'
-  - '*/.mozilla/firefox/*/Cache'
-  - '*/.npm'
+  - '*/.config/Code/Cache' # VS Code cache
+  - '*/.config/Code/CachedData' # VS Code cached data (re-downloadable)
+  - '*/.config/Code/CachedExtensionVSIXs' # VS Code extension packages (re-downloadable)
+  - '*/.config/Code/GPUCache' # VS Code shader cache
+  - '*/.config/Code/logs' # VS Code debug logs
+  - '*/.config/google-chrome/OptGuideOnDeviceModel' # Chrome AI model (4G, re-downloadable)
+  - '*/.config/google-chrome/extensions_crx_cache' # Chrome extension packages (re-downloadable)
+  - '*/.config/google-chrome/component_crx_cache' # Chrome component cache
+  - '*/.config/google-chrome/optimization_guide_model_store' # Chrome AI models
+  - '*/.config/nixpkgs/home-manager' # Generated home-manager config (reproducible from flake)
+  - '*/.config/vivaldi/extensions_crx_cache' # Vivaldi extension packages (re-downloadable)
+  - '*/.config/vivaldi/component_crx_cache' # Vivaldi component cache
+  - '*/.copilot' # GitHub Copilot cache (re-downloadable)
+  - '*/.docker/desktop' # Docker Desktop VM images (re-pullable)
+  - '*/.local/share/fish/generated_completions' # Fish auto-generated completions (re-gen on use)
+  - '*/.local/share/snyk' # Snyk CLI cache (re-downloadable)
+  - '*/.local/share/uv' # Python package cache (re-downloadable)
+  - '*/.local/share/zed/copilot' # Zed Copilot cache (re-downloadable)
+  - '*/.local/share/zed/external_agents' # Zed AI agent files (re-downloadable)
+  - '*/.local/share/zed/languages' # Zed LSP server binaries (re-downloadable)
+  - '*/.local/share/zed/node' # Zed bundled Node.js runtime (re-downloadable)
+  - '*/.mozilla/firefox/*/Cache' # Firefox browser cache (re-downloadable)
+  - '*/.nextflow' # Nextflow workflow cache (re-downloadable)
+  - '*/.npm' # Node.js package cache (re-downloadable)
   - '*/.nix-profile' # NixOS profile symlinks (not useful to back up)
+  - '*/.openjfx' # JavaFX SDK (re-downloadable)
+  - '*/.singularity' # Apptainer/Singularity containers (re-pullable)
   - '*/.thunderbird/*/Cache*' # Thunderbird cache (keeps emails, excludes cache)
   - '*/.var/app/*/cache' # Flatpak app caches
-  - '*/.vscode-server'
+  - '*/.vscode-server' # VS Code remote server (re-installable)
+  - '*/.vscode/extensions' # VS Code extensions (re-downloadable)
   # --- Development & Build Artifacts ---
-  - '*/__pycache__'
-  - '*/.cargo/registry'
-  - '*/.gradle'
-  - '*/.m2/repository'
-  - '*/.venv'
-  - '*/.yarn/cache'
-  - '*/build'
-  - '*/dist'
-  - '*/node_modules'
-  - '*/target' # Common for Rust projects
-  - '*/venv'
+  - '*/__pycache__' # Python bytecode cache (re-generated)
+  - '*/.ccache' # Compiler cache (rebuildable)
+  - '*/.cargo/registry' # Cargo crate registry (re-downloadable)
+  - '*/.gradle' # Gradle build cache (re-downloadable)
+  - '*/.m2/repository' # Maven repository (re-downloadable)
+  - '*/.mypy_cache' # Python type-check cache
+  - '*/.pytest_cache' # Python test cache
+  - '*/.venv' # Python virtual environment (re-creatable)
+  - '*/.yarn/cache' # Yarn package cache (re-downloadable)
+  - '*/build' # Build output directories (rebuildable)
+  - '*/dist' # Distribution artifacts (rebuildable)
+  - '*/go' # Go module downloads + compiled binaries (rebuildable)
+  - '*/node_modules' # Node.js dependencies (re-installable)
+  - '*/target' # Common for Rust projects (rebuildable)
+  - '*/venv' # Python virtual environment (re-creatable)
   # --- Large, Re-downloadable Content ---
-  - '*/Downloads'
-  - '*/.flatpak'
-  - '*/.local/share/Steam' # Steam library
-  - '*/.steam'
-  - '*/snap'
-  - '*/VirtualBox VMs'
-  - '*/vmware'
+  - '*/Downloads' # Downloads directory (re-downloadable)
+  - '*/.flatpak' # Flatpak runtimes (re-pullable)
+  - '*/.local/share/docker' # Docker images/volumes (re-pullable)
+  - '*/.minikube' # Minikube VM images (re-pullable)
+  - '*/.ollama' # LLM models (re-pullable)
+  - '*/.vagrant.d' # Vagrant boxes (re-pullable)
+  - '*/.wine' # Wine prefix (re-creatable)
+  - '*/snap' # Snap packages (re-installable)
+  - '*/VirtualBox VMs' # VirtualBox VM images (re-creatable)
+  - '*/vmware' # VMware VM images (re-creatable)
+  # --- Rebuildable Toolchains & Dependencies ---
+  - '*/.cargo/git' # Cargo git checkouts (re-fetched on build)
+  - '*/.julia' # Julia packages (re-downloadable)
+  - '*/.opam' # OCaml package cache (re-downloadable)
+  - '*/.rustup' # Rust toolchains (re-installable)
+  - '*/.sbt' # Scala build cache (re-downloadable)
+  - '*/.tenv' # Terraform version manager (re-downloadable)
+  - '*/.cpan' # Perl module cache (re-downloadable)
+  - '*/.mill' # Scala build tool cache (re-downloadable)
+  - '*/.ammonite' # Scala REPL cache (re-downloadable)
+  # --- Large Disk/VM Images ---
+  - '*/*.iso' # ISO disk images (re-downloadable)
+  - '*/*.qcow2' # QEMU disk images (re-creatable)
+  - '*/*.vdi' # VirtualBox disk images (re-creatable)
   # --- User-Defined Exclusions ---
-  - '*/Projects'
-  - '*/.local/share/containers'
+  - '*/Projects' # Project directories (large, manage backups separately)
+  - '*/ai/open-webui/transformers_home' # HuggingFace model cache (re-downloadable)
+  - '*/.local/share/containers' # Podman container storage (re-pullable)
+  - '*/.local/share/incus' # Incus images/containers/volumes (re-pullable)
+  - '*/.gemini' # Gemini AI history (server-side, re-downloadable)
 # WARNING: Using a trivial, easily guessable password is not secure.
 # For better security, consider using a password file or a more complex passphrase.
 encryption_passphrase: "mimame"
