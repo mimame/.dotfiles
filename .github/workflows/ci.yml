@@ -53,8 +53,11 @@ jobs:
             # Fallback logic for edge cases:
             # 1. New branches (before is 000...0).
             # 2. Force-pushes (before SHA might be orphaned/unreachable).
-            # 3. First commit in repo (HEAD^ fails).
-            if [[ "$FROM_REF" == "0000000000000000000000000000000000000000" ]] || ! git rev-parse --verify "$FROM_REF" >/dev/null 2>&1; then
+            # 3. Amended commits (before SHA still resolves but is not an ancestor).
+            # 4. First commit in repo (HEAD^ fails).
+            if [[ "$FROM_REF" == "0000000000000000000000000000000000000000" ]] \
+               || ! git rev-parse --verify "$FROM_REF" >/dev/null 2>&1 \
+               || ! git merge-base --is-ancestor "$FROM_REF" "${{ github.event.after }}" 2>/dev/null; then
               FROM_REF=$(git rev-parse HEAD^ 2>/dev/null || echo "HEAD")
             fi
 
