@@ -5,10 +5,12 @@
     ./crystal.nix
     ./dart.nix
     ./elixir.nix
+    ./fish.nix
     ./go.nix
     ./json.nix
-    ./jvm.nix
     ./julia.nix
+    ./just.nix
+    ./jvm.nix
     ./lisp.nix
     ./lua.nix
     ./markdown.nix
