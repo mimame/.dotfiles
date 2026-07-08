@@ -379,6 +379,9 @@
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-coreuntrackedCache
   # Speed up status by caching untracked files (works well with fsmonitor)
   untrackedCache = true
+  # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corequotepath
+  # Show UTF-8 filenames unescaped (safe in modern terminals)
+  quotepath    = false
   # https://git-scm.com/docs/git-config#Documentation/git-config.txt-corepager
   # Use delta as the default pager
   pager        = delta --dark
