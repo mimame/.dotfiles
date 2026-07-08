@@ -22,7 +22,10 @@
     # current nixpkgs tree instead of a stale static database. The two
     # cannot coexist because they both register the command-not-found handler.
     command-not-found.enable = false;
-    nix-index.enable = true;
+    nix-index = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 
   nix = {
