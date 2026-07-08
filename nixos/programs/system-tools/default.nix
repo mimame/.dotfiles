@@ -3,7 +3,7 @@
 #
 # System monitoring, hardware utilities, disk tools, and configuration management.
 # ----------------------------------------------------------------------------
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   # Allow non-root users to mount FUSE filesystems
   programs.fuse.userAllowOther = true;
@@ -33,7 +33,7 @@
     ]
     ++ (with pkgs.unstable; [
       # --- System Monitoring ---
-      btop # Resource monitor (CPU, memory, disk, network)
+      (if config.hardware.nvidia.prime.offload.enable then btop-cuda else btop) # Resource monitor with optional GPU support
       ctop # Container metrics (top-like)
       dool # System activity reporter
       fastfetch # System info tool (neofetch-like)
