@@ -14,8 +14,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
-          # Full history is required to accurately calculate changesets between arbitrary commits.
-          fetch-depth: 0
+          # Shallow clone — prek only needs HEAD and its parent for the commit range.
+          fetch-depth: 2
       - name: Install Nix
         uses: cachix/install-nix-action@v31
         with:
