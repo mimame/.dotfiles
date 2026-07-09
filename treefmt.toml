@@ -3,7 +3,6 @@
 # Global excludes to avoid walking into large/third-party directories
 # This significantly speeds up the initial file discovery phase.
 excludes = [
-  "lazyvim/**",
   "Manifest.toml",
   ".git/**",
 ]
