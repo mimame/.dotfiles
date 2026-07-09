@@ -175,3 +175,4 @@ edit_config yazirc yazi/yazi.toml
 edit_config fastrc fastfetch/config.jsonc
 edit_config zdrc zed/settings.json
 edit_config zellijrc zellij/config.kdl
+edit_config tmuxrc tmux/tmux.conf

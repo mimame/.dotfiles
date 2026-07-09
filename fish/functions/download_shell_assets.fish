@@ -45,6 +45,12 @@ function download_shell_assets --argument stamp_file
         end
     end
 
+    # 6. Tmux TPM (Plugin Manager)
+    if not test -d "$XDG_CONFIG_HOME/tmux/plugins/tpm"
+        echo "⬇️  Cloning tmux TPM..."
+        git clone --depth 1 https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME/tmux/plugins/tpm"
+    end
+
     # Create stamp to avoid re-checking every time
     if test -n "$stamp_file"
         mkdir -p (dirname $stamp_file)

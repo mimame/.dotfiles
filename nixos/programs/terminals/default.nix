@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs.unstable; [
     ghostty # Fast, modern, hackable terminal
     kitty # GPU-accelerated terminal
+    tmux # Terminal multiplexer
     zellij # Terminal workspace multiplexer
   ];
 }

@@ -53,6 +53,7 @@ starship = "~/.config/"
 swappy = "~/.config/swappy"
 tealdeer = "~/.config/tealdeer"
 television = { target = "~/.config/television", type = "symbolic" }
+tmux = "~/.config/tmux"
 topgrade = "~/.config/topgrade"
 vscode = "~/.config/Code/User/"
 yazi = { target = "~/.config/yazi", type = "symbolic" }
