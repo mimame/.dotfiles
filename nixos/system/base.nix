@@ -192,6 +192,9 @@
 
   # Enable apropos(1) and the -k option of man(1)
   documentation.man.cache.enable = true;
+  # GNU Info (predecessor to man, `info <topic>` for hierarchical docs)
+  # disable to suppress `install-info: warning: no info dir entry in ...` noise
+  documentation.info.enable = false;
 
   environment.systemPackages = with pkgs; [
 
