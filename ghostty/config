@@ -30,6 +30,8 @@ cursor-style = block
 cursor-style-blink = false
 
 # --- Window & UI ---
+# Remove window decorations — Niri provides its own chrome
+window-decoration = false
 # Add padding so text doesn't hug the screen edges
 window-padding-x = 10
 window-padding-y = 10
