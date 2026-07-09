@@ -1,9 +1,12 @@
 # ----------------------------------------------------------------------------
 # CPU Configuration & Power Management
 #
-# This file should remain empty as CPU-specific settings have been moved to
-# host-specific configurations (e.g., nixos/hosts/narnia/configuration.nix).
-#
-# This file is kept for potential future multi-host shared CPU configuration.
+# Defaults for CPU-related services shared across all hosts. Host-specific
+# overrides (e.g., enabling throttled for Tongfang laptops) go in the host's
+# own configuration.
 # ----------------------------------------------------------------------------
-_: { }
+{ lib, ... }: {
+  # Intel CPU Power Limit Throttling — off by default.
+  # Only enable per-host where the Intel thermal bug applies (e.g., Tongfang).
+  services.throttled.enable = lib.mkDefault false;
+}
