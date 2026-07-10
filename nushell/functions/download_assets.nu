@@ -51,6 +51,12 @@ def --env download_shell_assets [] {
         }
     }
 
+# 6. Navi Community Cheatsheets
+    if (which navi | is-not-empty) and not ($env.XDG_DATA_HOME | path join "navi" "cheats" "denisidoro__cheats" | path exists) {
+        print "⬇️  Downloading Navi community cheatsheets..."
+        ^navi repo add https://github.com/denisidoro/cheats
+    }
+
     # Create stamp to avoid re-checking every time
     let stamp_file = ($env.XDG_CACHE_HOME | path join "nushell" "resources_checked.stamp")
     mkdir ($stamp_file | path dirname)
