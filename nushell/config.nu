@@ -264,23 +264,33 @@ $env.config = {
             }
         }
         {
-            name: tv_search_directory
-            modifier: alt
-            keycode: char_g
-            mode: [ emacs, vi_normal, vi_insert ]
-            event: {
-                send: executehostcommand
-                cmd: "tv_search_dirs"
-            }
-        }
-        {
-            name: tv_search_file
-            modifier: control_alt
+            name: tv_smart_autocomplete
+            modifier: control
             keycode: char_f
             mode: [ emacs, vi_normal, vi_insert ]
             event: {
                 send: executehostcommand
-                cmd: "tv_search_files"
+                cmd: "tv_smart_autocomplete"
+            }
+        }
+        {
+            name: navi_widget
+            modifier: alt
+            keycode: char_n
+            mode: [ emacs, vi_normal, vi_insert ]
+            event: {
+                send: executehostcommand
+                cmd: "navi_widget"
+            }
+        }
+        {
+            name: zoxide_interactive
+            modifier: alt
+            keycode: char_z
+            mode: [ emacs, vi_normal, vi_insert ]
+            event: {
+                send: executehostcommand
+                cmd: "zi"
             }
         }
         {
@@ -304,7 +314,6 @@ source ~/.config/nushell/functions/paths.nu
 source ~/.config/nushell/functions/mc.nu
 source ~/.config/nushell/functions/y.nu
 source ~/.config/nushell/functions/bb.nu
-source ~/.config/nushell/functions/tv.nu
 source ~/.config/nushell/functions/download_assets.nu
 
 # --- Initialize Assets ---
@@ -316,11 +325,12 @@ if not ($resource_stamp | path exists) {
 
 # --- Load Plugins/Scripts ---
 # Literal paths are required here as well due to parse-time evaluation constraints.
-use ~/.cache/nushell/starship/init.nu
+source ~/.cache/nushell/starship/init.nu
 source ~/.cache/nushell/zoxide/init.nu
 source ~/.cache/nushell/atuin/init.nu
 source ~/.cache/nushell/navi/init.nu
 source ~/.cache/nushell/pay-respects/init.nu
+source ~/.cache/nushell/television/init.nu
 
 # --- Native Structured Commands ---
 

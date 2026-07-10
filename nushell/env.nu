@@ -137,6 +137,17 @@ if not ($fk_cache | path exists) {
     }
 }
 
+# Television
+let tv_cache = ($cache_dir | path join "television" "init.nu")
+if not ($tv_cache | path exists) {
+    mkdir ($tv_cache | path dirname)
+    if (which tv | is-not-empty) {
+        tv init nu | save -f $tv_cache
+    } else {
+        touch $tv_cache
+    }
+}
+
 # --- Prompt Indicators ---
 $env.PROMPT_INDICATOR = {|| "> " }
 $env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
