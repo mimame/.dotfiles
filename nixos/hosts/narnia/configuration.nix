@@ -138,8 +138,10 @@ in
   # narnia is a 2018 laptop — firmware updates are rare, run fwupdmgr manually
   services.fwupd.enable = false;
 
-  # Incus: on-demand daemon start — no point running it at boot on a laptop
-  virtualisation.incus.socketActivation = true;
+  # Incus: socket activation disabled — incus-agent is a VM guest helper that
+  # tries to mount 9p/cdrom at boot, which fails on bare metal and causes a
+  # 10x restart loop. The incus daemon is still available on-demand without this.
+  # virtualisation.incus.socketActivation = true;
 
   # ----------------------------------------------------------------------------
   # System-wide Settings
