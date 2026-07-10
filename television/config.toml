@@ -163,15 +163,21 @@ theme = "Dracula"
 # ```
 "alias" = [ "alias", "unalias" ]
 "env" = [ "export", "unset" ]
-"dirs" = [ "cd", "ls", "rmdir" ]
+"dirs" = [ "cd", "z", "ls", "rmdir" ]
 "files" = [
   "cat",
   "less",
   "head",
   "tail",
   "vim",
+  "nvim",
   "nano",
+  "micro",
+  "code",
   "bat",
+  "hx",
+  "zd",
+  "zeditor",
   "cp",
   "mv",
   "rm",
@@ -196,12 +202,11 @@ theme = "Dracula"
   "git push",
 ]
 "docker-images" = [ "docker run" ]
-"git-repos" = [ "nvim", "code", "hx", "git clone" ]
+"git-repos" = [ "git clone" ]
 
 [shell_integration.keybindings]
 # controls which key binding should trigger tv
 # for shell autocomplete
-"smart_autocomplete" = "ctrl-t"
-# controls which keybinding should trigger tv
-# for command history
-"command_history" = "ctrl-r"
+"smart_autocomplete" = "ctrl-f"
+# disabled: atuin overrides ctrl-r for history
+# "command_history" = "ctrl-r"
