@@ -26,24 +26,19 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     bind \e\[A _atuin_bind_up
     bind -M insert \e\[A _atuin_bind_up
 
-    # Television Bindings
-    # Ctrl+Alt+f: Find files
-    bind \e\cf tv_search_files
-    bind -M insert \e\cf tv_search_files
-    bind -M default \e\cf tv_search_files
-
-    # Alt+g: Find directories (Go)
-    bind \eg tv_search_dirs
-    bind -M insert \eg tv_search_dirs
-    bind -M default \eg tv_search_dirs
-
-    # Enable navi command cheatsheet integration
-    # Bind Ctrl+F in insert mode for context-aware command suggestions
-    bind -M insert \cf _navi_smart_replace
-
     # Open the current command line in Helix (or $EDITOR)
     bind \ee edit_command_buffer
     bind -M insert \ee edit_command_buffer
+
+    # Navi cheatsheet
+    bind \en _navi_smart_replace
+    bind -M insert \en _navi_smart_replace
+    bind -M default \en _navi_smart_replace
+
+    # Zoxide interactive directory picker
+    bind \ez zi
+    bind -M insert \ez zi
+    bind -M default \ez zi
 
     # Toggle backgrounded process (e.g., Helix) with Ctrl+Z
     bind \cz 'fg 2>/dev/null; commandline -f repaint'
