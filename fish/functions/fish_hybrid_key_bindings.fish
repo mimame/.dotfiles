@@ -36,9 +36,10 @@ function fish_hybrid_key_bindings --description "Vi style bindings that inherit 
     bind -M default \en _navi_smart_replace
 
     # Zoxide interactive directory picker
-    bind \ez zi
-    bind -M insert \ez zi
-    bind -M default \ez zi
+    # repaint: zi changes directory, prompt won't update without it
+    bind \ez 'zi; commandline -f repaint'
+    bind -M insert \ez 'zi; commandline -f repaint'
+    bind -M default \ez 'zi; commandline -f repaint'
 
     # Toggle backgrounded process (e.g., Helix) with Ctrl+Z
     bind \cz 'fg 2>/dev/null; commandline -f repaint'
