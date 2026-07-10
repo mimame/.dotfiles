@@ -46,12 +46,17 @@ end
 # 4. PLATFORM SPECIFIC
 source $__fish_config_dir/platform.fish
 
-# 5. BACKGROUND SERVICES (Login shells only)
+# 5. TMUX AUTO-START (not inside other multiplexers)
+if command -q tmux; and not set -q TMUX; and not set -q ZELLIJ
+    tmux new-session
+end
+
+# 6. BACKGROUND SERVICES (Login shells only)
 if status is-login; and command -q pueued; and not pgrep -x pueued >/dev/null
     pueued --daemonize >/dev/null
 end
 
-# 6. ALIASES & ABBREVIATIONS
+# 7. ALIASES & ABBREVIATIONS
 # Cached to avoid re-parsing abbr.fish on every new shell
 # Use --no-config to isolate cache generation from plugins that might fail
 # in non-interactive shells (e.g., fish-abbreviation-tips).
