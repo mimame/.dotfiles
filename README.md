@@ -66,6 +66,7 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 - [ripgrep (rg)](https://github.com/BurntSushi/ripgrep): Extremely fast line-oriented search tool.
 - [starship](https://starship.rs/): Minimal, blazing-fast, and infinitely customizable prompt for any shell.
 - [television](https://github.com/alexpasmantier/television): Any-input fuzzy finder for the terminal.
+- [tmux](https://github.com/tmux/tmux): Terminal multiplexer for session persistence, SSH, and remote work.
 - [topgrade](https://github.com/topgrade-rs/topgrade): Upgrade everything at once.
 - [zellij](https://zellij.dev/): Terminal workspace multiplexer with a focus on ergonomics and ease of use.
 
