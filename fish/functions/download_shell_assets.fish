@@ -51,6 +51,12 @@ function download_shell_assets --argument stamp_file
         git clone --depth 1 https://github.com/tmux-plugins/tpm "$XDG_CONFIG_HOME/tmux/plugins/tpm"
     end
 
+    # 7. Navi Community Cheatsheets
+    if command -q navi; and not test -d "$XDG_DATA_HOME/navi/cheats/denisidoro__cheats"
+        echo "⬇️  Downloading Navi community cheatsheets..."
+        navi repo add https://github.com/denisidoro/cheats 2>/dev/null
+    end
+
     # Create stamp to avoid re-checking every time
     if test -n "$stamp_file"
         mkdir -p (dirname $stamp_file)

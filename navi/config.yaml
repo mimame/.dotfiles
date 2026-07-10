@@ -1,5 +1,9 @@
 # THIS IS EXPERIMENTAL
 # the config file schema may change at any time
+
+# --- Community cheatsheets ---
+# Install the community repo for 400+ cheats (docker, git, nix, etc.):
+#   navi repo add https://github.com/denisidoro/cheats
 style:
   tag:
     color: cyan # text color. possible values: https://bit.ly/3gloNNI
