@@ -1,0 +1,92 @@
+#!/bin/sh
+# SSH-aware split: if the current pane is running ssh/mosh, reconnect in the
+# new pane. Otherwise, split normally preserving cwd.
+#
+# Usage: ssh-aware-split <-v|-h>
+#   -v  vertical split (top/bottom)
+#   -h  horizontal split (left/right)
+#
+# Why this exists: tmux's built-in split-window always starts a fresh shell.
+# If you're ssh'd into a remote host, splitting means you lose context — the
+# new pane drops you back to a local shell, and you have to re-type the ssh
+# command. This script detects when the current pane is running ssh or mosh,
+# captures the full command (e.g. "ssh mn"), and re-runs it in the new pane
+# so you get an instant parallel session on the same host.
+#
+# How detection works: we inspect the process tree of the current tmux pane.
+# When you type "ssh mn" in a shell, the process hierarchy is:
+#
+#   shell (pane_pid) ──► ssh mn (child of pane_pid)
+#
+# We walk this tree looking for a node whose command basename is "ssh" or
+# "mosh". If found, we re-run that exact command string in the new pane.
+#
+# The tricky part: `ps -o command=` shows the FULL command line including
+# arguments (e.g. "ssh mn" not just "ssh"). We need to extract only the
+# executable name to compare, which means stripping any leading path
+# (e.g. "/nix/store/.../bin/ssh" → "ssh") and the arguments after it.
+
+direction="${1:--v}"
+
+# Capture the PID and TTY of the shell process in the current tmux pane.
+# pane_pid is the login shell (bash/zsh/fish) that tmux started in this pane.
+# pane_tty is its controlling terminal (e.g. /dev/pts/3).
+# Both are needed: pid to start the tree walk, tty to query ps for all
+# processes attached to this pane's terminal.
+pane_pid=$(tmux display-message -p '#{pane_pid}')
+pane_tty=$(tmux display-message -p '#{pane_tty}')
+
+# Detect ssh/mosh by walking the process tree from pane_pid downward.
+#
+# ps outputs lines like: "  51545    2490 -fish"
+#                         ^PID     ^PPID ^command (with args)
+#
+# The = after pid/ppid suppresses column headers.
+#
+# The awk script builds two lookup tables:
+#   child[PPID] = PID   — maps each process to its first child
+#   cmd[PID]    = line  — maps each PID to its full command string
+#
+# Then it walks from pane_pid → child → child's child → ... looking for ssh/mosh.
+# IMPORTANT: We must save $1 (PID) into pid_val BEFORE calling sub(), because
+# sub() modifies $0 and awk re-evaluates $1 from the modified $0. If we used
+# cmd[$1] after sub, the key would be the command name ("ssh") not the PID,
+# breaking the tree walk lookup.
+ssh_cmd=$(ps -t "$pane_tty" -o pid=,ppid=,command= 2>/dev/null | awk -v pid="$pane_pid" '
+  {
+    pid_val = $1                          # save PID before sub modifies $0
+    child[$2] = pid_val                   # map PPID → PID (builds parent→child links)
+    sub(/^[[:space:]]*[0-9]+[[:space:]]+[0-9]+[[:space:]]+/, "")  # strip "  PID  PPID  " prefix
+    cmd[pid_val] = $0                     # store command keyed by PID (not $1, which is now corrupted)
+  }
+  END {
+    p = pid                               # start at the pane shell
+    while (child[p]) {                    # walk down through descendants
+      c = cmd[child[p]]                   # get command string of next child
+      # Extract just the executable name from the command.
+      # split() breaks "ssh mn" into a[1]="ssh" a[2]="mn".
+      # sub() strips any NixOS/store path prefix: "/nix/store/.../bin/ssh" → "ssh".
+      # This is needed because ps -o command= may show the full store path on NixOS,
+      # and we only care about the binary name.
+      n = split(c, a, " ")
+      cmd_name = a[1]
+      sub(/.*\//, "", cmd_name)
+      if (cmd_name == "ssh" || cmd_name == "mosh") {
+        print c                          # emit the full command for re-use
+        exit
+      }
+      p = child[p]                       # descend to next generation
+    }
+  }
+')
+
+# If we found an ssh/mosh command, escape semicolons (tmux uses ; as a
+# command separator) and run it in a new split pane.
+# Otherwise, do a plain split preserving the current working directory.
+if [ -n "$ssh_cmd" ]; then
+  ssh_cmd=$(printf '%s' "$ssh_cmd" | sed 's/;/\\;/g')
+  tmux split-window "$direction" "$ssh_cmd"
+else
+  pane_path=$(tmux display-message -p '#{pane_current_path}')
+  tmux split-window "$direction" -c "$pane_path"
+fi
