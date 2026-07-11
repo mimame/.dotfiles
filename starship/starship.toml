@@ -196,7 +196,7 @@ Macos = " "
 [hostname]
 ssh_only = false
 format = '[@$hostname]($style)'
-style = "bold green"
+style = "bold orange"
 
 [username]
 show_always = true
