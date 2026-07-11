@@ -1,9 +1,9 @@
-tap "caarlos0/tap"
-tap "timescam/tap"
 # Static checker for GitHub Actions workflow files
 brew "actionlint"
 # Download with resuming and segmented downloading
 brew "aria2"
+# Agent orchestration and automation tool
+brew "ansible"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
 # Bourne-Again SHell, a UNIX command interpreter
@@ -18,6 +18,8 @@ brew "btop"
 brew "clifm"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima"
+# Multi-shell completion tool
+brew "carapace"
 # Zstandard is a real-time compression algorithm
 brew "zstd"
 # Lint commit messages according to a commit convention
@@ -50,6 +52,8 @@ brew "fastfetch"
 brew "fd"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
+# General-purpose fuzzy finder
+brew "fzf"
 # Terminal JSON viewer
 brew "fx"
 # Disk usage analyzer with console interface written in Go
@@ -92,6 +96,8 @@ brew "hyperfine"
 brew "imagemagick"
 # JQ clone focussed on correctness, speed, and simplicity
 brew "jaq"
+# JSON CLI output tool
+brew "jc"
 # Git-compatible distributed version control system
 brew "jj"
 # Lightweight and flexible command-line JSON processor
@@ -178,6 +184,8 @@ brew "stylua"
 brew "tailspin"
 # TOML toolkit written in Rust
 brew "taplo"
+# Terminal multiplexer
+brew "tmux"
 # Very fast implementation of tldr in Rust
 brew "tealdeer"
 # General purpose fuzzy finder TUI
@@ -246,8 +254,6 @@ cask "github"
 cask "google-chrome"
 # Client for the Google Drive storage service
 cask "google-drive"
-# Like gofmt, but for JSON files
-cask "caarlos0/tap/jsonfmt"
 # GPU-based terminal emulator
 cask "kitty"
 # Privacy-first, open-source platform for knowledge sharing and management
