@@ -6,13 +6,6 @@ source $__fish_config_dir/variables.fish
 # Ensure UTF-8 locale (macOS sshd doesn't set LANG, breaking tmux nerd fonts)
 set -q LANG; or set -gx LANG en_US.UTF-8
 
-# Propagate SSH env into tmux so #{?SSH_CONNECTION,...} works in status line.
-# tmux only picks up SSH_CONNECTION when creating a new session — attaching
-# to an existing (locally-started) session never triggers update-environment.
-if set -q SSH_CONNECTION; and set -q TMUX
-    tmux set-environment -g SSH_CONNECTION $SSH_CONNECTION
-end
-
 # SSH Agent
 # Initialized early to ensure keys are available for both interactive
 # (e.g., manual git commands) and non-interactive (e.g., pre-commit hooks,
@@ -59,6 +52,12 @@ source $__fish_config_dir/platform.fish
 # 5. TMUX AUTO-START (not inside other multiplexers)
 if command -q tmux; and not set -q TMUX; and not set -q ZELLIJ
     tmux new-session
+end
+
+# Propagate SSH env into tmux so #{?SSH_CONNECTION,...} works in status line.
+# Must run after tmux auto-start — TMUX is only set once we're inside tmux.
+if set -q SSH_CONNECTION; and set -q TMUX
+    tmux set-environment -g SSH_CONNECTION $SSH_CONNECTION
 end
 
 # 6. BACKGROUND SERVICES (Login shells only)
