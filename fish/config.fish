@@ -3,6 +3,9 @@
 # interactive and non-interactive shells.
 source $__fish_config_dir/variables.fish
 
+# Ensure UTF-8 locale (macOS sshd doesn't set LANG, breaking tmux nerd fonts)
+set -q LANG; or set -gx LANG en_US.UTF-8
+
 # SSH Agent
 # Initialized early to ensure keys are available for both interactive
 # (e.g., manual git commands) and non-interactive (e.g., pre-commit hooks,
