@@ -6,6 +6,13 @@ source $__fish_config_dir/variables.fish
 # Ensure UTF-8 locale (macOS sshd doesn't set LANG, breaking tmux nerd fonts)
 set -q LANG; or set -gx LANG en_US.UTF-8
 
+# Propagate SSH env into tmux so #{?SSH_CONNECTION,...} works in status line.
+# tmux only picks up SSH_CONNECTION when creating a new session — attaching
+# to an existing (locally-started) session never triggers update-environment.
+if set -q SSH_CONNECTION; and set -q TMUX
+    tmux set-environment -g SSH_CONNECTION $SSH_CONNECTION
+end
+
 # SSH Agent
 # Initialized early to ensure keys are available for both interactive
 # (e.g., manual git commands) and non-interactive (e.g., pre-commit hooks,
