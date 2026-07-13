@@ -222,7 +222,7 @@
   "launcherLogoContrast": 1,
   "launcherLogoSizeOffset": 0,
   "fontFamily": "Inter Variable",
-  "monoFontFamily": "Maple Mono NL NF, JetBrainsMono Nerd Font Mono",
+  "monoFontFamily": "Maple Mono NL NF",
   "fontWeight": 400,
   "fontScale": 1,
   "notepadUseMonospace": true,
