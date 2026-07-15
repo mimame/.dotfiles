@@ -34,11 +34,80 @@
 }:
 let
   # Override the shared llama-cpp package with host-specific CUDA architecture.
+  #
   # WHY: The GTX 1060 (Pascal) requires compute capability 6.1 ("61").
   # Without this, llama-server crashes with "no kernel image available".
-  # We use overrideAttrs to directly inject the CMake flag for Pascal.
+  #
+  # WHY filter + set (not `++`): nixpkgs' llama-cpp sets several defaults that
+  # narnia must override. With `++`, CMake sees two `-D` entries for the same
+  # cache variable; the upstream entry is typed (`:STRING`/`:BOOL`) and a later
+  # untyped `-D` does NOT override a typed cache entry — so the appended value
+  # is silently ignored. The correct pattern is to drop the upstream flag(s)
+  # first, then append our override(s):
+  #   1. Keep every cmakeFlag that does NOT match one we override
+  #   2. Append our single replacement per flag
+  # Matching the `:STRING`/`:BOOL` type of each nixpkgs entry avoids cache
+  # type-mismatch warnings and guarantees our value wins.
+  #
+  # --- OVERRIDES FOR NARNIA ---
+  #
+  # GPU: CMAKE_CUDA_ARCHITECTURES
+  #   Upstream sets 75;80;86;89;90;100;103;120;121 (9 archs, full coverage).
+  #   The GTX 1060 (Pascal) needs only "61". Compiling 9 archs multiplied the
+  #   CUDA build time by ~9× and produced PTX the GPU cannot use.
+  #
+  # CPU: GGML_CPU_ALL_VARIANTS — upstream hardcodes 14 separate x86 backends
+  #   (x64, sse42, sandybridge, ivybridge, piledriver, haswell, skylakex,
+  #   cannonlake, cascadelake, icelake, cooperlake, zen4, alderlake,
+  #   sapphirerapids). The CPUs are identical files recompiled with different
+  #   -march/-mavx512/etc. flags, and at runtime exactly one is dispatched based
+  #   on the host CPU. For a single fixed host this is pure waste: ~14× the CPU
+  #   compile time for kernels narnia will never execute.
+  #
+  #   narnia runs an Intel i7-8750H (Coffee Lake, AVX2, no AVX-512). The variant
+  #   upstream builds that matches this CPU best is `haswell` (AVX2 + FMA + BMI2
+  #   + F16C); `x64` is kept as the no-ISA baseline fallback ggml-cpp needs.
+  #
+  #   CMake constraint: GGML_NATIVE=TRUE is REJECTED by upstream when
+  #   GGML_BACKEND_DL=TRUE (nixpkgs sets BACKEND_DL=TRUE so backends load via
+  #   dlopen at runtime — flipping it risks breaking the CUDA backend loader).
+  #   So instead of disabling ALL_VARIANTS and enabling NATIVE, we keep the
+  #   upstream ALL_VARIANTS/BACKEND_DL machinery and prune the variant list via
+  #   a postPatch sed on ggml/src/CMakeLists.txt. This leaves only x64 and
+  #   haswell in the dispatch table — same dynamic-loading behavior, ~7× fewer
+  #   compiled CPU backends, no risk to CUDA.
+  #
+  #   Trade-off: binaries still report all upstream variants in their
+  #   CMakeLists reference; only the build itself is trimmed. Portability is
+  #   unaffected (both kept variants run on any x86-64 CPU). If upstream
+  #   renames the `haswell` variant or restructures the list, the postPatch
+  #   silently no-ops (no match) and we fall back to upstream's full 14 — safe.
+  #
+  # Filter predicate: keep every cmakeFlag that does NOT match the one we
+  # override (so we drop the upstream entry first, then append our replacement
+  # with matching `:STRING` type to guarantee our value wins).
+  keepCudaFlag = flag: !lib.strings.hasPrefix "-DCMAKE_CUDA_ARCHITECTURES" flag;
   narnia-llama-cpp = llama-cpp-pkg.overrideAttrs (old: {
-    cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DCMAKE_CUDA_ARCHITECTURES=61" ];
+    cmakeFlags = (lib.lists.filter keepCudaFlag (old.cmakeFlags or [ ])) ++ [
+      "-DCMAKE_CUDA_ARCHITECTURES:STRING=61"
+    ];
+    # Trim the x86 variant list in ggml/src/CMakeLists.txt to x64 + haswell.
+    # The awk comments every ggml_add_cpu_backend_variant( call EXCEPT the ones
+    # tagged x64 or haswell. It also hits ARM/PowerPC/RISC-V call sites, but
+    # those live inside `elseif(GGML_SYSTEM_ARCH STREQUAL "ARM"/"PowerPC"/...)`
+    # blocks CMake never evaluates on x86, so commenting them is a no-op.
+    # Idempotent: re-running on an already-patched file is a no-op because
+    # commented lines do not match the leading-whitespace + call pattern.
+    postPatch = (old.postPatch or "") + ''
+      awk '
+        /^[[:space:]]+ggml_add_cpu_backend_variant\(/ {
+          keep = ($0 ~ /ggml_add_cpu_backend_variant\(x64\)/) || ($0 ~ /ggml_add_cpu_backend_variant\(haswell/)
+          if (!keep) { sub(/^[[:space:]]*/, "&# "); print; next }
+        }
+        { print }
+      ' ggml/src/CMakeLists.txt > ggml/src/CMakeLists.txt.tmp
+      mv ggml/src/CMakeLists.txt.tmp ggml/src/CMakeLists.txt
+    '';
   });
 in
 {
