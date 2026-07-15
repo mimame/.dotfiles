@@ -6,31 +6,12 @@
   // GLM-5.2 via OpenCode Go ($10/mo): 880 req/5hr, $1.40/$4.40/$0.26 per 1M in/out/cached.
   // For long sessions switch to DeepSeek V4 Pro: `opencode -m opencode-go/deepseek-v4-pro`
   // (3450 req/5hr, 4x more quota) when you don't need GLM's extra intelligence.
+  // No context limit override: OpenCode Go plans bill per request, not per token,
+  // so the larger native context (128k+) maximizes prefix-cache hit rate across
+  // long sessions. Compaction fires rarely, which is the goal — each compaction
+  // invalidates the cached prefix and costs an extra request for the summary.
   "model": "opencode-go/glm-5.2",
   "provider": {
-    // Override GLM-5.2 context limit to force auto-compaction at ~47k tokens
-    // instead of 128k+ (the model's real limit). Without this, auto-compaction
-    // never fires in practice — sessions stay at 60-70k input tokens per
-    // request, burning quota. Compaction threshold = context - output - reserved
-    // = 65536 - 16384 - 2048 ≈ 47k. At 49k context the threshold was only ~30k,
-    // firing too early. 65536 gives sessions room to breathe while still
-    // compacting ~2.7x sooner than the native 128k limit.
-    "opencode-go": {
-      "models": {
-        "glm-5.2": {
-          "limit": {
-            "context": 65536,
-            "output": 16384
-          }
-        },
-        "deepseek-v4-pro": {
-          "limit": {
-            "context": 65536,
-            "output": 16384
-          }
-        }
-      }
-    },
     // Custom provider for the local llama-swap proxy.
     // This allows opencode to use any model loaded by llama-server (llama.cpp).
     "llama-swap": {
@@ -94,20 +75,23 @@
     }
   },
   // Compaction controls how opencode frees context window when it fills up.
-  // Tuned to cap input tokens per request on OpenCode Go (GLM-5.2 at 128k+
-  // context never triggers auto-compaction in practice — sessions carry 60-70k
-  // input tokens every request). The provider override above lowers the
-  // effective context limit to 48k, making these settings actually fire.
+  // Tuned for GLM-5.2 / DeepSeek V4 Pro via OpenCode Go (subscription billed
+  // per request, not per token). The strategy is to keep the prefix stable for
+  // as long as possible: every compaction invalidates the cached prefix and
+  // costs an extra request for the summary pass, so firing compaction rarely
+  // is more quota-efficient than firing it often, even though each individual
+  // request carries more input tokens. The native 128k+ context limit makes
+  // this the feasible regime — compaction only fires during genuinely long
+  // sessions.
   "compaction": {
     // auto: automatically compact when the context window approaches full.
     // Always enabled — even big contexts eventually fill during long sessions.
     "auto": true,
     // tail_turns: number of recent user+assistant exchanges kept verbatim
     // during compaction. Default is 2, which is very aggressive and drops
-    // most of the conversation. With OpenCode Go's per-request token budget
-    // we keep 6 turns — enough working memory for in-progress tasks, while
-    // dropping the older history that opencode summarizes instead.
-    "tail_turns": 6,
+    // most of the conversation. With GLM-5.2's large native context we keep
+    // 15 turns, giving the model much more working memory after compaction.
+    "tail_turns": 15,
     // reserved: token headroom reserved during compaction to prevent
     // overflow while the compaction pass itself runs. 2048 tokens is a safe
     // pad for any model size; too low risks a failed compaction cycle.
@@ -117,13 +101,11 @@
     // their size — if one turn contains a massive tool output it can consume
     // the whole compaction budget. preserve_recent_tokens adds a token-space
     // safety floor alongside it. Whichever limit is hit first applies.
-    // 16000 ≈ 6 turns of working memory post-compaction.
-    "preserve_recent_tokens": 16000,
-    // prune is not set (defaults to false). Pruning discards raw tool
-    // outputs older than the tail. Enabled here because OpenCode Go's token
-    // budget is tighter than the old big-pickle setup: most tool outputs are
-    // file contents that still live on disk, so dropping the verbatim copy
-    // from history loses nothing the agent can't re-read.
-    "prune": true
+    // 48000 ≈ matches 15 turns at average output size.
+    "preserve_recent_tokens": 48000
+    // prune is not set (defaults to false). Pruning discards old tool
+    // outputs. Big context means those outputs remain useful reference;
+    // no need to throw them away. Keeping them also preserves cache hits
+    // within a compaction window — pruning could invalidate the prefix too.
   }
 }
