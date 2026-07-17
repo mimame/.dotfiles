@@ -54,12 +54,6 @@ if command -q tmux; and not set -q TMUX; and not set -q ZELLIJ
     tmux new-session
 end
 
-# Propagate SSH env into tmux so #{?SSH_CONNECTION,...} works in status line.
-# Must run after tmux auto-start — TMUX is only set once we're inside tmux.
-if set -q SSH_CONNECTION; and set -q TMUX
-    tmux set-environment -g SSH_CONNECTION $SSH_CONNECTION
-end
-
 # 6. BACKGROUND SERVICES (Login shells only)
 if status is-login; and command -q pueued; and not pgrep -x pueued >/dev/null
     pueued --daemonize >/dev/null
