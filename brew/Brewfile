@@ -122,6 +122,8 @@ brew "llmfit"
 brew "luarocks"
 # Easily rename multiple files using your text editor
 brew "massren"
+# Drop-in less replacement — syntax highlighting, ANSI color passthrough
+brew "moor"
 # CLI for Mermaid library
 brew "mermaid-cli"
 # Modern and intuitive terminal-based text editor
