@@ -94,8 +94,11 @@ abbr nsp 'nix-shell -p'
 alias 7z 7zz
 abbr cat bat
 abbr jq jaq
-abbr less bat
-abbr more bat
+# moor is a drop-in less replacement — syntax highlighting, ANSI colors, no config.
+# When piped (e.g. `git diff | less`), moor receives ANSI from the command and
+# renders it correctly. No bat flags needed.
+abbr less moor
+abbr more moor
 abbr m tldr
 abbr news newsboat
 

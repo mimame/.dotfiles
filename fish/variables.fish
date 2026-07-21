@@ -92,6 +92,17 @@ set -gx EDITOR $default_hx
 set -gx VISUAL $EDITOR
 set -gx GIT_EDITOR $EDITOR
 
+# --- Pager Configuration ---
+# moor replaces less: syntax highlighting, ANSI color passthrough, follow mode,
+# quit-if-one-screen — works out of the box with zero config.
+if command -q moor
+    set -gx PAGER moor
+    set -gx MANPAGER moor
+else
+    set -gx PAGER less
+    set -gx MANPAGER less
+end
+
 # --- Theme Configuration (Dracula Official) ---
 
 # Syntax Highlighting Colors

@@ -37,8 +37,7 @@
       jless # JSON viewer
       jnv # jq-like JSON tool
       lnav # Log file navigator
-      moor # JSON viewer/manipulator
-      ov # Terminal pager
+      moor # Pager (less replacement — syntax highlighting, ANSI, no config)
       qsv # CSV toolkit
       sd # sed alternative
       translate-shell # Command-line translator
