@@ -111,6 +111,8 @@ let
   });
 in
 {
+  environment.systemPackages = [ narnia-llama-cpp ];
+
   services.llama-swap.settings.models = {
     # "Cohete Código" (Speed/Context): Qwen 2.5 Coder 3B
     # WHY: Blazing fast coding assistant that fits entirely in 6GB VRAM at high quantization.

@@ -150,7 +150,9 @@ in
     # --- AI Protocols & Clients ---
     antigravity-cli # Antigravity protocol client
     python3Packages.huggingface-hub # CLI for downloading models from HuggingFace (hf)
-    llama-cpp-pkg # Local inference tools (llama-cli, llama-server)
+    # llama-cpp-pkg intentionally omitted here — host-specific modules add their
+    # override (e.g. narnia-llama-cpp with CMAKE_CUDA_ARCHITECTURES=61) to avoid
+    # building for 9 upstream CUDA architectures the GPU cannot use.
 
     # --- Hardware Capability Tools ---
     llmfit # Find what runs on your hardware (VRAM estimation)
