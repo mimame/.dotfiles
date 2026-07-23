@@ -345,3 +345,20 @@ desc = "Trigger a new relative motion"
 [[mgr.prepend_keymap]]
 on = "M"
 run = "plugin mount"
+
+# --- SFTP Remote Servers ---
+# WHY gn/gb/gm: Quick access to remote servers via Yazi VFS
+[[mgr.prepend_keymap]]
+on = [ "g", "n" ]
+run = "cd sftp://narnia"
+desc = "Go to narnia (SFTP)"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "b" ]
+run = "cd sftp://bignarnia"
+desc = "Go to bignarnia (SFTP)"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "m" ]
+run = "cd sftp://mininarnia"
+desc = "Go to mininarnia (SFTP)"
