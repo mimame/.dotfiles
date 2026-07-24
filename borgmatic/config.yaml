@@ -1,4 +1,17 @@
 # This file is managed by dotter and symlinked to ~/.config/borgmatic/config.yaml
+#
+# Usage:
+#   sudo borgmatic                           Run backup with verification + unmount
+#   sudo borgmatic create --files-exclude '*/.cache'  First-time backup (override excludes)
+#   borgmatic config validate                Validate configuration syntax
+#   borgmatic list --archive latest          List files in latest archive
+#   borgmatic list --archive latest --path home/mimame/Projects/.dotfiles  Verify .dotfiles backed up
+#   borgmatic info                           Show repository statistics
+#   borgmatic prune                          Remove old backups per retention policy
+#   borgmatic mount /mnt/borg                Mount latest archive at /mnt/borg
+#   borgmatic umount /mnt/borg               Unmount archive
+#   borgmatic extract --archive latest --path home/mimame/Projects/.dotfiles
+#
 constants:
   user: mimame # Define the username as a constant to be used in paths.
 # The source directory to backup.
@@ -18,6 +31,9 @@ commands:
   - before: repository
     run:
       - findmnt --mountpoint /run/media/{user}/TOSHIBA_EXT &> /dev/null || exit 75
+  - after: repository
+    run:
+      - 'sync'
 # Paths to exclude from the backup.
 # These patterns prevent backing up large, temporary, or unneeded files.
 # They are prefixed with '*/' to apply to any user's home directory under /home.
@@ -109,7 +125,6 @@ exclude_patterns:
   - '*/*.qcow2' # QEMU disk images (re-creatable)
   - '*/*.vdi' # VirtualBox disk images (re-creatable)
   # --- User-Defined Exclusions ---
-  - '*/Projects' # Project directories (large, manage backups separately)
   - '*/ai/open-webui/transformers_home' # HuggingFace model cache (re-downloadable)
   - '*/.local/share/containers' # Podman container storage (re-pullable)
   - '*/.local/share/incus' # Incus images/containers/volumes (re-pullable)
