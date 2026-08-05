@@ -60,7 +60,8 @@ if status is-login; and command -q pueued; and not pgrep -x pueued >/dev/null
 end
 
 # 7. ALIASES & ABBREVIATIONS
-# Cached to avoid re-parsing abbr.fish on every new shell
-# Use --no-config to isolate cache generation from plugins that might fail
-# in non-interactive shells (e.g., fish-abbreviation-tips).
-source_transient abbrs "fish --no-config -c 'set -p fish_function_path $__fish_config_dir/functions; source $__fish_config_dir/variables.fish; source $__fish_config_dir/abbr.fish; abbr --show; alias'" $__fish_config_dir/abbr.fish
+# Cached to avoid re-parsing abbr.fish on every new shell.
+# Uses --no-config to isolate cache generation from interactive plugins, so we
+# must manually inject the binary paths (Homebrew / NixOS) into PATH before
+# sourcing abbr.fish to ensure tools like eza, bat, etc., are detected correctly.
+source_transient abbrs "fish --no-config -c 'set -p fish_function_path $__fish_config_dir/functions; test -x /opt/homebrew/bin/brew; and eval (/opt/homebrew/bin/brew shellenv); test -d /run/current-system/sw/bin; and set -gx PATH /run/current-system/sw/bin $HOME/.nix-profile/bin $PATH; source $__fish_config_dir/variables.fish; source $__fish_config_dir/abbr.fish; abbr --show; alias'" $__fish_config_dir/abbr.fish
