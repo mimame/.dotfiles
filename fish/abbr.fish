@@ -78,11 +78,14 @@ abbr nano micro
 
 # --- Development ---
 abbr g git
-abbr lg lazygit
-abbr tf treefmt
 abbr j just
+abbr lg lazygit
 abbr pc pre-commit
 abbr ru rustup
+abbr tf tofu
+abbr tfa 'tofu apply'
+abbr tfi 'tofu init'
+abbr tfp 'tofu plan'
 
 # Language specific
 abbr cr crystal
