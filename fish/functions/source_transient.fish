@@ -1,6 +1,15 @@
 # Helper to cache transient init scripts (improves startup time)
 # Usage: source_transient <name> <command> [dependency_file]
 function source_transient --argument name cmd dependency
+    # 0. Early return if the binary doesn't exist in PATH
+    # Robust extraction of the binary name from the command.
+    # Handles multi-line strings, leading/trailing whitespace, and quoted commands.
+    # Example: '  starship init fish' -> 'starship'
+    set -l binary (string trim $cmd | string split -f1 " " | string trim -c "'\"")
+    if not type -q $binary
+        return 0
+    end
+
     set -l cache_file $__fish_config_dir/cache/$name.fish
     set -l should_rebuild false
 
@@ -16,10 +25,6 @@ function source_transient --argument name cmd dependency
 
         # 3. Check if the binary itself is newer than the cache (handles tool updates)
         if test "$should_rebuild" = false
-            # Robust extraction of the binary name from the command.
-            # Handles multi-line strings, leading/trailing whitespace, and quoted commands.
-            # Example: '  starship init fish' -> 'starship'
-            set -l binary (string trim $cmd | string split -f1 " " | string trim -c "'\"")
             if command -q $binary; and not builtin -q $binary
                 set -l bin_path (command -v $binary)
                 set -l real_bin_path (path resolve $bin_path)
@@ -47,7 +52,6 @@ function source_transient --argument name cmd dependency
                 mv $tmp_file $cache_file
 
                 # Record the binary path for future invalidation checks (Nix support).
-                set -l binary (string trim $cmd | string split -f1 " " | string trim -c "'\"")
                 if command -q $binary; and not builtin -q $binary
                     path resolve (command -v $binary) >$cache_file.path
                 end
