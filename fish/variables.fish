@@ -73,6 +73,10 @@ end
 
 # --- Core Fish Configuration ---
 
+# Ensure SHELL environment variable points to active Fish executable
+# (Fixes subprocesses like zellij/tmux inheriting parent shell like bash or zsh)
+set -gx SHELL (status fish-path)
+
 # Remove Fish default greeting
 set -g fish_greeting
 
