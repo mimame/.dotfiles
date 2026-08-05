@@ -3,8 +3,30 @@
 # --- PATH Configuration ---
 # Must be defined first to ensure Homebrew (on macOS) and local binaries
 # are available for the rest of the configuration checks.
-# Build and cache path additions once.
+# Build and cache path additions once (Homebrew paths added first)
 source_transient paths '
+    # Detect Homebrew location (must be before adding paths to ensure correct order)
+    set -l brew_bin (path filter -f /opt/homebrew/bin/brew /usr/local/bin/brew | head -n1)
+
+    if test -n "$brew_bin"
+        set -l brew_prefix ($brew_bin --prefix)
+        # Add primary Homebrew paths (must be first in PATH on macOS)
+        set -l brew_paths $brew_prefix/bin $brew_prefix/sbin
+
+        # Add language-specific Homebrew paths if they exist
+        for lang in ruby python
+            if test -d $brew_prefix/opt/$lang/bin
+                set -a brew_paths $brew_prefix/opt/$lang/bin
+            end
+        end
+
+        for p in $brew_paths
+            if test -d $p
+                echo "fish_add_path -m $p"
+            end
+        end
+    end
+
     set -l paths \
         "$HOME/.yarn/bin" \
         "$HOME/.bin" \
@@ -17,22 +39,6 @@ source_transient paths '
     if type -q ruby
         set -a paths (ruby -e "print Gem.user_dir")/bin
         set -a paths (ruby -e "print Gem.bindir")
-    end
-
-    # Detect Homebrew location
-    set -l brew_bin (path filter -f /opt/homebrew/bin/brew /usr/local/bin/brew | head -n1)
-
-    if test -n "$brew_bin"
-        set -l brew_prefix ($brew_bin --prefix)
-        # Add primary Homebrew paths
-        set -a paths $brew_prefix/bin $brew_prefix/sbin
-
-        # Add language-specific Homebrew paths if they exist
-        for lang in ruby python
-            if test -d $brew_prefix/opt/$lang/bin
-                set -a paths $brew_prefix/opt/$lang/bin
-            end
-        end
     end
 
     for p in $paths
