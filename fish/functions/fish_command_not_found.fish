@@ -1,17 +1,15 @@
 function fish_command_not_found --description "Handler for when a command is not found"
     set -l cmd $argv[1]
 
-    # 1. Use system's command-not-found if available (Ubuntu, NixOS, etc.)
-    # This is usually the most accurate way to find missing packages on Linux.
-    if command -q command-not-found
-        command-not-found $argv
-        return
+    # Delegate to nix-index's command-not-found handler (NixOS) so the
+    # nix-locate package suggestion keeps working. fish 3.2+ calls this
+    # function directly and does not emit the fish_command_not_found event.
+    if functions -q __fish_command_not_found_handler
+        __fish_command_not_found_handler $argv
+    else
+        __fish_default_command_not_found_handler $argv
     end
 
-    # 2. Call default Fish handler for standard error reporting
-    __fish_default_command_not_found_handler $argv
-
-    # 3. Provide intelligent hints
     echo "" >&2
 
     # Suggest 'fk' (pay-respects) for typos first
