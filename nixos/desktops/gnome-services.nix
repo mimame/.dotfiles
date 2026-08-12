@@ -8,7 +8,18 @@
 # expect GNOME services to be available for proper integration (file pickers,
 # credential storage, settings management, privilege escalation).
 # ----------------------------------------------------------------------------
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
+let
+  whitesur = pkgs.unstable.whitesur-gtk-theme.override {
+    colorVariants = [ "dark" ];
+    themeVariants = [ "purple" ];
+  };
+  themeName = "WhiteSur-Dark-purple";
+  gresource = "${pkgs.glib.dev}/bin/gresource";
+in
 {
   services = {
     # GDM (GNOME Display Manager) is the preferred manager for this setup
@@ -49,6 +60,17 @@
   security.pam.services.gdm.enableGnomeKeyring = true;
   security.pam.services.login.enableGnomeKeyring = true;
 
+  # libadwaita (GTK4 >= 4.10) ignores `gtk-theme-name` and `GTK_THEME`.
+  # Setting GTK_THEME=WhiteSur-Dark forces GTK4 to load
+  # share/themes/WhiteSur-Dark/gtk-4.0/gtk.css — whose only content is
+  # `@import url("resource:///org/gnome/theme/gtk.css")`. That gresource is
+  # NOT auto-registered for libadwaita apps, so the import silently fails
+  # (`Theme parser error: gtk.css:1:1-52: Failed to import ...`), dropping
+  # the entire theme. GTK3 + non-libadwaita GTK4 apps still work via
+  # settings.ini/gsettings because their theme loader registers the gresource.
+  # Flat CSS + assets for libadwaita are installed by userActivationScripts
+  # below.
+
   programs = {
     seahorse.enable = true; # GUI for keyring management
     ssh.askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
@@ -62,15 +84,15 @@
           settings = {
             "org/gnome/desktop/interface" = {
               color-scheme = "prefer-dark";
-              gtk-theme = "Sweet-Dark";
-              icon-theme = "candy-icons";
-              cursor-theme = "capitaine-cursors-white";
+              gtk-theme = themeName;
+              icon-theme = "WhiteSur-dark";
+              cursor-theme = "WhiteSur-cursors";
               cursor-size = pkgs.lib.gvariant.mkUint32 48;
               document-font-name = "Inter 13";
               font-name = "Inter 13";
               monospace-font-name = "Maple Mono NL NF 13";
             };
-            "org/gnome/desktop/wm/preferences".theme = "Sweet-Dark";
+            "org/gnome/desktop/wm/preferences".theme = themeName;
           };
         }
       ];
@@ -125,9 +147,9 @@
       nautilus # File manager
 
       # Theming
-      candy-icons # Icon theme
-      capitaine-cursors # Cursor theme
-      sweet # GTK theme (Sweet-Dark)
+      whitesur-cursors # Cursor theme
+      whitesur # GTK theme (WhiteSur-Dark) — see libadwaita activation script below
+      whitesur-icon-theme
     ]);
 
   # Global GTK settings to ensure consistency across applications.
@@ -140,15 +162,50 @@
   environment.etc = {
     "gtk-3.0/settings.ini".text = ''
       [Settings]
-      gtk-theme-name=Sweet-Dark
-      gtk-icon-theme-name=candy-icons
+      gtk-theme-name=${themeName}
+      gtk-icon-theme-name=WhiteSur-dark
       gtk-font-name=Inter 13
     '';
     "gtk-4.0/settings.ini".text = ''
       [Settings]
-      gtk-theme-name=Sweet-Dark
-      gtk-icon-theme-name=candy-icons
+      gtk-theme-name=${themeName}
+      gtk-icon-theme-name=WhiteSur-dark
       gtk-font-name=Inter 13
+    '';
+  };
+
+  # Install WhiteSur as a flat CSS overlay for libadwaita apps.
+  # WHY: libadwaita apps (Nautilus, Loupe, Papers, ...) ignore
+  # `gtk-theme-name` and load the user `~/.config/gtk-4.0/gtk.css`
+  # overlay instead. The WhiteSur nixpkg ships
+  # `share/themes/WhiteSur-Dark/gtk-4.0/gtk.gresource` (which GTK4's
+  # loader registers for non-libadwaita apps) but does NOT produce
+  # the self-contained flat CSS that libadwaita needs.
+  # Here we use `gresource extract` to pull the compiled stylesheet
+  # and assets out of the gresource bundle into `~/.config/gtk-4.0/`,
+  # matching what upstream's `install.sh -l` does at install time.
+  # Idempotent: wipes the target dir and re-extracts on each run.
+  system.userActivationScripts.libadwaitaWhitesur = {
+    text = ''
+      GRE="${gresource}"
+      GR="${whitesur}/share/themes/${themeName}/gtk-4.0/gtk.gresource"
+      DEST="$HOME/.config/gtk-4.0"
+      rm -rf "$DEST/assets" "$DEST/windows-assets" "$DEST/gtk.css" "$DEST/gtk-dark.css" \
+            "$DEST/gtk-Light.css" "$DEST/gtk-Dark.css"
+      mkdir -p "$DEST/assets" "$DEST/windows-assets"
+      "$GRE" extract "$GR" /org/gnome/theme/gtk.css       > "$DEST/gtk.css"
+      "$GRE" extract "$GR" /org/gnome/theme/gtk-dark.css  > "$DEST/gtk-dark.css"
+      "$GRE" list "$GR" | while IFS= read -r path; do
+        case "$path" in
+          /org/gnome/theme/gtk.css|/org/gnome/theme/gtk-dark.css) continue ;;
+          /org/gnome/theme/assets/*)
+            rel="''${path#/org/gnome/theme/}"
+            mkdir -p "$DEST/$(dirname "$rel")"
+            "$GRE" extract "$GR" "$path" > "$DEST/$rel"
+            ;;
+          *) : ;;
+        esac
+      done
     '';
   };
 }
