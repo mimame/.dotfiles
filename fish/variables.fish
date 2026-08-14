@@ -176,6 +176,9 @@ end
 set -gx JULIA_NUM_THREADS 8
 set -gx TMPDIR /tmp
 
+# Homebrew: skip confirmation prompts on install/upgrade
+set -gx HOMEBREW_NO_ASK 1
+
 # Ensure XDG variables are set and exported (standard for NixOS and professional macOS setups)
 set -q XDG_CONFIG_HOME; or set -gx XDG_CONFIG_HOME "$HOME/.config"
 set -q XDG_DATA_HOME; or set -gx XDG_DATA_HOME "$HOME/.local/share"
