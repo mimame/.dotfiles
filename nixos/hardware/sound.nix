@@ -24,7 +24,7 @@
       pwvucontrol # PipeWire volume control
     ]
     ++ (with pkgs.unstable; [
-      beets # Music library manager
+      # beets # Music library manager
       cmus # Console music player
     ]);
 }

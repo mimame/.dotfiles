@@ -2,8 +2,8 @@
 {
   environment.systemPackages = with pkgs.unstable; [
     # Communication
-    telegram-desktop # Telegram messaging app
+    # telegram-desktop # Telegram messaging app
     thunderbird # Email client
-    zoom-us # Video conferencing
+    # zoom-us # Video conferencing
   ];
 }

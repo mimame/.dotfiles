@@ -3,9 +3,9 @@
   environment.systemPackages = with pkgs.unstable; [
     # Utilities
     calibre # E-book management
-    cytoscape # Graph visualization and analysis
+    # cytoscape # Graph visualization and analysis
     smile # Emoji picker
-    klavaro # Touch typing tutor
+    # klavaro # Touch typing tutor
     mesa-demos # Mesa 3D graphics library demos
     playerctl # Command-line utility for controlling media players
     qalculate-gtk # Powerful and versatile desktop calculator

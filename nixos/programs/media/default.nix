@@ -14,7 +14,7 @@
     ueberzugpp # Image viewer using Kitty graphics protocol
 
     # --- Video/Audio ---
-    mpv # GPU-accelerated media player (for yazi preview)
+    # mpv # GPU-accelerated media player (for yazi preview)
     mediainfo # Show media file metadata (for yazi)
   ];
 }

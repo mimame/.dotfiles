@@ -21,7 +21,6 @@
       entr # Run commands when files change
       gcc # GNU Compiler Collection
       hyperfine # Command-line benchmarking
-      just # Command runner (Make alternative)
       mise # Polyglot version manager (asdf alternative)
       ninja # Fast build system
       scc # Fast code counter
