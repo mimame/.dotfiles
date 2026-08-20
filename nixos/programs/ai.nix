@@ -143,8 +143,8 @@ in
   # is error-prone; config is the single source of truth.
   environment.systemPackages = with pkgs.unstable; [
     # --- AI Coding Assistants ---
-    claude-code # Agentic coding tool for the terminal
-    github-copilot-cli # GitHub Copilot CLI
+    # claude-code # Agentic coding tool for the terminal
+    # github-copilot-cli # GitHub Copilot CLI
     opencode # AI coding agent for terminal. Configured via OPENCODE_* env vars.
 
     # --- AI Protocols & Clients ---
