@@ -13,3 +13,21 @@
     stylua # Lua formatter
   ];
 }
+
+# ---------------------------------------------------------------------------
+# Per-project shell.nix (reference — toolchain not installed system-wide).
+# Copy into a project as shell.nix and use direnv `use nix`:
+#
+# Pick a channel for pkgs:
+#   stable:   { pkgs ? import <nixpkgs> { } }:
+#   unstable: { pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { } }:
+# pkgs.mkShell {
+#   packages = with pkgs; [
+#     lua51Packages.jsregexp
+#     lua51Packages.lua
+#     lua51Packages.luarocks
+#     lua-language-server
+#     stylua
+#   ];
+# }
+# ---------------------------------------------------------------------------

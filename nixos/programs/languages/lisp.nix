@@ -16,7 +16,7 @@
     jpm # Janet package manager
 
     # Common Lisp
-    sbcl # Steel Bank Common Lisp
+    # sbcl # Steel Bank Common Lisp
 
     # Racket (Scheme dialect)
     racket # Racket language
@@ -26,3 +26,24 @@
     guile # GNU Ubiquitous Intelligent Language for Extensions
   ];
 }
+
+# ---------------------------------------------------------------------------
+# Per-project shell.nix (reference — toolchain not installed system-wide).
+# Copy into a project as shell.nix and use direnv `use nix`:
+#
+# Pick a channel for pkgs:
+#   stable:   { pkgs ? import <nixpkgs> { } }:
+#   unstable: { pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { } }:
+# pkgs.mkShell {
+#   packages = with pkgs; [
+#     fennel-ls
+#     fnlfmt
+#     luajitPackages.fennel
+#     janet
+#     jpm
+#     racket
+#     chez
+#     guile
+#   ];
+# }
+# ---------------------------------------------------------------------------

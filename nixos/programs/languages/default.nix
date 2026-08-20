@@ -1,31 +1,33 @@
 {
   imports = [
-    ./asciidoc.nix
+    # Toolchains moved to per-project shell.nix (work on both NixOS and macOS):
+    # ./asciidoc.nix
+    # ./dart.nix
+    # ./elixir.nix
+    # ./go.nix
+    # ./julia.nix
+    # ./jvm.nix
+    # ./lisp.nix
+    # ./lua.nix
+    # ./nim.nix
+    # ./node.nix
+    # ./r.nix
+    # ./rust.nix
+    # ./zig.nix
     ./bash.nix
     ./crystal.nix
-    ./dart.nix
-    ./elixir.nix
     ./fish.nix
-    ./go.nix
     ./json.nix
-    ./julia.nix
     ./just.nix
-    ./jvm.nix
-    ./lisp.nix
-    ./lua.nix
     ./markdown.nix
-    ./nim.nix
     ./nix.nix
-    ./node.nix
     ./protobuf.nix
     ./python.nix
-    ./r.nix
+    ./roc.nix
     ./ruby.nix
-    ./rust.nix
     ./static-site.nix
     ./toml.nix
     ./typst.nix
     ./yaml.nix
-    ./zig.nix
   ];
 }
