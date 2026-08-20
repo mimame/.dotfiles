@@ -188,6 +188,8 @@ brew "tailspin"
 brew "taplo"
 # Terminal multiplexer
 brew "tmux"
+# Copy pasting in terminal with vimium/vimperator like hints (tmux-fingers)
+brew "tmux-fingers"
 # Very fast implementation of tldr in Rust
 brew "tealdeer"
 # General purpose fuzzy finder TUI
