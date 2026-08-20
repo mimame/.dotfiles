@@ -2,110 +2,179 @@
   // opencode.jsonc: Configuration for the OpenCode AI agent.
   // This file defines where opencode sends inference requests.
   "$schema": "https://opencode.ai/config.json",
-  // Default model. Override at runtime with -m or OPENCODE_MODEL.
-  // GLM-5.2 via OpenCode Go ($10/mo): 880 req/5hr, $1.40/$4.40/$0.26 per 1M in/out/cached.
-  // For long sessions switch to DeepSeek V4 Pro: `opencode -m opencode-go/deepseek-v4-pro`
-  // (3450 req/5hr, 4x more quota) when you don't need GLM's extra intelligence.
-  // No context limit override: OpenCode Go plans bill per request, not per token,
-  // so the larger native context (128k+) maximizes prefix-cache hit rate across
-  // long sessions. Compaction fires rarely, which is the goal — each compaction
-  // invalidates the cached prefix and costs an extra request for the summary.
-  "model": "opencode-go/glm-5.2",
+
+  // --- MODEL SELECTION ---
+  // Cloud-first default: Qwen3.7 Plus (best coding/reasoning tier via opencode-go).
+  // DeepSeek V4 Pro stays available as fallback (`opencode -m opencode-go/deepseek-v4-pro`).
+  // GLM-5.2 stays wired to the `plan` agent for long-horizon precision work.
+  // Local models (Ollama) remain fully configured and visible in /models:
+  //   `opencode -m ollama-local/qwen3:14b`   (default local model)
+  //   `opencode -m ollama-local/qwen3-coder:30b` (big MoE, close apps first)
+  //   `opencode -m ollama-local/muse-glimmer:30b` (30B, ~18GB RAM)
+  //   or use the `@local` agent.
+  "model": "opencode-go/qwen3.7-plus",
+  "small_model": "ollama-local/qwen3.5:9b",
+
   "provider": {
-    // Custom provider for the local llama-swap proxy.
-    // This allows opencode to use any model loaded by llama-server (llama.cpp).
-    "llama-swap": {
+    // --- LOCAL PROVIDER ---
+    // Ollama runs as a native daemon at localhost:11434. We use the OpenAI-compatible
+    // endpoint (/v1) instead of Ollama's native API because opencode's SDK has better
+    // tool-calling support and streaming reliability through the OpenAI interface.
+    //
+    // temperature: 0 is deliberate for ALL local models - deterministic outputs make
+    // tool calls predictable, which is critical for local models that lack the
+    // instruction-following quality of cloud models. Cloud models keep their defaults
+    // (usually 0.7) because they're robust enough to handle variance.
+    //
+    // Context/output limits are conservative (32k/8k) to match what these models were
+    // trained on and to avoid OOM errors on the 32GB Mac. Larger context = more RAM.
+    "ollama-local": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "llama-swap (local)",
+      "name": "Ollama Local",
       "options": {
-        "baseURL": "http://127.0.0.1:11434/v1"
+        "baseURL": "http://localhost:11434/v1",
+        "apiKey": "ollama"
       },
       "models": {
-        // Model IDs here must match the keys in services.llama-swap.settings.models
-        // defined in your NixOS configuration (nixos/hosts/narnia/programs/ai.nix).
-        "qwen-coder-3b": {
-          "name": "Qwen 2.5 Coder 3B (local - Hyper-Fast)",
+        // qwen3:14b - Daily driver for local work. Fast enough to keep apps open,
+        // good enough for routine edits. ~8GB RAM. Use when you need local inference
+        // but can't afford to close heavy apps.
+        "qwen3:14b": {
+          "name": "Qwen3 14B (Ollama)",
+          "tool_call": true,
+          "temperature": true,
+          "options": {
+            "temperature": 0
+          },
           "limit": {
-            "context": 16384,
-            "output": 4096
+            "context": 32768,
+            "output": 8192
           }
         },
-        "llama-3b": {
-          "name": "Llama 3.2 3B (local - Fast)",
+        // qwen3-coder:30b - Best local quality. MoE architecture, ~19GB RAM.
+        // Close heavy apps (browsers, IDEs) before using. Reserved for complex
+        // refactoring, multi-file changes, or when cloud quota is exhausted.
+        "qwen3-coder:30b": {
+          "name": "Qwen3 Coder 30B (Ollama, ~19GB RAM)",
+          "tool_call": true,
+          "temperature": true,
+          "options": {
+            "temperature": 0
+          },
           "limit": {
-            "context": 8192,
-            "output": 4096
+            "context": 32768,
+            "output": 8192
           }
         },
-        "gemma-9b": {
-          "name": "Gemma 2 9B (local)",
+        // qwen3.5:9b - Fastest local model, lowest quality. Used as small_model
+        // for quick context tasks (summarization, simple lookups). ~6GB RAM.
+        // Not suitable for complex tool-calling workflows.
+        "qwen3.5:9b": {
+          "name": "Qwen 3.5 9B (Ollama)",
+          "tool_call": true,
+          "temperature": true,
+          "options": {
+            "temperature": 0
+          },
           "limit": {
-            "context": 8192,
-            "output": 4096
+            "context": 32768,
+            "output": 8192
           }
         },
-        "mistral-24b": {
-          "name": "Mistral Small 24B (local)",
+        // muse-glimmer:30b - Alternative 30B model, slightly smaller footprint (~18GB).
+        // Kept as fallback if qwen3-coder:30b has issues or for A/B testing.
+        // Similar quality, different training data.
+        "muse-glimmer:30b": {
+          "name": "Muse Glimmer 30B (Ollama, ~18GB RAM)",
+          "tool_call": true,
+          "temperature": true,
+          "options": {
+            "temperature": 0
+          },
           "limit": {
-            "context": 8192,
-            "output": 4096
+            "context": 32768,
+            "output": 8192
           }
         }
       }
     }
   },
-  // MCP servers for tool-augmented workflows.
+
+  // --- AGENTS ---
+  // Per-agent model pinning: cloud and local work get their own model/settings
+  // instead of applying one configuration to everything.
+  "agent": {
+    // Plan mode = long-horizon precision -> GLM-5.2 (best agentic quality).
+    "plan": {
+      "model": "opencode-go/glm-5.2"
+    },
+    // Serious local work, zero cloud tokens. Default model: the 30B coder
+    // (best local quality). Close heavy apps first (~19 GB RAM). Falls back to
+    // 14B for daily use with apps open — override with opencode -m.
+    "local": {
+      "model": "ollama-local/qwen3-coder:30b",
+      "temperature": 0,
+      "description": "Use local Ollama Qwen3 Coder 30B (no cloud tokens)",
+      // Primary-only: switch with Tab. As mode "all" it was advertised as a
+      // task-invokable subagent, and local models hallucinate the name as a
+      // direct tool call (invalid [tool=local]) instead of using task.
+      "mode": "primary",
+      // Local models (esp. the 30B) hallucinate subagent names (explore,
+      // plan, general) as direct tools instead of calling task. Denying task
+      // removes subagents from the Task tool description entirely, so the
+      // model explores directly with read/glob/grep instead.
+      "permission": {
+        "task": "deny"
+      },
+      "prompt": "You are a self-contained local coding agent. Subagents are unavailable: never emit a tool call named explore, plan, general, or local. Explore the codebase yourself with read, glob, and grep."
+    }
+  },
+
+  // --- MCP SERVERS ---
+  // Model Context Protocol servers provide additional tools (package search, system
+  // info, etc.). Both are DISABLED by default because each MCP adds ~2-3k tokens of
+  // tool schemas to EVERY prompt, which measurably degrades tool-calling accuracy
+  // for local models and increases cloud token costs.
+  //
+  // Enable on demand when you need specific MCP tools:
+  //   brew: Package search/install for Homebrew (macOS)
+  //   nixos: Package search for NixOS (Linux only)
+  //
+  // To enable temporarily, set "enabled": true and restart opencode.
   "mcp": {
-    // macOS-only: brew(1) provides its own MCP server since Homebrew 4.x.
-    // Fails gracefully on Linux (brew not installed).
     "brew": {
       "type": "local",
       "command": ["brew", "mcp-server"],
-      "enabled": true,
+      "enabled": false,
       "timeout": 30000
     },
-    // NixOS-only: requires the nix binary. Shows as disconnected on macOS,
-    // which is harmless — no functional impact.
+    // NixOS MCP only works on the NixOS machine. Re-enable there for package search.
+    // On macOS, this will fail silently (nix command not found or wrong platform).
     "nixos": {
       "type": "local",
       "command": ["nix", "run", "github:utensils/mcp-nixos", "--"],
-      "enabled": true,
-      // nix run needs extra time for flake evaluation and Python startup.
+      "enabled": false,
       "timeout": 30000
     }
   },
-  // Compaction controls how opencode frees context window when it fills up.
-  // Tuned for GLM-5.2 / DeepSeek V4 Pro via OpenCode Go (subscription billed
-  // per request, not per token). The strategy is to keep the prefix stable for
-  // as long as possible: every compaction invalidates the cached prefix and
-  // costs an extra request for the summary pass, so firing compaction rarely
-  // is more quota-efficient than firing it often, even though each individual
-  // request carries more input tokens. The native 128k+ context limit makes
-  // this the feasible regime — compaction only fires during genuinely long
-  // sessions.
+
+  // --- COMPACTION ---
+  // Context window management for long conversations. Auto-compaction summarizes
+  // older turns to stay within model limits and reduce token costs.
+  //
+  // tail_turns: 3 - Keep the last 3 turns verbatim (unsummarized). Fewer than before
+  // because cloud models handle compressed context better, and this saves tokens.
+  //
+  // reserved: 2048 - Reserve this many tokens for system prompts, tool schemas, and
+  // safety margin. Prevents "context too long" errors at the edge of the limit.
+  //
+  // preserve_recent_tokens: 8000 - When compacting, keep the most recent 8k tokens
+  // intact (roughly 4-5 turns). Balances context retention vs. compression ratio.
+  // Lower than default to save cloud tokens on long sessions.
   "compaction": {
-    // auto: automatically compact when the context window approaches full.
-    // Always enabled — even big contexts eventually fill during long sessions.
     "auto": true,
-    // tail_turns: number of recent user+assistant exchanges kept verbatim
-    // during compaction. Default is 2, which is very aggressive and drops
-    // most of the conversation. With GLM-5.2's large native context we keep
-    // 15 turns, giving the model much more working memory after compaction.
-    "tail_turns": 15,
-    // reserved: token headroom reserved during compaction to prevent
-    // overflow while the compaction pass itself runs. 2048 tokens is a safe
-    // pad for any model size; too low risks a failed compaction cycle.
+    "tail_turns": 3,
     "reserved": 2048,
-    // preserve_recent_tokens: Token-bounded cap on verbatim recent turns
-    // during compaction. tail_turns alone keeps N exchanges regardless of
-    // their size — if one turn contains a massive tool output it can consume
-    // the whole compaction budget. preserve_recent_tokens adds a token-space
-    // safety floor alongside it. Whichever limit is hit first applies.
-    // 48000 ≈ matches 15 turns at average output size.
-    "preserve_recent_tokens": 48000
-    // prune is not set (defaults to false). Pruning discards old tool
-    // outputs. Big context means those outputs remain useful reference;
-    // no need to throw them away. Keeping them also preserves cache hits
-    // within a compaction window — pruning could invalidate the prefix too.
+    "preserve_recent_tokens": 8000
   }
 }
