@@ -57,7 +57,9 @@ Default Applications:
   font/*: org.gnome.font-viewer.desktop
   image/*: org.gnome.Loupe.desktop
   image/svg+xml: org.inkscape.Inkscape.desktop
+  imap-message: thunderbird.desktop
   inode/directory: org.gnome.Nautilus.desktop
+  mailbox-message: thunderbird.desktop
   text/*: dev.zed.Zed.desktop
   text/calendar: thunderbird.desktop
   text/comma-separated-values: onlyoffice-desktopeditors.desktop
@@ -80,14 +82,12 @@ Default Applications:
   x-content/video-svcd: vlc.desktop
   x-content/video-vcd: vlc.desktop
   x-scheme-handler/about: firefox.desktop
-  x-scheme-handler/bitwarden: bitwarden.desktop
   x-scheme-handler/calibre: calibre-gui.desktop
   x-scheme-handler/chrome: firefox.desktop
   x-scheme-handler/ftp: firefox.desktop
   x-scheme-handler/gitg: org.gnome.gitg.desktop
   x-scheme-handler/http: firefox.desktop
   x-scheme-handler/https: firefox.desktop
-  x-scheme-handler/logseq: Logseq.desktop
   x-scheme-handler/mailto: thunderbird.desktop
   x-scheme-handler/obsidian: obsidian.desktop
   x-scheme-handler/spice: remote-viewer.desktop
