@@ -12,7 +12,7 @@ $jobs$cmd_duration$battery$time$status$container$shell$character"""
 right_format = ''
 continuation_prompt = '[∙](bright-black) '
 scan_timeout = 30
-command_timeout = 2000
+command_timeout = 5000
 add_newline = true
 
 [palettes.dracula]
