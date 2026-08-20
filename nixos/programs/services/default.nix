@@ -3,7 +3,12 @@
 #
 # Background services: file indexing (locate), LLMs (llama.cpp), file sync (Syncthing), GPG.
 # ----------------------------------------------------------------------------
-{ pkgs, username, ... }:
+{
+  lib,
+  pkgs,
+  username,
+  ...
+}:
 {
   services = {
     # plocate: Fast file indexing and search (disabled — use fd/rg instead)
@@ -28,10 +33,34 @@
     enableSSHSupport = false;
   };
 
-  # Espanso: Text expander (DISABLED - waiting for Wayland fix)
-  # FIXME: Enable after https://github.com/NixOS/nixpkgs/pull/316519 is merged
-  # services.espanso = {
-  #   enable = true;
-  #   package = pkgs.unstable.espanso-wayland;
-  # };
+  # Espanso: Text expander
+  services.espanso = {
+    enable = true;
+    package = pkgs.unstable.espanso-wayland;
+  };
+
+  # WHY: espanso panics with `NoCompositor` (exit 101) if it spawns before
+  # niri's Wayland socket exists — an upstream `unwrap()` bug in
+  # espanso-detect/src/evdev/sync/wayland.rs. The stock module only binds to
+  # graphical-session.target, which does NOT order the unit after the
+  # compositor, so every boot it crash-loops until a retry wins the race.
+  # Wait for the socket explicitly and lift the restart rate limit.
+  systemd.user.services.espanso = {
+    after = [ "niri.service" ];
+    wants = [ "niri.service" ];
+    serviceConfig = {
+      ExecStartPre = pkgs.writeShellScript "espanso-wait-wayland" ''
+        i=0
+        while [ "$i" -lt 60 ]; do
+          [ -S "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" ] && exit 0
+          i=$((i + 1))
+          sleep 0.5
+        done
+        echo "Timed out waiting for Wayland socket $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" >&2
+        exit 1
+      '';
+      RestartSec = 5;
+      StartLimitIntervalSec = 0;
+    };
+  };
 }
