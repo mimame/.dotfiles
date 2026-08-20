@@ -11,9 +11,9 @@
 
     # --- Infrastructure as Code (IaC) ---
     packer # Multi-platform machine image builder
-    tenv # Version manager for Terraform/OpenTofu
-    terraform-ls # Language server for Terraform
-    tflint # Terraform linter
+    opentofu # Open-source IaC engine (replaces tenv/terraform)
+    terraform-ls # Language Server Protocol (LSP) for HCL/OpenTofu
+    tflint # Linter for catching errors in HCL code
 
     # --- Automation & Config Management ---
     ansible # IT automation engine
