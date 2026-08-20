@@ -45,7 +45,9 @@ in
     ./networking.nix
     ./nvidia.nix
     ./nvidia-wrappers.nix
-    ./programs/ai.nix
+    # Disabled: heavyweight AI packages (llama.cpp, ollama) rebuild on every update
+    # despite not being used. Keep as reference for future.
+    # ./programs/ai.nix
 
     # --- Core System Configuration ---
     # Essential system-wide settings and configurations.
