@@ -3,7 +3,7 @@
 #
 # Host-specific hardware tweaks, log fixes, and peripheral optimizations.
 # ----------------------------------------------------------------------------
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   # ----------------------------------------------------------------------------
   # USB & Connectivity
@@ -33,10 +33,10 @@
   # Bluetooth (Intel Wireless-AC 9260)
   # ----------------------------------------------------------------------------
   hardware.bluetooth.settings.General = {
-    # Disable BAP (Basic Audio Profile / LE Audio)
-    # WHY: Frequently logs "Unable to find bap session" errors on device
-    # detachment on this specific Intel adapter. Disabling it resolves
-    # the log spam until LE Audio support matures in BlueZ.
-    Disable = "bap";
+    # Disable kernel experimental features (including BAP / LE Audio)
+    # WHY: This Intel adapter logs "Unable to find bap session" errors on
+    # device detachment. KernelExperimental=false disables BAP at the kernel
+    # level without using the invalid Disable=bap key that bluez 5.86 rejects.
+    KernelExperimental = lib.mkForce false;
   };
 }
