@@ -4,6 +4,7 @@
     ./ci-cd.nix
     ./databases.nix
     ./development/default.nix
+    ./development/prek-hooks.nix
     ./devops.nix
     ./documents/default.nix
     ./editors/default.nix

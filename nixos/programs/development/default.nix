@@ -29,7 +29,6 @@
       zlib-ng # Zlib replacement (faster)
 
       # --- Code Analysis & Linting ---
-      actionlint # GitHub Actions workflow linter
       ast-grep # AST-based code search
       codespell # Spell checker for code
       ltex-ls # Language server for LaTeX/Markdown
