@@ -87,6 +87,14 @@ abbr tfa 'tofu apply'
 abbr tfi 'tofu init'
 abbr tfp 'tofu plan'
 
+# Homebrew
+abbr bi 'brew install'
+abbr br 'brew remove'
+abbr bs 'brew search'
+abbr binfo 'brew info'
+abbr bl 'brew list'
+abbr bu 'brew update && brew upgrade'
+
 # Language specific
 abbr cr crystal
 abbr pipu "pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
