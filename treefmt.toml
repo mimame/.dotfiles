@@ -16,11 +16,6 @@ command = "fish_indent"
 options = ["-w"]
 includes = ["**/*.fish"]
 
-[formatter.stylua-lazyvim]
-command = "stylua"
-includes = ["lazyvim/**/*.lua"]
-options = ["--config-path", "lazyvim/stylua.toml"]
-
 [formatter.jsonfmt]
 command = "jsonfmt"
 includes = ["**/*.json"]
@@ -43,6 +38,10 @@ excludes = ["Manifest.toml"]
 command = "gofmt"
 options = ["-w"]
 includes = ["**/*.go"]
+
+[formatter.stylua]
+command = "stylua"
+includes = ["**/*.lua"]
 
 [formatter.sort-editors-json-settings]
 command = "jaq"
