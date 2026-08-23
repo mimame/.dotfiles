@@ -1,8 +1,14 @@
 # ----------------------------------------------------------------------------
 # Pre-commit Hooks (prek)
 #
-# Tools required for prek hooks: formatters, linters, and secret scanners.
-# These are installed system-wide for convenience, but CI uses shell.nix.
+# System-wide installation of prek and its tool dependencies (formatters,
+# linters, secret scanners) to accelerate dotfiles development workflow.
+#
+# Unlike shell.nix which requires `nix-shell` invocation per session, these
+# tools are always available in PATH, eliminating shell startup overhead and
+# enabling direct invocation from editors, git hooks, and CI pipelines.
+#
+# CI environments still use shell.nix for reproducibility and isolation.
 # ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
