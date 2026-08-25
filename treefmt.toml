@@ -21,7 +21,8 @@ command = "jsonfmt"
 includes = ["**/*.json"]
 # Exclude DMS shell settings to prevent formatting conflicts with
 # the application's native, auto-managed configuration updates.
-excludes = ["DankMaterialShell/settings.json"]
+# Exclude vimium backup - requires escaped \n for import.
+excludes = ["DankMaterialShell/settings.json", "vimium/vimium.json"]
 options = ["-w"]
 
 [formatter.yamlfmt]
