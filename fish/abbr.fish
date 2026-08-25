@@ -42,7 +42,7 @@ abbr tree 'erd --layout inverted --human'
 
 # Enhanced ls with eza
 if command -q eza
-    alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink'
+    alias l 'eza --sort .name --color=always --long --links --group --git --icons --classify --extended --ignore-glob=node_modules --all --hyperlink=auto'
     alias ls l
 else
     alias l 'ls -lah'
