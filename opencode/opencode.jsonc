@@ -176,5 +176,73 @@
     "tail_turns": 3,
     "reserved": 2048,
     "preserve_recent_tokens": 8000
+  },
+
+  "permission": {
+    "bash": {
+      "*": "allow",
+      // --- System ---
+      "sudo*": "ask",
+      "shutdown*": "deny",
+      "reboot*": "deny",
+      "halt*": "deny",
+      "dd*": "deny",
+      "mkfs*": "deny",
+      "rm -rf*": "deny",
+      "rm -fr*": "deny",
+      "topgrade*": "ask",
+      // --- Process management ---
+      "pkill*": "ask",
+      "killall*": "ask",
+      // --- Git ---
+      "git commit*": "ask",
+      "git push*": "ask",
+      "git push --force*": "deny",
+      "git push -f*": "deny",
+      "git merge*": "ask",
+      "git rebase*": "ask",
+      "git reset*": "ask",
+      "git reset --hard*": "deny",
+      "git clean*": "ask",
+      "git clean -fd*": "deny",
+      "git clean -fdx*": "deny",
+      // --- Docker ---
+      "docker compose*": "allow",
+      "docker run*": "ask",
+      "docker rm*": "ask",
+      "docker rmi*": "ask",
+      "docker stop*": "ask",
+      "docker kill*": "ask",
+      "docker system prune*": "ask",
+      "docker*": "allow",
+      // --- Brew ---
+      "brew remove*": "ask",
+      "brew uninstall*": "ask",
+      "brew autoremove*": "ask",
+      "brew*": "allow",
+      // --- Nix ---
+      "nix-shell*": "allow",
+      "nix develop*": "allow",
+      "nix build*": "allow",
+      "nix search*": "allow",
+      "nix profile remove*": "ask",
+      "nix profile*": "allow",
+      "nixos-rebuild*": "ask",
+      "nix*": "allow",
+      // --- OpenTofu ---
+      "tofu init*": "allow",
+      "tofu plan*": "allow",
+      "tofu validate*": "allow",
+      "tofu apply*": "ask",
+      "tofu destroy*": "deny",
+      "tofu*": "ask",
+      // --- Rsync ---
+      "rsync*": "ask",
+      // --- Logs ---
+      "dmesg*": "allow",
+      "journalctl*": "allow",
+      // --- Zellij ---
+      "zellij*": "allow"
+    }
   }
 }
