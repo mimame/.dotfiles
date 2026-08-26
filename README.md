@@ -60,6 +60,7 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 - [btop](https://github.com/aristocratos/btop): Modern, interactive resource monitor showing CPU, memory, and network usage.
 - [delta](https://github.com/dandavison/delta): A syntax-highlighting pager for Git, diff, and grep output.
 - [fd](https://github.com/sharkdp/fd): A simple, fast and user-friendly alternative to 'find'.
+- [fzf](https://github.com/junegunn/fzf): General-purpose fuzzy finder, used as backend for navi and tmux-fzf.
 - [jujutsu (jj)](https://martinvonz.github.io/jj/): A Git-compatible DVCS that is simple, powerful, and safe.
 - [lazygit](https://github.com/jesseduffield/lazygit): Simple terminal UI for git commands.
 - [mise](https://mise.jdx.dev/): Polyglot tool manager, replacing `asdf` for development environment management.
@@ -68,6 +69,7 @@ This curated selection empowers a focused, efficient, and enjoyable workflow. Al
 - [television](https://github.com/alexpasmantier/television): Any-input fuzzy finder for the terminal.
 - [tmux](https://github.com/tmux/tmux): Terminal multiplexer for session persistence, SSH, and remote work.
 - [topgrade](https://github.com/topgrade-rs/topgrade): Upgrade everything at once.
+- [vimium](https://github.com/philc/vimium): Browser extension for keyboard-based navigation with Helix-inspired keybindings.
 - [zellij](https://zellij.dev/): Terminal workspace multiplexer with a focus on ergonomics and ease of use.
 
 ## Windows Management
