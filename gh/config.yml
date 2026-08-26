@@ -3,8 +3,8 @@
 # What protocol to use when performing git operations. Supported values: ssh, https
 git_protocol: ssh
 # The editor gh should use for interactive prompts (issues, PRs, etc.).
-# If blank, it defaults to the $EDITOR or $VISUAL environment variables.
-editor: nvim
+# Uses $EDITOR environment variable
+# editor: hx
 # Aliases allow you to create shortcuts for common gh commands.
 # Documentation: https://cli.github.com/manual/gh_alias_set
 aliases:
@@ -28,13 +28,14 @@ aliases:
   pd: pr diff # View the diff for a pull request
   pm: pr merge # Merge a pull request
   ps: pr status # Show status of your pull requests
-  pr-ready: pr ready # Mark a draft PR as ready for review
-  pr-close: pr close # Close a pull request
-  pr-reopen: pr reopen # Reopen a closed pull request
-  pr-review: pr review # Add a review to a pull request
   # --- Gist ---
   g: gist create # Create a new Gist
+  # --- Actions/Runs ---
+  run: run list # List workflow runs
+  runv: run view # View a specific run
+  runw: run view --web # View run in browser
   # --- Miscellaneous ---
   cs: run list # Check CI/Actions status (shorthand for 'checks')
+  whoami: api user # Show authenticated GitHub user
 # Configuration format version
 version: "1"
