@@ -22,7 +22,7 @@ includes = ["**/*.json"]
 # Exclude DMS shell settings to prevent formatting conflicts with
 # the application's native, auto-managed configuration updates.
 # Exclude vimium backup - requires escaped \n for import.
-excludes = ["DankMaterialShell/settings.json", "vimium/vimium.json"]
+excludes = ["DankMaterialShell/settings.json", "vimium/vimium.json", "devdocs/devdocs.json"]
 options = ["-w"]
 
 [formatter.yamlfmt]
