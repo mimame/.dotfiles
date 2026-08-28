@@ -172,6 +172,13 @@ abbr zk 'zellij kill-session'
 abbr ze 'zellij edit'
 abbr zr 'zellij run'
 
+# --- NixOS ---
+abbr nr 'sudo nixos-rebuild switch --show-trace'
+abbr nru 'sudo nixos-rebuild switch --upgrade --show-trace'
+abbr nrt 'sudo nixos-rebuild test --show-trace'
+abbr nrb 'sudo nixos-rebuild boot --show-trace'
+abbr nrd 'sudo nixos-rebuild dry-build --show-trace'
+
 # --- Configuration Editing ---
 
 edit_config brootrc broot/conf.toml
