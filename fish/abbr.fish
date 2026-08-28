@@ -87,6 +87,12 @@ abbr tfa 'tofu apply'
 abbr tfi 'tofu init'
 abbr tfp 'tofu plan'
 
+# prek (fast pre-commit)
+abbr pr 'prek run'
+abbr pra 'prek run --all-files'
+abbr prd 'prek run --show-diff-on-failure'
+abbr pru 'prek autoupdate'
+
 # Homebrew
 abbr bi 'brew install'
 abbr br 'brew remove'
