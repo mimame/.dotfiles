@@ -1,10 +1,10 @@
 {
   // opencode.jsonc: Configuration for the OpenCode AI agent.
-  // This file defines where opencode sends inference requests.
+  // Models & providers, agents, MCP gating, compaction, and permission rules.
   "$schema": "https://opencode.ai/config.json",
 
   // --- MODEL SELECTION ---
-  // Cloud-first default: Qwen3.7 Plus (best coding/reasoning tier via opencode-go).
+  // Cloud-first default: Qwen3.8 Flash (best coding/reasoning tier via opencode-go).
   // DeepSeek V4 Pro stays available as fallback (`opencode -m opencode-go/deepseek-v4-pro`).
   // GLM-5.2 stays wired to the `plan` agent for long-horizon precision work.
   // Local models (Ollama) remain fully configured and visible in /models:
@@ -12,8 +12,14 @@
   //   `opencode -m ollama-local/qwen3-coder:30b` (big MoE, close apps first)
   //   `opencode -m ollama-local/muse-glimmer:30b` (30B, ~18GB RAM)
   //   or use the `@local` agent.
-  "model": "opencode-go/qwen3.7-plus",
-  "small_model": "ollama-local/qwen3.5:9b",
+  "model": "opencode-go/qwen3.8-flash",
+  // small_model (titles, summaries) on the paid flash tier: cloud-backed (no Ollama
+  // dependency) and far more reliable than the rate-limited free tier
+  // (opencode/deepseek-v4-flash-free). Flash requests barely dent the quota.
+  "small_model": "opencode-go/deepseek-v4-flash",
+
+  // Never offer session sharing — dotfiles sessions can leak host paths/context.
+  "share": "disabled",
 
   "provider": {
     // --- LOCAL PROVIDER ---
@@ -66,8 +72,8 @@
             "output": 8192
           }
         },
-        // qwen3.5:9b - Fastest local model, lowest quality. Used as small_model
-        // for quick context tasks (summarization, simple lookups). ~6GB RAM.
+        // qwen3.5:9b - Fastest local model, lowest quality. Kept as a local
+        // small_model fallback (summarization, simple lookups). ~6GB RAM.
         // Not suitable for complex tool-calling workflows.
         "qwen3.5:9b": {
           "name": "Qwen 3.5 9B (Ollama)",
@@ -195,47 +201,54 @@
       "pkill*": "ask",
       "killall*": "ask",
       // --- Git ---
+      // Last matching rule wins: broad rules first, specific asks/denies after.
       "git commit*": "ask",
       "git push*": "ask",
       "git push --force*": "deny",
       "git push -f*": "deny",
+      "git push --force-with-lease*": "ask",
       "git merge*": "ask",
       "git rebase*": "ask",
       "git reset*": "ask",
       "git reset --hard*": "deny",
+      "git checkout*": "ask",
+      "git restore*": "ask",
+      "git stash drop*": "ask",
+      "git stash clear*": "ask",
       "git clean*": "ask",
       "git clean -fd*": "deny",
+      "git clean -df*": "deny",
       "git clean -fdx*": "deny",
+      "git clean -dx*": "deny",
+      "git clean -xd*": "deny",
+      "git clean -x*": "deny",
       // --- Docker ---
-      "docker compose*": "allow",
+      "docker*": "allow",
       "docker run*": "ask",
       "docker rm*": "ask",
       "docker rmi*": "ask",
       "docker stop*": "ask",
       "docker kill*": "ask",
       "docker system prune*": "ask",
-      "docker*": "allow",
       // --- Brew ---
+      "brew*": "allow",
       "brew remove*": "ask",
       "brew uninstall*": "ask",
       "brew autoremove*": "ask",
-      "brew*": "allow",
       // --- Nix ---
-      "nix-shell*": "allow",
-      "nix develop*": "allow",
-      "nix build*": "allow",
-      "nix search*": "allow",
-      "nix profile remove*": "ask",
-      "nix profile*": "allow",
-      "nixos-rebuild*": "ask",
+      // "nix*" also matches nixos-rebuild, so it must come first, not last.
       "nix*": "allow",
+      "nix profile remove*": "ask",
+      "nixos-rebuild*": "ask",
+      "nix* delete*": "ask",
       // --- OpenTofu ---
+      // Broad "ask" first; the specific allows below must come after it.
+      "tofu*": "ask",
       "tofu init*": "allow",
       "tofu plan*": "allow",
       "tofu validate*": "allow",
       "tofu apply*": "ask",
       "tofu destroy*": "deny",
-      "tofu*": "ask",
       // --- Rsync ---
       "rsync*": "ask",
       // --- Logs ---
@@ -243,6 +256,122 @@
       "journalctl*": "allow",
       // --- Zellij ---
       "zellij*": "allow"
+    },
+    // --- FILE ACCESS DENY RULES ---
+    // Block read/edit/glob/grep on sensitive paths (SSH keys, cloud credentials,
+    // password managers, private keys, etc.). Last matching rule wins, so these
+    // specific denies override the tool defaults even when a broad allow exists.
+    // Covers both macOS and NixOS/Linux secret locations.
+    // Gate anything OUTSIDE the project dir: keep the default "ask", deny secrets.
+    "external_directory": {
+      "~/.ssh/**": "deny",
+      "~/.gnupg/**": "deny",
+      "~/.aws/**": "deny",
+      "~/.config/gcloud/**": "deny",
+      "~/.kube/**": "deny",
+      "~/.password-store/**": "deny",
+      "~/.config/sops/**": "deny",
+      "~/.local/share/keyrings/**": "deny",
+      "~/Library/Keychains/**": "deny",
+      "/etc/sops/**": "deny",
+      "/etc/ssh/**": "deny",
+      "*": "ask"
+    },
+    "read": {
+      "*": "allow",
+      "~/.ssh/**": "deny",
+      "~/.gnupg/**": "deny",
+      "~/.aws/**": "deny",
+      "~/.config/gcloud/**": "deny",
+      "~/.kube/**": "deny",
+      "~/.docker/config.json": "deny",
+      "~/.netrc": "deny",
+      "~/.password-store/**": "deny",
+      "~/.config/opencode/auth*": "deny",
+      "~/.config/sops/**": "deny",
+      "~/.local/share/keyrings/**": "deny",
+      "~/Library/Keychains/**": "deny",
+      "/etc/sops/**": "deny",
+      "/etc/ssh/**": "deny",
+      "**/.env": "deny",
+      "**/.env.*": "deny",
+      "**/*.pem": "deny",
+      "**/*.key": "deny",
+      "**/secrets.json": "deny",
+      "**/secrets.yaml": "deny",
+      "**/secrets.yml": "deny"
+    },
+    "edit": {
+      "*": "allow",
+      "~/.ssh/**": "deny",
+      "~/.gnupg/**": "deny",
+      "~/.aws/**": "deny",
+      "~/.config/gcloud/**": "deny",
+      "~/.kube/**": "deny",
+      "~/.docker/config.json": "deny",
+      "~/.netrc": "deny",
+      "~/.password-store/**": "deny",
+      "~/.config/opencode/auth*": "deny",
+      "~/.config/sops/**": "deny",
+      "~/.local/share/keyrings/**": "deny",
+      "~/Library/Keychains/**": "deny",
+      "/etc/sops/**": "deny",
+      "/etc/ssh/**": "deny",
+      "**/.env": "deny",
+      "**/.env.*": "deny",
+      "**/*.pem": "deny",
+      "**/*.key": "deny",
+      "**/secrets.json": "deny",
+      "**/secrets.yaml": "deny",
+      "**/secrets.yml": "deny"
+    },
+    "glob": {
+      "*": "allow",
+      "~/.ssh/**": "deny",
+      "~/.gnupg/**": "deny",
+      "~/.aws/**": "deny",
+      "~/.config/gcloud/**": "deny",
+      "~/.kube/**": "deny",
+      "~/.docker/config.json": "deny",
+      "~/.netrc": "deny",
+      "~/.password-store/**": "deny",
+      "~/.config/opencode/auth*": "deny",
+      "~/.config/sops/**": "deny",
+      "~/.local/share/keyrings/**": "deny",
+      "~/Library/Keychains/**": "deny",
+      "/etc/sops/**": "deny",
+      "/etc/ssh/**": "deny",
+      "**/.env": "deny",
+      "**/.env.*": "deny",
+      "**/*.pem": "deny",
+      "**/*.key": "deny",
+      "**/secrets.json": "deny",
+      "**/secrets.yaml": "deny",
+      "**/secrets.yml": "deny"
+    },
+    "grep": {
+      "*": "allow",
+      "~/.ssh/**": "deny",
+      "~/.gnupg/**": "deny",
+      "~/.aws/**": "deny",
+      "~/.config/gcloud/**": "deny",
+      "~/.kube/**": "deny",
+      "~/.docker/config.json": "deny",
+      "~/.netrc": "deny",
+      "~/.password-store/**": "deny",
+      "~/.config/opencode/auth*": "deny",
+      "~/.config/sops/**": "deny",
+      "~/.local/share/keyrings/**": "deny",
+      "~/Library/Keychains/**": "deny",
+      "/etc/sops/**": "deny",
+      "/etc/ssh/**": "deny",
+      "**/.env": "deny",
+      "**/.env.*": "deny",
+      "**/*.pem": "deny",
+      "**/*.key": "deny",
+      "**/secrets.json": "deny",
+      "**/secrets.yaml": "deny",
+      "**/secrets.yml": "deny"
     }
   }
 }
