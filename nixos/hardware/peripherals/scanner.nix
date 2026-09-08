@@ -10,9 +10,9 @@
   hardware.sane = {
     enable = true;
     openFirewall = true;
-    # Brother brscan5 driver
+    # Brother brscan5 driver (only if scannerIp is set)
     brscan5 = {
-      enable = true;
+      enable = vars.scannerIp != null;
       netDevices.narnia = {
         model = "MFC-L2710DW";
         ip = vars.scannerIp;
