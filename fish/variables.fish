@@ -74,19 +74,25 @@ end
 # --- Core Fish Configuration ---
 
 # Ensure SHELL points to a version-stable Fish executable. `status fish-path`
-# resolves brew symlinks to the Cellar dir, which dies on `brew upgrade fish`,
-# so prefer the stable bin path when one exists (subprocesses like
+# resolves brew symlinks to the Cellar dir, which dies on `brew upgrade fish`;
+# on NixOS it resolves to the store path, which dies when old generations are
+# GC'd after a system switch (nix-collect-garbage — topgrade automates it).
+# Prefer the stable bin path when one exists (subprocesses like
 # zellij/tmux/GUI shells inherit SHELL and fall back to bash if it is stale).
 #
-# The stable path is DERIVED from the running binary (Cellar/<formula>/<version>
-# -> <prefix>/bin/fish) rather than hardcoded to /opt/homebrew/bin/fish,
-# because this file is shared with NixOS (no /opt/homebrew at all) and brew's
-# prefix varies (Intel: /usr/local, relocatable installs). `test -x` keeps the
-# raw path where no stable alias exists (Nix store paths are immutable).
+# The macOS stable path is DERIVED from the running binary
+# (Cellar/<formula>/<version> -> <prefix>/bin/fish) rather than hardcoded to
+# /opt/homebrew/bin/fish, because this file is shared with NixOS (no
+# /opt/homebrew at all) and brew's prefix varies (Intel: /usr/local,
+# relocatable installs). On NixOS, /run/current-system/sw/bin/fish (created by
+# programs.fish.enable) re-points itself on every switch, so it never goes
+# stale. `test -x` keeps the raw path where neither stable alias exists.
 set -l fish_cmd (status fish-path)
 if string match -q '*Cellar*' -- "$fish_cmd"
     set -l stable_fish (string replace -r '/Cellar/[^/]+/[^/]+' '' -- "$fish_cmd")
     test -x "$stable_fish"; and set fish_cmd "$stable_fish"
+else if test "$IS_NIXOS" = true; and test -x /run/current-system/sw/bin/fish
+    set fish_cmd /run/current-system/sw/bin/fish
 end
 set -gx SHELL "$fish_cmd"
 
@@ -98,6 +104,19 @@ if test "$IS_DARWIN" = true; and status is-interactive
     set -l user_shell (dscl . -read "/Users/$USER" UserShell 2>/dev/null | string replace -r '^UserShell:\s*' '')
     if string match -q '*Cellar*' -- "$user_shell"
         echo "warning: login shell is versioned ($user_shell) — run: chsh -s $SHELL" >&2
+    end
+end
+
+# tmux server guard: a long-lived server caches the startup SHELL as its
+# server-level default-shell, validated only at set-time. When a later
+# `brew upgrade fish` (macOS) or generation GC (NixOS) deletes that cached
+# path, pane launches fail and tmux silently falls back to bash — even
+# though UserShell and $SHELL are correct. Warn when the running server's
+# default-shell diverges from the stable $SHELL.
+if status is-interactive; and command -q tmux; and tmux ls >/dev/null 2>&1
+    set -l tmux_shell (tmux show-options -qs default-shell 2>/dev/null | string replace -r '^\S+\s+' '')
+    if test -n "$tmux_shell"; and test "$tmux_shell" != "$SHELL"
+        echo "warning: tmux server shell is stale ($tmux_shell) — run: tmux set-option -s default-shell $SHELL; tmux set-environment -g SHELL $SHELL" >&2
     end
 end
 
