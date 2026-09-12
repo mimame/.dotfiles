@@ -73,9 +73,33 @@ end
 
 # --- Core Fish Configuration ---
 
-# Ensure SHELL environment variable points to active Fish executable
-# (Fixes subprocesses like zellij/tmux inheriting parent shell like bash or zsh)
-set -gx SHELL (status fish-path)
+# Ensure SHELL points to a version-stable Fish executable. `status fish-path`
+# resolves brew symlinks to the Cellar dir, which dies on `brew upgrade fish`,
+# so prefer the stable bin path when one exists (subprocesses like
+# zellij/tmux/GUI shells inherit SHELL and fall back to bash if it is stale).
+#
+# The stable path is DERIVED from the running binary (Cellar/<formula>/<version>
+# -> <prefix>/bin/fish) rather than hardcoded to /opt/homebrew/bin/fish,
+# because this file is shared with NixOS (no /opt/homebrew at all) and brew's
+# prefix varies (Intel: /usr/local, relocatable installs). `test -x` keeps the
+# raw path where no stable alias exists (Nix store paths are immutable).
+set -l fish_cmd (status fish-path)
+if string match -q '*Cellar*' -- "$fish_cmd"
+    set -l stable_fish (string replace -r '/Cellar/[^/]+/[^/]+' '' -- "$fish_cmd")
+    test -x "$stable_fish"; and set fish_cmd "$stable_fish"
+end
+set -gx SHELL "$fish_cmd"
+
+# macOS login-shell guard: UserShell must be the version-stable brew path
+# (/opt/homebrew/bin/fish), never a Cellar version path — `brew upgrade fish`
+# deletes the old Cellar dir, and terminals then silently fall back to bash.
+# Never set it with `chsh -s (which fish)`, which can resolve to Cellar.
+if test "$IS_DARWIN" = true; and status is-interactive
+    set -l user_shell (dscl . -read "/Users/$USER" UserShell 2>/dev/null | string replace -r '^UserShell:\s*' '')
+    if string match -q '*Cellar*' -- "$user_shell"
+        echo "warning: login shell is versioned ($user_shell) — run: chsh -s $SHELL" >&2
+    end
+end
 
 # Remove Fish default greeting
 set -g fish_greeting
