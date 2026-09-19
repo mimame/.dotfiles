@@ -196,6 +196,13 @@
       "mkfs*": "deny",
       "rm -rf*": "deny",
       "rm -fr*": "deny",
+      // -f alone just suppresses the prompt (plain rm is allowed anyway) -> ask.
+      "rm -f*": "ask",
+      // Catch recursive deletes however the flags are spelled or ordered.
+      // Must come after "rm -f*" so deny wins for combined cases (rm -f -r).
+      "rm -r*": "deny",
+      "rm * -r*": "deny",
+      "rm --recursive*": "deny",
       "topgrade*": "ask",
       // --- Process management ---
       "pkill*": "ask",
