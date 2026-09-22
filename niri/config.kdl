@@ -535,6 +535,10 @@ binds {
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
+    // Rectangle next/previous display aliases (⌃⌥⌘←/→)
+    Mod+Ctrl+Alt+Left  { move-column-to-monitor-left; }
+    Mod+Ctrl+Alt+Right { move-column-to-monitor-right; }
+
     // Alternatively, there are commands to move just a single window:
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
     // ...
@@ -641,7 +645,13 @@ binds {
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
+    Mod+Return { maximize-column; } // Rectangle ⌃⌥↩ mnemonic
+    Mod+BackSpace { switch-preset-column-width-back; } // Rectangle restore ⌃⌥⌫ mnemonic
     Mod+Shift+F { fullscreen-window; }
+
+    // Rectangle half-height mnemonics (⌃⌥↑/↓)
+    Mod+Alt+Up { set-window-height "50%"; }
+    Mod+Alt+Down { set-window-height "100%"; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
