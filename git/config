@@ -177,7 +177,7 @@
   lt  = "!git l --numstat"
   lde = "!git -c diff.external=difft l -p --ext-diff"
   # Interactive log: select commits and copy hashes to clipboard
-  li = "!tv --ansi --no-sort --source-command 'git l --color' --preview-command 'git show --color {strip_ansi|regex_extract:[0-9a-f]{7,}}' --source-output '{strip_ansi|regex_extract:[0-9a-f]{7,}}' | paste -sd ' ' | fish -c 'cb'"
+  li = "!tv --ansi --no-sort --source-command 'git l --color' --preview-command 'git show --color {strip_ansi|regex_extract:[0-9a-f]{7,}}' --source-output '{strip_ansi|regex_extract:[0-9a-f]{7,}}' | paste -sd ' ' - | fish -c 'cb'"
 
   # --- Merge (m) ---
   # https://git-scm.com/docs/git-merge
