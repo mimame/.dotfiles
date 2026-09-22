@@ -26,6 +26,8 @@ brew "carapace"
 brew "zstd"
 # Lint commit messages according to a commit convention
 brew "commitlint"
+# Structural diff tool, git's diff.tool
+brew "difftastic"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Pack, ship and run any application as a lightweight container
