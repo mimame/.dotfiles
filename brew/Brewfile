@@ -1,3 +1,5 @@
+# Tinycast is distributed via a third-party tap
+tap "abue-ammar/tinycast"
 # Static checker for GitHub Actions workflow files
 brew "actionlint"
 # Download with resuming and segmented downloading
@@ -34,6 +36,8 @@ brew "dotter"
 brew "dprint"
 # View disk space usage and delete unwanted data, fast
 brew "dua-cli"
+# Embeddable SQL OLAP Database Management System
+brew "duckdb"
 # Disk Usage/Free Utility - a better 'df' alternative
 brew "duf"
 # Backs up your work automatically via Git commits
@@ -82,6 +86,8 @@ brew "grex"
 brew "gron"
 # Post-modern modal text editor
 brew "helix"
+# Client library for huggingface.co hub
+brew "hf"
 # Simple zero-configuration command-line HTTP server
 brew "http-server"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -116,6 +122,8 @@ brew "lazydocker"
 brew "lazygit"
 # CLI for SQLite Databases with auto-completion and syntax highlighting
 brew "litecli"
+# LLM inference in C/C++
+brew "llama.cpp"
 # Find what models run on your hardware
 brew "llmfit"
 # Package manager for the Lua programming language
@@ -130,6 +138,10 @@ brew "mermaid-cli"
 brew "micro"
 # Polyglot runtime manager (asdf rust clone)
 brew "mise"
+# Run LLMs with MLX
+brew "mlx-lm"
+# Remote terminal application
+brew "mosh"
 # CLI for MySQL with auto-completion and syntax highlighting
 brew "mycli"
 # Interactive cheatsheet tool for the command-line
@@ -144,10 +156,14 @@ brew "nixfmt"
 brew "ollama"
 # Command-line Git information tool
 brew "onefetch"
+# AI coding agent, built for the terminal
+brew "opencode"
 # Painless compression and decompression for your terminal
 brew "ouch"
 # Command-line tool to generate, analyze, convert and manipulate colors
 brew "pastel"
+# AI agent toolkit
+brew "pi-coding-agent"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
 # Fast Git hook manager written in Rust, drop-in alternative to pre-commit
@@ -156,6 +172,8 @@ brew "prek"
 brew "pueue"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
+# Software environment for statistical computing
+brew "r"
 # Fast, efficient and secure backup program
 brew "restic"
 # Search tool like grep and The Silver Searcher
@@ -176,6 +194,8 @@ brew "rustup"
 brew "scc"
 # Intuitive find & replace CLI
 brew "sd"
+# Command-line interface for SQLite
+brew "sqlite"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Lints and suggestions for the nix programming language
@@ -204,6 +224,8 @@ brew "tokei"
 brew "topgrade"
 # Command-line translator using Google Translate and more
 brew "translate-shell"
+# Display directories as trees
+brew "tree"
 # One CLI to format the code tree
 brew "treefmt"
 # Extremely fast Python type checker, written in Rust
@@ -234,6 +256,8 @@ brew "yq"
 brew "zellij"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# Memory training application
+cask "anki"
 # Agent orchestration platform
 cask "antigravity"
 # Terminal interface for Antigravity agents
@@ -244,6 +268,10 @@ cask "claude"
 cask "claude-code"
 # Brings the power of Copilot coding agent directly to your terminal
 cask "copilot-cli"
+# Cross-platform text expander written in Rust
+cask "espanso"
+# Web browser
+cask "firefox"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-maple-mono-nl-nf"
 cask "font-roboto"
@@ -268,16 +296,30 @@ cask "maccy"
 cask "meld"
 # Meet, chat, call, and collaborate in just one place
 cask "microsoft-teams"
+# App to write, plan, collaborate, and get organised
+cask "notion"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Control your tools with a few keystrokes
-cask "raycast"
+# Document editor
+cask "onlyoffice"
+# Environment for statistical computing and graphics
+cask "r-app"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
 # Team communication and collaboration software
 cask "slack"
 # Music streaming service
 cask "spotify"
+# Customizable email client
+cask "thunderbird"
+# Tiny, fully native macOS launcher
+cask "tinycast"
 # Open-source code editor
 cask "visual-studio-code"
+# Web browser with built-in email client
+cask "vivaldi"
+# Native desktop client for WhatsApp
+cask "whatsapp"
 # Multiplayer code editor
 cask "zed"
 vscode "aaron-bond.better-comments"
