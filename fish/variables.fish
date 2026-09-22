@@ -108,15 +108,35 @@ if test "$IS_DARWIN" = true; and status is-interactive
 end
 
 # tmux server guard: a long-lived server caches the startup SHELL as its
-# server-level default-shell, validated only at set-time. When a later
-# `brew upgrade fish` (macOS) or generation GC (NixOS) deletes that cached
-# path, pane launches fail and tmux silently falls back to bash — even
-# though UserShell and $SHELL are correct. Warn when the running server's
-# default-shell diverges from the stable $SHELL.
+# default-shell in option tables consulted at pane launch: the server
+# table (-s) and the global session table (-g), which every new session
+# copies. Both are validated only at set-time, so a later `brew upgrade
+# fish` (macOS) or generation GC (NixOS) deletes the cached path and pane
+# launches silently fall back to bash — even though UserShell and $SHELL
+# are correct. Repair stale tables in place; a warning alone would be
+# buried instantly by the tmux auto-attach in config.fish. An EMPTY table
+# means a fresh server that never cached a path (it resolves from the
+# passwd UserShell, already stable) — leave it alone, else the guard fires
+# on every server start. Fall back to warning when not writable.
 if status is-interactive; and command -q tmux; and tmux ls >/dev/null 2>&1
-    set -l tmux_shell (tmux show-options -qs default-shell 2>/dev/null | string replace -r '^\S+\s+' '')
-    if test -n "$tmux_shell"; and test "$tmux_shell" != "$SHELL"
-        echo "warning: tmux server shell is stale ($tmux_shell) — run: tmux set-option -s default-shell $SHELL; tmux set-environment -g SHELL $SHELL" >&2
+    set -l tmux_server_shell (tmux show-options -qs default-shell 2>/dev/null | string replace -r '^\S+\s+' '')
+    # -gq reads the GLOBAL session table (what every new session copies);
+    # -q alone would resolve to the current target session and can mask a
+    # stale global value.
+    set -l tmux_global_shell (tmux show-options -gq default-shell 2>/dev/null | string replace -r '^\S+\s+' '')
+    set -l tmux_stale ''
+    if test -n "$tmux_server_shell"; and test "$tmux_server_shell" != "$SHELL"
+        set tmux_stale "server ($tmux_server_shell)"
+    end
+    if test -n "$tmux_global_shell"; and test "$tmux_global_shell" != "$SHELL"
+        set tmux_stale "$tmux_stale global ($tmux_global_shell)"
+    end
+    if test -n "$tmux_stale"
+        if tmux set-option -g default-shell "$SHELL" 2>/dev/null; and tmux set-option -s default-shell "$SHELL" 2>/dev/null; and tmux set-environment -g SHELL "$SHELL" 2>/dev/null
+            echo "notice: repaired stale tmux default-shell:$tmux_stale → $SHELL" >&2
+        else
+            echo "warning: stale tmux default-shell:$tmux_stale — run: tmux set-option -g default-shell $SHELL; tmux set-option -s default-shell $SHELL; tmux set-environment -g SHELL $SHELL" >&2
+        end
     end
 end
 
