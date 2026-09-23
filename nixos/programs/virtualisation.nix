@@ -25,7 +25,11 @@
     #       LXC backend internally. Enabling both would cause conflicts.
     incus = {
       enable = true;
-      agent.enable = true; # Host-guest integration for VMs (exec, file push)
+      # NOTE: The agent runs INSIDE Incus guest images (virtio-9p config channel).
+      # Enabling it on bare metal makes incus-agent.service fail-loop every 5s
+      # ("9pnet_virtio: no channels available"). Guest integration
+      # (incus exec, file push) comes from the guest image, not the host.
+      agent.enable = false;
       ui.enable = true; # Web UI — run `incus webui` to open in browser; or set core.https_address (convention: :8443) for persistent access
       # Preseed: Fully declarative Incus bootstrap, no manual `incus admin init`.
       # All three sections (storage_pools + networks + profiles) must be declared
