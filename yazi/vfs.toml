@@ -1,19 +1,16 @@
-[services.narnia]
-type = "sftp"
+[sftp.narnia]
 host = "narnia.local"
 user = "paradise"
 port = 22
 key_file = "~/.ssh/id_ed25519_no_passphrase"
 
-[services.bignarnia]
-type = "sftp"
+[sftp.bignarnia]
 host = "bignarnia.local"
 user = "mimame"
 port = 22
 key_file = "~/.ssh/id_ed25519_no_passphrase"
 
-[services.mininarnia]
-type = "sftp"
+[sftp.mininarnia]
 host = "mininarnia.local"
 user = "mimame"
 port = 22
