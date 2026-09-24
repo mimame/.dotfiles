@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "c2c16c8"
-hash = "7b625412411be411153886894d9acaf"
+rev = "f703392"
+hash = "f281261ff04ad7ec867c3f802a50835f"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "a837101"
-hash = "635b0feb9215772d22020eb0abf0bb34"
+rev = "ea92cf4"
+hash = "9776f378459072b6c2875eae5addc49d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
@@ -20,25 +20,25 @@ hash = "e02a788e5b8ae0fb47fd0193dda589cc"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mount"
-rev = "c2c16c8"
-hash = "e3260d0b1feded8c8e3ae3afa1169e30"
+rev = "f703392"
+hash = "b95f898e6dc60b52edbc415952e14395"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
-rev = "406ce6c"
-hash = "f5afc904d5106ee368c8aa2ded43bd74"
+rev = "596b666"
+hash = "c2f4f4aca257dcceafa9e3b828dbf1c9"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "c2c16c8"
-hash = "d99cfbc3812e7738505f9e4bedb759cd"
+rev = "f703392"
+hash = "d1e0499cae5f3aeb628c267616d4b682"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "c2c16c8"
+rev = "f703392"
 hash = "187cc58ba7ac3befd49c342129e6f1b6"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:dracula"
-rev = "36c49ac"
-hash = "20624fcdfcf7e4e912de05e348065e5e"
+rev = "20b47bf"
+hash = "40136c9a02e166067a36d9ad618887f2"
