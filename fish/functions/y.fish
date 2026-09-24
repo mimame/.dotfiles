@@ -4,27 +4,8 @@ function y --description "Launch Yazi and sync CWD on exit"
         return 1
     end
 
-    # Ensure all plugins/flavors from package.toml are installed
-    if command -q ya
-        set -l pkg_toml $__fish_config_dir/../yazi/package.toml
-        if test -f $pkg_toml
-            set -l req (rg --count -I '^\s*use\s*=' $pkg_toml 2>/dev/null; or echo 0)
-
-            # Count actual installed package directories
-            set -l inst 0
-            set -l yazi_cfg (path normalize "$__fish_config_dir/../yazi")
-            if test -d "$yazi_cfg"
-                set -l pkg_dirs (fd --max-depth 1 --type d --glob '*.yazi' "$yazi_cfg/plugins" "$yazi_cfg/flavors" 2>/dev/null)
-                set inst (count $pkg_dirs)
-            end
-
-            if test "$req" -ne "$inst"
-                echo "⚙️  Synchronizing Yazi packages ($inst/$req)..."
-                ya pkg install
-            end
-        end
-    end
-
+    # WHY no plugin sync here: the `yazi` wrapper function self-bootstraps via
+    # bootstrap_yazi_packages before exec'ing the real binary.
     set -l tmp (mktemp -t "yazi-cwd.XXXXXX")
 
     # Launch yazi with the cwd-file option
