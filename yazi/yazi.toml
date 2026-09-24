@@ -188,8 +188,10 @@ fetchers = [
   { url = "local://*", run = "mime.local", prio = "high", group = "mime" },
   { url = "remote://*", run = "mime.remote", prio = "high", group = "mime" },
   # WHY git plugin: Show git status indicators in file list
-  { url = "*", run = "git", group = "git" },
-  { url = "*/", run = "git", group = "git" },
+  # WHY local:// scope: git fetcher on remote (sftp://) tabs blocks on fs.cha()/spawn
+  # against dead or laggy connections, leaving unfinished tasks that prompt on quit
+  { url = "local://*", run = "git", group = "git" },
+  { url = "local://*/", run = "git", group = "git" },
 ]
 # spotters: fast async preview rendered immediately on hover (non-blocking).
 # WHY separate from previewers: spotters run before full preview loads, giving instant feedback

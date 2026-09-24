@@ -10,8 +10,8 @@ hash = "635b0feb9215772d22020eb0abf0bb34"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "c2c16c8"
-hash = "88e56a64b7ce7c4314427452343fef17"
+rev = "f703392"
+hash = "347cc6b190eb0c2fd60513cc7ae37412"
 
 [[plugin.deps]]
 use = "dedukun/relative-motions"
