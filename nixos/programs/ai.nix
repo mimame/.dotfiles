@@ -27,8 +27,9 @@
 # - Backend Processes: llama-swap spawns llama-server on-demand.
 # - Web UI: http://localhost:8080 (Default login: your email)
 #
-# NOTE: The host-specific model list must be defined in:
-# hosts/<hostname>/programs/ai.nix
+# NOTE: This module is NOT imported globally. A host enables the whole stack
+# by importing hosts/<hostname>/programs/ai.nix (its model list), which in
+# turn imports this file. The host import is the single toggle.
 #
 # --- ARCHITECTURE ---
 # 1. llama-swap (Proxy): Acts as the primary entry point (port 11434). It handles
@@ -136,25 +137,4 @@ in
       };
     };
   };
-
-  # Custom environment for AI tools
-  # OPENCODE env vars intentionally omitted — opencode.jsonc defines the
-  # llama-swap provider and model list. Keeping env vars and config in sync
-  # is error-prone; config is the single source of truth.
-  environment.systemPackages = with pkgs.unstable; [
-    # --- AI Coding Assistants ---
-    # claude-code # Agentic coding tool for the terminal
-    # github-copilot-cli # GitHub Copilot CLI
-    opencode # AI coding agent for terminal. Configured via OPENCODE_* env vars.
-
-    # --- AI Protocols & Clients ---
-    antigravity-cli # Antigravity protocol client
-    python3Packages.huggingface-hub # CLI for downloading models from HuggingFace (hf)
-    # llama-cpp-pkg intentionally omitted here — host-specific modules add their
-    # override (e.g. narnia-llama-cpp with CMAKE_CUDA_ARCHITECTURES=61) to avoid
-    # building for 9 upstream CUDA architectures the GPU cannot use.
-
-    # --- Hardware Capability Tools ---
-    llmfit # Find what runs on your hardware (VRAM estimation)
-  ];
 }

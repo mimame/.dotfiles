@@ -20,6 +20,11 @@
     ./terminals/default.nix
     ./virtualisation.nix
     ./borgmatic-backup.nix
-    ./ai.nix
+    ./ai-tools.nix
+    # ./ai.nix intentionally NOT imported here: the llama-swap/open-webui stack
+    # is host-specific (heavyweight, rebuilds on every channel update). Hosts
+    # opt in via hosts/<hostname>/programs/ai.nix, which imports the shared
+    # module itself — the import is the single toggle, infra and models can
+    # never diverge.
   ];
 }

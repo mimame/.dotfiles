@@ -111,6 +111,15 @@ let
   });
 in
 {
+  # Shared infrastructure (llama-swap + open-webui services, _module.args with
+  # llama-cpp-pkg/modelDir). Importing this file IS the on/off switch: this
+  # file is commented out in configuration.nix, so nothing AI is built.
+  imports = [ ../../../programs/ai.nix ];
+
+  # The shared module installs no llama-cpp globally on purpose — this host
+  # adds its own narnia-llama-cpp override (CMAKE_CUDA_ARCHITECTURES=61,
+  # trimmed CPU variants) to avoid building for 9 CUDA archs the GPU cannot
+  # use. Clients reach llama.cpp only through the llama-swap model cmds.
   environment.systemPackages = [ narnia-llama-cpp ];
 
   services.llama-swap.settings.models = {
