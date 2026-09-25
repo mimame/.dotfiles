@@ -274,10 +274,11 @@ cask "copilot-cli"
 cask "espanso"
 # Web browser
 cask "firefox"
+# Nerd Font fallback used by ghostty/vscode/NixOS fontconfig (matches
+# nerd-fonts.jetbrains-mono on NixOS)
 cask "font-jetbrains-mono-nerd-font"
+# Primary terminal/editor font everywhere (matches maple-mono.NL-NF on NixOS)
 cask "font-maple-mono-nl-nf"
-cask "font-roboto"
-cask "font-source-code-pro"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
 # Terminal emulator that uses platform-native UI and GPU acceleration
