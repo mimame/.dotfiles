@@ -21,7 +21,8 @@
     },
     "opencode": {
       "default_config_options": {
-        "model": "opencode-go/qwen3.7-plus"
+        "effort": "medium",
+        "model": "opencode-go/qwen3.8-flash"
       },
       "type": "registry"
     }
@@ -315,7 +316,7 @@
   "scroll_beyond_last_line": "one_page",
   "selection_highlight": true,
   "show_whitespaces": "selection",
-  "soft_wrap": "preferred_line_length",
+  "soft_wrap": "prefer_line",
   "tab_bar": {
     "show_nav_history_buttons": false
   },
@@ -333,11 +334,14 @@
   "terminal": {
     "blinking": "off",
     "copy_on_select": true,
+    "font_fallbacks": [
+      "JetBrainsMonoNL Nerd Font Mono"
+    ],
     "font_family": "Maple Mono NL NF"
   },
   "theme": {
     "dark": "Dracula",
-    "light": "Dracula Light (Alucard)",
+    "light": "Dracula Light (Alucard",
     "mode": "system"
   },
   "ui_font_size": 16,
