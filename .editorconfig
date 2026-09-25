@@ -11,26 +11,16 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
 
-[*.{bash,sh,zsh}]
-indent_size = 2
-
-[*.lua]
-indent_size = 2
-
-[*.fish]
-indent_size = 2
-
-[*.{yml,yaml}]
-indent_size = 2
-
-[*.json]
-indent_size = 2
-
-[*.nix]
-indent_size = 2
+[*.{jl,nu}]
+indent_size = 4
 
 [*.{md,markdown}]
 trim_trailing_whitespace = false
+
+# App-managed settings — must not be touched on save (see treefmt.toml excludes)
+[{DankMaterialShell,devdocs}/*.json]
+insert_final_newline = unset
+trim_trailing_whitespace = unset
 
 [Makefile]
 indent_style = tab
