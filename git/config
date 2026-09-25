@@ -557,8 +557,13 @@
 
 [pull]
   # https://git-scm.com/docs/git-config#git-config-pullff
-  # Only allow fast-forward pulls to avoid accidental merge commits
-  ff     = only
+  # true = allow pull to fall back to rebasing when branches have diverged.
+  # WHY not `only`: pull.ff = only silently OVERRIDES pull.rebase below —
+  # it forbids the very "reset" step a rebase needs, so a pull aborts with
+  # "Not possible to fast-forward, aborting" whenever the other machine has
+  # already pushed. Merge commits are already impossible under rebase = true,
+  # so `only` adds no safety; it just blocks the two-machine sync loop.
+  ff     = true
   # https://git-scm.com/docs/git-config#git-config-pullrebase
   # Always rebase when pulling
   rebase = true
