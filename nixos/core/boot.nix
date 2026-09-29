@@ -23,7 +23,31 @@ _: {
     # Kernel sysctl tuning for performance and responsiveness
     kernel.sysctl = {
       # Memory Management
-      # High swappiness for zram: prioritize compressed RAM over disk cache eviction
+      # Memory Management — vm.swappiness = 100
+      #
+      # WHAT: swappiness is NOT "how eagerly do I swap" — it's the *relative
+      # cost* of reclaiming anonymous pages (app memory, swappable via zswap)
+      # vs. evicting file-backed page cache (re-readable from disk). Range
+      # 0-200; default 60 was tuned for spinning disks.
+      #
+      # WHY 100 HERE: the swap path is cheap — zswap compresses spilled pages
+      # into a RAM pool (zstd), and the SSD is only touched when that pool
+      # fills. With a fast writeback cache, trading page cache for app memory
+      # is nearly free, so the kernel should feel comfortable evicting cold
+      # anonymous pages into the pool instead of letting RAM go unused and
+      # letting systemd-oomd kill processes. ~100 is the consensus ballpark
+      # for SSD-backed systems; the kernel docs agree higher can help.
+      #
+      # DEPENDS ON: boot.zswap.enable (hosts/narnia/boot.nix). With zramSwap
+      # (previous setup) the same value had the opposite failure mode —
+      # aggressive swapping into RAM that could never be freed. If zswap is
+      # ever disabled, drop this back to 60.
+      #
+      # TUNE EMPIRICALLY, not by instinct:
+      #   vmstat 5           → si/so should spike only under real pressure,
+      #                        not constantly (constant churn = too high)
+      #   cat /sys/class/zswap-control/pool_prefs  → rising `fail`/`reject`
+      #                        = pool thrashing → LOWER swappiness
       "vm.swappiness" = 100;
 
       # Lower cache pressure to keep more metadata (inodes/dentries) in RAM

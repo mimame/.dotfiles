@@ -1,20 +1,11 @@
 { pkgs, username, ... }:
 {
 
-  # Enable zRAM swap to provide a compressed RAM-based swap device.
-  # This improves system responsiveness under memory pressure by avoiding disk I/O.
-  zramSwap = {
-    enable = true;
-    # Percentage of total RAM used to define the maximum size of the zram device.
-    # Note: Setting this to 100% does not "reserve" that RAM; it only sets the
-    # capacity. Because the data is compressed (typically 2:1 or 3:1), this
-    # effectively increases the available memory for development workloads.
-    memoryPercent = 100;
-    # Priority of the zram swap device (higher values take precedence).
-    # Setting this to 100 ensures the kernel exhausts the fast, compressed RAM
-    # swap before falling back to slower disk-based swap partitions.
-    priority = 100;
-  };
+  # Swap strategy: disk-backed swap partition + zswap compression cache.
+  # Configured in hosts/narnia/boot.nix — zswap requires real disk swap and
+  # belongs next to the hibernate resumeDevice that motivates it.
+  # (zram deliberately NOT used: RAM-only, incompatible with hibernation —
+  # full rationale in hosts/narnia/boot.nix.)
 
   # Enable systemd-oomd. It monitors Pressure Stall Information (PSI) to
   # identify and terminate processes causing extreme memory pressure
