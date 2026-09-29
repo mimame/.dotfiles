@@ -67,7 +67,8 @@
   "base_keymap": "Zed",
   "buffer_font_family": "Maple Mono NL NF",
   "buffer_font_features": {
-    "calt": false
+    "calt": false,
+    "liga": false
   },
   "buffer_font_size": 16,
   "collaboration_panel": {
