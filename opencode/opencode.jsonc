@@ -6,17 +6,16 @@
   // --- MODEL SELECTION ---
   // Cloud-first default: Qwen3.8 Flash (best coding/reasoning tier via opencode-go).
   // DeepSeek V4 Pro stays available as fallback (`opencode -m opencode-go/deepseek-v4-pro`).
-  // GLM-5.2 stays wired to the `plan` agent for long-horizon precision work.
+  // GLM-5.3-flash stays wired to the `plan` agent for long-horizon precision work.
   // Local models (Ollama) remain fully configured and visible in /models:
   //   `opencode -m ollama-local/qwen3:14b`   (default local model)
   //   `opencode -m ollama-local/qwen3-coder:30b` (big MoE, close apps first)
   //   `opencode -m ollama-local/muse-glimmer:30b` (30B, ~18GB RAM)
   //   or use the `@local` agent.
+  // small_model (titles, summaries) pinned to the same paid flash tier as the
+  // default model: cloud-backed (no Ollama dependency) and barely dents the quota.
   "model": "opencode-go/qwen3.8-flash",
-  // small_model (titles, summaries) on the paid flash tier: cloud-backed (no Ollama
-  // dependency) and far more reliable than the rate-limited free tier
-  // (opencode/deepseek-v4-flash-free). Flash requests barely dent the quota.
-  "small_model": "opencode-go/deepseek-v4-flash",
+  "small_model": "opencode-go/qwen3.8-flash",
 
   // Never offer session sharing — dotfiles sessions can leak host paths/context.
   "share": "disabled",
@@ -110,9 +109,13 @@
   // Per-agent model pinning: cloud and local work get their own model/settings
   // instead of applying one configuration to everything.
   "agent": {
-    // Plan mode = long-horizon precision -> GLM-5.2 (best agentic quality).
+    // Session titles/summaries ride the paid flash tier too.
+    "title": {
+      "model": "opencode-go/qwen3.8-flash"
+    },
+    // Plan mode = long-horizon precision -> GLM-5.3-flash (best agentic quality).
     "plan": {
-      "model": "opencode-go/glm-5.2"
+      "model": "opencode-go/glm-5.3-flash"
     },
     // Serious local work, zero cloud tokens. Default model: the 30B coder
     // (best local quality). Close heavy apps first (~19 GB RAM). Falls back to
