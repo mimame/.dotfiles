@@ -400,9 +400,15 @@
   helper = cache --timeout 86400
 
 [delta]
-  side-by-side                 = true
-  features                     = unobtrusive-line-numbers decorations
+  # side-by-side lives in a feature (not a plain [delta] key) because delta
+  # booleans can only be turned ON: once [delta] says true, no feature, flag,
+  # or env var can turn it off. As a feature, renderers that need a stacked
+  # layout (narrow lazygit panels) simply exclude it from --features.
+  features                     = side-by-side unobtrusive-line-numbers decorations
   whitespace-error-style       = 1 reverse
+
+[delta "side-by-side"]
+  side-by-side                 = true
 
 [delta "unobtrusive-line-numbers"]
   line-numbers-left-format     = "{nm:>4}┊"

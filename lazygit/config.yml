@@ -1,27 +1,28 @@
+# Diff renderer configuration
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_DiffRenderers.md
+git:
+  # lazygit 0.66 dropped delta auto-detection from git config: without an
+  # explicit entry here the main view renders raw git diffs. With delta 0.20
+  # (OSC-1717 metadata) side-by-side / line numbers / decorations from
+  # git/config now work AND hunk staging still functions.
+  diffRenderers:
+    # Side-by-side delta; clickable line numbers jump into the editor.
+    # Below 110 cols the default feature list is replaced without it (delta
+    # booleans can only be turned ON by config — that's why side-by-side is a
+    # named feature in git/config, excludable per invocation).
+    - name: delta
+      command: >-
+        delta {{if lt .width 110}}--features='unobtrusive-line-numbers decorations'{{end}} --{{colorScheme}} --paging=never --hyperlinks --hyperlinks-file-link-format=lazygit-edit://{path}:{line}
+    # Plain git diff, cycle to it with '|'
+    - type: rawGit
+      name: raw
 gui:
-  # Lazygit Configuration - Dracula Theme
-  # https://github.com/dracula/lazygit
-  useHunkModeInStagingView: false
+  # No theme block on purpose: lazygit's v0.66 defaults are ANSI color names
+  # (green/cyan/blue/red) that render through the terminal's own palette —
+  # Dracula here — plus background-computed colors, and they adapt to dark/light
+  # (colorScheme: auto). Hardcoded hex would bypass the palette and freeze dark.
+  # https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
+  # Staging-panel selection carried over to the main view in v0.66 under this
+  # name (migrated from useHunkModeInStagingView); false = line selection.
+  useHunkModeInDiffView: false
   nerdFontsVersion: "3"
-  theme:
-    activeBorderColor:
-      - '#bd93f9'
-      - bold
-    inactiveBorderColor:
-      - '#6272a4'
-    optionsTextColor:
-      - '#8be9fd'
-    selectedLineBgColor:
-      - '#44475a'
-    cherryPickedCommitBgColor:
-      - '#44475a'
-    cherryPickedCommitFgColor:
-      - '#50fa7b'
-    unstagedChangesColor:
-      - '#ff5555'
-    defaultFgColor:
-      - '#f8f8f2'
-    searchingActiveBorderColor:
-      - '#f1fa8c'
-  authorColors:
-    '*': '#bd93f9'
