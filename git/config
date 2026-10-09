@@ -15,10 +15,10 @@
   af   = add --force
   ai   = add --interactive
   # Interactive add using tv for file selection
-  aii  = !FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|split: :1}' --source-output '{strip_ansi|split: :1}') && [[ -n ${FILES} ]] && git add --all ${FILES}
+  aii  = "!FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|regex_extract:^.. (.*)$:1}' --source-output '{strip_ansi|regex_extract:^.. (.*)$:1}' | sed 's/.* -> //; s/^\"\\(.*\\)\"$/\\1/') && [[ -n ${FILES} ]] && printf '%s\n' \"${FILES}\" | while IFS= read -r F; do git add --all -- \"${F}\"; done"
   ap   = add --patch
   # Interactive patch using tv
-  api  = !FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|split: :1}' --source-output '{strip_ansi|split: :1}') && [[ -n ${FILES} ]] && git add --patch ${FILES}
+  api  = "!FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|regex_extract:^.. (.*)$:1}' --source-output '{strip_ansi|regex_extract:^.. (.*)$:1}' | sed 's/.* -> //; s/^\"\\(.*\\)\"$/\\1/') && [[ -n ${FILES} ]] && printf '%s\n' \"${FILES}\" | while IFS= read -r F; do git add --patch -- \"${F}\" < /dev/tty; done"
   au   = add --update
   # Add updated files and commit immediately
   auc  = !git add --update && git commit
@@ -66,12 +66,12 @@
   co   = checkout
   cob  = checkout -b
   # Interactive checkout (discard changes) for specific files
-  coi  = !FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|split: :1}' --source-output '{strip_ansi|split: :1}') && [[ -n ${FILES} ]] && git checkout ${FILES}
+  coi  = "!FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|regex_extract:^.. (.*)$:1}' --source-output '{strip_ansi|regex_extract:^.. (.*)$:1}' | sed 's/.* -> //; s/^\"\\(.*\\)\"$/\\1/') && [[ -n ${FILES} ]] && printf '%s\n' \"${FILES}\" | while IFS= read -r F; do git checkout -- \"${F}\"; done"
   # Interactive checkout of a specific commit
   coci = !HASH=$(tv --ansi --no-sort --source-command 'git l --color' --preview-command 'git show --color {strip_ansi|regex_extract:[0-9a-f]{7,}}' --source-output '{strip_ansi|regex_extract:[0-9a-f]{7,}}') && git checkout ${HASH}
   cop  = checkout --patch
   # Interactive patch checkout for specific files
-  copi = !FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|split: :1}' --source-output '{strip_ansi|split: :1}') && [[ -n ${FILES} ]] && git checkout --patch ${FILES}
+  copi = "!FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|regex_extract:^.. (.*)$:1}' --source-output '{strip_ansi|regex_extract:^.. (.*)$:1}' | sed 's/.* -> //; s/^\"\\(.*\\)\"$/\\1/') && [[ -n ${FILES} ]] && printf '%s\n' \"${FILES}\" | while IFS= read -r F; do git checkout --patch -- \"${F}\" < /dev/tty; done"
   # Merge conflict resolution helpers
   cour = "!f() { git checkout --ours \"$@\" && git add \"$@\"; }; f"
   cthe = "!f() { git checkout --theirs \"$@\" && git add \"$@\"; }; f"
@@ -107,7 +107,7 @@
   # https://git-scm.com/docs/git-diff
   d     = diff
   # Interactive diff for selected files
-  di    = !FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|split: :1}' --source-output '{strip_ansi|split: :1}') && [[ -n ${FILES} ]] && git diff ${FILES}
+  di    = "!FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --color {strip_ansi|regex_extract:^.. (.*)$:1}' --source-output '{strip_ansi|regex_extract:^.. (.*)$:1}' | sed 's/.* -> //; s/^\"\\(.*\\)\"$/\\1/') && [[ -n ${FILES} ]] && printf '%s\n' \"${FILES}\" | while IFS= read -r F; do git diff -- \"${F}\"; done"
   ds    = diff --staged
   dst   = diff --staged --stat
   dsw   = diff --staged --ignore-all-space
@@ -252,10 +252,10 @@
   r   = reset
   rh  = reset --hard
   # Interactive mixed reset using tv
-  ri  = !FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --staged --color {strip_ansi|split: :1}' --source-output '{strip_ansi|split: :1}') && [[ -n ${FILES} ]] && git reset --mixed ${FILES}
+  ri  = "!FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --staged --color {strip_ansi|regex_extract:^.. (.*)$:1}' --source-output '{strip_ansi|regex_extract:^.. (.*)$:1}' | sed 's/.* -> //; s/^\"\\(.*\\)\"$/\\1/') && [[ -n ${FILES} ]] && printf '%s\n' \"${FILES}\" | while IFS= read -r F; do git reset --mixed -- \"${F}\"; done"
   rp  = reset --patch
   # Interactive patch reset using tv
-  rpi = !FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --staged --color {strip_ansi|split: :1}' --source-output '{strip_ansi|split: :1}') && [[ -n ${FILES} ]] && git reset --patch ${FILES}
+  rpi = "!FILES=$(tv --ansi --source-command 'git -c color.status=always status -s' --preview-command 'git diff --staged --color {strip_ansi|regex_extract:^.. (.*)$:1}' --source-output '{strip_ansi|regex_extract:^.. (.*)$:1}' | sed 's/.* -> //; s/^\"\\(.*\\)\"$/\\1/') && [[ -n ${FILES} ]] && printf '%s\n' \"${FILES}\" | while IFS= read -r F; do git reset --patch -- \"${F}\" < /dev/tty; done"
   rs  = reset --soft
   rsm = reset --mixed
 
