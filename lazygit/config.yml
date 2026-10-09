@@ -16,6 +16,9 @@ git:
     # Plain git diff, cycle to it with '|'
     - type: rawGit
       name: raw
+      # TODO: add a difftastic (extDiff) renderer once upstream supports the
+      # OSC-1717 line-metadata protocol (Wilfred/difftastic#1014); until then
+      # lazygit can't stage/discard individual lines in difft-rendered diffs.
 gui:
   # No theme block on purpose: lazygit's v0.66 defaults are ANSI color names
   # (green/cyan/blue/red) that render through the terminal's own palette —
