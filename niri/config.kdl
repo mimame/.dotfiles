@@ -721,13 +721,17 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 }
 
+// Only applies to processes niri spawns directly (binds, spawn-at-startup).
+// Does NOT propagate to systemd-launched processes (e.g. DMS's app launcher) —
+// mirror anything critical in the login shell if you launch apps from there.
+// Every variable below has a matching installed toolkit client.
 environment {
-    XDG_CURRENT_DESKTOP "niri"
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    SDL_VIDEODRIVER "wayland"
-    QT_QPA_PLATFORM "wayland"
-    QT_QPA_PLATFORMTHEME "gtk3"
-    QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-    MOZ_ENABLE_WAYLAND "1"
-    GTK_USE_PORTAL "1"
+    XDG_CURRENT_DESKTOP "niri" // Session identity for portals and DMS
+    ELECTRON_OZONE_PLATFORM_HINT "auto" // VS Code / Zed / Chrome / Vivaldi / Spotify on Wayland
+    SDL_VIDEODRIVER "wayland" // SDL2 clients use native Wayland
+    QT_QPA_PLATFORM "wayland" // KeePassXC / VLC (Qt6) on native Wayland
+    QT_QPA_PLATFORMTHEME "gtk3" // Qt apps inherit the GTK theme
+    QT_WAYLAND_DISABLE_WINDOWDECORATION "1" // Drop Qt CSD titlebars; niri draws the focus ring (pairs with prefer-no-csd)
+    MOZ_ENABLE_WAYLAND "1" // Pin Firefox/Thunderbird to native Wayland
+    GTK_USE_PORTAL "1" // GTK themes/dialogs via xdg-desktop-portal (Nautilus pickers)
 }
