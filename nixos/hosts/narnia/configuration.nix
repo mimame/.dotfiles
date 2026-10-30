@@ -160,18 +160,14 @@ in
     };
 
     # Show a diff of system packages after a successful rebuild.
-    # This script uses `dix` to compare the new system configuration with the
-    # current one, providing a clear overview of what changed.
+    # dix is a subcommand CLI (`dix diff A B`); `|| true` keeps an
+    # informational diff from ever failing activation.
     activationScripts.diff = {
       supportsDryActivation = true;
       text = ''
-        # Compare the new system derivation ($systemConfig) with the current one.
-        #
-        # WHY THE CHECK: During early boot (Stage 2), /run/current-system doesn't
-        # exist yet, which causes dix to fail with "no such file or directory".
-        # This check ensures the diff only runs when a previous system is active.
+        # Guard: /run/current-system doesn't exist yet during early boot.
         if [ -L /run/current-system ]; then
-          ${pkgs.unstable.dix}/bin/dix /run/current-system "$systemConfig"
+          ${pkgs.unstable.dix}/bin/dix diff /run/current-system "$systemConfig" || true
         fi
       '';
     };
