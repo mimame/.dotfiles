@@ -118,7 +118,7 @@ auto-format = false
 [[language]]
 name = "json"
 language-servers = [ "vscode-json-language-server" ]
-formatter = { command = "jsonfmt" }
+formatter = { command = "jaq", args = [ "." ] }
 auto-format = false
 
 # --- Zig ---

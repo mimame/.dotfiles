@@ -110,8 +110,6 @@ brew "jc"
 brew "jj"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
-# Like gofmt, but for JSON files
-brew "jsonfmt"
 # Julia installer and version multiplexer
 brew "juliaup"
 # Handy way to save and run project-specific commands

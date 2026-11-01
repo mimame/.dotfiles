@@ -6,7 +6,6 @@
 
 {
   environment.systemPackages = with pkgs.unstable; [
-    jsonfmt # JSON formatter
     jq # Command-line JSON processor
   ];
 }

@@ -19,7 +19,6 @@
     # Formatters
     go # Go toolchain (includes gofmt)
     jaq # jq clone in Rust (for editor settings)
-    jsonfmt # JSON formatter
     nixfmt # Nix code formatter
     stylua # Lua code formatter
     taplo # TOML formatter

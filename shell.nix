@@ -20,7 +20,6 @@ pkgs.mkShell {
     jaq
     statix
     yamlfmt
-    jsonfmt
     actionlint
     go
     golangci-lint

@@ -163,9 +163,9 @@
       "formatter": {
         "external": {
           "arguments": [
-            "-"
+            "."
           ],
-          "command": "jsonfmt"
+          "command": "jaq"
         }
       }
     },
