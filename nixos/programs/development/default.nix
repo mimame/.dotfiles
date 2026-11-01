@@ -31,7 +31,7 @@
       # --- Code Analysis & Linting ---
       ast-grep # AST-based code search
       codespell # Spell checker for code
-      ltex-ls # Language server for LaTeX/Markdown
+      ltex-ls-plus # Language server for LaTeX/Markdown
       typos # Fast source code spell checker
       typos-lsp # LSP for typos
 
