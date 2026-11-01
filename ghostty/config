@@ -2,9 +2,6 @@
 # https://ghostty.org/docs/config/reference
 
 # --- Accessibility & Visibility ---
-# Fully opaque background for maximum focus
-background-opacity = 1.0
-background-blur = false
 # WCAG AA standard contrast (4.5) ensures text is always readable
 minimum-contrast = 4.5
 # Prevents text edge darkening/artifacts on Linux
@@ -14,41 +11,30 @@ alpha-blending = linear-corrected
 font-family = "Maple Mono NL NF"
 font-family = "JetBrainsMonoNL Nerd Font Mono"
 font-size = 18.0
-# Makes bold text use high-intensity "bright" colors
-bold-color = bright
 # Disable all programming and standard ligatures
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
-# Uses modern Unicode standards for character widths/cl
-grapheme-width-method = unicode
 
 # --- Theme & Colors ---
 theme = Dracula
-# Ensure the cursor is a solid, easy-to-find block
-cursor-style = block
+# Solid, never-blinking cursor, easy to track (style block is the default)
 cursor-style-blink = false
 
 # --- Window & UI ---
-# Remove window decorations — Niri provides its own chrome
+# Prefer client-side decorations; the OS/WM may override (Niri draws its own chrome)
 window-decoration = true
 # Add padding so text doesn't hug the screen edges
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
-# Use wide tabs for easier clicking/viewing
-gtk-wide-tabs = true
-# Native scrollbar provides a visual cue for scroll position
-scrollbar = system
 
 # --- Productivity & Interaction ---
 # Tab navigation via PageUp/PageDown (aligns with browser and mouse remapping)
 keybind = ctrl+page_up=previous_tab
 keybind = ctrl+page_down=next_tab
-# Allow moving the cursor via Alt+Click (requires shell integration)
-cursor-click-to-move = true
 mouse-hide-while-typing = true
-# Consistent scrolling speed
+# Consistent scrolling speed (default only gives 3x to discrete wheels)
 mouse-scroll-multiplier = 3
 # Ensure new output is always visible
 scroll-to-bottom = output
@@ -56,23 +42,17 @@ scroll-to-bottom = output
 # - Windows start fresh in the home directory
 # - Tabs and splits inherit the current directory for workflow continuity
 window-inherit-working-directory = false
-tab-inherit-working-directory = true
-split-inherit-working-directory = true
 
 # --- Selection & Clipboard ---
-copy-on-select = clipboard
-selection-clear-on-typing = true
+# Copy selections to both the selection buffer and the system clipboard
+copy-on-select = both
 # Security: Disabled to prevent confirmation friction. Veteran Linux usage
 # assumes manual buffer verification before pasting.
 clipboard-paste-protection = false
-# Clean up copied text automatically
-clipboard-trim-trailing-spaces = true
 
 # --- Shell & System ---
 # Enables prompt marking, window titles, and SSH terminfo management
 shell-integration-features = cursor,no-sudo,title,ssh-env,ssh-terminfo
-# Resource isolation for better system stability
-linux-cgroup = single-instance
 # Disable built-in auto-update (macOS Sparkle) to maintain deterministic
 # management via system package managers (Nix on NixOS, Homebrew on macOS).
 auto-update = off
