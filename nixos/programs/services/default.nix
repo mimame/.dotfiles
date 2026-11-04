@@ -48,6 +48,9 @@
   systemd.user.services.espanso = {
     after = [ "niri.service" ];
     wants = [ "niri.service" ];
+    unitConfig = {
+      StartLimitIntervalSec = 0;
+    };
     serviceConfig = {
       ExecStartPre = pkgs.writeShellScript "espanso-wait-wayland" ''
         i=0
@@ -60,7 +63,6 @@
         exit 1
       '';
       RestartSec = 5;
-      StartLimitIntervalSec = 0;
     };
   };
 }
