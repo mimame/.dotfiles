@@ -315,6 +315,7 @@ source ~/.config/nushell/functions/mc.nu
 source ~/.config/nushell/functions/y.nu
 source ~/.config/nushell/functions/bb.nu
 source ~/.config/nushell/functions/download_assets.nu
+source ~/.config/nushell/functions/ssh.nu
 
 # --- Initialize Assets ---
 # Ensure themes, fonts, and platform-specific links are set up on first start.
