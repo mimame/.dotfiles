@@ -74,8 +74,9 @@ end
 # 4. PLATFORM SPECIFIC
 source $__fish_config_dir/platform.fish
 
-# 5. TMUX AUTO-START (not inside other multiplexers)
-if command -q tmux; and not set -q TMUX; and not set -q ZELLIJ
+# 5. TMUX AUTO-START (not inside other multiplexers; Rex already provides
+# its own sessions/panes and marks every terminal with REX_SESSION)
+if command -q tmux; and not set -q TMUX; and not set -q ZELLIJ; and not set -q REX_SESSION
     tmux new-session
 end
 
