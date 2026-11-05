@@ -25,6 +25,22 @@ if not test -f $resource_stamp
     download_shell_assets $resource_stamp
 end
 
+# Television channel prototypes: refresh weekly in the background so startup
+# is never blocked by the download. Channels land in ~/.config/television/cable
+# (not Dotter-managed — only config.toml is symlinked).
+if command -q tv
+    set -l tv_channels_stamp $__fish_config_dir/cache/tv_channels.stamp
+    # Capture into a variable first: an empty (find ...) substitution expands
+    # to zero arguments, which would make `test -n (find ...)` always true.
+    set -l tv_channels_stale (find $tv_channels_stamp -mtime +6 2>/dev/null)
+    if not test -f $tv_channels_stamp
+        or test -n "$tv_channels_stale"
+        tv update-channels >/dev/null 2>&1 &
+        disown
+        touch $tv_channels_stamp
+    end
+end
+
 # 3. SHELL INTEGRATIONS
 if command -q direnv
     source_transient direnv "direnv hook fish" $__fish_config_dir/config.fish
@@ -36,7 +52,16 @@ source_transient zoxide "zoxide init fish" $__fish_config_dir/config.fish
 source_transient pay-respects "pay-respects fish --alias fk" $__fish_config_dir/config.fish
 source_transient atuin "atuin init fish" $__fish_config_dir/config.fish
 source_transient navi "navi widget fish" $__fish_config_dir/config.fish
-source_transient television "tv init fish" $__fish_config_dir/config.fish
+# Strip tv's Ctrl+R binding line (tv_shell_history) before caching — Atuin
+# owns Ctrl+R. The function itself is kept; only the `bind` is filtered out.
+source_transient television "tv init fish | string match -rv -- 'bind.*ctrl-r'" $__fish_config_dir/config.fish
+
+# Second layer: even if a future tv changes the binding syntax and the filter
+# above misses it, Atuin re-claims Ctrl+R after all init scripts are sourced.
+if type -q _atuin_search
+    bind \cr _atuin_search
+    bind -M insert \cr _atuin_search
+end
 
 # Completions (Generated lazily if missing)
 if command -q gh
