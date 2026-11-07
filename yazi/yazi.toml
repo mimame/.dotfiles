@@ -185,8 +185,11 @@ suppress_preload = false
 fetchers = [
   # MIME-type
   { url = "*/", run = "mime.dir", prio = "high", group = "mime" },
-  { url = "local://*", run = "mime.local", prio = "high", group = "mime" },
-  { url = "remote://*", run = "mime.remote", prio = "high", group = "mime" },
+  # WHY mime-ext: extension-database MIME lookup replaces the builtin file(1)
+  # fetchers (no process spawn per file). fallback_file1 in init.lua keeps
+  # accuracy by delegating unknown extensions back to file(1)
+  { url = "local://*", run = "mime-ext.local", prio = "high", group = "mime" },
+  { url = "remote://*", run = "mime-ext.remote", prio = "high", group = "mime" },
   # WHY git plugin: Show git status indicators in file list
   # WHY local:// scope: git fetcher on remote (sftp://) tabs blocks on fs.cha()/spawn
   # against dead or laggy connections, leaving unfinished tasks that prompt on quit

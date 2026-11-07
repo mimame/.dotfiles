@@ -26,3 +26,11 @@ require("full-border"):setup({
 require("smart-enter"):setup({
   open_multi = true, -- Open multiple selected files at once
 })
+
+-- WHY mime-ext: Extension-DB MIME detection replaces file(1) spawns (faster fetch
+-- pipeline; open/preview rules in yazi.toml key off MIME). fallback_file1 sends
+-- unknown extensions back to the builtin file(1) fetcher for accuracy.
+-- smart-filter/smart-paste/toggle-pane/zoom/chmod/visual-pivot are keymap-only.
+require("mime-ext.local"):setup({
+  fallback_file1 = true,
+})
