@@ -102,7 +102,9 @@ keymap = [
   # --- Operation (Helix/Vim Hybrid) ---
   # WHY o: Vim-style "open"
   { on = "o", run = "open", desc = "Open with system default" },
-  { on = "O", run = 'shell "gio open ." --orphan', desc = "Open current directory in file manager" },
+  # WHY open --reveal: uses per-OS [opener] reveal (Finder on macOS, gio on NixOS);
+  # the old `gio open .` shell binding was dead on macOS (no gio)
+  { on = "O", run = "open --reveal", desc = "Reveal in system file manager" },
   { on = "<Enter>", run = "plugin smart-enter", desc = "Enter the child directory, or open the file" },
   # WHY yank/paste: Vim-style copy/paste operations
   { on = "y", run = "yank", desc = "Yank (copy)" },
@@ -137,6 +139,8 @@ keymap = [
 
   # --- Window / Tab Management (Helix style) ---
   # WHY Ctrl-w: Helix/Vim window management prefix
+  # WHY tabs under <C-w>: bare 1-9 belong to relative-motions (prepend wins),
+  # so direct tab_switch here was dead code — <C-w>1..9 restores it Helix-style
   { on = [ "<C-w>", "n" ], run = "tab_create --current", desc = "New tab" },
   { on = [ "<C-w>", "q" ], run = "close", desc = "Close tab" },
   { on = [ "<C-w>", "k" ], run = "tab_switch -1 --relative", desc = "Prev tab" },
@@ -144,20 +148,20 @@ keymap = [
   { on = [ "<C-w>", "h" ], run = "tab_switch -1 --relative", desc = "Prev tab" },
   { on = [ "<C-w>", "l" ], run = "tab_switch 1 --relative", desc = "Next tab" },
   { on = [ "<C-w>", "w" ], run = "tab_switch 1 --relative", desc = "Next tab" },
+  # WHY <C-w>1-9: Direct tab access (Helix g<N> style, kept out of 1-9 motion keys)
+  { on = [ "<C-w>", "1" ], run = "tab_switch 0", desc = "Switch to the first tab" },
+  { on = [ "<C-w>", "2" ], run = "tab_switch 1", desc = "Switch to the second tab" },
+  { on = [ "<C-w>", "3" ], run = "tab_switch 2", desc = "Switch to the third tab" },
+  { on = [ "<C-w>", "4" ], run = "tab_switch 3", desc = "Switch to the fourth tab" },
+  { on = [ "<C-w>", "5" ], run = "tab_switch 4", desc = "Switch to the fifth tab" },
+  { on = [ "<C-w>", "6" ], run = "tab_switch 5", desc = "Switch to the sixth tab" },
+  { on = [ "<C-w>", "7" ], run = "tab_switch 6", desc = "Switch to the seventh tab" },
+  { on = [ "<C-w>", "8" ], run = "tab_switch 7", desc = "Switch to the eighth tab" },
+  { on = [ "<C-w>", "9" ], run = "tab_switch 8", desc = "Switch to the ninth tab" },
 
   # --- Tabs (Direct access) ---
   # WHY t: Quick tab creation
   { on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
-  # WHY 1-9: Direct tab access (like browser/tmux)
-  { on = "1", run = "tab_switch 0", desc = "Switch to the first tab" },
-  { on = "2", run = "tab_switch 1", desc = "Switch to the second tab" },
-  { on = "3", run = "tab_switch 2", desc = "Switch to the third tab" },
-  { on = "4", run = "tab_switch 3", desc = "Switch to the fourth tab" },
-  { on = "5", run = "tab_switch 4", desc = "Switch to the fifth tab" },
-  { on = "6", run = "tab_switch 5", desc = "Switch to the sixth tab" },
-  { on = "7", run = "tab_switch 6", desc = "Switch to the seventh tab" },
-  { on = "8", run = "tab_switch 7", desc = "Switch to the eighth tab" },
-  { on = "9", run = "tab_switch 8", desc = "Switch to the ninth tab" },
   # WHY []: Vim-style prev/next navigation
   { on = "[", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
   { on = "]", run = "tab_switch 1 --relative", desc = "Switch to next tab" },
