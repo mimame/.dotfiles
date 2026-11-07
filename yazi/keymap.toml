@@ -72,8 +72,11 @@ keymap = [
   # --- Leader (Helix style Space key) ---
   # WHY Space: Helix-style leader key for common operations
   { on = [ "<Space>", "y" ], run = "copy path", desc = "Copy path" },
-  { on = [ "<Space>", "f" ], run = "filter --smart", desc = "Filter files" },
+  { on = [ "<Space>", "f" ], run = "plugin smart-filter", desc = "Smart filter" },
   { on = [ "<Space>", "s" ], run = "search --via=fd", desc = "Search files" },
+  # WHY ouch not official compress.yazi: compress (Nov 2026) needs yazi nightly
+  # (fs.safename etc.) and 7-Zip; would also break the shared NixOS rev pin.
+  # Revisit when stable yazi ships those APIs — see todo-improvements.md (Y2)
   { on = [ "<Space>", "c" ], run = "plugin ouch", desc = "Compress with ouch" },
   { on = [ "<Space>", "x" ], run = "open --launcher=extract", desc = "Extract here (ouch)" },
   { on = [ "<Space>", "e" ], run = 'shell "${EDITOR:-hx} %s" --block', desc = "Edit with $EDITOR" },
@@ -87,7 +90,8 @@ keymap = [
 
   # --- Filter / Search ---
   # WHY f/: Vim-style filter/search
-  { on = "f", run = "filter --smart", desc = "Filter files" },
+  # WHY smart-filter: continuous filtering, auto-enters unique dir, opens file on submit
+  { on = "f", run = "plugin smart-filter", desc = "Smart filter" },
   { on = "/", run = "search --via=fd", desc = "Search files (fd)" },
   { on = "?", run = "search --via=rg", desc = "Search content (ripgrep)" },
   { on = "n", run = "find_arrow", desc = "Go to next match" },
@@ -110,7 +114,8 @@ keymap = [
   { on = "y", run = "yank", desc = "Yank (copy)" },
   { on = "d", run = "yank --cut", desc = "Yank (cut/delete)" },
   { on = "D", run = "remove", desc = "Trash selected files" },
-  { on = "p", run = "paste", desc = "Paste yanked files" },
+  # WHY smart-paste: paste into hovered directory, or cwd when hovering a file
+  { on = "p", run = "plugin smart-paste", desc = "Paste (into hovered dir)" },
   { on = "P", run = "paste --force", desc = "Paste (force overwrite)" },
   { on = "-", run = "link", desc = "Symlink (absolute)" },
   { on = "_", run = "link --relative", desc = "Symlink (relative)" },
@@ -366,3 +371,49 @@ desc = "Go to bignarnia (SFTP)"
 on = [ "g", "m" ]
 run = "cd sftp://mininarnia"
 desc = "Go to mininarnia (SFTP)"
+
+# WHY toggle-pane: reclaim space from narrow side panes (ratio 1,4,3) or maximize preview
+[[mgr.prepend_keymap]]
+on = [ "<Space>", "[" ]
+run = "plugin toggle-pane min-parent"
+desc = "Toggle parent pane"
+
+[[mgr.prepend_keymap]]
+on = [ "<Space>", "]" ]
+run = "plugin toggle-pane min-preview"
+desc = "Toggle preview pane"
+
+[[mgr.prepend_keymap]]
+on = [ "<Space>", "\\" ]
+run = "plugin toggle-pane max-preview"
+desc = "Maximize preview pane"
+
+# WHY zoom: magnify images in preview via ImageMagick; growth caps at
+# preview.max_width/max_height (600x900) — raise them in yazi.toml for deep zoom
+[[mgr.prepend_keymap]]
+on = [ "<Space>", "+" ]
+run = "plugin zoom 1"
+desc = "Zoom in hovered preview"
+
+[[mgr.prepend_keymap]]
+on = [ "<Space>", "-" ]
+run = "plugin zoom -1"
+desc = "Zoom out hovered preview"
+
+[[mgr.prepend_keymap]]
+on = [ "<Space>", "0" ]
+run = "plugin zoom 0"
+desc = "Reset preview zoom"
+
+# WHY chmod: quick mode edits; <Space>m because top-level m is relative-motions
+[[mgr.prepend_keymap]]
+on = [ "<Space>", "m" ]
+run = "plugin chmod"
+desc = "Chmod selected files"
+
+# WHY visual-pivot: vim-style `o` for visual mode — cursor to other end of selection;
+# bound to i because plain `o` must stay as open
+[[mgr.prepend_keymap]]
+on = "i"
+run = "plugin visual-pivot"
+desc = "Pivot cursor in visual selection"

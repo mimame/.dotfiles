@@ -43,6 +43,36 @@ use = "yazi-rs/plugins:mime-ext"
 rev = "f703392"
 hash = "3bcc00df11efc3ae5d15f2dba860be7"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "f703392"
+hash = "d6f7351ea25a43c9b5f4315fa1e23935"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-paste"
+rev = "f703392"
+hash = "5be02722d97561b6f7aec22429aa00be"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "f703392"
+hash = "5b2fbef7d1513ce38ff72623a071a5e"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:zoom"
+rev = "f703392"
+hash = "558bbb58e3dd36d488280a8f10e7b904"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "f703392"
+hash = "87472b05a8c420100f6a2b9cde1e7746"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:visual-pivot"
+rev = "f703392"
+hash = "11e7b50ca963cc9a7779ddccd217ab7e"
+
 [[flavor.deps]]
 use = "yazi-rs/flavors:dracula"
 rev = "20b47bf"
