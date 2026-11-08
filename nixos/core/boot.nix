@@ -103,7 +103,21 @@ _: {
     # Use tmpfs for /tmp (RAM-based temporary storage)
     # Faster than disk and automatically cleared on reboot
     tmp.useTmpfs = true;
+
+    # Console silence: give the login VT a clean screen
+    # WHY: tuigreet draws on tty1 while the kernel (consoleLogLevel default
+    # 4) and PID 1 progress lines ("[ OK ] Started ...") keep printing to
+    # the same console, mixing boot text around the TUI. 0 drops all kernel
+    # printk from the console; combined with ShowStatus = false below it
+    # also stops systemd's status spam. Nothing is lost: everything still
+    # lands in the journal (journalctl -b). To debug a failed boot, append
+    # in the systemd-boot editor: loglevel=7 systemd.show_status=1
+    consoleLogLevel = 0;
   };
+
+  # Stop systemd "[ OK ]" progress lines on the console (systemd-system.conf
+  # Manager section); pairs with boot.consoleLogLevel = 0 above.
+  systemd.settings.Manager.ShowStatus = false;
 
   # Use stable kernel by default
   # Previous attempts with latest kernel caused Btrfs corruption and VirtualBox issues
