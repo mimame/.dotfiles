@@ -13,7 +13,9 @@
     pdfchain # GUI frontend for pdftk
     poppler-utils # PDF utilities (pdftotext, pdfimages)
     qpdf # Structural PDF transformation
-    zathura # Minimal PDF viewer
+    tdf # TUI-based PDF viewer (terminal preview)
+    mupdf # Minimal PDF/XPS/CBZ viewer (MuPDF engine, vi-style keys)
+    zathura # Minimal PDF viewer (wrapper bundles pdf-mupdf/djvu/ps/cb plugins)
     xournalpp # PDF annotation tool
 
     # --- Office Suites ---
@@ -22,7 +24,6 @@
     onlyoffice-desktopeditors # Office suite (text, spreadsheet, presentation)
     papers # Academic paper management
     pandoc # Universal document converter
-    tdf # The Document Foundation tools
 
     # --- Diagramming ---
     graphviz # Graph visualization
