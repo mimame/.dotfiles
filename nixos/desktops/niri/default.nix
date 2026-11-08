@@ -23,18 +23,42 @@
     ];
   };
 
-  # Display manager configuration
-  services.displayManager = {
-    # WHY: GDM was crashing with "no session desktop files installed" because the
-    # niri.desktop file wasn't being correctly linked into the system path.
-    # Explicitly adding the package here ensures GDM can find the session.
-    sessionPackages = [ pkgs.unstable.niri ];
-    defaultSession = "niri";
-    autoLogin = {
-      enable = true;
-      user = "${username}";
+  # ----------------------------------------------------------------------------
+  # Session Startup: greetd (tuigreet prompt) → niri-session
+  #
+  # WHY GDM IS GONE: Replaces GDM + displayManager.autoLogin (2026-11-04).
+  # GDM's autologin stalled 17-230s (measured across boots) between "PAM
+  # session opened" and spawning the niri session, with the screen frozen on
+  # the boot log — its state machine drags the whole GNOME session stack
+  # (accounts-daemon, gnome-session, greeter plumbing) around a session it
+  # never displays. greetd's path is PAM → exec.
+  #
+  # WHY A PASSWORD PROMPT (2026-11-08): dropped initial_session (autologin):
+  # tuigreet authenticates via the PAM `login` service, which has
+  # enableGnomeKeyring (gnome-services.nix), so the login keyring is unlocked
+  # at session start. Autologin left it locked and, with no idle/suspend
+  # locker in this setup (only manual Mod+Alt+L → `dms lock`, no swayidle),
+  # would let anyone cold-boot straight into the session.
+  # NOTE: the passphrase for SSH keys is unrelated to PAM here (plain
+  # OpenSSH agent via programs.ssh.startAgent) and is still entered once per
+  # session by setup_ssh_agent in fish.
+  #
+  # niri-session starts niri.service via `systemctl --user --wait`, which
+  # preserves graphical-session-pre/graphical-session.target semantics: DMS,
+  # portals, udiskie and espanso come up exactly as before.
+  # ----------------------------------------------------------------------------
+  services.greetd = {
+    enable = true;
+    settings = {
+      # tty1 and every VT / after logout: user pre-selected (--remember),
+      # clock shown, password unlocks the keyring, then niri starts.
+      # For autologin instead, add:
+      #   initial_session = { command = <same>; user = "${username}"; };
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd ${pkgs.unstable.niri}/bin/niri-session";
+        user = "greeter";
+      };
     };
-
   };
 
   # Systemd service for automatic disk mounting

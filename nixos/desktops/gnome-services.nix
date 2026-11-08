@@ -21,12 +21,9 @@ let
   gresource = "${pkgs.glib.dev}/bin/gresource";
 in
 {
+  # Display manager: GDM is owned by the GNOME profile (gnome/default.nix).
+  # This file provides the GNOME *services* layer only; niri uses greetd.
   services = {
-    # GDM (GNOME Display Manager) is the preferred manager for this setup
-    # because it integrates seamlessly with GNOME services (Keyring, Settings Management)
-    # and handles auto-unlocking. It runs natively on Wayland.
-    displayManager.gdm.enable = true;
-
     gnome = {
       # GNOME Keyring: Secure password/key/certificate storage
       # Essential for auto-storing app passwords, managing SSH keys, WiFi passwords
@@ -34,7 +31,7 @@ in
 
       # Disable GCR SSH agent: Often fails with ed25519 keys
       # WHY: Repeatedly prompts for passphrase instead of remembering unlocked keys
-      # Uses standard NixOS ssh-agent + keychain instead
+      # Uses standard NixOS ssh-agent (systemd user service) instead
       gcr-ssh-agent.enable = false;
 
       # GNOME Settings Daemon: The backbone of GNOME's services.
