@@ -40,7 +40,7 @@ ghostty = "~/.config/ghostty"
 helix = "~/.config/helix"
 julia = "~/.julia/"
 kitty = { target = "~/.config/kitty", type = "symbolic" }
-lazygit = "~/.config/lazygit"
+lazygit = { target = "~/.config/lazygit", type = "symbolic" }
 navi = "~/.config/navi"
 nushell = { target = "~/.config/nushell", type = "symbolic" }
 opencode = "~/.config/opencode"
