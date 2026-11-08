@@ -61,14 +61,6 @@ else if test -e /etc/os-release
     if rg -q '^ID=nixos' /etc/os-release
         set -gx IS_NIXOS true
     end
-
-    # SSH Agent Environment (Managed by keychain)
-    # Source the keychain-generated environment file to ensure all shells
-    # have access to the same agent.
-    set -l keychain_env "$HOME/.keychain/(hostname)-fish"
-    if test -f "$keychain_env"
-        source "$keychain_env"
-    end
 end
 
 # --- Core Fish Configuration ---

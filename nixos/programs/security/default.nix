@@ -17,7 +17,6 @@
       bitwarden-cli # Bitwarden CLI
       gopass # Team password manager (pass-compatible)
       gpg-tui # Terminal UI for GnuPG
-      keychain # SSH/GPG agent manager
       libsecret # Password storage library
       sequoia-sq # Command-line for Sequoia PGP
 

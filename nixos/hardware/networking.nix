@@ -108,8 +108,9 @@
 
   # Standard NixOS ssh-agent
   # Provides consistent SSH_AUTH_SOCK across all sessions (including systemd
-  # services and non-interactive shells), allowing keychain to manage keys
-  # without starting its own private agent.
+  # services and non-interactive shells); this is the socket setup_ssh_agent
+  # loads keys into. (The former `keychain` wrapper was retired as redundant:
+  # one agent, one socket, no third owner.)
   programs.ssh.startAgent = true;
 
   environment.systemPackages = [ ];

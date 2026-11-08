@@ -114,8 +114,6 @@ brew "jq"
 brew "juliaup"
 # Handy way to save and run project-specific commands
 brew "just"
-# User-friendly front-end to ssh-agent(1)
-brew "keychain"
 # Lazier way to manage everything docker
 brew "lazydocker"
 # Simple terminal UI for git commands
