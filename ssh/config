@@ -40,7 +40,16 @@ Host *
   # Automatically add keys to ssh-agent on first use (covers any key used
   # via -i flag that wasn't pre-loaded by setup_ssh_agent).
   AddKeysToAgent yes
-
+  # macOS: fetch added keys' passphrases from the Apple Keychain without
+  # prompting (pairs with setup_ssh_agent --apple-use-keychain enrollment;
+  # covers entry points that skip fish, e.g. VS Code Remote-SSH).
+  # IgnoreUnknown keeps this file parseable by portable OpenSSH on narnia,
+  # where UseKeychain is an UNKNOWN keyword and would otherwise abort ssh
+  # with "Bad configuration option". Apple's OpenSSH knows the keyword, so
+  # there it is honoured, not ignored. (A Match exec guard does NOT work:
+  # portable validates option names even in non-matching Match blocks.)
+  IgnoreUnknown usekeychain
+  UseKeychain yes
   # --- Performance & Security ---
   # ConnectTimeout: Stop trying to connect after 5 seconds.
   # This prevents the terminal from hanging for a long time if the host is down.
