@@ -16,10 +16,15 @@
     # --- Shell Enhancements ---
     any-nix-shell # Universal Nix shell experience
     atuin # Modern shell history manager (sync across machines)
-    carapace # Command-line argument completer
-    carapace-bridge # Bridge for carapace completions
+    # carapace # Command-line argument completer
+    # carapace-bridge # Bridge for carapace completions
+    # WHY disabled: in practice carapace was unreliable (mangled/blocked suggestions,
+    # stale caches) and slower than native fish completion, while offering little
+    # advantage on NixOS where nixpkgs already ships fish completions for most tools.
     dura # Automatic git commit background daemon
-    mcfly # Neural shell history searcher
+    # mcfly # Neural shell history searcher
+    # WHY disabled: overlaps atuin, which we already use for history search/sync;
+    # mcfly adds no utility on top (no cross-machine sync, weaker UI).
     navi # Interactive cheatsheet tool
     starship # Fast, minimal, customizable prompt
     tealdeer # tldr pages (faster man alternative)
