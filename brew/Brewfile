@@ -1,5 +1,3 @@
-# Tinycast is distributed via a third-party tap
-tap "abue-ammar/tinycast"
 # Static checker for GitHub Actions workflow files
 brew "actionlint"
 # Download with resuming and segmented downloading
@@ -311,7 +309,7 @@ cask "slack"
 cask "spotify"
 # Customizable email client
 cask "thunderbird"
-# Tiny, fully native macOS launcher
+# Application launcher and productivity tool
 cask "tinycast"
 # Open-source code editor
 cask "visual-studio-code"
