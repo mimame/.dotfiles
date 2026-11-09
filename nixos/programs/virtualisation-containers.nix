@@ -1,7 +1,9 @@
 # ----------------------------------------------------------------------------
-# Virtualization & Containerization
+# Virtualization: Containers
 #
-# Container runtimes (Podman), VMs (libvirt, VirtualBox), and orchestration (Kubernetes).
+# Container runtimes (Podman, Incus, Apptainer/Singularity) and orchestration
+# tooling (Kubernetes). Split from virtualisation.nix (2026-11-09); the VM
+# half lives in ./virtualisation-vm.nix.
 # ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
@@ -75,36 +77,7 @@
         ];
       };
     };
-
-    # VirtualBox: Desktop VM hypervisor
-    # WHY no extension pack: Avoids compiling from source (slow)
-    virtualbox.host = {
-      enable = true;
-      enableExtensionPack = false;
-    };
-
-    # Libvirt/QEMU: High-performance VMs with KVM
-    # See: https://nixos.wiki/wiki/Libvirt
-    libvirtd = {
-      enable = true;
-      # NSS integration: Resolve VM hostnames on host
-      nss = {
-        enable = true;
-        enableGuest = true;
-      };
-      qemu = {
-        runAsRoot = true;
-        swtpm.enable = true; # TPM emulation for Windows 11
-        vhostUserPackages = [ pkgs.virtiofsd ]; # Shared filesystem driver
-      };
-    };
-
-    # SPICE: USB redirection for VMs (webcam, flash drives)
-    spiceUSBRedirection.enable = true;
   };
-
-  # VM management GUI
-  programs.virt-manager.enable = true;
 
   # Apptainer (Singularity): HPC container runtime
   # WHY: Required for scientific computing workflows
@@ -121,15 +94,6 @@
       distrobuilder # LXC/Incus system container image builder
       distrobox # Run any Linux distro in a container
       podman-tui # Terminal UI for Podman
-
-      # --- VM Tools ---
-      quickemu # Quick QEMU VM launcher
-      virt-viewer # VNC/SPICE viewer for VMs
-      guestfs-tools # Disk image manipulation (mount, resize)
-
-      # --- Cloud/VM Utilities ---
-      cloud-init # Cloud instance bootstrapping
-      cloud-utils # Cloud image utilities
 
       # --- Kubernetes ---
       kompose # Docker Compose → Kubernetes converter

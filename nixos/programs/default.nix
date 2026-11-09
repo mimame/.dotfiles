@@ -18,7 +18,12 @@
     ./shells/default.nix
     ./system-tools/default.nix
     ./terminals/default.nix
-    ./virtualisation.nix
+    ./virtualisation-containers.nix
+    # VMs (libvirt, VirtualBox, virt-manager): opt-in by uncommenting.
+    # WHY commented (2026-11-09): libvirtd inactive, VBox unused (last VM log
+    # 2024-08), and vboxnet0 costs ~800ms of boot. The module declares its own
+    # libvirtd/vboxusers group memberships, so this import is the single toggle.
+    # ./virtualisation-vm.nix
     ./borgmatic-backup.nix
     ./ai-tools.nix
     # ./ai.nix intentionally NOT imported here: the llama-swap/open-webui stack

@@ -20,11 +20,9 @@
         "audio" # Audio devices
         "incus-admin" # Incus/LXD container management
         "input" # Input devices (controllers, etc.)
-        "libvirtd" # Libvirt virtualization
         "lxd" # LXD container management
         "networkmanager" # Network management
         "podman" # Podman container management
-        "vboxusers" # VirtualBox access
         "video" # Video devices and hardware acceleration
         "wheel" # Sudo access
       ];
