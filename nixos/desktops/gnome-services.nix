@@ -128,47 +128,57 @@ in
     config.common.default = [ "gnome" ];
   };
 
-  # Core GNOME applications and theming
-  environment.systemPackages =
-    with pkgs;
-    (with pkgs.unstable; [
-      # Core Applications
-      baobab # Disk usage analyzer
-      file-roller # Archive manager
-      gnome-control-center # GNOME settings panel
-      gnome-font-viewer # Font viewer
-      gparted # Disk partition editor
-      gthumb # Image viewer and browser
-      loupe # Modern image viewer
-      meld # Diff and merge tool
-      nautilus # File manager
+  # Core GNOME applications and theming.
+  # Qt's gtk3 platform theme needs the portal settings backend to fully load
+  # the icon theme. Without it, systemd user units (dms/quickshell) resolve
+  # icon NAMES but fail to load pixmaps, and SNI tray icons vanish
+  # (verified 2026-11-09 by bisecting dms's process environment).
+  # WHY sessionVariables: the var must reach the user systemd manager, not
+  # only shells that inherit it from the terminal emulator.
+  environment = {
+    sessionVariables.GTK_USE_PORTAL = "1";
 
-      # Theming
-      whitesur-cursors # Cursor theme
-      whitesur # GTK theme (WhiteSur-Dark) — see libadwaita activation script below
-      whitesur-icon-theme
-    ]);
+    systemPackages =
+      with pkgs;
+      (with pkgs.unstable; [
+        # Core Applications
+        baobab # Disk usage analyzer
+        file-roller # Archive manager
+        gnome-control-center # GNOME settings panel
+        gnome-font-viewer # Font viewer
+        gparted # Disk partition editor
+        gthumb # Image viewer and browser
+        loupe # Modern image viewer
+        meld # Diff and merge tool
+        nautilus # File manager
 
-  # Global GTK settings to ensure consistency across applications.
-  # WHY:
-  # - GTK 3/4: We explicitly define settings.ini in /etc/ to provide a reliable
-  #   system-wide fallback for non-GNOME-aware applications.
-  # - GTK 2: Omitted as it is officially deprecated. Modern applications (GTK 3/4)
-  #   do not require GTK 2 configurations, and providing them often causes
-  #   conflicts or reverts to legacy Noto fonts. DConf handles modern styling.
-  environment.etc = {
-    "gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-theme-name=${themeName}
-      gtk-icon-theme-name=WhiteSur-dark
-      gtk-font-name=Inter 13
-    '';
-    "gtk-4.0/settings.ini".text = ''
-      [Settings]
-      gtk-theme-name=${themeName}
-      gtk-icon-theme-name=WhiteSur-dark
-      gtk-font-name=Inter 13
-    '';
+        # Theming
+        whitesur-cursors # Cursor theme
+        whitesur # GTK theme (WhiteSur-Dark) — see libadwaita activation script below
+        whitesur-icon-theme
+      ]);
+
+    # Global GTK settings to ensure consistency across applications.
+    # WHY:
+    # - GTK 3/4: We explicitly define settings.ini in /etc/ to provide a reliable
+    #   system-wide fallback for non-GNOME-aware applications.
+    # - GTK 2: Omitted as it is officially deprecated. Modern applications (GTK 3/4)
+    #   do not require GTK 2 configurations, and providing them often causes
+    #   conflicts or reverts to legacy Noto fonts. DConf handles modern styling.
+    etc = {
+      "gtk-3.0/settings.ini".text = ''
+        [Settings]
+        gtk-theme-name=${themeName}
+        gtk-icon-theme-name=WhiteSur-dark
+        gtk-font-name=Inter 13
+      '';
+      "gtk-4.0/settings.ini".text = ''
+        [Settings]
+        gtk-theme-name=${themeName}
+        gtk-icon-theme-name=WhiteSur-dark
+        gtk-font-name=Inter 13
+      '';
+    };
   };
 
   # Install WhiteSur as a flat CSS overlay for libadwaita apps.
