@@ -19,6 +19,9 @@
     ./fish.nix
     ./json.nix
     ./just.nix
+    # Disabled by default: installs the full LaTeX toolchain (texlive + LSPs).
+    # Import IS the on/off switch.
+    # ./latex.nix
     ./markdown.nix
     ./nix.nix
     ./protobuf.nix
