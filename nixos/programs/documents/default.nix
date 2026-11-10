@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs.unstable; [
     # --- PDF Tools ---
     pdfarranger # Rearrange PDF pages (GUI)
+    pdfcraft # Open-source PDF workbench (read, organize, secure documents)
     pdfsam-basic # Split and merge PDFs
     pdftk # PDF toolkit (CLI)
     pdfchain # GUI frontend for pdftk
