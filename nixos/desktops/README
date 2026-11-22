@@ -2,7 +2,7 @@
 
 Controlled by `desktop` in `variables.nix`. Valid values:
 
-- `"niri"`   — Niri (scrollable-tiling Wayland compositor) + dms-shell bar + GNOME layer
+- `"niri"`   — Niri (scrollable-tiling Wayland compositor) + dux-shell bar + GNOME layer
 - `"gnome"`  — Full GNOME Shell session (GDM + GNOME Shell + GNOME layer)
 - `"cosmic"` — COSMIC DE (System76, long-term exploration)
 
@@ -23,6 +23,6 @@ Then rebuild:
 | `base.nix`       | Common desktop apps (browsers, comms, dev tools, etc.)          | always          |
 | `gnome-services.nix`| GNOME services: GDM, keyring, portals, GTK theming, core apps   | niri, gnome     |
 | `niri/`          | Niri compositor config                                          | niri            |
-| `dms-shell/`     | DankMaterialShell bar/launcher                                  | niri            |
+| `dux-shell/`     | Dux Shell bar/launcher                                          | niri            |
 | `gnome/`         | GNOME Shell (imports gnome-services.nix + enables gnome.enable)    | gnome           |
 | `cosmic/`        | COSMIC DE                                                       | cosmic          |

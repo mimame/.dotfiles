@@ -1,7 +1,9 @@
 # ----------------------------------------------------------------------------
-# DMS-Shell Configuration
+# Dux Shell Configuration
 #
-# Desktop Management System Shell for Niri with self-healing capabilities.
+# Dux Shell for Niri, with self-healing.
+# WHY programs.dms-shell + pkgs.unstable, not programs.dux-shell: stable 26.05
+#   lacks the dux-shell option; the rename only exists on unstable.
 # ----------------------------------------------------------------------------
 { pkgs, ... }:
 {
@@ -11,8 +13,8 @@
     quickshell.package = pkgs.unstable.quickshell;
   };
 
-  # Self-healing configuration for DMS-Shell
-  # WHY: DMS-Shell can crash or be terminated during:
+  # Self-healing configuration for Dux Shell
+  # WHY: Dux Shell can crash or be terminated during:
   # - NixOS switches (service restarts)
   # - Input device changes (evdev errors)
   # Systemd automatically restarts it with a 3s delay for D-Bus/Portals to settle
@@ -36,7 +38,7 @@
   # (QT_QPA_PLATFORMTHEME=gtk3 is exported by niri/config.kdl). Dropping this
   # line changes nothing functionally; doctor reverts to "Cannot verify".
   environment.systemPackages = with pkgs; [
-    # --- Dux Labs apps (Quickshell-based, pair with dms-shell) ---
+    # --- Dux Labs apps (Quickshell-based, pair with dux-shell) ---
     unstable.dux-calendar # Local/Google/Microsoft/CalDAV calendar app
     unstable.dux-files # File manager for Wayland built with Quickshell and Go
     unstable.dux-search # Filesystem search with fuzzy matching; replaces dsearch, renamed in the Dux 2.x rebrand

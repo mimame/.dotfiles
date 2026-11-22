@@ -11,7 +11,7 @@ let
   desktopModules = {
     niri = [
       ./niri
-      ./dms-shell
+      ./dux-shell
       ./gnome-services.nix
     ];
     gnome = [ ./gnome ];
