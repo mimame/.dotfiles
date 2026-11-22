@@ -173,11 +173,34 @@ abbr ze 'zellij edit'
 abbr zr 'zellij run'
 
 # --- NixOS ---
-abbr nr 'sudo nixos-rebuild switch --show-trace'
-abbr nru 'sudo nixos-rebuild switch --upgrade --show-trace'
-abbr nrt 'sudo nixos-rebuild test --show-trace'
-abbr nrb 'sudo nixos-rebuild boot --show-trace'
-abbr nrd 'sudo nixos-rebuild dry-build --show-trace'
+# Everything under one visible prefix `nixos-`, so it is obvious these are
+# store-writers. No cryptic sigla. Deliberately none is named
+# `nixos-rebuild`: it would hijack the real command. No timers by policy:
+# nothing touches the store on its own (recovery note in
+# nixos/core/nix-config.nix). Append flags (`nixos-switch --no-reexec`),
+# not subcommands.
+abbr nixos-switch 'sudo nixos-rebuild switch --show-trace'
+abbr nixos-test 'sudo nixos-rebuild test --show-trace'
+abbr nixos-boot 'sudo nixos-rebuild boot --show-trace'
+abbr nixos-dry 'sudo nixos-rebuild dry-build --show-trace'
+abbr nixos-rollback 'sudo nixos-rebuild switch --rollback'
+abbr nixos-generations 'nixos-rebuild list-generations'
+# Full update cycle, one command: `--upgrade` runs `nix-channel --update`
+# internally and then switches against the new channel. Opaque on purpose
+# (B, you picked it): one step, no explicit stop point. Do not use this to
+# retry a broken rebuild: `--upgrade` re-fetches the channel on every
+# attempt and the toplevel references shift. Type it bare; extra args land
+# on the switch.
+abbr nixos-upgrade 'sudo nixos-rebuild switch --upgrade --show-trace'
+# GC is its own word because it is its own step: slow, and deliberately not
+# inside nixos-upgrade. Run it occasionally or when the disk gets tight.
+abbr nixos-gc 'sudo nix-collect-garbage --delete-older-than 14d'
+# Store health. nixos-check only reports; nixos-repair backfills modified
+# content from cache.nixos.org, which is what actually fixed the store.
+# The `nix store verify --all --repair` CLI form reports but does not
+# repair; skip it.
+abbr nixos-check 'sudo nix-store --verify --check-contents'
+abbr nixos-repair 'sudo nix-store --verify --check-contents --repair'
 
 # --- Configuration Editing ---
 
