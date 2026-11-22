@@ -150,14 +150,30 @@ in
   # System-wide Settings
   # ----------------------------------------------------------------------------
   system = {
-    # Configure automatic system upgrades.
-    autoUpgrade = {
-      # Run upgrades weekly.
-      dates = "weekly";
-      # Allow the system to upgrade without requiring a reboot for the changes to take effect.
-      allowReboot = false;
-      enable = true;
-    };
+    # Configure automatic system upgrades. Disabled deliberately.
+    #
+    # WHY: a scheduled rebuild adds risk on any machine, laptop or server:
+    #   - A timer that missed its window catches up at boot or when the
+    #     units reload, and runs next to whatever else touches the store.
+    #   - That catch-up is exactly how this store was corrupted: the
+    #     scheduled update and the GC ran at the same instant, and the race
+    #     left base paths with modified content and live `.drv` deleted.
+    #     Recovery steps are in `core/nix-config.nix`.
+    #   - `allowReboot = false` only defers the reboot, not the evaluation
+    #     or the generation switch; it gives a false sense of safety.
+    #   - A manual `sudo nixos-rebuild switch` runs when you choose, its
+    #     output is visible, and it never overlaps another writer.
+    #
+    # Re-enable only with the update and the GC on non-overlapping explicit
+    # hours. And never `--upgrade` a rebuild while repairing a corrupt store:
+    # it re-rolls the paths the toplevel references and surfaces a new broken
+    # path on every failed attempt.
+    #
+    # autoUpgrade = {
+    #   dates = "weekly";
+    #   allowReboot = false;
+    #   enable = false;
+    # };
 
     # Show a diff of system packages after a successful rebuild.
     # dix is a subcommand CLI (`dix diff A B`); `|| true` keeps an

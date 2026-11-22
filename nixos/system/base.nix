@@ -41,7 +41,7 @@
   # fails to start the service, even if the NixOS-managed link is fine.
   #
   # THE SOLUTION:
-  # This activation script runs during every 'nh os switch'. It:
+  # This activation script runs during every 'nixos-rebuild switch'. It:
   # 1. Prunes: Deletes any broken symlinks in user home directories (~/.config/systemd/user).
   # 2. Heals: By removing the broken manual link, Systemd is forced to fall back
   #    to the correct, declarative link provided by NixOS in /etc/systemd/user/.
