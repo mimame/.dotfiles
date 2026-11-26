@@ -75,8 +75,15 @@ end
 source $__fish_config_dir/platform.fish
 
 # 5. TMUX AUTO-START (not inside other multiplexers; Rex already provides
-# its own sessions/panes and marks every terminal with REX_SESSION)
-if command -q tmux; and not set -q TMUX; and not set -q ZELLIJ; and not set -q REX_SESSION
+# its own sessions/panes). Rex does not export a stable set of marker
+# variables, so the check below treats any of them as Rex.
+if command -q tmux
+    and not set -q TMUX
+    and not set -q ZELLIJ
+    and not contains rex $TERM_PROGRAM
+    and not set -q REX_SESSION
+    and not set -q REX_SERVER
+    and not set -q REX_BLOCK
     tmux new-session
 end
 
